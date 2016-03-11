@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00", "00", "{0D654FEA-8FB1-47D2-A6FC-ABAD4F460A1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01UI", "01UI", "{DCC42609-184A-460D-8778-7A8A0634064E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02Service", "02Service", "{1EF8CA97-5594-441C-9CEE-A731B1BED388}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03Respositry", "03Respositry", "{EBC17A9A-D279-48E6-A3D9-BAA52625AB6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04Intrastructure", "04Intrastructure", "{FED23559-90C9-4846-8C62-AF5E1936DEB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMS.Model", "PMS.Model\PMS.Model.csproj", "{DB0B872A-4375-4BCB-AD18-F0EBCB0BDAE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMS.DALSQLSer", "PMS.DALSQLSer\PMS.DALSQLSer.csproj", "{73F24718-E616-4680-A82A-0B43FF064A85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALTest", "DALTest\DALTest.csproj", "{4B0456AD-CF3B-4BB4-B6CA-D0F55EBBFA48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB0B872A-4375-4BCB-AD18-F0EBCB0BDAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB0B872A-4375-4BCB-AD18-F0EBCB0BDAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB0B872A-4375-4BCB-AD18-F0EBCB0BDAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB0B872A-4375-4BCB-AD18-F0EBCB0BDAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F24718-E616-4680-A82A-0B43FF064A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F24718-E616-4680-A82A-0B43FF064A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F24718-E616-4680-A82A-0B43FF064A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F24718-E616-4680-A82A-0B43FF064A85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B0456AD-CF3B-4BB4-B6CA-D0F55EBBFA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B0456AD-CF3B-4BB4-B6CA-D0F55EBBFA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B0456AD-CF3B-4BB4-B6CA-D0F55EBBFA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B0456AD-CF3B-4BB4-B6CA-D0F55EBBFA48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB0B872A-4375-4BCB-AD18-F0EBCB0BDAE8} = {FED23559-90C9-4846-8C62-AF5E1936DEB9}
+		{73F24718-E616-4680-A82A-0B43FF064A85} = {EBC17A9A-D279-48E6-A3D9-BAA52625AB6B}
+		{4B0456AD-CF3B-4BB4-B6CA-D0F55EBBFA48} = {DCC42609-184A-460D-8778-7A8A0634064E}
+	EndGlobalSection
+EndGlobal

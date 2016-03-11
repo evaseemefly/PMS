@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c53a8ae520244205896e2c4ad588d238" Name="Diagram1">
+        <EntityTypeShape EntityType="PMS2016Model.ActionInfo" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_ActionInfo" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PMS2016Model.RoleInfo" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PMS2016Model.UserInfo" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_ActionInfo_ActionInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_ActionInfo_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PMS2016Model.R_RoleInfo_ActionInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PMS2016Model.R_UserInfo_RoleInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
