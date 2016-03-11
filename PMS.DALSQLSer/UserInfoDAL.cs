@@ -48,8 +48,25 @@ namespace PMS.DALSQLSer
             return true;
         }
 
+        //public delegate void Dg_Test(string str);
+
+        //public void Test(string str)
+        //{
+        //    Console.WriteLine("测试"+str);
+        //}
+
+        //public void Delete(Dg_Test dg)
+        //{
+        //    dg("我是通过委托传递的参数");
+        //    //Test("");
+        //}
+
         public bool Update(UserInfo model)
         {
+            //Dg_Test dg_test = new Dg_Test(Test);
+            ////dg_test("我是通过委托传递的参数");
+
+            //Delete(dg_test);
             //1 将UserInfo对象 加入 EF 容器中，并获取实体对象的管理状态
             DbEntityEntry<UserInfo> entry = Db.Entry<UserInfo>(model);
             //2 设置该对象为修改过的状态
@@ -59,8 +76,14 @@ namespace PMS.DALSQLSer
 
         }
 
+        /// <summary>
+        /// 查询用户信息
+        /// </summary>
+        /// <param name="whereLambda"></param>
+        /// <returns></returns>
         public IQueryable<UserInfo> GetListBy(Expression<Func<UserInfo, bool>> whereLambda)
         {
+            //Db.Set<int>().Where()
             return Db.Set<UserInfo>().Where(whereLambda);
         }
 
@@ -69,6 +92,10 @@ namespace PMS.DALSQLSer
             return Db.Set<UserInfo>().Where(whereLambda).OrderBy(orderLambda);
         }
 
+        public bool SaveChange()
+        {
+            return Db.SaveChanges()>0;
+        }
 
     }
 }

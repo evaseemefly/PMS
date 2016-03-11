@@ -14,9 +14,23 @@ namespace DALTest
         {
             UserInfoDAL dal = new UserInfoDAL();
 
-            List<UserInfo> list= dal.GetListBy(u => u.ID == 2).ToList();
 
-            list.ForEach(a => Console.WriteLine(a.ID + " " + a.UName));
+            List<UserInfo> list= dal.GetListBy(
+                u => u.DelFlag==false).ToList();
+
+            UserInfo userInfo = new UserInfo()
+            {
+                DelFlag = false,
+                ModifiedOnTime = DateTime.Now,
+                Sort =100,
+                SubTime = DateTime.Now,
+                 Remark="123",
+                UName ="测试1",
+                UPwd="123"
+            };
+            dal.Create(userInfo);
+            dal.SaveChange();
+            //list.ForEach(a => Console.WriteLine(a.ID + " " + a.UName));
             Console.ReadLine();
         }
     }
