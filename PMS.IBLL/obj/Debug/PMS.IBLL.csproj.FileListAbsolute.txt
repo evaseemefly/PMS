@@ -1,0 +1,9 @@
+D:\nmefc\Project\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.dll
+D:\nmefc\Project\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.pdb
+D:\nmefc\Project\PMS\PMS.IBLL\bin\Debug\PMS.Model.dll
+D:\nmefc\Project\PMS\PMS.IBLL\bin\Debug\EntityFramework.dll
+D:\nmefc\Project\PMS\PMS.IBLL\bin\Debug\PMS.Model.pdb
+D:\nmefc\Project\PMS\PMS.IBLL\bin\Debug\EntityFramework.xml
+D:\nmefc\Project\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
+D:\nmefc\Project\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
+D:\nmefc\Project\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb

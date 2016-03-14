@@ -16,3 +16,14 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\bin\Debug\EntityFramewo
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.pdb
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\PMS.DALSQLSer.dll
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\PMS.DALSQLSer.pdb
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\EntityFramework.dll
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\PMS.IDAL.dll
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\PMS.Model.dll
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\PMS.IDAL.pdb
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\PMS.Model.pdb
+D:\nmefc\Project\PMS\PMS.DALSQLSer\bin\Debug\EntityFramework.xml
+D:\nmefc\Project\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.csprojResolveAssemblyReference.cache
+D:\nmefc\Project\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.dll
+D:\nmefc\Project\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.pdb

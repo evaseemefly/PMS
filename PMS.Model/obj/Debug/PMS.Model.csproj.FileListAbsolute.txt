@@ -13,3 +13,11 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.d
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+D:\nmefc\Project\PMS\PMS.Model\bin\Debug\PMS.Model.dll.config
+D:\nmefc\Project\PMS\PMS.Model\bin\Debug\PMS.Model.dll
+D:\nmefc\Project\PMS\PMS.Model\bin\Debug\PMS.Model.pdb
+D:\nmefc\Project\PMS\PMS.Model\bin\Debug\EntityFramework.dll
+D:\nmefc\Project\PMS\PMS.Model\bin\Debug\EntityFramework.xml
+D:\nmefc\Project\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
+D:\nmefc\Project\PMS\PMS.Model\obj\Debug\PMS.Model.dll
+D:\nmefc\Project\PMS\PMS.Model\obj\Debug\PMS.Model.pdb

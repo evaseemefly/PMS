@@ -1,0 +1,15 @@
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.BLL.dll
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.BLL.pdb
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.dll
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.IBLL.dll
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.IDAL.dll
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.Model.dll
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\EntityFramework.dll
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.pdb
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.IBLL.pdb
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.IDAL.pdb
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
+D:\nmefc\Project\PMS\PMS.BLL\bin\Debug\EntityFramework.xml
+D:\nmefc\Project\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
+D:\nmefc\Project\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
+D:\nmefc\Project\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
