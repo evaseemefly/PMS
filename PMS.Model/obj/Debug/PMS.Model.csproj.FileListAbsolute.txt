@@ -13,3 +13,4 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.d
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache

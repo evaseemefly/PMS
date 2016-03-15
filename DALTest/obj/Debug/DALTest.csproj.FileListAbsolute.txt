@@ -22,3 +22,9 @@ D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.DALSQLSer.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.Model.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\EntityFramework.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\obj\Debug\DALTest.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.BLL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IBLL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IDAL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.BLL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IBLL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IDAL.pdb

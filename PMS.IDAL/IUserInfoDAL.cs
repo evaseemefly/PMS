@@ -14,7 +14,7 @@ namespace PMS.IDAL
     /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
     /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
     /// </summary>
-    public interface IUserInfo
+    public interface IUserInfoDAL
     {
         #region 1 根据实体为数据库中添加新的对象+bool Create(UserInfo model);
         /// <summary>

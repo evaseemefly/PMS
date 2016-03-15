@@ -49,9 +49,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
+      <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
+      <Name>PMS.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
       <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
       <Name>PMS.DALSQLSer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
+      <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
+      <Name>PMS.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>

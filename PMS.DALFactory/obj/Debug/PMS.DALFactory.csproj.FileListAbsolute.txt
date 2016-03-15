@@ -1,0 +1,13 @@
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.DALFactory.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.DALFactory.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\EntityFramework.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.DALSQLSer.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.IDAL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.Model.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.DALSQLSer.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.IDAL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\EntityFramework.xml
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.pdb

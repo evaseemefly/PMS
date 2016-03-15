@@ -14,10 +14,12 @@ namespace PMS.DALSQLSer
     /// <summary>
     /// 用户数据访问层继承自IUserInfo接口
     /// </summary>
-    public class UserInfoDAL: IUserInfo
+    public class UserInfoDAL: IUserInfoDAL
     {
         //1 创建实体上下文对象，并将继承自DbContext的EF实体对象PMS2016Entities赋给实体上下文对象
-        DbContext Db = new PMS2016Entities();
+        //3月15日修改——通过线程中唯一的方法 创建在一个线程中职能创建一次的数据上下文对象
+        DbContext Db = DBContextFactory.GetDBContext();
+
 
         /*
          下面要操作数据

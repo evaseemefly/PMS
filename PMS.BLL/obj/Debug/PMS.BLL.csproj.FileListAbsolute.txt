@@ -1,0 +1,15 @@
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.BLL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.BLL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IBLL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IDAL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.Model.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\EntityFramework.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IBLL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IDAL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\EntityFramework.xml
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb

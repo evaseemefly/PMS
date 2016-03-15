@@ -1,0 +1,9 @@
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\bin\Debug\PMS.Model.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\bin\Debug\EntityFramework.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\bin\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\bin\Debug\EntityFramework.xml
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.pdb

@@ -15,7 +15,7 @@ namespace PMS.BLL
         /// <summary>
         /// 数据层的访问接口
         /// </summary>
-        protected IDAL.IUserInfo idal;
+        protected IDAL.IUserInfoDAL idal;
 
         /// <summary>
         /// 自定义无参的构造函数，每次New本类时，会执行SetDAL方法，为idal赋具体的实现类
