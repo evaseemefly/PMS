@@ -17,7 +17,7 @@ namespace PMS.DALFactory
         /// 创建线程内唯一的DBSession
         /// </summary>
         /// <returns></returns>
-        public static IDAL.IDBSession CreateDbSessio()
+        public static IDAL.IDBSession CreateDbSession()
         {
             //1 获取当前线程中的EF上下文对象
             IDAL.IDBSession DbSession = CallContext.GetData(typeof(DBSessionFactory).Name) as IDAL.IDBSession;

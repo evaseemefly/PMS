@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseBLL.cs" />
     <Compile Include="UserInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PMS.DALFactory\PMS.DALFactory.csproj">
+      <Project>{a0fe1f08-d413-4cd0-aafb-45efb2382504}</Project>
+      <Name>PMS.DALFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
       <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
       <Name>PMS.DALSQLSer</Name>

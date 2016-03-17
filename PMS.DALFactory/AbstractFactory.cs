@@ -28,7 +28,7 @@ namespace PMS.DALFactory
         /// </summary>
         /// <param name="fullClassName"></param>
         /// <returns></returns>
-        public static object CreateInstance(string fullClassName)
+        private static object CreateInstance(string fullClassName)
         {
             //通过反射创建对象实例
             //根据程序集名称加载程序集
@@ -45,7 +45,7 @@ namespace PMS.DALFactory
         public static IUserInfoDAL CreateUserInfoDAL()
         {
             //获取类的全名称：命名空间+类名
-            string fullClassName = NameSpace + ".UserInfo";
+            string fullClassName = NameSpace + ".UserInfoDAL";
             return CreateInstance(fullClassName) as IUserInfoDAL;
         }
     }

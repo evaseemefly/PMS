@@ -53,6 +53,10 @@
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
       <Name>PMS.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.DALFactory\PMS.DALFactory.csproj">
+      <Project>{a0fe1f08-d413-4cd0-aafb-45efb2382504}</Project>
+      <Name>PMS.DALFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
       <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
       <Name>PMS.DALSQLSer</Name>
@@ -64,6 +68,10 @@
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestModel\TestModel.csproj">
+      <Project>{831e05a2-93a7-4a52-ba21-75cddeea076f}</Project>
+      <Name>TestModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

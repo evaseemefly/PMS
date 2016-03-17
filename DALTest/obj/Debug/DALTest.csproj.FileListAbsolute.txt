@@ -28,3 +28,7 @@ D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IDAL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.BLL.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IBLL.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.IDAL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\TestModel.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\TestModel.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.DALFactory.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\DALTest\bin\Debug\PMS.DALFactory.pdb

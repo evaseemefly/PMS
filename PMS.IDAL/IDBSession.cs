@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PMS.IDAL
 {
-    public interface IDBSession
+    public partial interface IDBSession
     {
         bool SaveChanges();
     }

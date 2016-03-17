@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDAL.cs" />
     <Compile Include="DBContextFactory.cs" />
     <Compile Include="UserInfoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfoMySQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.IDAL\PMS.IDAL.csproj">
@@ -56,6 +58,10 @@
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestModel\TestModel.csproj">
+      <Project>{831e05a2-93a7-4a52-ba21-75cddeea076f}</Project>
+      <Name>TestModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

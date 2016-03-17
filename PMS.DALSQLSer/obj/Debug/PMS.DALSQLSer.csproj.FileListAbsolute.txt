@@ -18,3 +18,5 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\bin\Debug\PMS.IDAL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\bin\Debug\PMS.IDAL.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\bin\Debug\TestModel.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.DALSQLSer\bin\Debug\TestModel.pdb
