@@ -9,26 +9,30 @@ namespace PMS.DALFactory
 {
     public partial class DBSession
     {
-        private IDAL.IUserInfoDAL userInfoDAL;
+       
 
-        /// <summary>
-        /// 获取UserInfoDAL的实例
-        /// </summary>
-        public IUserInfoDAL UserInfoDAL
-        {
-            get
-            {
-                if(userInfoDAL==null)
-                {
-                    userInfoDAL = AbstractFactory.CreateUserInfoDAL();
-                }
-                return userInfoDAL;
-            }
+        //private IDAL.IUserInfoDAL _UserInfoDAL;
 
-            set
-            {
-                userInfoDAL = value;
-            }
-        }
+        
+
+        ///// <summary>
+        ///// 获取UserInfoDAL的实例
+        ///// </summary>
+        //public IUserInfoDAL UserInfoDAL
+        //{
+        //    get
+        //    {
+        //        if(_UserInfoDAL == null)
+        //        {
+        //            userInfoDAL = AbstractFactory.CreateUserInfoDAL();
+        //        }
+        //        return _UserInfoDAL;
+        //    }
+
+        //    set
+        //    {
+        //        _UserInfoDAL = value;
+        //    }
+        //}
     }
 }

@@ -1,0 +1,61 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#@ output extension=".cs" #>
+<#
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\PMS.Model\\PMSEntities.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+#>
+using PMS.IDAL;
+
+namespace PMS.DALFactory
+{
+public partial class DBSession
+    {
+<# foreach (EntityType item in ItemCollection.GetItems<EntityType>().OrderBy(e=>e.Name))
+   {   
+
+   #>
+	#region _<#=item.Name#>DAL 属性 
+	private IDAL.I<#=item.Name#>DAL _<#=item.Name#>DAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取<#=item.Name#>DAL的实例
+        /// </summary>
+        public I<#=item.Name#>DAL <#=item.Name#>DAL
+        {
+            get
+            {
+                if(_<#=item.Name#>DAL==null)
+                {
+                    _<#=item.Name#>DAL = AbstractFactory.Create<#=item.Name#>DAL();
+                }
+                return _<#=item.Name#>DAL;
+            }
+
+            set
+            {
+                _<#=item.Name#>DAL = value;
+            }
+        }
+	#endregion
+	
+
+	<#}#>
+	}
+}

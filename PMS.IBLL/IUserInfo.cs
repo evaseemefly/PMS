@@ -8,9 +8,9 @@ using System.Linq.Expressions;
 
 namespace PMS.IBLL
 {
-    public interface IUserInfo:IBaseBLL<UserInfo>
-    {
+    //public interface IUserInfo:IBaseBLL<UserInfo>
+    //{
         
 
-    }
+    //}
 }

@@ -25,7 +25,7 @@ namespace DALTest
             //Console.ReadLine();
             //UserInfoDAL dal = new UserInfoDAL();
 
-            IUserInfo ibll;
+            IUserInfoBLL ibll;
 
             ibll = new UserInfoBLL();
 

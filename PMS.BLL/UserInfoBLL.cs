@@ -9,15 +9,21 @@ using System.Linq.Expressions;
 
 namespace PMS.BLL
 {
-    public class UserInfoBLL : BaseBLL<UserInfo>, IUserInfo
+    public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL
     {
-        public UserInfoBLL()
-        {
-            //Console.WriteLine("子类构造函数");
-        }
-        public override void SetCurrentDAL()
-        {
-            base.CurrentDAL = base.CurrentDBSession.UserInfoDAL;
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public UserInfoBLL()
+        //{
+        //    //Console.WriteLine("子类构造函数");
+        //}
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public override void SetCurrentDAL()
+        //{
+        //    base.CurrentDAL = base.CurrentDBSession.UserInfoDAL;
+        //}
     }
 }
