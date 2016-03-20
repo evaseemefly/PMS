@@ -1,0 +1,117 @@
+
+
+Log4Net是用来记录日志的，可以将程序运行过程中的信息输出到一些地方（文件、数据库、EventLog等），日志就是程序的黑匣子，可以通过
+日志查看系统的运行过程，从而发现系统的问题。日志的作用：将运行过程的步骤、成功失败记录下来，将关键性的数据记录下来分析系统问题所在。Log4J。
+对于网站来讲，不能把异常信息显示给用户，异常信息只能记录到日志，出了问题把日志文件发给开发人员，就能知道问题所在。
+
+
+配置Log4Net环境
+
+
+(1)新建一个WebApplication
+
+(2)添加对log4net.dll的引用（bin\net\2.0\release 不能引用debug版本）(把相应的dll文件拷贝到项目中的lib文件夹下。)
+
+
+(3)在Web.Config （或App.Config）添加配置，见备注
+
+
+
+(4)初始化：在程序最开始加入log4net.Config.XmlConfigurator.Configure();不要加到页面的Load
+
+
+
+(5)在要打印日志的地方LogManager.GetLogger(typeof(Program)).Debug(“信息”); 。通过LogManager.GetLogger传递要记录的日志类类名获得这个类的ILog（这样在日志文件中就能看到这条日志是哪个类输出的了），然后调用Debug方法输出消息。因为一个类内部不止一个地方要打印日志，所以一般把ILog声明为一个static字段。
+Private static ILog logger=LogManager.GetLogger(typeof(Test))
+输出错误信息用ILog.Error方法，第二个参数可以传递Exception对象。log.Error("***错误"+ex)，log.Error("***错误",ex)
+测试代码：
+
+
+Appender：可以将日志输出到不同的地方，不同的输出目标对应不同的Appender：RollingFileAppender（滚动文件）、AdoNetAppender（数据库）、SmtpAppender （邮件）等。
+
+level（级别）：标识这条日志信息的重要级别。None>Fatal>ERROR>WARN>DEBUG>INFO>ALL，设定一个Level，那么低于这个Level的日志是不会被写到Appender中的。
+
+Log4Net还可以设定多个Appender，可以实现同时将日志记录到文件、数据、发送邮件等；可以设定不同的Appender的不同的Level，可以实现普通级别都记录到文件，Error以上级别发送邮件；可以实现对不同的类设定不同的Appender；还可以自定义Appender，这样可以自己实现将Error信息发短信等。
+
+（*）除了Log4Net，还有Enterprise Library中的Logging Application Block、Apache的CommonLog 以及NLog等，都差不多。
+
+
+
+
+
+Log4Net配置
+<configuration>
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
+  </configSections>
+  <log4net>
+    <!-- Define some output appenders -->
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="test.txt"/>
+      <appendToFile value="true"/>
+      <maxSizeRollBackups value="10"/>
+      <maximumFileSize value="1024KB"/>
+      <rollingStyle value="Size"/>
+      <staticLogFileName value="true"/>
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%thread] %-5level %logger - %message%newline"/>
+      </layout>
+    </appender>
+    <root>
+      <level value="DEBUG"/>
+      <appender-ref ref="RollingLogFileAppender"/>
+    </root>
+  </log4net>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<log4net>
+		<!-- OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL -->
+		<!-- Set root logger level to ERROR and its appenders -->
+		<root>
+			<level value="ALL"/>
+			<appender-ref ref="SysAppender"/>
+		</root>
+
+		<!-- Print only messages of level DEBUG or above in the packages -->
+		<logger name="WebLogger">
+			<level value="DEBUG"/>
+		</logger>
+
+		<appender name="SysAppender" type="log4net.Appender.RollingFileAppender,log4net" >
+			<param name="File" value="App_Data/" />
+			<param name="AppendToFile" value="true" />
+			<param name="RollingStyle" value="Date" />
+			<param name="DatePattern" value="&quot;Logs_&quot;yyyyMMdd&quot;.txt&quot;" />
+			<param name="StaticLogFileName" value="false" />
+			<layout type="log4net.Layout.PatternLayout,log4net">
+				<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+				<param name="Header" value="&#13;&#10;----------------------header--------------------------&#13;&#10;" />
+				<param name="Footer" value="&#13;&#10;----------------------footer--------------------------&#13;&#10;" />
+			</layout>
+		</appender>
+		<appender name="consoleApp" type="log4net.Appender.ConsoleAppender,log4net">
+			<layout type="log4net.Layout.PatternLayout,log4net">
+				<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+			</layout>
+		</appender>
+	</log4net>

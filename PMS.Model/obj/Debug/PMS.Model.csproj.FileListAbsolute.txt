@@ -10,6 +10,9 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\PMS.Model.dll.con
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\PMS.Model.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\System.Web.Mvc.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.xml
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\System.Web.Mvc.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
