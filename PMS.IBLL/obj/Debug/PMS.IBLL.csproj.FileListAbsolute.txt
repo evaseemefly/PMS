@@ -9,3 +9,14 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.dll
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.pdb
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\PMS.Model.dll
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\EntityFramework.dll
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.dll
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\PMS.Model.pdb
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\EntityFramework.xml
+E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
+E:\03协同开发\短信\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
+E:\03协同开发\短信\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb

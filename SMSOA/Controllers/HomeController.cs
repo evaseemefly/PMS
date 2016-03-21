@@ -11,9 +11,11 @@ namespace SMSOA.Controllers
     {
         
         IUserInfoBLL userInfoBLL { get; set; }
+        
         public ActionResult Index()
         {
-            var userInfoList = userInfoBLL.GetListBy(u => u.DelFlag == false).ToList();
+            
+            var userInfoList = userInfoBLL.GetListBy(u =>true).ToList();
             ViewData.Model = userInfoList;
             return View();
         }

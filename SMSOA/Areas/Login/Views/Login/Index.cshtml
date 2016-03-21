@@ -182,7 +182,7 @@
             </div>
             <div class="panel-c">
                 <div class="panel-c-l">
-                    @using (Ajax.BeginForm("CheckLogin", "Login", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterLogin" }, new { id = "loginForm" }))
+                    @using (Ajax.BeginForm("CheckLogin", "Login",null @*new { area="Login"}*@, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterLogin" }, new { id = "loginForm" }))
                     {
                         <table cellpadding="0" cellspacing="0">
                             <tbody>
@@ -221,7 +221,8 @@
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <img id="img" src="/Login/ValidateCode/?id=1" style="float: left; height: 24px;" />
+                                        @*地址为：Login/{controller}/{action}*@
+                                        <img id="img" src="/Login/Login/ValidateCode/?id=1" style="float: left; height: 24px;" />
                                         <div style="float: left; margin-left: 5px; margin-top: 10px;">
                                             <a href="javascript:void(0)" onclick="changeCheckCode();return false;">看不清，换一张</a>
                                         </div>
