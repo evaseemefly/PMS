@@ -12,5 +12,10 @@ namespace SMSOA.Login
         {
             return View();
         }
+
+        public ActionResult ValidateCode()
+        {
+
+        }
     }
 }
