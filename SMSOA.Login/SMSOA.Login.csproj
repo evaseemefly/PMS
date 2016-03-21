@@ -185,7 +185,12 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
