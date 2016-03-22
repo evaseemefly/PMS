@@ -17,3 +17,5 @@ E:\03协同开发\短信\PMS\Common\bin\Debug\Memcached.ClientLibrary.dll
 E:\03协同开发\短信\PMS\Common\bin\Debug\Newtonsoft.Json.dll
 E:\03协同开发\短信\PMS\Common\bin\Debug\Newtonsoft.Json.pdb
 E:\03协同开发\短信\PMS\Common\bin\Debug\Newtonsoft.Json.xml
+D:\02编程\2016年\01协同开发\PMS\PMS\Common\bin\Debug\Commons.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\Common\bin\Debug\ICSharpCode.SharpZipLib.dll

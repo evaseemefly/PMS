@@ -30,10 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Commons">
+      <HintPath>..\SMSOA\Libs\Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\SMSOA\Libs\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\SMSOA\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Memcached.ClientLibrary">
+    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SMSOA\Libs\Memcached.ClientLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -54,7 +61,7 @@
   <ItemGroup>
     <Compile Include="Encryption.cs" />
     <Compile Include="LogHelper.cs" />
-    <Compile Include="MemecacheHelper.cs" />
+    <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />

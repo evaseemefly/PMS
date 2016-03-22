@@ -150,3 +150,4 @@ E:\03协同开发\短信\PMS\SMSOA.Login\bin\PMS.Model.dll
 E:\03协同开发\短信\PMS\SMSOA.Login\bin\Memcached.ClientLibrary.dll
 E:\03协同开发\短信\PMS\SMSOA.Login\bin\PMS.IBLL.pdb
 E:\03协同开发\短信\PMS\SMSOA.Login\bin\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA.Login\bin\ICSharpCode.SharpZipLib.dll

@@ -15,7 +15,6 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.x
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\bin\Debug\System.Web.Mvc.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
-D:\02编程\2016年\01协同开发\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS.Model\bin\Debug\PMS.Model.dll.config
 E:\03协同开发\短信\PMS\PMS.Model\bin\Debug\PMS.Model.dll
 E:\03协同开发\短信\PMS\PMS.Model\bin\Debug\PMS.Model.pdb

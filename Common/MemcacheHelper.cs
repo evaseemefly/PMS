@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class MemecacheHelper
+    public class MemcacheHelper
     {
         
 
@@ -20,7 +20,7 @@ namespace Common
         /// <summary>
         /// 静态构造函数——不需要使用public
         /// </summary>
-        static MemecacheHelper()
+        static MemcacheHelper()
         {
             string startIp = ConfigurationManager.AppSettings["startIp"];//192.168.0.163:11211
             string endIp = ConfigurationManager.AppSettings["endIp"];

@@ -192,3 +192,4 @@ E:\03协同开发\短信\PMS\SMSOA\obj\Debug\SMSOA.dll
 E:\03协同开发\短信\PMS\SMSOA\obj\Debug\SMSOA.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\Memcached.ClientLibrary.dll
 E:\03协同开发\短信\PMS\SMSOA\bin\Memcached.ClientLibrary.dll
+D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll

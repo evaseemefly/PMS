@@ -24,6 +24,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
 
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 
     <script type="text/javascript">
@@ -33,7 +34,7 @@
         function afterLogin(serverData) {
             var data = serverData.split(':');
             if (data[0] == "ok") {
-                window.location.href = "/MyHome/Index";
+                window.location.href = "/Admin/Home/Index";
             }
             else if (data[0] == "no") {//注意若 密码或验证码错误时，服务器会返回 “no:服务器错误”
 
@@ -222,7 +223,7 @@
                                     <td></td>
                                     <td>
                                         @*地址为：Login/{controller}/{action}*@
-                                        <img id="img" src="/Login/Login/ValidateCode/?id=1" style="float: left; height: 24px;" />
+                                        <img id="img" src="/Login/Login/ValidateCode/" style="float: left; height: 24px;" />
                                         <div style="float: left; margin-left: 5px; margin-top: 10px;">
                                             <a href="javascript:void(0)" onclick="changeCheckCode();return false;">看不清，换一张</a>
                                         </div>
