@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Schemal", "00Schemal", "{0D654FEA-8FB1-47D2-A6FC-ABAD4F460A1B}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\04重新后的学习资料\02各类资料整理\Spring.Net\Spring.NET-2.0.0-M1\Spring.NET\doc\schema\spring-objects-1.3.xsd = ..\..\..\..\..\04重新后的学习资料\02各类资料整理\Spring.Net\Spring.NET-2.0.0-M1\Spring.NET\doc\schema\spring-objects-1.3.xsd
+		..\..\..\04重新后的学习资料\02各类资料整理\Spring.Net\Spring.NET-2.0.0-M1\Spring.NET\doc\schema\spring-objects-1.3.xsd = ..\..\..\04重新后的学习资料\02各类资料整理\Spring.Net\Spring.NET-2.0.0-M1\Spring.NET\doc\schema\spring-objects-1.3.xsd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01UI", "01UI", "{DCC42609-184A-460D-8778-7A8A0634064E}"
@@ -36,9 +36,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSOA", "SMSOA\SMSOA.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{648B0371-B409-44CF-AF78-E07E617D8828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSOA.Logic.Admin", "SMSOA.Logic.Admin\SMSOA.Logic.Admin.csproj", "{ADD596C3-0260-44D2-A869-1B88AA20D6D8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSOA.Login", "SMSOA.Login\SMSOA.Login.csproj", "{78F22406-4FB1-46AF-875A-BC48E816F79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSOA.Admin", "SMSOA.Admin\SMSOA.Admin.csproj", "{C4F5D73B-111A-4698-ADED-55632FF76E72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,14 +86,14 @@ Global
 		{648B0371-B409-44CF-AF78-E07E617D8828}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{648B0371-B409-44CF-AF78-E07E617D8828}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{648B0371-B409-44CF-AF78-E07E617D8828}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADD596C3-0260-44D2-A869-1B88AA20D6D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADD596C3-0260-44D2-A869-1B88AA20D6D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADD596C3-0260-44D2-A869-1B88AA20D6D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADD596C3-0260-44D2-A869-1B88AA20D6D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{78F22406-4FB1-46AF-875A-BC48E816F79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78F22406-4FB1-46AF-875A-BC48E816F79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F22406-4FB1-46AF-875A-BC48E816F79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F22406-4FB1-46AF-875A-BC48E816F79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F5D73B-111A-4698-ADED-55632FF76E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F5D73B-111A-4698-ADED-55632FF76E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F5D73B-111A-4698-ADED-55632FF76E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F5D73B-111A-4698-ADED-55632FF76E72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,7 +109,7 @@ Global
 		{831E05A2-93A7-4A52-BA21-75CDDEEA076F} = {FED23559-90C9-4846-8C62-AF5E1936DEB9}
 		{DB223E8F-1440-458F-9091-D4454463F326} = {DCC42609-184A-460D-8778-7A8A0634064E}
 		{648B0371-B409-44CF-AF78-E07E617D8828} = {FED23559-90C9-4846-8C62-AF5E1936DEB9}
-		{ADD596C3-0260-44D2-A869-1B88AA20D6D8} = {DCC42609-184A-460D-8778-7A8A0634064E}
 		{78F22406-4FB1-46AF-875A-BC48E816F79C} = {DCC42609-184A-460D-8778-7A8A0634064E}
+		{C4F5D73B-111A-4698-ADED-55632FF76E72} = {DCC42609-184A-460D-8778-7A8A0634064E}
 	EndGlobalSection
 EndGlobal

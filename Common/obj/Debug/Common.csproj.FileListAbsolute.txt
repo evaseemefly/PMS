@@ -8,9 +8,12 @@ E:\03协同开发\短信\PMS\Common\bin\Debug\Common.pdb
 E:\03协同开发\短信\PMS\Common\bin\Debug\log4net.dll
 E:\03协同开发\短信\PMS\Common\obj\Debug\Common.dll
 E:\03协同开发\短信\PMS\Common\obj\Debug\Common.pdb
-E:\03协同开发\短信\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\PMS\Common\bin\Debug\Memcached.ClientLibrary.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\Common\bin\Debug\Newtonsoft.Json.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\Common\bin\Debug\Newtonsoft.Json.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\Common\bin\Debug\Newtonsoft.Json.xml
+E:\03协同开发\短信\PMS\Common\bin\Debug\Memcached.ClientLibrary.dll
+E:\03协同开发\短信\PMS\Common\bin\Debug\Newtonsoft.Json.dll
+E:\03协同开发\短信\PMS\Common\bin\Debug\Newtonsoft.Json.pdb
+E:\03协同开发\短信\PMS\Common\bin\Debug\Newtonsoft.Json.xml
