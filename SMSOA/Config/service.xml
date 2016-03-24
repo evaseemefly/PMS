@@ -3,4 +3,6 @@
   <!--这里必须要加上-->
   <object type="PMS.BLL.UserInfoBLL, PMS.BLL" singleton="false" name="userInfoService" >
   </object>
+  <object type="PMS.BLL.ActionInfoBLL, PMS.BLL" singleton="false" name="actionInfoService" >
+  </object>
 </objects>

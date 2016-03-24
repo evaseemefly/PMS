@@ -5,12 +5,14 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentID" Type="int" Nullable="false" />
     <Property Name="ActionInfoName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="SubTime" Type="datetime" Nullable="false" />
     <Property Name="DelFlag" Type="bit" Nullable="false" />
     <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="256" />
     <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="32" />
     <Property Name="ActionMethodName" Type="nvarchar" MaxLength="32" />
     <Property Name="ControllerName" Type="nvarchar" MaxLength="32" />
     <Property Name="Sort" Type="int" Nullable="false" />
@@ -66,7 +68,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="UPwd" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="UPwd" Type="nvarchar" MaxLength="32" Nullable="false" />
     <Property Name="DelFlag" Type="bit" Nullable="false" />
     <Property Name="SubTime" Type="datetime" Nullable="false" />
     <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />

@@ -27,6 +27,9 @@ namespace SMSOA
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+
+
+
             //绑定jquery的js文件
             bundles.Add(new ScriptBundle("~/mvcAjax").Include(
               "~/Scripts/jquery-1.10.2.min.js",
@@ -36,7 +39,7 @@ namespace SMSOA
 
             //绑定easyui的js文件
             bundles.Add(new ScriptBundle("~/easyUIJS").Include(
-                "~/Scripts/EasyUI/jquery.min.js",
+                "~/Scripts/EasyUI/jquery.min.js", 
                 "~/Scripts/EasyUI/jquery.easyui.min.js",
                 "~/Scripts/MyScripts/jquery.msgProcess.js",
                 "~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"));   //本地化文件（汉化文件）

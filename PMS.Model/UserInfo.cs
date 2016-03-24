@@ -19,9 +19,7 @@ namespace PMS.Model
             this.R_UserInfo_ActionInfo = new HashSet<R_UserInfo_ActionInfo>();
             this.RoleInfo = new HashSet<RoleInfo>();
         }
-
-        
-
+    
         public int ID { get; set; }
         public string UName { get; set; }
         public string UPwd { get; set; }
@@ -33,7 +31,5 @@ namespace PMS.Model
     
         public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
         public virtual ICollection<RoleInfo> RoleInfo { get; set; }
-
-       
     }
 }

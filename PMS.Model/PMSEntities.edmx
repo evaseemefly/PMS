@@ -4,18 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PMS2016Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PMS2016Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionInfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
           <Property Name="ActionInfoName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SubTime" Type="datetime" Nullable="false" />
           <Property Name="DelFlag" Type="bit" Nullable="false" />
           <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="256" />
           <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="32" />
           <Property Name="ActionMethodName" Type="nvarchar" MaxLength="32" />
           <Property Name="ControllerName" Type="nvarchar" MaxLength="32" />
           <Property Name="Sort" Type="int" Nullable="false" />
@@ -71,7 +73,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="UPwd" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="UPwd" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="DelFlag" Type="bit" Nullable="false" />
           <Property Name="SubTime" Type="datetime" Nullable="false" />
           <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
@@ -192,8 +194,7 @@ FROM [dbo].[R_UserInfo_RoleInfo] AS [R_UserInfo_RoleInfo]</DefiningQuery>
             <End Role="R_UserInfo_RoleInfo" EntitySet="R_UserInfo_RoleInfo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PMS2016Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -217,6 +218,8 @@ FROM [dbo].[R_UserInfo_RoleInfo] AS [R_UserInfo_RoleInfo]</DefiningQuery>
           <Property Name="IconHeight" Type="Int32" Nullable="false" />
           <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_ActionInfo" FromRole="ActionInfo" ToRole="R_UserInfo_ActionInfo" />
           <NavigationProperty Name="RoleInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="ActionInfo" ToRole="RoleInfo" />
+          <Property Name="AreaName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_ActionInfo">
           <Key>
@@ -249,7 +252,7 @@ FROM [dbo].[R_UserInfo_RoleInfo] AS [R_UserInfo_RoleInfo]</DefiningQuery>
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UPwd" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UPwd" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DelFlag" Type="Boolean" Nullable="false" />
           <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -321,6 +324,8 @@ FROM [dbo].[R_UserInfo_RoleInfo] AS [R_UserInfo_RoleInfo]</DefiningQuery>
           <EntitySetMapping Name="ActionInfo">
             <EntityTypeMapping TypeName="PMS2016Model.ActionInfo">
               <MappingFragment StoreEntitySet="ActionInfo">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
                 <ScalarProperty Name="SubTime" ColumnName="SubTime" />

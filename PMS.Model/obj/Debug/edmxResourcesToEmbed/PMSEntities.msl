@@ -4,6 +4,8 @@
     <EntitySetMapping Name="ActionInfo">
       <EntityTypeMapping TypeName="PMS2016Model.ActionInfo">
         <MappingFragment StoreEntitySet="ActionInfo">
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
           <ScalarProperty Name="SubTime" ColumnName="SubTime" />
