@@ -20,3 +20,14 @@ E:\03协同开发\短信\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
 E:\03协同开发\短信\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.dll
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.pdb
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\PMS.Model.dll
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\EntityFramework.dll
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.dll
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\PMS.Model.pdb
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\EntityFramework.xml
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
+D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb

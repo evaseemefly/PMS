@@ -31,7 +31,7 @@ namespace SMSOA.Areas.Admin.Controllers
 
                 //2 通过路线二查询 UserInfo所对应的角色，并查询该角色中包含的Action
                 var list_action = (
-                    from r in userInfo.RoleInfo
+                    from r in userInfo.RoleInfo //linq
                     from a in r.ActionInfo
                     select a).ToList();
 
@@ -42,10 +42,10 @@ namespace SMSOA.Areas.Admin.Controllers
                 //list_R_User_Action存储的是userInfoId为1的R_User_Action对象的集合
                 var list_R_User_Action = userInfo.R_UserInfo_ActionInfo;
                 //4 取出userInfo id为2的用户所对应的Action集合（路线一的方式）
-                var temp = (
-                    from r in list_R_User_Action
-                    select r.ActionInfo
-                    ).ToList();
+                //var temp = (
+                //    from r in list_R_User_Action
+                //    select r.ActionInfo
+                //    ).ToList();
                 //4.1 取出isPass为true的所有集合
                 var list_action_isPass = (
                    from r in list_R_User_Action
