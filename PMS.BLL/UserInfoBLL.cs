@@ -25,5 +25,7 @@ namespace PMS.BLL
         //{
         //    base.CurrentDAL = base.CurrentDBSession.UserInfoDAL;
         //}
+
+        
     }
 }

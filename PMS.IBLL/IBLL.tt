@@ -27,7 +27,7 @@ namespace PMS.IBLL
 <# foreach (EntityType item in ItemCollection.GetItems<EntityType>().OrderBy(e=>e.Name))
    {   
    #>
-    public interface I<#=item.Name#>BLL:IBaseBLL<<#=item.Name#>>
+    public partial interface I<#=item.Name#>BLL:IBaseBLL<<#=item.Name#>>
     {
         
 

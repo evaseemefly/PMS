@@ -237,7 +237,10 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.Model.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\SMSOA.Login.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Spring.Core.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Spring.Web.Mvc4.dll
+D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Net.Http.Formatting.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Helpers.dll
+D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Http.dll
+D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Http.WebHost.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Mvc.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Optimization.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Razor.dll
@@ -249,10 +252,7 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Memcached.ClientLibrary.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.IDAL.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.DALFactory.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\TestModel.dll
-D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Http.dll
-D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Web.Http.WebHost.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
-D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\System.Net.Http.Formatting.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Common.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.BLL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.DALSQLSer.pdb

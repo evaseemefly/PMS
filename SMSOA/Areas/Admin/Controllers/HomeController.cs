@@ -11,12 +11,12 @@ namespace SMSOA.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         IUserInfoBLL userInfoBLL { get; set; }
-       
+
 
         // GET: Admin/Home
         public ActionResult Index()
         {
-            
+
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace SMSOA.Areas.Admin.Controllers
                 //4.2 将路线一与路线二取出的ActionInfo集合合并
                 list_action.AddRange(list_action_isPass);
                 //4.3 此时的集合中可能存在重复，去重
-               list_action= list_action.Distinct(new PMS.Model.EqualCompare.ActionEqualCompare()).ToList();
+                list_action = list_action.Distinct(new PMS.Model.EqualCompare.ActionEqualCompare()).ToList();
                 // IEqualityComparer<ActionInfo>
                 //list_action.Distinct()
 
@@ -71,18 +71,18 @@ namespace SMSOA.Areas.Admin.Controllers
                 list_action = list_action.Where(a => !list_action_isNotPass.Contains(a)).ToList();
 
                 //4.6 将action集合转换为树节点集合
-                List<PMS.Model.EasyUIModel.EasyUITreeNode> list_easyUITreeNode= ActionInfo.ToEasyUITreeNode(list_action);
+                List<PMS.Model.EasyUIModel.EasyUITreeNode> list_easyUITreeNode = ActionInfo.ToEasyUITreeNode(list_action);
 
                 //4.7 将树节点集合转换为json格式并返回
                 return Content(Common.SerializerHelper.SerializerToString(list_easyUITreeNode));
             }
             return null;
-                  
+
 
         }
 
-        
 
-        
+
+
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionInfoBLL.cs" />
     <Compile Include="BaseBLL.cs" />
     <Compile Include="BLL.cs">
       <AutoGen>True</AutoGen>

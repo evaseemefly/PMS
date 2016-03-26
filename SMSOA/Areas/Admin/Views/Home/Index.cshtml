@@ -12,7 +12,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>   
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script type="text/javascript">
@@ -30,7 +30,7 @@
                 animate:true
             });
         })
-        
+
         function createTabs(treeNode) {
             var $tabs = $("#tabs"); //获取tabs的容器
             //判断是否已经存在同名的tab
@@ -62,7 +62,7 @@
                     closable: true,
                     fit: true,
                     content: createNewIframe(treeNode.attributes.url)
-                   
+
                 });
             }
 
@@ -75,16 +75,16 @@
         }
     </script>
     @*@Scripts.Render("~/mvcAjax");
-    @Scripts.Render("~/easyUIJS");
-    @Scripts.Render("~/easyUICSS");*@
+        @Scripts.Render("~/easyUIJS");
+        @Scripts.Render("~/easyUICSS");*@
 </head>
 <body class="easyui-layout">
     <div data-options="region:'north',border:false" style="height:60px; padding:10px">north region</div>
     <div data-options="region:'west',split:true,title:'操作列表'" style="width:200px; padding:0px;">
-        <div class="easyui-panel" style="padding:0px;border:0px;overflow-x:hidden" >
+        <div class="easyui-panel" style="padding:0px;border:0px;overflow-x:hidden">
             <div class="easyui-accordion" style="width:100%;padding:0px">
                 <div title="系统管理" data-options="iconCls:'icon-search'" style="padding:10px;">
-                    <ul id="easyui_tree" ></ul>
+                    <ul id="easyui_tree"></ul>
                 </div>
                 <div title="统计" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
                     <h3 style="color:#0099FF;">Accordion for jQuery</h3>
@@ -95,20 +95,20 @@
                 </div>
 
             </div>
- 
+
 
         </div>
 
 
     </div>
     <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
-        
+
 
     </div>
     <div data-options="region:'south',border:false" style="height:50px;padding:10px;">south region</div>
-    <div data-options="region:'center',title:'Center'"style="overflow-x:hidden;overflow-y:hidden">
+    <div data-options="region:'center',title:'Center'" style="overflow-x:hidden;overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;overflow-y:hidden">
-      
+
         </div>
 
     </div>
