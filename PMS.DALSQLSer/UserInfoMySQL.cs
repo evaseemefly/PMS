@@ -35,6 +35,11 @@ namespace PMS.DALSQLSer
             throw new NotImplementedException();
         }
 
+        public IQueryable<UserInfo> GetPageList<TKey>(int pageIndex, int pageSize, ref int rowCount, Expression<Func<UserInfo, bool>> whereLambda, Expression<Func<UserInfo, TKey>> orderByLambda, bool isAsc)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool SaveChange()
         {
             throw new NotImplementedException();

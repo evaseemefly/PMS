@@ -54,11 +54,13 @@ namespace PMS.Model
 
         /// <summary>
         /// 生成当前对象的url
+        /// 为本实体中的url赋值，并将其返回
         /// </summary>
         /// <returns></returns>
         public string GetUrl()
         {
-            return GetUrlPart(this.AreaName)+GetUrlPart(this.ControllerName)+GetUrlPart(this.ActionMethodName);
+            this.Url= GetUrlPart(this.AreaName) + GetUrlPart(this.ControllerName) + GetUrlPart(this.ActionMethodName);
+            return this.Url;
         }
         
         /// <summary>

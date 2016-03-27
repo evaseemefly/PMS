@@ -244,6 +244,8 @@
     <Content Include="Areas\Admin\Views\Action\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Test.cshtml" />
     <Content Include="Areas\Admin\Views\Action\EditActionInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\AddActionInfo - 复制.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />

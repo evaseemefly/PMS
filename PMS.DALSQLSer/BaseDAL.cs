@@ -186,6 +186,45 @@ namespace PMS.DALSQLSer
         }
         #endregion
 
+        /// <summary>
+        /// 5.1 分页查询
+        /// </summary>
+        /// <typeparam name="TKey">排序的约束</typeparam>
+        /// <param name="pageIndex">当前的页码</param>
+        /// <param name="pageSize">每页显示记录数</param>
+        /// <param name="rowCount">总条数</param>
+        /// <param name="whereLambda">过滤条件</param>
+        /// <param name="orderByLambda">排序条件</param>
+        /// <param name="isAsc">排序方式：true—升序排列;false—降序排列</param>
+        /// <returns></returns>
+        public IQueryable<T> GetPageList<TKey>(int pageIndex, int pageSize,ref int rowCount, Expression<Func<T, bool>> whereLambda, Expression<Func<T, TKey>> orderByLambda, bool isAsc)
+        {
+            //5.1 根据查询条件(whereLambda)返回查询 序列
+            var query = Db.Set<T>().Where(whereLambda);
+            //获取总条数
+            rowCount = query.Count();
+            //5.2 根据升降序标记判断升序降序排列
+            if (isAsc)
+            {
+                //根据键按升序排序
+                //注意此处需要根据当前页码以及也容量跳过指定条数的数据，实现分页查询
+                //query = query.OrderBy(orderByLambda);
+                query = query.OrderBy<T,TKey>(orderByLambda).Skip<T>((pageIndex-1)*pageSize).Take<T>(pageSize); //修改后为：跳过当前（页码-1）*页容量个条数，取之后的页容量 个记录
+            }
+            else
+            {
+                //根据键按降序排列
+                query = query.OrderByDescending(orderByLambda).Skip<T>((pageIndex - 1) * pageSize).Take<T>(pageSize); 
+            }
+
+            /*5.3
+                .Skip 跳过一定数量的元素，返回剩余元素
+                .Take 从序列的开头返回指定数量的连续元素
+             */
+            return query/*.Skip((pageIndex - 1) * pageSize).Take(pageSize)*/;
+
+        }
+
         #region 6 对EF上下文对象保存所有修改并提交至数据库+public bool SaveChange()
         /// <summary>
         /// 6 对EF上下文对象保存所有修改并提交至数据库

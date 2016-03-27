@@ -79,7 +79,19 @@ namespace PMS.IDAL
         IQueryable<T> GetPageList<TKey>(int pageIndex, int pageSize, Expression<Func<T, bool>> whereLambda, Expression<Func<T, TKey>> orderByLambda, bool isAsc);
         #endregion
 
-       
+        #region 5.1 分页查询+public IQueryable<T> GetPageList<TKey>
+        /// <summary>
+        /// 5.1 分页查询
+        /// </summary>
+        /// <typeparam name="TKey">排序的约束</typeparam>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">页容量</param>
+        /// <param name="whereLambda">查询条件</param>
+        /// <param name="orderByLambda">排序条件</param>
+        /// <param name="isAsc">是否为升序，true为升序</param>
+        /// <returns>查询结果序列</returns>
+        IQueryable<T> GetPageList<TKey>(int pageIndex, int pageSize, ref int rowCount, Expression<Func<T, bool>> whereLambda, Expression<Func<T, TKey>> orderByLambda, bool isAsc);
+         #endregion
 
     }
 }
