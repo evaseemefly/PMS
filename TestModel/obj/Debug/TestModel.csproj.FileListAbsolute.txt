@@ -10,3 +10,8 @@ D:\01编程\02协作开发\SMSOA\PMS\TestModel\bin\Debug\TestModel.dll
 D:\01编程\02协作开发\SMSOA\PMS\TestModel\bin\Debug\TestModel.pdb
 D:\01编程\02协作开发\SMSOA\PMS\TestModel\obj\Debug\TestModel.dll
 D:\01编程\02协作开发\SMSOA\PMS\TestModel\obj\Debug\TestModel.pdb
+D:\VSWorkSpace\nmefc\PMS\TestModel\bin\Debug\TestModel.dll
+D:\VSWorkSpace\nmefc\PMS\TestModel\bin\Debug\TestModel.pdb
+D:\VSWorkSpace\nmefc\PMS\TestModel\obj\Debug\TestModel.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\TestModel\obj\Debug\TestModel.dll
+D:\VSWorkSpace\nmefc\PMS\TestModel\obj\Debug\TestModel.pdb

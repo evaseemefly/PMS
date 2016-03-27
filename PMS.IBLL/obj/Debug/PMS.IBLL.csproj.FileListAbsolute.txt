@@ -31,3 +31,14 @@ D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\PMS.Model.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\EntityFramework.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\PMS.Model.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\EntityFramework.xml
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb
