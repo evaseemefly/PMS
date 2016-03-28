@@ -60,17 +60,18 @@
                     title: treeNode.text,
                     selected: true,
                     closable: true,
+                    //style:{overflow: hidden},
                     fit: true,
-                    content: createNewIframe(treeNode.attributes.url)
-
+                    content: createNewIframe(treeNode.attributes.url),
+                    style: { overflow: "hidden" }//?
                 });
             }
 
         }
-
+        //style="margin:10px"
         //创建一个指定url的iframe
         function createNewIframe(url) {
-            var iframeStr = "<iframe src='" + url + "' style='width:100%;height:100%;frameborder:0px solid #000;scrolling=no;overflow-x:hidden;overflow-y:hidden'></iframe>";
+            var iframeStr = "<iframe src='" + url + "' style='width:100%;height:100%;frameborder:0px solid #000;scrolling=no;overflow: hidden'></iframe>";
             return iframeStr;
         }
     </script>

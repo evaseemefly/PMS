@@ -5,4 +5,6 @@
   </object>
   <object type="PMS.BLL.ActionInfoBLL, PMS.BLL" singleton="false" name="actionInfoService" >
   </object>
+  <object type="PMS.BLL.RoleInfoBLL, PMS.BLL" singleton="false" name="roleInfoService" >
+  </object>
 </objects>
