@@ -271,6 +271,6 @@ D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.OAuth.xml
 D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.Google.xml
 D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.Twitter.xml
 D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.pdb
+D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache
