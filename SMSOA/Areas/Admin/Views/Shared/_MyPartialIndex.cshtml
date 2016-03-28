@@ -45,10 +45,6 @@
         //保存下拉菜单中的json data
         var data_Options;
 
-        @*@RenderSection("addRow");*@
-
-        @*@RenderSection("editRow",false);*@
-
         //编辑或创建某个权限后执行的操作
         function afterEdit(msg) {
             //editWindow
@@ -60,16 +56,16 @@
             $("#datagrid").datagrid('reload');
         }
 
-        @RenderSection("script");
-
+        @RenderSection("myScript");
+        @RenderSection("remove");
+        @RenderSection("load");
     </script>
 </head>
 <body>
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
         <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
-            @RenderBody()
-            
+            @RenderSection("Body")
         </div>
 
     </div>
