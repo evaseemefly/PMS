@@ -12,7 +12,7 @@
   <object type="SMSOA.Areas.Admin.Controllers.ActionController, SMSOA" singleton="false" >
     <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
-  <object type="SMSOA.Areas.Admin.Controllers.UserController, SMSOA" singleton="false" >
+  <!--<object type="SMSOA.Areas.Admin.Controllers.UserController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
-  </object>
+  </object>-->
 </objects>
