@@ -40,6 +40,6 @@ D:\VSWorkSpace\nmefc\PMS\Common\bin\Debug\Memcached.ClientLibrary.dll
 D:\VSWorkSpace\nmefc\PMS\Common\bin\Debug\Newtonsoft.Json.dll
 D:\VSWorkSpace\nmefc\PMS\Common\bin\Debug\Newtonsoft.Json.pdb
 D:\VSWorkSpace\nmefc\PMS\Common\bin\Debug\Newtonsoft.Json.xml
-D:\VSWorkSpace\nmefc\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\Common\obj\Debug\Common.dll
 D:\VSWorkSpace\nmefc\PMS\Common\obj\Debug\Common.pdb
+D:\VSWorkSpace\nmefc\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
