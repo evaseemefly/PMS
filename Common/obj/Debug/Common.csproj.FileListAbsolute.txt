@@ -45,3 +45,4 @@ E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\Newtonsoft.Json.pdb
 E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\Newtonsoft.Json.xml
 E:\03协同开发\短信\PMS\PMS\Common\obj\Debug\Common.dll
 E:\03协同开发\短信\PMS\PMS\Common\obj\Debug\Common.pdb
+E:\03协同开发\短信\PMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

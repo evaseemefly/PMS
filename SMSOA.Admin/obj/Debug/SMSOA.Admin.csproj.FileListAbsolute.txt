@@ -340,6 +340,6 @@ E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.OAuth.x
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.Google.xml
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.Twitter.xml
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.pdb
+E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache
