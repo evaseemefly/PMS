@@ -291,3 +291,4 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\TestModel.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.pdb
+E:\03协同开发\短信\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll

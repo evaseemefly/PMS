@@ -228,3 +228,4 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Login\bin\Microsoft.Owin.Security.Mic
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Login\obj\Debug\SMSOA.Login.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Login\obj\Debug\SMSOA.Login.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Login\obj\Debug\SMSOA.Login.pdb
+E:\03协同开发\短信\PMS\SMSOA.Login\bin\ICSharpCode.SharpZipLib.dll

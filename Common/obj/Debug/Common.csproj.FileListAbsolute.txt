@@ -31,3 +31,6 @@ D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\Newtonsoft.Json.xml
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.dll
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.pdb
+E:\03协同开发\短信\PMS\Common\bin\Debug\Commons.dll
+E:\03协同开发\短信\PMS\Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\03协同开发\短信\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
