@@ -4,7 +4,10 @@
 }
 @using PMS.Model
 <!DOCTYPE html>
+@*@{
 
+    ViewData["actionInfo"] == null ? ViewData["actionInfo"] as ActionInfo : string.Empty;
+        }*@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -28,7 +31,7 @@
             <tr>
                 <td>权限名称:</td>
                 <td>
-                    <input class="easyui-textbox" type="text" name="ActionInfoName" data-options="required:true,value:'@Model.ActionInfoName'"></input>
+                    <input class="easyui-textbox" type="text" name="ActionInfoName" data-options="required:true,value:'@*@ViewData["actionInfo"]*@@Model.ActionInfoName'"></input>
                 </td>
             </tr>
             <tr>
