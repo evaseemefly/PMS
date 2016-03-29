@@ -33,6 +33,11 @@ namespace SMSOA.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Action_GetOption = "/Admin/Action/GetOption";
+            ViewBag.Del_url = "/Admin/Role/DelSoftRoleInfos";
+            ViewBag.ShowAdd = "/Admin/Role/ShowAddRoleInfo";
+            ViewBag.ShowEdit = "/Admin/Role/ShowEditRoleInfo";
+            ViewBag.GetInfo = "/Admin/Role/GetRoleInfo";
             return View();
         }
 
