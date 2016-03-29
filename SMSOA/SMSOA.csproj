@@ -257,6 +257,8 @@
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
+
     <Content Include="Areas\Admin\Views\Shared\_RoleScriptPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

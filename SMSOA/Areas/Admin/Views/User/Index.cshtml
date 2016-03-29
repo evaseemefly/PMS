@@ -31,44 +31,14 @@
             iconCls: 'icon-edit',
             text: "编辑",
             handler: editRow
-        }, '-', {
-            iconCls: 'icon-search',
-            text: "分配权限",
-            handler: provideAction
         }]
         //提交
         function submitForm() {
             //$("#editWindow").submit()
         }
 
-        //保存下拉菜单中的json data
-        var data_Options;
-
-        //从远程一次性获取下拉菜单中的json格式对象
-        function GetDropDowData() {
-            $.ajax({
-                type: "get",
-                url: "/Admin/User/GetOption",      // 这里是提交到什么地方的url
-
-                //dataType: "json",
-                success: function (res) {
-                    // 调用回调函数——将下拉列表data 赋值给data_Options
-                    data_Options = res;
-                    //若数组长度不为0，则将
-                    if (data_Options.length != 0) {
-                        $("#ParentUserOptions").combobox({
-                            valueField: 'id',
-                            textField: 'text',
-                            data: data_Options
-                        });
-                    }
-                }
-            });
-        }
-
-
         var options = {
-            url: 'xxxx.user',
+            url: 'xxxx.action',
             type: 'post',
             data: null,
             success: function (data) {
@@ -81,6 +51,18 @@
             }
         };
 
+        function submitForm() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/User/Create",      // 这里是提交到什么地方的url
+                data: $("#ff").serialize(), // 这里把表单里面的数据提交（！！！注意需要将表单序列化！！！）
+                dataType: "json",
+                success: function (res) {
+                    // 调用回调函数
+                    show("res");
+                }
+            });
+        }
 
         function show(data) {
             $.messager.show({
@@ -94,13 +76,45 @@
         function addRow() {
 
             //打开编辑窗体
-            $("#addWindow").window('open');
+            $("#editWindow").window('open');
             //从指定页面中预读取数据
-
+            $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
 
         }
 
         function removeRow() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].ID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("/Admin/User/DelSoftUserInfos?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#datagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#datagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
 
         }
 
@@ -119,7 +133,7 @@
             $("#editWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
-            $("#setUserRoleFrame").attr("src", "/Admin/User/EditUserInfo?id=" + rows[0].ID);//会出现重定向的错误
+            $("#setUserRoleFrame").attr("src", "/Admin/User/ShowEditUserInfo?id=" + rows[0].ID);//会出现重定向的错误
             //$("#setActionRoleFrame").attr("src", "/Admin/Action/Test");
 
             //$.get("/Admin/Action/EditActionInfo/" + rows[0].ID, null, function (data) {
@@ -131,6 +145,16 @@
 
         function provideAction() {
 
+        }
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editWindow").window('close');
+            //2 刷新当前页面
+            $("#datagrid").datagrid('reload');
         }
 
         $(function () {
@@ -151,12 +175,13 @@
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: [[
-                    { field: 'ID', title: 'ID', width: 100 },
+                    { field: 'ID', title: 'ID', width: 50 },
                     { field: 'UName', title: '用户名', width: 150 },
+                    { field: 'UPwd', title: '密码', width: 250 },
                     { field: 'SubTime', title: '创建时间', width: 250 },
                     { field: 'ModifiedOnTime', title: '最后修改时间', width: 250 },
                     { field: 'Remark', title: '备注', width: 100 },
-                    { field: 'Sort', title: '排序', width: 200 },
+                    { field: 'Sort', title: '排序', width: 100 },
                 ]],
                 toolbar: toolbar
             });
