@@ -139,7 +139,7 @@ namespace SMSOA.Areas.Admin.Controllers
                 ViewData.Model = model;
                 //5 提供显示页面提交时跳转到的权限名称
                 //修改即跳转至修改方法
-                @ViewBag.backAction = "DoEditActionInfo";
+                ViewBag.backAction = "DoEditActionInfo";
                 //ViewData["actionInfo"] = model;
                 //return PartialView("EditActionWindow");
                 return View("ShowEditInfo");

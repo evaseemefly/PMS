@@ -15,4 +15,7 @@
   <object type="SMSOA.Areas.Admin.Controllers.UserController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
   </object>
+  <object type="SMSOA.Areas.Admin.Controllers.RoleController, SMSOA" singleton="false" >
+    <property name="roleInfoBLL" ref="roleInfoService" />
+  </object>
 </objects>
