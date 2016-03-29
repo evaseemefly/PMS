@@ -27,6 +27,7 @@ namespace SMSOA.Areas.Admin.Controllers
             model.DelFlag = false;
             model.SubTime = DateTime.Now;
             model.ModifiedOnTime = DateTime.Now;
+            //model.Remark = "";
             try
             {
                 userInfoBLL.Create(model);

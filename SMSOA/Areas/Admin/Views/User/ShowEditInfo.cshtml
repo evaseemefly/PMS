@@ -49,8 +49,8 @@
             @*@using (Html.BeginForm())
                 {*@
 
-            @*@Html.HiddenFor(model => model.ID)
-            @Html.HiddenFor(model => model.Url)*@
+            @Html.HiddenFor(model => model.ID)
+            @*@Html.HiddenFor(model => model.Url)*@
             <table cellpadding="5">
                 <tr>
                     <td>新用户名:</td>
@@ -69,6 +69,13 @@
                     <td>顺序:</td>
                     <td>
                         @Html.TextBoxFor(model => model.Sort, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Sort" } })
+                        @*<input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input>*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Remark, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Remark" } })
                         @*<input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input>*@
                     </td>
                 </tr>
