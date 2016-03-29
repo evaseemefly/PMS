@@ -96,7 +96,7 @@ namespace SMSOA.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 显示添加权限试图
+        /// 显示添加权限视图
         /// </summary>
         /// <returns></returns>
         public ActionResult ShowAddActionInfo()

@@ -22,7 +22,8 @@
     <script type="text/javascript">
         function afterEdit(data) {
 
-            //$.messager.alert('提醒', '提交成功!');            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
             //提交表单成功后关闭本页面
             //无法关闭此窗口
             //window.close();
@@ -110,7 +111,7 @@
                     <td>修改时间</td>
                     <td>
                         @Html.TextBoxFor(model => model.ModifiedOnTime, new {
-                       htmlAttributes = new { @class = "easyui-textbox", @name = "SubTime" },
+                       htmlAttributes = new { @class = "easyui-textbox", @name = "ModifiedOnTime" },
                        @Value = (Model == null) ? DateTime.Now.ToShortDateString() : Model.ModifiedOnTime.ToShortDateString()
                    })
                         @*<input class="easyui-textbox" type="text" name="ActionMethodName" data-options="required:true,value:'@Model.ActionInfoName'"></input>*@
