@@ -258,8 +258,8 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
-
     <Content Include="Areas\Admin\Views\Shared\_RoleScriptPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index-通过viewbag的方式实现.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
@@ -275,6 +275,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -325,6 +326,7 @@
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
+    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
