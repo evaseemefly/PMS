@@ -34,9 +34,9 @@
 
 
 
-        function provideAction(msg) {
-            alert(msg)
-        }
+        //function provideAction(msg) {
+            
+        //}
 
         //提交
         function submitForm() {
@@ -145,6 +145,28 @@
             });
         }
         
+        $(function () {
+            //1 编辑窗口关闭
+            $("#editWindow").window('close');
+            $("#addWindow").window('close');
+            //2 位datagrid加载数据
+            $("#datagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: '@ViewBag.GetInfo',
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns,
+                toolbar: toolbar
+            });
+
+        })
     </script>
 </head>
 <body>

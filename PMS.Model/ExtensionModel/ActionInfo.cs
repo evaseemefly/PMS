@@ -11,6 +11,11 @@ namespace PMS.Model
     public partial class ActionInfo
     {
         /// <summary>
+        /// 选中
+        /// </summary>
+        public bool CheckOn { set; get; }
+
+        /// <summary>
         /// 1 
         /// </summary>
         /// <param name="list_action"></param>

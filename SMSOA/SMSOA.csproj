@@ -250,7 +250,7 @@
     <Content Include="Areas\Admin\Views\Action\ShowEditInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Action\AddActionInfo - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_MyPartialIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_MyPartialIndex-之前.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-分部视图的测试.cshtml" />
     <Content Include="Areas\Admin\Views\Role\ShowEditInfo.cshtml" />
@@ -258,9 +258,10 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_RoleScriptPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_MyPartial_Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-通过viewbag的方式实现.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\SetRoleAction.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />

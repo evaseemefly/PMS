@@ -2,38 +2,46 @@
 @{
     Layout = null;
 }
-@Html.Partial("_RoleScriptPartial")
-测试
+@Html.Partial("_MyPartial_Index")
+
 <script type="text/javascript">
-    $(function () {
-        //1 编辑窗口关闭
-        $("#editWindow").window('close');
-        $("#addWindow").window('close');
-        //2 位datagrid加载数据
-        $("#datagrid").datagrid({
-            width: 'auto',
-            height: 'auto',
-            fitColumns: true,
-            striped: true,
-            singleSelect: true,
-            url: '@ViewBag.GetInfo',
-            loadMsg: '数据加载中请稍后……',
-            pagination: true,//启用分页，默认每页10行
-            rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
-            pageSize: 10,   //设置 页容量为 5
-            pageList: [5, 10, 20],//设置 页容量下拉框
-            columns: [[
+    var myColumns=[[
                 { field: 'ID', title: 'ID', width: 100 },
                 { field: 'RoleName', title: '角色名称', width: 150 },
                 { field: 'SubTime', title: '创建时间', width: 250 },
                 { field: 'Remark', title: '备注', width: 200 },
                 { field: 'Sort', title: '排序', width: 100 }
-            ]],
-            toolbar: toolbar
-        });
-    })
+    ]]
+    
+    function provideAction() {
+        //弹出新的窗体
+        //1 获取选中的行并判断
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length != 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请选择唯一一行',
+                showType: 'show'
+            });
+            return;
+        }
+        else {
+            //打开设置权限的窗体
+            $("#shoActionWindow").window('open');
+            //为设置权限的iframe设置请求的url
+            $("#setActionRoleFrame").attr("src", "/Admin/Action/SetRoleAction/?id=" + rows[0].ID);
+        }
+    }
 </script>
 
+<div id="setActionRoleDiv">
+    <div class="easyui-window" id="shoActionWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
+        @* scrolling 不显示滚动条*@
+        <iframe id="setActionRoleFrame" scrolling="auto" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+</div>
 
 
 
