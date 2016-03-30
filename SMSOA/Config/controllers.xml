@@ -11,11 +11,13 @@
   </object>
   <object type="SMSOA.Areas.Admin.Controllers.ActionController, SMSOA" singleton="false" >
     <property name="actionInfoBLL" ref="actionInfoService" />
+    <property name="roleInfoBLL" ref="roleInfoService" />
   </object>
   <object type="SMSOA.Areas.Admin.Controllers.UserController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
   </object>
   <object type="SMSOA.Areas.Admin.Controllers.RoleController, SMSOA" singleton="false" >
     <property name="roleInfoBLL" ref="roleInfoService" />
+    <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
 </objects>

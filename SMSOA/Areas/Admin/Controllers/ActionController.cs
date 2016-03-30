@@ -70,11 +70,17 @@ namespace SMSOA.Areas.Admin.Controllers
         /// </summary>
         /// <param name="rid"></param>
         /// <returns></returns>
-        public ActionResult SetRoleAction(int rid)
+        public ActionResult SetRoleAction()
         {
+
+            /*int id = int.Parse(Request.Form["rid"]);*///使用此种方式无法获取id
+            int rid = int.Parse(Request.QueryString["id"]);
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
+
+           
+
             if (rid != null)
             {
                 //查询被选中的Action
@@ -90,7 +96,7 @@ namespace SMSOA.Areas.Admin.Controllers
                 List<ActionInfo> list = new List<ActionInfo>();
                 foreach (var item in actions)
                 {
-                    item.CheckOn = true;
+                    item.Checked = true;
                     list.Add(item);
                 }
 
@@ -101,10 +107,10 @@ namespace SMSOA.Areas.Admin.Controllers
                     rows = list,
                     footer = null
                 };
-                ViewBag.data = Common.SerializerHelper.SerializerToString(dgModel);
+                return Content(Common.SerializerHelper.SerializerToString(dgModel));
                 
             }
-            return View();
+            return null;
         }
 
         public ActionResult DoEditActionInfo(ActionInfo model)

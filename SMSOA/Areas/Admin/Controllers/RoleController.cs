@@ -12,6 +12,10 @@ namespace SMSOA.Areas.Admin.Controllers
     {
         IRoleInfoBLL roleInfoBLL { get; set; }
 
+        IActionInfoBLL actionInfoBLL { get; set; }
+
+        
+
         void SetDropDonwList()
         {
             //准备请求方式下拉框数据
@@ -39,6 +43,49 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.ShowEdit = "/Admin/Role/ShowEditRoleInfo";
             ViewBag.GetInfo = "/Admin/Role/GetRoleInfo";
             return View();
+        }
+
+        /// <summary>
+        /// 根据传入的Role Id
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <returns></returns>
+        public ActionResult SetRoleAction(string rid)
+        {
+            //int rid = int.Parse(Request.Form["rid"]);
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+            if (rid != null)
+            {
+                //查询被选中的Action
+                //1 根据RoleID查询该Role所对应的Action权限
+                //1.1查出未删除的role中指定ID的Role
+                var role = roleInfoBLL.GetListBy(r => r.DelFlag == false && r.ID == int.Parse(rid)).FirstOrDefault();
+                //1.2查出该role中对应的action(ICollection)
+                var actions = role.ActionInfo.ToList();
+                //2 需要对actions进行分页
+                actions = actions.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+                //3 将action返回给视图页面，需要添加一个check标签
+                List<ActionInfo> list = new List<ActionInfo>();
+                foreach (var item in actions)
+                {
+                    item.Checked = true;
+                    list.Add(item);
+                }
+
+                //4 
+                PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+                {
+                    total = rowCount,
+                    rows = list,
+                    footer = null
+                };
+                return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+            }
+            return null;
         }
 
         public ActionResult DoEditRoleInfo(RoleInfo model)

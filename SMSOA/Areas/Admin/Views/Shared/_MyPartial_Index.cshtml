@@ -13,27 +13,6 @@
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
     <script type="text/javascript">
-
-        var toolbar= [ {
-            iconCls: 'icon-add',
-            text: "新增",
-            handler: addRow@*addRow("@ViewBag.ShowAdd")*@
-        }, '-', {
-            iconCls: 'icon-remove',
-            text: "删除",
-            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
-        }, '-',{
-            iconCls: 'icon-edit',
-            text: "编辑",
-            handler: editRow@*editRow("@ViewBag.ShowEdit")*@
-        }, '-', {
-            iconCls: 'icon-search',
-            text: "分配权限",
-            handler: provideAction    //无法传参数
-        }]
-
-
-
         //function provideAction(msg) {
             
         //}

@@ -13,7 +13,7 @@ namespace PMS.Model
         /// <summary>
         /// 选中
         /// </summary>
-        public bool CheckOn { set; get; }
+        public bool Checked { set; get; }
 
         /// <summary>
         /// 1 

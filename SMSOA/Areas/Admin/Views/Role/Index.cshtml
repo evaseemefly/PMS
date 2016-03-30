@@ -5,6 +5,28 @@
 @Html.Partial("_MyPartial_Index")
 
 <script type="text/javascript">
+
+    var toolbar= [ {
+        iconCls: 'icon-add',
+        text: "新增",
+        handler: addRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-', 
+        {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
+        }, '-',
+           {
+                iconCls: 'icon-edit',
+                text: "编辑",
+                handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+            }, '-',
+                {
+                    iconCls: 'icon-search',
+                    text: "分配权限",
+                    handler: provideAction    //无法传参数
+                }]
+
     var myColumns=[[
                 { field: 'ID', title: 'ID', width: 100 },
                 { field: 'RoleName', title: '角色名称', width: 150 },
@@ -13,6 +35,25 @@
                 { field: 'Sort', title: '排序', width: 100 }
     ]]
     
+    var myActionColumns = [[
+            { field: 'ck', checkbox: true },
+            { field: 'ID', title: 'ID', width: 100 },
+            { field: 'ActionInfoName', title: '权限名称', width: 150 },
+            { field: 'SubTime', title: '创建时间', width: 250 },
+            { field: 'AreaName', title: '区域名', width: 120 },
+            { field: 'ControllerName', title: '控制器名', width: 120 },
+            { field: 'ActionMethodName', title: '方法名', width: 200 },
+            { field: 'Remark', title: '备注', width: 200 },
+            { field: 'Sort', title: '排序', width: 100 },
+            //{
+            //    field: 'Operation', title: '操作', width: 100, align: 'right',
+            //    formatter: function (value, row, index) {
+            //        var str = "<a href='javascript:void(0)' ids='" + row.ID + "' class='deleteLink'>删除</a>";
+            //    }
+
+            //}
+    ]]
+
     function provideAction() {
         //弹出新的窗体
         //1 获取选中的行并判断
@@ -29,17 +70,46 @@
         }
         else {
             //打开设置权限的窗体
-            $("#shoActionWindow").window('open');
-            //为设置权限的iframe设置请求的url
-            $("#setActionRoleFrame").attr("src", "/Admin/Action/SetRoleAction/?id=" + rows[0].ID);
+            $("#showActionWindow").window('open');
+
+            //2 位datagrid加载数据
+            $("#actiondatagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+                fitColumns: true,
+                //singleSelect: true,    //单选:false；多选:true
+                //singleSelect:true,
+                checkOnSelect: true,
+                selectOnCheck: false,
+
+                striped: true,
+                singleSelect: true,
+                url: "/Admin/Action/SetRoleAction?id=" + rows[0].ID,
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myActionColumns
+            });
+            //$("#setActionRoleFrame")
+            ////为设置权限的iframe设置请求的url
+            //$("#setActionRoleFrame").attr("src", "/Admin/Action/SetRoleAction?id=" + rows[0].ID);
         }
     }
+
+    $(function () {
+        //1 编辑窗口关闭
+        $("#showActionWindow").window('close');
+
+    });
+    
 </script>
 
 <div id="setActionRoleDiv">
-    <div class="easyui-window" id="shoActionWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" id="showActionWindow" style="width:520px;height:300px;overflow: hidden" data-options="shadow:true,modal:true">
         @* scrolling 不显示滚动条*@
-        <iframe id="setActionRoleFrame" scrolling="auto" width="100%" height="100%" frameborder="0"></iframe>
+        <table class="easyui-datagrid" id="actiondatagrid" data-options="fit:true"></table>
     </div>
 </div>
 
