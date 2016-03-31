@@ -21,5 +21,7 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftRoleInfos(List<int> list_ids);
+
+        bool SetRole4Action(int roleId, List<int> list_actionIds);
     }
 }

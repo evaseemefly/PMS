@@ -10,10 +10,16 @@ namespace PMS.Model
 {
     public partial class ActionInfo
     {
+        private bool _checked = false;
+
         /// <summary>
         /// 选中
         /// </summary>
-        public bool Checked { set; get; }
+        public bool Checked
+        {
+            set { _checked = value; }
+            get { return _checked; }
+        }
 
         /// <summary>
         /// 1 

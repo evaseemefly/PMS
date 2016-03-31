@@ -67,5 +67,29 @@ namespace PMS.BLL
             }
 
         }
+
+
+
+        public bool SetRole4Action(int roleId, List<int> list_actionIds)
+        {
+            //2.2 修改Role与Action的关系
+            //(1)根据RId找到对应的RoleInfo
+            var role = this.CurrentDBSession.RoleInfoDAL.GetListBy(r => r.ID == roleId).FirstOrDefault();
+
+            role.ActionInfo.Clear();
+
+            //(2)根据AId查询对应的ActionInfo
+            foreach (var item in list_actionIds)
+            {
+                var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+                role.ActionInfo.Add(actionInfo);
+            }
+            this.Update(role);
+            //return this.CurrentDBSession.SaveChanges();
+            //var list_action = 
+            //(3)向查找到的RoleInfo对象写入指定的ActionInfo
+
+        }
+
     }
 }

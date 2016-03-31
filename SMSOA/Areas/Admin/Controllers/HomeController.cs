@@ -69,6 +69,7 @@ namespace SMSOA.Areas.Admin.Controllers
 
                 //4.5 将现有集合中去掉isPass为false的ActionInfo
                 list_action = list_action.Where(a => !list_action_isNotPass.Contains(a)).ToList();
+                
 
                 //4.6 将action集合转换为树节点集合
                 List<PMS.Model.EasyUIModel.EasyUITreeNode> list_easyUITreeNode = ActionInfo.ToEasyUITreeNode(list_action);

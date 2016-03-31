@@ -21,5 +21,8 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftActionInfos(List<int> list_ids);
+
+
+        
     }
 }

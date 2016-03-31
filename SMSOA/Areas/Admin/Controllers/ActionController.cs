@@ -92,14 +92,20 @@ namespace SMSOA.Areas.Admin.Controllers
                 //2 需要对actions进行分页
                actions= actions.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
+                //3 查询所有的action集合
+               var allActionList= actionInfoBLL.GetListBy(u => u.DelFlag == false);
+                //3.1 找到未添加的action集合
+                
                 //3 将action返回给视图页面，需要添加一个check标签
                 List<ActionInfo> list = new List<ActionInfo>();
                 foreach (var item in actions)
                 {
                     item.Checked = true;
+                    allActionList = allActionList.Where(a => a.ID != item.ID);
                     list.Add(item);
                 }
 
+                list.AddRange(allActionList);
                 //4 
                 PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
                 {
@@ -107,7 +113,10 @@ namespace SMSOA.Areas.Admin.Controllers
                     rows = list,
                     footer = null
                 };
-                return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+                string temp = Common.SerializerHelper.SerializerToString(dgModel);
+                temp=temp.Replace("Checked", "checked");
+                return Content(temp);
                 
             }
             return null;

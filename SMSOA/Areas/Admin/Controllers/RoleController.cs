@@ -42,8 +42,68 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.ShowAdd = "/Admin/Role/ShowAddRoleInfo";
             ViewBag.ShowEdit = "/Admin/Role/ShowEditRoleInfo";
             ViewBag.GetInfo = "/Admin/Role/GetRoleInfo";
+            ViewBag.SetRole4Action = "/Admin/Role/SetRole4Action";
             return View();
         }
+
+        //为Role-Action  赋值
+        /*
+            传过来的是Action ID  数组
+            还需要传过来一个Role ID 
+            即某个权限对应的Action
+        */
+        public ActionResult SetRole4Action()
+        {
+            
+            //int pageSize = int.Parse(Request.Form["rows"]);
+            //int pageIndex = int.Parse(Request.Form["page"]);
+            int rid = int.Parse(Request.QueryString["RoleId"]);
+            string aIds = Request.QueryString["ids"];
+            if (aIds != null)
+            {
+                //2.1根据','分割为数组
+                string[] action_Ids = aIds.Split(',');
+                List<int> list_actionIds = new List<int>();
+                foreach (var item in action_Ids)
+                {
+                    list_actionIds.Add(int.Parse(item));
+                }
+                //try
+                //{
+                    //roleInfoBLL.Update(role);
+                    roleInfoBLL.SetRole4Action(rid, list_actionIds);
+                    return Content("ok");
+                //}
+                
+
+                //2.2 修改Role与Action的关系
+                //(1)根据RId找到对应的RoleInfo
+              // var role= roleInfoBLL.GetListBy(r => r.ID == rid).FirstOrDefault();
+
+              //  role.ActionInfo.Clear();
+
+              //  //(2)根据AId查询对应的ActionInfo
+              //var list_action=  actionInfoBLL.GetListBy(a => aIds.Contains(a.ID.ToString())).ToList();
+              //  //(3)向查找到的RoleInfo对象写入指定的ActionInfo
+
+              //  foreach (var item in list_action)
+              //  {
+              //      role.ActionInfo.Add(item);
+              //  }
+
+                //list_action.ForEach(a => role.ActionInfo.Add(a));
+                
+                //catch
+                //{
+                    //return Content("error");
+                //}
+                
+            }
+            return Content("error");
+            
+        }
+
+
 
         /// <summary>
         /// 根据传入的Role Id
@@ -53,6 +113,7 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult SetRoleAction(string rid)
         {
             //int rid = int.Parse(Request.Form["rid"]);
+            
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
