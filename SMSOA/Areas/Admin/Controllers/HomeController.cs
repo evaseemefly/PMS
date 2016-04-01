@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.IBLL;
 using PMS.Model;
+using SMSOA.Filters;
+
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -12,7 +14,7 @@ namespace SMSOA.Areas.Admin.Controllers
     {
         IUserInfoBLL userInfoBLL { get; set; }
 
-
+        [LoginValidate]
         // GET: Admin/Home
         public ActionResult Index()
         {
@@ -20,6 +22,7 @@ namespace SMSOA.Areas.Admin.Controllers
             return View();
         }
 
+        //[LoginValidate]
         public ActionResult GetMenuItem()
         {
             int userId = 3;

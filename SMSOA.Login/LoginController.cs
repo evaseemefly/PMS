@@ -19,6 +19,8 @@ namespace SMSOA.Login
             return View();
         }
 
+        string cookie_sessionId = "sms_Session";
+
         /// <summary>
         /// 展示验证码并将验证码中的字符串保存至Session中
         /// </summary>
@@ -78,6 +80,10 @@ namespace SMSOA.Login
                     if (userInfo.UPwd == Encryption.MD5Encryption(userPwd))
                     {
                         //（2）已将保存userInfo的保存至Session中，并将对应的sessionId返回给浏览器保存
+                        //4月1日 修改 ：
+                        //*****注意此处存在问题：需要将userInfo对象序列化后再存入Memcache
+                        //从Memcache中取出时一样需要先进行反序列化！！
+                        //在model2Memecahe中对其进行序列化，但无法取出对应的对象
                         Model2Memecahe(userInfo);
 
                         //（3）判断是否选中记住我
@@ -156,7 +162,9 @@ namespace SMSOA.Login
             //第三个参数 缓存过期时间
             MemcacheHelper.Set(sessionId, SerializerHelper.SerializerToString(model), DateTime.Now.AddHours(3));
             //(3)将创建的sessionId以cookie的形式返回给浏览器
-            HttpCookie cookie_SessionId = new HttpCookie("sms_Session", sessionId);
+            //cookie中保存的的为
+            //sms_Session:123hfhks2344123
+            HttpCookie cookie_SessionId = new HttpCookie(cookie_sessionId, sessionId);
             //设置失效时间
            cookie_SessionId.Expires= DateTime.Now.AddHours(3);
 
