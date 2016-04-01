@@ -75,6 +75,10 @@
 
                $.post("@ViewBag.SetRole4Action?RoleId=" + RoleId + "&&ids=" + strIds, function (data) {
             //请求成功后的回调函数
+            //执行afterEdit
+             $("#showActionWindow").window('close');
+            afterEdit("修改成功");
+           
             
         });
 
@@ -88,9 +92,6 @@
         
     var RoleId="";
 
-    function test() {
-        alert("点击了");
-    }
 
     function provideAction() {
         //弹出新的窗体
@@ -160,13 +161,13 @@
 </script>
 
 <div id="setActionRoleDiv">
-    <div class="easyui-window" id="showActionWindow" style="width:520px;height:300px;overflow: hidden;" data-options="shadow:true,modal:true">
+    <div class="easyui-window" id="showActionWindow" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
         <div class="easyui-layout" data-options="fit:true"style="border:0px">
             @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
             <div data-options="region:'center'" style="border:0px">
                 <table class="easyui-datagrid" id="actiondatagrid" data-options="fit:true"></table>
             </div>
-            <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
+            <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
                 <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@  onclick="getActionDgSelection()" style="width:80px">提交</a>
                 <a class="easyui-linkbutton c5"style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="test()" style="width:80px">取消</a>
             </div>

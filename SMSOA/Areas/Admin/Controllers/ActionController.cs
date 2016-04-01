@@ -89,23 +89,33 @@ namespace SMSOA.Areas.Admin.Controllers
                 var role= roleInfoBLL.GetListBy(r => r.DelFlag == false&&r.ID==rid).FirstOrDefault();
                 //1.2查出该role中对应的action(ICollection)
                 var actions = role.ActionInfo.ToList();
+                //将该action中的checked属性赋值为true
+                //4月1日 注意此处有bug ，分页应该是对指定role对应的权限+全部其余action的集合整体进行分页
                 //2 需要对actions进行分页
-               actions= actions.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                
+                
+
+                //actions = actions
 
                 //3 查询所有的action集合
                var allActionList= actionInfoBLL.GetListBy(u => u.DelFlag == false);
                 //3.1 找到未添加的action集合
-                
+                //总行数=所有权限的总和
+                rowCount = allActionList.Count();
                 //3 将action返回给视图页面，需要添加一个check标签
                 List<ActionInfo> list = new List<ActionInfo>();
                 foreach (var item in actions)
                 {
                     item.Checked = true;
+                    //从全部的权限集合中找到与当前权限id不同的其余权限集合
                     allActionList = allActionList.Where(a => a.ID != item.ID);
                     list.Add(item);
                 }
 
                 list.AddRange(allActionList);
+                //4月1日 
+                //应对list进行分页
+               list= list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
                 //4 
                 PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
                 {

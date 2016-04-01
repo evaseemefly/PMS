@@ -84,8 +84,8 @@ namespace PMS.BLL
                 var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
                 role.ActionInfo.Add(actionInfo);
             }
-            this.Update(role);
-            //return this.CurrentDBSession.SaveChanges();
+            //this.Update(role);
+            return this.CurrentDBSession.SaveChanges();
             //var list_action = 
             //(3)向查找到的RoleInfo对象写入指定的ActionInfo
 
