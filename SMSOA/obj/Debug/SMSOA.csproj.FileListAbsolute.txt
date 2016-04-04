@@ -445,7 +445,6 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\WebGrease.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Memcached.ClientLibrary.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.IDAL.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.DALFactory.dll
-D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\TestModel.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Common.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.BLL.pdb
@@ -481,7 +480,6 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Microsoft.Owin.Security.Twitter.x
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.IDAL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.DALFactory.pdb
-D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\TestModel.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.pdb

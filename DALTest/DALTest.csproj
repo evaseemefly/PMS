@@ -69,10 +69,6 @@
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestModel\TestModel.csproj">
-      <Project>{831e05a2-93a7-4a52-ba21-75cddeea076f}</Project>
-      <Name>TestModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

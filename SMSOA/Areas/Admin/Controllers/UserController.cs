@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
+using SMSOA.Filters;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -13,6 +14,8 @@ namespace SMSOA.Areas.Admin.Controllers
     {
         IUserInfoBLL userInfoBLL { get; set; }
 
+        [Common.Attributes.ViewAttribute]
+        [LoginValidate]
         public ActionResult Index()
         {
             return View();

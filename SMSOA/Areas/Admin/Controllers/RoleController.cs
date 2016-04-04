@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
+using SMSOA.Filters;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -35,6 +36,8 @@ namespace SMSOA.Areas.Admin.Controllers
             //};
         }
 
+        [Common.Attributes.ViewAttribute]
+        [LoginValidate]
         public ActionResult Index()
         {
             ViewBag.Action_GetOption = "/Admin/Action/GetOption";
@@ -59,14 +62,18 @@ namespace SMSOA.Areas.Admin.Controllers
             //int pageIndex = int.Parse(Request.Form["page"]);
             int rid = int.Parse(Request.QueryString["RoleId"]);
             string aIds = Request.QueryString["ids"];
-            if (aIds != null)
-            {
+            //if (aIds != null)
+            //{
                 //2.1根据','分割为数组
                 string[] action_Ids = aIds.Split(',');
                 List<int> list_actionIds = new List<int>();
+                
                 foreach (var item in action_Ids)
                 {
+                if(item!="")
+                {
                     list_actionIds.Add(int.Parse(item));
+                }                    
                 }
                 //try
                 //{
@@ -98,7 +105,7 @@ namespace SMSOA.Areas.Admin.Controllers
                     //return Content("error");
                 //}
                 
-            }
+            //}
             return Content("error");
             
         }

@@ -50,12 +50,12 @@ namespace DALTest
             Console.ReadLine();
         }
 
-        static TestModel.PersonInfo GetPerson()
-        {
+//        static TestModel.PersonInfo GetPerson()
+//        {
             
-TestModel.PersonInfo perInfo=PMS.DALSQLSer.DBContextFactory.GetTestModel();
-            return perInfo;
-        }
+//TestModel.PersonInfo perInfo=PMS.DALSQLSer.DBContextFactory.GetTestModel();
+//            return perInfo;
+//        }
 
     }
 }

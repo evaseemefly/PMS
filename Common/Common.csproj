@@ -59,9 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AjaxAttribute.cs" />
+    <Compile Include="Attributes\DataByUrlAttribute.cs" />
     <Compile Include="Attributes\SkipAttribute.cs" />
     <Compile Include="Attributes\SkipLoginAttribute.cs" />
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
+    <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="Encryption.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />

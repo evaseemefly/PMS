@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
+using SMSOA.Filters;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -54,6 +55,9 @@ namespace SMSOA.Areas.Admin.Controllers
                 return View();
         
         }
+
+        [Common.Attributes.ViewAttribute]
+        [LoginValidate]
         public ActionResult Index()
         {
             ViewBag.Action_GetOption = "/Admin/Action/GetOption";

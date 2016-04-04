@@ -160,7 +160,7 @@ namespace SMSOA.Login
             //第一个参数 Session中的key
             //第二个参数 序列化后的UserInfo对象
             //第三个参数 缓存过期时间
-            MemcacheHelper.Set(sessionId, SerializerHelper.SerializerToString(model), DateTime.Now.AddHours(3));
+            MemcacheHelper.Set(sessionId, SerializerHelper.SerializerToString(model.ID), DateTime.Now.AddHours(3));
             //(3)将创建的sessionId以cookie的形式返回给浏览器
             //cookie中保存的的为
             //sms_Session:123hfhks2344123

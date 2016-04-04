@@ -39,30 +39,30 @@ namespace PMS.DALSQLSer
             return dbContext;
         }
 
-        public static void SetTestModel(TestModel.PersonInfo model)
-        {
-            string modelName = "liusihan";
-            CallContext.SetData(modelName, model);
-        }
+        //public static void SetTestModel(TestModel.PersonInfo model)
+        //{
+        //    string modelName = "liusihan";
+        //    CallContext.SetData(modelName, model);
+        //}
 
-        public static TestModel.PersonInfo GetTestModel()
-        {
+        //public static TestModel.PersonInfo GetTestModel()
+        //{
 
-            string modelName = "liusihan";
+        //    string modelName = "liusihan";
             
-           TestModel.PersonInfo model= CallContext.GetData(modelName) as TestModel.PersonInfo;
+        //   TestModel.PersonInfo model= CallContext.GetData(modelName) as TestModel.PersonInfo;
 
-            if(model==null)
-            {
-                model = new TestModel.PersonInfo()
-                {
-                    Id = 1,
-                    Name = "李飞"
-                };
-                CallContext.SetData(modelName, model);
-            }
-            return model;
-        }
+        //    if(model==null)
+        //    {
+        //        model = new TestModel.PersonInfo()
+        //        {
+        //            Id = 1,
+        //            Name = "李飞"
+        //        };
+        //        CallContext.SetData(modelName, model);
+        //    }
+        //    return model;
+        //}
 
         //private static void Test()
         //{

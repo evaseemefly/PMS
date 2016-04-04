@@ -72,13 +72,11 @@ D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\EntityFramework.dl
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\PMS.DALSQLSer.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\PMS.IDAL.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\PMS.Model.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\TestModel.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\System.Web.Mvc.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\PMS.DALSQLSer.pdb
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\PMS.IDAL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\EntityFramework.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\PMS.Model.pdb
-D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\TestModel.pdb
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\bin\Debug\System.Web.Mvc.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.dll
