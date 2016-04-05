@@ -10,6 +10,7 @@ namespace PMS.Model
 {
     public partial class ActionInfo
     {
+        private bool _checked = false;
         /// <summary>
         /// 1 
         /// </summary>
@@ -89,6 +90,11 @@ namespace PMS.Model
                 children = new List<EasyUIModel.EasyUITreeNode>()
             };
             return node;
+        }
+        public bool Checked
+        {
+            set { _checked = value; }
+            get { return _checked; }
         }
     }
 }

@@ -45,8 +45,6 @@
           <Property Name="ActionInfoID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160325.dbo.R_UserInfo_RoleInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="R_UserInfo_RoleInfo">
           <Key>
             <PropertyRef Name="UserInfoID" />
@@ -155,6 +153,7 @@
         <EntityContainer Name="PMS2016ModelStoreContainer">
           <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_RoleInfo" EntityType="Self.R_UserInfo_RoleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_RoleInfo_ActionInfo" EntityType="Self.R_RoleInfo_ActionInfo" store:Type="Tables" store:Schema="dbo">
@@ -162,12 +161,6 @@
     [R_RoleInfo_ActionInfo].[RoleInfoID] AS [RoleInfoID], 
     [R_RoleInfo_ActionInfo].[ActionInfoID] AS [ActionInfoID]
     FROM [dbo].[R_RoleInfo_ActionInfo] AS [R_RoleInfo_ActionInfo]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="R_UserInfo_RoleInfo" EntityType="Self.R_UserInfo_RoleInfo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [R_UserInfo_RoleInfo].[UserInfoID] AS [UserInfoID], 
-    [R_UserInfo_RoleInfo].[RoleInfoID] AS [RoleInfoID]
-    FROM [dbo].[R_UserInfo_RoleInfo] AS [R_UserInfo_RoleInfo]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_R_RoleInfo_ActionInfo_ActionInfo" Association="Self.FK_R_RoleInfo_ActionInfo_ActionInfo">
             <End Role="ActionInfo" EntitySet="ActionInfo" />

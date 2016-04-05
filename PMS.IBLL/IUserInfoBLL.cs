@@ -23,5 +23,16 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftUserInfos(List<int> list_ids);
+
+        /// <summary>
+        /// 为用户分配角色
+        /// </summary>
+        /// <returns></returns>
+        bool SetUser4Role(int userID, List<int> list_roleIDs);
+        /// <summary>
+        /// 为用户分配权限
+        /// </summary>
+        /// <returns></returns>
+        bool SetUser4Action(int userID, List<int> list_actionIDs);
     }
 }

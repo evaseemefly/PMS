@@ -342,3 +342,4 @@ E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.Microso
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.pdb
 E:\03协同开发\短信\PMS\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache
