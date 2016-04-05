@@ -220,7 +220,7 @@ namespace SMSOA.Areas.Admin.Controllers
             //若有传入的id
             //int id = int.Parse(Request["id"]);
             //若有传入的id
-            if (id != null)
+            if (id != 0)
             {
                 //1 找到指定id的action对象
                 var model = roleInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 

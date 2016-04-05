@@ -203,8 +203,6 @@ namespace SMSOA.Areas.Admin.Controllers
             //若有传入的id
             //int id = int.Parse(Request["id"]);
             //若有传入的id
-            if (id != null)
-            {
                 //1 找到指定id的action对象
                 var model = actionInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
                                                                                          //为分布式图中的下拉框添加要请求的地址
@@ -221,9 +219,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 //ViewData["actionInfo"] = model;
                 //return PartialView("EditActionWindow");
                 return View("ShowEditInfo");
-            }
-            return Content("no");
-
         }
         // GET: Admin/Action
         /// <summary>

@@ -19,7 +19,7 @@
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script type="text/javascript">
 
-        var toolbar= [ {
+        var toolbar = [{
             iconCls: 'icon-add',
             text: "新增",
             handler: addRow
@@ -27,11 +27,172 @@
             iconCls: 'icon-remove',
             text: "删除",
             handler: removeRow
-        }, '-',{
+        }, '-', {
             iconCls: 'icon-edit',
             text: "编辑",
             handler: editRow
+        }, '-', {
+            iconCls: 'icon-search',
+            text: "用户权限设置",
+            handler: AssignAction
+        }, "-", {
+            iconCls: 'icon-search',
+            text: "用户角色设置",
+            handler: AssignRole
         }]
+        var UserId = "";
+        function AssignRole() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            $("#assignRoleWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+            //$("#assignRoleFrame").attr("src", "/Admin/User/ShowAssignRoleInfo?id=" + rows[0].ID);//会出现重定向的错误
+            //$("#setActionRoleFrame").attr("src", "/Admin/Action/Test");
+            UserId = rows[0].ID;
+            //可装载组合框
+            $('#combo_role').combobox({
+                url: '@ViewBag.ShowAssignRoleInfo?id= ' + UserId,
+                valueField: 'id',
+                textField: 'text',
+                //设置为允许多选
+                multiple: true,
+
+                panelHeight: 'auto',
+                formatter: function (row) {
+                    var opts = $(this).combobox('options');
+                    return '<input type="checkbox" class="combobox-checkbox">' + row[opts.textField]
+                },
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                },
+                //选中某项后启动事件
+                onSelect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', true);
+                },
+                //取消选中后启动事件
+                onUnselect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', false);
+                }
+            });
+
+        }
+
+        function getRoleSelection() {
+            //获取所选的角色
+            var val = $('#combo_role').combobox('getValues');
+            var tex = $('#combo_role').combobox('getText');
+
+            if ($.messager.confirm("提示", "您已选择："+ tex + "; 准备提交？", function (r) {
+                    if (r) {
+                   $.post("@ViewBag.DoAssignRoleInfo?UserId=" + UserId + "&&ids=" + val, function (data) {
+                //请求成功后的回调函数
+                //执行afterEdit
+                 $("#assignRoleWindow").window('close');
+                afterEdit("修改成功");
+                         });
+                        }
+            }));
+        }
+
+
+
+        //后续优化：将AssignRole和AssignAction的前台代码合并一下
+
+        function AssignAction() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            $("#assignActionWindow").window('open');
+            UserId = rows[0].ID;
+            //可装载组合框
+            $('#combo_action').combobox({
+                url: '@ViewBag.ShowAssignActionInfo?id= ' + UserId,
+                valueField: 'id',
+                textField: 'text',
+                //设置为允许多选
+                multiple: true,
+
+                panelHeight: 'auto',
+                formatter: function (row) {
+                    var opts = $(this).combobox('options');
+                    return '<input type="checkbox" class="combobox-checkbox">' + row[opts.textField]
+                },
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                },
+                //选中某项后启动事件
+                onSelect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', true);
+                },
+                //取消选中后启动事件
+                onUnselect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', false);
+                }
+            });
+
+        }
+
+        function getActionSelection() {
+            //获取所选的角色
+            var val = $('#combo_action').combobox('getValues');
+            var tex = $('#combo_action').combobox('getText');
+
+            if ($.messager.confirm("提示", "您已选择：" + tex + "; 准备提交？", function (r) {
+                    if (r) {
+                   $.post("@ViewBag.DoAssignActionInfo?UserId=" + UserId + "&&ids=" + val, function (data) {
+                //请求成功后的回调函数
+                //执行afterEdit
+                 $("#assignActionWindow").window('close');
+                afterEdit("修改成功");
+            });
+            }
+            }));
+        }
+
+
+
+
+
         //提交
         function submitForm() {
             //$("#editWindow").submit()
@@ -161,6 +322,8 @@
             //1 编辑窗口关闭
             $("#editWindow").window('close');
             $("#addWindow").window('close');
+            $("#assignRoleWindow").window('close');
+            $("#assignActionWindow").window('close');
             //2 位datagrid加载数据
             $("#datagrid").datagrid({
                 width: 'auto',
@@ -197,6 +360,16 @@
             //    textField: 'text',
             //    panelHeight: 'auto'
             //});
+
+            //$(function(){
+            //    $('#combo').combobox({
+            //        url: '/Admin/User/ShowAssignRoleInfo',
+            //        valueField:'id',
+            //        textField:'text',
+            //        panelHeight: 'auto',
+            //        multiple: true
+            //    });
+            //})
         })
     </script>
 </head>
@@ -206,6 +379,26 @@
         <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px" data-options="shadow:true,modal:true">
             <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" @*不显示滚动条*@></iframe>
         </div>
-    </div>
+        <div class="easyui-window" @*title="New Topic"*@ id="assignRoleWindow" style="width:300px;height:150px" data-options="shadow:true,modal:true">                   
+            <div>
+                <h3>用户角色设置</h3>
+                <select id="combo_role" class="easyui-combobox" name="dept" style="width:200px" />
+                <div>
+                    <input type="submit" value="提交" onclick="getRoleSelection()"/>
+                </div>
+
+            </div>     
+        </div>
+        <div class="easyui-window" @*title="New Topic"*@ id="assignActionWindow" style="width:300px;height:150px" data-options="shadow:true,modal:true">
+            <div>
+                <h3>用户权限设置</h3>
+                <select id="combo_action" class="easyui-combobox" style="width:200px" />
+                <div>
+                    <input type="submit" value="提交" onclick="getActionSelection()" />
+                </div>
+
+            </div>
+        </div>
+   </div>
 </body>
 </html>

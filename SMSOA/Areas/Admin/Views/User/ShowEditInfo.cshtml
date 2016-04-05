@@ -20,6 +20,20 @@
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script type="text/javascript">
+
+        ////加入密码校验功能
+        //$.extend($.fn.validatebox.defaults.rules, {
+        //    /*必须和某个字段相等*/
+        //    equalTo: {
+        //        validator: function (value, param) {
+        //            return $(param[0]).val() == value;
+        //        },
+        //        message: '字段不匹配'
+        //    }
+
+        //});
+
+
         function afterEdit(data) {
 
             //$.messager.alert('提醒', '提交成功!');
@@ -38,6 +52,7 @@
     </script>
 </head>
 <body>
+
     @using (Ajax.BeginForm(backAction, new { },
                         new AjaxOptions()
                         {
@@ -55,16 +70,18 @@
                 <tr>
                     <td>新用户名:</td>
                     <td>
-                        @Html.TextBoxFor(model => model.UName, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Uname" } })
+                        @Html.TextBoxFor(model => model.UName)
                     </td>
                 </tr>
                 <tr>
-                    <td>新密码:</td>
+                    <td>密码:</td>
                     <td>
-                        @Html.TextBoxFor(model => model.UPwd, new { htmlAttributes = new { @class = "easyui-textbox", @name = "UPwd" } })
-                        @*<input class="easyui-textbox" type="text" name="AreaName" data-options="required:true,value:'@Model.AreaName'">  </input>*@
+                        @Html.PasswordFor(model => model.UPwd)
+
+                        @*<input class="easyui-textbox" type="password" name="UPwd" data-options="required:true,value:'@Model.UPwd">*@ 
                     </td>
                 </tr>
+             
                 <tr>
                     <td>顺序:</td>
                     <td>
