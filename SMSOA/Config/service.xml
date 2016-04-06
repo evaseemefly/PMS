@@ -7,4 +7,6 @@
   </object>
   <object type="PMS.BLL.RoleInfoBLL, PMS.BLL" singleton="false" name="roleInfoService" >
   </object>
+  <object type="PMS.BLL.P_PersonInfoBLL, PMS.BLL" singleton="false" name="personInfoService" >
+  </object>
 </objects>

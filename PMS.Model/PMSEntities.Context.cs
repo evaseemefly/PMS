@@ -29,5 +29,11 @@ namespace PMS.Model
         public DbSet<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
         public DbSet<RoleInfo> RoleInfo { get; set; }
         public DbSet<UserInfo> UserInfo { get; set; }
+        public DbSet<P_DepartmentInfo> P_DepartmentInfo { get; set; }
+        public DbSet<P_Group> P_Group { get; set; }
+        public DbSet<P_PersonInfo> P_PersonInfo { get; set; }
+        public DbSet<R_Department_Mission> R_Department_Mission { get; set; }
+        public DbSet<R_Group_Mission> R_Group_Mission { get; set; }
+        public DbSet<S_SMSMission> S_SMSMission { get; set; }
     }
 }

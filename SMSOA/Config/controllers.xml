@@ -22,4 +22,8 @@
     <property name="roleInfoBLL" ref="roleInfoService" />
     <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.ContactPersonController, SMSOA" singleton="false" >
+    <property name="personInfoBLL" ref="personInfoService" />
+   
+  </object>
 </objects>
