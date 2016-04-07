@@ -25,6 +25,7 @@ namespace PMS.Model
         public System.DateTime ModifiedOnTime { get; set; }
         public bool isDel { get; set; }
         public string Remark { get; set; }
+        public string GroupName { get; set; }
     
         public virtual ICollection<R_Group_Mission> R_Group_Mission { get; set; }
         public virtual ICollection<P_PersonInfo> P_PersonInfo { get; set; }

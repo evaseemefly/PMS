@@ -239,6 +239,7 @@
     <Content Include="Images\Icon\Contact\group.png" />
     <Content Include="Images\Icon\Contact\phonebook-large.png" />
     <Content Include="Images\Icon\Contact\phonebook.png" />
+    <Content Include="Images\Image\page404.jpg" />
     <Content Include="Libs\Common.Logging.dll" />
     <Content Include="Libs\Spring.Core.dll" />
     <Content Include="Libs\Spring.Core.xml" />
@@ -276,6 +277,7 @@
     <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowAddPersonInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />

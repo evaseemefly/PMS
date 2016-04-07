@@ -23,7 +23,7 @@
     <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.ContactPersonController, SMSOA" singleton="false" >
-    <property name="personInfoBLL" ref="personInfoService" />
-   
+    <property name="personInfoBLL" ref="personInfoService" />    
+    <property name="groupBLL" ref="groupInfoService" />
   </object>
 </objects>

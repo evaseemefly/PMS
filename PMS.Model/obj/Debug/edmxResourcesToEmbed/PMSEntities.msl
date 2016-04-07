@@ -91,6 +91,7 @@
     <EntitySetMapping Name="P_Group">
       <EntityTypeMapping TypeName="PMS2016Model.P_Group">
         <MappingFragment StoreEntitySet="P_Group">
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
           <ScalarProperty Name="isDel" ColumnName="isDel" />
           <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />

@@ -104,15 +104,25 @@
             $("#datagrid").datagrid('reload');
         }
 
-
+        function ShowGroup() {
+            loadDataGrid('@ViewBag.GetGroupInfo', myGroupColumns);
+        }
 
         function ShowContact() {
-            loadDataGrid('@ViewBag.GetContactInfo');
+            loadDataGrid('@ViewBag.GetContactInfo', myPersonColumns);
         }
-        var myColumns = [[
+        var myPersonColumns = [[
                 { field: 'PID', title: 'ID', width: 100 },
                 { field: 'PName', title: '用户名称', width: 150 },
                 { field: 'PhoneNum', title: '电话号码', width: 250 },
+                { field: 'Remark', title: '备注', width: 120 }
+        ]]
+
+        var myGroupColumns = [[
+                { field: 'GID', title: 'ID', width: 100 },
+                { field: 'GroupName', title: '群组名称', width: 150 },
+                { field: 'SubTime', title: '创建时间', width: 250 },
+                { field: 'ModifiedOnTime', title: '修改时间', width: 250 },
                 { field: 'Remark', title: '备注', width: 120 }
         ]]
 
@@ -132,7 +142,7 @@
                handler: editRow@*editRow("@ViewBag.ShowEdit")*@
                }]
 
-        function loadDataGrid(url) {
+        function loadDataGrid(url, myColumns) {
             //2 位datagrid加载数据
             $("#datagrid").datagrid({
                 width: '400px',
@@ -186,7 +196,7 @@
     </div>
     <div id="titlebar" style="padding:2px">
         <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'layout-button-right'" onclick="$('#cc').layout('expand','west')"></a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-mygroup',size:'large',iconAlign:'top'" >群组</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-mygroup',size:'large',iconAlign:'top'"onclick="ShowGroup()" >群组</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-myPhonebook',size:'large',iconAlign:'top'"onclick="ShowContact()">联系人</a>
         
     </div>

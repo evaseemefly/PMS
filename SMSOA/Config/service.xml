@@ -9,4 +9,6 @@
   </object>
   <object type="PMS.BLL.P_PersonInfoBLL, PMS.BLL" singleton="false" name="personInfoService" >
   </object>
+  <object type="PMS.BLL.P_GroupBLL, PMS.BLL" singleton="false" name="groupInfoService" >
+  </object>
 </objects>

@@ -22,6 +22,11 @@ namespace SMSOA.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult NotFound()
+        {
+            return View();
+        }
+
         //[LoginValidate]
         public ActionResult GetMenuItem()
         {
