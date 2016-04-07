@@ -52,7 +52,6 @@ D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\System.Web.WebPages.Razor.d
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\WebGrease.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\PMS.IDAL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\PMS.DALFactory.dll
-D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\TestModel.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\System.Web.Http.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\System.Web.Http.WebHost.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\System.Net.Http.Formatting.dll
@@ -89,7 +88,6 @@ D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\Microsoft.Owin.Security.Twi
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\PMS.IDAL.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\PMS.DALFactory.pdb
-D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\TestModel.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\obj\Debug\SMSOA.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\SMSOA\bin\SMSOA.Login.dll

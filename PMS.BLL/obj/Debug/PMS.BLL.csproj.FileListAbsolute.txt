@@ -7,7 +7,6 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IBLL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IDAL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\EntityFramework.dll
-D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\TestModel.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.DALFactory.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.pdb
@@ -15,7 +14,6 @@ D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IBLL.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.IDAL.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\EntityFramework.xml
-D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\TestModel.pdb
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.xml
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
 D:\02编程\2016年\01协同开发\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
