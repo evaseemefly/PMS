@@ -348,7 +348,6 @@ D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\WebGrease.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\Memcached.ClientLibrary.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\PMS.IDAL.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\PMS.DALFactory.dll
-D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\TestModel.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\Common.pdb
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\PMS.BLL.pdb
@@ -384,7 +383,6 @@ D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\Microsoft.Owin.Security.Twitter.xml
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\PMS.IDAL.pdb
 D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\PMS.DALFactory.pdb
-D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\TestModel.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\roslyn\csc.exe
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll

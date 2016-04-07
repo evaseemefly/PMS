@@ -36,13 +36,11 @@ D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\EntityFramework.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\PMS.DALSQLSer.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\PMS.IDAL.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\PMS.Model.dll
-D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\TestModel.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\System.Web.Mvc.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\PMS.DALSQLSer.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\PMS.IDAL.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\EntityFramework.xml
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\PMS.Model.pdb
-D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\TestModel.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\bin\Debug\System.Web.Mvc.xml
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.dll

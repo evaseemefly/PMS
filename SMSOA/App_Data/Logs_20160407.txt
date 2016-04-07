@@ -121,3 +121,15 @@ System.IO.IOException: ÎŞ·¨½«Êı¾İĞ´Èë´«ÊäÁ¬½Ó: Ô¶³ÌÖ÷»úÇ¿ÆÈ¹Ø±ÕÁËÒ»¸öÏÖÓĞµÄÁ¬½Ó¡
    ÔÚ System.IO.BufferedStream.Flush()
    ÔÚ Memcached.ClientLibrary.SockIO.Flush()
    ÔÚ Memcached.ClientLibrary.MemcachedClient.Set(String cmdname, String key, Object obj, DateTime expiry, Object hashCode, Boolean asString)
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
