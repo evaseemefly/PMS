@@ -80,6 +80,85 @@ namespace PMS.BLL
             return GetListBy(a => list_ids.Contains(a.ID)).ToList();
 
         }
+        /// <summary>
+        /// 为用户分配角色
+        /// </summary>
+        /// <returns></returns>
+        public bool SetUser4Role(int userID, List<int> list_roleIDs)
+        {
+
+            //1 修改User与Role的关系
+            //1.1 根据UserID找到对应的UserInfo
+            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(r => r.ID == userID).FirstOrDefault();
+            //1.2 清空原有的关系
+            user.RoleInfo.Clear();
+
+            //2 根据roleIDs查询对应的RoleInfo
+            foreach (var item in list_roleIDs)
+            {
+                var roleInfo = this.CurrentDBSession.RoleInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+                user.RoleInfo.Add(roleInfo);
+                
+            }
+            return this.CurrentDBSession.SaveChanges();
+        }
+        /// <summary>
+        /// 为用户分配权限
+        /// </summary>
+        /// <returns></returns>
+        public bool SetUser4Action(int userID, List<int> list_actionIDs)
+        {
+            // 1 修改User与Role的关系
+            //1.1 根据UserID找到对应的UserInfo
+            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(r => r.ID == userID).FirstOrDefault();
+            //1.2 清空原来的关系
+            //R_UserInfo_ActionInfo r_UserInfo_ActionInfo = new R_UserInfo_ActionInfo();
+            //r_UserInfo_ActionInfo.
+            //2 根据ActionIDs查询对应的RoleInfo
+
+            List<R_UserInfo_ActionInfo> list = new List<R_UserInfo_ActionInfo>();
+            foreach (var aid in list_actionIDs)
+            {
+                var r_user_action = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID && r.ActionInfoID == aid).FirstOrDefault();
+                //根据ActionID与UserID从R表中找到唯一的记录
+                if(r_user_action != null&&r_user_action.isPass==true)
+                {
+                    
+                }
+                else if(r_user_action==null)
+                {
+                    R_UserInfo_ActionInfo r_UserInfo_ActionInfo = new R_UserInfo_ActionInfo();
+                    //r_UserInfo_ActionInfo.UserInfo = user;
+                    r_UserInfo_ActionInfo.UserInfoID = userID;
+                    //var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+                    r_UserInfo_ActionInfo.isPass = true;
+                    //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
+                    r_UserInfo_ActionInfo.ActionInfoID = aid;
+                    this.CurrentDBSession.R_UserInfo_ActionInfoDAL.Create(r_UserInfo_ActionInfo);
+                }
+               
+            }
+            var list_del = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID &&list_actionIDs.Contains(r.ActionInfoID));
+            foreach (var item in list_del)
+            {
+                this.CurrentDBSession.R_UserInfo_ActionInfoDAL.Del(item);
+            }
+            //foreach (var item in list_actionIDs)
+            //{
+            //    R_UserInfo_ActionInfo r_UserInfo_ActionInfo = new R_UserInfo_ActionInfo();
+            //    //r_UserInfo_ActionInfo.UserInfo = user;
+            //    r_UserInfo_ActionInfo.UserInfoID = userID;
+            //    //var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+            //    r_UserInfo_ActionInfo.isPass = true;
+            //    //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
+            //    r_UserInfo_ActionInfo.ActionInfoID = item;
+            //    list.Add(r_UserInfo_ActionInfo)
+            //    //this.CurrentDBSession.R_UserInfo_ActionInfoDAL.UpdateByList
+            //    //user.R_UserInfo_ActionInfo.Add(r_UserInfo_ActionInfo);
+            //}
+            return this.CurrentDBSession.SaveChanges();
+        }
+
 
     }
 }

@@ -76,5 +76,90 @@
         <ScalarProperty Name="ID" ColumnName="UserInfoID" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="P_DepartmentInfo">
+      <EntityTypeMapping TypeName="PMS2016Model.P_DepartmentInfo">
+        <MappingFragment StoreEntitySet="P_DepartmentInfo">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="PDID" ColumnName="PDID" />
+          <ScalarProperty Name="DID" ColumnName="DID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_Group">
+      <EntityTypeMapping TypeName="PMS2016Model.P_Group">
+        <MappingFragment StoreEntitySet="P_Group">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_PersonInfo">
+      <EntityTypeMapping TypeName="PMS2016Model.P_PersonInfo">
+        <MappingFragment StoreEntitySet="P_PersonInfo">
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="isVIP" ColumnName="isVIP" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PName" ColumnName="PName" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_Department_Mission">
+      <EntityTypeMapping TypeName="PMS2016Model.R_Department_Mission">
+        <MappingFragment StoreEntitySet="R_Department_Mission">
+          <ScalarProperty Name="isPass" ColumnName="isPass" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="MissionID" ColumnName="MissionID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_Group_Mission">
+      <EntityTypeMapping TypeName="PMS2016Model.R_Group_Mission">
+        <MappingFragment StoreEntitySet="R_Group_Mission">
+          <ScalarProperty Name="isPass" ColumnName="isPass" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="MissionID" ColumnName="MissionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_SMSMission">
+      <EntityTypeMapping TypeName="PMS2016Model.S_SMSMission">
+        <MappingFragment StoreEntitySet="S_SMSMission">
+          <ScalarProperty Name="isMMS" ColumnName="isMMS" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="SMSMissionName" ColumnName="SMSMissionName" />
+          <ScalarProperty Name="SMID" ColumnName="SMID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="R_Person_Department" TypeName="PMS2016Model.R_Person_Department" StoreEntitySet="R_Person_Department">
+      <EndProperty Name="P_PersonInfo">
+        <ScalarProperty Name="PID" ColumnName="PersonID" />
+      </EndProperty>
+      <EndProperty Name="P_DepartmentInfo">
+        <ScalarProperty Name="DID" ColumnName="DerpartmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="R_Person_Group" TypeName="PMS2016Model.R_Person_Group" StoreEntitySet="R_Person_Group">
+      <EndProperty Name="P_PersonInfo">
+        <ScalarProperty Name="PID" ColumnName="PID" />
+      </EndProperty>
+      <EndProperty Name="P_Group">
+        <ScalarProperty Name="GID" ColumnName="GID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

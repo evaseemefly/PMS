@@ -13,6 +13,18 @@
         <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_ActionInfo_UserInfo" ManuallyRouted="false" />
         <AssociationConnector Association="PMS2016Model.R_RoleInfo_ActionInfo" ManuallyRouted="false" />
         <AssociationConnector Association="PMS2016Model.R_UserInfo_RoleInfo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PMS2016Model.P_DepartmentInfo" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PMS2016Model.P_Group" Width="1.5" PointX="7.375" PointY="11.375" />
+        <EntityTypeShape EntityType="PMS2016Model.P_PersonInfo" Width="1.5" PointX="9.625" PointY="8" />
+        <EntityTypeShape EntityType="PMS2016Model.R_Department_Mission" Width="1.5" PointX="9.625" PointY="1.375" />
+        <EntityTypeShape EntityType="PMS2016Model.R_Group_Mission" Width="1.5" PointX="9.625" PointY="4.5" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSMission" Width="1.5" PointX="7.375" PointY="4.25" />
+        <AssociationConnector Association="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_R_Group_Mission_P_Group" />
+        <AssociationConnector Association="PMS2016Model.FK_R_Department_Mission_S_SMSMission" />
+        <AssociationConnector Association="PMS2016Model.FK_R_Group_Mission_S_SMSMission" />
+        <AssociationConnector Association="PMS2016Model.R_Person_Department" />
+        <AssociationConnector Association="PMS2016Model.R_Person_Group" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

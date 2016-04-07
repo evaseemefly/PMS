@@ -15,9 +15,15 @@
   </object>
   <object type="SMSOA.Areas.Admin.Controllers.UserController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
+    <property name="roleInfoBLL" ref="roleInfoService" />
+    <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
   <object type="SMSOA.Areas.Admin.Controllers.RoleController, SMSOA" singleton="false" >
     <property name="roleInfoBLL" ref="roleInfoService" />
     <property name="actionInfoBLL" ref="actionInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.ContactPersonController, SMSOA" singleton="false" >
+    <property name="personInfoBLL" ref="personInfoService" />
+   
   </object>
 </objects>

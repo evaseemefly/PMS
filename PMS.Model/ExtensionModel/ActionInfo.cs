@@ -101,5 +101,10 @@ namespace PMS.Model
             };
             return node;
         }
+        //public bool Checked
+        //{
+        //    set { _checked = value; }
+        //    get { return _checked; }
+        //}
     }
 }

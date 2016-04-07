@@ -18,6 +18,71 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	P_DepartmentInfoBLL
+    public partial class P_DepartmentInfoBLL : BaseBLL<P_DepartmentInfo>, IP_DepartmentInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为P_DepartmentInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.P_DepartmentInfoDAL;
+        }
+    }
+	#endregion
+	   #region	P_GroupBLL
+    public partial class P_GroupBLL : BaseBLL<P_Group>, IP_GroupBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为P_GroupDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.P_GroupDAL;
+        }
+    }
+	#endregion
+	   #region	P_PersonInfoBLL
+    public partial class P_PersonInfoBLL : BaseBLL<P_PersonInfo>, IP_PersonInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为P_PersonInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.P_PersonInfoDAL;
+        }
+    }
+	#endregion
+	   #region	R_Department_MissionBLL
+    public partial class R_Department_MissionBLL : BaseBLL<R_Department_Mission>, IR_Department_MissionBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_Department_MissionDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_Department_MissionDAL;
+        }
+    }
+	#endregion
+	   #region	R_Group_MissionBLL
+    public partial class R_Group_MissionBLL : BaseBLL<R_Group_Mission>, IR_Group_MissionBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_Group_MissionDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_Group_MissionDAL;
+        }
+    }
+	#endregion
 	   #region	R_UserInfo_ActionInfoBLL
     public partial class R_UserInfo_ActionInfoBLL : BaseBLL<R_UserInfo_ActionInfo>, IR_UserInfo_ActionInfoBLL
     {	
@@ -41,6 +106,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.RoleInfoDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSMissionBLL
+    public partial class S_SMSMissionBLL : BaseBLL<S_SMSMission>, IS_SMSMissionBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSMissionDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSMissionDAL;
         }
     }
 	#endregion

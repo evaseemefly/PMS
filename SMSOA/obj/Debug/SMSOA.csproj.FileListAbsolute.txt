@@ -252,7 +252,6 @@ E:\03协同开发\短信\PMS\PMS\SMSOA\bin\WebGrease.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\Memcached.ClientLibrary.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\PMS.IDAL.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\PMS.DALFactory.dll
-E:\03协同开发\短信\PMS\PMS\SMSOA\bin\TestModel.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\Common.pdb
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\PMS.BLL.pdb
@@ -288,7 +287,6 @@ E:\03协同开发\短信\PMS\PMS\SMSOA\bin\Microsoft.Owin.Security.Twitter.xml
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\PMS.IDAL.pdb
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\PMS.DALFactory.pdb
-E:\03协同开发\短信\PMS\PMS\SMSOA\bin\TestModel.pdb
 E:\03协同开发\短信\PMS\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\SMSOA\obj\Debug\SMSOA.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\obj\Debug\SMSOA.pdb

@@ -69,7 +69,6 @@ E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.IBLL.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.IDAL.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.Model.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\EntityFramework.dll
-E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\TestModel.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.DALFactory.pdb
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.pdb
@@ -77,7 +76,6 @@ E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.IBLL.pdb
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.IDAL.pdb
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\EntityFramework.xml
-E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\TestModel.pdb
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll

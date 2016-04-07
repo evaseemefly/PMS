@@ -198,6 +198,9 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Contacts\ContactsAreaRegistration.cs" />
+    <Compile Include="Areas\Contacts\Controllers\ContactPersonController.cs" />
+    <Compile Include="Areas\Contacts\Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -232,6 +235,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Icon\Contact\group-large.png" />
+    <Content Include="Images\Icon\Contact\group.png" />
+    <Content Include="Images\Icon\Contact\phonebook-large.png" />
+    <Content Include="Images\Icon\Contact\phonebook.png" />
     <Content Include="Libs\Common.Logging.dll" />
     <Content Include="Libs\Spring.Core.dll" />
     <Content Include="Libs\Spring.Core.xml" />
@@ -259,10 +266,16 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_RoleScriptPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_MyPartial_Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-通过viewbag的方式实现.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Action\SetRoleAction.cshtml" />
+    <Content Include="Areas\Contacts\Views\web.config" />
+    <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\ShowAddPersonInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
@@ -277,6 +290,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyCSS\MyEasyUIValidate.js" />
+    <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
     <Content Include="Scripts\respond.js" />
@@ -323,12 +338,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Contacts\Models\" />
+    <Folder Include="Areas\Contacts\Views\Shared\" />
     <Folder Include="Areas\Login\Controllers\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
-    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
