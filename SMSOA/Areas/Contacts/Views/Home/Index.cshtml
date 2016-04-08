@@ -11,6 +11,8 @@
     <title>Index</title>
     <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
     <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    @*注意需要添加此css才能使用easyui默认的颜色*@
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -18,116 +20,45 @@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    @*自己写的图标样式*@
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     <script type="text/javascript">
-        $(function () {
-            createTabs();
-        })
-        function createTabs(titleStr,contentStr) {
-            var $tabs = $("#tt");
-                $tabs.tabs('add', {
-                    title: "<span class='tt-inner'><img src='../../Images/Icon/Contact/phonebook.png'width='32' height='32'/><br>联系人</span>",
-                    selected: true,
-                    closable: true,
-                    //style:{overflow: hidden},
-                    fit: true,
-                    content: createNewIframe("/Contacts/ContactPerson/Index"),
-                    style: { overflow: "hidden" },
-                    bodyCls: "overflow: 'hidden'"
-                });
+        //现修改为：
+        //点击该按钮时加载群组的首页
+        //而不是点击按钮加载群组的datagrid
+        function ShowGroup() {
+            //$("#loadContactDiv").load("/Contacts/Group/Index");
+            //$("#loadContactDiv").src("/Contacts/Group/Index");
+            $("#iframeContactDiv").attr("src", "/Contacts/Group/Index");
         }
-        //style="margin:10px"
-        //创建一个指定url的iframe
-        function createNewIframe(url) {
-            var iframeStr = "<iframe src='" + url + "' style='width:100%;height:100%;frameborder:0px solid #000;scrolling=no;overflow: hidden'></iframe>";
-            return iframeStr;
-        }
-
-
-            //$("#div_person").load("/Contacts/ContactPerson/Index");
-            //$('#p').panel({
-            //    href: '/Contacts/ContactPerson/Index',
-            //    onLoad: function () {
-            //        alert('loaded successfully');
-            //    }
-            //});
-            //$('#tt').tabs('add', {
-            //    title: "<span class='tt-inner'><img src='../../Images/Icon/Contact/group.png'width='32' height='32'/><br>通讯录</span>",
-            //    content: '<div id="myDiv"></div>',
-            //    closable: true,
-            //    loader:function(){
-
-            //    },
-            //    tools: [{
-            //        iconCls: 'icon-mini-refresh',
-            //        handler: function () {
-            //            alert('refresh');
-            //        }
-            //    }]
-            //});
-
-            //$.ajax({
-            //    url: '/Contacts/ContactPerson/Index',
-            //    type: 'get',
-            //    dataType: 'html',
-            //    //data: parames,
-            //    error: function () { alert('error'); },
-            //    success: function (data) {
-            //        $("#myDiv").html(data);
-            //    }
-            //});
-
-        //    $('#tt').tabs('add', {
-        //        title: "<span class='tt-inner'><img src='../../Images/Icon/Contact/phonebook.png'width='32' height='32'/><br>联系人</span>",
-        //        content: '联系人',
-        //        closable: true,
-        //        tools: [{
-        //            iconCls: 'icon-mini-refresh',
-        //            handler: function () {
-        //                alert('refresh');
-        //            }
-        //        }]
-        //    });
-            
-       
-
-        //function createContent(url) {
-        //    var contentStr = "<div src='" + url + "' style='width:100%;height:100%;scrolling=no;overflow: hidden'></div>";
-        //}
     </script>
 </head>
 <body>
-    <div class="easyui-tabs" id="tt"  data-options="tabWidth:100,tabHeight:60" style="width:100%;height:450px">
-        @*<div title="<span class='tt-inner'><img src='../../Images/Icon/Contact/phonebook.png'width='32' height='32'/><br>联系人</span>" style="padding:10px">*@
-          
-            @*<div id="pp" class="easyui-panel" style="width:300px;height:200px"
-                 data-options="href='/Contacts/ContactPerson/Index'">
-            </div>*@
-        @*</div>*@
-      
-        @*<div title="About" style="padding:10px">
-            <p style="font-size:14px">jQuery EasyUI framework helps you build your web pages easily.</p>
-            <ul>
-                <li>easyui is a collection of user-interface plugin based on jQuery.</li>
-                <li>easyui provides essential functionality for building modem, interactive, javascript applications.</li>
-                <li>using easyui you don't need to write many javascript code, you usually defines user-interface by writing some HTML markup.</li>
-                <li>complete framework for HTML5 web page.</li>
-                <li>easyui save your time and scales while developing your products.</li>
-                <li>easyui is very easy but powerful.</li>
-            </ul>
-        </div>*@
+    <div style="margin:20px 0;"></div>
+    <div id="cc" class="easyui-layout" style="width:700px;height:350px;">        
+        <div data-options="region:'west',
+             split:true,
+             collapsed:true,
+				hideExpandTool: true,
+				expandMode: null,
+				hideCollapsedContent: false,
+				collapsedSize: 68,
+				collapsedContent: function(){
+					return $('#titlebar');
+				}
+				" title="West" style="width:100px;"></div>
+        <div data-options="region:'center',title:'Main Title'">            
+            @*<div id="loadContactDiv">
 
+            </div>*@
+            <iframe scrolling="no" frameborder="0" id="iframeContactDiv" style="width:100%;height:100%; overflow: hidden;"></iframe>
+        </div>
+    </div>
+    <div id="titlebar" style="padding:2px">
+        
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-mygroup',size:'large',iconAlign:'top'" onclick="ShowGroup()">群组</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-myPhonebook',size:'large',iconAlign:'top'" onclick="ShowContact()">联系人</a>
 
     </div>
-    <style scoped="scoped">
-        .tt-inner {
-            display: inline-block;
-            line-height: 12px;
-            padding-top: 8px;
-        }
-
-            .tt-inner img {
-                border: 0;
-            }
-    </style>
 </body>
 </html>

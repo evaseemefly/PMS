@@ -11,6 +11,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         // GET: Contacts/Home
         public ActionResult Index()
         {
+            
             return View();
         }
     }

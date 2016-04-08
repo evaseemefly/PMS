@@ -1,0 +1,161 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    @*注意需要添加此css才能使用easyui默认的颜色*@
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    @*自己写的图标样式*@
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        function addRow() {
+            //打开编辑窗体
+            $("#editWindow").window('open');
+            //从指定页面中预读取数据
+            $("#setActionRoleFrame").attr("src", '@ViewBag.ShowAdd');
+        }
+
+        function editRow() {
+            var rows = $("#groupdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            $("#editWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+            $("#setActionRoleFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].GID);//会出现重定向的错误
+        }
+
+
+        function removeRow() {
+            var rows = $("#groupdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].GID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.Del_url?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#groupdatagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#groupdatagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+
+        }
+
+
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editWindow").window('close');
+            //2 刷新当前页面
+            $("#groupdatagrid").datagrid('reload');
+        }
+
+
+        var toolbar = [{
+            iconCls: 'icon-add',
+            text: "新增",
+            handler: addRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-',
+        {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
+        }, '-',
+           {
+               iconCls: 'icon-edit',
+               text: "编辑",
+               handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+           }]
+
+        function loadDataGrid(url, myColumns) {
+            //2 位datagrid加载数据
+            $("#groupdatagrid").datagrid({
+                width: '400px',
+                height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns,
+                toolbar: toolbar
+
+            });
+        }
+
+        var myGroupColumns = [[
+                { field: 'GID', title: 'ID', width: 100 },
+                { field: 'GroupName', title: '群组名称', width: 150 },
+                { field: 'SubTime', title: '创建时间', width: 250 },
+                { field: 'ModifiedOnTime', title: '修改时间', width: 250 },
+                { field: 'Remark', title: '备注', width: 120 }
+        ]]
+
+        $(function () {
+
+            $("#editWindow").window('close');
+            loadDataGrid('@ViewBag.GetGroupInfo', myGroupColumns);
+
+        })
+    </script>
+</head>
+<body style="overflow:hidden;">
+        <table class="easyui-datagrid" id="groupdatagrid" style="height:100%;width:100%" ></table>
+    <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
+        <iframe id="setActionRoleFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    </div>
+</body>
+</html>

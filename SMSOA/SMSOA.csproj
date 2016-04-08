@@ -200,6 +200,7 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Contacts\ContactsAreaRegistration.cs" />
     <Compile Include="Areas\Contacts\Controllers\ContactPersonController.cs" />
+    <Compile Include="Areas\Contacts\Controllers\GroupController.cs" />
     <Compile Include="Areas\Contacts\Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -274,10 +275,18 @@
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Action\SetRoleAction.cshtml" />
     <Content Include="Areas\Contacts\Views\web.config" />
-    <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\Home\Index-v2.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowAddPersonInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
+    <Content Include="Areas\Contacts\Views\Home\Index - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制%282%29.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
