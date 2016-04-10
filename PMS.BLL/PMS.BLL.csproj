@@ -48,6 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonInfoBLL.cs" />
     <Compile Include="RoleInfoBLL.cs" />
     <Compile Include="UserInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

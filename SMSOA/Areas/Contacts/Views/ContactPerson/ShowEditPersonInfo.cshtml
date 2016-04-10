@@ -44,26 +44,30 @@
 <body>
     <div style="padding:10px 60px 20px 60px">
         @using (Ajax.BeginForm(backAction, new { },
-                            new AjaxOptions()
-                            {
-                                OnSuccess = "afterEdit"
-                            }
-                            ))
+                                new AjaxOptions()
+                                {
+                                    OnSuccess = "afterEdit"
+                                }
+                                ))
         {
             <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
                 <table cellpadding="3">
-                    
                     <tr>
+                        <td>PID:</td>
+                        <td><input class="easyui-textbox" type="text" name="PID" readonly="readonly" value=@ViewBag.Model.PID></input></td>
+                    </tr>
+                    <tr>
+<tr>
                         <td>姓名:</td>
-                        <td><input class="easyui-textbox" type="text" name="PName" data-options="required:true"></input></td>
+                        <td><input class="easyui-textbox" type="text" name="PName"  value=@ViewBag.Model.PName></input></td>
                     </tr>
                     <tr>
                         <td>电话:</td>
-                        <td><input class="easyui-textbox" type="text" name="PhoneNum" data-options="required:true"></input></td>
+                        <td><input class="easyui-textbox" type="text" name="PhoneNum"  value=@ViewBag.Model.PhoneNum></input></td>
                     </tr>
                     <tr>
                         <td>备注:</td>
-                        <td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px"></input></td>
+                        <td><input class="easyui-textbox" name="message"  data-options="multiline:true" style="height:60px" value=@ViewBag.Model.Remark></input></td>
                     </tr>
 
                 </table>
@@ -72,12 +76,12 @@
                         <input type="submit" value="提交" />
                     </div>
                     @*<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>*@
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>*@
                 </div>
             </form>
-            
+
         }
-        
+
     </div>
 </body>
 </html>

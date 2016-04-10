@@ -57,3 +57,4 @@ D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\Newtonsoft.Json.xml
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.dll
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.pdb
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

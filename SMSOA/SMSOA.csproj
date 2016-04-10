@@ -278,6 +278,7 @@
     <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowAddPersonInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />

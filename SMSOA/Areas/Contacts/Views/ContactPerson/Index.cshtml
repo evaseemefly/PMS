@@ -52,7 +52,7 @@
             $("#editWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
-            $("#setActionRoleFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].ID);//会出现重定向的错误
+            $("#setActionRoleFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].PID);//会出现重定向的错误
         }
 
 
@@ -73,7 +73,7 @@
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
-                        strId = strId + rows[i].ID + ",";
+                        strId = strId + rows[i].PID + ",";
             }
                 //去掉最后一个逗号
                 strId = strId.substr(0, strId.length - 1);
