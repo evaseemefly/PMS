@@ -46,7 +46,6 @@ D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.IBLL.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.IDAL.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.Model.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\EntityFramework.dll
-D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\TestModel.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.DALFactory.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.DALSQLSer.pdb
@@ -54,7 +53,6 @@ D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.IBLL.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.IDAL.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\EntityFramework.xml
-D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\TestModel.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.xml
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
