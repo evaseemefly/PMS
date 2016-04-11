@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Contacts/Views/Shared/_Layout_Contacts.cshtml";
+}
+
+
+@section myColumns{
+    <script type="text/javascript">
+       var myColumns = [[
+               { field: 'DID', title: 'ID', width: 100 },
+               { field: 'PDID', title: '上级部门ID', width: 150 },
+               { field: 'DepartmentName', title: '部门名称', width: 250 },
+               { field: 'Area', title: '区域ID', width: 250 },
+               { field: 'Remark', title: '备注', width: 120 }
+       ]]
+    </script>
+}
+

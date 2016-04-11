@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+    string backAction_jqSub = @ViewBag.backAction_jqSub;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowAddRoleInfo</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    @*注意需要添加此css才能使用easyui默认的颜色*@
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
+    <script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>
+    <script type="text/javascript">
+        function DoSubmit() {
+            var myform = $("#ff");
+            var options = {
+                url: '@ViewBag.backAction_jqSub',
+                type: 'post',
+                success: function (data) {
+                    afterEdit(data);
+                }
+            };
+
+            myform.form('submit', options);
+        }
+        var data_areas = [
+            {value:"1",text:"北京"},
+            {value:"2",text:"山东" },
+            {value:"3",text:"河北" },
+            {value:"5",text:"上海" },
+            {value:"10",text:"福建" },
+            {value:"13",text:"厦门" },
+            { value: "12", text: "崇武" }]
+        function AfterLoadArea(){
+            $("#Area_combox").combobox('setValue',@ViewBag.AreaId);
+        }
+        function AfterLoadDepartment(){
+            $("#DepartmentName_combotree").combotree('setValue',@ViewBag.PDID);
+        }
+        $(function () {
+            //1 加载区域下拉框
+            $("#Area_combox").combobox({
+                width:100,
+                valueField: 'value',
+                textField: 'text',
+                data: data_areas,
+                panelHeight: 'auto',
+                onLoadSuccess: AfterLoadArea
+            });
+
+            //2 加载上级部门下拉框
+
+            $("#DepartmentName_combotree").combotree({
+                url: '@ViewBag.GetInfo',
+                valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
+                textField: 'text',
+                //valueField: "DID",
+                //textField: "DepartmentName",
+                required: true,
+                editable: false,
+                onlyLeafCheck: true,
+                cascaseCheck:true,
+                method:'get',
+                width: 210,
+                onLoadSuccess: AfterLoadDepartment
+                @*setValue:'@ViewBag.PDID'*@
+
+                });
+        })
+
+        function afterEdit(data) {
+
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //提交表单成功后关闭本页面
+            //无法关闭此窗口
+            //window.close();
+            if (data == "ok") {
+                window.parent.afterEdit("修改成功");
+            }
+            else {
+                window.parent.afterEdit("修改失败");
+            }
+            //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
+        }
+    </script>
+</head>
+<body>
+    @*<div class="easyui-panel" title="New Topic" style="width:400px">*@
+    <div style="padding:10px 60px 20px 60px">
+        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+            <input type="hidden" name="DID" value="@ViewBag.DID"/>
+            <table cellpadding="4">
+                <tr>
+                    <td style="color:#ffffff">所属上级机构:</td>
+                    <td>                    
+                        <select class="easyui-combotree" name="PDID"id="DepartmentName_combotree" data-options="required:true">                           
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color:#ffffff">部门名称:</td>
+                    <td><input class="easyui-textbox" type="text" name="DepartmentName" value="@ViewBag.Name" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td style="color:#ffffff">区域:</td>
+                    <td>
+                        <select class="easyui-combobox" name="Area" id="Area_combox" data-options="required:true">                           
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color:#ffffff">备注:</td>
+                    <td>
+                        <input class="easyui-textbox" name="Remark" style="height:50px" value="@ViewBag.Remark" data-options="multiline:true"></input>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" style="width:80px" type="submit" onclick="DoSubmit()">提交</a>
+            </div>
+        </form>
+    </div>
+    @*</div>*@
+
+</body>
+</html>

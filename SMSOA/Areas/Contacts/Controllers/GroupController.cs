@@ -19,7 +19,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.Del_url = "/Contacts/Group/DelSoftGroupInfos";
             ViewBag.ShowEdit = "/Contacts/Group/ShowEditGroupInfo";
             ViewBag.ShowAdd = "/Contacts/Group/ShowAddGroupInfo";           
-            ViewBag.GetGroupInfo = "/Contacts/Group/GetGroupInfo";
+            ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             return View();
         }
 

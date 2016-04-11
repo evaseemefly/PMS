@@ -28,4 +28,7 @@
   <object type="SMSOA.Areas.Contacts.Controllers.GroupController, SMSOA" singleton="false" >
     <property name="groupBLL" ref="groupInfoService" />
   </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.DepartmentController, SMSOA" singleton="false" >
+    <property name="departmentBLL" ref="departmentInfoService" />
+  </object>
 </objects>

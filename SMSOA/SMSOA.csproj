@@ -200,8 +200,13 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Contacts\ContactsAreaRegistration.cs" />
     <Compile Include="Areas\Contacts\Controllers\ContactPersonController.cs" />
+    <Compile Include="Areas\Contacts\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Contacts\Controllers\GroupController.cs" />
     <Compile Include="Areas\Contacts\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Contacts\Controllers\SMSMissionController.cs" />
+    <Compile Include="Areas\Contacts\Models\Department_ViewModel.cs" />
+    <Compile Include="Areas\Contacts\Models\EasyUIComboTree_Department.cs" />
+    <Compile Include="Areas\Contacts\Models\EasyUITreeGrid_Department.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -281,12 +286,18 @@
     <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo.cshtml" />
-    <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index-4月10日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制%282%29.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Test.cshtml" />
+    <Content Include="Areas\Contacts\Views\Department\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\Department\Index - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
@@ -349,8 +360,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Contacts\Models\" />
-    <Folder Include="Areas\Contacts\Views\Shared\" />
+    <Folder Include="Areas\Contacts\Views\SMSMission\" />
     <Folder Include="Areas\Login\Controllers\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />

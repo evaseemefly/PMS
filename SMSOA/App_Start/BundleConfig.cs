@@ -27,27 +27,27 @@ namespace SMSOA
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-
+            //绑定easyui的css文件
+            bundles.Add(new StyleBundle("~/Scripts/EasyUI/themes/black").Include(
+                "~/Scripts/EasyUI/themes/color.css",
+                "~/Scripts/EasyUI/themes/black/easyui.css",
+                "~/Scripts/EasyUI/themes/icon.css"));
 
 
             //绑定jquery的js文件
             bundles.Add(new ScriptBundle("~/mvcAjax").Include(
               "~/Scripts/jquery-1.10.2.min.js",
-              "~/Scripts/jquery.unobtrusive-ajax.min.js",
               "~/Scripts/jquery.validate.min.js",
-              "~/Scripts/jquery.validate.unobtrusive.min.js"));
+              "~/Scripts/jquery.validate.unobtrusive.min.js",
+              "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             //绑定easyui的js文件
-            bundles.Add(new ScriptBundle("~/easyUIJS").Include(
-                "~/Scripts/EasyUI/jquery.min.js", 
+            bundles.Add(new ScriptBundle("~/Scripts/easyUIJS").Include(
+                
                 "~/Scripts/EasyUI/jquery.easyui.min.js",
-                "~/Scripts/MyScripts/jquery.msgProcess.js",
                 "~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"));   //本地化文件（汉化文件）
 
-            //绑定easyui的css文件
-            bundles.Add(new StyleBundle("~/easyUICSS").Include(
-                "~/Scripts/EasyUI/themes/black/easyui.css",
-                "~/Scripts/EasyUI/themes/icon.css"));
+           
 
             BundleTable.EnableOptimizations = true;//对js代码进行压缩
         }

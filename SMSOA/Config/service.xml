@@ -11,4 +11,6 @@
   </object>
   <object type="PMS.BLL.P_GroupBLL, PMS.BLL" singleton="false" name="groupInfoService" >
   </object>
+  <object type="PMS.BLL.P_DepartmentInfoBLL, PMS.BLL" singleton="false" name="departmentInfoService" >
+  </object>
 </objects>
