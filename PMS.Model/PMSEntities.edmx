@@ -42,11 +42,11 @@
             <PropertyRef Name="GID" />
           </Key>
           <Property Name="GID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SubTime" Type="date" Nullable="false" />
           <Property Name="ModifiedOnTime" Type="date" Nullable="false" />
           <Property Name="isDel" Type="bit" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="50" />
-          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="P_PersonInfo">
           <Key>

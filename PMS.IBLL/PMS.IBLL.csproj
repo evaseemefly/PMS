@@ -47,7 +47,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IBLL.tt</DependentUpon>
     </Compile>
-    <Compile Include="IP_PersonInfoBLL.cs" />
     <Compile Include="IP_DepartmentInfoBLL.cs" />
     <Compile Include="IP_GroupBLL.cs" />
     <Compile Include="IP_PersonInfoBLL.cs" />

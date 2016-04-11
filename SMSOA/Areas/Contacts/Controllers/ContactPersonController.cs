@@ -16,8 +16,8 @@ namespace SMSOA.Areas.Contacts.Controllers
         // GET: Contacts/ContactPerson
         public ActionResult Index()
         {
-            //ViewBag.AddContact = "/Contacts/ContactPerson/ShowAddPersonInfo";
-            //ViewBag.GetContactInfo = "/Contacts/ContactPerson/GetPersonInfo";
+            ViewBag.AddContact = "/Contacts/ContactPerson/ShowAddPersonInfo";
+            ViewBag.GetContactInfo = "/Contacts/ContactPerson/GetPersonInfo";
             //ViewBag.GetGroupInfo = "/Contacts/ContactPerson/GetGroupInfo";
             ViewBag.Del_url = "/Contacts/ContactPerson/DoDelPersonInfo";
             ViewBag.ShowEdit = "/Contacts/ContactPerson/ShowEditPersonInfo";

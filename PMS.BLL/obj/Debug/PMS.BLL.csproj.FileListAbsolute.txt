@@ -76,6 +76,7 @@ E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
+D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\PMS.BLL.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\PMS.BLL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\PMS.DALFactory.dll
@@ -92,6 +93,5 @@ D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\PMS.IDAL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\EntityFramework.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.xml
-D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
