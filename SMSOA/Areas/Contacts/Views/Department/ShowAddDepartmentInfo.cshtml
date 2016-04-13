@@ -46,10 +46,10 @@
             {value:"13",text:"厦门" },
             { value: "12", text: "崇武" }]
         function AfterLoadArea(){
-            $("#Area_combox").combobox('setValue',@ViewBag.AreaId);
+            $("#Area_combox").combobox('setValue','@ViewBag.AreaId');
         }
         function AfterLoadDepartment(){
-            $("#DepartmentName_combotree").combotree('setValue',@ViewBag.PDID);
+            $("#DepartmentName_combotree").combotree('setValue','@ViewBag.PDID');
         }
         $(function () {
             //1 加载区域下拉框
