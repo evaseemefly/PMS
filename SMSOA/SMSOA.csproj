@@ -299,6 +299,8 @@
     <Content Include="Areas\Contacts\Views\Department\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\SMSMission\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\SMSMission\ShowAddSMSMissionInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
@@ -361,7 +363,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Contacts\Views\SMSMission\" />
     <Folder Include="Areas\Login\Controllers\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
