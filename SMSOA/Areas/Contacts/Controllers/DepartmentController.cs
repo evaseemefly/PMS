@@ -22,6 +22,14 @@ namespace SMSOA.Areas.Contacts.Controllers
             { return "/Contacts/Department/DelSoftDepartmentInfos"; }
         }
 
+        private string showAddPerson_url
+        {
+            get
+            {
+                return "/Contacts/ContactPerson/ShowAddPersonInfo";
+            }
+        }
+
         /// <summary>
         /// 执行展示修改操作的url地址
         /// </summary>
@@ -90,6 +98,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.ShowEdit = showEdit_url;
             ViewBag.ShowAdd = showAdd_url;
             ViewBag.GetInfo = getInfo_url;
+            ViewBag.ShowAddPerson = showAddPerson_url;
+
             return View();
         }
 
