@@ -13,4 +13,6 @@
   </object>
   <object type="PMS.BLL.P_DepartmentInfoBLL, PMS.BLL" singleton="false" name="departmentInfoService" >
   </object>
+  <object type="PMS.BLL.S_SMSMissionBLL, PMS.BLL" singleton="false" name="smsmissionService" >
+  </object>
 </objects>

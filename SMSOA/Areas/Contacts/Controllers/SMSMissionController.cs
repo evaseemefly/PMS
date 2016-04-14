@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
+using PMS.IBLL;
 
 namespace SMSOA.Areas.Contacts.Controllers
 {
@@ -17,6 +18,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         */
         //通过 spring.net 创建IS_SMSMissionBLL
 
+        IS_SMSMissionBLL smsmissionBLL { get; set; }
         #region 1 共用属性
         /// <summary>
         /// 执行删除操作的url地址
@@ -57,7 +59,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             get
             { return "/Contacts/SMSMission/GetSMSMissionInfo"; }
         }
-        
+
 
         /// <summary>
         /// 回调函数——执行添加url地址
@@ -104,8 +106,26 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult ShowEditSMSMissionInfo()
         {
+            int id = int.Parse(Request["id"]);
+            //若有传入的id
+            if (id != 0)
+            {
+                //1 找到指定id的action对象
+                var model = smsmissionBLL.GetListBy(g => g.SMID == id).FirstOrDefault();
 
-            return View();
+                ViewBag.Name = model.SMSMissionName;
+                ViewBag.Remark = model.Remark;
+                ViewBag.ModifiedOnTime = model.ModifiedOnTime;
+                ViewBag.SubTime = model.SubTime;
+                ViewBag.SMID = model.SMID;
+                ViewBag.isMMS = model.isMMS;
+                //5 提供显示页面提交时跳转到的权限名称
+                //修改即跳转至修改方法
+                ViewBag.backAction_jqSub = backDoEdit_url;
+
+                return View("ShowAddSMSMissionInfo");
+            }
+            return Content("no");
         }
 
         /// <summary>
@@ -114,7 +134,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult ShowAddSMSMissionInfo()
         {
-
+            ViewBag.backAction_jqSub = backDoAdd_url;
             return View();
         }
 
@@ -128,8 +148,25 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult GetSMSMissionInfo()
         {
-            return View();
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+
+            //查询所有的权限
+            //使用ref声明时需要在传入之前为其赋值
+            var list_smsission = smsmissionBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false, p => p.SMSMissionName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_smsission,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
+
 
 
         /// <summary>
@@ -139,7 +176,20 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult DoAddSMSMissionInfo(S_SMSMission mission)
         {
-            return View();
+            //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
+            mission.isDel = false;
+            mission.isMMS = false;
+            mission.SubTime = DateTime.Now;
+            mission.ModifiedOnTime = DateTime.Now;
+            try
+            {
+                smsmissionBLL.Create(mission);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("error");
+            }
         }
 
         /// <summary>
@@ -149,7 +199,20 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult DoEditSMSMissionInfo(S_SMSMission mission)
         {
-            return View();
+            //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
+            mission.isDel = false;
+            mission.isMMS = false;
+            mission.ModifiedOnTime = DateTime.Now;
+
+            try
+            {
+                smsmissionBLL.Update(mission);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("error");
+            }
         }
 
         /// <summary>
@@ -158,7 +221,18 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult DelSoftSMSMissionInfos(string ids)
         {
-            return View();
+            //获取请求的id 字符串
+            //string strId = Request["strId"];
+            //将字符串数组
+            string[] strIds = ids.Split(',');
+            List<int> list = new List<int>();
+            foreach (var Id in strIds)
+            {
+                list.Add(int.Parse(Id));
+            }
+            //删除状态
+            string state = smsmissionBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
+            return Content(state);
         }
         #endregion
 
