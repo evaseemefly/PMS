@@ -57,3 +57,15 @@ D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\Newtonsoft.Json.xml
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.dll
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.pdb
 D:\VSWorkSpace\nmefc\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Common.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Common.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Commons.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\log4net.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Memcached.ClientLibrary.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Newtonsoft.Json.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Newtonsoft.Json.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Newtonsoft.Json.xml
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.pdb

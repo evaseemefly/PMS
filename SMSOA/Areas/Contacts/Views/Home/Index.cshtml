@@ -35,31 +35,15 @@
     </script>
 </head>
 <body>
+    <h2>Fluid Layout</h2>
+    <p>Percentage width of region panel in a layout.</p>
     <div style="margin:20px 0;"></div>
-    <div id="cc" class="easyui-layout" style="width:700px;height:350px;">        
-        <div data-options="region:'west',
-             split:true,
-             collapsed:true,
-				hideExpandTool: true,
-				expandMode: null,
-				hideCollapsedContent: false,
-				collapsedSize: 68,
-				collapsedContent: function(){
-					return $('#titlebar');
-				}
-				" title="West" style="width:100px;"></div>
-        <div data-options="region:'center',title:'Main Title'">            
-            @*<div id="loadContactDiv">
-
-            </div>*@
-            <iframe scrolling="no" frameborder="0" id="iframeContactDiv" style="width:100%;height:100%; overflow: hidden;"></iframe>
+    <div class="easyui-layout" style="width:700px;height:350px;">
+        <div id="p" data-options="region:'west'" title="West" style="width:30%;padding:10px">
+            <p>width: 30%</p>
         </div>
-    </div>
-    <div id="titlebar" style="padding:2px">
-        
-        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-mygroup',size:'large',iconAlign:'top'" onclick="ShowGroup()">群组</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" data-options="iconCls:'icon-myPhonebook',size:'large',iconAlign:'top'" onclick="ShowContact()">联系人</a>
-
+        <div data-options="region:'center'" title="Center">
+        </div>
     </div>
 </body>
 </html>
