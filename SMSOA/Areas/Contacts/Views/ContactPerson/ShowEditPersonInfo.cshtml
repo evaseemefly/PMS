@@ -51,13 +51,9 @@
                                 ))
         {
             <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+                <input type="hidden" name="PID" value=@ViewBag.Model.PID />
                 <table cellpadding="3">
                     <tr>
-                        <td>PID:</td>
-                        <td><input class="easyui-textbox" type="text" name="PID" readonly="readonly" value=@ViewBag.Model.PID></input></td>
-                    </tr>
-                    <tr>
-<tr>
                         <td>姓名:</td>
                         <td><input class="easyui-textbox" type="text" name="PName"  value=@ViewBag.Model.PName></input></td>
                     </tr>
