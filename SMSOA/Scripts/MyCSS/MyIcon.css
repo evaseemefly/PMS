@@ -10,3 +10,9 @@
 .icon-addContacts-small{
 	background:url('/Images/Icon/Contact/add_contacts-small.png') no-repeat center center;
 }
+.icon-add_person{
+	background:url('/Images/Icon/Contact/add_person.png') no-repeat center center;
+}
+.icon-del_person{
+	background:url('/Images/Icon/Contact/del_person.png') no-repeat center center;
+}
