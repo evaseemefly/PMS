@@ -20,6 +20,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.ShowEdit = "/Contacts/Group/ShowEditGroupInfo";
             ViewBag.ShowAdd = "/Contacts/Group/ShowAddGroupInfo";           
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
+            ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             return View();
         }
 
@@ -31,23 +32,29 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult GetGroupInfo()
         {
-            int pageSize = int.Parse(Request.Form["rows"]);
-            int pageIndex = int.Parse(Request.Form["page"]);
-            int rowCount = 0;
+            //int pageSize = int.Parse(Request.Form["rows"]);
+            //int pageIndex = int.Parse(Request.Form["page"]);
+            //int rowCount = 0;
 
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
-            var list_person = groupBLL.GetPageList(pageIndex, pageSize, ref rowCount, g => g.isDel == false, g => g.GroupName, true).ToList();
-            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
-            {
-                total = rowCount,
-                rows = list_person,
-                footer = null
-            };
+            //var list_person = groupBLL.GetPageList(pageIndex, pageSize, ref rowCount, g => g.isDel == false, g => g.GroupName, true).ToList();
+            //PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            //{
+            //    total = rowCount,
+            //    rows = list_person,
+            //    footer = null
+            //};
 
 
             //将权限转换为对应的
-            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+            //return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+            //不使用分页查询
+            var list_person = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
+
+            return Content(Common.SerializerHelper.SerializerToString(list_person));
+
         }
 
         public ActionResult ShowEditGroupInfo()

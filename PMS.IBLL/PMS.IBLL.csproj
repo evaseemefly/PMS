@@ -51,6 +51,7 @@
     <Compile Include="IP_GroupBLL.cs" />
     <Compile Include="IP_PersonInfoBLL.cs" />
     <Compile Include="IRoleInfoBLL.cs" />
+    <Compile Include="IS_SMSMissionBLL.cs" />
     <Compile Include="IUserInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

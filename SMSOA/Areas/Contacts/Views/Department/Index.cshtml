@@ -91,6 +91,24 @@
 
         }
 
+        function addPerson() {
+            var rows = $("#contactstreegrid").treegrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //从指定页面中预读取数据
+            $("#setPersonFrame").attr("src", '@ViewBag.ShowAddPerson');
+            //打开编辑窗体
+            $("#editPersonWindow").window('open');
+            
+        }
 
         //编辑或创建某个权限后执行的操作
         function afterEdit(msg) {
@@ -104,13 +122,13 @@
         }
 
         var areas = {
-            "1":"北京",
-            "2":"山东",
-            "3":"河北",
-            "5":"上海",
-            "10":"福建",
-            "13":"厦门",
-            "12":"崇武",
+            "1": "北京",
+            "2": "山东",
+            "3": "河北",
+            "5": "上海",
+            "10": "福建",
+            "13": "厦门",
+            "12": "崇武",
         }
 
         var myColumns = [[
@@ -143,6 +161,11 @@
                iconCls: 'icon-edit',
                text: "编辑",
                handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+           }, '-',
+           {
+               iconCls: 'icon-addContacts-small',
+               text: "添加联系人",
+               handler: addPerson@*editRow("@ViewBag.ShowEdit")*@
            }]
 
         function loadTreeGrid(url, myColumns) {
@@ -150,7 +173,7 @@
             $("#contactstreegrid").treegrid({
                 idField: 'DID',
                 treeField: 'DepartmentName',
-                animate:true,
+                animate: true,
                 width: '400px',
                 height: 'auto',
                 fitColumns: true,
@@ -169,6 +192,7 @@
         $(function () {
 
             $("#editWindow").window('close');
+            $("#editPersonWindow").window('close');
             loadTreeGrid('@ViewBag.GetInfo', myColumns);
 
         })
@@ -178,6 +202,9 @@
     <table class="easyui-treegrid" id="contactstreegrid" style="height:100%;width:100%"></table>
     <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:500px;height:350px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="setContactsFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    </div>
+    <div class="easyui-window" @*title="New Topic"*@ id="editPersonWindow" style="width:500px;height:350px;overflow: hidden" data-options="shadow:true,modal:true">
+        <iframe id="setPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
 </body>
 </html>

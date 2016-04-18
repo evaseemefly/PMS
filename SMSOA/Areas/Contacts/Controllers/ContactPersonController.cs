@@ -49,13 +49,35 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
 
+        public ActionResult GetPersonByGroup()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int gid = int.Parse(Request["gid"]);
+            int rowCount = 0;
+
+            //查询所有的权限
+            //使用ref声明时需要在传入之前为其赋值
+            
+            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false&&p.P_Group.Where(g=>g.GID==gid).Count()>0, p => p.PName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_person,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
 
         public ActionResult GetPersonInfo()
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
-
+            
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false, p => p.PName, true).ToList();
