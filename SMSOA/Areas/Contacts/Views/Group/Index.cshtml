@@ -168,7 +168,7 @@
         }
 
         var myColumns = [[
-{ field: 'GID', title: 'ID', width: 100,hidden:true },
+{ field: 'GID', title: 'ID', width: 100, hidden: true },
 { field: 'GroupName', title: '群组名称', width: 150 }
         ]]
 
@@ -228,14 +228,15 @@
             url = url + "?gid=" + strId;
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
-                width: '400px',
-                height: 'auto',
+                width: '488px',
+                height: '291px',
+                //height: 'auto',
                 fitColumns: true,
                 striped: true,
                 singleSelect: false,
-                fit: true,
+                //fit: true,
                 url: url,
-                showHeader:true,
+                showHeader: true,
                 loadMsg: '加载中……',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
@@ -253,10 +254,10 @@
             $("#contactsdatagrid").datagrid({
                 width: '400px',
                 height: 'auto',
-                
+
                 fitColumns: false,
                 striped: true,
-                showFooter:true,
+                showFooter: true,
                 singleSelect: true,
                 fit: true,
                 url: url,
@@ -267,6 +268,11 @@
             });
         }
 
+        function formatItem_combobox(row) {
+            var s = '<span style="font-weight:bold">' + row.text + '</span><br/>' +
+					'<span style="color:#888">' + row.remark + '</span>';
+            return s;
+        }
 
         $(function () {
 
@@ -279,6 +285,25 @@
                 }
             });
 
+            //2 加载上级部门下拉框
+
+            $("#DepartmentName_combotree").combotree({
+                url: '@ViewBag.GetDepartment_combotree',
+                valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
+                textField: 'text',
+                //valueField: "DID",
+                //textField: "DepartmentName",
+                required: true,
+                editable: false,
+                onlyLeafCheck: true,
+                cascaseCheck: true,
+                method: 'get',
+                width: 210,
+                //onLoadSuccess: AfterLoadDepartment
+                @*setValue:'@ViewBag.PDID'*@
+
+            })
+
         })
     </script>
 </head>
@@ -290,11 +315,33 @@
             <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
         </div>
         <div data-options="region:'center'" title="Center" style="width:600px">
-            <table class="easyui-datagrid" id="persondatagrid" style="height:100%;width:100%"></table>
+            <div id="tb" style="padding:2px 5px;">
+                移至分组:
+                <select class="easyui-combobox"id="group" panelHeight="auto" style="width:100px" 
+                        data-options="
+                        url: '@ViewBag.GetGroup_combobox',
+				method: 'get',
+				valueField: 'id',
+				textField: 'text',
+				panelWidth: 350,
+				panelHeight: 'auto',
+				formatter: formatItem_combobox
+                        ">
+                </select>
+                选择所属部门
+                <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" data-options="required:true">
+
+                </select>
+                @*<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>*@
+            </div>
+            <table class="easyui-datagrid" id="persondatagrid" style="height:291px;width:100%">
+
+            </table>
+           
         </div>
-        <div data-options="region:'east'" title="east"style="width:600px">
+        @*<div data-options="region:'east'" title="east"style="width:600px">
             <table class="easyui-datagrid" id="personsourcedatagrid" style="height:100%;width:100%"></table>
-        </div>
+        </div>*@
     </div>
     
     <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
