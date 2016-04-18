@@ -12,6 +12,10 @@ namespace PMS.Model.EasyUIModel
 
         public string text { get; set; }
 
+        public string remark { get; set; }
+
         public bool selected { get; set; }
+
+       
     }
 }

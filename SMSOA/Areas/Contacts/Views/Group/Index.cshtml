@@ -119,6 +119,34 @@
 
         }
 
+        //为用户保存选中的分组及部门
+        function SavePerson() {
+            //判断group的下拉框是否选中
+            var selectGroupValue = $("#group").combobox('getValue');
+            var selectDepartmentValue = $("#DepartmentName_combotree").combobox('getValue');
+            if (!selectGroupValue) {
+                alert("请选择群组");
+                return;
+            }
+            if (!selectDepartmentValue) {
+                alert("请选择部门");
+                return;
+            }
+           
+            var rows = $("#persondatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中某一个人',
+                    showType: 'show'
+                });
+                return;
+            }
+            //弹出提示是否要向此人富裕什么权限
+            $("#win_savePerson").window('open');
+        }
 
         function removePersonRow() {
             var rows = $("#contactsdatagrid").datagrid('getSelections');
@@ -168,7 +196,7 @@
         }
 
         var myColumns = [[
-{ field: 'GID', title: 'ID', width: 100,hidden:true },
+{ field: 'GID', title: 'ID', width: 100, hidden: true },
 { field: 'GroupName', title: '群组名称', width: 150 }
         ]]
 
@@ -201,12 +229,17 @@
             iconCls: 'icon-add_person',
             text: "添加联系人",
             handler: addPersonRow@*addRow("@ViewBag.ShowAdd")*@
-        }, '-',
+        },
         {
             iconCls: 'icon-del_person',
             text: "删除联系人",
             handler: removePersonRow@*removeRow("@ViewBag.Del_url")*@
-        }]
+        }, '-',
+        {
+            iconCls: 'icon-save',
+            text: "保存",
+            handler: SavePerson@*removeRow("@ViewBag.Del_url")*@
+            }]
 
 
 
@@ -228,14 +261,15 @@
             url = url + "?gid=" + strId;
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
-                width: '400px',
-                height: 'auto',
+                //width: '488px',
+                height: '280px',
+                //height: 'auto',
                 fitColumns: true,
                 striped: true,
                 singleSelect: false,
-                fit: true,
+                //fit: true,
                 url: url,
-                showHeader:true,
+                showHeader: true,
                 loadMsg: '加载中……',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
@@ -253,10 +287,10 @@
             $("#contactsdatagrid").datagrid({
                 width: '400px',
                 height: 'auto',
-                
+
                 fitColumns: false,
                 striped: true,
-                showFooter:true,
+                showFooter: true,
                 singleSelect: true,
                 fit: true,
                 url: url,
@@ -267,10 +301,16 @@
             });
         }
 
+        function formatItem_combobox(row) {
+            var s = '<span style="font-weight:bold">' + row.text + '</span><br/>' +
+					'<span style="color:#888">' + row.remark + '</span>';
+            return s;
+        }
 
         $(function () {
 
             $("#editWindow").window('close');
+            $("#win_savePerson").window('close');
             loadDataGrid('@ViewBag.GetInfo', myColumns);
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#contactsdatagrid").datagrid({
@@ -279,26 +319,80 @@
                 }
             });
 
+            //2 加载上级部门下拉框
+
+            $("#DepartmentName_combotree").combotree({
+                url: '@ViewBag.GetDepartment_combotree',
+                valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
+                textField: 'text',
+                //valueField: "DID",
+                //textField: "DepartmentName",
+                required: true,
+                editable: false,
+                onlyLeafCheck: true,
+                cascaseCheck: true,
+                method: 'get',
+                width: 210,
+                //onLoadSuccess: AfterLoadDepartment
+                @*setValue:'@ViewBag.PDID'*@
+
+            })
+
         })
     </script>
 </head>
 <body style="overflow:hidden;">
-   
-    <div style="margin:20px 0;"></div>
-    <div class="easyui-layout" style="width:700px;height:350px;">
+       <div class="easyui-layout" style="width:100%;height:500px;border:dashed">
         <div id="p" data-options="region:'west'" title="West" style="width:30%">
             <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
         </div>
-        <div data-options="region:'center'" title="Center" style="width:600px">
-            <table class="easyui-datagrid" id="persondatagrid" style="height:100%;width:100%"></table>
+        <div data-options="region:'center'" title="Center" style="width:70%">
+            <div id="tb" style="padding:2px 5px;">
+                移至分组:
+                <select class="easyui-combobox"id="group" panelHeight="auto" style="width:100px" 
+                        data-options="
+                        url: '@ViewBag.GetGroup_combobox',
+				method: 'get',
+				valueField: 'id',
+				textField: 'text',
+				panelWidth: 350,
+				panelHeight: 'auto',
+				formatter: formatItem_combobox
+                        ">
+                </select>
+                选择所属部门
+                <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" data-options="required:true">
+
+                </select>
+
+                <a href="#" class="easyui-linkbutton" iconCls="icon-save">保存</a>
+            </div>
+            <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;">
+
+            </table>
+           
         </div>
-        <div data-options="region:'east'" title="east"style="width:600px">
+        @*<div data-options="region:'east'" title="east"style="width:600px">
             <table class="easyui-datagrid" id="personsourcedatagrid" style="height:100%;width:100%"></table>
-        </div>
+        </div>*@
     </div>
     
     <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="addPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    </div>
+    <div id="win_savePerson" class="easyui-window" title="My Window" style="width:600px;height:400px"
+         data-options="iconCls:'icon-save',modal:true">
+        <div class="easyui-layout" data-options="fit:true" style="border:0px">            
+            <div data-options="region:'center'" style="border:0px">
+                <form style="padding:10px 20px 10px 40px">
+                    测试测试
+                </form>
+            </div>
+            <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@ onclick="getActionDgSelection()" style="width:80px">提交</a>
+                <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="test()" style="width:80px">取消</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
