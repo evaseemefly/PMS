@@ -49,6 +49,37 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
 
+        /// <summary>
+        /// 为指定的
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public ActionResult GetPersonDepartmentGroup(Models.ViewModel_PersonDepartmentGroup model)
+        {
+            bool isOk = false;
+            if (model.userId!=null)
+            {
+                if (model.departmentIds != null)
+                {
+                    //1为该用户赋予所属部门
+                    //1.1 根据，分割为数组
+                    string[] department_Ids = model.departmentIds.Split(',');
+                    List<int> list_departmentIdsbyInt = new List<int>();
+                    //1.2 将string类型集合转为int类型集合
+                    department_Ids.ToList().ForEach(a => list_departmentIdsbyInt.Add(int.Parse(a)));
+
+
+
+                    //1.2 为该用户赋予所属部门
+                    var person = personInfoBLL.GetListBy(p => p.PID ==int.Parse(model.userId)).FirstOrDefault();
+                    var group=
+                    person.P_Group.Add()
+                }
+            }
+            
+            
+        }
+
         public ActionResult GetPersonByGroup()
         {
             int pageSize = int.Parse(Request.Form["rows"]);

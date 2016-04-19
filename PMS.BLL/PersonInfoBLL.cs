@@ -64,5 +64,10 @@ namespace PMS.BLL
             return GetListBy(a => list_ids.Contains(a.PID)).ToList();
 
         }
+
+        public bool SetPerson4Department(int personId,List<int> list_departmentIds)
+        {
+
+        }
     }
 }

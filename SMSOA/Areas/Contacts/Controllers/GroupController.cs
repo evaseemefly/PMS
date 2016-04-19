@@ -24,6 +24,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
             ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfobyComboTree";
+            ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
             return View();
         }
 

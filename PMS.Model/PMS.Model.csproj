@@ -109,6 +109,7 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LoginUser.cs" />
+    <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

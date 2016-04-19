@@ -123,7 +123,10 @@
         function SavePerson() {
             //判断group的下拉框是否选中
             var selectGroupValue = $("#group").combobox('getValue');
+            var GroupId = selectGroupValue;
             var selectDepartmentValue = $("#DepartmentName_combotree").combobox('getValue');
+            var DepartmentId = selectDepartmentValue;
+
             if (!selectGroupValue) {
                 alert("请选择群组");
                 return;
@@ -132,8 +135,10 @@
                 alert("请选择部门");
                 return;
             }
-           
+
             var rows = $("#persondatagrid").datagrid('getSelections');
+            //获取选中行中的UserId
+            var UserId = rows[0].PID;
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
@@ -144,8 +149,32 @@
                 });
                 return;
             }
-            //弹出提示是否要向此人富裕什么权限
-            $("#win_savePerson").window('open');
+            //弹出提示是否要向此人赋予什么权限
+            //先不这么做，弹出提示是否要执行此操作
+            //$("#win_savePerson").window('open');
+            //若执行此操作
+            var result = confirm_center({
+                'userId': UserId,
+                'groupId': GroupId,
+                'departmentIds': DepartmentId
+            });
+
+        }
+
+        function confirm_center(obj) {
+            $.messager.confirm('请确认', '是否要执行此操作?', function (r) {
+                if (r) {
+                    alert("执行提交操作");
+                    $.ajax({
+                        type: "POST",
+                        url: "@ViewBag.PersonAssignProperty",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(obj)
+                    });
+                }
+                return;
+            });
         }
 
         function removePersonRow() {
@@ -239,7 +268,7 @@
             iconCls: 'icon-save',
             text: "保存",
             handler: SavePerson@*removeRow("@ViewBag.Del_url")*@
-            }]
+        }]
 
 
 
@@ -365,7 +394,7 @@
 
                 </select>
 
-                <a href="#" class="easyui-linkbutton" iconCls="icon-save">保存</a>
+                @*<a href="#" class="easyui-linkbutton" iconCls="icon-save">保存</a>*@
             </div>
             <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;">
 
