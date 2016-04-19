@@ -65,9 +65,64 @@ namespace PMS.BLL
 
         }
 
+        /// <summary>
+        /// 将传入的部门id集合赋给传入的Id对应的联系人对象
+        /// </summary>
+        /// <param name="personId"></param>
+        /// <param name="list_departmentIds"></param>
+        /// <returns></returns>
         public bool SetPerson4Department(int personId,List<int> list_departmentIds)
         {
+            //1 根据联系人id查询联系人
+            var person =this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == personId).FirstOrDefault();
+            //2 清除该联系人所属的部门
+            person.P_DepartmentInfo.Clear();
+            //3 根据群组id为该联系人赋予对应的部门权限
+            foreach (var item in list_departmentIds)
+            {
+                var departmentInfo = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == item).FirstOrDefault();
+                person.P_DepartmentInfo.Add(departmentInfo);
+            }
 
+            try
+            {
+                return this.CurrentDBSession.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 将传入的部门id集合赋给传入的Id对应的联系人对象
+        /// </summary>
+        /// <param name="personId"></param>
+        /// <param name="list_departmentIds"></param>
+        /// <returns></returns>
+        public bool SetPerson4Group(int personId, List<int> list_groupIds)
+        {
+            //1 根据联系人id查询联系人
+            var person = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == personId).FirstOrDefault();
+
+            //2 清除该联系人所属的群组
+            person.P_Group.Clear();
+
+            //3 根据群组id为该联系人赋予对应的群组权限
+            foreach (var item in list_groupIds)
+            {
+                var groupInfo = this.CurrentDBSession.P_GroupDAL.GetListBy(g =>g.GID == item).FirstOrDefault();
+                person.P_Group.Add(groupInfo);
+            }
+
+            try
+            {
+                return this.CurrentDBSession.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

@@ -17,9 +17,14 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult Index()
         {
             //ViewBag.Del_url = "/Admin/Role/DelSoftRoleInfos";
-            ViewBag.Del_url = "/Contacts/Group/DelSoftGroupInfos";
-            ViewBag.ShowEdit = "/Contacts/Group/ShowEditGroupInfo";
-            ViewBag.ShowAdd = "/Contacts/Group/ShowAddGroupInfo";           
+            //操作群组
+            ViewBag.DelGroup_url = "/Contacts/Group/DelSoftGroupInfos";
+            ViewBag.ShowEditGroup = "/Contacts/Group/ShowEditGroupInfo";
+            ViewBag.ShowAddGroup = "/Contacts/Group/ShowAddGroupInfo";
+            //操作联系人
+            ViewBag.ShowAddPerson = "/Contacts/ContactPerson/ShowAddPersonInfo";
+            ViewBag.ShowEditPerson= "/Contacts/ContactPerson/ShowEditPersonInfo";
+            ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfo";
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
