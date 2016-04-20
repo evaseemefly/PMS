@@ -318,6 +318,16 @@
                 panelHeight:'auto' ,
                 multiple:true,@*设置为可以多选*@
                 formatter: formatItem_combobox,
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                }
             })
         }
 

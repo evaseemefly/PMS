@@ -23,7 +23,8 @@ namespace PMS.Model
                     Checked = IsChecked ? true : false,//此处需要加一个判断，若传入的选中的标记参数为true，true，否则为false
                     id = item.GID,
                     remark = item.Remark,
-                    text = item.GroupName
+                    text = item.GroupName,
+                    selected = IsChecked ? true : false
                 };
                 list_combox.Add(combobox);
 

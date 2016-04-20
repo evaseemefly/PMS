@@ -61,3 +61,4 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\bin\Debug\System.Web
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
