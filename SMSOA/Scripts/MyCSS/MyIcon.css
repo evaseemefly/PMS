@@ -16,3 +16,12 @@
 .icon-del_person{
 	background:url('/Images/Icon/Contact/del_person.png') no-repeat center center;
 }
+.icon-menu_person{
+	background:url('/Images/Icon/menu/person_normal.png') no-repeat center center;
+}
+.icon-menu_department{
+	background:url('/Images/Icon/menu/department_normal.png') no-repeat center center;
+}
+.icon-menu_group{
+	background:url('/Images/Icon/menu/group_normal.png') no-repeat center center;
+}

@@ -207,6 +207,7 @@
     <Compile Include="Areas\Contacts\Models\Department_ViewModel.cs" />
     <Compile Include="Areas\Contacts\Models\EasyUIComboTree_Department.cs" />
     <Compile Include="Areas\Contacts\Models\EasyUITreeGrid_Department.cs" />
+    <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -289,7 +290,6 @@
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月10日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Contacts\Views\Group\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制%282%29.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
@@ -302,6 +302,14 @@
     <Content Include="Areas\Contacts\Views\SMSMission\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\ShowAddSMSMissionInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index - 4月15日备份.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index-4月18日备份.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index-4月18日修改未成功.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index-4月19日-修改为分部视图之前的部分.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_Person.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_Person - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\Index-4月19日晚备份-重要.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\View.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />

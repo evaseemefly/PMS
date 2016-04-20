@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SMSOA.Areas.Contacts.Controllers
 {
     public class GroupController : Controller
@@ -16,13 +17,22 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult Index()
         {
             //ViewBag.Del_url = "/Admin/Role/DelSoftRoleInfos";
-            ViewBag.Del_url = "/Contacts/Group/DelSoftGroupInfos";
-            ViewBag.ShowEdit = "/Contacts/Group/ShowEditGroupInfo";
-            ViewBag.ShowAdd = "/Contacts/Group/ShowAddGroupInfo";           
+            //操作群组
+            ViewBag.DelGroup_url = "/Contacts/Group/DelSoftGroupInfos";
+            ViewBag.ShowEditGroup = "/Contacts/Group/ShowEditGroupInfo";
+            ViewBag.ShowAddGroup = "/Contacts/Group/ShowAddGroupInfo";
+            //操作联系人
+            ViewBag.ShowAddPerson = "/Contacts/ContactPerson/ShowAddPersonInfo";
+            ViewBag.ShowEditPerson= "/Contacts/ContactPerson/ShowEditPersonInfo";
+            ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfo";
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
+            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfobyComboTree";
+            ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
             return View();
         }
+
 
         
         /// <summary>
@@ -51,10 +61,24 @@ namespace SMSOA.Areas.Contacts.Controllers
             //return Content(Common.SerializerHelper.SerializerToString(dgModel));
 
             //不使用分页查询
-            var list_person = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
+            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
 
-            return Content(Common.SerializerHelper.SerializerToString(list_person));
+            return Content(Common.SerializerHelper.SerializerToString(list_group));
 
+        }
+
+        /// <summary>
+        /// 将全部的分组集合对象转换为easyui中的Combobox解析的json格式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetCombobox4GroupInfo()
+        {
+            //查询全部group
+            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
+            //将group集合转换为对应的combobox集合
+            List<PMS.Model.EasyUIModel.EasyUICombobox> list_combobox = P_Group.ToEasyUICombobox(list_group);
+
+            return Content(Common.SerializerHelper.SerializerToString(list_combobox));
         }
 
         public ActionResult ShowEditGroupInfo()
