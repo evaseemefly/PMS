@@ -18,6 +18,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             ViewBag.AddContact = "/Contacts/ContactPerson/ShowAddPersonInfo";
             ViewBag.GetContactInfo = "/Contacts/ContactPerson/GetPersonInfo";
+            
             //ViewBag.GetGroupInfo = "/Contacts/ContactPerson/GetGroupInfo";
             ViewBag.Del_url = "/Contacts/ContactPerson/DoDelPersonInfo";
             ViewBag.ShowEdit = "/Contacts/ContactPerson/ShowEditPersonInfo";
@@ -59,24 +60,54 @@ namespace SMSOA.Areas.Contacts.Controllers
             bool isOk = false;
             if (model.userId!=null)
             {
-                if (model.departmentIds != null)
+                if (model.departmentId != null)
                 {
                     //1为该用户赋予所属部门
                     //1.1 根据，分割为数组
-                    string[] department_Ids = model.departmentIds.Split(',');
+                    string[] department_Ids = model.departmentId.Split(',');
                     List<int> list_departmentIdsbyInt = new List<int>();
                     //1.2 将string类型集合转为int类型集合
                     department_Ids.ToList().ForEach(a => list_departmentIdsbyInt.Add(int.Parse(a)));
-
-
-
-                    //1.2 为该用户赋予所属部门
-                    var person = personInfoBLL.GetListBy(p => p.PID ==int.Parse(model.userId)).FirstOrDefault();
-                    var group=
-                    person.P_Group.Add()
+                    //1.3 为该用户赋予所属部门
+                  var result= this.personInfoBLL.SetPerson4Department(int.Parse(model.userId), list_departmentIdsbyInt);
+                    if(result)
+                    {
+                        isOk = true;
+                    }
+                    else
+                    {
+                        isOk = false;
+                    }
+                }
+                if(model.groupIds!=null)
+                {
+                    // 1为该用户赋予所属群组
+                    //1.1 根据，分割为数组
+                    string[] group_Ids = model.groupIds;
+                    List<int> list_groupIdsbyInt = new List<int>();
+                    //1.2 将string类型集合转为int类型集合
+                    group_Ids.ToList().ForEach(a => list_groupIdsbyInt.Add(int.Parse(a)));
+                    //1.3 为该用户赋予所属群组
+                    var result = this.personInfoBLL.SetPerson4Group(int.Parse(model.userId), list_groupIdsbyInt);
+                    if (result)
+                    {
+                        isOk = true;
+                    }
+                    else
+                    {
+                        isOk = false;
+                    }
                 }
             }
             
+            if(isOk)
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("error");
+            }
             
         }
 

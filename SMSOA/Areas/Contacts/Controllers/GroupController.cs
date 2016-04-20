@@ -17,9 +17,14 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult Index()
         {
             //ViewBag.Del_url = "/Admin/Role/DelSoftRoleInfos";
-            ViewBag.Del_url = "/Contacts/Group/DelSoftGroupInfos";
-            ViewBag.ShowEdit = "/Contacts/Group/ShowEditGroupInfo";
-            ViewBag.ShowAdd = "/Contacts/Group/ShowAddGroupInfo";           
+            //操作群组
+            ViewBag.DelGroup_url = "/Contacts/Group/DelSoftGroupInfos";
+            ViewBag.ShowEditGroup = "/Contacts/Group/ShowEditGroupInfo";
+            ViewBag.ShowAddGroup = "/Contacts/Group/ShowAddGroupInfo";
+            //操作联系人
+            ViewBag.ShowAddPerson = "/Contacts/ContactPerson/ShowAddPersonInfo";
+            ViewBag.ShowEditPerson= "/Contacts/ContactPerson/ShowEditPersonInfo";
+            ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfo";
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
@@ -66,14 +71,33 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// 将全部的分组集合对象转换为easyui中的Combobox解析的json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetCombobox4GroupInfo()
+        public ActionResult GetCombobox4GroupInfo(int pid)
         {
-            //查询全部group
-            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
-            //将group集合转换为对应的combobox集合
-            List<PMS.Model.EasyUIModel.EasyUICombobox> list_combobox = P_Group.ToEasyUICombobox(list_group);
+            //1 查询指定pid对应的group群组集合
+           List<P_Group> list_groupbyPid= groupBLL.GetListByPerson(pid);
+                             
+            //1.2将group集合转换为对应的combobox集合
+          var list_combobox_groupByPid= P_Group.ToEasyUICombobox(ref list_groupbyPid, true);
 
-            return Content(Common.SerializerHelper.SerializerToString(list_combobox));
+            //2 查询全部group 
+            var list_groupAll= groupBLL.GetListBy(g => g.isDel == false).ToList();
+            //2.2将全部群组集合中的选中按钮设置为false
+           var list_combobox_allgroup= P_Group.ToEasyUICombobox(ref list_groupAll, false);
+            //获取全部group的id集合
+            List<int> list_allGroupIds = new List<int>();
+            list_groupbyPid.ForEach(a => list_allGroupIds.Add(a.GID));
+            foreach (var item in list_combobox_groupByPid)
+            {
+                list_combobox_allgroup.ForEach(a=>a.id==item.id,list_combobox_allgroup.Remove(a))
+            }
+            //3 将全部群组集合加到指定pid所拥有的群组集合中
+            list_groupbyPid.AddRange(list_groupAll);
+            list_combobox_groupByPid.AddRange(list_combobox_allgroup);
+            //4去重
+            list_groupbyPid = list_groupbyPid.Distinct(new PMS.Model.EqualCompare.P_GroupEqualCompare()).ToList();
+            //这么去重有问题，不知道怎么解决
+            list_combobox_groupByPid = list_combobox_groupByPid.Distinct(new PMS.Model.EqualCompare.EasyUIComboboxEqualCompare()).ToList();
+            return Content(Common.SerializerHelper.SerializerToString(list_combobox_groupByPid));
         }
 
         public ActionResult ShowEditGroupInfo()

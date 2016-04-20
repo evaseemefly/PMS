@@ -60,6 +60,8 @@
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
+    <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
+    <Compile Include="EqualCompare\P_GroupEqualCompare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />

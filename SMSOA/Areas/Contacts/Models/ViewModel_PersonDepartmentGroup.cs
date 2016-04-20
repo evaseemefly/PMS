@@ -9,8 +9,8 @@ namespace SMSOA.Areas.Contacts.Models
     {
         public string userId { get; set; }
 
-        public string groupId { get; set; }
+        public string[] groupIds { get; set; }
 
-        public string departmentIds { get; set; }
+        public string departmentId { get; set; }
     }
 }

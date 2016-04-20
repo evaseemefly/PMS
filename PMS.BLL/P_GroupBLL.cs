@@ -11,6 +11,19 @@ namespace PMS.BLL
    public partial class P_GroupBLL
     {
         /// <summary>
+        /// 查询指定联系人id的所属群组集合
+        /// </summary>
+        /// <param name="pid">联系人id</param>
+        /// <returns></returns>
+        public List<P_Group> GetListByPerson(int pid)
+        {
+            //1 根据pid查询人员对象
+            var person= this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID==pid).FirstOrDefault();
+
+           return person.P_Group.ToList();
+        }
+
+        /// <summary>
         /// 从数据库中根据id集合查询返回指定的GroupInfo集合
         /// </summary>
         /// <param name="list_ids"></param>
