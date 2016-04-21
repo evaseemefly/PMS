@@ -311,6 +311,8 @@
     <Content Include="Areas\Contacts\Views\Shared\View.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts - 复制.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
