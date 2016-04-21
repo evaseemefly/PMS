@@ -23,13 +23,16 @@
     <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.ContactPersonController, SMSOA" singleton="false" >
-    <property name="personInfoBLL" ref="personInfoService" />  
+    <property name="personInfoBLL" ref="personInfoService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.GroupController, SMSOA" singleton="false" >
     <property name="groupBLL" ref="groupInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.DepartmentController, SMSOA" singleton="false" >
     <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.SMSMissionController, SMSOA" singleton="false" >
     <property name="smsmissionBLL" ref="smsmissionService" />

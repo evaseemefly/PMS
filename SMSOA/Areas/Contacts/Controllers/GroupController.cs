@@ -28,7 +28,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
-            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfobyComboTree";
+            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
             return View();
         }
@@ -67,12 +68,54 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         }
 
+        public ActionResult GetCombobox4AllGroupInfo()
+        {
+            //查询全部的群组
+            var list_allgroup= groupBLL.GetListBy(g => g.isDel == false).ToList();
+            var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_allgroup, false);
+            return Content(Common.SerializerHelper.SerializerToString(list_combobox_allgroup));
+        }
+
+        /// <summary>
+        /// 在某一群组中点击添加联系人时，传入该群组的gid
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public ActionResult GetCombobox4GroupInfoByGid(int gid)
+        {
+            //1 根据指定的gid查询对应的group对象
+            var groupTemp= groupBLL.GetListBy(g => g.GID == gid).FirstOrDefault();
+            //2 查询全部group 
+            var list_groupAll = groupBLL.GetListBy(g => g.isDel == false).ToList();
+            //3 将已经拥有的群组从全部群组集合中剔除
+            list_groupAll = list_groupAll.Where(g => g.GID != groupTemp.GID).ToList();
+            //4.1 已经拥有的群组集合
+            List<P_Group> list_groupOwned = new List<P_Group>();
+            list_groupOwned.Add(groupTemp);
+            //转成Combobox
+            var list_combobox_ownedgroup = P_Group.ToEasyUICombobox(ref list_groupOwned, true);
+
+            //4.2将全部群组集合中的选中按钮设置为false
+            var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_groupAll, false);
+
+            list_combobox_ownedgroup.AddRange(list_combobox_allgroup);
+            
+            string temp = Common.SerializerHelper.SerializerToString(list_combobox_ownedgroup);
+            //暂时先不用替换
+            //temp = temp.Replace("Checked", "selected");
+            return Content(temp);
+        }
+
         /// <summary>
         /// 将全部的分组集合对象转换为easyui中的Combobox解析的json格式
         /// </summary>
         /// <returns></returns>
         public ActionResult GetCombobox4GroupInfo(int pid)
         {
+            if (pid == -1)
+            {
+
+            }
             //1 查询指定pid对应的group群组集合
            List<P_Group> list_groupbyPid= groupBLL.GetListByPerson(pid);
                  

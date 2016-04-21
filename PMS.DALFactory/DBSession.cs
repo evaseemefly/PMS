@@ -31,7 +31,8 @@ namespace PMS.DALFactory
         {
             try
             {
-                return Db.SaveChanges() > 0; 
+                int index = Db.SaveChanges();
+                return index > 0; 
             }
             //此处抛出异常使用DB.Save时的异常类
             catch (DbEntityValidationException dbEx)
