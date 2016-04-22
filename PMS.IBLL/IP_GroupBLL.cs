@@ -16,6 +16,12 @@ namespace PMS.IBLL
         /// <returns></returns>
         List<P_Group> GetListByIds(List<int> list_ids);
 
+        /// <summary>
+        /// 查询指定联系人id的所属群组集合
+        /// </summary>
+        /// <param name="pid">联系人id</param>
+        /// <returns></returns>
+        List<P_Group> GetListByPerson(int pid);
 
         /// <summary>
         /// 修改指定的GroupId 的对象集合的删除标记为删除

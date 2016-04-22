@@ -71,14 +71,43 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// 将全部的分组集合对象转换为easyui中的Combobox解析的json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetCombobox4GroupInfo()
+        public ActionResult GetCombobox4GroupInfo(int pid)
         {
-            //查询全部group
-            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
-            //将group集合转换为对应的combobox集合
-            List<PMS.Model.EasyUIModel.EasyUICombobox> list_combobox = P_Group.ToEasyUICombobox(list_group);
+            //1 查询指定pid对应的group群组集合
+           List<P_Group> list_groupbyPid= groupBLL.GetListByPerson(pid);
+                 
+            //2 查询全部group 
+            var list_groupAll= groupBLL.GetListBy(g => g.isDel == false).ToList();
+            
+            //3 遍历指定pid所拥有的群组集合
+            foreach (var item in list_groupbyPid)
+            {
 
-            return Content(Common.SerializerHelper.SerializerToString(list_combobox));
+                //3.1 将已经拥有的群组从全部群组集合中剔除
+                list_groupAll = list_groupAll.Where(g => g.GID != item.GID).ToList();
+            }
+
+            //4.2将group集合转换为对应的combobox集合
+            var list_combobox_groupByPid = P_Group.ToEasyUICombobox(ref list_groupbyPid, true);
+            //4.2将全部群组集合中的选中按钮设置为false
+            var list_combobox_allgroup= P_Group.ToEasyUICombobox(ref list_groupAll, false);
+            //获取全部group的id集合
+            //List<int> list_allGroupIds = new List<int>();
+            //list_groupbyPid.ForEach(a => list_allGroupIds.Add(a.GID));
+             
+            //5 将全部群组集合加到指定pid所拥有的群组集合中（不用再去重）
+            list_groupbyPid.AddRange(list_groupAll);
+            list_combobox_groupByPid.AddRange(list_combobox_allgroup);
+            //4去重
+            //使用此种方式可以去重
+            //list_groupbyPid = list_groupbyPid.Distinct(new PMS.Model.EqualCompare.P_GroupEqualCompare()).ToList();
+            //这么去重有问题，不知道怎么解决
+            //list_combobox_groupByPid = list_combobox_groupByPid.Distinct(new PMS.Model.EqualCompare.EasyUIComboboxEqualCompare()).ToList();
+            
+            //6将Checked替换为checked
+            string temp= Common.SerializerHelper.SerializerToString(list_combobox_groupByPid);
+            temp = temp.Replace("Checked", "selected");
+            return Content(temp);
         }
 
         public ActionResult ShowEditGroupInfo()
@@ -168,6 +197,30 @@ namespace SMSOA.Areas.Contacts.Controllers
             //删除状态
             string state = groupBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
             return Content(state);
+        }
+        ///<summary>
+        ///得到选中任务所包含的群组
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult GetGroupBySMSMission()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int smid = int.Parse(Request["smid"]);
+            int rowCount = 0;
+
+            var list_group = groupBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_group,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
         }
 
     }

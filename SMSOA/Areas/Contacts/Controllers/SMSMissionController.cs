@@ -60,6 +60,15 @@ namespace SMSOA.Areas.Contacts.Controllers
             { return "/Contacts/SMSMission/GetSMSMissionInfo"; }
         }
 
+        /// <summary>
+        /// 执行获取联系人操作的url地址
+        /// </summary>
+        private string getPerson_url
+        {
+            get
+            { return "/Contacts/SMSMission/GetPerson"; }
+        }
+
 
         /// <summary>
         /// 回调函数——执行添加url地址
@@ -71,6 +80,27 @@ namespace SMSOA.Areas.Contacts.Controllers
                 return "/Contacts/SMSMission/DoAddSMSMissionInfo";
             }
         }
+        ///<sumarry>
+        ///获取相应集合的url地址
+        ///</sumarry>
+        private string getGroup_url
+        {
+            get
+            {
+                return "/Contacts/Group/GetGroupBySMSMission";
+            }
+        }
+        ///<sumarry>
+        ///获取相应组织机构的url地址
+        ///</sumarry>
+        private string getDepartment_url
+        {
+            get
+            {
+                return "/Contacts/Department/GetGroupBySMSMission";
+            }
+        }
+
 
         /// <summary>
         /// 回调函数——执行修改url地址
@@ -95,6 +125,9 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.ShowEdit = showEdit_url;
             ViewBag.ShowAdd = showAdd_url;
             ViewBag.GetInfo = getInfo_url;
+            ViewBag.GetGroup = getGroup_url;
+            ViewBag.GetDepartment = getDepartment_url;
+            ViewBag.GetPerson = getPerson_url;
             return View();
         }
 
@@ -148,26 +181,15 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult GetSMSMissionInfo()
         {
-            int pageSize = int.Parse(Request.Form["rows"]);
-            int pageIndex = int.Parse(Request.Form["page"]);
-            int rowCount = 0;
 
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
-            var list_smsission = smsmissionBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false, p => p.SMSMissionName, true).ToList();
-            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
-            {
-                total = rowCount,
-                rows = list_smsission,
-                footer = null
-            };
+            var list_smsission = smsmissionBLL.GetListBy(p => p.isDel == false, p => p.SMSMissionName).ToList();
 
 
             //将权限转换为对应的
-            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+            return Content(Common.SerializerHelper.SerializerToString(list_smsission));
         }
-
-
 
         /// <summary>
         /// 执行添加操作
@@ -214,7 +236,90 @@ namespace SMSOA.Areas.Contacts.Controllers
                 return Content("error");
             }
         }
+        ///<summary>
+        ///通过短信任务得到联系人
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult GetPerson()
+        {
+            //1.获取所选的短信任务实体
+            int smid = int.Parse(Request["smid"]);
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+            var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+            if (SMSMission != null)
+            {
+                //2 通过路线二查询  SMSMission对应的群组，并得到群组中包含的联系人
+                //取出isPass为false的所有集合
+                var list_R_Group_Mission = SMSMission.R_Group_Mission;
+                var list_group = (
+                   from r in list_R_Group_Mission
+                   where r.isPass == true 
+                   select r.P_Group
+                    ).ToList();
+                List<P_PersonInfo> list_personFromGroup = new List<P_PersonInfo>();
+                list_group.ForEach(g => list_personFromGroup.AddRange(g.P_PersonInfo.ToList()));
+                
 
+                //3 根据路线一查询  SMSMission对应的部门，并得到部门中包含的联系人
+                //取出isPass为true的所有集合
+                var list_R_Department_Mission = SMSMission.R_Department_Mission;
+                var list_department = (
+                   from r in list_R_Department_Mission
+                   where r.isPass == true
+                   select r.P_DepartmentInfo
+                    ).ToList();
+                List<P_PersonInfo> list_personFromDep = new List<P_PersonInfo>();
+                list_department.ForEach(g => list_personFromDep.AddRange(g.P_PersonInfo.ToList()));
+
+                //4 将路线一与路线二取出的Person集合合并
+                list_personFromGroup.AddRange(list_personFromDep);
+                //5 此时的集合中可能存在重复，去重
+                list_personFromGroup = list_personFromGroup.Distinct(new PMS.Model.EqualCompare.P_PersonInfoEqualCompare()).ToList();
+
+                //6 取出组群中isPass为false的集合
+          
+                var list_group_isNotPass = (
+                   from r in list_R_Group_Mission
+                   where r.isPass == false
+                   select r.P_Group
+                    ).ToList();
+                List<P_PersonInfo> list_personFromGroup_isNotPass = new List<P_PersonInfo>();
+                list_group_isNotPass.ForEach(g => list_personFromGroup_isNotPass.AddRange(g.P_PersonInfo.ToList()));
+
+                //7 将现有集合中去掉isPass为false的ActionInfo
+                list_personFromGroup = list_personFromGroup.Where(a => !list_personFromGroup_isNotPass.Contains(a)).ToList();
+
+                //8 取出组织机构中isPass为false的集合
+                var list_department_isNotPass = (
+                   from r in list_R_Department_Mission
+                   where r.isPass == false
+                   select r.P_DepartmentInfo
+                    ).ToList();
+                List<P_PersonInfo> list_personFromDep_isNotPass = new List<P_PersonInfo>();
+                list_department_isNotPass.ForEach(g => list_personFromDep_isNotPass.AddRange(g.P_PersonInfo.ToList()));
+
+
+                //9 将现有集合中去掉isPass为false,isDel为true的
+                list_personFromGroup = list_personFromGroup.Where(a => !list_personFromDep_isNotPass.Contains(a)).ToList();
+                list_personFromGroup = list_personFromGroup.Where(a => a.isDel == false).ToList();
+                //10 分页
+                list_personFromGroup = list_personFromGroup.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+
+                PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+                {
+                    total = rowCount,
+                    rows = list_personFromGroup,
+                    footer = null
+                };
+                return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+            }
+            return null;
+
+        }
         /// <summary>
         /// 执行软删除
         /// </summary>
@@ -235,6 +340,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(state);
         }
         #endregion
+
 
 
 

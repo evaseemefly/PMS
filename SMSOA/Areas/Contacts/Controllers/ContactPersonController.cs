@@ -60,11 +60,11 @@ namespace SMSOA.Areas.Contacts.Controllers
             bool isOk = false;
             if (model.userId!=null)
             {
-                if (model.departmentIds != null)
+                if (model.departmentId != null)
                 {
                     //1为该用户赋予所属部门
                     //1.1 根据，分割为数组
-                    string[] department_Ids = model.departmentIds.Split(',');
+                    string[] department_Ids = model.departmentId.Split(',');
                     List<int> list_departmentIdsbyInt = new List<int>();
                     //1.2 将string类型集合转为int类型集合
                     department_Ids.ToList().ForEach(a => list_departmentIdsbyInt.Add(int.Parse(a)));
@@ -79,11 +79,11 @@ namespace SMSOA.Areas.Contacts.Controllers
                         isOk = false;
                     }
                 }
-                if(model.groupId!=null)
+                if(model.groupIds!=null)
                 {
                     // 1为该用户赋予所属群组
                     //1.1 根据，分割为数组
-                    string[] group_Ids = model.groupId.Split(',');
+                    string[] group_Ids = model.groupIds;
                     List<int> list_groupIdsbyInt = new List<int>();
                     //1.2 将string类型集合转为int类型集合
                     group_Ids.ToList().ForEach(a => list_groupIdsbyInt.Add(int.Parse(a)));
@@ -249,6 +249,28 @@ namespace SMSOA.Areas.Contacts.Controllers
             {
                 return Content("error");
             }
+        }
+        public ActionResult GetPersonByDepartment()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int did = int.Parse(Request["did"]);
+            int rowCount = 0;
+
+            //查询所有的权限
+            //使用ref声明时需要在传入之前为其赋值
+
+            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.P_DepartmentInfo.Where(g => g.DID == did).Count() > 0, p => p.PName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_person,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
 
     }

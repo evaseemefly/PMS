@@ -8,6 +8,8 @@ namespace PMS.Model.EasyUIModel
 {
     public class EasyUICombobox
     {
+        public bool Checked { get; set; }
+
         public int id { get; set; }
 
         public string text { get; set; }

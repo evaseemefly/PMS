@@ -9,12 +9,12 @@
             iconCls: 'icon-add',
             text: "新增",
             handler: addGroupRow@*addRow("@ViewBag.ShowAdd")*@
-            }, '-',
+            },
            {
                iconCls: 'icon-remove',
                text: "删除",
                handler: removeGroupRow@*removeRow("@ViewBag.Del_url")*@
-               }, '-',
+               },
            {
                iconCls: 'icon-edit',
                text: "编辑",
@@ -112,7 +112,7 @@
         
     }
 @section westdiv{
-    <div id="p" data-options="region:'west'" title="West" style="width:30%">
+    <div id="p" data-options="region:'west'" title="West" style="width:19%">
     <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
     </div>
     }

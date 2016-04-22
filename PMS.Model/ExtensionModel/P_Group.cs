@@ -13,16 +13,18 @@ namespace PMS.Model
         /// </summary>
         /// <param name="list_group"></param>
         /// <returns></returns>
-        public static List<EasyUIModel.EasyUICombobox> ToEasyUICombobox(List<P_Group> list_group )
+        public static List<EasyUIModel.EasyUICombobox> ToEasyUICombobox(ref List<P_Group> list_group,bool IsChecked)
         {
             List<EasyUIModel.EasyUICombobox> list_combox = new List<EasyUIModel.EasyUICombobox>();
             foreach (var item in list_group)
             {
                 EasyUIModel.EasyUICombobox combobox = new EasyUIModel.EasyUICombobox()
                 {
+                    Checked = IsChecked ? true : false,//此处需要加一个判断，若传入的选中的标记参数为true，true，否则为false
                     id = item.GID,
                     remark = item.Remark,
-                    text = item.GroupName
+                    text = item.GroupName,
+                    selected = IsChecked ? true : false
                 };
                 list_combox.Add(combobox);
 

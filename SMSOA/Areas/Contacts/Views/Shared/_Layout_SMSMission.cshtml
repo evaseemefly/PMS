@@ -29,106 +29,40 @@
     @RenderSection("loadDataGrid", false)
     <script type="text/javascript">
         //-----------------------1 各类toolbar------------------
-        var PersonToolbar = [{
-            iconCls: 'icon-add_person',
-            text: "添加联系人",
-            handler: addPersonRow@*addRow("@ViewBag.ShowAdd")*@
-        },
-        {
-            iconCls: 'icon-del_person',
-            text: "删除联系人",
-            handler: removePersonRow@*removeRow("@ViewBag.Del_url")*@
-        }, '-',
-        {
-            iconCls: 'icon-save',
-            text: "保存",
-            handler: SavePerson@*removeRow("@ViewBag.Del_url")*@
-        }]
+
 
         //-----------------------2 列对象----------------------------
 
         var myColumns = [[
-{ field: 'GID', title: 'ID', width: 100, hidden: true },
-{ field: 'GroupName', title: '群组名称', width: 150 }
+{ field: 'SMID', title: 'ID', width: 100, hidden: true },
+{ field: 'SMSMissionName', title: '短信任务名称', width: 170 }
         ]]
 
-
-
-        var PersonColumns = [[
-                 { field: 'PID', title: 'ID', width: 100, checkbox: true },
-                 { field: 'PName', title: '用户名称', width: 150 },
-                 { field: 'PhoneNum', title: '电话号码', width: 250 },
+        var GroupColumns = [[
+                 { field: 'GID', title: 'ID', width: 100, checkbox: true },
+                 { field: 'GroupName', title: '群组名称', width: 150 },
+                 { field: 'SubTime', title: '创建时间', width: 250 },
+                 { field: 'ModifiedOnTime', title: '最后修改时间', width: 250 },
                  { field: 'Remark', title: '备注', width: 120 }
         ]]
 
+        var DepartmentColumns = [[
+                 { field: 'DID', title: 'ID', width: 100, checkbox: true },
+                 { field: 'DepartmentName', title: '组织机构名称', width: 150 },
+                 { field: 'Area', title: '位置', width: 250 },
+                 { field: 'Remark', title: '备注', width: 120 }
+        ]]
+
+        var PersonColumns = [[
+         { field: 'PID', title: 'ID', width: 100, checkbox: true },
+         { field: 'PName', title: '联系人姓名', width: 150 },
+         { field: 'PhoneNum', title: '电话', width: 250 },
+         { field: 'isVIP', title: '是否是VIP', width: 120 },
+         { field: 'Remark', title: '备注', width: 120 }
+        ]]
 
         //-----------------3 增删改操作--------------------
 
-
-
-        function addPersonRow() {
-            //从指定页面中预读取数据
-            $("#addPersonFrame").attr("src", '@ViewBag.ShowAddPerson');
-            //打开编辑窗体
-            $("#editPersonWindow").window('open');
-
-        }
-
-        function editPersonRow() {
-            var rows = $("#contactsdatagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length != 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-            //**注意先加载iframe窗体的数据，在打开该窗口
-            $("#addPersonFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].GID);//会出现重定向的错误
-            $("#editPersonWindow").window('open');
-            //若选中了一行数据则执行修改操作
-            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
-
-        }
-
-        function removePersonRow() {
-            var rows = $("#persondatagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length < 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-            //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
-                if (r) {
-                    var strId = "";
-                for (var i = 0; i < rows.length; i++) {
-                        strId = strId + rows[i].GID + ",";
-            }
-                //去掉最后一个逗号
-                strId = strId.substr(0, strId.length - 1);
-                $.post("@ViewBag.DelPerson_url?ids=" + strId, function (data) {
-                //请求成功后的回调函数
-                if (data == "ok") {
-                //重新加载datagrid
-                   $("#persondatagrid").datagrid('reload');
-                //清楚所选中的行
-                $("#persondatagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
-            }
-            });
-            }
-            }));
-
-        }
 
         //为用户保存选中的分组及部门
         function SavePerson() {
@@ -154,7 +88,7 @@
             //    return;
             //}
 
-            var rows = $("#persondatagrid").datagrid('getSelections');
+            var rows = $("#groupdatagrid").datagrid('getSelections');
             //获取选中行中的UserId
             var UserId = rows[0].PID;
             //若选中的行不为一行
@@ -248,15 +182,15 @@
             //1 关闭加载的iframe页面
             $.messager.alert('提示', msg);
 
-            $("#editGroupWindow").window('close');
+            $("#editSMSMissionWindow").window('close');
             //2 刷新当前页面
-            $("#contactsdatagrid").datagrid('reload');
+            $("#SMSMissiondatagrid").datagrid('reload');
         }
 
         //--------------------5 加载datagrid---------------------------
-        function loadPersonGrid(url, myPersonColumns, myPersonToolbar) {
+        function loadGroupGrid(url, myGroupColumns) {
             //1 获取选中的行
-            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
             //1.1 若选中的行不为一行
             if (rows.length != 1) {
                 //提示
@@ -268,12 +202,109 @@
                 return;
             }
             //1.2 获取选中行的ID
-            strId = rows[0].GID;
-            url = url + "?gid=" + strId;
+            strId = rows[0].SMID;
+            url = url + "?smid=" + strId;
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $("#groupdatagrid").datagrid({
+                //width: '488px',
+                height: '200px',
+                //height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: false,
+                //fit: true,
+                url: url,
+                showHeader: true,
+                loadMsg: '加载中……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 20,   //设置 页容量为 5
+                pageList: [20, 40, 60],//设置 页容量下拉框
+                columns: myGroupColumns,
+                onClickRow: function (rowIndex, rowData) {
+                    //1 获取当前选中的行
+                    var row = $("#groupdatagrid").datagrid('getSelected');
+                    //2 取出选中的第一行,并找出对应的PID
+                    var smid = row["SMID"];
+                    //3 根据pid加载该人员所属的部门以及所属的群组（多个）
+                    loadCombobox_Group(smid);
+                }
+
+            });
+        }
+
+        function formatItem_combobox(row) {
+            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span><br/>' +
+					'<span style="color:#7CFC00">' + row.remark + '</span>';
+            return s;
+        }
+
+        //加载部门信息列表
+        function loadDepartmentGrid(url, myDepartmentColumns) {
+            //1 获取选中的行
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].SMID;
+            url = url + "?smid=" + strId;
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $("#departmentdatagrid").datagrid({
+                //width: '488px',
+                height: '200px',
+                //height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: false,
+                //fit: true,
+                url: url,
+                showHeader: true,
+                loadMsg: '加载中……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 20,   //设置 页容量为 5
+                pageList: [20, 40, 60],//设置 页容量下拉框
+                columns: myDepartmentColumns,
+                onClickRow: function (rowIndex, rowData) {
+                    //1 获取当前选中的行
+                    var row = $("#departmentdatagrid").datagrid('getSelected');
+                    //2 取出选中的第一行,并找出对应的PID
+                    var smid = row["SMID"];
+                    //3 根据pid加载该人员所属的部门以及所属的群组（多个）
+                    loadCombobox_Group(smid);
+                }
+
+            });
+        }
+        //加载联系人信息列表
+        function loadPersonGrid(url, myPersonColumns) {
+            //1 获取选中的行
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].SMID;
+            url = url + "?smid=" + strId;
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
                 //width: '488px',
-                height: '280px',
+                height: '450px',
                 //height: 'auto',
                 fitColumns: true,
                 striped: true,
@@ -287,36 +318,29 @@
                 pageSize: 20,   //设置 页容量为 5
                 pageList: [20, 40, 60],//设置 页容量下拉框
                 columns: myPersonColumns,
-                toolbar: myPersonToolbar,
                 onClickRow: function (rowIndex, rowData) {
                     //1 获取当前选中的行
                     var row = $("#persondatagrid").datagrid('getSelected');
                     //2 取出选中的第一行,并找出对应的PID
-                    var pid = row["PID"];
+                    var smid = row["SMID"];
                     //3 根据pid加载该人员所属的部门以及所属的群组（多个）
-                    loadCombobox_Group(pid);
-            }
+                    loadCombobox_Group(smid);
+                }
 
             });
-        }
-
-        function formatItem_combobox(row) {
-            var s = '<input type="checkbox" class="combobox-checkbox">'+'<span style="font-weight:bold">' + row.text + '</span><br/>' +
-					'<span style="color:#7CFC00">' + row.remark + '</span>';
-            return s;
         }
 
         //-------------------6 页面加载首先运行-----------------
         //根据pid加载对应的群组并添加至combobox中
         function loadCombobox_Group(pid) {
             $("#group").combobox({
-                url: '@ViewBag.GetGroup_combobox?pid='+pid,
-                method :'get' ,
-                valueField :'id' ,
-                textField :'text' ,
+                url: '@ViewBag.GetGroup_combobox?pid=' + pid,
+                method: 'get',
+                valueField: 'id',
+                textField: 'text',
                 panelWidth: 350,
-                panelHeight:'auto' ,
-                multiple:true,@*设置为可以多选*@
+                panelHeight: 'auto',
+                multiple: true,@*设置为可以多选*@
                 formatter: formatItem_combobox,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
@@ -333,17 +357,19 @@
 
         $(function () {
 
-            $("#editGroupWindow").window('close');
+            $("#editSMSMissionWindow").window('close');
             $("#editPersonWindow").window('close');
             loadDataGrid('@ViewBag.GetInfo', myColumns);
             //2 根据GroupID查询该群组所拥有的人员列表
-            $("#contactsdatagrid").datagrid({
+            $("#SMSMissiondatagrid").datagrid({
                 onClickRow: function (index, field, value) {
-                    loadPersonGrid("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+                    loadGroupGrid("@ViewBag.GetGroup", GroupColumns);
+                    loadDepartmentGrid("@ViewBag.GetDepartment", DepartmentColumns);
+                    loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
                 }
             });
             //2.1 加载所属群组下拉框
-            
+
 
             //2.2 加载上级部门下拉框
             $("#DepartmentName_combotree").combotree({
@@ -369,6 +395,7 @@
     @RenderBody()
     <div class="easyui-layout" style="width:100%;height:500px;border:dashed">
         @RenderSection("westdiv")
+        @RenderSection("eastdiv")
         <div data-options="region:'center'" title="Center" style="width:70%">
             <div id="tb" style="padding:2px 5px;">
                 移至分组:
@@ -377,16 +404,18 @@
                 选择所属部门
                 <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" data-options=""></select>
             </div>
-            <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
-
-        </div>
+            <div class="easyui-layout" style="width:100%;height:500px;border:dashed">
+                <div data-options="region:'center'" title="Center" style="width:70%">
+      
+                    <table class="easyui-datagrid" id="groupdatagrid" data-options="" style="width:100%;"></table>
+                    </div>
+                    @RenderSection("southdiv")
+                </div>
+            </div>
     </div>
-    @RenderSection("showWindow") 
+    @RenderSection("showWindow")
     <div class="easyui-window" title="联系人" id="editPersonWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="addPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
 </body>
 </html>
-
-
-
