@@ -24,7 +24,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //操作联系人
             ViewBag.ShowAddPerson = "/Contacts/ContactPerson/ShowAddPersonInfo";
             ViewBag.ShowEditPerson= "/Contacts/ContactPerson/ShowEditPersonInfo";
-            ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfo";
+            ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfobyGID";
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
@@ -62,7 +62,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //return Content(Common.SerializerHelper.SerializerToString(dgModel));
 
             //不使用分页查询
-            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.GroupName).ToList();
+            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList();
 
             return Content(Common.SerializerHelper.SerializerToString(list_group));
 
@@ -205,6 +205,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
 
+
+
         public ActionResult DoEditGroupInfo(P_Group groupModel)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
@@ -220,6 +222,18 @@ namespace SMSOA.Areas.Contacts.Controllers
             {
                 return Content("error");
             }
+        }
+
+        public ActionResult DoDelPersonInfobyGID()
+        {
+            //1 获取联系人id以及群组id
+            int pid =int.Parse(Request.QueryString["pid"]);
+            int gid =int.Parse(Request.QueryString["gid"]);
+
+           bool state= groupBLL.DelPersonInfoByGID(gid, pid);
+
+            //3 返回结果          
+            return Content( state  == true ?  "ok" :  "error");
         }
 
         /// <summary>

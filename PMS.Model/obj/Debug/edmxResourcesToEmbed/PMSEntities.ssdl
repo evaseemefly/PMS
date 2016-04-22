@@ -42,6 +42,7 @@
     <Property Name="ModifiedOnTime" Type="date" Nullable="false" />
     <Property Name="isDel" Type="bit" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sort" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="P_PersonInfo">
     <Key>

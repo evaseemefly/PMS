@@ -35,6 +35,22 @@ namespace PMS.BLL
 
         }
 
+        /// <summary>
+        /// 根据群组GID删除指定PID的联系人
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public bool DelPersonInfoByGID(int gid,int pid)
+        {
+            //2 根据gid找到对应的群组对象
+            var group = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == gid).FirstOrDefault();
+            //2.2将该群组对象中的指定联系人删除
+
+            var person_bygroup = group.P_PersonInfo.Where(p => p.PID == pid).FirstOrDefault();
+            bool state = group.P_PersonInfo.Remove(person_bygroup);
+           return this.CurrentDBSession.SaveChanges();
+        }
 
         /// <summary>
         /// 修改指定的GroupId 的对象集合的删除标记为删除

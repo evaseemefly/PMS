@@ -172,6 +172,7 @@
     <NavigationProperty Name="R_Group_Mission" Relationship="PMS2016Model.FK_R_Group_Mission_P_Group" FromRole="P_Group" ToRole="R_Group_Mission" />
     <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.R_Person_Group" FromRole="P_Group" ToRole="P_PersonInfo" />
     <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="P_PersonInfo">
     <Key>

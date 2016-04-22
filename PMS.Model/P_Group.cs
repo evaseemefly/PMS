@@ -26,6 +26,7 @@ namespace PMS.Model
         public bool isDel { get; set; }
         public string Remark { get; set; }
         public string GroupName { get; set; }
+        public int Sort { get; set; }
     
         public virtual ICollection<R_Group_Mission> R_Group_Mission { get; set; }
         public virtual ICollection<P_PersonInfo> P_PersonInfo { get; set; }

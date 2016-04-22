@@ -24,6 +24,14 @@ namespace PMS.IBLL
         List<P_Group> GetListByPerson(int pid);
 
         /// <summary>
+        /// 根据群组GID删除指定PID的联系人
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        bool DelPersonInfoByGID(int gid, int pid);
+
+        /// <summary>
         /// 修改指定的GroupId 的对象集合的删除标记为删除
         /// </summary>
         /// <param name="list_ids"></param>

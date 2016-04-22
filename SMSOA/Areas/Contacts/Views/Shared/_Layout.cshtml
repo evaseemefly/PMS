@@ -98,31 +98,30 @@
 
         function removePersonRow() {
             var rows = $("#persondatagrid").datagrid('getSelections');
-            //若选中的行不为一行
+            //1 若选中的行不为一行
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
                     title: '提示',
-                    msg: '请至少选中一行数据',
+                    msg: '请选中一行数据',
                     showType: 'show'
                 });
                 return;
             }
-            //post请求至软删除方法
+            //2 post请求至软删除方法
             if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
                 if (r) {
-                    var strId = "";
-                for (var i = 0; i < rows.length; i++) {
-                        strId = strId + rows[i].GID + ",";
-            }
-                //去掉最后一个逗号
-                strId = strId.substr(0, strId.length - 1);
-                $.post("@ViewBag.DelPerson_url?ids=" + strId, function (data) {
-                //请求成功后的回调函数
+                    //2.1获取选中行的pid
+                    var pid = rows[0].PID;
+                //2.2 获取页面中保存的gid
+                var gid = $("#selectGid").val();
+                //2.3 提交请求删除
+                $.post("@ViewBag.DelPerson_url?pid=" + pid + "&gid=" + gid, function (data) {
+                //3 请求成功后的回调函数
                 if (data == "ok") {
-                //重新加载datagrid
+                //3.1 重新加载datagrid
                    $("#persondatagrid").datagrid('reload');
-                //清楚所选中的行
+                //3.2 清楚所选中的行
                 $("#persondatagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");
             }
@@ -279,12 +278,12 @@
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
                 //width: '488px',
-                height: '280px',
+                //height: '280px',
                 //height: 'auto',
                 fitColumns: true,
                 striped: true,
                 singleSelect: true,     //单选
-                //fit: true,
+                fit: true,
                 url: url,
                 showHeader: true,
                 loadMsg: '加载中……',
@@ -293,7 +292,8 @@
                 pageSize: 20,   //设置 页容量为 5
                 pageList: [20, 40, 60],//设置 页容量下拉框
                 columns: myPersonColumns,
-                toolbar: myPersonToolbar,
+                toolbar:'#tb',
+                //toolbar: myPersonToolbar,
                 onClickRow: function (rowIndex, rowData) {
                     //1 获取当前选中的行
                     var row = $("#persondatagrid").datagrid('getSelected');
@@ -370,14 +370,38 @@
             $("#DepartmentName_combotree").combotree('setValue', data);
         }
 
+        function ComboboxEnableAndClear() {
+            $("#group").combobox('enable');
+            $("#group").combobox('clear');
+            $("#DepartmentName_combotree").combotree('enable');
+            $("#DepartmentName_combotree").combotree('clear');
+        }
+
+        function ComboboxDisable() {
+            //2 根据GroupID查询该群组所拥有的人员列表
+            //将两个下拉框设置为不可选，且赋值“请选择联系人”
+            $("#group").combobox('disable');
+            $("#group").combobox('setValue', '--请选择联系人--');
+            $("#DepartmentName_combotree").combotree('disable');
+            //$("#DepartmentName_combotree").combobox('loadData', [{
+            //    id: -1,
+            //    text: '请选择联系人'
+            //}]
+            //    );
+            //$("#DepartmentName_combotree").combobox('setValue', -1);
+        }
+
         $(function () {
 
             $("#editGroupWindow").window('close');
             $("#editPersonWindow").window('close');
             loadDataGrid('@ViewBag.GetInfo', myColumns);
             //2 根据GroupID查询该群组所拥有的人员列表
+            //将两个下拉框设置为不可选，且赋值“请选择联系人”
+            ComboboxDisable();
             $("#contactsdatagrid").datagrid({
                 onClickRow: function (index, field, value) {
+                    ComboboxEnableAndClear();
                     loadPersonGrid("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
                 }
             });
@@ -392,18 +416,26 @@
 </head>
 <body style="overflow:hidden;">
     @RenderBody()
-    <div class="easyui-layout" style="width:100%;height:500px;border:dashed">
+    <div class="easyui-layout" style="width:100%;height:500px;">
         @RenderSection("westdiv")
-        <div data-options="region:'center'" title="Center" style="width:70%">
-            <div id="tb" style="padding:2px 5px;">
-                移至分组:
-                <select class="easyui-combobox" id="group" panelHeight="auto" style="width:100px"
-                        data-options=""></select>
-                选择所属部门
-                <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" data-options=""></select>
-            </div>
+        <div data-options="region:'center'" title="联系人列表" style="width:70%">
+            
             <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
-
+            <div id="tb" style="padding:2px 5px;">
+                                
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add_person',text: '添加联系人',plain:true" onclick="addPersonRow()"></a>
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br/>           
+                移至分组:
+                <select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
+                        data-options="">
+                    
+                </select>
+                选择所属部门
+                <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto"style="width:200px"data-options="">
+                    
+                </select>
+            </div>
         </div>
     </div>
     @RenderSection("showWindow") 
