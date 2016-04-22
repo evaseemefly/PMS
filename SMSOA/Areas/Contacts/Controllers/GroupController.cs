@@ -28,7 +28,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
-            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfobyComboTree";
+            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
             return View();
         }
@@ -67,12 +68,54 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         }
 
+        public ActionResult GetCombobox4AllGroupInfo()
+        {
+            //查询全部的群组
+            var list_allgroup= groupBLL.GetListBy(g => g.isDel == false).ToList();
+            var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_allgroup, false);
+            return Content(Common.SerializerHelper.SerializerToString(list_combobox_allgroup));
+        }
+
+        /// <summary>
+        /// 在某一群组中点击添加联系人时，传入该群组的gid
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public ActionResult GetCombobox4GroupInfoByGid(int gid)
+        {
+            //1 根据指定的gid查询对应的group对象
+            var groupTemp= groupBLL.GetListBy(g => g.GID == gid).FirstOrDefault();
+            //2 查询全部group 
+            var list_groupAll = groupBLL.GetListBy(g => g.isDel == false).ToList();
+            //3 将已经拥有的群组从全部群组集合中剔除
+            list_groupAll = list_groupAll.Where(g => g.GID != groupTemp.GID).ToList();
+            //4.1 已经拥有的群组集合
+            List<P_Group> list_groupOwned = new List<P_Group>();
+            list_groupOwned.Add(groupTemp);
+            //转成Combobox
+            var list_combobox_ownedgroup = P_Group.ToEasyUICombobox(ref list_groupOwned, true);
+
+            //4.2将全部群组集合中的选中按钮设置为false
+            var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_groupAll, false);
+
+            list_combobox_ownedgroup.AddRange(list_combobox_allgroup);
+            
+            string temp = Common.SerializerHelper.SerializerToString(list_combobox_ownedgroup);
+            //暂时先不用替换
+            //temp = temp.Replace("Checked", "selected");
+            return Content(temp);
+        }
+
         /// <summary>
         /// 将全部的分组集合对象转换为easyui中的Combobox解析的json格式
         /// </summary>
         /// <returns></returns>
         public ActionResult GetCombobox4GroupInfo(int pid)
         {
+            if (pid == -1)
+            {
+
+            }
             //1 查询指定pid对应的group群组集合
            List<P_Group> list_groupbyPid= groupBLL.GetListByPerson(pid);
                  
@@ -202,26 +245,27 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///得到选中任务所包含的群组
         ///</summary>
         ///<returns></returns>
-        public ActionResult GetGroupBySMSMission()
+        public ActionResult GetCombogrid4GroupInfoBySmid()
         {
-            int pageSize = int.Parse(Request.Form["rows"]);
-            int pageIndex = int.Parse(Request.Form["page"]);
             int smid = int.Parse(Request["smid"]);
-            int rowCount = 0;
 
-            var list_group = groupBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName, true).ToList();
-            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
-            {
-                total = rowCount,
-                rows = list_group,
-                footer = null
-            };
-
-
-            //将权限转换为对应的
-            return Content(Common.SerializerHelper.SerializerToString(dgModel));
-
+                List<P_Group> list_ShowGroup = new List<P_Group>();
+                //1.获取当前任务已有的群组
+                var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
+                //2.获取所有的群组
+                var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
+                //3.将已有的群组从所有群组中剔除，已拥有的群组排在前面
+                foreach (var item in list_groupbySmid)
+                {
+                    item.Checked = true;
+                    list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
+                    list_ShowGroup.Add(item);
+                }
+                //4.未拥有的群组排在后面
+                list_ShowGroup.AddRange(list_ALLGroup);
+                string temp =  Common.SerializerHelper.SerializerToString(list_ShowGroup);
+                temp = temp.Replace("Checked", "checked");
+                return Content(temp);
         }
-
     }
 }

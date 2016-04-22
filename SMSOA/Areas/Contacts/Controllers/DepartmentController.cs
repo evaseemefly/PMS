@@ -11,7 +11,7 @@ namespace SMSOA.Areas.Contacts.Controllers
     public class DepartmentController : Controller
     {
         IP_DepartmentInfoBLL departmentBLL { get; set; }
-
+        IP_PersonInfoBLL personBLL { get; set; }
         #region 1 共用属性
         /// <summary>
         /// 执行删除操作的url地址
@@ -104,11 +104,26 @@ namespace SMSOA.Areas.Contacts.Controllers
         }
 
         /// <summary>
+        /// 根据传入的联系人id获取该联系人所属的部门id
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public ActionResult GetDepartmentIdInfoByPid(int pid)
+        {
+            //1 根据用户id找到指定的联系人对象
+            var person = personBLL.GetListBy(p => p.PID == pid).FirstOrDefault();
+            //2 找到指定联系人所对应的部门对象
+            var department= person.P_DepartmentInfo.ToList().FirstOrDefault();
+            //3 将部门id返回
+            return Content(department.DID.ToString());
+        }
+
+        /// <summary>
         /// 获取全部群组数据
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDepartmentInfobyComboTree()
+        public ActionResult GetDepartmentInfo4ComboTree()
         {
             //使用ref声明时需要在传入之前为其赋值
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
@@ -116,7 +131,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             List<Models.EasyUIComboTree_Department> list_comboTree =Models.Department_ViewModel.ToEasyUIComboTree(list_department);
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
-        }
+        }        
 
         /// <summary>
         /// 获取全部群组数据

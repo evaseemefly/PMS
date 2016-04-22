@@ -8,6 +8,16 @@ namespace PMS.Model
 {
    public partial class P_Group
     {
+        private bool _checked = false;
+
+        /// <summary>
+        /// 选中
+        /// </summary>
+        public bool Checked
+        {
+            set { _checked = value; }
+            get { return _checked; }
+        }
         /// <summary>
         /// 将P_Group集合转换为EasyUICombobox集合
         /// </summary>

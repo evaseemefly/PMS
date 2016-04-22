@@ -207,6 +207,7 @@
     <Compile Include="Areas\Contacts\Models\Department_ViewModel.cs" />
     <Compile Include="Areas\Contacts\Models\EasyUIComboTree_Department.cs" />
     <Compile Include="Areas\Contacts\Models\EasyUITreeGrid_Department.cs" />
+    <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

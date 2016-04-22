@@ -87,7 +87,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             get
             {
-                return "/Contacts/Group/GetGroupBySMSMission";
+                return "/Contacts/Group/GetCombogrid4GroupInfoBySmid";
             }
         }
         ///<sumarry>
@@ -125,9 +125,10 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.ShowEdit = showEdit_url;
             ViewBag.ShowAdd = showAdd_url;
             ViewBag.GetInfo = getInfo_url;
-            ViewBag.GetGroup = getGroup_url;
+            ViewBag.GetGroup_combogrid = getGroup_url;
             ViewBag.GetDepartment = getDepartment_url;
             ViewBag.GetPerson = getPerson_url;
+            
             return View();
         }
 

@@ -341,4 +341,3 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.Twi
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Admin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.pdb
-D:\VSWorkSpace\nmefc\PMS\SMSOA.Admin\obj\Debug\SMSOA.Admin.csprojResolveAssemblyReference.cache

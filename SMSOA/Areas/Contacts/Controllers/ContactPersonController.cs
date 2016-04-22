@@ -13,12 +13,16 @@ namespace SMSOA.Areas.Contacts.Controllers
         IP_PersonInfoBLL personInfoBLL { get; set; }
         //IP_GroupBLL groupBLL { get; set; }
 
+        IP_GroupBLL groupBLL { get; set; }
+
+        IP_DepartmentInfoBLL departmentBLL { get; set; }
+
         // GET: Contacts/ContactPerson
         public ActionResult Index()
         {
             ViewBag.AddContact = "/Contacts/ContactPerson/ShowAddPersonInfo";
             ViewBag.GetContactInfo = "/Contacts/ContactPerson/GetPersonInfo";
-            
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
             //ViewBag.GetGroupInfo = "/Contacts/ContactPerson/GetGroupInfo";
             ViewBag.Del_url = "/Contacts/ContactPerson/DoDelPersonInfo";
             ViewBag.ShowEdit = "/Contacts/ContactPerson/ShowEditPersonInfo";
@@ -31,24 +35,9 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         //}
 
-        public ActionResult ShowAddPersonInfo()
-        {
-            ViewBag.backAction = "DoAddPersonInfo";
-            return View("ShowAddPersonInfo");
-        }
+        
 
-        public ActionResult DoAddPersonInfo(P_PersonInfo personModel)
-        {
-            try
-            {
-                personInfoBLL.Create(personModel);
-                return Content("ok");
-            }
-            catch
-            {
-                return Content("error");
-            }
-        }
+       
 
         /// <summary>
         /// 为指定的
@@ -175,6 +164,56 @@ namespace SMSOA.Areas.Contacts.Controllers
         //    //将权限转换为对应的
         //    return Content(Common.SerializerHelper.SerializerToString(dgModel));
         //}
+
+        ///<summary>
+        ///编辑联系人操作
+        ///</summary>
+        ///<return></return>
+        public ActionResult DoEditPersonInfo(P_PersonInfo model)
+        {
+
+            if (personInfoBLL.Update(model))
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("error");
+            }
+        }
+
+        public ActionResult DoAddPersonInfo(Models.ViewModel_Person personModel)
+        {
+            //1 将传入的对象转换为Person对象
+
+            //2 需要根据 传入的联系人对象中所带的部门ID（DID)以及群组ID（数组）获取对应的部门集合以及群组集合
+            List<int> list_groupIds = personModel.GID.ToList();
+            List<int> list_departmentIds = new List<int>();
+            list_departmentIds.Add(personModel.DID);
+           var list_Group= groupBLL.GetListByIds(list_groupIds);
+            var list_department = departmentBLL.GetListByIds(list_departmentIds);
+            PMS.Model.P_PersonInfo model = new P_PersonInfo()
+            {
+                PName = personModel.PName,
+                PID = personModel.PID,
+                isVIP = false,
+                isDel = false,
+                PhoneNum = personModel.PhoneNum,
+                P_DepartmentInfo = list_department,
+                P_Group =list_Group
+            };
+            try
+            {
+                
+                personInfoBLL.Create(model);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("error");
+            }
+        }
+
         ///<summary>
         ///删除联系人操作
         ///</summary>
@@ -218,6 +257,21 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(state);
         }
 
+        /// <summary>
+        /// 添加联系人视图
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowAddPersonInfo()
+        {
+            string gid = Request["gid"];
+            ViewBag.backAction = "DoAddPersonInfo";
+            //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
+            ViewBag.GID = gid;
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
+            ViewBag.GetDepartment_combotree= "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            return View("ShowAddPersonInfo");
+        }
+
         ///<summary>
         ///编辑联系人视图
         ///</summary>
@@ -234,44 +288,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             return View("ShowEditPersonInfo");
         }
 
-        ///<summary>
-        ///编辑联系人操作
-        ///</summary>
-        ///<return></return>
-        public ActionResult DoEditPersonInfo(P_PersonInfo model)
-        {
-
-            if (personInfoBLL.Update(model))
-            {
-                return Content("ok");
-            }
-            else
-            {
-                return Content("error");
-            }
-        }
-        public ActionResult GetPersonByDepartment()
-        {
-            int pageSize = int.Parse(Request.Form["rows"]);
-            int pageIndex = int.Parse(Request.Form["page"]);
-            int did = int.Parse(Request["did"]);
-            int rowCount = 0;
-
-            //查询所有的权限
-            //使用ref声明时需要在传入之前为其赋值
-
-            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.P_DepartmentInfo.Where(g => g.DID == did).Count() > 0, p => p.PName, true).ToList();
-            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
-            {
-                total = rowCount,
-                rows = list_person,
-                footer = null
-            };
-
-
-            //将权限转换为对应的
-            return Content(Common.SerializerHelper.SerializerToString(dgModel));
-        }
+        
 
     }
 }
