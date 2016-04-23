@@ -64,7 +64,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         private string getInfobyComboTree_rul
         {
             get
-            { return "/Contacts/Department/GetDepartmentInfobyComboTree"; }
+            { return "/Contacts/Department/GetDepartmentInfo4ComboTree"; }
         }
 
         /// <summary>
@@ -94,14 +94,25 @@ namespace SMSOA.Areas.Contacts.Controllers
         // GET: Contacts/Derpartment
         public ActionResult Index()
         {
-            ViewBag.Del_url = del_url;
-            ViewBag.ShowEdit = showEdit_url;
-            ViewBag.ShowAdd = showAdd_url;
+            //对部门的增删改操作url
+            ViewBag.ShowEditDepartment = showEdit_url;
+            ViewBag.ShowAddDepartment = showAdd_url;
+            ViewBag.DelDepartment_url = del_url;
+
             ViewBag.GetInfo = getInfo_url;
             ViewBag.ShowAddPerson = showAddPerson_url;
+            ViewBag.GetPersonUrl = "/Contacts/ContactPerson/GetPersonByDepartment";
 
+            ViewBag.DelPerson_url = "/Contacts/Department/DoDelPersonInfobyDID";
+
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
+            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
+            ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
             return View();
         }
+
+        
 
         /// <summary>
         /// 根据传入的联系人id获取该联系人所属的部门id
@@ -131,7 +142,37 @@ namespace SMSOA.Areas.Contacts.Controllers
             List<Models.EasyUIComboTree_Department> list_comboTree =Models.Department_ViewModel.ToEasyUIComboTree(list_department);
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
-        }        
+        }
+
+        /// <summary>
+        /// 在某一部门中点击添加联系人时，传入该部门的did
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public ActionResult GetCombobox4GroupInfoByDID(int did)
+        {
+            //1 根据指定的gid查询对应的group对象
+            var departmentTemp = departmentBLL.GetListBy(d => d.DID == did).FirstOrDefault();
+            //2 查询全部group 
+            var list_departmentAll = departmentBLL.GetListBy(g => g.isDel == false).ToList();
+            //3 将已经拥有的群组从全部群组集合中剔除
+            list_departmentAll = list_departmentAll.Where(d => d.DID != departmentTemp.DID).ToList();
+            //4.1 已经拥有的群组集合
+            List<P_DepartmentInfo> list_departmentOwned = new List<P_DepartmentInfo>();
+            list_departmentOwned.Add(departmentTemp);
+            //转成Combobox
+            var list_combobox_owneddepartment = P_DepartmentInfo.ToEasyUICombobox(ref list_departmentOwned, true);
+
+            //4.2将全部群组集合中的选中按钮设置为false
+            var list_combobox_alldepartment = P_DepartmentInfo.ToEasyUICombobox(ref list_departmentAll, false);
+
+            list_combobox_owneddepartment.AddRange(list_combobox_alldepartment);
+
+            string temp = Common.SerializerHelper.SerializerToString(list_combobox_owneddepartment);
+            //暂时先不用替换
+            //temp = temp.Replace("Checked", "selected");
+            return Content(temp);
+        }
 
         /// <summary>
         /// 获取全部群组数据
@@ -220,6 +261,17 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
 
+        public ActionResult DoDelPersonInfobyDID()
+        {
+            //1 获取联系人id以及群组id
+            int did = int.Parse(Request.QueryString["did"]);
+            int pid = int.Parse(Request.QueryString["pid"]);
+
+            bool state = departmentBLL.DelPersonInfoByDID(did, pid);
+
+            //3 返回结果          
+            return Content(state == true ? "ok" : "error");
+        }
         public ActionResult DoEditDepartmentInfo(P_DepartmentInfo departmentModel)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
