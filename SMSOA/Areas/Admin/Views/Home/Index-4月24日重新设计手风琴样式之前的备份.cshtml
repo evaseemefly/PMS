@@ -16,58 +16,8 @@
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script type="text/javascript">
-        
-            $(function () {
-                //1 初始化手风琴
-                $("#WestAccordion").accordion({
-                    fillSpace: true,
-                    fit: true,
-                    border: false,
-                    animate: true  //是否显示动画效果
-                })
-                //2 加载手风琴
-                var array = [{ "id": 3, "text": "管理权限", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 33, "text": "发送短信", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 34, "text": "发送统计", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 35, "text": "系统管理", "state": null, "Checked": false, "attributes": null, "children": null }];                
-                //$.each(array, function (i, e) {
-                //    //alert(e.text);
-                //    addPanel(e.text)
-                //})
-
-
-                $.post("/Admin/Home/GetMenuItem", function (data) {
-                    //alert(data);
-                    var test = data;
-                    $.each(test, function (i, e) {
-                        addPanel(e);
-                        TreeContent(e);
-                    })
-                },'json')
-            })
-
-        //添加手风琴项
-            function addPanel(row) {
-                $("#WestAccordion").accordion('add', {
-                    title: row.text,
-                    //获取每一个当前对象中判断children是否为空
-                    content: "<ul id='tNodeId" + row.id + "' ></ul>"
-                   
-                });
-            }
-            
-            function TreeContent(row) {
-                //判断当前对象中children是否为空
-                if (row.children.length == 0) {
-                    return
-                }
-                else {
-                    $("#tNodeId" + row.id).tree({
-                        data: row.children,
-                        onClick:function(node){
-                            createTabs(node);
-                        },
-                        animate: true
-                    })
-                }
-            }
+        $(function () {
+            //$(".test")
             $('#easyui_tree').tree({
                 url: '/Admin/Home/GetMenuItem',
                 onLoadSuccess: function (node, data) {
@@ -79,7 +29,7 @@
                 },
                 animate:true
             });
-        
+        })
 
         function createTabs(treeNode) {
             var $tabs = $("#tabs"); //获取tabs的容器
@@ -121,23 +71,68 @@
         //style="margin:10px"
         //创建一个指定url的iframe
         function createNewIframe(url) {
+            //<iframe scrolling="no" frameborder="0" id="iframeContactDiv" style="width:100%;overflow: hidden;"></iframe>
             var iframeStr = "<iframe scrolling='no' frameborder='0'  src='" + url + "' style='width:100%;height:99%;frameborder:0px solid #000;scrolling=no;overflow: hidden'></iframe>";
             return iframeStr;
         }
     </script>
+    @*@Scripts.Render("~/mvcAjax");
+        @Scripts.Render("~/easyUIJS");
+        @Scripts.Render("~/easyUICSS");*@
 </head>
 <body class="easyui-layout">
     <div data-options="region:'north',border:false" style="height:60px; padding:10px">north region</div>
     <div data-options="region:'west',split:true,title:'操作列表'" style="width:200px; padding:0px;">
-        <div class="easyui-accordion" id="WestAccordion" style="width:100%;padding:0px">
-        </div>
         <div class="easyui-panel" style="padding:0px;border:0px;overflow-x:hidden">
+            <div class="easyui-accordion" style="width:100%;padding:0px">
+                <div title="系统管理" data-options="iconCls:'icon-search'" style="padding:10px;">
+                    <ul id="easyui_tree"></ul>
+                </div>
+                <div title="通讯录" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
+                    <ul>
+                        <li>
+                            <div class="selected">
+                                <a href="http://hxling.cnblogs.com" target="mainFrame">
+                                    <span class="icon-menu_person"></span>
+                                    联系人管理
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="">
+                                <a href="demo.html" target="mainFrame"><span class="icon-menu_group"></span>群组管理</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="">
+                                <a href="demo2.html" target="mainFrame"><span class="icon-menu_department"></span>部门管理</a>
+                            </div>
+                        </li>                        
+                    </ul>
+                </div>
+                <div title="短信发送" data-options="iconCls:'icon-help'" style="padding:10px;">
+                    <p>帮助帮助帮助</p>
+                </div>
+                <div title="发送统计" data-options="iconCls:'icon-help'" style="padding:10px;">
+                    <p>帮助帮助帮助</p>
+                </div>
+                <div title="帮助" data-options="iconCls:'icon-help'" style="padding:10px;">
+                    <p>帮助帮助帮助</p>
+                </div>
+            </div>
+
+
         </div>
+
+
     </div>
     <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
+
+
     </div>
     <div data-options="region:'south',border:false" style="height:50px;padding:10px;">south region</div>
     <div data-options="region:'center',title:'Center'" style="overflow-x:hidden;overflow-y:hidden">
+       
         <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;overflow-y:hidden">
 
         </div>

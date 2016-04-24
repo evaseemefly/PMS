@@ -126,12 +126,13 @@
 
                 striped: true,
 
-                url: "/Admin/Action/SetRoleAction?id=" + RoleId,
+                //url: "/Admin/Action/SetRoleAction?id=" + RoleId,
+                url: "/Admin/Action/SetRoleActionNoPagination?id=" + RoleId,
                 loadMsg: '数据加载中请稍后……',
-                pagination: true,//启用分页，默认每页10行
-                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
-                pageSize: 10,   //设置 页容量为 5
-                pageList: [5, 10, 20],//设置 页容量下拉框
+                //pagination: true,//启用分页，默认每页10行
+                //rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                //pageSize: 10,   //设置 页容量为 5
+                //pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: myActionColumns,
                 //存在bug——返回的data中checkbox 列中有true or false，且面板有 勾选，但通过datagrid('getChecked')无法取到
                 onLoadSuccess: function (data) {
