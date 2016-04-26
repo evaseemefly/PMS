@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
+using SMSOA.Areas.Contacts.Models;
 
 namespace SMSOA.Areas.Contacts.Controllers
 {
@@ -19,6 +20,8 @@ namespace SMSOA.Areas.Contacts.Controllers
         //通过 spring.net 创建IS_SMSMissionBLL
 
         IS_SMSMissionBLL smsmissionBLL { get; set; }
+        IP_GroupBLL groupBLL { get; set; }
+        IP_DepartmentInfoBLL departmentBLL { get; set; }
         #region 1 共用属性
         /// <summary>
         /// 执行删除操作的url地址
@@ -66,7 +69,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         private string getPerson_url
         {
             get
-            { return "/Contacts/SMSMission/GetPerson"; }
+            { return "/Contacts/SMSMission/GetPersons2Datagrid"; }
         }
 
 
@@ -87,7 +90,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             get
             {
-                return "/Contacts/Group/GetCombogrid4GroupInfoBySmid";
+                return "/Contacts/SMSMission/GetGroup2Combogrid";
             }
         }
         ///<sumarry>
@@ -238,39 +241,25 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
         ///<summary>
-        ///通过短信任务得到联系人
+        ///通过短信任务得到联系人,并转换为Datagrid
         ///</summary>
         ///<returns></returns>
-        public ActionResult GetPerson()
+        public ActionResult GetPersons2Datagrid()
         {
             //1.获取所选的短信任务实体
-            int smid = int.Parse(Request["smid"]);
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
+            int smid = int.Parse(Request["smid"]);
             var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
-            if (SMSMission != null)
-            {
-                //2 通过路线二查询  SMSMission对应的群组，并得到群组中包含的联系人
-                //取出isPass为false的所有集合
-                var list_R_Group_Mission = SMSMission.R_Group_Mission;
-                var list_group = (
-                   from r in list_R_Group_Mission
-                   where r.isPass == true 
-                   select r.P_Group
-                    ).ToList();
-                List<P_PersonInfo> list_personFromGroup = new List<P_PersonInfo>();
-                list_group.ForEach(g => list_personFromGroup.AddRange(g.P_PersonInfo.ToList()));
-                
-
-                //3 根据路线一查询  SMSMission对应的部门，并得到部门中包含的联系人
-                //取出isPass为true的所有集合
-                var list_R_Department_Mission = SMSMission.R_Department_Mission;
-                var list_department = (
-                   from r in list_R_Department_Mission
-                   where r.isPass == true
-                   select r.P_DepartmentInfo
-                    ).ToList();
+            //2.根据路线2得到isPass为true群组集合
+            bool isPass = true;
+            var list_group = GetGroups(isPass, SMSMission);
+            List<P_PersonInfo> list_personFromGroup = new List<P_PersonInfo>();
+            list_group.ForEach(g => list_personFromGroup.AddRange(g.P_PersonInfo.ToList()));
+            //3 根据路线一查询  SMSMission对应的部门，并得到部门中包含的联系人
+            //取出isPass为true的所有集合
+            var list_department = GetDepartmemts(isPass, SMSMission);
                 List<P_PersonInfo> list_personFromDep = new List<P_PersonInfo>();
                 list_department.ForEach(g => list_personFromDep.AddRange(g.P_PersonInfo.ToList()));
 
@@ -279,25 +268,17 @@ namespace SMSOA.Areas.Contacts.Controllers
                 //5 此时的集合中可能存在重复，去重
                 list_personFromGroup = list_personFromGroup.Distinct(new PMS.Model.EqualCompare.P_PersonInfoEqualCompare()).ToList();
 
-                //6 取出组群中isPass为false的集合
-          
-                var list_group_isNotPass = (
-                   from r in list_R_Group_Mission
-                   where r.isPass == false
-                   select r.P_Group
-                    ).ToList();
+            //6 取出组群中isPass为false的集合
+                isPass = false;
+                var list_group_isNotPass = GetGroups(isPass, SMSMission);
                 List<P_PersonInfo> list_personFromGroup_isNotPass = new List<P_PersonInfo>();
                 list_group_isNotPass.ForEach(g => list_personFromGroup_isNotPass.AddRange(g.P_PersonInfo.ToList()));
 
                 //7 将现有集合中去掉isPass为false的ActionInfo
                 list_personFromGroup = list_personFromGroup.Where(a => !list_personFromGroup_isNotPass.Contains(a)).ToList();
 
-                //8 取出组织机构中isPass为false的集合
-                var list_department_isNotPass = (
-                   from r in list_R_Department_Mission
-                   where r.isPass == false
-                   select r.P_DepartmentInfo
-                    ).ToList();
+            //8 取出组织机构中isPass为false的集合
+                var list_department_isNotPass = GetDepartmemts(isPass, SMSMission);
                 List<P_PersonInfo> list_personFromDep_isNotPass = new List<P_PersonInfo>();
                 list_department_isNotPass.ForEach(g => list_personFromDep_isNotPass.AddRange(g.P_PersonInfo.ToList()));
 
@@ -317,10 +298,113 @@ namespace SMSOA.Areas.Contacts.Controllers
                 };
                 return Content(Common.SerializerHelper.SerializerToString(dgModel));
 
-            }
-            return null;
 
         }
+        ///<summary>
+        ///得到选中任务所包含的群组,并转换为Combogrid
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult GetGroup2Combogrid()
+        {
+            int smid = int.Parse(Request["smid"]);
+            var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+
+            //1.获取当前任务已有的群组(未禁用)
+            bool isPass = true;
+            var list_group = GetGroups(isPass, SMSMission);
+            //2.获取当前任务已有的群组(已禁用)
+            var list_group_isNotPass = GetGroups(isPass = false, SMSMission);
+            //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
+            
+            //2.获取所有的群组
+            var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
+            List<EasyUICombogrid_Group> list_EasyUICombogrid_Group = new List<EasyUICombogrid_Group>();
+            //3.将已有的群组从所有群组中剔除，已拥有的群组（未禁用）排在前面
+            foreach (var item in list_group)
+            {
+                item.Checked = true;
+                EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
+                {
+                    Checked = item.Checked,
+                    GID = item.GID,
+                    GroupName = item.GroupName,
+                    Remark = item.Remark,
+                    IsPass = "否"
+                };
+                list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
+                list_EasyUICombogrid_Group.Add(combogrid_Group);
+            }
+            //4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
+            foreach (var item in list_group_isNotPass)
+            {
+                item.Checked = true;
+                EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
+                {
+                    Checked = item.Checked,
+                    GID = item.GID,
+                    GroupName = item.GroupName,
+                    Remark = item.Remark
+                };
+                list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
+                list_EasyUICombogrid_Group.Add(combogrid_Group);
+            }
+            //5.为拥有的群组
+            foreach (var item in list_ALLGroup)
+            {
+                EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
+                {
+                    Checked = item.Checked,
+                    GID = item.GID,
+                    GroupName = item.GroupName,
+                    Remark = item.Remark,
+                    IsPass = "否"
+                };
+                list_EasyUICombogrid_Group.Add(combogrid_Group);
+            }
+            //6.序列化
+
+            string temp = Common.SerializerHelper.SerializerToString(list_EasyUICombogrid_Group);
+            temp = temp.Replace("Checked", "checked");
+            return Content(temp);
+
+        }
+        ///<summary>
+        ///根据选中任务获得群组
+        ///</summary>
+        ///<returns></returns>
+        public List<P_Group> GetGroups(bool isPass, S_SMSMission SMSMission)
+        {
+            if (SMSMission != null)
+            {
+                var list_R_Group_Mission = SMSMission.R_Group_Mission;
+                var list_group = (
+                   from r in list_R_Group_Mission
+                   where r.isPass == isPass
+                   select r.P_Group
+                    ).ToList();
+                return list_group;
+            }
+            return null;
+          }
+        ///<summary>
+        ///根据选中任务获得部门
+        ///</summary>
+        ///<returns></returns>
+        public List<P_DepartmentInfo> GetDepartmemts(bool isPass, S_SMSMission SMSMission)
+        {
+            if(SMSMission != null)
+            {
+            var list_R_Department_Mission = SMSMission.R_Department_Mission;
+            var list_department = (
+               from r in list_R_Department_Mission
+               where r.isPass == isPass
+               select r.P_DepartmentInfo
+                ).ToList();
+                return list_department;
+            }
+            return null;
+        }
+
         /// <summary>
         /// 执行软删除
         /// </summary>

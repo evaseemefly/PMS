@@ -47,9 +47,42 @@
          { field: 'Remark', title: '备注', width: 120 }
         ]]
 
+
+        var IsPass = [{
+            "IsPass": "否",
+            "Id": 0,
+        }, {
+            "IsPass": "是",
+            "Id": 1,
+        }];
+
         var GroupColumns = [[
          { field: 'checked', checkbox: true },
-         { field: 'GroupName', title: '群组名称', width: 150 }
+         {field: 'GroupName', title: '群组名称', width: 100},
+         {field: 'Remark', title: '备注', width: 100},
+         {
+             field: 'Id', title: '是否禁用', width: 100,
+             //formatter: function (value) {
+             //    for (var i = 0; i < IsPass.length; i++) {
+             //        if (IsPass[i].value == value) return IsPass[i].name;
+             //    }
+             //    return value;
+             //},
+             formatter: function (value, row) {
+                 return row.IsPass;
+             },
+             editor: {
+                 type: 'combobox',
+                 options: {
+                     valueField:'Id',
+                     textField: 'IsPass',
+                     panelHeight: 'auto',
+                     data: IsPass,
+                     required: true,
+                     editable: false
+                 }
+             }
+         }
         ]]
 
         //-----------------3 增删改操作--------------------
@@ -226,7 +259,7 @@
         function loadCombogrid_Group(smid, myGroupColumns) {
             $("#group").combogrid({
                 url: '@ViewBag.GetGroup_combogrid?smid=' + smid,
-                panelWith: 500,
+                panelWith: 400,
                 multiple: true,
                 idField: 'GID',
                 textField: 'GroupName',
@@ -235,10 +268,93 @@
                 fitColumns: true,
                 showHeader: true,
                 loadMsg: '加载中……',
-                columns: myGroupColumns
-            })
+                onClickCell: onClickCell,
+                columns: myGroupColumns,
+                fitColumns: true
+            })  
+        }
+        var editIndex = undefined;
+        function endEditing() {
+            if (editIndex == undefined) { return true }
+            if ($('#group').combogrid('grid').datagrid('validateRow', editIndex)) {
+                var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: editIndex, field: 'Id' });
+                var IsPass = $(ed.target).combobox('getText');
+                $('#group').combogrid('grid').datagrid('getRows')[editIndex]['IsPass'] = IsPass;
+                $('#group').combogrid('grid').datagrid('endEdit', editIndex);
+                editIndex = undefined;
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function onClickCell(index, field) {
+            if (editIndex != index) {
+                if (endEditing()) {
+                    $('#group').combogrid('grid').datagrid('selectRow', index)
+							.datagrid('beginEdit', index);
+                    var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: field });
+                    if (ed) {
+                         $(ed.target).focus();
+                    }
+                    editIndex = index;
+                } else {
+                    $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+                }
+            }
         }
 
+        //function updateActions(index) {
+        //    $('#group').combogrid('grid').datagrid('updateRow', {
+        //        index: index,
+        //        row: {}
+        //    });
+        //}
+        //function getRowIndex(target) {
+        //    var tr = $(target).closest('tr.datagrid-row');
+        //    return parseInt(tr.attr('datagrid-row-index'));
+        //}
+        //function editrow(target) {
+        //    $('#group').combogrid('grid').datagrid('beginEdit', getRowIndex(target));
+        //}
+        //function saverow(target) {
+        //    $('#group').combogrid('grid').datagrid('endEdit', getRowIndex(target));
+        //}
+        //function cancelrow(target) {
+        //    $('#group').combogrid('grid').datagrid('cancelEdit', getRowIndex(target));
+        //}
+        //var editIndex = undefined;
+        //var beginEditing = function (rowIndex, field, value) {
+        //    if (field != "GroupName")
+        //        return;
+
+        //    if (rowIndex != editIndex) {
+        //        if (endEditing()) {
+        //            $('#group').combogrid('grid').datagrid('beginEdit', rowIndex);
+        //            editIndex = rowIndex;
+
+        //            var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: rowIndex, field: 'GroupName' });
+        //            $(ed.target).focus().bind('blur', function () {
+        //                endEditing();
+        //            });
+        //        } else {
+        //            $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+        //        }
+        //    }
+        //}
+        //var endEditing = function () {
+        //    if (editIndex == undefined) { return true }
+        //    if ($('#group').combogrid('grid').datagrid('validateRow', editIndex)) {
+        //        var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: editIndex, field: 'GroupName' });
+        //        var number = $(ed.target).numberbox('getValue');
+        //        $('#group').combogrid('grid').datagrid('getRows')[editIndex]['GroupName'] = number;
+        //        $('#group').combogrid('grid').datagrid('endEdit', editIndex);
+        //        $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+        //        editIndex = undefined;
+        //        return true;
+        //    } else {
+        //        return false;
+        //    }
+        //}
         $(function () {
 
             $("#editSMSMissionWindow").window('close');
@@ -247,8 +363,9 @@
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#SMSMissiondatagrid").datagrid({
                 onClickRow: function (index, field, value) {
+                    $("#group").combogrid('grid').datagrid('rejectChanges');
+                    editIndex = undefined;
                     loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
-                    load
                 }
             });
         })
@@ -260,10 +377,13 @@
         @RenderSection("westdiv")
         <div data-options="region:'center'" title="当前任务内联系人列表" style="width:70%">
             <div id="tb" style="padding:2px 5px;">
-                为当前任务分配群组:
-                <select class="easyui-combogrid" id="group" panelHeight="auto" style="width:250px"
+                    为当前任务分配群组:
+                    <select class="easyui-combogrid" id="group" panelHeight="auto" style="width:30%"
+                            data-options=""></select>
+                    选择所属部门
+                <select class="easyui-combogrid" id="department" panelHeight="auto" style="width:30%"
                         data-options=""></select>
-                选择所属部门
+                    
             </div>
                <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
             </div>

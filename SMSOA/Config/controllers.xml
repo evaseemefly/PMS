@@ -36,5 +36,6 @@
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.SMSMissionController, SMSOA" singleton="false" >
     <property name="smsmissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
   </object>
 </objects>
