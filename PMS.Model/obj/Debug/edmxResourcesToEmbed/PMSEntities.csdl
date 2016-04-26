@@ -159,6 +159,7 @@
     <Property Name="Remark" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="R_Department_Mission" Relationship="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo" FromRole="P_DepartmentInfo" ToRole="R_Department_Mission" />
     <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.R_Person_Department" FromRole="P_DepartmentInfo" ToRole="P_PersonInfo" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="P_Group">
     <Key>

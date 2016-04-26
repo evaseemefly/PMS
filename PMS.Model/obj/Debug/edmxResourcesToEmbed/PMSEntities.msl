@@ -79,6 +79,7 @@
     <EntitySetMapping Name="P_DepartmentInfo">
       <EntityTypeMapping TypeName="PMS2016Model.P_DepartmentInfo">
         <MappingFragment StoreEntitySet="P_DepartmentInfo">
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
           <ScalarProperty Name="isDel" ColumnName="isDel" />
           <ScalarProperty Name="Area" ColumnName="Area" />
