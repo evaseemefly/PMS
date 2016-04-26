@@ -23,6 +23,23 @@ namespace PMS.BLL
 
 
         /// <summary>
+        /// 根据部门DID删除指定PID的联系人
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public bool DelPersonInfoByDID(int did, int pid)
+        {
+            //2 根据gid找到对应的群组对象
+            var department = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == did).FirstOrDefault();
+            //2.2将该群组对象中的指定联系人删除
+
+            var person_bydepartment = department.P_PersonInfo.Where(p => p.PID == pid).FirstOrDefault();
+            bool state = department.P_PersonInfo.Remove(person_bydepartment);
+            return this.CurrentDBSession.SaveChanges();
+        }
+
+        /// <summary>
         /// 修改指定的DepartmentId 的对象集合的删除标记为删除
         /// </summary>
         /// <param name="list_ids"></param>

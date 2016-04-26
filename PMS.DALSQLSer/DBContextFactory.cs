@@ -37,36 +37,6 @@ namespace PMS.DALSQLSer
             }
             //3 返回数据上下文对象
             return dbContext;
-        }
-
-        //public static void SetTestModel(TestModel.PersonInfo model)
-        //{
-        //    string modelName = "liusihan";
-        //    CallContext.SetData(modelName, model);
-        //}
-
-        //public static TestModel.PersonInfo GetTestModel()
-        //{
-
-        //    string modelName = "liusihan";
-            
-        //   TestModel.PersonInfo model= CallContext.GetData(modelName) as TestModel.PersonInfo;
-
-        //    if(model==null)
-        //    {
-        //        model = new TestModel.PersonInfo()
-        //        {
-        //            Id = 1,
-        //            Name = "李飞"
-        //        };
-        //        CallContext.SetData(modelName, model);
-        //    }
-        //    return model;
-        //}
-
-        //private static void Test()
-        //{
-
-        //}
+        }        
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="EqualCompare\P_GroupEqualCompare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
+    <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
@@ -104,6 +105,9 @@
     <Compile Include="R_UserInfo_ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormatModel\SMSDataModel.cs" />
+    <Compile Include="SMSModel\SMSModel_Receive.cs" />
+    <Compile Include="SMSModel\SMSModel_Send.cs" />
     <Compile Include="S_SMSMission.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>

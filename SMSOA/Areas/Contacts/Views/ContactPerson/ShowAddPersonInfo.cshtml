@@ -26,10 +26,11 @@
     <script type="text/javascript">
         //--------------1 加载页面中的下拉框中的数据-----------
         //1.1 加载全部部门下拉框
-        function loadComboTree_Department() {
+        function loadComboTree_Department(did) {
             //2.2 加载上级部门下拉框
             $("#DepartmentName_combotree").combotree({
-                url: '@ViewBag.GetDepartment_combotree',//在ContactPerson控制器中的ShowAddPerson方法中添加
+                //在ContactPerson控制器中的ShowAddPerson方法中添加
+                url: '@ViewBag.GetDepartment_combotree',
                 valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
                 textField: 'text',
                 //valueField: "DID",
@@ -42,14 +43,17 @@
                 width: 210
                 //onLoadSuccess: AfterLoadDepartment
                 @*setValue:'@ViewBag.PDID'*@
-                });
+            });
         }
+
+
 
         //1.2 根据pid加载对应的群组并添加至combobox中
         function loadCombobox_Group(gid,pid) {
             //var str =  (typeof(pid)!="undefined")? pid:"-1";
             $("#GID").combobox({
-                url: '@ViewBag.GetGroup_combobox?gid='+gid,//在ContactPerson控制器中的ShowAddPerson方法中添加
+                //注意此处需要加判断，若没有传入gid（即没有选择所属群组group，则返回全部的-未选中的-部门下拉框）
+                url:gid==""?'@ViewBag.GetAllGroup_combobox': '@ViewBag.GetGroupByGID_combobox?gid='+gid,//在ContactPerson控制器中的ShowAddPerson方法中添加
                 method: 'get',
                 valueField: 'id',
                 textField: 'text',
@@ -93,13 +97,22 @@
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
 
+        function SetDepartmentCombotreeValue(data) {
+            //1 找到部门下拉框
+            $("#DepartmentName_combotree").combotree('setValue', data);
+        }
+
         //页面加载时
         $(function () {
             //加载全部群组下拉框
-            var gid = @ViewBag.GID;
+            var gid = "@ViewBag.GID";
+            var did = "@ViewBag.DID";
             loadCombobox_Group(gid);
             //加载全部部门下拉框
-            loadComboTree_Department();
+            loadComboTree_Department(did);
+            //加载全部部门下拉框后根据选中的did
+            SetDepartmentCombotreeValue(did);
+           
         })
     </script>
 </head>

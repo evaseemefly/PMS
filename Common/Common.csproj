@@ -65,12 +65,19 @@
     <Compile Include="Attributes\SkipLoginAttribute.cs" />
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
     <Compile Include="Attributes\ViewAttribute.cs" />
+    <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
     <Compile Include="Encryption.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
+      <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
+      <Name>PMS.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -69,3 +69,16 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Newtonsoft.Js
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.pdb
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\PMS.Model.dll
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\EntityFramework.dll
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\System.Web.Mvc.dll
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\PMS.Model.pdb
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\EntityFramework.xml
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\System.Web.Mvc.xml
+D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\PMS.Model.dll
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\EntityFramework.dll
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\System.Web.Mvc.dll
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\PMS.Model.pdb
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\EntityFramework.xml
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\System.Web.Mvc.xml

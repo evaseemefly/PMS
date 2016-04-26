@@ -1,0 +1,8 @@
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\bin\Debug\SMSSendDemo.exe.config
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\bin\Debug\SMSSendDemo.exe
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\bin\Debug\SMSSendDemo.pdb
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\bin\Debug\SMSSession.dll
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\bin\Debug\SMSSession.pdb
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.exe
+E:\03协同开发\短信\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.pdb

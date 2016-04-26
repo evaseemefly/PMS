@@ -56,8 +56,8 @@ namespace SMSOA.Areas.Admin.Controllers
         
         }
 
-        [Common.Attributes.ViewAttribute]
-        [LoginValidate]
+        //[Common.Attributes.ViewAttribute]
+        //[LoginValidate]
         public ActionResult Index()
         {
             ViewBag.Action_GetOption = "/Admin/Action/GetOption";
@@ -67,6 +67,72 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.GetInfo = "/Admin/Action/GetActionInfo";
             return View();
            
+        }
+
+
+        /// <summary>
+        /// 不使用分页查询为角色赋予权限
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SetRoleActionNoPagination()
+        {
+            /*int id = int.Parse(Request.Form["rid"]);*///使用此种方式无法获取id
+            int rid = int.Parse(Request.QueryString["id"]);
+            //int pageSize = int.Parse(Request.Form["rows"]);
+            //int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+
+
+
+            if (rid != null)
+            {
+                //查询被选中的Action
+                //1 根据RoleID查询该Role所对应的Action权限
+                //1.1查出未删除的role中指定ID的Role
+                var role = roleInfoBLL.GetListBy(r => r.DelFlag == false && r.ID == rid).FirstOrDefault();
+                //1.2查出该role中对应的action(ICollection)
+                var actions = role.ActionInfo.ToList();
+                //将该action中的checked属性赋值为true
+                //4月1日 注意此处有bug ，分页应该是对指定role对应的权限+全部其余action的集合整体进行分页
+                //2 需要对actions进行分页
+
+
+
+                //actions = actions
+
+                //3 查询所有的action集合
+                var allActionList = actionInfoBLL.GetListBy(u => u.DelFlag == false);
+                //3.1 找到未添加的action集合
+                //总行数=所有权限的总和
+                rowCount = allActionList.Count();
+                //3 将action返回给视图页面，需要添加一个check标签
+                List<ActionInfo> list = new List<ActionInfo>();
+                foreach (var item in actions)
+                {
+                    item.Checked = true;
+                    //从全部的权限集合中找到与当前权限id不同的其余权限集合
+                    allActionList = allActionList.Where(a => a.ID != item.ID);
+                    list.Add(item);
+                }
+
+                list.AddRange(allActionList);
+                //4月1日 
+                //应对list进行分页
+                //list = list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                //4 
+                PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+                {
+                    total = rowCount,
+                    rows = list,
+                    footer = null
+                };
+
+                string temp = Common.SerializerHelper.SerializerToString(dgModel);
+                temp = temp.Replace("Checked", "checked");
+                return Content(temp);
+
+            }
+            return null;
         }
 
         /// <summary>
