@@ -65,6 +65,7 @@
     <Compile Include="EqualCompare\P_PersonInfoEqualCompare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
+    <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />

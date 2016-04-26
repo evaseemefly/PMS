@@ -17,8 +17,8 @@ namespace SMSOA.Areas.Admin.Controllers
         IRoleInfoBLL roleInfoBLL { get; set; }
 
 
-        [Common.Attributes.ViewAttribute]
-        [LoginValidate]
+        //[Common.Attributes.ViewAttribute]
+        //[LoginValidate]
         public ActionResult Index()
         {
             ViewBag.ShowAssignRoleInfo = "/Admin/User/ShowAssignRoleInfo";

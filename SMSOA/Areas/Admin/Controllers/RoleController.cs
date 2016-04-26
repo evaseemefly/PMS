@@ -36,8 +36,8 @@ namespace SMSOA.Areas.Admin.Controllers
             //};
         }
 
-        [Common.Attributes.ViewAttribute]
-        [LoginValidate]
+        //[Common.Attributes.ViewAttribute]
+        //[LoginValidate]
         public ActionResult Index()
         {
             ViewBag.Action_GetOption = "/Admin/Action/GetOption";

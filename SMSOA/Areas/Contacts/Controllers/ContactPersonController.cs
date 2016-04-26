@@ -123,6 +123,29 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
 
+        public ActionResult GetPersonByDepartment()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int did = int.Parse(Request["did"]);
+            int rowCount = 0;
+
+            //查询所有的权限
+            //使用ref声明时需要在传入之前为其赋值
+
+            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.P_DepartmentInfo.Where(d => d.DID == did).Count() > 0, p => p.PName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_person,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
         public ActionResult GetPersonInfo()
         {
             int pageSize = int.Parse(Request.Form["rows"]);
@@ -238,6 +261,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(state);
         }
 
+        
 
         ///<summary>
         ///逻辑删除用户
@@ -263,12 +287,22 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult ShowAddPersonInfo()
         {
-            string gid = Request["gid"];
+            //若传入的是gid（group）群组，说明向指定群组下添加该联系人
+            //返回的群组下拉框位选中某一个gid
+            string gid = Request["gid"];//若为传入则为null
+            //若传入的did（department）部门，说明向指定部门下添加该联系人
+            //返回的部门下拉框为选中某一个did
+            string did = Request["did"];
+
             ViewBag.backAction = "DoAddPersonInfo";
             //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
-            ViewBag.GID = gid;
-            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
+            ViewBag.GID = gid==null?"":gid;
+            ViewBag.DID = did == null ? "" : did;
+            ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
+            ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
             ViewBag.GetDepartment_combotree= "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
+            ViewBag.GetDepartmentByDID_combotree = "/Contacts/Department/GetCombobox4GroupInfoByDID";
             return View("ShowAddPersonInfo");
         }
 
