@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />
+    <Compile Include="Xml2StrHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">

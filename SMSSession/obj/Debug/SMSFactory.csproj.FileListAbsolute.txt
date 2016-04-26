@@ -1,0 +1,8 @@
+E:\03协同开发\短信\PMS\PMS\SMSSession\bin\Debug\SMSSession.dll
+E:\03协同开发\短信\PMS\PMS\SMSSession\bin\Debug\SMSSession.pdb
+E:\03协同开发\短信\PMS\PMS\SMSSession\obj\Debug\SMSFactory.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\SMSSession\obj\Debug\SMSSession.dll
+E:\03协同开发\短信\PMS\PMS\SMSSession\obj\Debug\SMSSession.pdb
+D:\01编程\02协作开发\SMSOA\PMS\SMSSession\obj\Debug\SMSFactory.csprojResolveAssemblyReference.cache
+D:\01编程\02协作开发\SMSOA\PMS\SMSSession\obj\Debug\SMSSession.dll
+D:\01编程\02协作开发\SMSOA\PMS\SMSSession\obj\Debug\SMSSession.pdb
