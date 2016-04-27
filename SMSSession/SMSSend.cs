@@ -7,10 +7,11 @@ using PMS.Model;
 using System.Collections.Specialized;
 using PMS.Model.SMSModel;
 using Common;
+using ISMS;
 
 namespace SMSSession
 {
-    public class SMSSend
+    public class SMSSend:ISMSSend
     {
         /// <summary>
         /// 根据短信实体判断短信实体是否符合标准
@@ -37,7 +38,7 @@ namespace SMSSession
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(SMSModel_Send smsdata)
+        public bool SendMsg(SMSModel_Send smsdata,out SMSModel_Receive receiveModel)
         {
             String _data = null;//XML文本
             String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
@@ -45,15 +46,21 @@ namespace SMSSession
             //1 判断参数是否足够
             if (SendBeforeCheck(smsdata))
             {
+                receiveModel=new SMSModel_Receive()
+                {
+                     desc="参数不全",
+                      msgid=smsdata.msgid,
+                       failPhones=smsdata.phones,
+                        result=
+                }
                 
-                returnMsg = "参数不全";
                 return false;
             }
             _data=ObjTransform.Model2Xml_FormatSend(smsdata);
             //2.1 http方式发送
             returnMsg = httpInvoke(_serverURL, _data);
             //2.2 将接收到的短信发送回执转换为对象
-            var receiveModel= ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
+            receiveModel= ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
 
             //解析服务器反馈信息
             if (returnMsg.Length < 1)
