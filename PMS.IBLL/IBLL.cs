@@ -39,12 +39,32 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IR_UserInfo_GroupBLL:IBaseBLL<R_UserInfo_Group>
+    {
+        
+
+    }
+	    public partial interface IR_UserInfo_SMSMissionBLL:IBaseBLL<R_UserInfo_SMSMission>
+    {
+        
+
+    }
 	    public partial interface IRoleInfoBLL:IBaseBLL<RoleInfo>
     {
         
 
     }
+	    public partial interface IS_SMSContentBLL:IBaseBLL<S_SMSContent>
+    {
+        
+
+    }
 	    public partial interface IS_SMSMissionBLL:IBaseBLL<S_SMSMission>
+    {
+        
+
+    }
+	    public partial interface IS_SMSRecord_CurrentBLL:IBaseBLL<S_SMSRecord_Current>
     {
         
 

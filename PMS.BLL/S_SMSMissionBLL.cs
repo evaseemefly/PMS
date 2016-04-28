@@ -10,6 +10,15 @@ namespace PMS.BLL
     public partial class S_SMSMissionBLL
     {
         /// <summary>
+        /// 查询全部的短信任务
+        /// </summary>
+        /// <returns></returns>
+        public List<S_SMSMission> GetAllList()
+        {
+            return GetListBy(s => s.isDel == false).ToList();
+        }
+
+        /// <summary>
         /// 从数据库中根据id集合查询返回指定的S_SMSMission集合
         /// </summary>
         /// <param name="list_ids"></param>

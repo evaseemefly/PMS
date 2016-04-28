@@ -18,6 +18,7 @@ namespace PMS.Model
         {
             this.R_Group_Mission = new HashSet<R_Group_Mission>();
             this.P_PersonInfo = new HashSet<P_PersonInfo>();
+            this.R_UserInfo_Group = new HashSet<R_UserInfo_Group>();
         }
     
         public int GID { get; set; }
@@ -30,5 +31,6 @@ namespace PMS.Model
     
         public virtual ICollection<R_Group_Mission> R_Group_Mission { get; set; }
         public virtual ICollection<P_PersonInfo> P_PersonInfo { get; set; }
+        public virtual ICollection<R_UserInfo_Group> R_UserInfo_Group { get; set; }
     }
 }

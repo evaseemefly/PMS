@@ -82,3 +82,9 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\System.Web.Mv
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\PMS.Model.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\EntityFramework.xml
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\System.Web.Mvc.xml
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\PMS.Model.dll
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\EntityFramework.dll
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\System.Web.Mvc.dll
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\PMS.Model.pdb
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\EntityFramework.xml
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\System.Web.Mvc.xml

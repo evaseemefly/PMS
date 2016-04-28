@@ -1,0 +1,11 @@
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\ISMS.dll
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\ISMS.pdb
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\PMS.Model.dll
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\EntityFramework.dll
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\System.Web.Mvc.dll
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\PMS.Model.pdb
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\EntityFramework.xml
+E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\System.Web.Mvc.xml
+E:\03协同开发\短信\PMS\PMS\ISMS\obj\Debug\ISMS.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\ISMS\obj\Debug\ISMS.dll
+E:\03协同开发\短信\PMS\PMS\ISMS\obj\Debug\ISMS.pdb

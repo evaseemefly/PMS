@@ -66,12 +66,14 @@
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
+    <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />
     <Compile Include="Encryption.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />
+    <Compile Include="Xml2StrHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">

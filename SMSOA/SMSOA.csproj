@@ -209,6 +209,8 @@
     <Compile Include="Areas\Contacts\Models\EasyUITreeGrid_Department.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
+    <Compile Include="Areas\SMS\Controllers\SendController.cs" />
+    <Compile Include="Areas\SMS\SMSAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -316,6 +318,8 @@
     <Content Include="Areas\Contacts\Views\Group\Index - 4月22日晚-分部视图已经完成备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\web.config" />
+    <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
@@ -381,6 +385,8 @@
     <Folder Include="Areas\Login\Controllers\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
+    <Folder Include="Areas\SMS\Models\" />
+    <Folder Include="Areas\SMS\Views\Shared\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
   </ItemGroup>

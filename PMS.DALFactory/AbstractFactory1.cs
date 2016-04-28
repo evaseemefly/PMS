@@ -101,6 +101,32 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建R_UserInfo_Group的实例
+        /// <summary>
+        /// 创建R_UserInfo_Group的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IR_UserInfo_GroupDAL CreateR_UserInfo_GroupDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".R_UserInfo_GroupDAL";
+            return CreateInstance(fullClassName) as IR_UserInfo_GroupDAL;
+        }
+		#endregion
+	 
+		#region 创建R_UserInfo_SMSMission的实例
+        /// <summary>
+        /// 创建R_UserInfo_SMSMission的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IR_UserInfo_SMSMissionDAL CreateR_UserInfo_SMSMissionDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".R_UserInfo_SMSMissionDAL";
+            return CreateInstance(fullClassName) as IR_UserInfo_SMSMissionDAL;
+        }
+		#endregion
+	 
 		#region 创建RoleInfo的实例
         /// <summary>
         /// 创建RoleInfo的实例
@@ -114,6 +140,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建S_SMSContent的实例
+        /// <summary>
+        /// 创建S_SMSContent的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IS_SMSContentDAL CreateS_SMSContentDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".S_SMSContentDAL";
+            return CreateInstance(fullClassName) as IS_SMSContentDAL;
+        }
+		#endregion
+	 
 		#region 创建S_SMSMission的实例
         /// <summary>
         /// 创建S_SMSMission的实例
@@ -124,6 +163,19 @@ namespace PMS.DALFactory
             //获取类的全名称：命名空间+类名
             string fullClassName = NameSpace + ".S_SMSMissionDAL";
             return CreateInstance(fullClassName) as IS_SMSMissionDAL;
+        }
+		#endregion
+	 
+		#region 创建S_SMSRecord_Current的实例
+        /// <summary>
+        /// 创建S_SMSRecord_Current的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IS_SMSRecord_CurrentDAL CreateS_SMSRecord_CurrentDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".S_SMSRecord_CurrentDAL";
+            return CreateInstance(fullClassName) as IS_SMSRecord_CurrentDAL;
         }
 		#endregion
 	 

@@ -18,6 +18,7 @@ namespace PMS.Model
         {
             this.R_Department_Mission = new HashSet<R_Department_Mission>();
             this.R_Group_Mission = new HashSet<R_Group_Mission>();
+            this.R_UserInfo_SMSMission = new HashSet<R_UserInfo_SMSMission>();
         }
     
         public int SMID { get; set; }
@@ -30,5 +31,6 @@ namespace PMS.Model
     
         public virtual ICollection<R_Department_Mission> R_Department_Mission { get; set; }
         public virtual ICollection<R_Group_Mission> R_Group_Mission { get; set; }
+        public virtual ICollection<R_UserInfo_SMSMission> R_UserInfo_SMSMission { get; set; }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="EasyUIModel\EasyUICombobox.cs" />
     <Compile Include="EasyUIModel\EasUITreeNode.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
+    <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="ExtensionModel\P_Group.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
+    <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
     <Compile Include="PMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -105,7 +107,23 @@
     <Compile Include="R_UserInfo_ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
+    <Compile Include="Dictionary\SMSDictionary.cs" />
+    <Compile Include="R_UserInfo_Group.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_SMSMission.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMSModel\SMSModel_Receive.cs" />
+    <Compile Include="SMSModel\SMSModel_Send.cs" />
+    <Compile Include="S_SMSContent.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="S_SMSMission.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSRecord_Current.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs">

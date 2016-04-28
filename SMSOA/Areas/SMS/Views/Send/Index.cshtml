@@ -1,0 +1,168 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/mvcAjax")
+
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    @*自己写的图标样式*@
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var missionColumns = [[
+                 { field: 'SMID', title: 'ID', width: 100, checkbox: true },
+                 { field: 'SMSMissionName', title: '任务名称', width: 150 }
+        ]]
+
+        var groupColumns = [[
+                 { field: 'GID', title: 'ID', width: 100, checkbox: true },
+                 { field: 'GroupName', title: '群组名称', width: 150 },
+                 { field: 'Operate', title: '是否禁用', width: 150 }
+        ]]
+        function formatItem_combobox(row) {
+            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
+            return s;
+        }
+        function test(rowIndex,rowData) {
+            alert("点击了第"+rowIndex+"行"+":"+rowData);
+        }
+
+        function loadComboGrid(rowIndex,rowData) {
+            //1 根据传入的行对象获取行对象中的MissionId
+            var missionId = rowData.SMID;
+            //2 根据MissionId查找该任务所拥有的部门
+
+            //3 根据MissionId查找该任务所拥有的群组
+
+        }
+
+        function loadComboGrid_Group(missionId) {
+            
+            //加载全部短信任务种类
+            $("#group_combogrid").combogrid({
+                url: '@ViewBag.GetGroupByMID_combogrid?mid='+missionId,
+                method: 'get',
+                idField: 'GID',
+                textField: 'GroupName',
+                width:120,
+                panelWidth: 180,
+                panelHeight: 'auto',
+                multiple: false,@*设置为单选*@
+                formatter: formatItem_combobox,
+                columns: groupColumns,
+                onClickRow: test,//点击任务后显示该任务所拥有的群组以及部门
+                //onSelect: test,
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                }
+            })
+        }
+
+        //加载短信任务combogrid
+        function loadCombogrid() {
+            //加载全部短信任务种类
+            $("#smsMission_combogrid").combogrid({
+                url: '@ViewBag.GetAllMission_combogrid',
+                method: 'get',
+                idField: 'SMID',
+                textField: 'SMSMissionName',
+                width:120,
+                panelWidth: 180,
+                panelHeight: 'auto',
+                multiple: false,@*设置为单选*@
+                formatter: formatItem_combobox,
+                columns: missionColumns,
+                onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
+                    loadComboGrid_Group(rowData.SMID);
+                },
+                //onSelect: test,
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                }
+            })
+        }
+
+        $(function () {
+            loadCombogrid();
+        })
+    </script>
+</head>
+<body>
+    <div class="easyui-layout"  style="width:800px;height:600px;">
+        <div data-options="region:'north'" style="height:20px"></div>
+        <div data-options="region:'south',split:true" style="height:20px;"></div>
+        <div data-options="region:'east',split:true" title="East" style="width:200px;"></div>
+        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+            <div class="easyui-panel" title="短信发送" style="" dataoptions="fit:true">
+                <div style="padding:10px 60px 20px 60px">
+                    <form id="ff" method="post">
+                        <table cellpadding="5">
+                            <tr>
+                                <td>短信任务:</td>
+                                <td>
+                                    <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>修改群组:</td>
+                                <td>
+                                    <select class="easyui-combobox" id="group_combogrid" name="group"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>修改部门:</td>
+                                <td>
+                                    <select class="easyui-combobox" name="language"><option value="ar">Arabic</option><option value="bg">Bulgarian</option></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>短信内容:</td>
+                                <td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:200px;width:400px"></input></td>
+                            </tr>
+                            <tr>
+                                <td>Language:</td>
+
+                            </tr>
+                        </table>
+                    </form>
+
+                    <div style="text-align:center;padding:5px">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>
