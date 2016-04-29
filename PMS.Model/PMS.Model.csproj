@@ -55,14 +55,18 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="EasyUIModel\Department_ViewModel.cs" />
     <Compile Include="EasyUIModel\EasyUICombobox.cs" />
     <Compile Include="EasyUIModel\EasUITreeNode.cs" />
+    <Compile Include="EasyUIModel\EasyUIComboTree_Department.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
+    <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
     <Compile Include="EqualCompare\P_GroupEqualCompare.cs" />
+    <Compile Include="EqualCompare\P_PersonEqualCompare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
     <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />

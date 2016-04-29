@@ -7,6 +7,11 @@ namespace SMSOA.Areas.Contacts.Models
 {
     public class EasyUITreeGrid_Department
     {
+
+        public bool Checked { get; set; }
+
+        public bool selected { get; set; }
+
         public int DID { get; set; }
 
         public string DepartmentName { get; set; }

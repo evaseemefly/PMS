@@ -138,7 +138,7 @@ namespace PMS.BLL
                 }
                
             }
-            var list_del = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID &&list_actionIDs.Contains(r.ActionInfoID));
+            var list_del = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID &&!list_actionIDs.Contains(r.ActionInfoID));
             foreach (var item in list_del)
             {
                 this.CurrentDBSession.R_UserInfo_ActionInfoDAL.Del(item);

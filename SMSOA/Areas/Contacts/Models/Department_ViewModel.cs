@@ -11,13 +11,14 @@ namespace SMSOA.Areas.Contacts.Models
         /// <summary>
         /// 将P_DepartmentInfo转成TreeGrid
         /// </summary>
-        /// <param name="list_department"></param>
+        /// <param name="list_department">部门实体对象集合</param>
+        /// <param name="checkedIds">选中的部门id数组</param>
         /// <returns></returns>
-        public static List<EasyUITreeGrid_Department> ToEasyUITreeGrid(List<P_DepartmentInfo> list_department)
+        public static List<EasyUITreeGrid_Department> ToEasyUITreeGrid(List<P_DepartmentInfo> list_department,params int[] checkedIds)
         {
             List<EasyUITreeGrid_Department> list_treeGrid = new List<EasyUITreeGrid_Department>();
 
-            LoadTreeGrid(list_department, list_treeGrid, 0);
+            LoadTreeGrid(list_department, list_treeGrid, 0, checkedIds);
             return list_treeGrid;
         }
 
@@ -30,14 +31,17 @@ namespace SMSOA.Areas.Contacts.Models
         }
 
         /// <summary>
-        /// 将P_DepartmentInfo 对象转成treegrid节点
+        ///  将P_DepartmentInfo 对象转成treegrid节点
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">部门实体对象</param>
+        /// <param name="isChecked">该节点是否选中</param>
         /// <returns></returns>
-        public EasyUITreeGrid_Department ToNode(P_DepartmentInfo item)
+        public EasyUITreeGrid_Department ToNode(P_DepartmentInfo item,bool isChecked=false)
         {
             EasyUITreeGrid_Department node = new EasyUITreeGrid_Department()
             {
+                Checked=isChecked,
+                selected=isChecked,
                 DID = item.DID,
                 Area = item.Area,
                 DepartmentName = item.DepartmentName,
@@ -58,14 +62,16 @@ namespace SMSOA.Areas.Contacts.Models
             return node;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="list_department"></param>
-        /// <param name="list_treeGrid"></param>
-        /// <param name="pid"></param>
-        private static void LoadTreeGrid(List<P_DepartmentInfo> list_department, List<EasyUITreeGrid_Department> list_treeGrid, int pid)
+       /// <summary>
+       /// 将部门实体对象集合转换为TreeGrid
+       /// </summary>
+       /// <param name="list_department"></param>
+       /// <param name="list_treeGrid"></param>
+       /// <param name="pid"></param>
+       /// <param name="checkedIds">选中的部门实体对象的id数组</param>
+        private static void LoadTreeGrid(List<P_DepartmentInfo> list_department, List<EasyUITreeGrid_Department> list_treeGrid, int pid,params int[] checkedIds)
         {
+            
             foreach (var item in list_department)
             {
                 //如果权限父id=PDID
@@ -73,11 +79,19 @@ namespace SMSOA.Areas.Contacts.Models
                 {
                     Department_ViewModel model = new Department_ViewModel();
                     //根据当前的ActionInfo对象转换为Node节点
-                    EasyUITreeGrid_Department node = model.ToNode(item);
+                    EasyUITreeGrid_Department node;
+                    if (checkedIds != null && checkedIds.Length > 0)
+                    {
+                        node = model.ToNode(item,checkedIds.Contains(item.DID));
+                    }
+                    else
+                    {
+                        node = model.ToNode(item);
+                    }
                     //将该节点 加入到 树节点集合中
                     list_treeGrid.Add(node);
 
-                    LoadTreeGrid(list_department, node.children, node.DID);
+                    LoadTreeGrid(list_department, node.children, node.DID, checkedIds);
                     
                 }
             }

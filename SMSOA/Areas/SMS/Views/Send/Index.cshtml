@@ -30,9 +30,16 @@
 
         var groupColumns = [[
                  { field: 'GID', title: 'ID', width: 100, checkbox: true },
-                 { field: 'GroupName', title: '群组名称', width: 150 },
-                 { field: 'Operate', title: '是否禁用', width: 150 }
+                 { field: 'GroupName', title: '群组名称', width: 150 }
+                 //{ field: 'Operate', title: '是否禁用', width: 150 }
         ]]
+
+        var PersonColumns = [[
+                 { field: 'PID', title: 'ID', width: 50, checkbox: true },
+                 { field: 'PName', title: '用户名称', width: 100 },
+                 { field: 'PhoneNum', title: '电话号码', width: 250 }
+        ]]
+
         function formatItem_combobox(row) {
             var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
             return s;
@@ -50,8 +57,37 @@
 
         }
 
+        //加载全部部门下拉框
+        function loadComboTree_Department(missionId) {
+            //2.2 加载上级部门下拉框
+            $("#DepartmentName_combotree").combotree({
+                url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
+                //required: true,
+                method: 'get',
+                width: 210,
+                cascadeCheck: $(this).is(':checked')//选中子节点不会选中父节点
+                //formatter: formatItem_combobox
+            });
+            //选中子节点不会选中父节点
+            //$('#DepartmentName_combotree').combotree({ cascadeCheck: $(this).is(':checked') })
+
+        }
+
+        function loadDataGrid_Person(missionId) {
+            $("#persondatagrid").datagrid({
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,     //单选
+                fit: true,
+                url: '@ViewBag.GetPersonByMission?mid='+missionId,
+                showHeader: true,
+                loadMsg: '加载中……',
+                columns: PersonColumns,
+            })
+        }
+
         function loadComboGrid_Group(missionId) {
-            
+
             //加载全部短信任务种类
             $("#group_combogrid").combogrid({
                 url: '@ViewBag.GetGroupByMID_combogrid?mid='+missionId,
@@ -61,21 +97,19 @@
                 width:120,
                 panelWidth: 180,
                 panelHeight: 'auto',
-                multiple: false,@*设置为单选*@
-                formatter: formatItem_combobox,
+                multiple: true,@*设置为单选*@
                 columns: groupColumns,
-                onClickRow: test,//点击任务后显示该任务所拥有的群组以及部门
-                //onSelect: test,
+                //formatter: formatItem_combobox,
                 //获取数据成功后启动事件
-                onLoadSuccess: function () {
-                    var opts = $(this).combobox('options');
-                    var target = this;
-                    var values = $(target).combobox('getValues');
-                    $.map(values, function (value) {
-                        var el = opts.finder.getEl(target, value);
-                        el.find('input.combobox-checkbox')._propAttr('checked', true);
-                    })
-                }
+                //onLoadSuccess: function () {
+                //    var opts = $(this).combobox('options');
+                //    var target = this;
+                //    var values = $(target).combobox('getValues');
+                //    $.map(values, function (value) {
+                //        var el = opts.finder.getEl(target, value);
+                //        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                //    })
+                //}
             })
         }
 
@@ -95,6 +129,9 @@
                 columns: missionColumns,
                 onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
                     loadComboGrid_Group(rowData.SMID);
+                    loadComboTree_Department(rowData.SMID);
+                    //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
+                    loadDataGrid_Person(rowData.SMID);
                 },
                 //onSelect: test,
                 //获取数据成功后启动事件
@@ -117,14 +154,16 @@
 </head>
 <body>
     <div class="easyui-layout"  style="width:800px;height:600px;">
-        <div data-options="region:'north'" style="height:20px"></div>
-        <div data-options="region:'south',split:true" style="height:20px;"></div>
-        <div data-options="region:'east',split:true" title="East" style="width:200px;"></div>
+        @*<div data-options="region:'north'" style="height:20px"></div>
+        <div data-options="region:'south',split:true" style="height:20px;"></div>*@
+        <div data-options="region:'east',split:true" title="联系人列表" style="width:230px;">
+                <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
+        </div>
         <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
             <div class="easyui-panel" title="短信发送" style="" dataoptions="fit:true">
-                <div style="padding:10px 60px 20px 60px">
+                <div style="padding:10px 30px 20px 30px">
                     <form id="ff" method="post">
-                        <table cellpadding="5">
+                        <table cellpadding="4">
                             <tr>
                                 <td>短信任务:</td>
                                 <td>
@@ -134,22 +173,18 @@
                             <tr>
                                 <td>修改群组:</td>
                                 <td>
-                                    <select class="easyui-combobox" id="group_combogrid" name="group"></select>
+                                    <select class="easyui-combobox" id="group_combogrid"multiple name="group"></select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>修改部门:</td>
                                 <td>
-                                    <select class="easyui-combobox" name="language"><option value="ar">Arabic</option><option value="bg">Bulgarian</option></select>
+                                    <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:200px"multiple data-options=""></select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>短信内容:</td>
                                 <td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:200px;width:400px"></input></td>
-                            </tr>
-                            <tr>
-                                <td>Language:</td>
-
                             </tr>
                         </table>
                     </form>

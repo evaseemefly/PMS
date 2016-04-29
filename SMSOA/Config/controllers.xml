@@ -40,5 +40,6 @@
   <object type="SMSOA.Areas.SMS.Controllers.SendController, SMSOA" singleton="false" >
     <property name="smsMissionBLL" ref="smsmissionService" />
     <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
   </object>
 </objects>
