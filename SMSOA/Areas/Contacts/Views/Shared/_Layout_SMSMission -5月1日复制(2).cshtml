@@ -32,16 +32,10 @@
 
 
         //-----------------------2 列对象----------------------------
-        var myToolbar = [
-            {
-                iconCls: 'icon-search',
-                text: "为当前短信任务分配部门",
-                handler: AssignDepartment
-            }
-        ]
+
         var myColumns = [[
-        { field: 'SMID', title: 'ID', width: 100, hidden: true },
-        { field: 'SMSMissionName', title: '短信任务名称', width: 170 }
+{ field: 'SMID', title: 'ID', width: 100, hidden: true },
+{ field: 'SMSMissionName', title: '短信任务名称', width: 170 }
         ]]
 
 
@@ -61,35 +55,11 @@
             "IsPass": true,
             "Text": "启用",
         }];
-        //部门
-        var DepartmentColumns = [[
-            { field: 'DID', checkbox: true },
-     
-            { field: 'DepartmentName', title: '部门名称', width: 250 },
-            {
-                field: 'Text', title: '是否禁用', width: 150,
-                formatter: function (value, row) {
-                    return row.Text;
-                },
-                editor: {
-                    type: 'combobox',
-                    options: {
-                        valueField: 'IsPass',
-                        textField: 'Text',
-                        panelHeight: 'auto',
-                        data: IsPassColumns,
-                        required: true,
-                        editable: false
-                    }
-                }
-            }
-        ]]
 
-        //群组
         var GroupColumns = [[
-         { field: 'ck', checkbox: true },
-         { field: 'GroupName', title: '群组名称', width: 100 },
-         { field: 'Remark', title: '备注', width: 100 },
+         {field: 'ck', checkbox: true},
+         {field: 'GroupName', title: '群组名称', width: 100},
+         {field: 'Remark', title: '备注', width: 100},
          {
              field: 'IsPass', title: '是否禁用', width: 200,
              //formatter: function (value) {
@@ -114,59 +84,54 @@
              }
          }
         ]]
+
+        //function IsPassFormatter(value, row, index) {
+           
+        //        if (row.IsPass == "否") {
+        //            return "<select class='easyui-combox',id='IsPassEx', onSelect='Select()'><option value='1' >是</option><option value='0'selected='selected'>否</option></select>";
+
+        //        }
+        //        return "<select class='easyui-combox',id='IsPassEx',onSelect='Select()'><option value='1'selected='selected'>是</option><option value='0'>否</option></select>";
+
+        //}
         //-----------------3 增删改操作--------------------
-        //分配部门按钮的方法
-        function AssignDepartment() {
-            $("#showDepartmentWindow").window('open');
-        }
+
         function Accept() {
             $('#group').combogrid('grid').datagrid('acceptChanges');
-            //获取选中的部门
-            var d_rows = $("#department").treegrid('getSelections');
-            //获取选中的群组
-            var g_rows = $('#group').combogrid('grid').datagrid('getChecked');
-
+            
+            var rows = $('#group').combogrid('grid').datagrid('getChecked');
             var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
             if (rows_SMSMission == null) {
 
-                messagerShowOnCenter("提示", "未选择短信任务");
+                messagerShowOnCenter("提示","未选择短信任务");
                 return;
             }
-
+                
             var SMSMissionID = rows_SMSMission.SMID;
             var GIDs = "";
-            var G_IsPasses = "";
-            for (var i = 0; i < g_rows.length; i++) {
-                GIDs = GIDs + g_rows[i].GID + ",";
-                G_IsPasses = G_IsPasses + g_rows[i].IsPass + ",";
-            }
-            for (var i = 0; i < d_rows.length; i++) {
-                DIDs = DIDs + d_rows[i].DID + ",";
-                D_IsPasses = D_IsPasses + d_rows[i].IsPass + ",";
+            var IsPasses = "";
+            for (var i = 0; i < rows.length; i++) {
+                GIDs = GIDs + rows[i].GID + ",";
+                IsPasses = IsPasses + rows[i].IsPass + ",";
             }
 
-            if (GIDs == "" & DIDs == "") {
+            if (GIDs == "" & IsPasses=="") {
                 messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
 
                 return;
             }
-            //去掉结尾的逗号
+
+            
             GIDs = GIDs.substr(0, GIDs.length - 1);
-
-            G_IsPasses = G_IsPasses.substr(0, G_IsPasses.length - 1);
-
-            DIDs = DIDs.substr(0, DIDs.length - 1);
-
-            D_IsPasses = D_IsPasses.substr(0, D_IsPasses.length - 1);
+          
+            IsPasses = IsPasses.substr(0, IsPasses.length - 1);
 
             //获取选中的任务
 
             var result = confirm_center({
                 'SMSMissionID': SMSMissionID,
                 'groupIds': GIDs,
-                'g_isPasses': G_IsPasses,
-                'departmentIds': DIDs,
-                'd_isPasses': D_IsPasses
+                'isPasses': IsPasses,
             });
 
 
@@ -318,8 +283,7 @@
             strId = rows[0].SMID;
             url = url + "?smid=" + strId;
             loadCombogrid_Group(strId, GroupColumns);
-            loadTreegrid_Department(strId, DepartmentColumns);
-            //loadTreegrid_Department(strId, DepartmentColums);
+           
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
                 //width: '488px',
@@ -336,80 +300,10 @@
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 20,   //设置 页容量为 5
                 pageList: [20, 40, 60],//设置 页容量下拉框
-                columns: myPersonColumns,
-                toolbar: myToolbar
+                columns: myPersonColumns
             });
         }
-        function loadTreegrid_Department(smid, myDepartmentColumns) {
-            $('#department').treegrid({
-                rownumbers: true,
-                idField: 'DID',
-                treeField: 'DepartmentName',
-                animate: true,
-                width: '400px',
-                height: 'auto',
-                fitColumns: true,
-                showFooter: true,
-                singleSelect: false,
-                collapsible:true,
-                url: '@ViewBag.GetDepartment_treegrid?smid=' + smid,
-                logMsg: '加载中……',
-                columns: myDepartmentColumns,
-                onBeforeEdit: function (row) {
-                    $('#department').treegrid('refresh', row.DID);
-                },
-                onAfterEdit: function (index, row) {
-                    $('#department').treegrid('refreshRow', row.DID);
-                },
-                onCancelEdit: function (index, row) {
-                    $('#department').treegrid('refreshRow', row.DID);
-                },
-                onEndEdit: function (index, row) {
-                    var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
-                    row.IsPass = $(ed.target).combobox('getText');
-                },
-                onCheck: function (row) {
-                    $('#department').treegrid('beginEdit', row.DID);
-                },
-                onUncheck: function (row) {
-                    $('#department').treegrid('cancelEdit', row.DID);
-                },
-                onLoadSuccess: function (row,data) {
-                    if (data) {
-                        //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
-                        getChecked_treegrid(data)
-                        messagerShowOnCenter("提示", data);
-                    }
-                }
-            });
-        }
-        //递归，遍历每一个子节点
-        function getChecked_treegrid(data) {
-            if (data.length > 0) {
-                $.each(data, function (i, item) {
-                    if (item.checked) {
-                        $('#department').treegrid('select', item.DID);
-                    }
-                })
-                $.each(data, function (i, item) {
-                    if (item.children.length >0) {
-                        getChecked_treegrid(item.children)
-                    }
-                })
-            }
-        }
-        //var editingId;
-        //function edit() {
-        //    if (editingId != undefined) {
-        //        $('#department').treegrid('select', editingId);
-        //        return;
-        //    }
-        //    var row = $('#department').treegrid('getSelected');
-        //    if (row) {
-        //        editingId = row.DID
-        //        $('#department').treegrid('beginEdit', editingId);
-        //    }
-        //}
+
         //-------------------6 页面加载首先运行-----------------
         //根据smid加载对应的群组并添加至combogrid中
         function loadCombogrid_Group(smid, myGroupColumns) {
@@ -436,14 +330,14 @@
                     row.editing = false;
                     $("#group").combogrid('grid').datagrid('refreshRow', index);
                 },
-                onEndEdit: function (index, row) {
+                onEndEdit:function(index,row){
                     var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: 'IsPass' });
                     row.IsPass = $(ed.target).combobox('getText');
                 },
                 onCheck: function (index) {
                     $('#group').combogrid('grid').datagrid('beginEdit', index);
                 },
-                onUncheck: function (index) {
+                onUncheck:function(index){
                     $('#group').combogrid('grid').datagrid('cancelEdit', index);
                 },
                 onLoadSuccess: function (data) {
@@ -458,22 +352,109 @@
                         })
                     }
                 }
-            })
+            })  
         }
 
+        //var editIndex = undefined;
+        //function endEditing() {
+        //    if (editIndex == undefined) { return true }
+        //    if ($('#group').combogrid('grid').datagrid('validateRow', editIndex)) {
+        //        var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: editIndex, field: 'Id' });
+        //        var IsPass = $(ed.target).combobox('getText');
+        //        $('#group').combogrid('grid').datagrid('getRows')[editIndex]['IsPass'] = IsPass;
+        //        $('#group').combogrid('grid').datagrid('endEdit', editIndex);
+        //        editIndex = undefined;
+        //        return true;
+        //    } else {
+        //        return false;
+        //    }
+        //}
+        //function onCheck(index,rowData) {
+        //    if (editIndex != index) {
+        //        if (endEditing()) {
+        //            $('#group').combogrid('grid').datagrid('beginEdit', index);
+                        
+        //            var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: "Id" });
+        //            if (ed) {
+        //                 $(ed.target).focus();
+        //            }
+        //            editIndex = index;
+        //        } else {
+        //            $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+        //        }
+        //    }
+        //}
+        //function reject() {
+        //    $('#group').combogrid('grid').datagrid('rejectChanges');
+        //    editIndex = undefined;
+        //}
+        //function accept() {
+        //    if (endEditing()) {
+        //        $('#group').combogrid('grid').datagrid('acceptChanges');
+        //    }
+        //}
 
+        //function updateActions(index) {
+        //    $('#group').combogrid('grid').datagrid('updateRow', {
+        //        index: index,
+        //        row: {}
+        //    });
+        //}
+        //function getRowIndex(target) {
+        //    var tr = $(target).closest('tr.datagrid-row');
+        //    return parseInt(tr.attr('datagrid-row-index'));
+        //}
+        //function editrow(target) {
+        //    $('#group').combogrid('grid').datagrid('beginEdit', getRowIndex(target));
+        //}
+        //function saverow(target) {
+        //    $('#group').combogrid('grid').datagrid('endEdit', getRowIndex(target));
+        //}
+        //function cancelrow(target) {
+        //    $('#group').combogrid('grid').datagrid('cancelEdit', getRowIndex(target));
+        //}
+        //var editIndex = undefined;
+        //var beginEditing = function (rowIndex, field, value) {
+        //    if (field != "GroupName")
+        //        return;
+
+        //    if (rowIndex != editIndex) {
+        //        if (endEditing()) {
+        //            $('#group').combogrid('grid').datagrid('beginEdit', rowIndex);
+        //            editIndex = rowIndex;
+
+        //            var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: rowIndex, field: 'GroupName' });
+        //            $(ed.target).focus().bind('blur', function () {
+        //                endEditing();
+        //            });
+        //        } else {
+        //            $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+        //        }
+        //    }
+        //}
+        //var endEditing = function () {
+        //    if (editIndex == undefined) { return true }
+        //    if ($('#group').combogrid('grid').datagrid('validateRow', editIndex)) {
+        //        var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: editIndex, field: 'GroupName' });
+        //        var number = $(ed.target).numberbox('getValue');
+        //        $('#group').combogrid('grid').datagrid('getRows')[editIndex]['GroupName'] = number;
+        //        $('#group').combogrid('grid').datagrid('endEdit', editIndex);
+        //        $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+        //        editIndex = undefined;
+        //        return true;
+        //    } else {
+        //        return false;
+        //    }
+        //}
         $(function () {
 
             $("#editSMSMissionWindow").window('close');
             $("#editPersonWindow").window('close');
-            $("#showDepartmentWindow").window('close');
             loadDataGrid('@ViewBag.GetInfo', myColumns);
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#SMSMissiondatagrid").datagrid({
                 onClickRow: function (index, field, value) {
                     $('#group').combogrid('clear');
-                    //$('#department').treegrid('loadData', []);
-                    $('#department').treegrid('unselectAll');
                     loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
                 }
             });
@@ -489,23 +470,15 @@
                     为当前任务分配群组:
                     <select class="easyui-combogrid" id="group" panelHeight="auto" style="width:30%"
                             data-options=""></select>
+                为当前任务分配部门:
+                <select class="easyui-combotree" id="department" panelHeight="auto" style="width:30%"
+                        data-options=""></select>
 
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="Accept()">保存</a>
                <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
             </div>
                 @RenderSection("showWindow")  
-            <div class="easyui-window" id="showDepartmentWindow" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
-                <div class="easyui-layout" data-options="fit:true" style="border:0px">
-                    @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
-                    <div data-options="region:'center'" style="border:0px">
-                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="edit()">Edit</a>
-                            <select class="easyui-treegrid" id="department" data-options="fit:true"></select>
-                    </div>
-                </div>
-                @* scrolling 不显示滚动条*@
-
-            </div>
-               </div>
+        </div>
     </div>
 </body>
 </html>

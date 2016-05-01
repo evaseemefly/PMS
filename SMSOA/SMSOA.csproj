@@ -322,6 +322,8 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 复制.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission -5月1日复制%282%29.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />

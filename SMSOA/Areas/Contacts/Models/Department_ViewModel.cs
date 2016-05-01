@@ -21,6 +21,8 @@ namespace SMSOA.Areas.Contacts.Models
             return list_treeGrid;
         }
 
+       
+
         public static List<EasyUIComboTree_Department> ToEasyUIComboTree(List<P_DepartmentInfo> list_department)
         {
             List<EasyUIComboTree_Department> list_comboTree = new List<EasyUIComboTree_Department>();
@@ -38,6 +40,10 @@ namespace SMSOA.Areas.Contacts.Models
         {
             EasyUITreeGrid_Department node = new EasyUITreeGrid_Department()
             {
+                
+                Checked = item.Checked,
+                IsPass = item.IsPass,
+                Text = item.Text,
                 DID = item.DID,
                 Area = item.Area,
                 DepartmentName = item.DepartmentName,

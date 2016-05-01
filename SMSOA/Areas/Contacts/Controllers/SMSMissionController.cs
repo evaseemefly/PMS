@@ -83,6 +83,18 @@ namespace SMSOA.Areas.Contacts.Controllers
                 return "/Contacts/SMSMission/DoAddSMSMissionInfo";
             }
         }
+
+        ///<sumarry>
+        ///获取相应部门的url地址
+        ///</sumarry>
+        private string getDepartment_url
+        {
+            get
+            {
+                return "/Contacts/SMSMission/GetDepartment2Treegrid";
+            }
+        }
+
         ///<sumarry>
         ///获取相应集合的url地址
         ///</sumarry>
@@ -91,16 +103,6 @@ namespace SMSOA.Areas.Contacts.Controllers
             get
             {
                 return "/Contacts/SMSMission/GetGroup2Combogrid";
-            }
-        }
-        ///<sumarry>
-        ///获取相应组织机构的url地址
-        ///</sumarry>
-        private string getDepartment_url
-        {
-            get
-            {
-                return "/Contacts/Department/GetGroupBySMSMission";
             }
         }
 
@@ -140,7 +142,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.ShowAdd = showAdd_url;
             ViewBag.GetInfo = getInfo_url;
             ViewBag.GetGroup_combogrid = getGroup_url;
-            ViewBag.GetDepartment = getDepartment_url;
+            ViewBag.GetDepartment_treegrid = getDepartment_url;
             ViewBag.GetPerson = getPerson_url;
             ViewBag.DoAssignGroup2SMSMission = doAssignGroup2SMSMission_url;
             return View();
@@ -383,6 +385,58 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         }
         ///<summary>
+        ///得到选中任务所包含的群组,并转换为Combogrid
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult GetDepartment2Treegrid()
+        {
+            int smid = int.Parse(Request["smid"]);
+            var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+
+            //1.获取当前任务已有的部门(未禁用)
+            bool isPass = true;
+            var list_departments = GetDepartmemts(isPass, SMSMission);
+            //2.获取当前任务已有的部门(已禁用)
+            var list_department_isNotPass = GetDepartmemts(isPass = false, SMSMission);
+            //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
+
+            //2.获取所有的部门
+            var list_ALLDepartment = departmentBLL.GetListBy(p => p.isDel == false).ToList();
+            List<EasyUITreeGrid_Department> list_EasyUITreeGrid_Department = new List<EasyUITreeGrid_Department>();
+
+            //3.将已有的部门从所有部门中剔除，已拥有的部门（未禁用）排在前面
+            foreach (var item in list_departments)
+            {
+                item.Checked = true;
+                item.selected = true;
+                item.IsPass = true;
+                item.Text = "启用";
+                list_ALLDepartment = list_ALLDepartment.Where(p => p.DID != item.DID).ToList();
+            }
+            //4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
+            foreach (var item in list_department_isNotPass)
+            {
+                item.Checked = true;
+                item.selected = true;
+                list_ALLDepartment = list_ALLDepartment.Where(p => p.DID != item.DID).ToList();
+            }
+            //5.未拥有的群组
+            foreach (var item in list_ALLDepartment)
+            {
+                item.IsPass = true;
+                item.Text = "启用";
+            }
+
+            list_departments.AddRange(list_department_isNotPass);
+            list_departments.AddRange(list_ALLDepartment);
+            List<Models.EasyUITreeGrid_Department> list_treegrid= Models.Department_ViewModel.ToEasyUITreeGrid(list_departments);
+            string temp = Common.SerializerHelper.SerializerToString(list_treegrid);
+            temp = temp.Replace("Checked", "checked");
+            return Content(temp);
+        }
+
+
+        ///<summary>
         ///根据选中任务获得群组
         ///</summary>
         ///<returns></returns>
@@ -427,46 +481,81 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///<returns></returns>
         public ActionResult DoAssignGroup2SMSMission(Models.ViewModel_SMSMissionDepartmentGroup model)
         {
-            bool isOk = true;
+            bool isGroupOk = true;
+            bool isDepartmentOk = true;
             if (model.SMSMissionID != null)
             {
-
-                //1.得到所选的任务
-                var smid = int.Parse(model.SMSMissionID);
-                var SMSMission = smsmissionBLL.GetListBy(a=>a.SMID == smid).FirstOrDefault();
-                //2.分配群组
-                List<int> list_groupIDs = new List<int>();
-                string[] groupIDs = model.groupIds.Split(',');
-                List<bool> list_isPass = new List<bool>();
-                string[] isPasses = model.isPasses.Split(',');
-                
-                foreach (var item in isPasses)
+                    //1.得到所选的任务
+                    var smid = int.Parse(model.SMSMissionID);
+                    var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+                if (model.groupIds != "")
                 {
-                    if (item.Equals("启用"))
+                    //2.分配群组
+                    List<int> list_groupIDs = new List<int>();
+                    string[] groupIDs = model.groupIds.Split(',');
+                    List<bool> list_isPass = new List<bool>();
+                    string[] g_isPasses = model.g_isPasses.Split(',');
+
+                    foreach (var item in g_isPasses)
                     {
-                        list_isPass.Add(true);
+                        if (item.Equals("启用"))
+                        {
+                            list_isPass.Add(true);
+                        }
+                        else if (item.Equals("禁用"))
+                        {
+                            list_isPass.Add(false);
+                        }
                     }
-                    else if (item.Equals("禁用"))
+                    groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
+                    var result = this.smsmissionBLL.SetSMSMission4Group(smid, list_groupIDs, list_isPass);
+
+                    if (result)
                     {
-                        list_isPass.Add(false);
+                        isGroupOk = true;
+                    }
+                    else
+                    {
+                        isGroupOk = false;
                     }
                 }
-                groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
-                var result = this.smsmissionBLL.SetSMSMission4Group(smid,list_groupIDs,list_isPass);
+                if(model.departmentIds != "")
+                {
+                    //分配部门
+                    List<int> list_departmentIDs = new List<int>();
+                    string[] departmentIDs = model.departmentIds.Split(',');
+                    List<bool> list_isPass = new List<bool>();
+                    string[] g_isPasses = model.g_isPasses.Split(',');
 
-                if (result)
-                {
-                    isOk = true;
-                }
-                else
-                {
-                    isOk = false;
+                    foreach (var item in g_isPasses)
+                    {
+                        if (item.Equals("启用"))
+                        {
+                            list_isPass.Add(true);
+                        }
+                        else if (item.Equals("禁用"))
+                        {
+                            list_isPass.Add(false);
+                        }
+                    }
+                    departmentIDs.ToList().ForEach(a => list_departmentIDs.Add(int.Parse(a)));
+                    var result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_isPass);
+
+
+                    if (result)
+                    {
+                        isDepartmentOk = true;
+                    }
+                    else
+                    {
+                        isDepartmentOk = false;
+                    }
                 }
 
 
             }
 
-            if (isOk)
+            if (isGroupOk && isDepartmentOk )
             {
                 return Content("ok");
             }

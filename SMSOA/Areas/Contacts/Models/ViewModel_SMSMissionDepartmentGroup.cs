@@ -11,6 +11,9 @@ namespace SMSOA.Areas.Contacts.Models
 
         public string groupIds { get; set; }
 
-        public string isPasses { get; set; }
+        public string g_isPasses { get; set; }
+        public string departmentIds { get; set; }
+
+        public string d_isPasses { get; set; }
     }
 }
