@@ -23,6 +23,15 @@ namespace PMS.IBLL
         /// <returns></returns>
         bool DelSoftRoleInfos(List<int> list_ids);
 
+
+        /// <summary>
+        /// 将传入的部门id集合赋给传入的Id对应的任务对象
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <param name="list_groupIDs"></param>
+        /// <param name="list_isPass"></param>
+        /// <returns></returns>
+        bool SetSMSMission4Group(int smid, List<int> list_groupIDs, List<bool> list_isPass);
     }
 
 }

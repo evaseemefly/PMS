@@ -210,6 +210,7 @@
     <Compile Include="Areas\Contacts\Models\EasyUITreeGrid_Department.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
+    <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -316,10 +317,12 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index - 4月22日晚-分部视图已经完成备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />    <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission.cshtml" />
-    <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制.cshtml" />    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
     <Content Include="Scripts\EasyUI\locale\easyui-lang-zh_CN.js" />

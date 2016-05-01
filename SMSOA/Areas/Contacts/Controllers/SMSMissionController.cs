@@ -104,6 +104,17 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
 
+        ///<summary>
+        ///为当前选中任务分配群组的url地址
+        ///</summary>
+        ///<returns></returns>
+        private string doAssignGroup2SMSMission_url
+        {
+            get
+            {
+                return "/Contacts/SMSMission/DoAssignGroup2SMSMission";
+            }
+        }
 
         /// <summary>
         /// 回调函数——执行修改url地址
@@ -131,7 +142,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetGroup_combogrid = getGroup_url;
             ViewBag.GetDepartment = getDepartment_url;
             ViewBag.GetPerson = getPerson_url;
-            
+            ViewBag.DoAssignGroup2SMSMission = doAssignGroup2SMSMission_url;
             return View();
         }
 
@@ -322,14 +333,16 @@ namespace SMSOA.Areas.Contacts.Controllers
             //3.将已有的群组从所有群组中剔除，已拥有的群组（未禁用）排在前面
             foreach (var item in list_group)
             {
-                item.Checked = true;
+                
                 EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
                 {
-                    Checked = item.Checked,
+                    selected = true,
+                    Checked = true,
                     GID = item.GID,
                     GroupName = item.GroupName,
                     Remark = item.Remark,
-                    IsPass = "否"
+                    IsPass = true,
+                    Text = "启用"
                 };
                 list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
                 list_EasyUICombogrid_Group.Add(combogrid_Group);
@@ -337,10 +350,11 @@ namespace SMSOA.Areas.Contacts.Controllers
             //4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
             foreach (var item in list_group_isNotPass)
             {
-                item.Checked = true;
+                
                 EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
                 {
-                    Checked = item.Checked,
+                    selected = true,
+                    Checked = true,
                     GID = item.GID,
                     GroupName = item.GroupName,
                     Remark = item.Remark
@@ -348,16 +362,16 @@ namespace SMSOA.Areas.Contacts.Controllers
                 list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
                 list_EasyUICombogrid_Group.Add(combogrid_Group);
             }
-            //5.为拥有的群组
+            //5.未拥有的群组
             foreach (var item in list_ALLGroup)
             {
                 EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
                 {
-                    Checked = item.Checked,
                     GID = item.GID,
                     GroupName = item.GroupName,
                     Remark = item.Remark,
-                    IsPass = "否"
+                    IsPass = true,
+                    Text = "启用"
                 };
                 list_EasyUICombogrid_Group.Add(combogrid_Group);
             }
@@ -404,6 +418,66 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
             return null;
         }
+
+
+
+        ///<summary>
+        ///为所选的任务分配群组
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult DoAssignGroup2SMSMission(Models.ViewModel_SMSMissionDepartmentGroup model)
+        {
+            bool isOk = true;
+            if (model.SMSMissionID != null)
+            {
+
+                //1.得到所选的任务
+                var smid = int.Parse(model.SMSMissionID);
+                var SMSMission = smsmissionBLL.GetListBy(a=>a.SMID == smid).FirstOrDefault();
+                //2.分配群组
+                List<int> list_groupIDs = new List<int>();
+                string[] groupIDs = model.groupIds.Split(',');
+                List<bool> list_isPass = new List<bool>();
+                string[] isPasses = model.isPasses.Split(',');
+                
+                foreach (var item in isPasses)
+                {
+                    if (item.Equals("启用"))
+                    {
+                        list_isPass.Add(true);
+                    }
+                    else if (item.Equals("禁用"))
+                    {
+                        list_isPass.Add(false);
+                    }
+                }
+                groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
+                var result = this.smsmissionBLL.SetSMSMission4Group(smid,list_groupIDs,list_isPass);
+
+                if (result)
+                {
+                    isOk = true;
+                }
+                else
+                {
+                    isOk = false;
+                }
+
+
+            }
+
+            if (isOk)
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("error");
+            }
+
+        }
+
+
 
         /// <summary>
         /// 执行软删除

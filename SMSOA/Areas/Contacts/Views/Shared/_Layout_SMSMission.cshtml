@@ -47,21 +47,21 @@
          { field: 'Remark', title: '备注', width: 120 }
         ]]
 
-
-        var IsPass = [{
-            "IsPass": "否",
-            "Id": 0,
+        //是否禁用
+        var IsPassColumns = [{
+            "IsPass": false,
+            "Text": "禁用",
         }, {
-            "IsPass": "是",
-            "Id": 1,
+            "IsPass": true,
+            "Text": "启用",
         }];
 
         var GroupColumns = [[
-         { field: 'checked', checkbox: true },
+         {field: 'ck', checkbox: true},
          {field: 'GroupName', title: '群组名称', width: 100},
          {field: 'Remark', title: '备注', width: 100},
          {
-             field: 'Id', title: '是否禁用', width: 100,
+             field: 'IsPass', title: '是否禁用', width: 200,
              //formatter: function (value) {
              //    for (var i = 0; i < IsPass.length; i++) {
              //        if (IsPass[i].value == value) return IsPass[i].name;
@@ -69,15 +69,15 @@
              //    return value;
              //},
              formatter: function (value, row) {
-                 return row.IsPass;
+                 return row.Text;
              },
              editor: {
                  type: 'combobox',
                  options: {
-                     valueField:'Id',
-                     textField: 'IsPass',
+                     valueField: 'IsPass',
+                     textField: 'Text',
                      panelHeight: 'auto',
-                     data: IsPass,
+                     data: IsPassColumns,
                      required: true,
                      editable: false
                  }
@@ -85,8 +85,57 @@
          }
         ]]
 
+        //function IsPassFormatter(value, row, index) {
+           
+        //        if (row.IsPass == "否") {
+        //            return "<select class='easyui-combox',id='IsPassEx', onSelect='Select()'><option value='1' >是</option><option value='0'selected='selected'>否</option></select>";
+
+        //        }
+        //        return "<select class='easyui-combox',id='IsPassEx',onSelect='Select()'><option value='1'selected='selected'>是</option><option value='0'>否</option></select>";
+
+        //}
         //-----------------3 增删改操作--------------------
 
+        function Accept() {
+            $('#group').combogrid('grid').datagrid('acceptChanges');
+            
+            var rows = $('#group').combogrid('grid').datagrid('getChecked');
+            var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
+            if (rows_SMSMission == null) {
+
+                messagerShowOnCenter("提示","未选择短信任务");
+                return;
+            }
+                
+            var SMSMissionID = rows_SMSMission.SMID;
+            var GIDs = "";
+            var IsPasses = "";
+            for (var i = 0; i < rows.length; i++) {
+                GIDs = GIDs + rows[i].GID + ",";
+                IsPasses = IsPasses + rows[i].IsPass + ",";
+            }
+
+            if (GIDs == "" & IsPasses=="") {
+                messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
+
+                return;
+            }
+
+            
+            GIDs = GIDs.substr(0, GIDs.length - 1);
+          
+            IsPasses = IsPasses.substr(0, IsPasses.length - 1);
+
+            //获取选中的任务
+
+            var result = confirm_center({
+                'SMSMissionID': SMSMissionID,
+                'groupIds': GIDs,
+                'isPasses': IsPasses,
+            });
+
+
+        }
 
         //为用户保存选中的分组及部门
         function SavePerson() {
@@ -166,7 +215,7 @@
                     //alert("执行提交操作");
                     $.ajax({
                         type: "POST",
-                        url: "@ViewBag.PersonAssignProperty",
+                        url: "@ViewBag.DoAssignGroup2SMSMission",
                         //dataType: "json",//注意若使用ajax提交时若调用回调函数时，若指定数据类型为json需严格遵守格式规定
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(obj),
@@ -234,6 +283,7 @@
             strId = rows[0].SMID;
             url = url + "?smid=" + strId;
             loadCombogrid_Group(strId, GroupColumns);
+           
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
                 //width: '488px',
@@ -265,43 +315,84 @@
                 textField: 'GroupName',
                 method: 'get',
                 panelheight: 'auto',
-                fitColumns: true,
-                showHeader: true,
                 loadMsg: '加载中……',
-                onClickCell: onClickCell,
                 columns: myGroupColumns,
-                fitColumns: true
+                fitColumns: true,
+                onBeforeEdit: function (index, row) {
+                    row.editing = true;
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
+                },
+                onAfterEdit: function (index, row) {
+                    row.editing = false;
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
+                },
+                onCancelEdit: function (index, row) {
+                    row.editing = false;
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
+                },
+                onEndEdit:function(index,row){
+                    var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: 'IsPass' });
+                    row.IsPass = $(ed.target).combobox('getText');
+                },
+                onCheck: function (index) {
+                    $('#group').combogrid('grid').datagrid('beginEdit', index);
+                },
+                onUncheck:function(index){
+                    $('#group').combogrid('grid').datagrid('cancelEdit', index);
+                },
+                onLoadSuccess: function (data) {
+                    if (data) {
+                        //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
+                        $.each(data.rows, function (index, item) {
+                            if (item.checked) {
+
+                                $('#group').combogrid('grid').datagrid('checkRow', index);
+
+                            }
+                        })
+                    }
+                }
             })  
         }
-        var editIndex = undefined;
-        function endEditing() {
-            if (editIndex == undefined) { return true }
-            if ($('#group').combogrid('grid').datagrid('validateRow', editIndex)) {
-                var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: editIndex, field: 'Id' });
-                var IsPass = $(ed.target).combobox('getText');
-                $('#group').combogrid('grid').datagrid('getRows')[editIndex]['IsPass'] = IsPass;
-                $('#group').combogrid('grid').datagrid('endEdit', editIndex);
-                editIndex = undefined;
-                return true;
-            } else {
-                return false;
-            }
-        }
-        function onClickCell(index, field) {
-            if (editIndex != index) {
-                if (endEditing()) {
-                    $('#group').combogrid('grid').datagrid('selectRow', index)
-							.datagrid('beginEdit', index);
-                    var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: field });
-                    if (ed) {
-                         $(ed.target).focus();
-                    }
-                    editIndex = index;
-                } else {
-                    $('#group').combogrid('grid').datagrid('selectRow', editIndex);
-                }
-            }
-        }
+
+        //var editIndex = undefined;
+        //function endEditing() {
+        //    if (editIndex == undefined) { return true }
+        //    if ($('#group').combogrid('grid').datagrid('validateRow', editIndex)) {
+        //        var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: editIndex, field: 'Id' });
+        //        var IsPass = $(ed.target).combobox('getText');
+        //        $('#group').combogrid('grid').datagrid('getRows')[editIndex]['IsPass'] = IsPass;
+        //        $('#group').combogrid('grid').datagrid('endEdit', editIndex);
+        //        editIndex = undefined;
+        //        return true;
+        //    } else {
+        //        return false;
+        //    }
+        //}
+        //function onCheck(index,rowData) {
+        //    if (editIndex != index) {
+        //        if (endEditing()) {
+        //            $('#group').combogrid('grid').datagrid('beginEdit', index);
+                        
+        //            var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: "Id" });
+        //            if (ed) {
+        //                 $(ed.target).focus();
+        //            }
+        //            editIndex = index;
+        //        } else {
+        //            $('#group').combogrid('grid').datagrid('selectRow', editIndex);
+        //        }
+        //    }
+        //}
+        //function reject() {
+        //    $('#group').combogrid('grid').datagrid('rejectChanges');
+        //    editIndex = undefined;
+        //}
+        //function accept() {
+        //    if (endEditing()) {
+        //        $('#group').combogrid('grid').datagrid('acceptChanges');
+        //    }
+        //}
 
         //function updateActions(index) {
         //    $('#group').combogrid('grid').datagrid('updateRow', {
@@ -363,8 +454,7 @@
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#SMSMissiondatagrid").datagrid({
                 onClickRow: function (index, field, value) {
-                    $("#group").combogrid('grid').datagrid('rejectChanges');
-                    editIndex = undefined;
+                    $('#group').combogrid('clear');
                     loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
                 }
             });
@@ -373,20 +463,22 @@
 </head>
 <body style="overflow:hidden;">
     @RenderBody()
-    <div class="easyui-layout" style="width:100%;height:500px;border:dashed">
+    <div class="easyui-layout" style="width:100%;height:500px;">
         @RenderSection("westdiv")
         <div data-options="region:'center'" title="当前任务内联系人列表" style="width:70%">
             <div id="tb" style="padding:2px 5px;">
                     为当前任务分配群组:
                     <select class="easyui-combogrid" id="group" panelHeight="auto" style="width:30%"
                             data-options=""></select>
-                    选择所属部门
-                <select class="easyui-combogrid" id="department" panelHeight="auto" style="width:30%"
+                为当前任务分配部门:
+                <select class="easyui-combotree" id="department" panelHeight="auto" style="width:30%"
                         data-options=""></select>
-                    
-            </div>
+
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="Accept()">保存</a>
                <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
             </div>
+                @RenderSection("showWindow")  
+        </div>
     </div>
 </body>
 </html>
