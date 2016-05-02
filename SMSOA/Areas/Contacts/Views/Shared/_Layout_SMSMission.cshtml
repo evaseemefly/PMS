@@ -67,7 +67,7 @@
      
             { field: 'DepartmentName', title: '部门名称', width: 250 },
             {
-                field: 'Text', title: '是否禁用', width: 150,
+                field: 'IsPass', title: '是否禁用', width: 150,
                 formatter: function (value, row) {
                     return row.Text;
                 },
@@ -120,9 +120,14 @@
             $("#showDepartmentWindow").window('open');
         }
         function Accept() {
+
             $('#group').combogrid('grid').datagrid('acceptChanges');
             //获取选中的部门
             var d_rows = $("#department").treegrid('getSelections');
+            
+            $.each(d_rows, function (i, item) {
+                $('#department').treegrid('endEdit', item.DID);
+            })
             //获取选中的群组
             var g_rows = $('#group').combogrid('grid').datagrid('getChecked');
 
@@ -136,6 +141,10 @@
             var SMSMissionID = rows_SMSMission.SMID;
             var GIDs = "";
             var G_IsPasses = "";
+            var DIDs = "";
+            var D_IsPasses = "";
+
+
             for (var i = 0; i < g_rows.length; i++) {
                 GIDs = GIDs + g_rows[i].GID + ",";
                 G_IsPasses = G_IsPasses + g_rows[i].IsPass + ",";
@@ -355,19 +364,23 @@
                 url: '@ViewBag.GetDepartment_treegrid?smid=' + smid,
                 logMsg: '加载中……',
                 columns: myDepartmentColumns,
-                onBeforeEdit: function (row) {
-                    $('#department').treegrid('refresh', row.DID);
-                },
-                onAfterEdit: function (index, row) {
-                    $('#department').treegrid('refreshRow', row.DID);
-                },
-                onCancelEdit: function (index, row) {
-                    $('#department').treegrid('refreshRow', row.DID);
-                },
-                onEndEdit: function (index, row) {
-                    var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
-                    row.IsPass = $(ed.target).combobox('getText');
-                },
+                //onBeforeEdit: function (row) {
+                //    alert("onBeforeEdit");
+                //    //$('#department').treegrid('refresh', row.DID);
+                //},
+                //onAfterEdit: function (index, row) {
+                //    alert("onAfterEdit");
+                //    //$('#department').treegrid('refresh', row.DID);
+                //},
+                //onCancelEdit: function (index, row) {
+                //    alert("onCancelEdit");
+                //    //$('#department').treegrid('refresh', row.DID);
+                //},
+                //onEndEdit: function (index, row) {
+                //    alert("onEndEdit");
+                //    //var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
+                //    //row.IsPass = $(ed.target).combobox('getText');
+                //},
                 onCheck: function (row) {
                     $('#department').treegrid('beginEdit', row.DID);
                 },
@@ -378,7 +391,6 @@
                     if (data) {
                         //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
                         getChecked_treegrid(data)
-                        messagerShowOnCenter("提示", data);
                     }
                 }
             });
@@ -498,8 +510,11 @@
                 <div class="easyui-layout" data-options="fit:true" style="border:0px">
                     @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
                     <div data-options="region:'center'" style="border:0px">
-                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="edit()">Edit</a>
                             <select class="easyui-treegrid" id="department" data-options="fit:true"></select>
+                        <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
+                            <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@ onclick="getActionDgSelection()" style="width:80px">提交</a>
+                            <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="test()" style="width:80px">取消</a>
+                        </div>
                     </div>
                 </div>
                 @* scrolling 不显示滚动条*@

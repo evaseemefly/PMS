@@ -488,14 +488,13 @@ namespace SMSOA.Areas.Contacts.Controllers
                     //1.得到所选的任务
                     var smid = int.Parse(model.SMSMissionID);
                     var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
-                if (model.groupIds != "")
-                {
+
                     //2.分配群组
                     List<int> list_groupIDs = new List<int>();
                     string[] groupIDs = model.groupIds.Split(',');
                     List<bool> list_isPass = new List<bool>();
                     string[] g_isPasses = model.g_isPasses.Split(',');
-
+                    //3.修改禁用功能
                     foreach (var item in g_isPasses)
                     {
                         if (item.Equals("启用"))
@@ -508,9 +507,9 @@ namespace SMSOA.Areas.Contacts.Controllers
                         }
                     }
                     groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
-                    var result = this.smsmissionBLL.SetSMSMission4Group(smid, list_groupIDs, list_isPass);
+                    var g_result = this.smsmissionBLL.SetSMSMission4Group(smid, list_groupIDs, list_isPass);
 
-                    if (result)
+                    if (g_result)
                     {
                         isGroupOk = true;
                     }
@@ -518,31 +517,30 @@ namespace SMSOA.Areas.Contacts.Controllers
                     {
                         isGroupOk = false;
                     }
-                }
-                if(model.departmentIds != "")
-                {
-                    //分配部门
+
+
+                    //4.分配部门
                     List<int> list_departmentIDs = new List<int>();
                     string[] departmentIDs = model.departmentIds.Split(',');
-                    List<bool> list_isPass = new List<bool>();
-                    string[] g_isPasses = model.g_isPasses.Split(',');
-
-                    foreach (var item in g_isPasses)
+                    List<bool> list_disPass = new List<bool>();
+                    string[] d_isPasses = model.d_isPasses.Split(',');
+                    //5.修改禁用功能  
+                     foreach (var item in d_isPasses)
                     {
-                        if (item.Equals("启用"))
+                        if (item.Equals("true"))
                         {
-                            list_isPass.Add(true);
+                            list_disPass.Add(true);
                         }
-                        else if (item.Equals("禁用"))
+                        else if (item.Equals("false"))
                         {
-                            list_isPass.Add(false);
+                            list_disPass.Add(false);
                         }
                     }
                     departmentIDs.ToList().ForEach(a => list_departmentIDs.Add(int.Parse(a)));
-                    var result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_isPass);
+                    var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_disPass);
 
 
-                    if (result)
+                    if (d_result)
                     {
                         isDepartmentOk = true;
                     }
@@ -553,9 +551,9 @@ namespace SMSOA.Areas.Contacts.Controllers
                 }
 
 
-            }
 
-            if (isGroupOk && isDepartmentOk )
+
+            if (isGroupOk || isDepartmentOk )
             {
                 return Content("ok");
             }

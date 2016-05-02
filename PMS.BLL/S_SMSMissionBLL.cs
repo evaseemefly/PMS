@@ -63,7 +63,7 @@ namespace PMS.BLL
             foreach (var gid in list_groupIDs)
             {
                 var r_group_mission = this.CurrentDBSession.R_Group_MissionDAL.GetListBy(r => r.MissionID == smid && r.GroupID == gid).FirstOrDefault();
-                //根据ActionID与UserID从R表中找到唯一的记录
+                //根据groupID与smID从R表中找到唯一的记录
                 if (r_group_mission != null)
                 {
                     r_group_mission.isPass = list_isPass[times];
@@ -92,6 +92,53 @@ namespace PMS.BLL
 
             }
             catch(Exception e)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 为任务分配部门
+        /// </summary>
+        /// <returns></returns>
+
+        public bool SetSMSMission4Department(int smid, List<int> list_departmentIDs, List<bool> list_isPass)
+        {
+            var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
+            List<R_Department_Mission> list = new List<R_Department_Mission>();
+            var times = 0;
+            foreach (var did in list_departmentIDs)
+            {
+                var r_department_mission = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && r.DepartmentID == did).FirstOrDefault();
+                //根据departmentID与smID从R表中找到唯一的记录
+                if (r_department_mission != null)
+                {
+                    r_department_mission.isPass = list_isPass[times];
+                }
+                else if (r_department_mission == null)
+                {
+                    R_Department_Mission r_Department_Mission = new R_Department_Mission();
+                    //r_UserInfo_ActionInfo.UserInfo = user;
+                    r_Department_Mission.MissionID = smid;
+                    //var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+                    r_Department_Mission.isPass = list_isPass[times];
+                    //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
+                    r_Department_Mission.DepartmentID = did;
+                    this.CurrentDBSession.R_Department_MissionDAL.Create(r_Department_Mission);
+                }
+                times++;
+            }
+            var list_del = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && !list_departmentIDs.Contains(r.DepartmentID));
+            foreach (var item in list_del)
+            {
+                this.CurrentDBSession.R_Department_MissionDAL.Del(item);
+            }
+            try
+            {
+                return this.CurrentDBSession.SaveChanges();
+
+            }
+            catch (Exception e)
             {
                 return false;
             }
