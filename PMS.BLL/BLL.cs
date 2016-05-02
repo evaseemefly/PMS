@@ -96,6 +96,32 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	R_UserInfo_GroupBLL
+    public partial class R_UserInfo_GroupBLL : BaseBLL<R_UserInfo_Group>, IR_UserInfo_GroupBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_GroupDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_GroupDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_SMSMissionBLL
+    public partial class R_UserInfo_SMSMissionBLL : BaseBLL<R_UserInfo_SMSMission>, IR_UserInfo_SMSMissionBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_SMSMissionDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_SMSMissionDAL;
+        }
+    }
+	#endregion
 	   #region	RoleInfoBLL
     public partial class RoleInfoBLL : BaseBLL<RoleInfo>, IRoleInfoBLL
     {	
@@ -109,6 +135,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	S_SMSContentBLL
+    public partial class S_SMSContentBLL : BaseBLL<S_SMSContent>, IS_SMSContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSContentDAL;
+        }
+    }
+	#endregion
 	   #region	S_SMSMissionBLL
     public partial class S_SMSMissionBLL : BaseBLL<S_SMSMission>, IS_SMSMissionBLL
     {	
@@ -119,6 +158,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.S_SMSMissionDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSRecord_CurrentBLL
+    public partial class S_SMSRecord_CurrentBLL : BaseBLL<S_SMSRecord_Current>, IS_SMSRecord_CurrentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSRecord_CurrentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSRecord_CurrentDAL;
         }
     }
 	#endregion

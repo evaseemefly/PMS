@@ -95,6 +95,32 @@ namespace PMS.IDAL
     }
 	#endregion
 
+	   #region IR_UserInfo_GroupDAL   
+	//R_UserInfo_Group数据访问层
+	/// <summary>
+    /// 定义R_UserInfo_Group实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IR_UserInfo_GroupDAL:IBaseDAL<R_UserInfo_Group>
+    {
+    }
+	#endregion
+
+	   #region IR_UserInfo_SMSMissionDAL   
+	//R_UserInfo_SMSMission数据访问层
+	/// <summary>
+    /// 定义R_UserInfo_SMSMission实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IR_UserInfo_SMSMissionDAL:IBaseDAL<R_UserInfo_SMSMission>
+    {
+    }
+	#endregion
+
 	   #region IRoleInfoDAL   
 	//RoleInfo数据访问层
 	/// <summary>
@@ -108,6 +134,19 @@ namespace PMS.IDAL
     }
 	#endregion
 
+	   #region IS_SMSContentDAL   
+	//S_SMSContent数据访问层
+	/// <summary>
+    /// 定义S_SMSContent实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IS_SMSContentDAL:IBaseDAL<S_SMSContent>
+    {
+    }
+	#endregion
+
 	   #region IS_SMSMissionDAL   
 	//S_SMSMission数据访问层
 	/// <summary>
@@ -117,6 +156,19 @@ namespace PMS.IDAL
     /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
     /// </summary>
 	public interface IS_SMSMissionDAL:IBaseDAL<S_SMSMission>
+    {
+    }
+	#endregion
+
+	   #region IS_SMSRecord_CurrentDAL   
+	//S_SMSRecord_Current数据访问层
+	/// <summary>
+    /// 定义S_SMSRecord_Current实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IS_SMSRecord_CurrentDAL:IBaseDAL<S_SMSRecord_Current>
     {
     }
 	#endregion

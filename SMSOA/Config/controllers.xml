@@ -37,4 +37,11 @@
   <object type="SMSOA.Areas.Contacts.Controllers.SMSMissionController, SMSOA" singleton="false" >
     <property name="smsmissionBLL" ref="smsmissionService" />
   </object>
+  <object type="SMSOA.Areas.SMS.Controllers.SendController, SMSOA" singleton="false" >
+    <property name="smsMissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
+    <property name="smsSendBLL" ref="smsSendService" />
+  </object>
 </objects>

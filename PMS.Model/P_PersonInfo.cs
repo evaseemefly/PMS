@@ -18,6 +18,7 @@ namespace PMS.Model
         {
             this.P_DepartmentInfo = new HashSet<P_DepartmentInfo>();
             this.P_Group = new HashSet<P_Group>();
+            this.S_SMSRecord_Current = new HashSet<S_SMSRecord_Current>();
         }
     
         public int PID { get; set; }
@@ -29,5 +30,6 @@ namespace PMS.Model
     
         public virtual ICollection<P_DepartmentInfo> P_DepartmentInfo { get; set; }
         public virtual ICollection<P_Group> P_Group { get; set; }
+        public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }
     }
 }

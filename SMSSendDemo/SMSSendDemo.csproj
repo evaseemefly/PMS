@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ISMS\ISMS.csproj">
+      <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
+      <Name>ISMS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
       <Name>SMSFactory</Name>

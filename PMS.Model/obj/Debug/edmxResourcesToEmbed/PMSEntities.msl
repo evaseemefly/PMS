@@ -163,5 +163,48 @@
         <ScalarProperty Name="GID" ColumnName="GID" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="R_UserInfo_Group">
+      <EntityTypeMapping TypeName="PMS2016Model.R_UserInfo_Group">
+        <MappingFragment StoreEntitySet="R_UserInfo_Group">
+          <ScalarProperty Name="isPass" ColumnName="isPass" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_UserInfo_SMSMission">
+      <EntityTypeMapping TypeName="PMS2016Model.R_UserInfo_SMSMission">
+        <MappingFragment StoreEntitySet="R_UserInfo_SMSMission">
+          <ScalarProperty Name="isPass" ColumnName="isPass" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="SMID" ColumnName="SMID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_SMSContent">
+      <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
+        <MappingFragment StoreEntitySet="S_SMSContent">
+          <ScalarProperty Name="SMID" ColumnName="SMID" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
+          <ScalarProperty Name="msgId" ColumnName="msgId" />
+          <ScalarProperty Name="SMSContent" ColumnName="SMSContent" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_SMSRecord_Current">
+      <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_Current">
+        <MappingFragment StoreEntitySet="S_SMSRecord_Current">
+          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="SCID" ColumnName="SCID" />
+          <ScalarProperty Name="SRID" ColumnName="SRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

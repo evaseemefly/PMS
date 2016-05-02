@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PMS.Model.Dictionary;
 
-namespace SMSSession
+namespace SMSFactory
 {
    public static class ObjTransform
     {
@@ -25,7 +26,7 @@ namespace SMSSession
             SMSModel_Receive model_receive = new SMSModel_Receive()
             {
                 msgid = msgid,
-                result = smsresult,
+                result = SMSDictionary.GetResponseCode()[int.Parse(smsresult)],
                 desc = desc,
                 failPhones = blacklist.Split(',')
             };

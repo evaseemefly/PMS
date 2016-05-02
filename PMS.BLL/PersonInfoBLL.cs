@@ -60,8 +60,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<P_PersonInfo> GetListByIds(List<int> list_ids)
         {
-
-            return GetListBy(a => list_ids.Contains(a.PID)).ToList();
+            return GetListBy(p => list_ids.Contains(p.PID)).ToList();
 
         }
 

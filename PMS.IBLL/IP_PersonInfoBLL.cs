@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,13 @@ namespace PMS.IBLL
 {
     public partial interface IP_PersonInfoBLL
     {
+        /// <summary>
+        /// 从数据库中根据id集合查询返回指定的PersonInfo集合
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        List<P_PersonInfo> GetListByIds(List<int> list_ids);
+
         /// <summary>
         /// 逻辑删除（物理删除）
         /// </summary>

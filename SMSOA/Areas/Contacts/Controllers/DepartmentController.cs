@@ -139,7 +139,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //使用ref声明时需要在传入之前为其赋值
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
             //将当前分页查询的转为treegrid集合
-            List<Models.EasyUIComboTree_Department> list_comboTree =Models.Department_ViewModel.ToEasyUIComboTree(list_department);
+            List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_comboTree =PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_department);
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
         }
@@ -191,10 +191,10 @@ namespace SMSOA.Areas.Contacts.Controllers
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
             //var list_department = departmentBLL.GetPageList(pageIndex, pageSize, ref rowCount, d => d.isDel == false,d=>d.DepartmentName, true).ToList();
 
-            
+
 
             //将当前分页查询的转为treegrid集合
-            List<Models.EasyUITreeGrid_Department> list_treegrid = Models.Department_ViewModel.ToEasyUITreeGrid(list_department);
+            List<PMS.Model.EasyUIModel.EasyUITreeGrid_Department> list_treegrid = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUITreeGrid(list_department); 
 
             //不做分页
             //PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()

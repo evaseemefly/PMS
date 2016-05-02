@@ -9,6 +9,13 @@ namespace PMS.IBLL
 {
     public partial interface IS_SMSMissionBLL
     {
+
+        /// <summary>
+        /// 查询全部的短信任务
+        /// </summary>
+        /// <returns></returns>
+        List<S_SMSMission> GetAllList();
+
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的S_SMSMission集合
         /// </summary>
