@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace PMS.Model
 {
-    public partial class S_SMSMission
+    public partial class S_SMSMsgContent
     {
         /// <summary>
         /// 返回去掉导航属性的中间实体
         /// </summary>
         /// <returns></returns>
-        public S_SMSMission ToMiddleModel()
+        public S_SMSMsgContent ToMiddleModel()
         {
-            return new S_SMSMission()
+            return new S_SMSMsgContent()
             {
-                SMID = this.SMID,
+                TID = this.TID,
                 isDel = this.isDel,
-                isMMS = this.isMMS,
-                ModifiedOnTime = this.ModifiedOnTime,
-                Remark = this.Remark,
-                SMSMissionName = this.SMSMissionName,
+                MsgContent = this.MsgContent,
+                SMID = this.SMID,
                 SubTime = this.SubTime,
-                Sort=this.Sort
+                Sort = this.Sort,
+                MsgName = this.MsgName,
+                Remark = this.Remark
             };
         }
     }

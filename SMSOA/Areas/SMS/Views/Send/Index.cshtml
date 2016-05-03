@@ -296,17 +296,17 @@
     </script>
 </head>
 <body>
-    <div class="easyui-layout"  style="width:800px;height:600px;">
+    <div class="easyui-layout"  style="width:900px;height:600px;"@*dataoptions="fit:true"*@>
         @*<div data-options="region:'north'" style="height:20px"></div>
         <div data-options="region:'south',split:true" style="height:20px;"></div>*@
-        <div data-options="region:'east',split:true" title="联系人列表" style="width:230px;">
+        <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@style="width:230px;">
                 <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
         </div>
-        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
-            <div class="easyui-panel" title="短信发送" style="" dataoptions="fit:true">
+        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok',@*fit:true*@">
+            <div class="easyui-panel" title="短信发送" style="" @*dataoptions="fit:true"*@>
                 <div style="padding:10px 30px 20px 30px">
                     <form id="ff" method="post">
-                        <table cellpadding="4">
+                        <table cellpadding="4" cellspacing="10" style="font-size:15px;">
                             <tr>
                                 <td>短信任务:</td>
                                 <td>
@@ -329,7 +329,7 @@
                             </tr>
                             <tr>
                                 <td>短信内容:</td>
-                                <td><input class="easyui-textbox" name="message"id="message" data-options="multiline:true" style="height:200px;width:400px"></td>
+                                <td><input class="easyui-textbox" name="message"id="message" data-options="multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"></td>
                             </tr>
                         </table>
                     </form>

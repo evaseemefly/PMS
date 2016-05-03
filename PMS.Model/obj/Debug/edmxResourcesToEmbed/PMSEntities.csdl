@@ -210,6 +210,11 @@
       <End Role="S_SMSMission" EntitySet="S_SMSMission" />
       <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
     </AssociationSet>
+    <EntitySet Name="S_SMSMsgContent" EntityType="PMS2016Model.S_SMSMsgContent" />
+    <AssociationSet Name="FK_S_SMSMsgContent_S_SMSMission" Association="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission">
+      <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+      <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="P_DepartmentInfo">
     <Key>
@@ -294,6 +299,8 @@
     <NavigationProperty Name="R_Group_Mission" Relationship="PMS2016Model.FK_R_Group_Mission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_Group_Mission" />
     <NavigationProperty Name="R_UserInfo_SMSMission" Relationship="PMS2016Model.FK_R_UserInfo_SMSMission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_UserInfo_SMSMission" />
     <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSRecord_History" />
+    <NavigationProperty Name="S_SMSMsgContent" Relationship="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSMsgContent" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_R_Department_Mission_P_DepartmentInfo">
     <End Type="PMS2016Model.P_DepartmentInfo" Role="P_DepartmentInfo" Multiplicity="1" />
@@ -584,6 +591,32 @@
       </Principal>
       <Dependent Role="S_SMSRecord_History">
         <PropertyRef Name="SCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="S_SMSMsgContent">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="Int32" Nullable="false" />
+    <Property Name="SMID" Type="Int32" Nullable="false" />
+    <Property Name="MsgContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="isDel" Type="Boolean" Nullable="false" />
+    <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMsgContent" ToRole="S_SMSMission" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <Property Name="MsgName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_S_SMSMsgContent_S_SMSMission">
+    <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
+    <End Type="PMS2016Model.S_SMSMsgContent" Role="S_SMSMsgContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="S_SMSMission">
+        <PropertyRef Name="SMID" />
+      </Principal>
+      <Dependent Role="S_SMSMsgContent">
+        <PropertyRef Name="SMID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -74,6 +74,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IS_SMSMsgContentBLL:IBaseBLL<S_SMSMsgContent>
+    {
+        
+
+    }
 	    public partial interface IS_SMSRecord_CurrentBLL:IBaseBLL<S_SMSRecord_Current>
     {
         

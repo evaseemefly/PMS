@@ -80,6 +80,7 @@
     <Compile Include="MiddlewareModel\P_PersonInfo.cs" />
     <Compile Include="MiddlewareModel\RoleInfo.cs" />
     <Compile Include="MiddlewareModel\S_SMSMission.cs" />
+    <Compile Include="MiddlewareModel\S_SMSMsgContent.cs" />
     <Compile Include="MiddlewareModel\UserInfo.cs" />
     <Compile Include="PMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -138,6 +139,9 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="S_SMSMission.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSMsgContent.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="S_SMSRecord_Current.cs">

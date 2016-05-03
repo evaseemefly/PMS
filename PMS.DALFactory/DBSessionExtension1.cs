@@ -383,6 +383,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _S_SMSMsgContentDAL 属性 
+	private IDAL.IS_SMSMsgContentDAL _S_SMSMsgContentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSMsgContentDAL的实例
+        /// </summary>
+        public IS_SMSMsgContentDAL S_SMSMsgContentDAL
+        {
+            get
+            {
+                if(_S_SMSMsgContentDAL==null)
+                {
+                    _S_SMSMsgContentDAL = AbstractFactory.CreateS_SMSMsgContentDAL();
+                }
+                return _S_SMSMsgContentDAL;
+            }
+
+            set
+            {
+                _S_SMSMsgContentDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _S_SMSRecord_CurrentDAL 属性 
 	private IDAL.IS_SMSRecord_CurrentDAL _S_SMSRecord_CurrentDAL;
 	#endregion

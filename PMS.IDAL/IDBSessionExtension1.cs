@@ -75,6 +75,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IS_SMSMsgContentDAL
+      IDAL.IS_SMSMsgContentDAL S_SMSMsgContentDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IS_SMSRecord_CurrentDAL
       IDAL.IS_SMSRecord_CurrentDAL S_SMSRecord_CurrentDAL { get; set; }
 	  #endregion

@@ -186,6 +186,20 @@
     <Property Name="Remark" Type="nchar" MaxLength="50" />
     <Property Name="isDel" Type="bit" Nullable="false" />
     <Property Name="isMMS" Type="bit" Nullable="false" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="S_SMSMsgContent">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="int" Nullable="false" />
+    <Property Name="SMID" Type="int" Nullable="false" />
+    <Property Name="MsgContent" Type="nvarchar(max)" />
+    <Property Name="isDel" Type="bit" Nullable="false" />
+    <Property Name="SubTime" Type="date" Nullable="false" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="MsgName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="S_SMSRecord_Current">
     <Key>
@@ -494,6 +508,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_S_SMSMsgContent_S_SMSMission">
+    <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+    <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="S_SMSMission">
+        <PropertyRef Name="SMID" />
+      </Principal>
+      <Dependent Role="S_SMSMsgContent">
+        <PropertyRef Name="SMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_S_SMSRecord_Current_P_PersonInfo">
     <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
     <End Role="S_SMSRecord_Current" Type="Self.S_SMSRecord_Current" Multiplicity="*" />
@@ -561,6 +587,7 @@
     <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="S_SMSContent" EntityType="Self.S_SMSContent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="S_SMSMission" EntityType="Self.S_SMSMission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_SMSMsgContent" EntityType="Self.S_SMSMsgContent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="S_SMSRecord_Current" EntityType="Self.S_SMSRecord_Current" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="S_SMSRecord_History" EntityType="Self.S_SMSRecord_History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
@@ -655,6 +682,10 @@
     <AssociationSet Name="FK_S_SMSContent_UserInfo" Association="Self.FK_S_SMSContent_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_S_SMSMsgContent_S_SMSMission" Association="Self.FK_S_SMSMsgContent_S_SMSMission">
+      <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+      <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
     </AssociationSet>
     <AssociationSet Name="FK_S_SMSRecord_Current_P_PersonInfo" Association="Self.FK_S_SMSRecord_Current_P_PersonInfo">
       <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />

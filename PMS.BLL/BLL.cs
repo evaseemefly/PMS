@@ -187,6 +187,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	S_SMSMsgContentBLL
+    public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSMsgContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSMsgContentDAL;
+        }
+    }
+	#endregion
 	   #region	S_SMSRecord_CurrentBLL
     public partial class S_SMSRecord_CurrentBLL : BaseBLL<S_SMSRecord_Current>, IS_SMSRecord_CurrentBLL
     {	

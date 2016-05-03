@@ -137,6 +137,7 @@
     <EntitySetMapping Name="S_SMSMission">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSMission">
         <MappingFragment StoreEntitySet="S_SMSMission">
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
           <ScalarProperty Name="isMMS" ColumnName="isMMS" />
           <ScalarProperty Name="isDel" ColumnName="isDel" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -233,6 +234,20 @@
           <ScalarProperty Name="PID" ColumnName="PID" />
           <ScalarProperty Name="SCID" ColumnName="SCID" />
           <ScalarProperty Name="SRID" ColumnName="SRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_SMSMsgContent">
+      <EntityTypeMapping TypeName="PMS2016Model.S_SMSMsgContent">
+        <MappingFragment StoreEntitySet="S_SMSMsgContent">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="MsgName" ColumnName="MsgName" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="MsgContent" ColumnName="MsgContent" />
+          <ScalarProperty Name="SMID" ColumnName="SMID" />
+          <ScalarProperty Name="TID" ColumnName="TID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

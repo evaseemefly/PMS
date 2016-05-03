@@ -102,6 +102,13 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region S_SMSMsgContentDAL   
+	//S_SMSMsgContent数据访问层
+	public class S_SMSMsgContentDAL:BaseDAL<S_SMSMsgContent>,IS_SMSMsgContentDAL
+    {
+    }
+	#endregion
+
 		#region S_SMSRecord_CurrentDAL   
 	//S_SMSRecord_Current数据访问层
 	public class S_SMSRecord_CurrentDAL:BaseDAL<S_SMSRecord_Current>,IS_SMSRecord_CurrentDAL
