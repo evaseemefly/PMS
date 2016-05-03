@@ -1,6 +1,15 @@
 ﻿
 @{
     Layout = null;
+    string userMsg = null;
+    if(ViewBag.UserInfo!="")
+    {
+        userMsg = "欢迎:" + ViewBag.UserInfo + "登录";
+    }
+    else
+    {
+        userMsg = "未登录";
+    }
 }
 <!DOCTYPE html>
 <html>
@@ -127,7 +136,9 @@
     </script>
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height:60px; padding:10px">north region</div>
+    <div data-options="region:'north',border:false" style="height:60px; padding:10px;background-image:url(/Content/Images/background/blue2_background.png);background-size:100%;background-repeat:no-repeat">    
+        <span class="txt">@userMsg @DateTime.Now.ToString("yyyy-MM-dd")</span> 
+    </div>
     <div data-options="region:'west',split:true,title:'操作列表'" style="width:200px; padding:0px;">
         <div class="easyui-accordion" id="WestAccordion" style="width:100%;padding:0px">
         </div>
@@ -136,7 +147,10 @@
     </div>
     <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
     </div>
-    <div data-options="region:'south',border:false" style="height:50px;padding:10px;">south region</div>
+    <div data-options="region:'south',border:false" style="height:50px;padding:10px;background-image:url(/Content/Images/background/blue2_background.png);background-size:100%;background-repeat:no-repeat">
+        <span class="txt" style="position:relative;width:100%;height:100%;">
+        预报中心网络部开发 Copyright ? nmefc</span> 
+    </div>
     <div data-options="region:'center',title:'Center'" style="overflow-x:hidden;overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;overflow-y:hidden">
 

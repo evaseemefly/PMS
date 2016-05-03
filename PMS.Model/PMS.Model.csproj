@@ -74,6 +74,13 @@
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
+    <Compile Include="MiddlewareModel\ActionInfo.cs" />
+    <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
+    <Compile Include="MiddlewareModel\P_Group.cs" />
+    <Compile Include="MiddlewareModel\P_PersonInfo.cs" />
+    <Compile Include="MiddlewareModel\RoleInfo.cs" />
+    <Compile Include="MiddlewareModel\S_SMSMission.cs" />
+    <Compile Include="MiddlewareModel\UserInfo.cs" />
     <Compile Include="PMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,7 +120,13 @@
     </Compile>
     <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
     <Compile Include="Dictionary\SMSDictionary.cs" />
+    <Compile Include="R_UserInfo_DepartmentInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="R_UserInfo_Group.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_PersonInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="R_UserInfo_SMSMission.cs">
@@ -128,6 +141,9 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="S_SMSRecord_Current.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSRecord_History.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs">

@@ -142,7 +142,7 @@ namespace SMSOA.Areas.Admin.Controllers
                     item.Checked = true;
                     list.Add(item);
                 }
-
+                list = list.Select(a => a.ToMiddleModel()).ToList();
                 //4 
                 PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
                 {
@@ -256,6 +256,7 @@ namespace SMSOA.Areas.Admin.Controllers
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             var list_role = roleInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, a => a.DelFlag == false, a => a.Sort, true).ToList();
+            list_role = list_role.Select(r => r.ToMiddleModel()).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,

@@ -11,7 +11,7 @@ namespace SMSOA.Areas.Contacts.Models
 
         public string PName { get; set; }
 
-        public int PhoneNum { get; set; }
+        public string PhoneNum { get; set; }
 
         /// <summary>
         /// 群组id数组

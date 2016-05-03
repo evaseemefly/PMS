@@ -53,9 +53,23 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region R_UserInfo_DepartmentInfoDAL   
+	//R_UserInfo_DepartmentInfo数据访问层
+	public class R_UserInfo_DepartmentInfoDAL:BaseDAL<R_UserInfo_DepartmentInfo>,IR_UserInfo_DepartmentInfoDAL
+    {
+    }
+	#endregion
+
 		#region R_UserInfo_GroupDAL   
 	//R_UserInfo_Group数据访问层
 	public class R_UserInfo_GroupDAL:BaseDAL<R_UserInfo_Group>,IR_UserInfo_GroupDAL
+    {
+    }
+	#endregion
+
+		#region R_UserInfo_PersonInfoDAL   
+	//R_UserInfo_PersonInfo数据访问层
+	public class R_UserInfo_PersonInfoDAL:BaseDAL<R_UserInfo_PersonInfo>,IR_UserInfo_PersonInfoDAL
     {
     }
 	#endregion
@@ -91,6 +105,13 @@ namespace PMS.DALSQLSer
 		#region S_SMSRecord_CurrentDAL   
 	//S_SMSRecord_Current数据访问层
 	public class S_SMSRecord_CurrentDAL:BaseDAL<S_SMSRecord_Current>,IS_SMSRecord_CurrentDAL
+    {
+    }
+	#endregion
+
+		#region S_SMSRecord_HistoryDAL   
+	//S_SMSRecord_History数据访问层
+	public class S_SMSRecord_HistoryDAL:BaseDAL<S_SMSRecord_History>,IS_SMSRecord_HistoryDAL
     {
     }
 	#endregion

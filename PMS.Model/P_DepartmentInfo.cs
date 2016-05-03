@@ -18,6 +18,7 @@ namespace PMS.Model
         {
             this.R_Department_Mission = new HashSet<R_Department_Mission>();
             this.P_PersonInfo = new HashSet<P_PersonInfo>();
+            this.R_UserInfo_DepartmentInfo = new HashSet<R_UserInfo_DepartmentInfo>();
         }
     
         public int DID { get; set; }
@@ -29,5 +30,6 @@ namespace PMS.Model
     
         public virtual ICollection<R_Department_Mission> R_Department_Mission { get; set; }
         public virtual ICollection<P_PersonInfo> P_PersonInfo { get; set; }
+        public virtual ICollection<R_UserInfo_DepartmentInfo> R_UserInfo_DepartmentInfo { get; set; }
     }
 }

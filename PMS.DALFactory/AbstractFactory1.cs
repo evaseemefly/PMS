@@ -101,6 +101,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建R_UserInfo_DepartmentInfo的实例
+        /// <summary>
+        /// 创建R_UserInfo_DepartmentInfo的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IR_UserInfo_DepartmentInfoDAL CreateR_UserInfo_DepartmentInfoDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".R_UserInfo_DepartmentInfoDAL";
+            return CreateInstance(fullClassName) as IR_UserInfo_DepartmentInfoDAL;
+        }
+		#endregion
+	 
 		#region 创建R_UserInfo_Group的实例
         /// <summary>
         /// 创建R_UserInfo_Group的实例
@@ -111,6 +124,19 @@ namespace PMS.DALFactory
             //获取类的全名称：命名空间+类名
             string fullClassName = NameSpace + ".R_UserInfo_GroupDAL";
             return CreateInstance(fullClassName) as IR_UserInfo_GroupDAL;
+        }
+		#endregion
+	 
+		#region 创建R_UserInfo_PersonInfo的实例
+        /// <summary>
+        /// 创建R_UserInfo_PersonInfo的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IR_UserInfo_PersonInfoDAL CreateR_UserInfo_PersonInfoDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".R_UserInfo_PersonInfoDAL";
+            return CreateInstance(fullClassName) as IR_UserInfo_PersonInfoDAL;
         }
 		#endregion
 	 
@@ -176,6 +202,19 @@ namespace PMS.DALFactory
             //获取类的全名称：命名空间+类名
             string fullClassName = NameSpace + ".S_SMSRecord_CurrentDAL";
             return CreateInstance(fullClassName) as IS_SMSRecord_CurrentDAL;
+        }
+		#endregion
+	 
+		#region 创建S_SMSRecord_History的实例
+        /// <summary>
+        /// 创建S_SMSRecord_History的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IS_SMSRecord_HistoryDAL CreateS_SMSRecord_HistoryDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".S_SMSRecord_HistoryDAL";
+            return CreateInstance(fullClassName) as IS_SMSRecord_HistoryDAL;
         }
 		#endregion
 	 

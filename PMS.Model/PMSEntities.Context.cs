@@ -39,5 +39,8 @@ namespace PMS.Model
         public DbSet<R_UserInfo_SMSMission> R_UserInfo_SMSMission { get; set; }
         public DbSet<S_SMSContent> S_SMSContent { get; set; }
         public DbSet<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }
+        public DbSet<R_UserInfo_DepartmentInfo> R_UserInfo_DepartmentInfo { get; set; }
+        public DbSet<R_UserInfo_PersonInfo> R_UserInfo_PersonInfo { get; set; }
+        public DbSet<S_SMSRecord_History> S_SMSRecord_History { get; set; }
     }
 }

@@ -63,7 +63,7 @@ namespace SMSOA.Areas.SMS.Controllers
             list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
 
             //4 将联系人集合去重
-            list_person= list_person.Distinct(new P_PersonEqualCompare()).ToList();
+            list_person= list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).Select(p=>p.ToMiddleModel()).ToList();
 
             return Content(Common.SerializerHelper.SerializerToString(list_person));
         }
@@ -96,7 +96,7 @@ namespace SMSOA.Areas.SMS.Controllers
             list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
 
             //3 将联系人集合去重
-            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList();
+            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).ToList();
 
             //4 序列化后返回
             return Content(Common.SerializerHelper.SerializerToString(list_person));
@@ -115,10 +115,10 @@ namespace SMSOA.Areas.SMS.Controllers
            
             //根据短信任务查找短信任务所拥有的群组（在R_Group_Mission表中），并只拿取isPass为true的所对应的群组
             smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault().R_Group_Mission.Where(r=>r.isPass==true).ToList().ForEach(r=>list_owned_group.Add(r.P_Group));
-
+            list_owned_group = list_owned_group.Select(g => g.ToMiddleModel()).ToList();
             var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
             //2 从所有的群组中删除该任务所拥有的群组集合
-            var list_excludeOwned_group = groupBLL.GetListBy(g => g.isDel == false).ToList().Where(g => !list_owned_group.Contains(g)).ToList();
+            var list_excludeOwned_group = groupBLL.GetListBy(g => g.isDel == false).ToList().Where(g => !list_owned_group.Contains(g)).Select(g=>g.ToMiddleModel()).ToList();
             list.AddRange(ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_excludeOwned_group, false));
             //将该任务拥有的群组设置为选中状态
             PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
@@ -182,7 +182,7 @@ namespace SMSOA.Areas.SMS.Controllers
            var mission= smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault();
             List<int> list_id = new List<int>();
             mission.R_Department_Mission.ToList().ForEach(r => list_id.Add(r.DepartmentID));
-           var list_alldepartment= departmentBLL.GetListBy(d => d.isDel == false).ToList();
+           var list_alldepartment= departmentBLL.GetListBy(d => d.isDel == false).ToList().Select(d=>d.ToMiddleModel()).ToList();
             List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, list_id.ToArray());
 
             var temp= Common.SerializerHelper.SerializerToString(list_combotree);
@@ -199,7 +199,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //int userId=3;
             //userInfoBLL.GetListBy(p=>p.ID==userId).FirstOrDefault().R_UserInfo_SMSMission.
             //获取全部的短信种类集合
-            var list_allmission= smsMissionBLL.GetAllList();
+            var list_allmission= smsMissionBLL.GetAllList().ToList().Select(m=>m.ToMiddleModel()).ToList();
             
             PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {

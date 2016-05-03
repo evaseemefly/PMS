@@ -62,8 +62,14 @@ namespace SMSOA.Areas.Contacts.Controllers
             //return Content(Common.SerializerHelper.SerializerToString(dgModel));
 
             //不使用分页查询
-            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList();
+             var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList().Select(g=>g.ToMiddleModel()).ToList();
 
+            //5月2日 解决使用Netjson序列化时会内存溢出的问题
+            //方式（一）
+            //var content = from r in list_group
+            //              select r.ToMiddleModel();
+
+            //return Json(list_group, JsonRequestBehavior.AllowGet);
             return Content(Common.SerializerHelper.SerializerToString(list_group));
 
         }
@@ -71,8 +77,10 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult GetCombobox4AllGroupInfo()
         {
             //查询全部的群组
-            var list_allgroup= groupBLL.GetListBy(g => g.isDel == false).ToList();
+            var list_allgroup= groupBLL.GetListBy(g => g.isDel == false).Select(r=>r.ToMiddleModel()).ToList();
+            
             var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_allgroup, false);
+
             return Content(Common.SerializerHelper.SerializerToString(list_combobox_allgroup));
         }
 
@@ -92,6 +100,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             //4.1 已经拥有的群组集合
             List<P_Group> list_groupOwned = new List<P_Group>();
             list_groupOwned.Add(groupTemp);
+            //5月3日添加实体改为中间实体的方法
+            list_groupOwned = list_groupOwned.Select(p => p.ToMiddleModel()).ToList();
             //转成Combobox
             var list_combobox_ownedgroup = P_Group.ToEasyUICombobox(ref list_groupOwned, true);
 
@@ -131,9 +141,11 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
 
             //4.2将group集合转换为对应的combobox集合
+            //****5月3日添加实体改为中间实体的方法
             var list_combobox_groupByPid = P_Group.ToEasyUICombobox(ref list_groupbyPid, true);
             //4.2将全部群组集合中的选中按钮设置为false
-            var list_combobox_allgroup= P_Group.ToEasyUICombobox(ref list_groupAll, false);
+            //****5月3日添加实体改为中间实体的方法
+            var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_groupAll, false);
             //获取全部group的id集合
             //List<int> list_allGroupIds = new List<int>();
             //list_groupbyPid.ForEach(a => list_allGroupIds.Add(a.GID));
