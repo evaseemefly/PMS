@@ -82,6 +82,7 @@ namespace PMS.BLL
                 times++;
             }
             var list_del = this.CurrentDBSession.R_Group_MissionDAL.GetListBy(r => r.MissionID == smid && !list_groupIDs.Contains(r.GroupID));
+            
             foreach (var item in list_del)
             {
                 this.CurrentDBSession.R_Group_MissionDAL.Del(item);
@@ -129,6 +130,70 @@ namespace PMS.BLL
                 times++;
             }
             var list_del = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && !list_departmentIDs.Contains(r.DepartmentID));
+
+            foreach (var item in list_del)
+            {
+                this.CurrentDBSession.R_Department_MissionDAL.Del(item);
+            }
+            try
+            {
+                return this.CurrentDBSession.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 移除所有传入ID的任务所拥有的群组
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <returns></returns>
+
+        public bool RemoveAllGroup(int smid)
+        {
+            //var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
+
+            var list_del = this.CurrentDBSession.R_Group_MissionDAL.GetListBy(r => r.MissionID == smid);
+
+            //如果原本该任务拥有的群组列表就为空
+            if (list_del.FirstOrDefault() == null)
+            {
+                return true;
+            }
+            //如果原本该任务拥有的群组列表不为空
+            foreach (var item in list_del)
+            {
+                this.CurrentDBSession.R_Group_MissionDAL.Del(item);
+            }
+            try
+            {
+                return this.CurrentDBSession.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 移除所有传入ID的任务所拥有的部门
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <returns></returns>
+
+        public bool RemoveAllDepartment(int smid)
+        {
+           // var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
+            var list_del = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid);
+            //如果原本该任务拥有的群组列表就为空
+            if (list_del.FirstOrDefault() == null)
+            {
+                return true;
+            }
+            //如果原本该任务拥有的群组列表不为空
             foreach (var item in list_del)
             {
                 this.CurrentDBSession.R_Department_MissionDAL.Del(item);

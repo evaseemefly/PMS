@@ -41,6 +41,24 @@ namespace PMS.IBLL
         /// <returns></returns>
 
         bool SetSMSMission4Department(int smid, List<int> list_departmentIDs, List<bool> list_isPass);
+
+
+        /// <summary>
+        /// 移除所有传入ID的任务所拥有的群组
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <returns></returns>
+
+        bool RemoveAllGroup(int smid);
+
+        /// <summary>
+        /// 移除所有传入ID的任务所拥有的部门
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <returns></returns>
+
+        bool RemoveAllDepartment(int smid);
+
     }
 
 }

@@ -207,6 +207,7 @@
     <Compile Include="Areas\Contacts\Models\Department_ViewModel.cs" />
     <Compile Include="Areas\Contacts\Models\EastUICombogrid_Group.cs" />
     <Compile Include="Areas\Contacts\Models\EasyUIComboTree_Department.cs" />
+    <Compile Include="Areas\Contacts\Models\EasyUIDataGrid_Group.cs" />
     <Compile Include="Areas\Contacts\Models\EasyUITreeGrid_Department.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
@@ -324,6 +325,7 @@
     <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission -5月1日复制%282%29.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />

@@ -18,6 +18,8 @@ namespace PMS.Model
             set { _checked = value; }
             get { return _checked; }
         }
+
+
         /// <summary>
         /// 将P_Group集合转换为EasyUICombobox集合
         /// </summary>
@@ -41,5 +43,7 @@ namespace PMS.Model
             }
             return list_combox;
         }
+
+
     }
 }

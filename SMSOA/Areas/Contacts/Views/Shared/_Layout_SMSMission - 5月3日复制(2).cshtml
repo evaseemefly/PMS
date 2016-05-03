@@ -33,21 +33,11 @@
 
         //-----------------------2 列对象----------------------------
         var myToolbar = [
-           {
-                iconCls: 'icon-search',
-                text: "为当前短信任务分配群组",
-                handler: AssignGroup
-           },
             {
                 iconCls: 'icon-search',
                 text: "为当前短信任务分配部门",
                 handler: AssignDepartment
-            },
-            {
-                iconCls: 'icon-save',
-                text: "保存分配结果",
-                handler: Accept
-            },
+            }
         ]
         var myColumns = [[
         { field: 'SMID', title: 'ID', width: 100, hidden: true },
@@ -126,34 +116,27 @@
         ]]
         //-----------------3 增删改操作--------------------
         //分配部门按钮的方法
-        function AssignGroup() {
-            $("#showGroupWindow").window('open');
-
-        }
         function AssignDepartment() {
             $("#showDepartmentWindow").window('open');
-
         }
-        //保存方法
         function Accept() {
+
+            $('#group').combogrid('grid').datagrid('acceptChanges');
             //获取选中的部门
             var d_rows = $("#department").treegrid('getSelections');
-            //结束部门编辑
+            
             $.each(d_rows, function (i, item) {
                 $('#department').treegrid('endEdit', item.DID);
             })
             //获取选中的群组
-            var g_rows = $('#group').datagrid('getChecked');
-            //结束群组编辑
-            $('#group').datagrid('acceptChanges');
+            var g_rows = $('#group').combogrid('grid').datagrid('getChecked');
 
             var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
-            //暂时没作用
-            //if (rows_SMSMission == null) {
+            if (rows_SMSMission == null) {
 
-            //    messagerShowOnCenter("提示", "未选择短信任务");
-            //    return;
-            //}
+                messagerShowOnCenter("提示", "未选择短信任务");
+                return;
+            }
 
             var SMSMissionID = rows_SMSMission.SMID;
             var GIDs = "";
@@ -170,12 +153,12 @@
                 DIDs = DIDs + d_rows[i].DID + ",";
                 D_IsPasses = D_IsPasses + d_rows[i].IsPass + ",";
             }
-            //需讨论
-            //if (GIDs == "" & DIDs == "") {
-            //    messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
 
-            //    return;
-            //}
+            if (GIDs == "" & DIDs == "") {
+                messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
+
+                return;
+            }
             //去掉结尾的逗号
             GIDs = GIDs.substr(0, GIDs.length - 1);
 
@@ -197,6 +180,7 @@
 
 
         }
+
         //为用户保存选中的分组及部门
         function SavePerson() {
             //判断group的下拉框是否选中
@@ -342,7 +326,7 @@
             //1.2 获取选中行的ID
             strId = rows[0].SMID;
             url = url + "?smid=" + strId;
-            loadDatagrid_Group(strId, GroupColumns);
+            loadCombogrid_Group(strId, GroupColumns);
             loadTreegrid_Department(strId, DepartmentColumns);
             //loadTreegrid_Department(strId, DepartmentColums);
             //2 根据GroupID查询该群组所拥有的人员列表
@@ -440,11 +424,13 @@
         //}
         //-------------------6 页面加载首先运行-----------------
         //根据smid加载对应的群组并添加至combogrid中
-        function loadDatagrid_Group(smid, myGroupColumns) {
-            $("#group").datagrid({
-                url: '@ViewBag.GetGroup_datagrid?smid=' + smid,
+        function loadCombogrid_Group(smid, myGroupColumns) {
+            $("#group").combogrid({
+                url: '@ViewBag.GetGroup_combogrid?smid=' + smid,
                 panelWith: 400,
                 multiple: true,
+                idField: 'GID',
+                textField: 'GroupName',
                 method: 'get',
                 panelheight: 'auto',
                 loadMsg: '加载中……',
@@ -452,25 +438,25 @@
                 fitColumns: true,
                 onBeforeEdit: function (index, row) {
                     row.editing = true;
-                    $("#group").datagrid('refreshRow', index);
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
                 },
                 onAfterEdit: function (index, row) {
                     row.editing = false;
-                    $("#group").datagrid('refreshRow', index);
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
                 },
                 onCancelEdit: function (index, row) {
                     row.editing = false;
-                    $("#group").datagrid('refreshRow', index);
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
                 },
                 onEndEdit: function (index, row) {
-                    var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
+                    var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: 'IsPass' });
                     row.IsPass = $(ed.target).combobox('getText');
                 },
                 onCheck: function (index) {
-                    $('#group').datagrid('beginEdit', index);
+                    $('#group').combogrid('grid').datagrid('beginEdit', index);
                 },
                 onUncheck: function (index) {
-                    $('#group').datagrid('cancelEdit', index);
+                    $('#group').combogrid('grid').datagrid('cancelEdit', index);
                 },
                 onLoadSuccess: function (data) {
                     if (data) {
@@ -478,7 +464,7 @@
                         $.each(data.rows, function (index, item) {
                             if (item.checked) {
 
-                                $('#group').datagrid('checkRow', index);
+                                $('#group').combogrid('grid').datagrid('checkRow', index);
 
                             }
                         })
@@ -493,14 +479,11 @@
             $("#editSMSMissionWindow").window('close');
             $("#editPersonWindow").window('close');
             $("#showDepartmentWindow").window('close');
-            $("#showGroupWindow").window('close');
             loadDataGrid('@ViewBag.GetInfo', myColumns);
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#SMSMissiondatagrid").datagrid({
                 onClickRow: function (index, field, value) {
-
-                    $('#group').datagrid('unselectAll');
-                    //该命令不起作用，不清楚什么原因
+                    $('#group').combogrid('clear');
                     //$('#department').treegrid('loadData', []);
                     $('#department').treegrid('unselectAll');
                     loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
@@ -515,27 +498,30 @@
         @RenderSection("westdiv")
         <div data-options="region:'center'" title="当前任务内联系人列表" style="width:70%">
             <div id="tb" style="padding:2px 5px;">
+                    为当前任务分配群组:
+                    <select class="easyui-combogrid" id="group" panelHeight="auto" style="width:30%"
+                            data-options=""></select>
+
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="Accept()">保存</a>
                <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
             </div>
                 @RenderSection("showWindow")  
             @*分配部门的窗体*@
-            <div class="easyui-window" id="showDepartmentWindow"  title="部门列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+            <div class="easyui-window" id="showDepartmentWindow" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
                 <div class="easyui-layout" data-options="fit:true" style="border:0px">
                     @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
                     <div data-options="region:'center'" style="border:0px">
                             <select class="easyui-treegrid" id="department" data-options="fit:true"></select>
+                        <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
+                            <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@ onclick="getActionDgSelection()" style="width:80px">提交</a>
+                            <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="test()" style="width:80px">取消</a>
+                        </div>
                     </div>
                 </div>
+                @* scrolling 不显示滚动条*@
+
             </div>
-            @*分配群组的窗体*@
-            <div class="easyui-window" id="showGroupWindow"  title="群组列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
-                <div class="easyui-layout" data-options="fit:true" style="border:0px">
-                    @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
-                    <div data-options="region:'center'" style="border:0px">
-                        <select class="easyui-datagrid" id="group" data-options="fit:true"></select>
-                    </div>
-                </div>
-            </div>
+
 
                </div>
     </div>
