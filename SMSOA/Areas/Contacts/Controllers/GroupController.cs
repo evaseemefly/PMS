@@ -77,7 +77,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult GetCombobox4AllGroupInfo()
         {
             //查询全部的群组
-            var list_allgroup= groupBLL.GetListBy(g => g.isDel == false).Select(r=>r.ToMiddleModel()).ToList();
+            var list_allgroup= groupBLL.GetListBy(g => g.isDel == false).ToList().Select(r=>r.ToMiddleModel()).ToList();
             
             var list_combobox_allgroup = P_Group.ToEasyUICombobox(ref list_allgroup, false);
 
@@ -267,6 +267,33 @@ namespace SMSOA.Areas.Contacts.Controllers
             string state = groupBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
             return Content(state);
         }
+        ///<summary>
+        ///得到选中任务所包含的群组
+        ///</summary>
+        ///<returns></returns>
+        //public ActionResult GetCombogrid4GroupInfoBySmid()
+        //{
+        //    int smid = int.Parse(Request["smid"]);
 
+        //        List<P_Group> list_ShowGroup = new List<P_Group>();
+        //        //1.获取当前任务已有的群组
+        //        var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
+        //        //2.获取所有的群组
+        //        var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
+        //        //3.将已有的群组从所有群组中剔除，已拥有的群组排在前面
+        //        foreach (var item in list_groupbySmid)
+        //        {
+                
+        //            item.Checked = true;
+        //            list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
+        //            list_ShowGroup.Add(item);
+        //        }
+
+        //        //4.未拥有的群组排在后面
+        //        list_ShowGroup.AddRange(list_ALLGroup);
+        //        string temp =  Common.SerializerHelper.SerializerToString(list_ShowGroup);
+        //        temp = temp.Replace("Checked", "checked");
+        //        return Content(temp);
+        //}
     }
 }

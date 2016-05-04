@@ -20,6 +20,15 @@ namespace SMSOA.Areas.Contacts.Models
 
         public string Remark { get; set; }
 
+        /// <summary>
+        /// 禁用
+        /// </summary>
+        public bool IsPass { get; set; }
+        /// <summary>
+        /// 选中
+        /// </summary>
+        public string Text { get; set; }
+
         public List<EasyUITreeGrid_Department> children { get; set; }
     }
 }

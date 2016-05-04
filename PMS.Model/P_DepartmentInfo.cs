@@ -27,6 +27,7 @@ namespace PMS.Model
         public int Area { get; set; }
         public bool isDel { get; set; }
         public string Remark { get; set; }
+        public int Sort { get; set; }
     
         public virtual ICollection<R_Department_Mission> R_Department_Mission { get; set; }
         public virtual ICollection<P_PersonInfo> P_PersonInfo { get; set; }

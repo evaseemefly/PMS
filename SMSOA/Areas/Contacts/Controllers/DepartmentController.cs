@@ -309,5 +309,30 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(state);
         }
 
+        ///<summary>
+        ///得到选中任务所包含的群组
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult GetGroupBySMSMission()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int smid = int.Parse(Request["smid"]);
+            int rowCount = 0;
+
+            var list_department = departmentBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.R_Department_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.DepartmentName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_department,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+        }
+
     }
 }
