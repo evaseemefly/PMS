@@ -96,6 +96,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	R_UserInfo_DepartmentInfoBLL
+    public partial class R_UserInfo_DepartmentInfoBLL : BaseBLL<R_UserInfo_DepartmentInfo>, IR_UserInfo_DepartmentInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_DepartmentInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_DepartmentInfoDAL;
+        }
+    }
+	#endregion
 	   #region	R_UserInfo_GroupBLL
     public partial class R_UserInfo_GroupBLL : BaseBLL<R_UserInfo_Group>, IR_UserInfo_GroupBLL
     {	
@@ -106,6 +119,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.R_UserInfo_GroupDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_PersonInfoBLL
+    public partial class R_UserInfo_PersonInfoBLL : BaseBLL<R_UserInfo_PersonInfo>, IR_UserInfo_PersonInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_PersonInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_PersonInfoDAL;
         }
     }
 	#endregion
@@ -161,6 +187,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	S_SMSMsgContentBLL
+    public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSMsgContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSMsgContentDAL;
+        }
+    }
+	#endregion
 	   #region	S_SMSRecord_CurrentBLL
     public partial class S_SMSRecord_CurrentBLL : BaseBLL<S_SMSRecord_Current>, IS_SMSRecord_CurrentBLL
     {	
@@ -171,6 +210,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.S_SMSRecord_CurrentDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSRecord_HistoryBLL
+    public partial class S_SMSRecord_HistoryBLL : BaseBLL<S_SMSRecord_History>, IS_SMSRecord_HistoryBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSRecord_HistoryDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSRecord_HistoryDAL;
         }
     }
 	#endregion

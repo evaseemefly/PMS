@@ -44,4 +44,7 @@
     <property name="personBLL" ref="personInfoService" />
     <property name="smsSendBLL" ref="smsSendService" />
   </object>
+  <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
+    <property name="smsMsgContentBLL" ref="smsMsgContentService" />
+  </object>
 </objects>

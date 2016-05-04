@@ -110,7 +110,16 @@ namespace SMSOA.Areas.Contacts.Controllers
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             
-            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false&&p.P_Group.Where(g=>g.GID==gid).Count()>0, p => p.PName, true).ToList();
+            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false&&p.P_Group.Where(g=>g.GID==gid).Count()>0, p => p.PName, true).ToList().Select(p=>p.ToMiddleModel()).ToList();
+            //var content = from p in list_person
+            //              select new
+            //              {
+            //                  PID = p.PID,
+            //                  PName = p.PName,
+            //                  Remark = p.Remark,
+            //                  PhoneNum = p.PhoneNum,
+
+            //              };
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
@@ -120,7 +129,8 @@ namespace SMSOA.Areas.Contacts.Controllers
 
 
             //将权限转换为对应的
-            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+            return Json(dgModel,JsonRequestBehavior.AllowGet);
+            //return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
 
         public ActionResult GetPersonByDepartment()
@@ -133,7 +143,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
 
-            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.P_DepartmentInfo.Where(d => d.DID == did).Count() > 0, p => p.PName, true).ToList();
+            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.P_DepartmentInfo.Where(d => d.DID == did).Count() > 0, p => p.PName, true).ToList().Select(p=>p.ToMiddleModel()).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
@@ -154,7 +164,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
-            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false, p => p.PName, true).ToList();
+            var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false, p => p.PName, true).ToList().Select(p=>p.ToMiddleModel()).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,

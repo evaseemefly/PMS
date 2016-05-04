@@ -40,8 +40,18 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IR_UserInfo_DepartmentInfoDAL
+      IDAL.IR_UserInfo_DepartmentInfoDAL R_UserInfo_DepartmentInfoDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IR_UserInfo_GroupDAL
       IDAL.IR_UserInfo_GroupDAL R_UserInfo_GroupDAL { get; set; }
+	  #endregion
+
+	  
+	  #region IR_UserInfo_PersonInfoDAL
+      IDAL.IR_UserInfo_PersonInfoDAL R_UserInfo_PersonInfoDAL { get; set; }
 	  #endregion
 
 	  
@@ -65,8 +75,18 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IS_SMSMsgContentDAL
+      IDAL.IS_SMSMsgContentDAL S_SMSMsgContentDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IS_SMSRecord_CurrentDAL
       IDAL.IS_SMSRecord_CurrentDAL S_SMSRecord_CurrentDAL { get; set; }
+	  #endregion
+
+	  
+	  #region IS_SMSRecord_HistoryDAL
+      IDAL.IS_SMSRecord_HistoryDAL S_SMSRecord_HistoryDAL { get; set; }
 	  #endregion
 
 	  

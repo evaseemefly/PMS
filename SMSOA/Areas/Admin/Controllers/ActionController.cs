@@ -116,6 +116,7 @@ namespace SMSOA.Areas.Admin.Controllers
                 }
 
                 list.AddRange(allActionList);
+                list = list.Select(a => a.ToMiddleModel()).ToList();
                 //4月1日 
                 //应对list进行分页
                 //list = list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
@@ -185,7 +186,7 @@ namespace SMSOA.Areas.Admin.Controllers
                 list.AddRange(allActionList);
                 //4月1日 
                 //应对list进行分页
-               list= list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+               list= list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(a=>a.ToMiddleModel()).ToList();
                 //4 
                 PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
                 {
@@ -299,7 +300,7 @@ namespace SMSOA.Areas.Admin.Controllers
 
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
-            var list_action = actionInfoBLL.GetPageList(pageIndex, pageSize,ref rowCount, a => a.DelFlag == false, a => a.Sort,true).ToList();
+            var list_action = actionInfoBLL.GetPageList(pageIndex, pageSize,ref rowCount, a => a.DelFlag == false, a => a.Sort,true).ToList().Select(p=>p.ToMiddleModel()).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,

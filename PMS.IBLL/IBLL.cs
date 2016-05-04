@@ -39,7 +39,17 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IR_UserInfo_DepartmentInfoBLL:IBaseBLL<R_UserInfo_DepartmentInfo>
+    {
+        
+
+    }
 	    public partial interface IR_UserInfo_GroupBLL:IBaseBLL<R_UserInfo_Group>
+    {
+        
+
+    }
+	    public partial interface IR_UserInfo_PersonInfoBLL:IBaseBLL<R_UserInfo_PersonInfo>
     {
         
 
@@ -64,7 +74,17 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IS_SMSMsgContentBLL:IBaseBLL<S_SMSMsgContent>
+    {
+        
+
+    }
 	    public partial interface IS_SMSRecord_CurrentBLL:IBaseBLL<S_SMSRecord_Current>
+    {
+        
+
+    }
+	    public partial interface IS_SMSRecord_HistoryBLL:IBaseBLL<S_SMSRecord_History>
     {
         
 

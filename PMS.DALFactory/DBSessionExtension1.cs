@@ -194,6 +194,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _R_UserInfo_DepartmentInfoDAL 属性 
+	private IDAL.IR_UserInfo_DepartmentInfoDAL _R_UserInfo_DepartmentInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_DepartmentInfoDAL的实例
+        /// </summary>
+        public IR_UserInfo_DepartmentInfoDAL R_UserInfo_DepartmentInfoDAL
+        {
+            get
+            {
+                if(_R_UserInfo_DepartmentInfoDAL==null)
+                {
+                    _R_UserInfo_DepartmentInfoDAL = AbstractFactory.CreateR_UserInfo_DepartmentInfoDAL();
+                }
+                return _R_UserInfo_DepartmentInfoDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_DepartmentInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _R_UserInfo_GroupDAL 属性 
 	private IDAL.IR_UserInfo_GroupDAL _R_UserInfo_GroupDAL;
 	#endregion
@@ -216,6 +243,33 @@ public partial class DBSession
             set
             {
                 _R_UserInfo_GroupDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _R_UserInfo_PersonInfoDAL 属性 
+	private IDAL.IR_UserInfo_PersonInfoDAL _R_UserInfo_PersonInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_PersonInfoDAL的实例
+        /// </summary>
+        public IR_UserInfo_PersonInfoDAL R_UserInfo_PersonInfoDAL
+        {
+            get
+            {
+                if(_R_UserInfo_PersonInfoDAL==null)
+                {
+                    _R_UserInfo_PersonInfoDAL = AbstractFactory.CreateR_UserInfo_PersonInfoDAL();
+                }
+                return _R_UserInfo_PersonInfoDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_PersonInfoDAL = value;
             }
         }
 	#endregion
@@ -329,6 +383,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _S_SMSMsgContentDAL 属性 
+	private IDAL.IS_SMSMsgContentDAL _S_SMSMsgContentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSMsgContentDAL的实例
+        /// </summary>
+        public IS_SMSMsgContentDAL S_SMSMsgContentDAL
+        {
+            get
+            {
+                if(_S_SMSMsgContentDAL==null)
+                {
+                    _S_SMSMsgContentDAL = AbstractFactory.CreateS_SMSMsgContentDAL();
+                }
+                return _S_SMSMsgContentDAL;
+            }
+
+            set
+            {
+                _S_SMSMsgContentDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _S_SMSRecord_CurrentDAL 属性 
 	private IDAL.IS_SMSRecord_CurrentDAL _S_SMSRecord_CurrentDAL;
 	#endregion
@@ -351,6 +432,33 @@ public partial class DBSession
             set
             {
                 _S_SMSRecord_CurrentDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _S_SMSRecord_HistoryDAL 属性 
+	private IDAL.IS_SMSRecord_HistoryDAL _S_SMSRecord_HistoryDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSRecord_HistoryDAL的实例
+        /// </summary>
+        public IS_SMSRecord_HistoryDAL S_SMSRecord_HistoryDAL
+        {
+            get
+            {
+                if(_S_SMSRecord_HistoryDAL==null)
+                {
+                    _S_SMSRecord_HistoryDAL = AbstractFactory.CreateS_SMSRecord_HistoryDAL();
+                }
+                return _S_SMSRecord_HistoryDAL;
+            }
+
+            set
+            {
+                _S_SMSRecord_HistoryDAL = value;
             }
         }
 	#endregion

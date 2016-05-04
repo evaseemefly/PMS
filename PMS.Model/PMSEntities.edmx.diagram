@@ -36,6 +36,17 @@
         <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_SMSMission_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSContent_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" />
+        <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_DepartmentInfo" Width="1.5" PointX="12.625" PointY="1.875" />
+        <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_PersonInfo" Width="1.5" PointX="14.875" PointY="10.125" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSRecord_History" Width="1.5" PointX="14.875" PointY="6.625" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_PersonInfo_P_PersonInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_History_P_PersonInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_DepartmentInfo_UserInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_PersonInfo_UserInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSMsgContent" Width="1.5" PointX="9.625" PointY="18.75" />
+        <AssociationConnector Association="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

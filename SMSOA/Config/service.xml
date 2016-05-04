@@ -17,4 +17,6 @@
   </object>
   <object type="SMSFactory.SMSSend, SMSFactory" singleton="false" name="smsSendService" >
   </object>
+  <object type="PMS.BLL.S_SMSMsgContentBLL, PMS.BLL" singleton="false" name="smsMsgContentService" >
+  </object>
 </objects>

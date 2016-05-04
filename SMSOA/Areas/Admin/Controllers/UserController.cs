@@ -73,7 +73,7 @@ namespace SMSOA.Areas.Admin.Controllers
             int rowCount = 0;
 
             //查询所有用户
-            var list_user = userInfoBLL.GetPageList(pageIndex, pageSize, a => a.DelFlag == false, a => a.Sort, true).ToList();
+            var list_user = userInfoBLL.GetPageList(pageIndex, pageSize,ref rowCount, a => a.DelFlag == false, a => a.Sort, true).ToList().Select(u=>u.ToMiddleModel()).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
