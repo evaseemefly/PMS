@@ -577,3 +577,7 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\SMSFactory.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\SMSFactory.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\ISMS.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\SMSFactory.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\ISMS.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\SMSFactory.pdb
