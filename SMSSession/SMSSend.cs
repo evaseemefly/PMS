@@ -60,21 +60,29 @@ namespace SMSFactory
             _data=ObjTransform.Model2Xml_FormatSend(smsdata);
             //2.1 http方式发送
             returnMsg = httpInvoke(_serverURL, _data);
-            //2.2 将接收到的短信发送回执转换为对象
-            receiveModel= ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
-
             //解析服务器反馈信息
             if (returnMsg.Length < 1)
             {
 
                 returnMsg = "未收到服务器返回信息";
+                receiveModel = new SMSModel_Receive()
+                {
+                    desc = returnMsg,
+                    msgid = smsdata.msgid,
+                    failPhones = smsdata.phones,
+                    result = SMSDictionary.GetResponseCode()[101]
+                };
                 return false;
-            }            
+            }
+            //2.2 将接收到的短信发送回执转换为对象
+            receiveModel = ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
+
+                      
             //等待信息发送完成后
-            System.Threading.Thread.Sleep(10000);//10秒
+            //System.Threading.Thread.Sleep(10000);//10秒
             ////自动重发
             //vipResend();
-            return false;
+            return true;
         }
 
 
