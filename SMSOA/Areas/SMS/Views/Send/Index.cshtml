@@ -1,6 +1,9 @@
 ﻿
 @{
     Layout = null;
+    int userId=0;
+    if (ViewBag.UserInfo != "")
+    { userId= ((ViewBag.UserInfo) as PMS.Model.UserInfo).ID; }
 }
 
 <!DOCTYPE html>
@@ -65,7 +68,7 @@
                 url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
                 //required: true,
                 method: 'get',
-                width: 210,
+                //width: 210,
                 cascadeCheck: $(this).is(':checked'),//选中子节点不会选中父节点
                 //formatter: formatItem_combobox
                 onCheck: function (node) {
@@ -111,7 +114,7 @@
             //alert(split4id(nodes, "id"));
             //2 请求url加载至Person_DataGrid
             var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
-            
+
             loadDataGrid_Person(url);
         }
 
@@ -177,7 +180,7 @@
                 method: 'get',
                 idField: 'GID',
                 textField: 'GroupName',
-                width:120,
+                //width:120,
                 panelWidth: 180,
                 panelHeight: 'auto',
                 multiple: true,
@@ -203,10 +206,10 @@
                 },
                 //formatter: formatItem_combobox,
                 //获取数据成功后启动事件
-                onLoadSuccess: function () {                   
+                onLoadSuccess: function () {
                    var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
-                    var rowData = data.rows;            
-                    $.each(rowData, function (rowIndex, rowData) {                       
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
                         if (rowData.checked) {
                             $("#group_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
                         }
@@ -228,7 +231,7 @@
                 method: 'get',
                 idField: 'SMID',
                 textField: 'SMSMissionName',
-                width:120,
+                //width:120,
                 panelWidth: 180,
                 panelHeight: 'auto',
                 multiple: false,@*设置为单选*@
@@ -240,7 +243,7 @@
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
                     loadDataGrid_Person(url);
-                }               
+                }
             })
         }
 
@@ -281,9 +284,56 @@
             alert("清除短信内容");
         }
 
+
+
         function CancelSend() {
             alert("取消发送短信");
         }
+
+        function loadcombogrid_oftenMission() {
+            if (@userId!=0) {
+                alert("@userId");
+            }            
+            //加载全部短信任务种类
+            $("#OftensmsMission_combogrid").combogrid({
+                url: '@ViewBag.GetAllMission_combogrid',
+                method: 'get',
+                idField: 'SMID',
+                textField: 'SMSMissionName',
+                //width:120,
+                panelWidth: 180,
+                panelHeight: 'auto',
+                multiple: true,@*设置为单选*@
+                formatter: formatItem_combobox,
+                columns: missionColumns,
+                onClickRow: function (rowIndex, rowData) {
+                    //在常用短信下拉框中
+                    //加载当前任务已经选中的任务列表
+
+                }
+            })
+        }
+
+        function HiddenOftenCombo() {
+
+            if ($("#isShowOftenMission").prop("checked")) {
+                //alert("选中复选框了");
+                //若当前的复选框被选中，则显示下拉框，若未选中则隐藏下来狂
+                //$("#OftensmsMission_combogrid").combogrid("hidden");//无效果
+                //$("#OftensmsMission_combogrid").show();//无效果
+                //$("#OftensmsMission_combogrid").attr("visible", true);
+                $("#OftensmsMission_combogrid").combogrid({ disabled: false });//下拉框变成可以显示的
+                loadcombogrid_oftenMission();
+            }
+            else {
+                //alert("取消复选框了");
+                //$("#OftensmsMission_combogrid").combogrid("hidden");
+                //$("#OftensmsMission_combogrid").hidden();
+                //$("#OftensmsMission_combogrid").attr("visible", false);
+                $("#OftensmsMission_combogrid").combogrid({ disabled: true });
+            }
+        }
+
         $(function () {
             loadCombogrid();
             //OnSelected_Group();
@@ -291,6 +341,11 @@
                 onCheck: function () {
                     alert("选中了");
                 }
+            });
+            HiddenOftenCombo();
+            $("#isShowOftenMission").click(function () {
+                //隐藏或显示常用任务下拉框
+                HiddenOftenCombo();
             });
         })
     </script>
@@ -309,27 +364,33 @@
                         <table cellpadding="4" cellspacing="10" style="font-size:15px;">
                             <tr>
                                 <td>短信任务:</td>
+                                <td >
+                                    <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select>
+                                </td> 
                                 <td>
-                                    <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid"></select>
-                                </td>
+                                    <input type="checkbox" name="qx" id="isShowOftenMission" value="1" />设置常用任务
+                                </td> 
+                                <td >
+                                    <select class="easyui-combogrid" name="OftensmsMission" id="OftensmsMission_combogrid" style="width:150px"></select>
+                                </td>                               
                             </tr>
                             <tr>
                                 <td>修改群组:</td>
-                                <td>
-                                    <select class="easyui-combogrid" id="group_combogrid"multiple name="group"></select>
-                                    <input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">
+                                <td >
+                                    <select class="easyui-combogrid" id="group_combogrid"multiple name="group" style="width:150px"></select>
+                                    @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
                                 </td>
                             </tr>
                             <tr>
                                 <td>修改部门:</td>
-                                <td>
-                                    <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:200px"multiple data-options=""></select>
-                                    <input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">
+                                <td >
+                                    <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:150px"multiple data-options=""></select>
+                                    @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
                                 </td>
                             </tr>
                             <tr>
                                 <td>短信内容:</td>
-                                <td><input class="easyui-textbox" name="message"id="message" data-options="multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"></td>
+                                <td colspan="3"><input class="easyui-textbox" name="message"id="message" data-options="multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"></td>
                             </tr>
                         </table>
                     </form>

@@ -301,7 +301,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                 list_personFromGroup = list_personFromGroup.Where(a => !list_personFromDep_isNotPass.Contains(a)).ToList();
                 list_personFromGroup = list_personFromGroup.Where(a => a.isDel == false).ToList();
                 //10 分页
-                list_personFromGroup = list_personFromGroup.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                list_personFromGroup = list_personFromGroup.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(m=>m.ToMiddleModel()).ToList();
 
 
                 PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()

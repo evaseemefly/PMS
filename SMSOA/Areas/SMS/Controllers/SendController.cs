@@ -12,7 +12,7 @@ using ISMS;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
-    public class SendController : Controller
+    public class SendController : Admin.Controllers.BaseController
     {
         IS_SMSMissionBLL smsMissionBLL { get; set; }
         IP_GroupBLL groupBLL { get; set; }
@@ -194,8 +194,12 @@ namespace SMSOA.Areas.SMS.Controllers
         /// 查询所有 短信任务对象集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetAllMissionByPID()
+        public ActionResult GetAllMissionByPID(int pid)
         {
+            if(pid==0)
+            {
+
+            }
             //int userId=3;
             //userInfoBLL.GetListBy(p=>p.ID==userId).FirstOrDefault().R_UserInfo_SMSMission.
             //获取全部的短信种类集合

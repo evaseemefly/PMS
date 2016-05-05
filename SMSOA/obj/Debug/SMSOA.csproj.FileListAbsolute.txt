@@ -581,3 +581,7 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\ISMS.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\SMSFactory.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\ISMS.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\SMSFactory.pdb
+E:\03协同开发\短信\PMS\PMS\SMSOA\bin\ISMS.dll
+E:\03协同开发\短信\PMS\PMS\SMSOA\bin\SMSFactory.dll
+E:\03协同开发\短信\PMS\PMS\SMSOA\bin\ISMS.pdb
+E:\03协同开发\短信\PMS\PMS\SMSOA\bin\SMSFactory.pdb
