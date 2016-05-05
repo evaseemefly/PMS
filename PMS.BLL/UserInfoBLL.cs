@@ -80,6 +80,32 @@ namespace PMS.BLL
             return GetListBy(a => list_ids.Contains(a.ID)).ToList();
 
         }
+
+        /// <summary>
+        /// 根据UserID查找该用户对应的短信任务
+        /// </summary>
+        /// <param name="uid">UserInfo ID</param>
+        /// <param name="isMiddle">是否转成中间变量（转成中间变量为true）</param>
+        /// <returns></returns>
+        public List<S_SMSMission> GetMissionListByUID(int uid,bool isMiddle)
+        {
+            //1 找到对应的用户
+            var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+            List<S_SMSMission> list_mission = new List<S_SMSMission>();
+            //2 根据用户查找该用户所用的Mission
+            userModel.R_UserInfo_SMSMission.ToList().ForEach(r => list_mission.Add(r.S_SMSMission));
+            //3 将对应的任务集合转成中间实体
+            if (isMiddle)
+            {
+                return list_mission.Select(m => m.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return list_mission;
+            }
+            
+        }
+
         /// <summary>
         /// 为用户分配角色
         /// </summary>

@@ -61,3 +61,4 @@ D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\bin\Debug\System.Web.Mvc.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
 E:\03协同开发\短信\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
+D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache

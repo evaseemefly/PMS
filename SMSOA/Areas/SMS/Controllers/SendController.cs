@@ -19,6 +19,8 @@ namespace SMSOA.Areas.SMS.Controllers
         IP_DepartmentInfoBLL departmentBLL { get; set; }
         IP_PersonInfoBLL personBLL { get; set; }
         ISMSSend smsSendBLL { get; set; }
+        IUserInfoBLL userBLL { get; set; }
+
         //IUserInfoBLL userInfoBLL { get; set; }
         // GET: SMS/Send
 
@@ -26,11 +28,21 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult Index()
         {
             ViewBag.GetAllMission_combogrid = "/SMS/Send/GetAllMissionByPID";
+            ViewBag.GetMissionByUID = "/SMS/Send/GetMissionByUID";
             ViewBag.GetGroupByMID_combogrid = "/SMS/Send/GetGroupByMID";
             ViewBag.GetDepartment_combotree = "/SMS/Send/GetDepartmentInfo4ComboTree";
             ViewBag.GetPersonByMission = "/SMS/Send/GetPersonByMission";
             ViewBag.GetPersonByGroupDepartment = "/SMS/Send/GetPersonByGroupDepartment";
             ViewBag.DoSend = "/SMS/Send/DoSend";
+
+            ViewBag.LoginUserID = -999;
+            //若父控制器中的登录用户不为空
+            if (base.LoginUser!=null)
+            {
+                //获取登录用户的id
+                ViewBag.LoginUserID = base.LoginUser.ID;
+            }
+            
             return View();
         }
 
@@ -190,16 +202,30 @@ namespace SMSOA.Areas.SMS.Controllers
             return Content(temp);
         }
 
+        public ActionResult GetMissionByUID()
+        {
+            int uid = int.Parse(Request["userId"]);
+            //1 根据传入的userId查询该User所拥有的短信任务
+            var list_mission= userBLL.GetMissionListByUID(uid, true);
+
+            //2 
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = 0,
+                rows = list_mission,
+                footer = null
+            };
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(model));
+        }
+
         /// <summary>
         /// 查询所有 短信任务对象集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetAllMissionByPID(int pid)
+        public ActionResult GetAllMissionByPID()
         {
-            if(pid==0)
-            {
-
-            }
+            
             //int userId=3;
             //userInfoBLL.GetListBy(p=>p.ID==userId).FirstOrDefault().R_UserInfo_SMSMission.
             //获取全部的短信种类集合

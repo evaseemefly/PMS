@@ -11,6 +11,14 @@ namespace PMS.IBLL
     public partial interface IUserInfoBLL
     {
         /// <summary>
+        /// 根据UserID查找该用户对应的短信任务
+        /// </summary>
+        /// <param name="uid">UserInfo ID</param>
+        /// <param name="isMiddle">是否转成中间变量（转成中间变量为true）</param>
+        /// <returns></returns>
+        List<S_SMSMission> GetMissionListByUID(int uid, bool isMiddle);
+
+        /// <summary>
         /// 逻辑删除（物理删除）
         /// </summary>
         /// <param name="list"></param>

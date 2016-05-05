@@ -1,9 +1,10 @@
 ﻿
 @{
     Layout = null;
-    int userId=0;
-    if (ViewBag.UserInfo != "")
-    { userId= ((ViewBag.UserInfo) as PMS.Model.UserInfo).ID; }
+    if(ViewBag.LoginUserID!=-999)
+    {
+
+    }
 }
 
 <!DOCTYPE html>
@@ -132,7 +133,7 @@
                     var data = $("#persondatagrid").datagrid("getData");
                     var rowData = data.rows;
                     $.each(rowData, function (rowIndex, rowData) {
-                            $("#persondatagrid").datagrid("selectRow", rowIndex);
+                        $("#persondatagrid").datagrid("selectRow", rowIndex);
                     });
                 }
             });
@@ -207,7 +208,7 @@
                 //formatter: formatItem_combobox,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
-                   var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
+                    var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
                     var rowData = data.rows;
                     $.each(rowData, function (rowIndex, rowData) {
                         if (rowData.checked) {
@@ -220,32 +221,10 @@
 
         function OnChecks() {
 
-           var ids= $("#group_combogrid").combobox("getChecked");
+            var ids= $("#group_combogrid").combobox("getChecked");
         }
 
-        //加载短信任务combogrid
-        function loadCombogrid() {
-            //加载全部短信任务种类
-            $("#smsMission_combogrid").combogrid({
-                url: '@ViewBag.GetAllMission_combogrid',
-                method: 'get',
-                idField: 'SMID',
-                textField: 'SMSMissionName',
-                //width:120,
-                panelWidth: 180,
-                panelHeight: 'auto',
-                multiple: false,@*设置为单选*@
-                formatter: formatItem_combobox,
-                columns: missionColumns,
-                onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
-                    loadComboGrid_Group(rowData.SMID);
-                    loadComboTree_Department(rowData.SMID);
-                    //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
-                    var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
-                    loadDataGrid_Person(url);
-                }
-            })
-        }
+
 
         function AjaxSubmit(pids, content,url) {
             //1 创建对象
@@ -290,13 +269,42 @@
             alert("取消发送短信");
         }
 
-        function loadcombogrid_oftenMission() {
-            if (@userId!=0) {
-                alert("@userId");
-            }            
+        //加载短信任务combogrid
+        function loadCombogrid_byUser() {
+            var myurl = '@ViewBag.GetMissionByUID';
+            //拼接
+            if (@ViewBag.LoginUserID != -999)
+            {
+                myurl = myurl + "?userId=" + '@ViewBag.LoginUserID';
+            }
+            //根据当前登录用户加载该用户所拥有的短信任务
+            $("#smsMission_combogrid").combogrid({
+                url: myurl,
+                method: 'get',
+                idField: 'SMID',
+                textField: 'SMSMissionName',
+                //width:120,
+                panelWidth: 180,
+                panelHeight: 'auto',
+                multiple: false,@*设置为单选*@
+                formatter: formatItem_combobox,
+                columns: missionColumns,
+                onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
+                    loadComboGrid_Group(rowData.SMID);
+                    loadComboTree_Department(rowData.SMID);
+                    //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
+                    var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
+                    loadDataGrid_Person(url);
+                }
+            })
+        }
+
+        //加载常用的短信任务
+        function loadcombogrid_AllMission() {
+            var myurl='@ViewBag.GetAllMission_combogrid';
             //加载全部短信任务种类
             $("#OftensmsMission_combogrid").combogrid({
-                url: '@ViewBag.GetAllMission_combogrid',
+                url: myurl,
                 method: 'get',
                 idField: 'SMID',
                 textField: 'SMSMissionName',
@@ -323,7 +331,7 @@
                 //$("#OftensmsMission_combogrid").show();//无效果
                 //$("#OftensmsMission_combogrid").attr("visible", true);
                 $("#OftensmsMission_combogrid").combogrid({ disabled: false });//下拉框变成可以显示的
-                loadcombogrid_oftenMission();
+                loadcombogrid_AllMission();
             }
             else {
                 //alert("取消复选框了");
@@ -335,7 +343,7 @@
         }
 
         $(function () {
-            loadCombogrid();
+            loadCombogrid_byUser();
             //OnSelected_Group();
             $("#DepartmentName_combotree").combotree({
                 onCheck: function () {
