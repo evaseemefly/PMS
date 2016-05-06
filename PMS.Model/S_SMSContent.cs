@@ -26,6 +26,8 @@ namespace PMS.Model
         public System.DateTime SendDateTime { get; set; }
         public bool isDel { get; set; }
         public int SMID { get; set; }
+        public int PushResultCode { get; set; }
+        public string PushResultDesc { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
         public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }

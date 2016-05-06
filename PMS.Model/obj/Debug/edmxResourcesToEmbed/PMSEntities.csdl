@@ -393,6 +393,8 @@
     <Property Name="SMID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_S_SMSContent_UserInfo" FromRole="S_SMSContent" ToRole="UserInfo" />
     <NavigationProperty Name="S_SMSRecord_Current" Relationship="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_Current" />
+    <Property Name="PushResultCode" Type="Int32" Nullable="false" />
+    <Property Name="PushResultDesc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="S_SMSRecord_Current">
     <Key>

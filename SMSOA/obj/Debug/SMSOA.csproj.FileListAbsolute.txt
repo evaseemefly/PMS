@@ -585,3 +585,7 @@ E:\03协同开发\短信\PMS\PMS\SMSOA\bin\ISMS.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\SMSFactory.dll
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\ISMS.pdb
 E:\03协同开发\短信\PMS\PMS\SMSOA\bin\SMSFactory.pdb
+D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\ISMS.dll
+D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\SMSFactory.dll
+D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\ISMS.pdb
+D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\SMSFactory.pdb
