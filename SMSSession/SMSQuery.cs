@@ -17,6 +17,7 @@ namespace SMSFactory
         /// <returns></returns>
         public object QueryMsg(string result)
         {
+            
             return null;
         }
     }
