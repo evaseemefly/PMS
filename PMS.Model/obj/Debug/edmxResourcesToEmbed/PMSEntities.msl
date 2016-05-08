@@ -240,6 +240,7 @@
     <EntitySetMapping Name="S_SMSMsgContent">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSMsgContent">
         <MappingFragment StoreEntitySet="S_SMSMsgContent">
+          <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
           <ScalarProperty Name="MsgName" ColumnName="MsgName" />
           <ScalarProperty Name="Sort" ColumnName="Sort" />

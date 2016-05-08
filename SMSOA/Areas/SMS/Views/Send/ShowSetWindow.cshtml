@@ -123,7 +123,7 @@
                 method: 'get',
                 idField: 'GID',
                 textField: 'GroupName',
-                width: 150,
+                //width: 150,
                 panelWidth: 180,
                 panelHeight: 'auto',
                 multiple: true,
@@ -149,7 +149,7 @@
                 method: 'get',
                 idField: 'SMID',
                 textField: 'SMSMissionName',
-                width: 150,
+                //width: 150,
                 panelWidth: 180,
                 panelHeight: 'auto',
                 multiple: true,
@@ -180,23 +180,23 @@
     </script>
 </head>
 <body>
-    <div>
-        <div style="padding:10px 60px 20px 60px">
+    <div style="height:100%">
+        <div style="padding:10px 60px 20px 60px;height:100%">
             <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
                 <input type="hidden" name="DID" value="@ViewBag.DID" />
-                <table cellpadding="2">
+                <table cellspacing="10" style="font-size:15px;">
                     <tr>
                         <td style="color:#ffffff">设置常用短信任务:</td>
                         <td>
                             @*加载全部短信任务列表，并将当前用户所拥有的短信任务设置为勾选*@
-                            <select class="easyui-combotree" name="PDID" id="smsMission_combogrid" data-options="required:true"></select>
+                            <select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="width:130px" data-options="required:true"></select>
                         </td>
                     </tr>
                     <tr>
                         <td style="color:#ffffff">设置常用短信群组:</td>
                         <td>
                             @*加载全部短信群组列表，并将当前用户所拥有的短信群组设置为勾选*@
-                            <select class="easyui-combotree" name="PDID" id="group_combogrid" data-options="@*required:true*@"></select>
+                            <select class="easyui-combotree" name="PDID" id="group_combogrid" style="width:130px"data-options="@*required:true*@"></select>
                         </td>
                     </tr>
                     </table>

@@ -37,6 +37,8 @@
             myform.form('submit', options);
         }
 
+        
+
         function afterEdit(data) {
 
             //$.messager.alert('提醒', '提交成功!');
@@ -63,10 +65,10 @@
         }
 
         //加载短信任务combogrid
-        function loadCombogrid() {
+        function loadCombogrid(userId) {
             //加载全部短信任务种类
             $("#smsMission_combogrid").combogrid({
-                url: '@ViewBag.GetAllMission_combogrid',
+                url: '@ViewBag.GetAllMission_combogrid?userId=' + userId,
                 method: 'get',
                 idField: 'SMID',
                 textField: 'SMSMissionName',
@@ -77,12 +79,23 @@
                 formatter: formatItem_combobox,
                 columns: missionColumns,
                 onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
+                },
+                onLoadSuccess: function () {
+                    var data = $("#smsMission_combogrid").combogrid("grid").datagrid("getData");
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
+                        if (rowData.checked) {
+                            $("#smsMission_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
+                        }
+                    });
                 }
             })
         }
 
         $(function () {
-            loadCombogrid();
+            var userId =@ViewBag.LoginUserID;
+            loadCombogrid(userId);
+
         })
     </script>
 </head>
@@ -90,37 +103,20 @@
     @*<div class="easyui-panel" title="New Topic" style="width:400px">*@
     <div style="padding:10px 60px 20px 60px">
         <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
-            <input type="hidden" name="GID" />
-            @*<table cellpadding="3">
-                <tr style="margin-bottom:20px">
-                    <td style="color:#ffffff">模板名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="MsgName" data-options="required:true"></input></td>
-                </tr>
-                <tr style="margin-bottom:20px"> 
-                    <td style="color:#ffffff">所属任务:</td>
-                    <td>
-                        <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid"></select>
-                    </td>
-                </tr>
-                <tr style="margin-bottom:20px">
-                    <td style="color:#ffffff">模板内容:</td>
-                    <td>
-                        <input class="easyui-textbox" name="MsgContent" style="height:150px;width:150px" data-options="multiline:true"></input>
-                    </td>
-                </tr>
-            </table>*@
+            <input type="hidden" id="UID" name="UID" value="@ViewBag.LoginUserID" />
+            <input type="hidden" id="TID" name="TID" value="@ViewBag.TID" />
             @*换一种显示方式*@
             <div style="margin-bottom:20px">
                 <div style="color:#ffffff">模板名称:</div>
-                <input class="easyui-textbox" data-options="prompt:'输入名称'@*,validType:'email'*@" style="width:100%;">
+                <input class="easyui-textbox"name="MsgName"value="@ViewBag.MsgName" data-options="prompt:'输入名称'@*,validType:'email'*@" style="width:100%;">
             </div>
             <div style="margin-bottom:20px">
                 <div style="color:#ffffff">所属任务:</div>
-                <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid"></select>
+                <select class="easyui-combogrid" name="SMID" id="smsMission_combogrid"></select>
             </div>
             <div style="margin-bottom:20px">
                 <div style="color:#ffffff">模板内容:</div>
-                <input class="easyui-textbox" name="MsgContent" style="height:100px;width:200px;font-size:20px;" data-options="multiline:true,prompt:'输入模板内容...'@*,validType:'email'*@">
+                <input class="easyui-textbox" name="MsgContent" style="height:100px;width:200px;font-size:20px;"value="@ViewBag.MsgContent" data-options="multiline:true,prompt:'输入模板内容...'@*,validType:'email'*@">
             </div>
             <div style="text-align:center;padding:5px;margin-bottom:20px">
                 <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" style="width:80px" type="submit" onclick="DoSubmit()">提交</a>

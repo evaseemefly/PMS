@@ -63,20 +63,15 @@ namespace SMSOA.Areas.SMS.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 根据传入的用户id查询全部的短信任务
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public ActionResult GetMissionByUser()
+        protected string GetMissionByUser(int userId,bool isChecked)
         {
-            int userId = int.Parse(Request["userId"]);
+            
             //1 获取该用户所拥有的短信任务（常用短信任务）
             var list_owned_mission = userBLL.GetMissionListByUID(userId, true);
-            var missionIdsbyUser= list_owned_mission.Select(m => m.SMID).ToList();
+            var missionIdsbyUser = list_owned_mission.Select(m => m.SMID).ToList();
             //2 获取剩余的未拥有的全部短信任务
             var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser);
-            var list =ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_owned_mission, true);
+            var list = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_owned_mission, isChecked);
             //2 从所有的群组中删除该任务所拥有的群组集合
             var list_excludeOwned_group = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_Ext_mission, false);
             list.AddRange(list_excludeOwned_group);
@@ -88,7 +83,31 @@ namespace SMSOA.Areas.SMS.Controllers
                 footer = null
             };
             var temp = Common.SerializerHelper.SerializerToString(model);
-            temp = temp.Replace("Checked", "checked");
+            return temp = temp.Replace("Checked", "checked");
+           
+        }
+
+        /// <summary>
+        /// 根据传入的用户id查询全部的短信任务
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public ActionResult GetMissionByUser()
+        {
+            int userId = int.Parse(Request["userId"]);
+           var temp= GetMissionByUser(userId, true);
+            return Content(temp);
+        }
+
+        /// <summary>
+        /// 根据传入的用户id查询全部的短信任务
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public ActionResult GetMissionByUserUnChecked()
+        {
+            int userId = int.Parse(Request["userId"]);
+            var temp = GetMissionByUser(userId, false);
             return Content(temp);
         }
 
@@ -160,15 +179,8 @@ namespace SMSOA.Areas.SMS.Controllers
             return Content(Common.SerializerHelper.SerializerToString(list_person));
         }
 
-        /// <summary>
-        /// 根据传入的userId获取该用户拥有的群组以及可以拥有的群组下拉框
-        /// 设置用户的常用群组
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetGroupByUser()
+        protected string GetGroupByUser(int userId,bool isChecked)
         {
-            int userId = int.Parse(Request["userId"]);
-
             //1 获取该用户所拥有的权限集合
             var list_owned_group = userBLL.GetGroupListByUID(userId, true);
             //List<int> list_group = new List<int>();
@@ -178,7 +190,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //var list_RestOwned_group = userBLL.GetGroupListByUID(userId, true);
 
 
-            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
+            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, isChecked);
             list.AddRange(ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_RestOwned_group, false));
 
             PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
@@ -189,6 +201,25 @@ namespace SMSOA.Areas.SMS.Controllers
             };
             var temp = Common.SerializerHelper.SerializerToString(model);
             temp = temp.Replace("Checked", "checked");
+            return temp;
+        }
+
+        /// <summary>
+        /// 根据传入的userId获取该用户拥有的群组以及可以拥有的群组下拉框
+        /// 设置用户的常用群组
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetGroupByUser()
+        {
+            int userId = int.Parse(Request["userId"]);
+           var temp= GetGroupByUser(userId, true);
+            return Content(temp);
+        }
+
+        public ActionResult GetGroupByUserUnChecked()
+        {
+            int userId = int.Parse(Request["userId"]);
+            var temp = GetGroupByUser(userId, false);
             return Content(temp);
         }
 
