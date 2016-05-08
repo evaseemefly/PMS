@@ -61,6 +61,7 @@
     <Compile Include="EasyUIModel\EasyUIComboTree_Department.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
+    <Compile Include="EasyUIModel\EasyUIDataGrid_Mission.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />

@@ -365,7 +365,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="UID" Type="Int32" Nullable="false" />
     <Property Name="GID" Type="Int32" Nullable="false" />
-    <Property Name="isPass" Type="Int64" Nullable="false" />
+    <Property Name="isPass" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="P_Group" Relationship="PMS2016Model.FK_R_UserInfo_Group_P_Group" FromRole="R_UserInfo_Group" ToRole="P_Group" />
     <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_Group_UserInfo" FromRole="R_UserInfo_Group" ToRole="UserInfo" />
   </EntityType>

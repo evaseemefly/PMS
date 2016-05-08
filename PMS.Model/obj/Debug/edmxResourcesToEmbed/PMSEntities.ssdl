@@ -120,10 +120,10 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UID" Type="int" Nullable="false" />
     <Property Name="GID" Type="int" Nullable="false" />
-    <Property Name="isPass" Type="bigint" Nullable="false" />
+    <Property Name="isPass" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="R_UserInfo_PersonInfo">
     <Key>
@@ -192,7 +192,7 @@
     <Key>
       <PropertyRef Name="TID" />
     </Key>
-    <Property Name="TID" Type="int" Nullable="false" />
+    <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SMID" Type="int" Nullable="false" />
     <Property Name="MsgContent" Type="nvarchar(max)" />
     <Property Name="isDel" Type="bit" Nullable="false" />

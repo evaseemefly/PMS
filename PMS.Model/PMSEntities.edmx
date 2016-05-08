@@ -125,10 +125,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="GID" Type="int" Nullable="false" />
-          <Property Name="isPass" Type="bigint" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_PersonInfo">
           <Key>
@@ -197,7 +197,7 @@
           <Key>
             <PropertyRef Name="TID" />
           </Key>
-          <Property Name="TID" Type="int" Nullable="false" />
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SMID" Type="int" Nullable="false" />
           <Property Name="MsgContent" Type="nvarchar(max)" />
           <Property Name="isDel" Type="bit" Nullable="false" />
@@ -1078,7 +1078,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="GID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Int64" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="P_Group" Relationship="PMS2016Model.FK_R_UserInfo_Group_P_Group" FromRole="R_UserInfo_Group" ToRole="P_Group" />
           <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_Group_UserInfo" FromRole="R_UserInfo_Group" ToRole="UserInfo" />
         </EntityType>
