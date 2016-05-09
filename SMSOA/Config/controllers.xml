@@ -50,5 +50,6 @@
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
     <property name="smsMsgContentBLL" ref="smsMsgContentService" />
+    <property name="smsMissionBLL" ref="smsmissionService" />
   </object>
 </objects>

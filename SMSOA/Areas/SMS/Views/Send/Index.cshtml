@@ -309,7 +309,26 @@
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
                     loadDataGrid_Person(url);
+                    //根据所选的短信任务类型加载模板
+                    loadtextbox_Template(rowData.SMID,userId);
                 }
+            })
+        }
+
+        //根据短信任务以及用户id加载该任务所拥有的短信
+        function loadtextbox_Template(smid,userid){
+            $.ajax({
+                url:"@ViewBag.GetTemplateByUidAndMission"+"?userId="+userid+"&smId="+smid ,
+                
+                contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
+                async: false,
+                type: 'POST',
+                success: function (data) {
+
+                    //alert(data);
+                    $("#message").textbox('setValue',data);
+                }
+
             })
         }
 

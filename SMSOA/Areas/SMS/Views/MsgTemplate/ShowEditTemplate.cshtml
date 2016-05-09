@@ -66,9 +66,11 @@
 
         //加载短信任务combogrid
         function loadCombogrid(userId) {
+            //获取隐藏域TID
+            var tid=$("#TID").val()
             //加载全部短信任务种类
             $("#smsMission_combogrid").combogrid({
-                url: '@ViewBag.GetAllMission_combogrid?userId=' + userId,
+                url: '@ViewBag.GetAllMission_combogrid?userId=' + userId+"&tid="+tid,
                 method: 'get',
                 idField: 'SMID',
                 textField: 'SMSMissionName',

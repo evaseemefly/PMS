@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.IBLL;
 using PMS.Model;
+using Common.EasyUIFormat;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -15,6 +16,7 @@ namespace SMSOA.Areas.SMS.Controllers
     {
        IS_SMSMsgContentBLL smsMsgContentBLL { get; set; }
 
+        IS_SMSMissionBLL smsMissionBLL { get; set; }
         // GET: SMS/MsgTemplate
         public ActionResult Index()
         {
@@ -44,7 +46,7 @@ namespace SMSOA.Areas.SMS.Controllers
                     ViewBag.LoginUserID = base.LoginUser.ID;
                 }
                 ViewBag.TID = model.TID;
-                ViewBag.GetAllMission_combogrid = "/SMS/Send/GetMissionByUser";
+                ViewBag.GetAllMission_combogrid = "/SMS/MsgTemplate/GetMissionByUser";
                 ViewBag.MsgName = model.MsgName;
                 ViewBag.SMID = model.SMID;
                 ViewBag.MsgContent = model.MsgContent;
@@ -120,8 +122,8 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             templateModel.isDel = false;
-            //departmentModel.ModifiedOnTime = DateTime.Now;
-
+           
+            templateModel.SubTime = DateTime.Now;
             try
             {
                 smsMsgContentBLL.Update(templateModel);
@@ -131,6 +133,57 @@ namespace SMSOA.Areas.SMS.Controllers
             {
                 return Content("error");
             }
+        }
+
+        public ActionResult GetTemplateByUserIdAndMission(int userId,int SMId)
+        {
+            var templateModel= smsMsgContentBLL.GetListBy(t => t.UID == userId && t.SMID == SMId).FirstOrDefault();
+            if(templateModel!=null)
+            {
+               return Content(templateModel.MsgContent);
+            }
+            else
+            {
+                return Content("");
+            }
+            
+        }
+
+        protected string GetMissionByUser(int userId,int tid, bool isChecked)
+        {
+
+            //1 获取当前短信模板中SMID对应的短信群组类型           
+            var list_owned_mission=smsMsgContentBLL.GetListBy(c => c.UID == userId && c.TID == tid).Select(c => c.S_SMSMission).ToList();
+            var missionIdsbyUser = list_owned_mission.Select(m => m.SMID).ToList();
+            //2 获取剩余的未拥有的全部短信任务
+            var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser);
+            var list = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_owned_mission, isChecked);
+            //2 从所有的群组中删除该任务所拥有的群组集合
+            var list_excludeOwned_group = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_Ext_mission, false);
+            list.AddRange(list_excludeOwned_group);
+            //将该任务拥有的群组设置为选中状态
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = 0,
+                rows = list,
+                footer = null
+            };
+            var temp = Common.SerializerHelper.SerializerToString(model);
+            return temp = temp.Replace("Checked", "checked");
+
+        }
+
+        /// <summary>
+        /// 根据传入的用户id查询全部的短信任务
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public ActionResult GetMissionByUser()
+        {
+            int userId = int.Parse(Request["userId"]);
+            int tid = int.Parse(Request["tid"]);
+            var temp = GetMissionByUser(userId, tid, true);
+            return Content(temp);
         }
     }
 }

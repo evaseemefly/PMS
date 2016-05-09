@@ -35,6 +35,7 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.GetPersonByMission = "/SMS/Send/GetPersonByMission";
             ViewBag.GetPersonByGroupDepartment = "/SMS/Send/GetPersonByGroupDepartment";
             ViewBag.DoSend = "/SMS/Send/DoSend";
+            ViewBag.GetTemplateByUidAndMission = "/SMS/MsgTemplate/GetTemplateByUserIdAndMission";
             //注意不在此处传获取任务的方法
             ViewBag.ShowSetOftenMissionAndGroup = "/SMS/Send/ShowSetWindow";
             ViewBag.LoginUserID = -999;
