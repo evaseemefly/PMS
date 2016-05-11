@@ -497,6 +497,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_S_SMSContent_S_SMSMission">
+    <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+    <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="S_SMSMission">
+        <PropertyRef Name="SMID" />
+      </Principal>
+      <Dependent Role="S_SMSContent">
+        <PropertyRef Name="SMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_S_SMSContent_UserInfo">
     <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
     <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
@@ -569,12 +581,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_S_SMSRecord_History_S_SMSMission">
-    <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+  <Association Name="FK_S_SMSRecord_History_S_SMSContent">
+    <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="1" />
     <End Role="S_SMSRecord_History" Type="Self.S_SMSRecord_History" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="S_SMSMission">
-        <PropertyRef Name="SMID" />
+      <Principal Role="S_SMSContent">
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="S_SMSRecord_History">
         <PropertyRef Name="SCID" />
@@ -692,6 +704,10 @@
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
     </AssociationSet>
+    <AssociationSet Name="FK_S_SMSContent_S_SMSMission" Association="Self.FK_S_SMSContent_S_SMSMission">
+      <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+      <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+    </AssociationSet>
     <AssociationSet Name="FK_S_SMSContent_UserInfo" Association="Self.FK_S_SMSContent_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="S_SMSContent" EntitySet="S_SMSContent" />
@@ -716,8 +732,8 @@
       <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
       <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
     </AssociationSet>
-    <AssociationSet Name="FK_S_SMSRecord_History_S_SMSMission" Association="Self.FK_S_SMSRecord_History_S_SMSMission">
-      <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+    <AssociationSet Name="FK_S_SMSRecord_History_S_SMSContent" Association="Self.FK_S_SMSRecord_History_S_SMSContent">
+      <End Role="S_SMSContent" EntitySet="S_SMSContent" />
       <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
     </AssociationSet>
   </EntityContainer>

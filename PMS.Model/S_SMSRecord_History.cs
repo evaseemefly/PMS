@@ -21,5 +21,6 @@ namespace PMS.Model
     
         public virtual P_PersonInfo P_PersonInfo { get; set; }
         public virtual S_SMSMission S_SMSMission { get; set; }
+        public virtual S_SMSContent S_SMSContent { get; set; }
     }
 }

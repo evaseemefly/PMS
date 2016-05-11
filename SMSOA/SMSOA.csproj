@@ -219,6 +219,7 @@
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_GroupMission.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_Message.cs" />
+    <Compile Include="Areas\SMS\Models\ViewModel_StatisticsLast10.cs" />
     <Compile Include="Areas\SMS\SMSAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -412,6 +413,7 @@
     <Folder Include="Areas\SMS\Views\Shared\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
+    <Folder Include="Scripts\Highcharts\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

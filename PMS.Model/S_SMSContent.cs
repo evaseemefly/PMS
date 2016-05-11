@@ -17,6 +17,7 @@ namespace PMS.Model
         public S_SMSContent()
         {
             this.S_SMSRecord_Current = new HashSet<S_SMSRecord_Current>();
+            this.S_SMSRecord_History = new HashSet<S_SMSRecord_History>();
         }
     
         public int ID { get; set; }
@@ -29,5 +30,7 @@ namespace PMS.Model
     
         public virtual UserInfo UserInfo { get; set; }
         public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }
+        public virtual S_SMSMission S_SMSMission { get; set; }
+        public virtual ICollection<S_SMSRecord_History> S_SMSRecord_History { get; set; }
     }
 }

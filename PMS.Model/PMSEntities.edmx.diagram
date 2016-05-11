@@ -48,6 +48,8 @@
         <EntityTypeShape EntityType="PMS2016Model.S_SMSMsgContent" Width="1.5" PointX="9.625" PointY="18.75" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSMsgContent_UserInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_S_SMSContent_S_SMSMission" />
+        <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

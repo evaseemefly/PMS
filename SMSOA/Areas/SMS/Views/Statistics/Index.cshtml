@@ -5,31 +5,85 @@
 }
 
 @section SectionJS{
-
-
     <script type="text/javascript">
+        var myColumns = [[
+                { field: 'ContentID', title: 'ID', width: 100 },
+                { field: 'MissionName', title: '短信任务', width: 120 },
+                { field: 'Content', title: '发送内容', width: 300 },
+                { field: 'SendDateTime', title: '发送时间', width: 250 },
+                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 100 },
+                { field: 'NotReceiveNum', title: '未收到人数', width: 100 }
+        ]]
 
         function loadDataGrid_Statistic() {
-            $("#statistic_datagrid").datagrid({
+            $("#statisticlast10_datagrid").datagrid({
                 width: 'auto',
                 height: 'auto',
                 fitColumns: true,
                 striped: true,
                 singleSelect: true,
-                url: '@ViewBag.GetStatistic',
+                url: '@ViewBag.GetStatisticLast10',
+                autoRowHeight: true,
+                nowrap:false,//自动换行
                 loadMsg: '数据加载中请稍后……',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
-                columns: myColumns,
-                toolbar: toolbar
+                columns: myColumns
+                
+            });
+        }
+
+        function load_highcharts(){
+            $('#container').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Browser market shares at a specific website, 2014'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                        ['Firefox', 45.0],
+                        ['IE', 26.8],
+                        {
+                            name: 'Chrome',
+                            y: 12.8,
+                            sliced: true,
+                            selected: true
+                        },
+                        ['Safari', 8.5],
+                        ['Opera', 6.2],
+                        ['Others', 0.7]
+                    ]
+                }]
             });
         }
 
             $(function () {
-            
-               
+                loadDataGrid_Statistic();
+
             })
     </script>
 
@@ -41,11 +95,11 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#p').panel('expand',true)">Expand</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#p').panel('collapse',true)">Collapse</a>
 </div>
-<div class="easyui-panel" style="height:350px;padding:5px;">
-    <div id="p" class="easyui-panel" title="Panel Tools" style="width:600px;height:200px;padding:10px;"
+<div class="easyui-panel" style="height:450px;padding:5px;">
+    <div id="p" class="easyui-panel" title="Panel Tools" style="width:800px;height:350px;padding:3px;"
          data-options="iconCls:'icon-save',collapsible:true,minimizable:true,maximizable:true,closable:true">
-        <p style="font-size:14px">jQuery EasyUI framework helps you build your web pages easily.</p>
-        <div class="easyui-datagrid" id="statistic_datagrid"></div>
-       
+        <div class="easyui-datagrid" id="statisticlast10_datagrid"></div>
+        <div id="container" style="height: 300px;max-width:500px"></div>
+
     </div>
 </div>
