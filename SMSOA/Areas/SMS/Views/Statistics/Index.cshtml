@@ -38,52 +38,32 @@
         function load_highcharts(){
             $('#container').highcharts({
                 chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
+                    type: 'column'
                 },
                 title: {
-                    text: 'Browser market shares at a specific website, 2014'
+                    text: '该用户近十条短信'
                 },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                xAxis: {
+                    categories: ['001', '002', '003']
                 },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
-                        }
+                yAxis: {
+                    title: {
+                        text: 'something'
                     }
                 },
                 series: [{
-                    type: 'pie',
-                    name: 'Browser share',
-                    data: [
-                        ['Firefox', 45.0],
-                        ['IE', 26.8],
-                        {
-                            name: 'Chrome',
-                            y: 12.8,
-                            sliced: true,
-                            selected: true
-                        },
-                        ['Safari', 8.5],
-                        ['Opera', 6.2],
-                        ['Others', 0.7]
-                    ]
+                    name: '共发送',
+                    data: [10, 12, 15]
+                }, {
+                    name: '未收到',
+                    data: [2, 1, 7]
                 }]
             });
         }
 
             $(function () {
                 loadDataGrid_Statistic();
-
+                load_highcharts();
             })
     </script>
 
@@ -95,10 +75,14 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#p').panel('expand',true)">Expand</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#p').panel('collapse',true)">Collapse</a>
 </div>
-<div class="easyui-panel" style="height:450px;padding:5px;">
-    <div id="p" class="easyui-panel" title="Panel Tools" style="width:800px;height:350px;padding:3px;"
+<div class="easyui-panel" style="height:720px;padding:5px;">
+    <div id="p1" class="easyui-panel" title="当前用发送短信统计" style="width:800px;height:350px;padding:3px;"
          data-options="iconCls:'icon-save',collapsible:true,minimizable:true,maximizable:true,closable:true">
         <div class="easyui-datagrid" id="statisticlast10_datagrid"></div>
+    </div>
+    <div id="p2" class="easyui-panel" title="当前用户发送短信趋势图" style="width:800px;height:350px;padding:3px;"
+         data-options="iconCls:'icon-save',collapsible:true,minimizable:true,maximizable:true,closable:true">
+       
         <div id="container" style="height: 300px;max-width:500px"></div>
 
     </div>
