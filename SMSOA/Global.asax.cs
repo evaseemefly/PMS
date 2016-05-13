@@ -18,14 +18,14 @@ namespace SMSOA
         {
             //读取log4net的配置信息
             log4net.Config.XmlConfigurator.Configure();
+            
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             string fileLogPath = Server.MapPath("/Log/");//保存错误日志文件的文件夹路径
-            ThreadPool.QueueUserWorkItem((a)=>CallBack(), fileLogPath);
-            
+            ThreadPool.QueueUserWorkItem((a)=>CallBack(), fileLogPath);  
         }
 
         private void CallBack()

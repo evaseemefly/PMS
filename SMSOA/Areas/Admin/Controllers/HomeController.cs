@@ -30,7 +30,7 @@ namespace SMSOA.Areas.Admin.Controllers
         public /*JsonResult*/ActionResult GetMenuFatherNode()
         {
             int parentId = 0;
-            int userId = 3;
+            int userId = base.LoginUser.ID;
 
             //1 从数据库中读取指定的用户对象
             var userInfo = userInfoBLL.GetListBy(u => u.ID == userId).FirstOrDefault();
@@ -85,7 +85,7 @@ namespace SMSOA.Areas.Admin.Controllers
         //[LoginValidate]
         public ActionResult GetMenuItem()
         {
-            int userId = 3;
+            int userId = base.LoginUser.ID;
             //1 从数据库中读取指定的用户对象
             var userInfo = userInfoBLL.GetListBy(u => u.ID == userId).FirstOrDefault();
             if (userInfo != null)

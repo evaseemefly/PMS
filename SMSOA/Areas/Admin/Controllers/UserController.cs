@@ -10,7 +10,7 @@ using SMSOA.Filters;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         IUserInfoBLL userInfoBLL { get; set; }
         IActionInfoBLL actionInfoBLL { get; set; }

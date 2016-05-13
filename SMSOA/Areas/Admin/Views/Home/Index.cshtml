@@ -122,15 +122,19 @@
                     //style:{overflow: hidden},
                     fit: true,
                     content: createNewIframe(treeNode.attributes.url),
-                    style: { overflow: "hidden" }//?
+                    //style: { overflow: "hidden" }//?
                 });
             }
 
         }
         //style="margin:10px"
         //创建一个指定url的iframe
+        //function createNewIframe(url) {
+        //    var iframeStr = "<iframe scrolling='no' frameborder='0'  src='" + url + "' style='width:100%;height:99%;frameborder:0px solid #000;scrolling=no;overflow: hidden'></iframe>";
+        //    return iframeStr;
+        //}
         function createNewIframe(url) {
-            var iframeStr = "<iframe scrolling='no' frameborder='0'  src='" + url + "' style='width:100%;height:99%;frameborder:0px solid #000;scrolling=no;overflow: hidden'></iframe>";
+            var iframeStr = "<iframe frameborder='0'  src='" + url + "' style='width:100%;height:99%;frameborder:0px solid #000;'></iframe>";
             return iframeStr;
         }
     </script>
@@ -152,7 +156,7 @@
         预报中心网络部开发 Copyright ? nmefc</span> 
     </div>
     <div data-options="region:'center',title:'Center'" style="overflow-x:hidden;overflow-y:hidden">
-        <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;overflow-y:hidden">
+        <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;">
 
         </div>
 
