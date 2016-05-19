@@ -20,10 +20,11 @@ namespace SMSOA.Areas.SMS.Controllers
         IP_PersonInfoBLL personBLL { get; set; }
         ISMSSend smsSendBLL { get; set; }
         IUserInfoBLL userBLL { get; set; }
-
+        IS_SMSMsgContentBLL smsMsgContentBLL { get; set; }
         //IUserInfoBLL userInfoBLL { get; set; }
         // GET: SMS/Send
-
+        ISMSQuery smsQuery { get; set; }
+        IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
 
         public ActionResult Index()
         {
@@ -180,9 +181,26 @@ namespace SMSOA.Areas.SMS.Controllers
             //4 短信发送
             PMS.Model.SMSModel.SMSModel_Receive receive;
             smsSendBLL.SendMsg(sendMsg, out receive);
+            //5 将发送的短信存入数据库
+            var mid = model.SMSMissionID;
+            bool isSaveMsgOk = smsMsgContentBLL.SaveMsg(smsContent, mid);
+            //6 查询发送状态(是否加入等待时间？)
+            PMS.Model.SMSModel.SMSModel_Query queryMsg = new PMS.Model.SMSModel.SMSModel_Query()
+            {
+                account = account,
+                password = passWord,
+                smsId = receive.msgid,
+                phones = list_phones.ToArray()
+            };
+            List<PMS.Model.SMSModel.SMSModel_queryReceive> list_queryReceive;
+            smsQuery.QueryMsg(queryMsg,out list_queryReceive);
+            bool isSaveReceiveMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_queryReceive);
+
             return Content("ok");
         }
 
+
+        
         /// <summary>
         /// 根据 短信任务id 查询对应的部门实体，并转成ComboTree对象
         /// </summary>

@@ -19,4 +19,8 @@
   </object>
   <object type="PMS.BLL.S_SMSMsgContentBLL, PMS.BLL" singleton="false" name="smsMsgContentService" >
   </object>
+  <object type="SMSFactory.SMSQuery, SMSFactory" singleton="false" name="smsQueryService" >
+  </object>
+  <object type="PMS.BLL.smsRecord_CurrentBLL, PMS.BLL" singleton="false" name="smsRecord_CurrentService" >
+  </object>
 </objects>

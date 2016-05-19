@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PMS.Model.SMSModel;
 
 namespace ISMS
 {
@@ -16,6 +17,6 @@ namespace ISMS
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        object QueryMsg(string result);
+        object QueryMsg(SMSModel_Query smsdata, out List<SMSModel_queryReceive> list_receiveModel);
     }
 }

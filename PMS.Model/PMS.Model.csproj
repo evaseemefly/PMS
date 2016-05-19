@@ -133,6 +133,8 @@
     <Compile Include="R_UserInfo_SMSMission.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="SMSModel\SMSModel_Query.cs" />
+    <Compile Include="SMSModel\SMSModel_queryReceive.cs" />
     <Compile Include="SMSModel\SMSModel_Receive.cs" />
     <Compile Include="SMSModel\SMSModel_Send.cs" />
     <Compile Include="S_SMSContent.cs">

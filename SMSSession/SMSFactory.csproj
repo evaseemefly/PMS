@@ -59,6 +59,10 @@
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
       <Name>ISMS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
+      <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
+      <Name>PMS.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
