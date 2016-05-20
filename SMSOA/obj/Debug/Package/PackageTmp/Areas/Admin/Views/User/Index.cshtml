@@ -1,0 +1,404 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetUserInfo</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <script type="text/javascript">
+
+        var toolbar = [{
+            iconCls: 'icon-add',
+            text: "新增",
+            handler: addRow
+        }, '-', {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow
+        }, '-', {
+            iconCls: 'icon-edit',
+            text: "编辑",
+            handler: editRow
+        }, '-', {
+            iconCls: 'icon-search',
+            text: "用户权限设置",
+            handler: AssignAction
+        }, "-", {
+            iconCls: 'icon-search',
+            text: "用户角色设置",
+            handler: AssignRole
+        }]
+        var UserId = "";
+        function AssignRole() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            $("#assignRoleWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+            //$("#assignRoleFrame").attr("src", "/Admin/User/ShowAssignRoleInfo?id=" + rows[0].ID);//会出现重定向的错误
+            //$("#setActionRoleFrame").attr("src", "/Admin/Action/Test");
+            UserId = rows[0].ID;
+            //可装载组合框
+            $('#combo_role').combobox({
+                url: '@ViewBag.ShowAssignRoleInfo?id= ' + UserId,
+                valueField: 'id',
+                textField: 'text',
+                //设置为允许多选
+                multiple: true,
+
+                panelHeight: 'auto',
+                formatter: function (row) {
+                    var opts = $(this).combobox('options');
+                    return '<input type="checkbox" class="combobox-checkbox">' + row[opts.textField]
+                },
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                },
+                //选中某项后启动事件
+                onSelect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', true);
+                },
+                //取消选中后启动事件
+                onUnselect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', false);
+                }
+            });
+
+        }
+
+        function getRoleSelection() {
+            //获取所选的角色
+            var val = $('#combo_role').combobox('getValues');
+            var tex = $('#combo_role').combobox('getText');
+
+            if ($.messager.confirm("提示", "您已选择："+ tex + "; 准备提交？", function (r) {
+                    if (r) {
+                   $.post("@ViewBag.DoAssignRoleInfo?UserId=" + UserId + "&&ids=" + val, function (data) {
+                //请求成功后的回调函数
+                //执行afterEdit
+                 $("#assignRoleWindow").window('close');
+                afterEdit("修改成功");
+                         });
+                        }
+            }));
+        }
+
+
+
+        //后续优化：将AssignRole和AssignAction的前台代码合并一下
+
+        function AssignAction() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            $("#assignActionWindow").window('open');
+            UserId = rows[0].ID;
+            //可装载组合框
+            $('#combo_action').combobox({
+                url: '@ViewBag.ShowAssignActionInfo?id= ' + UserId,
+                valueField: 'id',
+                textField: 'text',
+                //设置为允许多选
+                multiple: true,
+
+                panelHeight: 'auto',
+                formatter: function (row) {
+                    var opts = $(this).combobox('options');
+                    return '<input type="checkbox" class="combobox-checkbox">' + row[opts.textField]
+                },
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                },
+                //选中某项后启动事件
+                onSelect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', true);
+                },
+                //取消选中后启动事件
+                onUnselect: function (row) {
+                    var opts = $(this).combobox('options');
+                    var el = opts.finder.getEl(this, row[opts.valueField]);
+                    el.find('input.combobox-checkbox')._propAttr('checked', false);
+                }
+            });
+
+        }
+
+        function getActionSelection() {
+            //获取所选的角色
+            var val = $('#combo_action').combobox('getValues');
+            var tex = $('#combo_action').combobox('getText');
+
+            if ($.messager.confirm("提示", "您已选择：" + tex + "; 准备提交？", function (r) {
+                    if (r) {
+                   $.post("@ViewBag.DoAssignActionInfo?UserId=" + UserId + "&&ids=" + val, function (data) {
+                //请求成功后的回调函数
+                //执行afterEdit
+                 $("#assignActionWindow").window('close');
+                afterEdit("修改成功");
+            });
+            }
+            }));
+        }
+
+
+
+
+
+        //提交
+        function submitForm() {
+            //$("#editWindow").submit()
+        }
+
+        var options = {
+            url: 'xxxx.action',
+            type: 'post',
+            data: null,
+            success: function (data) {
+                if (data.statusCode == "OK") {
+
+
+                } else {
+
+                }
+            }
+        };
+
+        function submitForm() {
+            $.ajax({
+                type: "post",
+                url: "/Admin/User/Create",      // 这里是提交到什么地方的url
+                data: $("#ff").serialize(), // 这里把表单里面的数据提交（！！！注意需要将表单序列化！！！）
+                dataType: "json",
+                success: function (res) {
+                    // 调用回调函数
+                    show("res");
+                }
+            });
+        }
+
+        function show(data) {
+            $.messager.show({
+                title: 'data',
+                msg: 'Message will be closed after 4 seconds.',
+                showType: 'show'
+            });
+        }
+
+
+        function addRow() {
+
+            //打开编辑窗体
+            $("#editWindow").window('open');
+            //从指定页面中预读取数据
+            $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
+
+        }
+
+        function removeRow() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].ID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("/Admin/User/DelSoftUserInfos?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#datagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#datagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+
+        }
+
+        function editRow() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            $("#editWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+            $("#setUserRoleFrame").attr("src", "/Admin/User/ShowEditUserInfo?id=" + rows[0].ID);//会出现重定向的错误
+            //$("#setActionRoleFrame").attr("src", "/Admin/Action/Test");
+
+            //$.get("/Admin/Action/EditActionInfo/" + rows[0].ID, null, function (data) {
+            //    //成功执行毁掉函数，为当前的将返回的html页面给当前的指定div
+
+            //    $("#editWindow").html(data);
+            //});
+        }
+
+        function provideAction() {
+
+        }
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editWindow").window('close');
+            //2 刷新当前页面
+            $("#datagrid").datagrid('reload');
+        }
+
+        $(function () {
+            //1 编辑窗口关闭
+            $("#editWindow").window('close');
+            $("#addWindow").window('close');
+            $("#assignRoleWindow").window('close');
+            $("#assignActionWindow").window('close');
+            //2 位datagrid加载数据
+            $("#datagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: '/Admin/User/GetUserInfo',
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: [[
+                    { field: 'ID', title: 'ID', width: 50 },
+                    { field: 'UName', title: '用户名', width: 150 },
+                    { field: 'UPwd', title: '密码', width: 250 },
+                    { field: 'SubTime', title: '创建时间', width: 250 },
+                    { field: 'ModifiedOnTime', title: '最后修改时间', width: 250 },
+                    { field: 'Remark', title: '备注', width: 100 },
+                    { field: 'Sort', title: '排序', width: 100 },
+                ]],
+                toolbar: toolbar
+            });
+            //3 为修改/创建窗口的下拉菜单加载数据
+            //GetDropDowData;
+            //GetDropDowData();
+            //GetDropDowData(); //下拉菜单中没有显示？？？？？？？？？？
+
+            //$('#ParentActionOptions').combobox({
+            //    url: '/Admin/Action/GetOption',
+            //    //data:data_Options,
+            //    valueField: 'id',
+            //    textField: 'text',
+            //    panelHeight: 'auto'
+            //});
+
+            //$(function(){
+            //    $('#combo').combobox({
+            //        url: '/Admin/User/ShowAssignRoleInfo',
+            //        valueField:'id',
+            //        textField:'text',
+            //        panelHeight: 'auto',
+            //        multiple: true
+            //    });
+            //})
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <table class="easyui-datagrid" id="datagrid"></table>
+        <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px" data-options="shadow:true,modal:true">
+            <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" @*不显示滚动条*@></iframe>
+        </div>
+        <div class="easyui-window" @*title="New Topic"*@ id="assignRoleWindow" style="width:300px;height:150px" data-options="shadow:true,modal:true">                   
+            <div>
+                <h3>用户角色设置</h3>
+                <select id="combo_role" class="easyui-combobox" name="dept" style="width:200px" />
+                <div>
+                    <input type="submit" value="提交" onclick="getRoleSelection()"/>
+                </div>
+
+            </div>     
+        </div>
+        <div class="easyui-window" @*title="New Topic"*@ id="assignActionWindow" style="width:300px;height:150px" data-options="shadow:true,modal:true">
+            <div>
+                <h3>用户权限设置</h3>
+                <select id="combo_action" class="easyui-combobox" style="width:200px" />
+                <div>
+                    <input type="submit" value="提交" onclick="getActionSelection()" />
+                </div>
+
+            </div>
+        </div>
+   </div>
+</body>
+</html>
