@@ -5,6 +5,15 @@
 }
 
 @section SectionJS{
+    <style type="text/css">
+        /*#p2{
+            float:left;
+        }
+        #p4{
+            float: right;
+        }*/
+        /*.panel{float:left;margin-left: 5px;}*/
+     </style>
     <script type="text/javascript">
         var myColumns = [[
                 { field: 'ContentID', title: 'ID', width: 100 },
@@ -24,19 +33,37 @@
                 singleSelect: true,
                 url: '@ViewBag.GetStatisticLast10',
                 autoRowHeight: true,
-                nowrap:false,//自动换行
+                nowrap: false,//自动换行
                 loadMsg: '数据加载中请稍后……',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: myColumns
-                
+
+            });
+
+            $("#statisticCurrentDay_datagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: '@ViewBag.GetStatisticCurrentDay',
+                autoRowHeight: true,
+                nowrap: false,//自动换行
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns
+
             });
         }
 
-        function load_highcharts(){
-            $('#container').highcharts({
+        function loadLast10_highcharts(data_sendDateTime, data_receive, data_notReceive) {
+            $('#last10_container').highcharts({
                 chart: {
                     type: 'column'
                 },
@@ -44,7 +71,7 @@
                     text: '该用户近十条短信'
                 },
                 xAxis: {
-                    categories: ['001', '002', '003']
+                    categories: data_sendDateTime
                 },
                 yAxis: {
                     title: {
@@ -53,30 +80,104 @@
                 },
                 series: [{
                     name: '共发送',
-                    data: [10, 12, 15]
+                    data: data_receive
+                    //[10, 12, 15]
                 }, {
-                    name: '未收到',
-                    data: [2, 1, 7]
+                    name: '收到',
+                    data: data_notReceive
+                    //[2, 1, 7]
                 }]
             });
         }
 
-            $(function () {
-                loadDataGrid_Statistic();
-                load_highcharts();
-            })
+        function loadCurrentDay_highcharts(data_sendDateTime, data_receive, data_notReceive) {
+            $('#currentDay_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '当日发送短信统计'
+                },
+                xAxis: {
+                    categories: data_sendDateTime
+                },
+                yAxis: {
+                    title: {
+                        text: 'something'
+                    }
+                },
+                series: [{
+                    name: '共发送',
+                    data: data_receive
+                    //[10, 12, 15]
+                }, {
+                    name: '收到',
+                    data: data_notReceive
+                    //[2, 1, 7]
+                }]
+            });
+        }
+
+        function AjaxGetChart(url) {
+            var temp;
+            $.ajax({
+                url: url,
+                //data: JSON.stringify(model),
+                type: 'GET',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    //alert("提交成功");
+                    temp = data;
+                    //alert(data.Array_notReceive);
+                    //alert(data.Array_receive);
+                }
+            });
+            return temp;
+        }
+
+        $(function () {
+            loadDataGrid_Statistic();
+            var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
+            loadLast10_highcharts(temp_last10.Arrat_DataTime, temp_last10.Array_total, temp_last10.Array_revice);
+            var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
+            loadCurrentDay_highcharts(temp_currentDay.Arrat_DataTime, temp_currentDay.Array_total, temp_currentDay.Array_revice);
+        })
     </script>
 
     }
-<div class="easyui-panel" style="height:720px;padding:5px;border:0px">
-    <div id="p1" class="easyui-panel" title="当前用发送短信统计" style="width:800px;height:350px;padding:3px;"
-         data-options="iconCls:'icon-save',collapsible:true,minimizable:true,maximizable:true,closable:true">
-        <div class="easyui-datagrid" id="statisticlast10_datagrid"></div>
+<div id="p0" class="easyui-panel" style="height:720px;padding:5px;border:0px">
+    <div style="width:1300px;border:1px dashed #ffd800;">
+        <div style="width:810px;height:360px;border:1px dashed #808080;float:left">
+            <div id="p1" class="easyui-panel" title="当前用户发送短信统计" style="width:800px;height:350px;padding:3px;"
+                 data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
+                <div class="easyui-datagrid" id="statisticlast10_datagrid"></div>
+            </div>
+        </div>
+        <div id="p21" style="width:410px;border:1px dashed #808080;float:left;">
+            <div id="p2" class="easyui-panel" title="当前用户发送短信趋势图" style="width:400px;height:350px;padding:3px;"
+                 data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
+                <div id="last10_container" style="height: 300px;max-width:390px;"></div>
+
+            </div>
+        </div>
     </div>
-    <div id="p2" class="easyui-panel" title="当前用户发送短信趋势图" style="width:800px;height:350px;padding:3px;"
-         data-options="iconCls:'icon-save',collapsible:true,minimizable:true,maximizable:true,closable:true">
-       
-        <div id="container" style="height: 300px;max-width:500px"></div>
+
+    <div style="width:1300px;border:1px dashed #ff6a00;">
+        <div style="width:810px;height:360px;border:1px dashed #808080;float:left">
+            <div id="p3" class="easyui-panel" title="用户当日发送短信统计" style="width:800px;height:350px;padding:3px;"
+                 data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
+                <div class="easyui-datagrid" id="statisticCurrentDay_datagrid"></div>
+            </div>
+        </div>        
+        <div id="p41" style="width:410px;border:1px dashed #808080;float:left;">
+            <div id="p4" class="easyui-panel" title="用户当日发送短信趋势图" style="width:400px;height:350px;padding:3px;"
+                     data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
+                    <div id="currentDay_container" style="height: 300px;max-width:390px;"></div>
+            </div>
+       </div>
 
     </div>
-</div>
+
+
+    </div>
