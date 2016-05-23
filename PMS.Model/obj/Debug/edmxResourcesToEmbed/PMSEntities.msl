@@ -187,6 +187,8 @@
     <EntitySetMapping Name="S_SMSContent">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
         <MappingFragment StoreEntitySet="S_SMSContent">
+          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="BlackList" ColumnName="BlackList" />
           <ScalarProperty Name="SMID" ColumnName="SMID" />
           <ScalarProperty Name="isDel" ColumnName="isDel" />
           <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
@@ -200,7 +202,8 @@
     <EntitySetMapping Name="S_SMSRecord_Current">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_Current">
         <MappingFragment StoreEntitySet="S_SMSRecord_Current">
-          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
           <ScalarProperty Name="PID" ColumnName="PID" />
           <ScalarProperty Name="SCID" ColumnName="SCID" />
           <ScalarProperty Name="SRID" ColumnName="SRID" />
@@ -230,7 +233,8 @@
     <EntitySetMapping Name="S_SMSRecord_History">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_History">
         <MappingFragment StoreEntitySet="S_SMSRecord_History">
-          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
           <ScalarProperty Name="PID" ColumnName="PID" />
           <ScalarProperty Name="SCID" ColumnName="SCID" />
           <ScalarProperty Name="SRID" ColumnName="SRID" />

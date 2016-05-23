@@ -17,7 +17,8 @@ namespace PMS.Model
         public int SRID { get; set; }
         public int SCID { get; set; }
         public int PID { get; set; }
-        public int ResultCode { get; set; }
+        public int StatusCode { get; set; }
+        public string DescContent { get; set; }
     
         public virtual P_PersonInfo P_PersonInfo { get; set; }
         public virtual S_SMSMission S_SMSMission { get; set; }

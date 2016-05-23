@@ -16,19 +16,31 @@
      </style>
     <script type="text/javascript">
         var myColumns = [[
-                { field: 'ContentID', title: 'ID', width: 100 },
-                { field: 'MissionName', title: '短信任务', width: 120 },
-                { field: 'Content', title: '发送内容', width: 300 },
-                { field: 'SendDateTime', title: '发送时间', width: 250 },
+                { field: 'ContentID', title: 'ID', hidden: true },
+                { field: 'MissionName', title: '短信任务', width: 110 },
+                { field: 'Content', title: '发送内容', width: 350 },
+                {
+                    field: 'SendDateTime', title: '发送时间', width: 100,
+                    formatter: function (value) {
+                        var date = new Date(value);
+                        var str =(date.getMonth()+1) + "月" + date.getDate()+"日";
+                        return str;
+                    }
+                },
                 { field: 'TotalOfReceiveNum', title: '发送总人数', width: 100 },
                 { field: 'NotReceiveNum', title: '未收到人数', width: 100 }
         ]]
+
+         function Data2Str(fmt) { //author: meizz 
+            
+            return fmt;
+        }
 
         function loadDataGrid_Statistic() {
             $("#statisticlast10_datagrid").datagrid({
                 width: 'auto',
                 height: 'auto',
-                fitColumns: true,
+                fitColumns: false,
                 striped: true,
                 singleSelect: true,
                 url: '@ViewBag.GetStatisticLast10',
@@ -78,6 +90,11 @@
                         text: 'something'
                     }
                 },
+                //版权信息
+                credits:{
+                    //enabled: false // 禁用版权信息
+                    text:'nmefc'
+                },
                 series: [{
                     name: '共发送',
                     data: data_receive
@@ -105,6 +122,11 @@
                     title: {
                         text: 'something'
                     }
+                },
+                //版权信息
+                credits: {
+                    //enabled: false // 禁用版权信息
+                    text: 'nmefc'
                 },
                 series: [{
                     name: '共发送',
@@ -138,9 +160,18 @@
 
         $(function () {
             loadDataGrid_Statistic();
+
+
             var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
             loadLast10_highcharts(temp_last10.Arrat_DataTime, temp_last10.Array_total, temp_last10.Array_revice);
             var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
+            //将其中的时间进行修改
+            var date = temp_currentDay.Arrat_DataTime;
+            var array = new Array(10);
+            //将数组中的每一个时间进行格式化
+            //date.each(function (index,value) {
+
+            //})
             loadCurrentDay_highcharts(temp_currentDay.Arrat_DataTime, temp_currentDay.Array_total, temp_currentDay.Array_revice);
         })
     </script>
@@ -149,7 +180,7 @@
 <div id="p0" class="easyui-panel" style="height:720px;padding:5px;border:0px">
     <div style="width:1300px;border:1px dashed #ffd800;">
         <div style="width:810px;height:360px;border:1px dashed #808080;float:left">
-            <div id="p1" class="easyui-panel" title="当前用户发送短信统计" style="width:800px;height:350px;padding:3px;"
+            <div id="p1" class="easyui-panel" title="当前用户发送短信统计" style="height:350px;padding:3px;"
                  data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
                 <div class="easyui-datagrid" id="statisticlast10_datagrid"></div>
             </div>
@@ -165,7 +196,7 @@
 
     <div style="width:1300px;border:1px dashed #ff6a00;">
         <div style="width:810px;height:360px;border:1px dashed #808080;float:left">
-            <div id="p3" class="easyui-panel" title="用户当日发送短信统计" style="width:800px;height:350px;padding:3px;"
+            <div id="p3" class="easyui-panel" title="用户当日发送短信统计" style="height:350px;padding:3px;"
                  data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
                 <div class="easyui-datagrid" id="statisticCurrentDay_datagrid"></div>
             </div>
