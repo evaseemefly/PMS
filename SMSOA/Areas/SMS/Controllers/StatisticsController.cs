@@ -25,23 +25,23 @@ namespace SMSOA.Areas.SMS.Controllers
 
         private void GetStatistic_Model_Chart(int count,  List<ViewModel_StatisticsLast10> list_statistics,out ViewModel_Statistics_Chart viewModel_chart)
         {
-            int[] array_total = new int[10];
-            int[] array_receive = new int[10];
-            DateTime[] array_datetime = new DateTime[10];
-            for (int i = 0; i < 10; i++)
+            int[] array_total = new int[count];
+            int[] array_receive = new int[count];
+            DateTime[] array_datetime = new DateTime[count];
+            for (int i = 0; i < count; i++)
             {
-                if (list_statistics.Count > i)
-                {
+                //if (list_statistics.Count > i)
+                //{
                     array_total[i] = list_statistics[i].TotalOfReceiveNum;
                     array_receive[i] = list_statistics[i].TotalOfReceiveNum - list_statistics[i].NotReceiveNum;
                     array_datetime[i] = list_statistics[i].SendDateTime;
-                }
-                else
-                {
-                    array_total[i] = 0;
-                    array_receive[i] = 0;
-                    array_datetime[i] = DateTime.Now;
-                }
+                //}
+                //else
+                //{
+                //    array_total[i] = 0;
+                //    array_receive[i] = 0;
+                //    array_datetime[i] = DateTime.Now;
+                //}
 
             }
             //3 转成datagrid识别的json格式数据   
@@ -68,7 +68,7 @@ namespace SMSOA.Areas.SMS.Controllers
                         SendDateTime = item.SendDateTime,
                         TotalOfReceiveNum = item.S_SMSRecord_Current.Count(),
                         //找到未收到的（收到的状态码初步约定为100）
-                        NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.ResultCode != 100).Count()
+                        NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count()
                     });
             }
         }
@@ -92,7 +92,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //2.2 需要统计该短信发送的人员个数以及未收到的人员个数
             GetStatisticList(list_currentDay,ref list_statisticslast10);
             var model = new ViewModel_Statistics_Chart();
-            GetStatistic_Model_Chart(10, list_statisticslast10,out model);
+            GetStatistic_Model_Chart(list_statisticslast10.Count, list_statisticslast10,out model);
 
             //4 序列化
             return Content(Common.SerializerHelper.SerializerToString(model));
@@ -118,7 +118,7 @@ namespace SMSOA.Areas.SMS.Controllers
             GetStatisticList(list_last10, ref list_statisticslast10);
 
             var model = new ViewModel_Statistics_Chart();
-            GetStatistic_Model_Chart(10, list_statisticslast10, out model);   
+            GetStatistic_Model_Chart(list_statisticslast10.Count, list_statisticslast10, out model);   
 
             //4 序列化
             return Content(Common.SerializerHelper.SerializerToString(model));

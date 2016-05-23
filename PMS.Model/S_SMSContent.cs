@@ -23,10 +23,12 @@ namespace PMS.Model
         public int ID { get; set; }
         public int UID { get; set; }
         public string SMSContent { get; set; }
-        public int msgId { get; set; }
+        public string msgId { get; set; }
         public System.DateTime SendDateTime { get; set; }
         public bool isDel { get; set; }
         public int SMID { get; set; }
+        public string BlackList { get; set; }
+        public int ResultCode { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
         public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }

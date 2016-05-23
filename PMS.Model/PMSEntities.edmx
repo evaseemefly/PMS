@@ -172,13 +172,15 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="SMSContent" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="msgId" Type="int" Nullable="false" />
+          <Property Name="msgId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SendDateTime" Type="date" Nullable="false" />
           <Property Name="isDel" Type="bit" Nullable="false" />
           <Property Name="SMID" Type="int" Nullable="false" />
+          <Property Name="BlackList" Type="nvarchar(max)" />
+          <Property Name="ResultCode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="S_SMSMission">
           <Key>
@@ -211,10 +213,11 @@
           <Key>
             <PropertyRef Name="SRID" />
           </Key>
-          <Property Name="SRID" Type="int" Nullable="false" />
+          <Property Name="SRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SCID" Type="int" Nullable="false" />
           <Property Name="PID" Type="int" Nullable="false" />
-          <Property Name="ResultCode" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="DescContent" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="S_SMSRecord_History">
           <Key>
@@ -223,7 +226,8 @@
           <Property Name="SRID" Type="int" Nullable="false" />
           <Property Name="SCID" Type="int" Nullable="false" />
           <Property Name="PID" Type="int" Nullable="false" />
-          <Property Name="ResultCode" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="DescContent" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -1147,7 +1151,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="SMSContent" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="msgId" Type="Int32" Nullable="false" />
+          <Property Name="msgId" Type="String" Nullable="false" />
           <Property Name="SendDateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="isDel" Type="Boolean" Nullable="false" />
           <Property Name="SMID" Type="Int32" Nullable="false" />
@@ -1155,6 +1159,8 @@
           <NavigationProperty Name="S_SMSRecord_Current" Relationship="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_Current" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSContent" ToRole="S_SMSMission" />
           <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
+          <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResultCode" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="S_SMSRecord_Current">
           <Key>
@@ -1163,9 +1169,10 @@
           <Property Name="SRID" Type="Int32" Nullable="false" />
           <Property Name="SCID" Type="Int32" Nullable="false" />
           <Property Name="PID" Type="Int32" Nullable="false" />
-          <Property Name="ResultCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.FK_S_SMSRecord_Current_P_PersonInfo" FromRole="S_SMSRecord_Current" ToRole="P_PersonInfo" />
           <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSRecord_Current" ToRole="S_SMSContent" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <Property Name="DescContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_R_UserInfo_Group_P_Group">
           <End Type="PMS2016Model.P_Group" Role="P_Group" Multiplicity="1" />
@@ -1280,10 +1287,11 @@
           <Property Name="SRID" Type="Int32" Nullable="false" />
           <Property Name="SCID" Type="Int32" Nullable="false" />
           <Property Name="PID" Type="Int32" Nullable="false" />
-          <Property Name="ResultCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.FK_S_SMSRecord_History_P_PersonInfo" FromRole="S_SMSRecord_History" ToRole="P_PersonInfo" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" FromRole="S_SMSRecord_History" ToRole="S_SMSMission" />
           <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSRecord_History" ToRole="S_SMSContent" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <Property Name="DescContent" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
           <End Type="PMS2016Model.P_DepartmentInfo" Role="P_DepartmentInfo" Multiplicity="1" />
@@ -1613,6 +1621,8 @@
           <EntitySetMapping Name="S_SMSContent">
             <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
               <MappingFragment StoreEntitySet="S_SMSContent">
+                <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+                <ScalarProperty Name="BlackList" ColumnName="BlackList" />
                 <ScalarProperty Name="SMID" ColumnName="SMID" />
                 <ScalarProperty Name="isDel" ColumnName="isDel" />
                 <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
@@ -1626,7 +1636,8 @@
           <EntitySetMapping Name="S_SMSRecord_Current">
             <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_Current">
               <MappingFragment StoreEntitySet="S_SMSRecord_Current">
-                <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+                <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="SCID" ColumnName="SCID" />
                 <ScalarProperty Name="SRID" ColumnName="SRID" />
@@ -1656,7 +1667,8 @@
           <EntitySetMapping Name="S_SMSRecord_History">
             <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_History">
               <MappingFragment StoreEntitySet="S_SMSRecord_History">
-                <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+                <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="SCID" ColumnName="SCID" />
                 <ScalarProperty Name="SRID" ColumnName="SRID" />

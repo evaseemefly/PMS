@@ -16,19 +16,27 @@
      </style>
     <script type="text/javascript">
         var myColumns = [[
-                { field: 'ContentID', title: 'ID', width: 100 },
-                { field: 'MissionName', title: '短信任务', width: 120 },
-                { field: 'Content', title: '发送内容', width: 300 },
-                { field: 'SendDateTime', title: '发送时间', width: 250 },
-                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 100 },
-                { field: 'NotReceiveNum', title: '未收到人数', width: 100 }
+                { field: 'ContentID', title: 'ID', width: 100,hidden:true },
+                { field: 'MissionName', title: '短信任务', width: 80 },
+                { field: 'Content', title: '发送内容', width: 280 },
+                {
+                    field: 'SendDateTime', title: '发送时间', width: 80,
+                    formatter: function (value) {
+                        var date = new Date(value);
+                        var str = (date.getMonth() + 1) + "月" + date.getDate() + "日";
+                        return str;
+                    }
+                },
+                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 80 },
+                { field: 'NotReceiveNum', title: '未收到人数', width: 80 }
         ]]
 
         function loadDataGrid_Statistic() {
             $("#statisticlast10_datagrid").datagrid({
-                width: 'auto',
+                //width: 'auto',
+                width: 650,
                 height: 'auto',
-                fitColumns: true,
+                fitColumns: true,//真正的自动展开/收缩列的大小，以适应网格的宽度，防止水平滚动。
                 striped: true,
                 singleSelect: true,
                 url: '@ViewBag.GetStatisticLast10',
@@ -40,7 +48,6 @@
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: myColumns
-
             });
 
             $("#statisticCurrentDay_datagrid").datagrid({
@@ -78,6 +85,11 @@
                         text: 'something'
                     }
                 },
+                //版权信息
+                credits: {
+                    //enabled: false // 禁用版权信息
+                    text: 'nmefc'
+                },
                 series: [{
                     name: '共发送',
                     data: data_receive
@@ -105,6 +117,11 @@
                     title: {
                         text: 'something'
                     }
+                },
+                //版权信息
+                credits: {
+                    //enabled: false // 禁用版权信息
+                    text: 'nmefc'
                 },
                 series: [{
                     name: '共发送',
@@ -141,17 +158,25 @@
             var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
             loadLast10_highcharts(temp_last10.Arrat_DataTime, temp_last10.Array_total, temp_last10.Array_revice);
             var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
+            //将其中的时间进行修改
+            var date = temp_currentDay.Arrat_DataTime;
+            //var array = new Array(10);
+            ////将数组中的每一个时间进行格式化
+            //date.each(function (index,value) {
+
+            //})
+
             loadCurrentDay_highcharts(temp_currentDay.Arrat_DataTime, temp_currentDay.Array_total, temp_currentDay.Array_revice);
         })
     </script>
 
     }
 <div id="p0" class="easyui-panel" style="height:720px;padding:5px;border:0px">
-    <div style="width:1300px;border:1px dashed #ffd800;">
-        <div style="width:810px;height:360px;border:1px dashed #808080;float:left">
-            <div id="p1" class="easyui-panel" title="当前用户发送短信统计" style="width:800px;height:350px;padding:3px;"
+    <div style="width:1100px;border:1px dashed #00ff90;">
+        <div style="width:660px;height:360px;border:1px dashed #808080;float:left">
+            <div id="p1" class="easyui-panel" title="当前用户发送短信统计" style="height:350px;padding:3px;"
                  data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
-                <div class="easyui-datagrid" id="statisticlast10_datagrid"></div>
+                <div class="easyui-datagrid" id="statisticlast10_datagrid" style="width:600px"></div>
             </div>
         </div>
         <div id="p21" style="width:410px;border:1px dashed #808080;float:left;">
@@ -163,9 +188,9 @@
         </div>
     </div>
 
-    <div style="width:1300px;border:1px dashed #ff6a00;">
-        <div style="width:810px;height:360px;border:1px dashed #808080;float:left">
-            <div id="p3" class="easyui-panel" title="用户当日发送短信统计" style="width:800px;height:350px;padding:3px;"
+    <div style="width:1100px;border:1px dashed #ff6a00;">
+        <div style="width:660px;height:360px;border:1px dashed #808080;float:left">
+            <div id="p3" class="easyui-panel" title="用户当日发送短信统计" style="height:350px;padding:3px;"
                  data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
                 <div class="easyui-datagrid" id="statisticCurrentDay_datagrid"></div>
             </div>
