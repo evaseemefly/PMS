@@ -54,16 +54,75 @@
 <div style="height:300px">
     <table class="easyui-datagrid" id="datagrid" data-options="toolbar:'#tb'"></table>
     <div id="tb" style="padding:2px 5px;">
-
-        <div>First Name:</div><input class="easyui-textbox" style="width:200px">
-        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
-        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br />
-        移至分组:
-        <select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
-                data-options=""></select>
-        选择所属部门
-        <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
+        <table cellspacing="5" style="font-size:15px">
+            <tr>
+                <td>指定联系人名称</td>
+                <td><input class="easyui-textbox" style="width:200px"></td>
+                <td>匹配电话号码</td>
+                <td><input class="easyui-textbox" style="width:200px"></td>
+                <td><a href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a></td>
+            </tr>
+            <tr>
+                <td>短信任务种类</td>
+                <td><select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
+        data-options=""></select></td>
+                <td>查询日期</td>
+                <td><a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">Edit</a></td>
+            </tr>
+        </table>        
     </div>
+
+    <div id="mm1" style="width:150px;">        
+        <div class="menu-sep"></div>
+        <div>今日</div>
+        <div>最近一周</div>
+        <div>本月</div>
+        <div class="menu-sep"></div>
+        <div>
+            <span>具体某天</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <div>某天</div>
+                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+            </div>
+        </div>
+        <div>
+            <span>某天之前</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <div>某天</div>
+                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+            </div>
+        </div>
+        <div>
+            <span>某天之后</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <div>某天</div>
+                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+            </div>
+        </div>
+        <div>
+            <span>时间范围</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <table cellspacing="2" style="font-size:15px">
+                    <tr>
+                        <td>起始时间</td>                        
+                        <td>终止时间</td>
+                    </tr>
+                    <tr>
+                        <td><div class="easyui-calendar" style="width:250px;height:250px;"></div></td>
+                        <td><div class="easyui-calendar" style="width:250px;height:250px;"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">确定</a></td>
+                    </tr>
+                    </table>
+            </div>
+        </div>        
+    </div>
+
     <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="setActionRoleFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
