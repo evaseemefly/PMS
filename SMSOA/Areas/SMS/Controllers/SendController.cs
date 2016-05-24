@@ -186,7 +186,7 @@ namespace SMSOA.Areas.SMS.Controllers
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
             int scid;
-            bool isSaveMsgOk = smsContentBLL.SaveMsg(smsContent, mid, uid, receive.msgid, receive.result, receive.failPhones,out scid);
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid, out scid);
             if (!isSaveMsgOk)
             {
                 return Content("服务器错误");

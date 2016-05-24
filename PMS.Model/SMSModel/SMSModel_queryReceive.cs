@@ -28,5 +28,9 @@ namespace PMS.Model.SMSModel
         /// 状态报告接收时间格式为yyyy-MM-ddHH:mm:ss
         /// </summary>
         public string time { get; set; } 
+        /// <summary>
+        /// 长短信条数
+        /// </summary>
+        public int smsCount { get; set; }
     }
 }

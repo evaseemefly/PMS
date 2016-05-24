@@ -181,6 +181,7 @@
           <Property Name="SMID" Type="int" Nullable="false" />
           <Property Name="BlackList" Type="nvarchar(max)" />
           <Property Name="ResultCode" Type="int" Nullable="false" />
+          <Property Name="smsCount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="S_SMSMission">
           <Key>
@@ -1161,6 +1162,7 @@
           <Property Name="ResultCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSContent" ToRole="S_SMSMission" />
           <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
+          <Property Name="smsCount" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="S_SMSRecord_Current">
           <Key>
@@ -1621,6 +1623,7 @@
           <EntitySetMapping Name="S_SMSContent">
             <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
               <MappingFragment StoreEntitySet="S_SMSContent">
+                <ScalarProperty Name="smsCount" ColumnName="smsCount" />
                 <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
                 <ScalarProperty Name="BlackList" ColumnName="BlackList" />
                 <ScalarProperty Name="SMID" ColumnName="SMID" />

@@ -10,7 +10,7 @@ namespace PMS.IBLL
 {
     public partial interface IS_SMSContentBLL
     {
-        bool SaveMsg(string smsContent, string mid, int uid, string msgid, string result, string[] blacklist,out int scid);
+        bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid, out int scid);
 
         void getResult(SMSModel_Receive receive,SMSModel_MsgResult result);
     }

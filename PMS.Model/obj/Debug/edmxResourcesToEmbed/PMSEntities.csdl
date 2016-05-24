@@ -411,6 +411,7 @@
     <Property Name="ResultCode" Type="Int32" Nullable="false" />
     <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSContent" ToRole="S_SMSMission" />
     <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
+    <Property Name="smsCount" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="S_SMSRecord_Current">
     <Key>

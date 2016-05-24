@@ -18,16 +18,16 @@ namespace PMS.BLL
         /// <param name="smsContent"></param>
         /// <param name="mid"></param>
         /// <returns></returns>
-        public bool SaveMsg(string smsContent, string mid, int uid, string msgid, string result, string[] blacklist,out int scid)
+        public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid, out int scid)
         {
             S_SMSContent s_smsContent = new S_SMSContent()
             {   UID = uid,
                 SMSContent = smsContent,
-                msgId = msgid,
+                msgId = receive.msgid,
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
-                BlackList = string.Join(",", blacklist),
-                ResultCode = int.Parse(result)
+                BlackList = string.Join(",", receive.failPhones),
+                ResultCode = int.Parse(receive.result)
             };
             this.CurrentDBSession.S_SMSContentDAL.Create(s_smsContent);
             scid = s_smsContent.ID;

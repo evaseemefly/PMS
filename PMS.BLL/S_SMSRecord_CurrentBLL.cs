@@ -21,9 +21,13 @@ namespace PMS.BLL
         {
             if (list_QueryReceive != null)
             {
-                foreach(var item in list_QueryReceive)
+                //1.取得长短信条数
+                var smsContent = this.CurrentDBSession.S_SMSContentDAL.GetListBy(r => r.ID == scid).FirstOrDefault();
+                smsContent.smsCount = list_QueryReceive.FirstOrDefault().smsCount;
+                //2. 遍历查询返回的集合
+                foreach (var item in list_QueryReceive)
                 {
-                    //1.得到该条记录对应的联系人
+                    //3.得到该条记录的电话号码对应的联系人
                     var person = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(r => r.PhoneNum .Equals (item.phoneNumber)).FirstOrDefault();
                     S_SMSRecord_Current smsRecord_Current = new S_SMSRecord_Current()
                     {
@@ -47,14 +51,20 @@ namespace PMS.BLL
         {
             foreach(var item in list_QueryReceive)
             {
-
-                var person = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(r => r.PhoneNum.Equals(item.phoneNumber)).FirstOrDefault();
-                SMSModel_SendFails sendFails = new SMSModel_SendFails()
+                if ("0".Equals(item.status))
                 {
-                    name = person.PName,
-                    phoneNumber = item.phoneNumber
-                };
-                result.list_SendFails.Add(sendFails);
+
+                }
+                else
+                {
+                    var person = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(r => r.PhoneNum.Equals(item.phoneNumber)).FirstOrDefault();
+                    SMSModel_SendFails sendFails = new SMSModel_SendFails()
+                    {
+                        name = person.PName,
+                        phoneNumber = item.phoneNumber
+                    };
+                    result.list_SendFails.Add(sendFails);
+                }
             }
         }
     }
