@@ -30,6 +30,8 @@ namespace SMSOA.Areas.SMS.Controllers
             return View();
         }
 
+
+
         public ActionResult ShowEditTemplate(int id)
         {
             //int id = int.Parse(Request["id"]);

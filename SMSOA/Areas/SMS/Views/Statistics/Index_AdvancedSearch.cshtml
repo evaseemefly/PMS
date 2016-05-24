@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index_AdvancedSearch";
+    Layout = "~/Views/Shared/_SMS_Layout.cshtml";
+}
+
+@section SectionJS{
+    <script type="text/javascript">
+        $(function () {
+            $("#editWindow").window('close');
+            loadDataGrid('@ViewBag.GetPageStatisticList', myColumns);
+        })
+        //将时间转为指定格式
+        function DataFormatter(value) {
+            var date = new Date(value);
+            var str = (date.getMonth() + 1) + "月" + date.getDate() + "日";
+            return str;
+        }
+        var myColumns = [[
+                { field: 'ContentID', title: 'ID', width: 100, hidden: true },
+                { field: 'MissionName', title: '短信任务', width: 80 },
+                { field: 'Content', title: '发送内容', width: 280 },
+                {
+                    field: 'SendDateTime', title: '发送时间', width: 80,
+                    formatter: DataFormatter
+                },
+                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 80 },
+                { field: 'NotReceiveNum', title: '未收到人数', width: 80 }
+        ]]
+
+        function loadDataGrid(url, myColumns) {
+            //2 位treegrid加载数据
+            $("#datagrid").datagrid({
+                width: '400px',
+                height: 'auto',
+                fitColumns: false,
+                striped: true,
+                showFooter: true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '加载中……',
+                columns: myColumns,
+                //toolbar: toolbar
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+            });
+        }
+    </script>
+    }
+
+<div style="height:300px">
+    <table class="easyui-datagrid" id="datagrid" data-options="toolbar:'#tb'"></table>
+    <div id="tb" style="padding:2px 5px;">
+
+        <div>First Name:</div><input class="easyui-textbox" style="width:200px">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br />
+        移至分组:
+        <select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
+                data-options=""></select>
+        选择所属部门
+        <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
+    </div>
+    <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
+        <iframe id="setActionRoleFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    </div>
+
+</div>
+

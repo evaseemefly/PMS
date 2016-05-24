@@ -22,6 +22,15 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.GetStatisticCurrentDay = "/SMS/Statistics/GetStatisticCurrentDay_DataGrid";            
             return View();
         }
+        /// <summary>
+        /// 高级搜索首页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index_AdvancedSearch()
+        {
+            ViewBag.GetPageStatisticList = "/SMS/Statistics/GetPageStatisticList_DataGrid";
+            return View();
+        }
 
         private void GetStatistic_Model_Chart(int count,  List<ViewModel_StatisticsLast10> list_statistics,out ViewModel_Statistics_Chart viewModel_chart)
         {
@@ -71,6 +80,32 @@ namespace SMSOA.Areas.SMS.Controllers
                         NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count()
                     });
             }
+        }
+
+        public ActionResult GetPageStatisticList_DataGrid()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+
+            //1 分页查询当前登录用户的的发送短信内容集合
+           var list_SMSContent= userBLL.GetSMSContentListByUID(pageIndex, pageSize,ref rowCount, base.LoginUser.ID, true, false);
+
+            List<ViewModel_StatisticsLast10> list_statisticsFinal = new List<ViewModel_StatisticsLast10>();
+            //2.1 将短信内容实体对象集合转成要在datagrid中显示的统计对象集合
+            //2.2 需要统计该短信发送的人员个数以及未收到的人员个数
+            GetStatisticList(list_SMSContent, ref list_statisticsFinal);
+
+
+            //3 转成datagrid识别的json格式数据            
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_statisticsFinal,
+                footer = null
+            };
+            //4 序列化
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
 
         /// <summary>
@@ -141,20 +176,6 @@ namespace SMSOA.Areas.SMS.Controllers
             List<ViewModel_StatisticsLast10> list_statisticslast10 = new List<ViewModel_StatisticsLast10>();
             //2.1 将短信内容实体对象集合转成要在datagrid中显示的统计对象集合
             //2.2 需要统计该短信发送的人员个数以及未收到的人员个数
-            //foreach (var item in list_last10)
-            //{
-            //    list_statisticslast10.Add(
-            //        new ViewModel_StatisticsLast10()
-            //        {
-            //            ContentID = item.ID,
-            //            Content = item.SMSContent,
-            //            MissionName = item.S_SMSMission.SMSMissionName,
-            //            SendDateTime = item.SendDateTime,
-            //            TotalOfReceiveNum = item.S_SMSRecord_Current.Count(),
-            //            //找到未收到的（收到的状态码初步约定为100）
-            //            NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.ResultCode != 100).Count()
-            //        });
-            //}
             GetStatisticList(list_last10, ref list_statisticslast10);
 
 

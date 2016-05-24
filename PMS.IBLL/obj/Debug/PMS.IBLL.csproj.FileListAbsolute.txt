@@ -64,3 +64,5 @@ E:\03协同开发\短信\PMS\PMS\PMS.IBLL\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.dll
 E:\03协同开发\短信\PMS\PMS\PMS.IBLL\obj\Debug\PMS.IBLL.pdb
+E:\03协同开发\短信\PMS\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.dll.CodeAnalysisLog.xml
+E:\03协同开发\短信\PMS\PMS\PMS.IBLL\bin\Debug\PMS.IBLL.dll.lastcodeanalysissucceeded

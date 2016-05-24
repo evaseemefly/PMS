@@ -131,11 +131,43 @@ namespace PMS.BLL
             
         }
 
-        //public List<P_Group> GetRestGroupList(List<int> list_ids_group)
-        //{
-        //    //1 找到指定用户
-        //    var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
-        //}
+            /// <summary>
+            /// 根据传入的用户id查询该用户所发送的短信
+            /// </summary>
+            /// <param name="pageIndex"></param>
+            /// <param name="pageSize"></param>
+            /// <param name="rowCount"></param>
+            /// <param name="uid"></param>
+            /// <param name="isAsc"></param>
+            /// <param name="isMiddle"></param>
+            /// <returns></returns>
+        public List<S_SMSContent> GetSMSContentListByUID(int pageIndex,int pageSize,ref int rowCount, int uid,bool isAsc,bool isMiddle)
+        {
+            //1 找到对应用户
+            var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+            //1.2 为当前用户发送的短信总数赋值
+            rowCount = userModel.S_SMSContent.Count;
+            var query = userModel.S_SMSContent.ToList();
+            //2 找到该用户所发送的短信
+            if (isAsc)
+            {
+               query= query.OrderBy(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+         else
+            {
+                query = query.OrderByDescending(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+
+            //3
+            if(isMiddle)
+            {
+                return query.Select(s => s.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return query;
+            }
+        }
 
         /// <summary>
         /// 根据UserID查找该用户对应的短信任务

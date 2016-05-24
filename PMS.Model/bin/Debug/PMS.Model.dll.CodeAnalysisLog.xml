@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="d:\win10软件安装路径\vs2015\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="E:\03协同开发\短信\PMS\PMS\PMS.Model\bin\Debug\PMS.Model.dll">
+   <Modules>
+    <Module Name="pms.model.dll">
+     <Namespaces>
+      <Namespace Name="PMS.Model">
+       <Types>
+        <Type Name="ActionInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="ActionInfo.cs" Line="13">'ActionInfo.ActionInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;ActionInfo..ctor()&#xD;&#xA;ActionInfo.set_R_UserInfo_ActionInfo(ICollection&lt;R_UserInfo_ActionInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="ActionInfo.cs" Line="13">'ActionInfo.ActionInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;ActionInfo..ctor()&#xD;&#xA;ActionInfo.set_RoleInfo(ICollection&lt;RoleInfo&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="P_DepartmentInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="P_DepartmentInfo.cs" Line="35">'P_DepartmentInfo.P_DepartmentInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_DepartmentInfo..ctor()&#xD;&#xA;P_DepartmentInfo.set_P_PersonInfo(ICollection&lt;P_PersonInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="P_DepartmentInfo.cs" Line="35">'P_DepartmentInfo.P_DepartmentInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_DepartmentInfo..ctor()&#xD;&#xA;P_DepartmentInfo.set_R_Department_Mission(ICollection&lt;R_Department_Mission&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="P_DepartmentInfo.cs" Line="35">'P_DepartmentInfo.P_DepartmentInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_DepartmentInfo..ctor()&#xD;&#xA;P_DepartmentInfo.set_R_UserInfo_DepartmentInfo(ICollection&lt;R_UserInfo_DepartmentInfo&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="P_Group" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="P_Group.cs" Line="11">'P_Group.P_Group()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_Group..ctor()&#xD;&#xA;P_Group.set_P_PersonInfo(ICollection&lt;P_PersonInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="P_Group.cs" Line="11">'P_Group.P_Group()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_Group..ctor()&#xD;&#xA;P_Group.set_R_Group_Mission(ICollection&lt;R_Group_Mission&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="P_Group.cs" Line="11">'P_Group.P_Group()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_Group..ctor()&#xD;&#xA;P_Group.set_R_UserInfo_Group(ICollection&lt;R_UserInfo_Group&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="P_PersonInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="P_PersonInfo.cs" Line="17">'P_PersonInfo.P_PersonInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_PersonInfo..ctor()&#xD;&#xA;P_PersonInfo.set_P_DepartmentInfo(ICollection&lt;P_DepartmentInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="P_PersonInfo.cs" Line="17">'P_PersonInfo.P_PersonInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_PersonInfo..ctor()&#xD;&#xA;P_PersonInfo.set_P_Group(ICollection&lt;P_Group&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="P_PersonInfo.cs" Line="17">'P_PersonInfo.P_PersonInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_PersonInfo..ctor()&#xD;&#xA;P_PersonInfo.set_R_UserInfo_PersonInfo(ICollection&lt;R_UserInfo_PersonInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="P_PersonInfo.cs" Line="17">'P_PersonInfo.P_PersonInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_PersonInfo..ctor()&#xD;&#xA;P_PersonInfo.set_S_SMSRecord_Current(ICollection&lt;S_SMSRecord_Current&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="P_PersonInfo.cs" Line="17">'P_PersonInfo.P_PersonInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;P_PersonInfo..ctor()&#xD;&#xA;P_PersonInfo.set_S_SMSRecord_History(ICollection&lt;S_SMSRecord_History&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="RoleInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="RoleInfo.cs" Line="11">'RoleInfo.RoleInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;RoleInfo..ctor()&#xD;&#xA;RoleInfo.set_ActionInfo(ICollection&lt;ActionInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model\ExtensionModel" File="RoleInfo.cs" Line="11">'RoleInfo.RoleInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;RoleInfo..ctor()&#xD;&#xA;RoleInfo.set_UserInfo(ICollection&lt;UserInfo&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="S_SMSContent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSContent.cs" Line="17">'S_SMSContent.S_SMSContent()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSContent..ctor()&#xD;&#xA;S_SMSContent.set_S_SMSRecord_Current(ICollection&lt;S_SMSRecord_Current&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSContent.cs" Line="17">'S_SMSContent.S_SMSContent()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSContent..ctor()&#xD;&#xA;S_SMSContent.set_S_SMSRecord_History(ICollection&lt;S_SMSRecord_History&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="S_SMSMission" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSMission.cs" Line="17">'S_SMSMission.S_SMSMission()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSMission..ctor()&#xD;&#xA;S_SMSMission.set_R_Department_Mission(ICollection&lt;R_Department_Mission&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSMission.cs" Line="17">'S_SMSMission.S_SMSMission()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSMission..ctor()&#xD;&#xA;S_SMSMission.set_R_Group_Mission(ICollection&lt;R_Group_Mission&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSMission.cs" Line="17">'S_SMSMission.S_SMSMission()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSMission..ctor()&#xD;&#xA;S_SMSMission.set_R_UserInfo_SMSMission(ICollection&lt;R_UserInfo_SMSMission&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSMission.cs" Line="17">'S_SMSMission.S_SMSMission()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSMission..ctor()&#xD;&#xA;S_SMSMission.set_S_SMSContent(ICollection&lt;S_SMSContent&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSMission.cs" Line="17">'S_SMSMission.S_SMSMission()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSMission..ctor()&#xD;&#xA;S_SMSMission.set_S_SMSMsgContent(ICollection&lt;S_SMSMsgContent&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="S_SMSMission.cs" Line="17">'S_SMSMission.S_SMSMission()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;S_SMSMission..ctor()&#xD;&#xA;S_SMSMission.set_S_SMSRecord_History(ICollection&lt;S_SMSRecord_History&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UserInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-05-24 08:43:21Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_R_UserInfo_ActionInfo(ICollection&lt;R_UserInfo_ActionInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_R_UserInfo_DepartmentInfo(ICollection&lt;R_UserInfo_DepartmentInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_R_UserInfo_Group(ICollection&lt;R_UserInfo_Group&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_R_UserInfo_PersonInfo(ICollection&lt;R_UserInfo_PersonInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_R_UserInfo_SMSMission(ICollection&lt;R_UserInfo_SMSMission&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_RoleInfo(ICollection&lt;RoleInfo&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_S_SMSContent(ICollection&lt;S_SMSContent&gt;):Void。</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="E:\03协同开发\短信\PMS\PMS\PMS.Model" File="UserInfo.cs" Line="17">'UserInfo.UserInfo()' 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: &#xD;&#xA;&#xD;&#xA;UserInfo..ctor()&#xD;&#xA;UserInfo.set_S_SMSMsgContent(ICollection&lt;S_SMSMsgContent&gt;):Void。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
+   <Name>不要在构造函数中调用可重写的方法</Name>
+   <Description>不应通过构造函数调用类中定义的虚方法。如果某个派生类已重写该虚方法，则将在调用派生类的构造函数前，调用此派生类重写后的方法。</Description>
+   <Resolution Name="Default">{0} 包含调用链，该调用链导致调用此类所定义的虚方法。请检查以下调用堆栈，看是否有意外结果: {1}。</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182331.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">类别</String>
+  <String Key="Certainty">确定性</String>
+  <String Key="CollapseAll">全部折叠</String>
+  <String Key="CheckId">检查 ID</String>
+  <String Key="Error">错误</String>
+  <String Key="Errors">错误</String>
+  <String Key="ExpandAll">全部展开</String>
+  <String Key="Help">帮助</String>
+  <String Key="Line">行</String>
+  <String Key="Messages">消息</String>
+  <String Key="LocationNotStoredInPdb">[位置未存储在 Pdb 中]</String>
+  <String Key="Project">项目</String>
+  <String Key="Resolution">解析</String>
+  <String Key="Rule">规则</String>
+  <String Key="RuleFile">规则文件</String>
+  <String Key="RuleDescription">规则说明</String>
+  <String Key="Source">源</String>
+  <String Key="Status">状态</String>
+  <String Key="Target">目标</String>
+  <String Key="Warning">警告</String>
+  <String Key="Warnings">警告</String>
+  <String Key="ReportTitle">代码分析报告</String>
+ </Localized>
+</FxCopReport>

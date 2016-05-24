@@ -114,3 +114,5 @@ E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
 E:\03协同开发\短信\PMS\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
+E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.BLL.dll.CodeAnalysisLog.xml
+E:\03协同开发\短信\PMS\PMS\PMS.BLL\bin\Debug\PMS.BLL.dll.lastcodeanalysissucceeded

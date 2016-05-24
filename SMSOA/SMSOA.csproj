@@ -342,6 +342,7 @@
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />
     <None Include="Properties\PublishProfiles\nmefcSMSConfig.pubxml" />
     <None Include="Properties\PublishProfiles\nmefcSMSTestConfig.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

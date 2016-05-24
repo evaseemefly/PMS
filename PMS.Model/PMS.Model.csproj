@@ -80,6 +80,7 @@
     <Compile Include="MiddlewareModel\P_Group.cs" />
     <Compile Include="MiddlewareModel\P_PersonInfo.cs" />
     <Compile Include="MiddlewareModel\RoleInfo.cs" />
+    <Compile Include="MiddlewareModel\S_SMSContent.cs" />
     <Compile Include="MiddlewareModel\S_SMSMission.cs" />
     <Compile Include="MiddlewareModel\S_SMSMsgContent.cs" />
     <Compile Include="MiddlewareModel\UserInfo.cs" />

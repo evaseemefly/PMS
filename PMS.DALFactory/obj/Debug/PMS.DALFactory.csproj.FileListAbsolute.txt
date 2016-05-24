@@ -90,3 +90,5 @@ E:\03协同开发\短信\PMS\PMS\PMS.DALFactory\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.dll
 E:\03协同开发\短信\PMS\PMS\PMS.DALFactory\obj\Debug\PMS.DALFactory.pdb
+E:\03协同开发\短信\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.DALFactory.dll.CodeAnalysisLog.xml
+E:\03协同开发\短信\PMS\PMS\PMS.DALFactory\bin\Debug\PMS.DALFactory.dll.lastcodeanalysissucceeded

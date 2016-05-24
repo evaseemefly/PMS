@@ -61,3 +61,5 @@ E:\03协同开发\短信\PMS\PMS\SMSSession\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\SMSSession\obj\Debug\SMSFactory.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\SMSSession\obj\Debug\SMSFactory.dll
 E:\03协同开发\短信\PMS\PMS\SMSSession\obj\Debug\SMSFactory.pdb
+E:\03协同开发\短信\PMS\PMS\SMSSession\bin\Debug\SMSFactory.dll.CodeAnalysisLog.xml
+E:\03协同开发\短信\PMS\PMS\SMSSession\bin\Debug\SMSFactory.dll.lastcodeanalysissucceeded

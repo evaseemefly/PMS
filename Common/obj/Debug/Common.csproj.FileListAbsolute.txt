@@ -88,3 +88,5 @@ E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\Common\obj\Debug\Common.dll
 E:\03协同开发\短信\PMS\PMS\Common\obj\Debug\Common.pdb
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\Common.dll.CodeAnalysisLog.xml
+E:\03协同开发\短信\PMS\PMS\Common\bin\Debug\Common.dll.lastcodeanalysissucceeded

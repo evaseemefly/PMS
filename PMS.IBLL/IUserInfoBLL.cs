@@ -35,6 +35,20 @@ namespace PMS.IBLL
         /// <returns></returns>
         List<P_Group> GetGroupListByUID(int uid, bool isMiddle);
 
+
+
+        /// <summary>
+        /// 根据传入的用户id查询该用户所发送的短信
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="uid"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        List<S_SMSContent> GetSMSContentListByUID(int pageIndex, int pageSize, ref int rowCount, int uid, bool isAsc, bool isMiddle);
+
         /// <summary>
         /// 逻辑删除（物理删除）
         /// </summary>
