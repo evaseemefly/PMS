@@ -187,8 +187,8 @@
     <EntitySetMapping Name="S_SMSContent">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
         <MappingFragment StoreEntitySet="S_SMSContent">
-          <ScalarProperty Name="PushResultDesc" ColumnName="PushResultDesc" />
-          <ScalarProperty Name="PushResultCode" ColumnName="PushResultCode" />
+          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="BlackList" ColumnName="BlackList" />
           <ScalarProperty Name="SMID" ColumnName="SMID" />
           <ScalarProperty Name="isDel" ColumnName="isDel" />
           <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
@@ -202,7 +202,8 @@
     <EntitySetMapping Name="S_SMSRecord_Current">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_Current">
         <MappingFragment StoreEntitySet="S_SMSRecord_Current">
-          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
           <ScalarProperty Name="PID" ColumnName="PID" />
           <ScalarProperty Name="SCID" ColumnName="SCID" />
           <ScalarProperty Name="SRID" ColumnName="SRID" />
@@ -232,7 +233,8 @@
     <EntitySetMapping Name="S_SMSRecord_History">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSRecord_History">
         <MappingFragment StoreEntitySet="S_SMSRecord_History">
-          <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+          <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
           <ScalarProperty Name="PID" ColumnName="PID" />
           <ScalarProperty Name="SCID" ColumnName="SCID" />
           <ScalarProperty Name="SRID" ColumnName="SRID" />
@@ -242,6 +244,7 @@
     <EntitySetMapping Name="S_SMSMsgContent">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSMsgContent">
         <MappingFragment StoreEntitySet="S_SMSMsgContent">
+          <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
           <ScalarProperty Name="MsgName" ColumnName="MsgName" />
           <ScalarProperty Name="Sort" ColumnName="Sort" />

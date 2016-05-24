@@ -17,7 +17,7 @@ namespace PMS.Model
         public int ID { get; set; }
         public int UID { get; set; }
         public int GID { get; set; }
-        public long isPass { get; set; }
+        public bool isPass { get; set; }
     
         public virtual P_Group P_Group { get; set; }
         public virtual UserInfo UserInfo { get; set; }

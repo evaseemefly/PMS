@@ -17,6 +17,6 @@ namespace ISMS
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        object QueryMsg(SMSModel_Query smsdata, out List<SMSModel_queryReceive> list_receiveModel);
+        bool QueryMsg(SMSModel_Query smsdata, out List<SMSModel_QueryReceive> list_receiveModel);
     }
 }

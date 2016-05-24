@@ -23,6 +23,7 @@ namespace PMS.Model
             this.S_SMSContent = new HashSet<S_SMSContent>();
             this.R_UserInfo_DepartmentInfo = new HashSet<R_UserInfo_DepartmentInfo>();
             this.R_UserInfo_PersonInfo = new HashSet<R_UserInfo_PersonInfo>();
+            this.S_SMSMsgContent = new HashSet<S_SMSMsgContent>();
         }
     
         public int ID { get; set; }
@@ -41,5 +42,6 @@ namespace PMS.Model
         public virtual ICollection<S_SMSContent> S_SMSContent { get; set; }
         public virtual ICollection<R_UserInfo_DepartmentInfo> R_UserInfo_DepartmentInfo { get; set; }
         public virtual ICollection<R_UserInfo_PersonInfo> R_UserInfo_PersonInfo { get; set; }
+        public virtual ICollection<S_SMSMsgContent> S_SMSMsgContent { get; set; }
     }
 }

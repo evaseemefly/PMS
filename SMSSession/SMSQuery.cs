@@ -22,7 +22,7 @@ namespace SMSFactory
         /// <returns></returns>
         public bool SendBeforeCheck(SMSModel_Query smsdata)
         {
-            if (smsdata.account.Length < 1 & smsdata.phones.Length < 1 & smsdata.smsId.Length < 1 & smsdata.password.Length < 1)
+            if (smsdata.account.Length < 1 & smsdata.smsId.Length < 1 & smsdata.password.Length < 1)
             {
                 return false;
             }
@@ -36,7 +36,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        public bool QueryMsg(SMSModel_Query smsdata, out List<SMSModel_queryReceive> list_receiveModel)
+        public bool QueryMsg(SMSModel_Query smsdata, out List<SMSModel_QueryReceive> list_receiveModel)
         {
             String _data = null;//XML文本
             String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
@@ -44,7 +44,7 @@ namespace SMSFactory
             //1 判断参数是否足够
             if (SendBeforeCheck(smsdata))
             {
-                list_receiveModel = new List<SMSModel_queryReceive>();
+                list_receiveModel = new List<SMSModel_QueryReceive>();
                 return false;
             }
             _data = ObjTransform.Model2Xml_FormatQuery(smsdata);
@@ -53,7 +53,7 @@ namespace SMSFactory
             if (returnMsg.Length < 1)
             {
 
-                list_receiveModel = new List<SMSModel_queryReceive>();
+                list_receiveModel = new List<SMSModel_QueryReceive>();
                 return false;
             }
             //2.2 将接收到的短信发送回执转换为对象

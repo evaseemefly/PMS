@@ -32,9 +32,9 @@ namespace SMSFactory
             };
             return model_receive;
         }
-        public static List<SMSModel_queryReceive> Xml2Model_queryReceiveMsg(string returnMsg)
+        public static List<SMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg)
         {
-            List<SMSModel_queryReceive> list_r = new List<SMSModel_queryReceive>();
+            List<SMSModel_QueryReceive> list_r = new List<SMSModel_QueryReceive>();
             //解析前一部分
             var result = Xml2StrHelper.Xml2Str(returnMsg, "response/result");
             var desc = Xml2StrHelper.Xml2Str(returnMsg, "response/desc");
@@ -52,7 +52,7 @@ namespace SMSFactory
 
                 for (int i = 0; i < _status.Length; i++)
                 {
-                    SMSModel_queryReceive r = new SMSModel_queryReceive()
+                    SMSModel_QueryReceive r = new SMSModel_QueryReceive()
                     //封装语句
                     {
 
@@ -101,7 +101,7 @@ namespace SMSFactory
                               + "<account>" + smsdata.account + "</account>"
                               + "<password>" + Encryption.MD5Encryption(smsdata.password) + "</password>"
                               + "<msgid>" + smsdata.smsId + "</msgid>"
-                              + "<phones>" + string.Join(",", smsdata.phones) + "</phones>"
+                              + "<phones>" + "" + "</phones>"
                           + "</message>";
             return _data;
         }

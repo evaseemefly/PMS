@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PMS.Model.SMSModel
 {
-    public class SMSModel_queryReceive
+    public class SMSModel_QueryReceive
     {
         /// <summary>
         /// 电话

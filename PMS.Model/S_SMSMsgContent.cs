@@ -22,7 +22,9 @@ namespace PMS.Model
         public int Sort { get; set; }
         public string MsgName { get; set; }
         public string Remark { get; set; }
+        public Nullable<int> UID { get; set; }
     
         public virtual S_SMSMission S_SMSMission { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

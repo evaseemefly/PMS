@@ -24,10 +24,7 @@ namespace PMS.Model.SMSModel
         /// 下行短信编号，选填
         /// </summary>
         public string smsId { get; set; }
-        /// <summary>
-        /// 接收下行手机号码，选填
-        /// </summary>
-        public string[] phones { get; set; }
 
+  
     }
 }
