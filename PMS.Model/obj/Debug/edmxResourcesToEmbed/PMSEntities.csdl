@@ -401,7 +401,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="UID" Type="Int32" Nullable="false" />
     <Property Name="SMSContent" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="msgId" Type="String" Nullable="false" />
+    <Property Name="msgId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="SendDateTime" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isDel" Type="Boolean" Nullable="false" />
     <Property Name="SMID" Type="Int32" Nullable="false" />
@@ -411,6 +411,7 @@
     <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
     <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ResultCode" Type="Int32" Nullable="false" />
+    <Property Name="smsCount" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="S_SMSRecord_Current">
     <Key>

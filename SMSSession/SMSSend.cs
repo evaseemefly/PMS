@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using PMS.Model;
 using System.Collections.Specialized;
 using PMS.Model.SMSModel;
-using Common;
 using ISMS;
 using PMS.Model.Dictionary;
 
+
+
+
+
 namespace SMSFactory
 {
-    public class SMSSend:ISMSSend
+    public class SMSSend: ISMSSend
     {
         /// <summary>
         /// 根据短信实体判断短信实体是否符合标准
@@ -77,7 +76,7 @@ namespace SMSFactory
             //2.2 将接收到的短信发送回执转换为对象
             receiveModel = ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
 
-                      
+           
             //等待信息发送完成后
             //System.Threading.Thread.Sleep(10000);//10秒
             ////自动重发

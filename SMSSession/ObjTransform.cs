@@ -32,7 +32,42 @@ namespace SMSFactory
             };
             return model_receive;
         }
+        public static List<SMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg)
+        {
+            List<SMSModel_QueryReceive> list_r = new List<SMSModel_QueryReceive>();
+            //解析前一部分
+            var result = Xml2StrHelper.Xml2Str(returnMsg, "response/result");
+            var desc = Xml2StrHelper.Xml2Str(returnMsg, "response/desc");
 
+            //前一部分没有问题再解析后一部分
+            //先尝试解析第一个值
+            var _status = Xml2StrHelper.xml2strList(returnMsg, "response/report/status");
+            //如果第一个值有内容则继续，否则说明没有后续内容
+            if (_status != null)
+            {
+                var _phone = Xml2StrHelper.xml2strList(returnMsg, "response/report/phone");
+                var _desc = Xml2StrHelper.xml2strList(returnMsg, "response/report/desc");
+                var _wgcode = Xml2StrHelper.xml2strList(returnMsg, "response/report/wgcode");
+                var _time = Xml2StrHelper.xml2strList(returnMsg, "response/report/time");
+
+                for (int i = 0; i < _status.Length; i++)
+                {
+                    SMSModel_QueryReceive r = new SMSModel_QueryReceive()
+                    //封装语句
+                    {
+
+                        phoneNumber = _phone[i],
+                        status = _status[i],
+                        desc = _desc[i],
+                        wgcode = _wgcode[i],
+                        time = _time[i],
+                    };
+                    list_r.Add(r);
+
+                }
+            }
+            return list_r;
+        }
         /// <summary>
         /// 将短信发送对象转成xml格式
         /// </summary>
@@ -51,6 +86,22 @@ namespace SMSFactory
                               + "<sign>" + smsdata.sign + "</sign>"
                               + "<subcode>" + smsdata.subcode + "</subcode>"
                               + "<sendtime>" + smsdata.sendtime.ToString() + "</sendtime>"
+                          + "</message>";
+            return _data;
+        }
+        /// <summary>
+        /// 将查询请求对象转换成xml格式
+        /// </summary>
+        /// <param name="smsdata"></param>
+        /// <returns></returns>
+        public static string Model2Xml_FormatQuery(SMSModel_Query smsdata)
+        {
+            var _data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                          + "<message>"
+                              + "<account>" + smsdata.account + "</account>"
+                              + "<password>" + Encryption.MD5Encryption(smsdata.password) + "</password>"
+                              + "<msgid>" + smsdata.smsId + "</msgid>"
+                              + "<phones>" + "" + "</phones>"
                           + "</message>";
             return _data;
         }

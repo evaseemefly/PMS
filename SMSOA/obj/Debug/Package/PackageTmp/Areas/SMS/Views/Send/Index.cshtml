@@ -226,11 +226,12 @@
 
 
 
-        function AjaxSubmit(pids, content,url) {
+        function AjaxSubmit(pids, content,url,missionId) {
             //1 创建对象
             var model = new Object();
             model.PersonIds = pids;
             model.Content = content;
+            model.SMSMissionID = missionId;
             //2 使用ajax方式提交（此处先不用post）
             $.ajax({
                 url: url,
@@ -268,7 +269,7 @@
             var content = $("#message").textbox('getValue');
             alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
             //3 发送（进行校验）
-            AjaxSubmit(ids_person, content, url);
+            AjaxSubmit(ids_person, content, url, missionId);
         }
 
         function ClearContent() {

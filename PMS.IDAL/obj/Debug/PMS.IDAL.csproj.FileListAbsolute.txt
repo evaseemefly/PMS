@@ -64,5 +64,3 @@ E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.dll
 E:\03协同开发\短信\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.pdb
-E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.dll.CodeAnalysisLog.xml
-E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.dll.lastcodeanalysissucceeded

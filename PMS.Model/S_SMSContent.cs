@@ -29,6 +29,7 @@ namespace PMS.Model
         public int SMID { get; set; }
         public string BlackList { get; set; }
         public int ResultCode { get; set; }
+        public int smsCount { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
         public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }

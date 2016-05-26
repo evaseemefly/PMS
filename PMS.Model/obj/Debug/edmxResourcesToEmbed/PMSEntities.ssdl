@@ -176,6 +176,7 @@
     <Property Name="SMID" Type="int" Nullable="false" />
     <Property Name="BlackList" Type="nvarchar(max)" />
     <Property Name="ResultCode" Type="int" Nullable="false" />
+    <Property Name="smsCount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="S_SMSMission">
     <Key>

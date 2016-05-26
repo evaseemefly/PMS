@@ -9,6 +9,7 @@ using Common;
 using Common.EasyUIFormat;
 using PMS.Model.EqualCompare;
 using ISMS;
+using SMSOA.Areas.SMS.Models;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -20,10 +21,11 @@ namespace SMSOA.Areas.SMS.Controllers
         IP_PersonInfoBLL personBLL { get; set; }
         ISMSSend smsSendBLL { get; set; }
         IUserInfoBLL userBLL { get; set; }
-
+        IS_SMSContentBLL smsContentBLL { get; set; }
         //IUserInfoBLL userInfoBLL { get; set; }
         // GET: SMS/Send
-
+        ISMSQuery smsQuery { get; set; }
+        IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
 
 
         public ActionResult Index()
@@ -288,7 +290,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DoSend(Models.ViewModel_Message model)
+        public ActionResult DoSend(ViewModel_Message model)
         {
             //1 获取联系人id 数组
            var ids= model.PersonId_Int;
@@ -319,9 +321,49 @@ namespace SMSOA.Areas.SMS.Controllers
             //4 短信发送
             PMS.Model.SMSModel.SMSModel_Receive receive;
             smsSendBLL.SendMsg(sendMsg, out receive);
-            return Content("ok");
+            //5 将发送的短信以及提交响应存入SMSContent
+            var mid = model.SMSMissionID;
+            var uid = base.LoginUser.ID;
+            int scid;
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid, out scid);
+            if (!isSaveMsgOk)
+            {
+                return Content("服务器错误");
+            }
+
+            if ("0".Equals(receive.result))
+            {
+                //6 查询发送状态(是否加入等待时间？)
+                PMS.Model.SMSModel.SMSModel_Query queryMsg = new PMS.Model.SMSModel.SMSModel_Query()
+                {
+                    account = account,
+                    password = passWord,
+                    smsId = receive.msgid
+                };
+                List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
+                smsQuery.QueryMsg(queryMsg,out list_QueryReceive);
+                bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive,scid);
+                if (!isSaveCurrnetMsgOk)
+                {
+                    return Content("服务器错误");
+                }
+
+                PMS.Model.SMSModel.SMSModel_MsgResult msgResult = new PMS.Model.SMSModel.SMSModel_MsgResult();
+                //7 返回blacklist中的电话号码
+                smsContentBLL.getResult(receive, msgResult);
+                //8 返回查询结果中的失败的电话号码
+                smsRecord_CurrentBLL.getResult(list_QueryReceive,msgResult);
+                var result = Common.SerializerHelper.SerializerToString(msgResult);
+                return Content(result);
+            }
+            else
+            {
+                return Content("error");
+            }
         }
 
+
+        
         /// <summary>
         /// 根据 短信任务id 查询对应的部门实体，并转成ComboTree对象
         /// </summary>

@@ -9,6 +9,7 @@
         $(function () {
             $("#editWindow").window('close');
             loadDataGrid('@ViewBag.GetPageStatisticList', myColumns);
+            loadComboGrid_Mission();
         })
         //将时间转为指定格式
         function DataFormatter(value) {
@@ -16,6 +17,14 @@
             var str = (date.getMonth() + 1) + "月" + date.getDate() + "日";
             return str;
         }
+
+        var missionColumns = [[
+                 //{ field: 'ck', checkbox: true },
+                 { field: 'SMID', title: 'ID', width: 100, checkbox: true },
+                 { field: 'SMSMissionName', title: '群组名称', width: 150 }
+                 //{ field: 'Operate', title: '是否禁用', width: 150 }
+        ]]
+
         var myColumns = [[
                 { field: 'ContentID', title: 'ID', width: 100, hidden: true },
                 { field: 'MissionName', title: '短信任务', width: 80 },
@@ -28,6 +37,25 @@
                 { field: 'NotReceiveNum', title: '未收到人数', width: 80 }
         ]]
 
+        function loadComboGrid_Mission() {
+
+            //加载全部短信任务种类
+            $("#smsMission_combogrid").combogrid({
+                url: '@ViewBag.GetAllMission',
+                method: 'get',
+                idField: 'SMID',
+                textField: 'SMSMissionName',
+                //width: 150,
+                panelWidth: 180,
+                panelHeight: 'auto',
+                multiple: false,
+                columns: missionColumns,
+                onClickRow: function (rowIndex, rowData) {
+                    //loadDataGridByGroupDepartment_Personss();
+                }
+            })
+        }
+
         function loadDataGrid(url, myColumns) {
             //2 位treegrid加载数据
             $("#datagrid").datagrid({
@@ -37,6 +65,7 @@
                 striped: true,
                 showFooter: true,
                 singleSelect: true,
+                nowrap: false,//自动换行
                 fit: true,
                 url: url,
                 loadMsg: '加载中……',
@@ -64,8 +93,7 @@
             </tr>
             <tr>
                 <td>短信任务种类</td>
-                <td><select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
-        data-options=""></select></td>
+                <td><select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="width:130px" data-options="required:true"></select></td>
                 <td>查询日期</td>
                 <td><a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">Edit</a></td>
             </tr>

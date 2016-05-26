@@ -187,6 +187,7 @@
     <EntitySetMapping Name="S_SMSContent">
       <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
         <MappingFragment StoreEntitySet="S_SMSContent">
+          <ScalarProperty Name="smsCount" ColumnName="smsCount" />
           <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
           <ScalarProperty Name="BlackList" ColumnName="BlackList" />
           <ScalarProperty Name="SMID" ColumnName="SMID" />

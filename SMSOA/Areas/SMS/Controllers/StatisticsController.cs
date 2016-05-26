@@ -29,6 +29,7 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult Index_AdvancedSearch()
         {
             ViewBag.GetPageStatisticList = "/SMS/Statistics/GetPageStatisticList_DataGrid";
+            ViewBag.GetAllMission = "/SMS/Send/GetAllMissionByPID";
             return View();
         }
 
