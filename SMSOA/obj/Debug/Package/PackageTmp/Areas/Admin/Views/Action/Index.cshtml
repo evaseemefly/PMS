@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+@Html.Partial("_MyPartial_Index")
+<script type="text/javascript">
+    
+    var toolbar= [ {
+        iconCls: 'icon-add',
+        text: "新增",
+        handler: addRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-', 
+        {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
+            }, '-',
+           {
+               iconCls: 'icon-edit',
+               text: "编辑",
+               handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+               }, '-',
+                {
+                    iconCls: 'icon-search',
+                    text: "分配权限",
+                    handler: provideAction    //无法传参数
+                }]
+
+    var myColumns = [[
+                { field: 'ID', title: 'ID', width: 100 },
+                { field: 'ActionInfoName', title: '权限名称', width: 150 },
+                { field: 'SubTime', title: '创建时间', width: 250 },
+                { field: 'AreaName', title: '区域名', width: 120 },
+                { field: 'ControllerName', title: '控制器名', width: 120 },
+                { field: 'ActionMethodName', title: '方法名', width: 200 },
+                { field: 'Remark', title: '备注', width: 200 },
+                { field: 'Sort', title: '排序', width: 100 }
+    ]]
+
+    function provideAction() {
+
+    }
+    
+</script>
+       

@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index_AdvancedSearch";
+    Layout = "~/Views/Shared/_SMS_Layout.cshtml";
+}
+
+@section SectionJS{
+    <script type="text/javascript">
+        $(function () {
+            $("#editWindow").window('close');
+            loadDataGrid('@ViewBag.GetPageStatisticList', myColumns);
+        })
+        //将时间转为指定格式
+        function DataFormatter(value) {
+            var date = new Date(value);
+            var str = (date.getMonth() + 1) + "月" + date.getDate() + "日";
+            return str;
+        }
+        var myColumns = [[
+                { field: 'ContentID', title: 'ID', width: 100, hidden: true },
+                { field: 'MissionName', title: '短信任务', width: 80 },
+                { field: 'Content', title: '发送内容', width: 280 },
+                {
+                    field: 'SendDateTime', title: '发送时间', width: 80,
+                    formatter: DataFormatter
+                },
+                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 80 },
+                { field: 'NotReceiveNum', title: '未收到人数', width: 80 }
+        ]]
+
+        function loadDataGrid(url, myColumns) {
+            //2 位treegrid加载数据
+            $("#datagrid").datagrid({
+                width: '400px',
+                height: 'auto',
+                fitColumns: false,
+                striped: true,
+                showFooter: true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '加载中……',
+                columns: myColumns,
+                //toolbar: toolbar
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+            });
+        }
+    </script>
+    }
+
+<div style="height:300px">
+    <table class="easyui-datagrid" id="datagrid" data-options="toolbar:'#tb'"></table>
+    <div id="tb" style="padding:2px 5px;">
+        <table cellspacing="5" style="font-size:15px">
+            <tr>
+                <td>指定联系人名称</td>
+                <td><input class="easyui-textbox" style="width:200px"></td>
+                <td>匹配电话号码</td>
+                <td><input class="easyui-textbox" style="width:200px"></td>
+                <td><a href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a></td>
+            </tr>
+            <tr>
+                <td>短信任务种类</td>
+                <td><select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
+        data-options=""></select></td>
+                <td>查询日期</td>
+                <td><a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">Edit</a></td>
+            </tr>
+        </table>        
+    </div>
+
+    <div id="mm1" style="width:150px;">        
+        <div class="menu-sep"></div>
+        <div>今日</div>
+        <div>最近一周</div>
+        <div>本月</div>
+        <div class="menu-sep"></div>
+        <div>
+            <span>具体某天</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <div>某天</div>
+                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+            </div>
+        </div>
+        <div>
+            <span>某天之前</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <div>某天</div>
+                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+            </div>
+        </div>
+        <div>
+            <span>某天之后</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <div>某天</div>
+                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+            </div>
+        </div>
+        <div>
+            <span>时间范围</span>
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
+                <table cellspacing="2" style="font-size:15px">
+                    <tr>
+                        <td>起始时间</td>                        
+                        <td>终止时间</td>
+                    </tr>
+                    <tr>
+                        <td><div class="easyui-calendar" style="width:250px;height:250px;"></div></td>
+                        <td><div class="easyui-calendar" style="width:250px;height:250px;"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">确定</a></td>
+                    </tr>
+                    </table>
+            </div>
+        </div>        
+    </div>
+
+    <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
+        <iframe id="setActionRoleFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    </div>
+
+</div>
+
