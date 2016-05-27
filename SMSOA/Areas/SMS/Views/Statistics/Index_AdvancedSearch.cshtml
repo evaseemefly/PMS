@@ -10,7 +10,140 @@
             $("#editWindow").window('close');
             loadDataGrid('@ViewBag.GetPageStatisticList', myColumns);
             loadComboGrid_Mission();
+            var now_date = new Date();
+            now_date = now_date.toLocaleDateString();
+            $("#mm1").menu({
+                onClick: function (item) {
+                    SetDateVal(item, now_date);
+                }
+            })
+
+            $("#calendar_today").calendar({
+                onSelect: function (date) {
+                    alert(date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate());
+                }
+
+            })
+
         })
+        
+
+        
+        function dateFormat(date) {
+            
+            
+            var beginDate;
+            var now = new Date(date);
+            var month = now.getMonth;
+            now.setMonth()
+            return now;
+        }
+
+        Date.getDayOfMonth = function (y, Mm) {
+            ///	<summary>
+            ///	计算当前月一共多少天
+            ///
+            ///	</summary>
+            ///	<returns type="Number" />
+            ///	<param name="y" type="Number">
+            ///		年,若为空则为当前时间
+            ///	</param>
+            ///	<param name="Mm" type="Number">
+            ///		月,0开始,若为空则为当前时间
+            ///	</param>
+            if (typeof y == 'undefined') { y = (new Date()).getFullYear(); }
+            if (typeof Mm == 'undefined') { Mm = (new Date()).getMonth(); }
+            var Feb = (y % 4 == 0) ? 29 : 28;
+            var aM = new Array(31, Feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+            return aM[Mm];
+        };
+
+
+        function dateAdd(date, num) {
+            var source_date = new Date(date);
+            source_date = source_date.valueOf();
+            source_date = source_date + num * 24 * 60 * 60 * 1000;
+            var target_date = new Date(source_date);
+            return target_date.toLocaleDateString();
+        }
+        
+        function getTargetDate(obj) {
+            var temp = obj;
+            var parent = $(this).parent(".menu-content");
+            var ww = $("#calendar_today").datebox('getValue');
+            var ww1 = $("#calendar_today").calendar('getValue');
+            var date = parent.children(".easyui-calendar").calendar().datebox('getValue');
+            temp.parent();
+        }
+
+        Date.getDateByAddDays = function (dt, num) {
+            ///	<summary>
+            ///	对传入的时间进行加法运算
+            ///	</summary>
+            ///	<returns type="Date" />
+            ///	<param name="dt" type="Date">
+            ///		参照日期，若为空则为当前时间
+            ///	<param name="num" type="Int">
+            ///		要加或减的天数
+            ///	</param> 
+            var source_date = new Date(date);
+            source_date = source_date.valueOf();
+            source_date = source_date + num * 24 * 60 * 60 * 1000;
+            var target_date = new Date(source_date);
+            return target_date.toLocaleDateString();
+        }
+
+        Date.getDateOfPreMonth = function (dt) {
+            ///	<summary>
+            ///	返回上一月的日期
+            ///
+            ///	</summary>
+            ///	<returns type="Date" />
+            ///	<param name="dt" type="Date">
+            ///		参照日期，若为空则为当前时间
+            ///	</param> 
+
+            var now = new Date(dt);
+            if (typeof dt == 'undefined') { dt = (new Date()); }
+            var y = (now.getMonth() == 0) ? (now.getFullYear() - 1) : now.getFullYear();
+            var m = (now.getMonth() == 0) ? 11 : now.getMonth() - 1;
+            var preM = Date.getDayOfMonth(y, m);
+           Date.get
+            var d = (preM < now.getDate()) ? preM : now.getDate();
+            return new Date(y, m, d).toLocaleDateString();
+        };
+
+        function SetDateVal(temp, date) {
+            ///	<summary>
+            ///	将起始、终止以及指定时间赋值到隐藏域中
+            ///
+            ///	</summary>
+            ///	<returns type="Date" />
+            ///	<param name="temp" type="obj">
+            ///保存要保存的类型的对象（.name可查看时间）
+            ///	<param name="date" type="Date">
+            ///		参照日期，若为空则为当前时间
+            ///	</param> 
+            switch (temp.name) {
+                case 'today':
+                    $("#date_target").val(date);
+                    $("#date_start").val(999);
+                    $("#date_finish").val(999);
+                    break;
+                case 'lastWeek':
+                    $("#date_target").val(999);
+                    
+                    $("#date_start").val(Date.getDateByAddDays(date, -7));
+                    $("#date_finish").val(date);
+                    break;
+                case 'lastMonth':
+                    $("#date_target").val(999);
+                    $("#date_start").val(Date.getDateOfPreMonth(date));
+                    $("#date_finish").val(date);
+            }
+            alert("选中的时间为：" + $("#date_target").val() + " |" + "选中的起始时间为：" + $("#date_start").val() + " |" + "选中的终止时间为：" + $("#date_finish").val());
+        }
+
         //将时间转为指定格式
         function DataFormatter(value) {
             var date = new Date(value);
@@ -56,6 +189,7 @@
             })
         }
 
+
         function loadDataGrid(url, myColumns) {
             //2 位treegrid加载数据
             $("#datagrid").datagrid({
@@ -82,13 +216,17 @@
 
 <div style="height:300px">
     <table class="easyui-datagrid" id="datagrid" data-options="toolbar:'#tb'"></table>
+    
     <div id="tb" style="padding:2px 5px;">
+        <input type="hidden" id="date_target" name="date_target" />
+        <input type="hidden"id="date_start" name="date_start" />
+        <input type="hidden"id="date_finish" name="date_finish" />
         <table cellspacing="5" style="font-size:15px">
             <tr>
                 <td>指定联系人名称</td>
-                <td><input class="easyui-textbox" style="width:200px"></td>
+                <td><input class="easyui-textbox" id="personName"style="width:200px"></td>
                 <td>匹配电话号码</td>
-                <td><input class="easyui-textbox" style="width:200px"></td>
+                <td><input class="easyui-textbox"id="personPhoneNum" style="width:200px"></td>
                 <td><a href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a></td>
             </tr>
             <tr>
@@ -102,17 +240,19 @@
 
     <div id="mm1" style="width:150px;">        
         <div class="menu-sep"></div>
-        <div>今日</div>
-        <div>最近一周</div>
-        <div>本月</div>
+        <div data-options="name:'today'">今日</div>
+        <div data-options="name:'lastWeek'">最近一周</div>
+        <div data-options="name:'lastMonth'">本月</div>
         <div class="menu-sep"></div>
         <div>
             <span>具体某天</span>
             <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
                 <div>某天</div>
-                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div class="easyui-calendar" id="calendar_today"style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"onclick="" >提交</a>
             </div>
+           
         </div>
         <div>
             <span>某天之前</span>
