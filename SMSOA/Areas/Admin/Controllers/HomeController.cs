@@ -14,6 +14,8 @@ namespace SMSOA.Areas.Admin.Controllers
     {
         IUserInfoBLL userInfoBLL { get; set; }
 
+        string cookie_sessionId = "sms_Session";
+
         //[LoginValidate]
         // GET: Admin/Home
         public ActionResult Index()
@@ -30,7 +32,7 @@ namespace SMSOA.Areas.Admin.Controllers
         public /*JsonResult*/ActionResult GetMenuFatherNode()
         {
             int parentId = 0;
-            int userId = 3;
+            int userId = base.LoginUser.ID;
 
             //1 从数据库中读取指定的用户对象
             var userInfo = userInfoBLL.GetListBy(u => u.ID == userId).FirstOrDefault();
@@ -82,10 +84,29 @@ namespace SMSOA.Areas.Admin.Controllers
             //return Json("0", JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LoginOut()
+        {
+            //1 判断当前请求中的cookies中是否包含了sessionid
+            if(Request.Cookies[cookie_sessionId]!=null)
+            {
+                //1.1 若存在则取出该sessionId中的值
+                string key = Request.Cookies[cookie_sessionId].Value;
+                //1.2 将该sessionId的缓存从服务器端删除
+                Common.MemcacheHelper.Delete(key);
+                //1.3 删除响应中的cookie（注意此处不能删除请求中的cookie，而是删除响应中的cookie）
+                //2 删除当前cookie中保存的用户名与密码（设置失效时间为负值）
+                Response.Cookies["sms_UserName"].Expires = DateTime.Now.AddHours(-1);
+                Response.Cookies["sms_UserPwd"].Expires = DateTime.Now.AddHours(-1);
+
+            }
+            //3 重定向回登录界面
+            return Redirect("/Login/Login/Index");
+        }
+
         //[LoginValidate]
         public ActionResult GetMenuItem()
         {
-            int userId = 3;
+            int userId = base.LoginUser.ID;
             //1 从数据库中读取指定的用户对象
             var userInfo = userInfoBLL.GetListBy(u => u.ID == userId).FirstOrDefault();
             if (userInfo != null)

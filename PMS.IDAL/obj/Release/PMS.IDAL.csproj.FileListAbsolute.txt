@@ -1,0 +1,11 @@
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\PMS.IDAL.dll
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\PMS.IDAL.pdb
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\PMS.Model.dll
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\EntityFramework.dll
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\System.Web.Mvc.dll
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\PMS.Model.pdb
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\EntityFramework.xml
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\bin\Release\System.Web.Mvc.xml
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\obj\Release\PMS.IDAL.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\obj\Release\PMS.IDAL.dll
+E:\03协同开发\短信\PMS\PMS\PMS.IDAL\obj\Release\PMS.IDAL.pdb

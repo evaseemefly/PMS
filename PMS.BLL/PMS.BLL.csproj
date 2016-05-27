@@ -54,6 +54,7 @@
     <Compile Include="P_DepartmentInfoBLL.cs" />
     <Compile Include="P_GroupBLL.cs" />
     <Compile Include="RoleInfoBLL.cs" />
+    <Compile Include="S_SMSMsgContentBLL.cs" />
     <Compile Include="S_SMSRecord_CurrentBLL.cs" />
     <Compile Include="UserInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

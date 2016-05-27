@@ -22,6 +22,29 @@ namespace PMS.BLL
 
            return person.P_Group.ToList();
         }
+       
+        /// <summary>
+        /// 剔除传入的群组id中的群组，返回剩余群组集合
+        /// </summary>
+        /// <param name="list_ids_group">需要剔除群组的id集合</param>
+        /// <param name="isMiddle">是否需要转成中间变量</param>
+        /// <returns></returns>
+        public List<P_Group> GetRestGroupListByIds(List<int> list_ids_group,bool isMiddle)
+        {
+            //1 找到全部的群组
+            var list_group = GetListBy(g => g.isDel == false);
+
+            //2 剔除传入的id的群组
+            var list_group_rest = list_group.Where(g => !list_ids_group.Contains(g.GID)).ToList();
+            if(isMiddle)
+            {
+               return list_group_rest.Select(g => g.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return list_group_rest.ToList();
+            }
+        }
 
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的GroupInfo集合

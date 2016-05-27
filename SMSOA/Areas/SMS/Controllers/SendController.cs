@@ -27,6 +27,7 @@ namespace SMSOA.Areas.SMS.Controllers
         ISMSQuery smsQuery { get; set; }
         IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
 
+
         public ActionResult Index()
         {
             ViewBag.GetAllMission_combogrid = "/SMS/Send/GetAllMissionByPID";
@@ -36,7 +37,9 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.GetPersonByMission = "/SMS/Send/GetPersonByMission";
             ViewBag.GetPersonByGroupDepartment = "/SMS/Send/GetPersonByGroupDepartment";
             ViewBag.DoSend = "/SMS/Send/DoSend";
-
+            ViewBag.GetTemplateByUidAndMission = "/SMS/MsgTemplate/GetTemplateByUserIdAndMission";
+            //注意不在此处传获取任务的方法
+            ViewBag.ShowSetOftenMissionAndGroup = "/SMS/Send/ShowSetWindow";
             ViewBag.LoginUserID = -999;
             //若父控制器中的登录用户不为空
             if (base.LoginUser!=null)
@@ -46,6 +49,69 @@ namespace SMSOA.Areas.SMS.Controllers
             }
             
             return View();
+        }
+
+        public ActionResult ShowSetWindow()
+        {
+            ViewBag.LoginUserID = -999;
+            //若父控制器中的登录用户不为空
+            if (base.LoginUser != null)
+            {
+                //获取登录用户的id
+                ViewBag.LoginUserID = base.LoginUser.ID;
+            }
+            ViewBag.GetMissionByUserId_combogrid= "/SMS/Send/GetMissionByUser";
+            ViewBag.GetGroupByUser_combogrid= "/SMS/Send/GetGroupByUser";
+            ViewBag.DoSave= "/SMS/Send/DoSave";
+            return View();
+        }
+
+        protected string GetMissionByUser(int userId,bool isChecked)
+        {
+            
+            //1 获取该用户所拥有的短信任务（常用短信任务）
+            var list_owned_mission = userBLL.GetMissionListByUID(userId, true);
+            var missionIdsbyUser = list_owned_mission.Select(m => m.SMID).ToList();
+            //2 获取剩余的未拥有的全部短信任务
+            var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser);
+            var list = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_owned_mission, isChecked);
+            //2 从所有的群组中删除该任务所拥有的群组集合
+            var list_excludeOwned_group = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_Ext_mission, false);
+            list.AddRange(list_excludeOwned_group);
+            //将该任务拥有的群组设置为选中状态
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = 0,
+                rows = list,
+                footer = null
+            };
+            var temp = Common.SerializerHelper.SerializerToString(model);
+            return temp = temp.Replace("Checked", "checked");
+           
+        }
+
+        /// <summary>
+        /// 根据传入的用户id查询全部的短信任务
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public ActionResult GetMissionByUser()
+        {
+            int userId = int.Parse(Request["userId"]);
+           var temp= GetMissionByUser(userId, true);
+            return Content(temp);
+        }
+
+        /// <summary>
+        /// 根据传入的用户id查询全部的短信任务
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public ActionResult GetMissionByUserUnChecked()
+        {
+            int userId = int.Parse(Request["userId"]);
+            var temp = GetMissionByUser(userId, false);
+            return Content(temp);
         }
 
         /// <summary>
@@ -116,23 +182,73 @@ namespace SMSOA.Areas.SMS.Controllers
             return Content(Common.SerializerHelper.SerializerToString(list_person));
         }
 
+        protected string GetGroupByUser(int userId,bool isChecked)
+        {
+            //1 获取该用户所拥有的权限集合
+            var list_owned_group = userBLL.GetGroupListByUID(userId, true);
+            //List<int> list_group = new List<int>();
+            var list_owned_Ids = list_owned_group.Select(g => g.GID).ToList();
+            //2 获取该用户剩余可以拥有的权限集合
+            var list_RestOwned_group = groupBLL.GetRestGroupListByIds(list_owned_Ids, true);
+            //var list_RestOwned_group = userBLL.GetGroupListByUID(userId, true);
+
+
+            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, isChecked);
+            list.AddRange(ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_RestOwned_group, false));
+
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = 0,
+                rows = list,
+                footer = null
+            };
+            var temp = Common.SerializerHelper.SerializerToString(model);
+            temp = temp.Replace("Checked", "checked");
+            return temp;
+        }
+
+        /// <summary>
+        /// 根据传入的userId获取该用户拥有的群组以及可以拥有的群组下拉框
+        /// 设置用户的常用群组
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetGroupByUser()
+        {
+            int userId = int.Parse(Request["userId"]);
+           var temp= GetGroupByUser(userId, true);
+            return Content(temp);
+        }
+
+        public ActionResult GetGroupByUserUnChecked()
+        {
+            int userId = int.Parse(Request["userId"]);
+            var temp = GetGroupByUser(userId, false);
+            return Content(temp);
+        }
+
         /// <summary>
         /// 根据 短信任务id 查询对应的群组列表
         /// </summary>
         /// <param name="mid"></param>
         /// <returns></returns>
-        public ActionResult GetGroupByMID(int mid)
+        public ActionResult GetGroupByMID(int mid/*, int userid*/)
         {
+            int userId = int.Parse(Request["uid"]);
             //1获取传入的任务id
             //1.1根据任务id查找对应的任务对象并查找对应的群组集合
             List<PMS.Model.P_Group> list_owned_group = new List<PMS.Model.P_Group>();
-           
+
+
             //根据短信任务查找短信任务所拥有的群组（在R_Group_Mission表中），并只拿取isPass为true的所对应的群组
-            smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault().R_Group_Mission.Where(r=>r.isPass==true).ToList().ForEach(r=>list_owned_group.Add(r.P_Group));
+            smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault().R_Group_Mission.Where(r => r.isPass == true).ToList().ForEach(r => list_owned_group.Add(r.P_Group));
             list_owned_group = list_owned_group.Select(g => g.ToMiddleModel()).ToList();
+            var list_owned_Ids = list_owned_group.Select(g => g.GID).ToList();
+
             var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
             //2 从所有的群组中删除该任务所拥有的群组集合
-            var list_excludeOwned_group = groupBLL.GetListBy(g => g.isDel == false).ToList().Where(g => !list_owned_group.Contains(g)).Select(g=>g.ToMiddleModel()).ToList();
+            //2.1 获取当前用户所拥有的常用群组(通过User查询对应的Group）
+            var list_excludeOwned_group = userBLL.GetRestGroupListByIds(list_owned_Ids, userId, true);
+            //var list_excludeOwned_group = groupBLL.GetListBy(g => g.isDel == false).ToList().Where(g => !list_owned_group.Contains(g)).Select(g=>g.ToMiddleModel()).ToList();
             list.AddRange(ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_excludeOwned_group, false));
             //将该任务拥有的群组设置为选中状态
             PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
@@ -144,6 +260,29 @@ namespace SMSOA.Areas.SMS.Controllers
             var temp = Common.SerializerHelper.SerializerToString(model);
             temp = temp.Replace("Checked", "checked");
             return Content(temp);
+        }
+
+        public ActionResult DoSave(Models.ViewModel_GroupMission model)
+        {
+            //获取提交的群组id以及任务id数组
+            var group_ids = model.GroupId_Int;
+            var mission_ids = model.MissionId_Int;
+
+            //获取当前登录的userId
+            var userId = base.LoginUser.ID;
+
+            //修改当前用户所拥有的任务
+           var mission_isSuccess= userBLL.SetUser4Mission(userId, mission_ids.ToList());
+            //修改当前用户所拥有的群组
+            var group_isSuccess = userBLL.SetUser4Group(userId, group_ids.ToList());
+            if (mission_isSuccess && group_isSuccess)
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("error");
+            }
         }
 
         /// <summary>

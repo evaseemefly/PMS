@@ -3,7 +3,7 @@
   <object type="SMSOA.Controllers.HomeController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />    
   </object>
-  <object type="SMSOA.Login.LoginController, SMSOA.Login" singleton="false" >
+  <object type="SMSOA.Areas.Login.Controllers.LoginController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
   </object>
   <object type="SMSOA.Areas.Admin.Controllers.HomeController, SMSOA" singleton="false" >
@@ -53,5 +53,9 @@
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
     <property name="smsMsgContentBLL" ref="smsMsgContentService" />
+    <property name="smsMissionBLL" ref="smsmissionService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.StatisticsController, SMSOA" singleton="false" >
+    <property name="userBLL" ref="userInfoService" />
   </object>
 </objects>

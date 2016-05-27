@@ -61,6 +61,7 @@
     <Compile Include="EasyUIModel\EasyUIComboTree_Department.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
+    <Compile Include="EasyUIModel\EasyUIDataGrid_Mission.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="MiddlewareModel\P_Group.cs" />
     <Compile Include="MiddlewareModel\P_PersonInfo.cs" />
     <Compile Include="MiddlewareModel\RoleInfo.cs" />
+    <Compile Include="MiddlewareModel\S_SMSContent.cs" />
     <Compile Include="MiddlewareModel\S_SMSMission.cs" />
     <Compile Include="MiddlewareModel\S_SMSMsgContent.cs" />
     <Compile Include="MiddlewareModel\UserInfo.cs" />

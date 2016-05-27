@@ -44,6 +44,7 @@ namespace PMS.Model.Dictionary
             dResponseCode.Add(22, "数据包大小不匹配");
             dResponseCode.Add(98, "系统正忙");
             dResponseCode.Add(99, "消息格式错误");
+            dResponseCode.Add(100, "发送成功");
             dResponseCode.Add(101, "参数不全");
         }
     }

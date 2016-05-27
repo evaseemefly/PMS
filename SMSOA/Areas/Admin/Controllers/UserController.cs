@@ -6,11 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
+using Common;
 using SMSOA.Filters;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         IUserInfoBLL userInfoBLL { get; set; }
         IActionInfoBLL actionInfoBLL { get; set; }
@@ -37,6 +38,8 @@ namespace SMSOA.Areas.Admin.Controllers
             model.DelFlag = false;
             model.SubTime = DateTime.Now;
             model.ModifiedOnTime = DateTime.Now;
+            //5月25日补充，对传入的密码进行md5加密
+            model.UPwd = Encryption.MD5Encryption(model.UPwd);
             //model.Remark = "";
             try
             {

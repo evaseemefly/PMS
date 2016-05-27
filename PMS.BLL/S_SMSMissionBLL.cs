@@ -21,6 +21,36 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据该用户所拥有的任务id数组，从全部任务中去除这些任务
+        /// </summary>
+        /// <param name="missionIdsByUser"></param>
+        /// <returns></returns>
+        public List<S_SMSMission> GetMissionExt(List<int> missionIdsByUser)
+        {
+            var list_missionExt= GetAllList();
+            list_missionExt = list_missionExt.Where(m => !missionIdsByUser.Contains(m.SMID)).ToList();
+            return list_missionExt;
+        }
+
+        /// <summary>
+        /// 查询全部短信内容，并根据参数决定是否进行中间变量的转换
+        /// </summary>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public List<S_SMSMission> GetAllList(bool isMiddle)
+        {
+            if(isMiddle)
+            {
+                return GetListBy(s => s.isDel == false).ToList().Select(m=>m.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return GetListBy(s => s.isDel == false).ToList();
+            }
+            
+        }
+
+        /// <summary>
         /// 从数据库中根据id集合查询返回指定的S_SMSMission集合
         /// </summary>
         /// <param name="list_ids"></param>

@@ -214,9 +214,15 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
+    <Compile Include="Areas\Login\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
+    <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\SMS\Models\ViewModel_GroupMission.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_Message.cs" />
+    <Compile Include="Areas\SMS\Models\ViewModel_StatisticsLast10.cs" />
+    <Compile Include="Areas\SMS\Models\ViewModel_Statistics_Chart.cs" />
     <Compile Include="Areas\SMS\SMSAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -240,12 +246,10 @@
     <Content Include="Content\Images\3DSMAX.png" />
     <Content Include="Content\Images\7_7.jpg" />
     <Content Include="Content\Images\Alien Folder.png" />
-    <Content Include="Content\Images\applebg.jpg" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\bg3.png" />
     <Content Include="Content\Images\big.png" />
     <Content Include="Content\Images\blue_glow.jpg" />
-    <Content Include="Content\Images\logo.gif" />
     <Content Include="Content\Images\Program Files Folder.png" />
     <Content Include="Content\Images\Xp-G5 006.png" />
     <Content Include="favicon.ico" />
@@ -284,7 +288,6 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_RoleScriptPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_MyPartial_Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-通过viewbag的方式实现.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
@@ -328,7 +331,7 @@
     <Content Include="Areas\SMS\Views\web.config" />
     <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\Index.cshtml" />
-    <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditInfo.cshtml" />
+    <Content Include="Areas\SMS\Views\MsgTemplate\ShowAddTemplate.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission.cshtml" />
@@ -336,6 +339,14 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission -5月1日复制%282%29.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
+    <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
+    <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />
+    <None Include="Properties\PublishProfiles\nmefcSMSConfig.pubxml" />
+    <None Include="Properties\PublishProfiles\nmefcSMSTestConfig.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
@@ -395,17 +406,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\MyPartialIndex.cshtml" />
     <Content Include="Views\Shared\_MyPartial_Index.cshtml" />
+    <Content Include="Views\Shared\_SMS_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Areas\Login\Controllers\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Areas\SMS\Views\Shared\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
+    <Folder Include="Scripts\Highcharts\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -439,10 +451,6 @@
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SMSOA.Login\SMSOA.Login.csproj">
-      <Project>{78f22406-4fb1-46af-875a-bc48e816f79c}</Project>
-      <Name>SMSOA.Login</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>

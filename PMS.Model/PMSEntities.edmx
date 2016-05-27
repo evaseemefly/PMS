@@ -967,6 +967,10 @@
             <End Role="S_SMSMission" EntitySet="S_SMSMission" />
             <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
           </AssociationSet>
+          <AssociationSet Name="FK_S_SMSMsgContent_UserInfo" Association="PMS2016Model.FK_S_SMSMsgContent_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
+          </AssociationSet>
           <AssociationSet Name="FK_S_SMSContent_S_SMSMission" Association="PMS2016Model.FK_S_SMSContent_S_SMSMission">
             <End Role="S_SMSMission" EntitySet="S_SMSMission" />
             <End Role="S_SMSContent" EntitySet="S_SMSContent" />
@@ -974,10 +978,6 @@
           <AssociationSet Name="FK_S_SMSRecord_History_S_SMSContent" Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent">
             <End Role="S_SMSContent" EntitySet="S_SMSContent" />
             <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSMsgContent_UserInfo" Association="PMS2016Model.FK_S_SMSMsgContent_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
@@ -1158,10 +1158,10 @@
           <Property Name="SMID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_S_SMSContent_UserInfo" FromRole="S_SMSContent" ToRole="UserInfo" />
           <NavigationProperty Name="S_SMSRecord_Current" Relationship="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_Current" />
-          <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ResultCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSContent" ToRole="S_SMSMission" />
           <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
+          <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResultCode" Type="Int32" Nullable="false" />
           <Property Name="smsCount" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="S_SMSRecord_Current">
@@ -1291,9 +1291,9 @@
           <Property Name="PID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.FK_S_SMSRecord_History_P_PersonInfo" FromRole="S_SMSRecord_History" ToRole="P_PersonInfo" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" FromRole="S_SMSRecord_History" ToRole="S_SMSMission" />
+          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSRecord_History" ToRole="S_SMSContent" />
           <Property Name="StatusCode" Type="Int32" Nullable="false" />
           <Property Name="DescContent" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSRecord_History" ToRole="S_SMSContent" />
         </EntityType>
         <Association Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
           <End Type="PMS2016Model.P_DepartmentInfo" Role="P_DepartmentInfo" Multiplicity="1" />
@@ -1395,6 +1395,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_S_SMSMsgContent_UserInfo">
+          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="PMS2016Model.S_SMSMsgContent" Role="S_SMSMsgContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_SMSMsgContent">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_S_SMSContent_S_SMSMission">
           <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
           <End Type="PMS2016Model.S_SMSContent" Role="S_SMSContent" Multiplicity="*" />
@@ -1416,18 +1428,6 @@
             </Principal>
             <Dependent Role="S_SMSRecord_History">
               <PropertyRef Name="SCID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_S_SMSMsgContent_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="PMS2016Model.S_SMSMsgContent" Role="S_SMSMsgContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="S_SMSMsgContent">
-              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

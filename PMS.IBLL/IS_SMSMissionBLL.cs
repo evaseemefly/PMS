@@ -24,6 +24,13 @@ namespace PMS.IBLL
         List<S_SMSMission> GetListByIds(List<int> list_ids);
 
         /// <summary>
+        /// 根据该用户所拥有的任务id数组，从全部任务中去除这些任务
+        /// </summary>
+        /// <param name="missionIdsByUser"></param>
+        /// <returns></returns>
+        List<S_SMSMission> GetMissionExt(List<int> missionIdsByUser);
+
+        /// <summary>
         /// 修改指定的S_SMSMissionId 的对象集合的删除标记为删除
         /// </summary>
         /// <param name="list_ids"></param>

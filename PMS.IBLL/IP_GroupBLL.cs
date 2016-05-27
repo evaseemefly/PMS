@@ -23,6 +23,14 @@ namespace PMS.IBLL
         /// <returns></returns>
         List<P_Group> GetListByPerson(int pid);
 
+
+        /// <summary>
+        /// 剔除传入的群组id中的群组，返回剩余群组集合
+        /// </summary>
+        /// <param name="list_ids_group">需要剔除群组的id集合</param>
+        /// <param name="isMiddle">是否需要转成中间变量</param>
+        /// <returns></returns>
+        List<P_Group> GetRestGroupListByIds(List<int> list_ids_group, bool isMiddle);
         /// <summary>
         /// 根据群组GID删除指定PID的联系人
         /// </summary>
