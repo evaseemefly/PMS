@@ -12,20 +12,21 @@
             loadComboGrid_Mission();
             var now_date = new Date();
             now_date = now_date.toLocaleDateString();
+            onClickBind();
             $("#mm1").menu({
                 onClick: function (item) {
                     SetDateVal(item, now_date);
                 }
             })
 
-            $("#calendar_today").calendar({
-                onSelect: function (date) {
-                    alert(date.toLocaleDateString());
-                    var item = { name: 'today' };
-                    SetDateVal(item, date.toLocaleDateString());
-                }
+            //$("#calendar_today").calendar({
+            //    onSelect: function (date) {
+            //        alert(date.toLocaleDateString());
+            //        var item = { name: 'today' };
+            //        SetDateVal(item, date.toLocaleDateString());
+            //    }
 
-            })
+            //})
 
             $("#calendar_beforeSomeDay").calendar({
                 onSelect: function (date) {
@@ -43,6 +44,13 @@
                 }
             })
 
+            $("#calendar_afterSomeDay").calendar({
+                onSelect: function (date) {
+                    alert(date.toLocaleDateString());
+                    var item = { name: 'aftersomeday' };
+                    SetDateVal(item, date.toLocaleDateString());
+                }
+            })
         })
         
 
@@ -85,13 +93,60 @@
             return target_date.toLocaleDateString();
         }
         
-        function getTargetDate() {
+        function onClickBind() {
+            $(".easyui-linkbutton").each(function () {
+                $(this).click(function () {
+                    //alert("被点击了");
+                    var parent = $(this).parent(".menu-content");
+                    var calenars = parent.children(".calendar");
+                    //判断该calendar是否为一个
+                    if (calenars.length == 0)
+                    {
+                        alert("未获取到子节点");
+                        var parent_parent = $(this).parent().parent();
+                        calenars = $(this).parent().parent().parent().find(".calendar")
+                        if (calenars.length > 1) {
+                            //遍历获取每个日历中的日期
+                            calenars.each(function (temp) {
+                                var date = $(this).calendar('options')['current'];
+                                alert("被点击的日期为" + date.toLocaleDateString());
+                            })
+                        }
+                    }
+                    else
+                    {
+                        alert("只获取一个子节点");
+                        //var year = calenars.calendar('options')['year'];
+                        //var month = calenars.calendar('options')['month'];
+                        var date = calenars.calendar('options')['current'];
+                        //alert("被点击的日期为"+year+"/"+month+"/"+day);
+                        alert("被点击的日期为" + date.toLocaleDateString());
+                        //获取当前被点击的对象的name值
+                        var names = $(this).attr("name");
+                        //根据当前的name进行判断
+                        var item = { name: names };
+                        SetDateVal()
+                    }
+                   
+                })
+            })
+        }
+
+        function getTargetDate(obj) {
             //var temp = obj;
+
+
+
             var parent = $(this).parent(".menu-content");
-            var ww = $("#calendar_today").datebox('getValue');
-            var ww1 = $("#calendar_today").calendar('getValue');
-            var date = parent.children(".easyui-calendar").calendar().datebox('getValue');
-            temp.parent();
+            //var ww = $("#calendar_today").datebox('getValue');
+            //测试 使用如下方式可以去到日历中的时间
+            $("#ok").parent(".menu-content").children(".calendar").calendar('options')['year']
+
+            var year = $("#calendar_today").calendar('options')['year'];
+            //var month=$
+            alert(ww1);
+            //var date = parent.children(".easyui-calendar").calendar().datebox('getValue');
+            //temp.parent();
         }
 
         Date.getDateByAddDays = function (dt, num) {
@@ -131,7 +186,7 @@
             return new Date(y, m, d).toLocaleDateString();
         };
 
-        function SetDateVal(temp, date) {
+        function SetDateVal(temp, date1,date2) {
             ///	<summary>
             ///	将起始、终止以及指定时间赋值到隐藏域中
             ///	</summary>
@@ -144,7 +199,7 @@
             ///	</param> 
             switch (temp.name) {
                 case 'today':
-                    $("#date_target").val(date);
+                    $("#date_target").val(date1);
                     $("#date_start").val(999);
                     $("#date_finish").val(999);
                     break;
@@ -152,25 +207,26 @@
                 case 'beforesomeday':
                     $("#date_target").val(999);
                     $("#date_start").val(998);
-                    $("#date_finish").val(date);
+                    $("#date_finish").val(date1);
                     break;
 
                 case 'aftersomeday':
                     $("#date_target").val(999);
-                    $("#date_start").val(date);
+                    $("#date_start").val(date1);
                     $("#date_finish").val(998);
                     break;
 
                 case 'lastWeek':
                     $("#date_target").val(999);
                     
-                    $("#date_start").val(Date.getDateByAddDays(date, -7));
-                    $("#date_finish").val(date);
+                    $("#date_start").val(Date.getDateByAddDays(date1, -7));
+                    $("#date_finish").val(date1);
                     break;
+
                 case 'lastMonth':
                     $("#date_target").val(999);
-                    $("#date_start").val(Date.getDateOfPreMonth(date));
-                    $("#date_finish").val(date);
+                    $("#date_start").val(Date.getDateOfPreMonth(date1));
+                    $("#date_finish").val(date1);
             }
             //alert("选中的时间为：" + $("#date_target").val() + " |" + "选中的起始时间为：" + $("#date_start").val() + " |" + "选中的终止时间为：" + $("#date_finish").val());
         }
@@ -281,7 +337,7 @@
                 <div>某天</div>
                 <div class="easyui-calendar" id="calendar_today"style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"onclick="getTargetDate()" >提交</a>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"@*onclick="getTargetDate()"*@ >提交</a>
             </div>
            
         </div>
@@ -291,13 +347,14 @@
                 <div>某天</div>
                 <div class="easyui-calendar" id="calendar_beforeSomeDay" style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="getTargetDate()">提交</a>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"id="ok" onclick="getTargetDate()">提交</a>
             </div>
         </div>
         <div>
             <span>某天之后</span>
             <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
                 <div>某天</div>
+                @*<input class="easyui-datebox"></input>*@
                 <div class="easyui-calendar" id="calendar_afterSomeDay"  style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
                 <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="getTargetDate()">提交</a>
@@ -312,8 +369,8 @@
                         <td>终止时间</td>
                     </tr>
                     <tr>
-                        <td><div class="easyui-calendar" style="width:250px;height:250px;"></div></td>
-                        <td><div class="easyui-calendar" style="width:250px;height:250px;"></div></td>
+                        <td><div class="easyui-calendar" id="calendar_start" style="width:250px;height:250px;"></div></td>
+                        <td><div class="easyui-calendar" id="calendar_finish" style="width:250px;height:250px;"></div></td>
                     </tr>
                     <tr>
                         <td></td>
