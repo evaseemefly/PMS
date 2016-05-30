@@ -20,9 +20,27 @@
 
             $("#calendar_today").calendar({
                 onSelect: function (date) {
-                    alert(date.getFullYear() + ":" + (date.getMonth() + 1) + ":" + date.getDate());
+                    alert(date.toLocaleDateString());
+                    var item = { name: 'today' };
+                    SetDateVal(item, date.toLocaleDateString());
                 }
 
+            })
+
+            $("#calendar_beforeSomeDay").calendar({
+                onSelect: function (date) {
+                    alert(date.toLocaleDateString());
+                    var item = { name: 'beforesomeday' };
+                    SetDateVal(item, date.toLocaleDateString());
+                }
+            })
+
+            $("#calendar_afterSomeDay").calendar({
+                onSelect: function (date) {
+                    alert(date.toLocaleDateString());
+                    var item = { name: 'aftersomeday' };
+                    SetDateVal(item, date.toLocaleDateString());
+                }
             })
 
         })
@@ -67,8 +85,8 @@
             return target_date.toLocaleDateString();
         }
         
-        function getTargetDate(obj) {
-            var temp = obj;
+        function getTargetDate() {
+            //var temp = obj;
             var parent = $(this).parent(".menu-content");
             var ww = $("#calendar_today").datebox('getValue');
             var ww1 = $("#calendar_today").calendar('getValue');
@@ -116,12 +134,12 @@
         function SetDateVal(temp, date) {
             ///	<summary>
             ///	将起始、终止以及指定时间赋值到隐藏域中
-            ///
             ///	</summary>
             ///	<returns type="Date" />
-            ///	<param name="temp" type="obj">
+            ///	<param name="temp" type="Object">
             ///保存要保存的类型的对象（.name可查看时间）
-            ///	<param name="date" type="Date">
+            /// </param> 
+            ///	<param name="dt" type="Date">
             ///		参照日期，若为空则为当前时间
             ///	</param> 
             switch (temp.name) {
@@ -130,6 +148,19 @@
                     $("#date_start").val(999);
                     $("#date_finish").val(999);
                     break;
+
+                case 'beforesomeday':
+                    $("#date_target").val(999);
+                    $("#date_start").val(998);
+                    $("#date_finish").val(date);
+                    break;
+
+                case 'aftersomeday':
+                    $("#date_target").val(999);
+                    $("#date_start").val(date);
+                    $("#date_finish").val(998);
+                    break;
+
                 case 'lastWeek':
                     $("#date_target").val(999);
                     
@@ -141,7 +172,7 @@
                     $("#date_start").val(Date.getDateOfPreMonth(date));
                     $("#date_finish").val(date);
             }
-            alert("选中的时间为：" + $("#date_target").val() + " |" + "选中的起始时间为：" + $("#date_start").val() + " |" + "选中的终止时间为：" + $("#date_finish").val());
+            //alert("选中的时间为：" + $("#date_target").val() + " |" + "选中的起始时间为：" + $("#date_start").val() + " |" + "选中的终止时间为：" + $("#date_finish").val());
         }
 
         //将时间转为指定格式
@@ -250,7 +281,7 @@
                 <div>某天</div>
                 <div class="easyui-calendar" id="calendar_today"style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"onclick="" >提交</a>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"onclick="getTargetDate()" >提交</a>
             </div>
            
         </div>
@@ -258,16 +289,18 @@
             <span>某天之前</span>
             <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
                 <div>某天</div>
-                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div class="easyui-calendar" id="calendar_beforeSomeDay" style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="getTargetDate()">提交</a>
             </div>
         </div>
         <div>
             <span>某天之后</span>
             <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
                 <div>某天</div>
-                <div class="easyui-calendar" style="width:250px;height:250px;"></div>
+                <div class="easyui-calendar" id="calendar_afterSomeDay"  style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="getTargetDate()">提交</a>
             </div>
         </div>
         <div>
@@ -284,7 +317,8 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">确定</a></td>
+                        <td><div style="margin:20px 0"></div>
+<a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="getTargetDate()">提交</a></td>
                     </tr>
                     </table>
             </div>
