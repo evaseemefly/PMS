@@ -83,6 +83,7 @@
     <Compile Include="MiddlewareModel\S_SMSContent.cs" />
     <Compile Include="MiddlewareModel\S_SMSMission.cs" />
     <Compile Include="MiddlewareModel\S_SMSMsgContent.cs" />
+    <Compile Include="MiddlewareModel\S_SMSRecord_Current.cs" />
     <Compile Include="MiddlewareModel\UserInfo.cs" />
     <Compile Include="PMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -162,6 +163,8 @@
     </Compile>
     <Compile Include="ViewModel\LoginUser.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
+    <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

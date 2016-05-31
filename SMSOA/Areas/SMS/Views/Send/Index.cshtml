@@ -267,6 +267,7 @@
             var url='@ViewBag.DoSend';
             //2 获取短信内容
             var content = $("#message").textbox('getValue');
+            var missionId= $("#smsMission_combogrid").combogrid("grid")
             alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
             //3 发送（进行校验）
             AjaxSubmit(ids_person, content, url, missionId);

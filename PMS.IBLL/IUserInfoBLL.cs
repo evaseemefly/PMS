@@ -57,6 +57,19 @@ namespace PMS.IBLL
         bool DeleteLogicUserInfos(List<int> list);
 
         /// <summary>
+        /// 对发送短信内容进行高级搜索，并分页（不查询姓名及电话号码）
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="model">高级搜索的查询对象</param>
+        /// <param name="uid"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        List<S_SMSContent> GetSMSContentListByQuery_ExpNamePhone(int pageIndex, int pageSize, ref int rowCount, PMS.Model.ViewModel.ViewModel_QueryInfo model, int uid, bool isAsc, bool isMiddle);
+
+        /// <summary>
         /// 软删除
         /// </summary>
         /// <param name="list_ids"></param>
