@@ -27,9 +27,10 @@ namespace PMS.BLL
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
                 BlackList = string.Join(",", receive.failPhones),
-                ResultCode = int.Parse(receive.result)
+                ResultCode = int.Parse(receive.result)//此处有错误
             };
             this.CurrentDBSession.S_SMSContentDAL.Create(s_smsContent);
+            //6月1日：此处有错，此时创建 短信内容对象，其中的id为默认值
             scid = s_smsContent.ID;
             try
             {

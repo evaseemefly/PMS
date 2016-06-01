@@ -23,10 +23,12 @@ namespace SMSFactory
             var smsresult = Xml2StrHelper.Xml2Str(result, "response/result");
             var desc = Xml2StrHelper.Xml2Str(result, "response/desc");
             var blacklist = Xml2StrHelper.Xml2Str(result, "response/blacklist");
+            //6月1日新增
+            var resultCode = SMSDictionary.GetResponseCode().Where(d=>d.Value==smsresult).Select(d=>d.Key).FirstOrDefault();
             SMSModel_Receive model_receive = new SMSModel_Receive()
             {
                 msgid = msgid,
-                result = SMSDictionary.GetResponseCode()[int.Parse(smsresult)],
+                result =resultCode.ToString(),
                 desc = desc,
                 failPhones = blacklist.Split(',')
             };
@@ -85,7 +87,7 @@ namespace SMSFactory
                               + "<content>" + smsdata.content + "</content>"
                               + "<sign>" + smsdata.sign + "</sign>"
                               + "<subcode>" + smsdata.subcode + "</subcode>"
-                              + "<sendtime>" + smsdata.sendtime.ToString() + "</sendtime>"
+                              + "<sendtime>" + smsdata.sendtime.ToString("yyyyMMddHHmm") + "</sendtime>"
                           + "</message>";
             return _data;
         }
