@@ -16,7 +16,7 @@
      </style>
     <script type="text/javascript">
         //将时间转为指定格式
-        function DataFormatter(value) {
+        Date.getDateofDt= function (value) {
             var date = new Date(value);
             var str = (date.getMonth() + 1) + "月" + date.getDate() + "日";
             return str;

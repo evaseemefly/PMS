@@ -18,37 +18,46 @@ namespace SMSOA.Areas.Admin.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //1.1 从传入的请求中获取SessionId的值
-            string sessionId = filterContext.HttpContext.Request.Cookies[strSession].Value;
-            //1.2 从缓存中查询是否包含此Id的缓存对象           
-            object userId_temp = Common.MemcacheHelper.Get(sessionId);
-            bool isExt = false;
-            if (userId_temp != null)
+            
+            if(filterContext.HttpContext.Request.Cookies[strSession]==null)
             {
-                int userId = Common.SerializerHelper.DeSerializerToObject<int>(userId_temp.ToString());
-                //1.3 根据该id查询指定的用户对象
-                isExt = true;
-                //
-                IApplicationContext appContext = ContextRegistry.GetContext();
-                //使用spring.net创建 userInfoBLL
-                IUserInfoBLL userInfoBLL = (IUserInfoBLL)appContext.GetObject("userInfoService");
-
-                var userInfo = userInfoBLL.GetListBy(u => u.ID == userId).FirstOrDefault();
-                LoginUser = userInfo;
-                if (userInfo != null)
-                {
-                    ViewBag.UserInfo = userInfo.UName;
-                    
-                }
-                else
-                {
-                    ViewBag.UserInfo = "";
-                }
+                filterContext.HttpContext.Response.Redirect("/Login/Login/Index");
             }
             else
             {
-                ViewBag.UserInfo = null;
+                //1.1 从传入的请求中获取SessionId的值
+                string sessionId = filterContext.HttpContext.Request.Cookies[strSession].Value;
+                //1.2 从缓存中查询是否包含此Id的缓存对象           
+                object userId_temp = Common.MemcacheHelper.Get(sessionId);
+                bool isExt = false;
+                if (userId_temp != null)
+                {
+                    int userId = Common.SerializerHelper.DeSerializerToObject<int>(userId_temp.ToString());
+                    //1.3 根据该id查询指定的用户对象
+                    isExt = true;
+                    //
+                    IApplicationContext appContext = ContextRegistry.GetContext();
+                    //使用spring.net创建 userInfoBLL
+                    IUserInfoBLL userInfoBLL = (IUserInfoBLL)appContext.GetObject("userInfoService");
+
+                    var userInfo = userInfoBLL.GetListBy(u => u.ID == userId).FirstOrDefault();
+                    LoginUser = userInfo;
+                    if (userInfo != null)
+                    {
+                        ViewBag.UserInfo = userInfo.UName;
+
+                    }
+                    else
+                    {
+                        ViewBag.UserInfo = "";
+                    }
+                }
+                else
+                {
+                    ViewBag.UserInfo = null;
+                }
             }
+            
             
             base.OnActionExecuting(filterContext);
         }

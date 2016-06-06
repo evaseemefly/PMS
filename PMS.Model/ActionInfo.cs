@@ -36,6 +36,7 @@ namespace PMS.Model
         public int IconHeight { get; set; }
         public string AreaName { get; set; }
         public int ParentID { get; set; }
+        public bool isShow { get; set; }
     
         public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
         public virtual ICollection<RoleInfo> RoleInfo { get; set; }

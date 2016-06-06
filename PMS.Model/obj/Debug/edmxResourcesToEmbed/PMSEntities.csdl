@@ -22,6 +22,7 @@
     <NavigationProperty Name="RoleInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="ActionInfo" ToRole="RoleInfo" />
     <Property Name="AreaName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
     <Property Name="ParentID" Type="Int32" Nullable="false" />
+    <Property Name="isShow" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="R_UserInfo_ActionInfo">
     <Key>

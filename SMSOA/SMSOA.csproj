@@ -277,13 +277,13 @@
     <Content Include="Areas\Admin\Views\Action\Index-分部视图.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Test.cshtml" />
     <Content Include="Areas\Admin\Views\Action\EditActionInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\Action\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\ShowEditInfo-6月6日备份.cshtml" />
     <Content Include="Areas\Admin\Views\Action\AddActionInfo - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_MyPartialIndex-之前.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-分部视图的测试.cshtml" />
-    <Content Include="Areas\Admin\Views\Role\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\ShowEditInfo_6月5日备份.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
@@ -339,6 +339,8 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo-6月2日备份.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\ShowEditInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -364,6 +366,9 @@
     <Content Include="Scripts\MyCSS\MyEasyUIValidate.js" />
     <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
+    <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
+    <Content Include="Scripts\MyScripts\Common\Submit.js" />
+    <Content Include="Scripts\MyScripts\EasyUI\SwitchBtn.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

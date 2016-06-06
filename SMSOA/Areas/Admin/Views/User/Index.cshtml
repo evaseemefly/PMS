@@ -17,6 +17,7 @@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
     <script type="text/javascript">
 
         var toolbar = [{
@@ -336,48 +337,35 @@
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
+                nowrap: false,
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: [[
-                    { field: 'ID', title: 'ID', width: 50 },
-                    { field: 'UName', title: '用户名', width: 150 },
-                    { field: 'UPwd', title: '密码', width: 250 },
-                    { field: 'SubTime', title: '创建时间', width: 250 },
-                    { field: 'ModifiedOnTime', title: '最后修改时间', width: 250 },
-                    { field: 'Remark', title: '备注', width: 100 },
-                    { field: 'Sort', title: '排序', width: 100 },
+                    { field: 'ID', title: 'ID', width: '5%', hidden: true },
+                    { field: 'UName', title: '用户名', width: '20%' },
+                    //{ field: 'UPwd', title: '密码', width: 250 },
+                    {
+                        field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                            return Date.getStrOfDate(value);
+                        }
+                    },
+                    {
+                        field: 'ModifiedOnTime', title: '最后修改时间', width: '15%', formatter: function (value) {
+                            return Date.getStrOfDate(value);
+                        }
+                    },
+                    { field: 'Remark', title: '备注', width: '30%' },
+                    { field: 'Sort', title: '排序', width: '10%' },
                 ]],
                 toolbar: toolbar
             });
-            //3 为修改/创建窗口的下拉菜单加载数据
-            //GetDropDowData;
-            //GetDropDowData();
-            //GetDropDowData(); //下拉菜单中没有显示？？？？？？？？？？
-
-            //$('#ParentActionOptions').combobox({
-            //    url: '/Admin/Action/GetOption',
-            //    //data:data_Options,
-            //    valueField: 'id',
-            //    textField: 'text',
-            //    panelHeight: 'auto'
-            //});
-
-            //$(function(){
-            //    $('#combo').combobox({
-            //        url: '/Admin/User/ShowAssignRoleInfo',
-            //        valueField:'id',
-            //        textField:'text',
-            //        panelHeight: 'auto',
-            //        multiple: true
-            //    });
-            //})
         })
     </script>
 </head>
 <body>
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
-        <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px" data-options="shadow:true,modal:true">
-            <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" @*不显示滚动条*@></iframe>
+        <div class="easyui-window" title="新建用户" scrolling="no" id="editWindow" style="width:400px;height:440px;overflow: hidden" data-options="shadow:true,modal:true">
+            <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" scroll="no" @*不显示滚动条*@></iframe>
         </div>
         <div class="easyui-window" @*title="New Topic"*@ id="assignRoleWindow" style="width:300px;height:150px" data-options="shadow:true,modal:true">                   
             <div>

@@ -94,7 +94,7 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoEditUserInfo(UserInfo model)
         {
-            model.SubTime = DateTime.Now;
+            model.ModifiedOnTime = DateTime.Now;
 
             if (userInfoBLL.Update(model))
             {
@@ -118,8 +118,14 @@ namespace SMSOA.Areas.Admin.Controllers
 
                 //提供显示页面提交时跳转到的用户名称
                 ViewData.Model = model;
+            ViewBag.ID = model.ID;
+            ViewBag.SubTime= model.SubTime;
+            ViewBag.UName = model.UName;
+            ViewBag.UPWd = model.UPwd;
+            ViewBag.Remark = model.Remark;
+            ViewBag.Sort= model.Sort;
                 //修改即跳转至修改方法
-                @ViewBag.backAction = "DoEditUserInfo";
+                ViewBag.backAction = "DoEditUserInfo";
                 //ViewData["actionInfo"] = model;
                 //return PartialView("EditActionWindow");
                 return View("ShowEditInfo");

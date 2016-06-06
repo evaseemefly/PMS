@@ -20,6 +20,7 @@
     <Property Name="MenuIcon" Type="varchar" MaxLength="512" />
     <Property Name="IconWidth" Type="int" Nullable="false" />
     <Property Name="IconHeight" Type="int" Nullable="false" />
+    <Property Name="isShow" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="P_DepartmentInfo">
     <Key>
