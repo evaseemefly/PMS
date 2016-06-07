@@ -4,6 +4,7 @@
 }
 @Html.Partial("_MyPartial_Index")
 
+<script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
 <script type="text/javascript">
 
     var toolbar= [ {
@@ -28,11 +29,20 @@
                 }]
 
     var myColumns=[[
-                { field: 'ID', title: 'ID', width: 100 },
-                { field: 'RoleName', title: '角色名称', width: 150 },
-                { field: 'SubTime', title: '创建时间', width: 250 },
-                { field: 'Remark', title: '备注', width: 200 },
-                { field: 'Sort', title: '排序', width: 100 }
+                { field: 'ID', title: 'ID', width: '5%', hidden: true },
+                { field: 'RoleName', title: '角色名称', width: '20%' },
+                {
+                    field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                {
+                    field: 'ModifiedOnTime', title: '修改时间', width: '15%', formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                { field: 'Remark', title: '备注', width: '30%' },
+                { field: 'Sort', title: '排序', width: '10%' }
     ]]
     
     var myActionColumns = [[
@@ -156,10 +166,14 @@
     $(function () {
         //1 编辑窗口关闭
         $("#showActionWindow").window('close');
-
+        //$("#editWindow").css({ width: "400px",height:"440px" });
     });
     
 </script>
+
+<div class="easyui-window" title="新建角色" id="editWindow"  style="overflow: hidden;width:400px;height:440px" data-options="shadow:true,modal:true">
+    <iframe id="setActionRoleFrame" scrolling="no" @*scroll="no"*@ frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+</div>
 
 <div id="setActionRoleDiv">
     <div class="easyui-window" id="showActionWindow" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">

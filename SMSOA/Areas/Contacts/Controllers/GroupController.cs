@@ -178,10 +178,15 @@ namespace SMSOA.Areas.Contacts.Controllers
                                                                                      //2 获取
                                                                                      //4 将指定id的action对象传给视图数据字典中的实体
                 //ViewData.Model = model;
-                ViewBag.Data = model;
+                //ViewBag.Data = model;
                 //5 提供显示页面提交时跳转到的权限名称
                 //修改即跳转至修改方法
                 ViewBag.backAction_jqSub = "/Contacts/Group/DoEditGroupInfo";
+                ViewBag.GID = model.GID;
+                ViewBag.SubTime= model.SubTime;
+                ViewBag.GroupName = model.GroupName;
+                ViewBag.Remark= model.Remark;
+                ViewBag.Sort= model.Sort;
                 //ViewData["actionInfo"] = model;
                 //return PartialView("EditActionWindow");
                 return View();
@@ -194,7 +199,7 @@ namespace SMSOA.Areas.Contacts.Controllers
            
             ViewBag.backAction_jqSub = "/Contacts/Group/DoAddGroupInfo";
             //ViewBag.backAction = "DoAddGroupInfo";
-            return View();
+            return View("ShowEditGroupInfo");
         }
 
 
