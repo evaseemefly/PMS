@@ -397,6 +397,36 @@
             //    );
             //$("#DepartmentName_combotree").combobox('setValue', -1);
         }
+        
+        //页面加载时根据iframe的尺寸设置本Body的尺寸
+        function SetiframeHeight() {
+           
+
+            //1 获取iframe的高度
+            var my_iframes = window.parent.document.getElementsByTagName("iframe");
+            if (my_iframes.length > 0) {
+                var index = my_iframes.length - 1;
+                var iframeHeight = my_iframes[index].clientHeight;
+                var iframeWidth = my_iframes[index].clientWidth - 2;
+                //2 设置当前body的高度为iframe的高度
+                //$("#body").height = iframeHeight;
+                //$("#body").width = iframeWidth;
+                $("#body_layout").layout({
+                    height: iframeHeight,
+                    width: iframeWidth
+                });
+                //设置部门列表的高度
+                //$("#p").height = iframeHeight;
+            }
+            else if (my_iframes.length == 0) {
+                $("#body_layout").layout({
+                    height: 400,
+                    //width: iframeWidth
+                });
+            }
+
+            
+        }
 
         $(function () {
 
@@ -408,6 +438,8 @@
             ComboboxDisable();
             //2.1 加载所属群组下拉框
 
+            
+
             //2.2 加载上级部门下拉框
             //在加载窗体时先不加载部门下拉框（在点击联系人时加载部门下拉框）
             //loadComboTree_Department();
@@ -415,9 +447,10 @@
         })
     </script>
 </head>
-<body style="overflow:hidden;margin:0px;">
+@*overflow:hidden;*@
+<body id="body" style="margin:0px;height:90%" onload="SetiframeHeight()">
     @RenderBody()
-    <div class="easyui-layout" style="width:100%;height:91%;">
+    <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
         @RenderSection("westdiv")
         <div data-options="region:'center'" title="联系人列表" style="width:70%">
             

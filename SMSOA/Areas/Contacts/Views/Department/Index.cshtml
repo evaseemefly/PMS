@@ -116,16 +116,17 @@
             "12": "崇武",
         }
 
+        
         function loadTreeGrid(url, myColumns) {
             //2 位treegrid加载数据
             $("#contactstreegrid").treegrid({
                 idField: 'DID',
                 treeField: 'DepartmentName',
                 animate: true,
-                width: '400px',
-                height: 'auto',
+                //width: '400px',
+                height: '400px',
                 fitColumns: true,
-                striped: true,
+                striped: true,//是否显示斑马线
                 nowrap: false,//自动换行
                 singleSelect: true,
                 fit: true,
@@ -175,24 +176,6 @@
             });
         })
 
-        function loadDataGrid(url, myColumns) {
-            //2 位treegrid加载数据
-            $("#contactstreegrid").treegrid({
-                width: '400px',
-                height: 'auto',
-
-                fitColumns: false,
-                striped: true,
-                showFooter: true,
-                singleSelect: true,
-                fit: true,
-                url: url,
-                loadMsg: '加载中……',
-                columns: myColumns,
-                toolbar: toolbar
-
-            });
-        }
     </script>
 }
 
