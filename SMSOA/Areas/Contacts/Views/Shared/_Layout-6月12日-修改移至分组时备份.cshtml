@@ -32,14 +32,6 @@
     @RenderSection("loadfunction",false)
     @RenderSection("afterEdit", false)
     <script type="text/javascript">
-        var groupColumns = [[
-         //{ field: 'ck', checkbox: true },
-         { field: 'GID', title: 'ID', width: 100, checkbox: true },
-         { field: 'GroupName', title: '群组名称', width: 150 },
-         { field: 'Remark', title: '群组名称', width: 150 }
-         //{ field: 'Operate', title: '是否禁用', width: 150 }
-        ]]
-
         //-----------------------1 各类toolbar------------------
         var PersonToolbar = [{
             iconCls: 'icon-add_person',
@@ -313,26 +305,30 @@
         //-------------------6 页面加载首先运行-----------------
         //根据pid加载对应的群组并添加至combobox中
         function loadCombobox_Group(pid) {
-            $("#group").combogrid({
+            $("#group").combobox({
                 url: '@ViewBag.GetGroup_combobox?pid=' + pid,
                 method: 'get',
-                idField: 'GID',
-                textField: 'GroupName',
+                valueField: 'id',
+                textField: 'text',
                 panelWidth: 350,
                 panelHeight: 400,
                 multiple: true,@*设置为可以多选*@
-                //singleSelect:false,
-                //nowrap: true,
-                columns: groupColumns,
+                formatter: formatItem_combobox,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
-                    var data = $("#group").combogrid("grid").datagrid("getData");
-                    var rowData = data.rows;
-                    $.each(rowData, function (rowIndex, rowData) {
-                        if (rowData.checked) {
-                            $("#group").combogrid("grid").datagrid("selectRow", rowIndex);
-                        }
-                    });
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                },
+                onSelect: function () {
+                    alert("被选中了");
+                },
+                onUnselect: function () {
+                    alert("取消选中");
                 }
             })
         }
@@ -398,8 +394,8 @@
         function ComboboxDisable() {
             //2 根据GroupID查询该群组所拥有的人员列表
             //将两个下拉框设置为不可选，且赋值“请选择联系人”
-            //$("#group").combobox('disable');
-            //$("#group").combobox('setValue', '--请选择联系人--');
+            $("#group").combobox('disable');
+            $("#group").combobox('setValue', '--请选择联系人--');
             $("#DepartmentName_combotree").combotree('disable');
             //$("#DepartmentName_combotree").combobox('loadData', [{
             //    id: -1,
@@ -472,7 +468,10 @@
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br/>
                 移至分组:
-                <select class="easyui-combogrid" name="PDID" id="group" style="width:130px" data-options="@*required:true*@"></select>
+                <select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
+                        data-options="">
+                    
+                </select>
                 选择所属部门
                 <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto"style="width:200px"data-options="">
                 </select>

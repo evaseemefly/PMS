@@ -322,7 +322,7 @@
     <Content Include="Areas\Contacts\Views\Shared\View.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout-4月22日晚备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月22日晚-分部视图脚本整合为一个.cshtml" />
-    <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout-6月12日-修改移至分组时备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index - 4月22日晚-分部视图已经完成备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -344,6 +344,7 @@
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo-6月7日修改v1.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
