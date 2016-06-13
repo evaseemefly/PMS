@@ -76,8 +76,25 @@
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
-                        strId = strId + rows[i].GID + ",";
+                //6月13日添加判断forbidDel属性
+                        //判断若禁用属性为true，说明为全部联系人不可删除，则跳过
+                        if (rows[i].forbidDel) {
+                //提示全部联系人无法删除
+                $.messager.show({
+                title: '提示',
+                msg: '全部联系人禁止删除',
+                showType: 'show'
+            });
             }
+            else {
+                 strId = strId + rows[i].GID + ",";
+            }
+            }
+                //若选择删除的是全部联系人最终的strId长度会为0，若此时提交后台会出错，此处添加一个判断
+                if (strId.length == 0) {
+                return;
+            }
+            else {
                 //去掉最后一个逗号
                 strId = strId.substr(0, strId.length - 1);
                 $.post("@ViewBag.DelGroup_url?ids=" + strId, function (data) {
@@ -90,6 +107,8 @@
                 $.messager.alert("提示", "删除成功");
             }
             });
+            }
+
             }
             }));
 

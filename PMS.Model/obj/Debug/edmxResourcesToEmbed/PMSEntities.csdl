@@ -258,6 +258,7 @@
     <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Sort" Type="Int32" Nullable="false" />
     <NavigationProperty Name="R_UserInfo_Group" Relationship="PMS2016Model.FK_R_UserInfo_Group_P_Group" FromRole="P_Group" ToRole="R_UserInfo_Group" />
+    <Property Name="forbidDel" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="P_PersonInfo">
     <Key>

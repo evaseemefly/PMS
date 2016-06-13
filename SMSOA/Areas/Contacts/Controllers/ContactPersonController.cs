@@ -313,7 +313,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetDepartment_combotree= "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.GetDepartmentByDID_combotree = "/Contacts/Department/GetCombobox4GroupInfoByDID";
-            return View("ShowAddPersonInfo");
+            return View("ShowEditPersonInfo");
         }
 
         ///<summary>
@@ -324,11 +324,25 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             //1 获取选中的联系人
             int id = int.Parse(Request.QueryString["id"]);
+            //若传入的是gid（group）群组，说明向指定群组下添加该联系人
+            //返回的群组下拉框位选中某一个gid
+            string gid = Request["gid"];//若为传入则为null
+            //若传入的did（department）部门，说明向指定部门下添加该联系人
+            //返回的部门下拉框为选中某一个did
+            string did = Request["did"];
+
+            ViewBag.backAction = "DoAddPersonInfo";
+           
             var model = personInfoBLL.GetListBy(a => a.PID == id).FirstOrDefault();
             //提供显示页面提交时跳转到的用户名称
-            ViewBag.Model = model;
+            //ViewBag.Model = model;
+            ViewBag.PName = model.PName;
+            ViewBag.PhoneNum = model.PhoneNum;
+            //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
+            ViewBag.GID = gid == null ? "" : gid;
+            ViewBag.DID = did == null ? "" : did;
             //修改即跳转至修改方法
-            @ViewBag.backAction = "DoEditPersonInfo";
+            ViewBag.backAction = "DoEditPersonInfo";
             return View("ShowEditPersonInfo");
         }
 

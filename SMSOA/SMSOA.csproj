@@ -296,7 +296,7 @@
     <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowAddPersonInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
-    <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo-6月13日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月10日备份.cshtml" />
@@ -345,6 +345,7 @@
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -373,6 +374,7 @@
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
     <Content Include="Scripts\MyScripts\Common\Submit.js" />
+    <Content Include="Scripts\MyScripts\EasyUI\my_ShowMessager.js" />
     <Content Include="Scripts\MyScripts\EasyUI\SwitchBtn.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
     <Content Include="Scripts\respond.js" />
