@@ -295,7 +295,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //1 获取联系人id 数组
            var ids= model.PersonId_Int;
             //1.1 根据联系人id数组获取指定的联系人
-           var list_person= personBLL.GetListByIds(ids.ToList());
+            var list_person= personBLL.GetListByIds(ids.ToList());
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
@@ -316,10 +316,13 @@ namespace SMSOA.Areas.SMS.Controllers
                 account = account,
                 password = passWord,
                 content = smsContent,
-                phones= list_phones.ToArray()
+                phones= list_phones.ToArray(),
+                 sendtime=DateTime.Now
             };
             //4 短信发送
             PMS.Model.SMSModel.SMSModel_Receive receive;
+            //注意：desc:定时时间格式错误;
+            //      result:定时时间格式错误
             smsSendBLL.SendMsg(sendMsg, out receive);
             //5 将发送的短信以及提交响应存入SMSContent
             var mid = model.SMSMissionID;

@@ -13,6 +13,8 @@ namespace SMSOA.Areas.SMS.Controllers
     {
         IUserInfoBLL userBLL { get; set; }
 
+        IS_SMSContentBLL smsContentBLL { get; set; }
+
         // GET: SMS/Statistics
         public ActionResult Index()
         {
@@ -30,7 +32,34 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             ViewBag.GetPageStatisticList = "/SMS/Statistics/GetPageStatisticList_DataGrid";
             ViewBag.GetAllMission = "/SMS/Send/GetAllMissionByPID";
+            ViewBag.LoadSearchData = "/SMS/Statistics/LoadSearchData";
+            ViewBag.LoadSearchRecordData = "/SMS/Statistics/LoadSearchRecordData";
+            ViewBag.GetRecordByCID = "/SMS/Statistics/GetRecordByCID";
             return View();
+        }
+
+       
+
+        public ActionResult GetRecordByCID(int cid)
+        {
+            //1 根据SMSContent的id查询该短信内容所发送的短信记录列表
+            //返回的有CID，PName，PhoneNum，StatusCode状态码
+            var smsContent= smsContentBLL.GetListBy(c => c.ID == cid).FirstOrDefault();
+
+            //2 找到其的发送记录
+          var list_record=  smsContent.S_SMSRecord_Current.ToList().Select(r => r.ToMiddleModel()).ToList();
+
+            
+
+            //3 转成datagrid识别的json格式数据            
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = list_record.Count,
+                rows = list_record,
+                footer = null
+            };
+            //4 序列化
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
 
         private void GetStatistic_Model_Chart(int count,  List<ViewModel_StatisticsLast10> list_statistics,out ViewModel_Statistics_Chart viewModel_chart)
@@ -81,6 +110,74 @@ namespace SMSOA.Areas.SMS.Controllers
                         NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count()
                     });
             }
+        }
+
+        public ActionResult LoadSearchRecordData(PMS.Model.ViewModel.ViewModel_RecordQueryInfo model)
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+          var list_record=  smsContentBLL.GetSMSRecordListByQuery(pageIndex, pageSize, ref rowCount, model, model.CID, true, true);
+            //3 转成datagrid识别的json格式数据            
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_record,
+                footer = null
+            };
+            //4 序列化
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+        }
+
+        public ActionResult LoadSearchData(PMS.Model.ViewModel.ViewModel_QueryInfo model)
+        {
+
+
+            #region 不用此种方式转换时间
+            //不用以下的方法
+            //2016 /10 /31
+            //0123 456 789
+
+            //2016 /5 /31
+            //0123 45 678
+            // int index_year = query.Dt_target.IndexOf('/');    //4
+            // int year = int.Parse(query.Dt_target.Substring(0, index_year));//2016
+            //int index_month = query.Dt_target.IndexOf('/', index_year+1);//7
+            // int month = int.Parse(query.Dt_target.Substring(index_year+1, index_month-index_year-1));//5
+
+            // int day = int.Parse(query.Dt_target.Substring(index_month , query.Dt_target.Length-index_month-1));
+            #endregion
+
+            //使用这种方式转换时间
+            DateTime dt = new DateTime();
+            DateTime.TryParse(model.Dt_target, out dt);
+
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
+            //1 进行过滤
+            var list_SMSContent = userBLL.GetSMSContentListByQuery_ExpNamePhone(pageIndex, pageSize, ref rowCount,model, base.LoginUser.ID, true, false);
+
+            //1 分页查询当前登录用户的的发送短信内容集合
+            //var list_SMSContent = userBLL.GetSMSContentListByUID(pageIndex, pageSize, ref rowCount, base.LoginUser.ID, true, false);
+
+            List<ViewModel_StatisticsLast10> list_statisticsFinal = new List<ViewModel_StatisticsLast10>();
+            //2.1 将短信内容实体对象集合转成要在datagrid中显示的统计对象集合
+            //2.2 需要统计该短信发送的人员个数以及未收到的人员个数
+            GetStatisticList(list_SMSContent, ref list_statisticsFinal);
+
+
+            //3 转成datagrid识别的json格式数据            
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_statisticsFinal,
+                footer = null
+            };
+            //4 序列化
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
         }
 
         public ActionResult GetPageStatisticList_DataGrid()

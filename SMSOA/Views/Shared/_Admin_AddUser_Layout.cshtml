@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Admin_AddUser_Layout</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    @*注意需要添加此css才能使用easyui默认的颜色*@
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
+    <script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>
+    @RenderSection("SectionJS", false)
+</head>
+<body style="margin:0px;">
+    <div style="margin:0px;padding:0px;"> 
+        @RenderBody()
+    </div>
+</body>
+</html>

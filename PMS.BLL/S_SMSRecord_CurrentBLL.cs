@@ -22,6 +22,7 @@ namespace PMS.BLL
             if (list_QueryReceive != null)
             {
                 //1.取得长短信条数
+                //6月1日此处为空
                 var smsContent = this.CurrentDBSession.S_SMSContentDAL.GetListBy(r => r.ID == scid).FirstOrDefault();
                 smsContent.smsCount = list_QueryReceive.FirstOrDefault().smsCount;
                 //2. 遍历查询返回的集合
@@ -42,6 +43,9 @@ namespace PMS.BLL
             }
             return false;
         }
+
+        
+
         /// <summary>
         /// 将未收到短信的号码及姓名存入结果集
         /// </summary>

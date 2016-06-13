@@ -43,8 +43,9 @@ namespace SMSFactory
             String _data = null;//XML文本
             String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
             string returnMsg;
+            
             //1 判断参数是否足够
-            if (SendBeforeCheck(smsdata))
+            if (!SendBeforeCheck(smsdata))
             {
                 receiveModel = new SMSModel_Receive()
                 {

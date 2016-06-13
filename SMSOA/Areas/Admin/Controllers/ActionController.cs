@@ -9,7 +9,7 @@ using SMSOA.Filters;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
-    public class ActionController : Controller
+    public class ActionController : BaseController
     {
         IActionInfoBLL actionInfoBLL { get; set; }
         IRoleInfoBLL roleInfoBLL { get; set; }
@@ -65,8 +65,8 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.ShowAdd = "/Admin/Action/ShowAddActionInfo";
             ViewBag.ShowEdit = "/Admin/Action/ShowEditActionInfo";
             ViewBag.GetInfo = "/Admin/Action/GetActionInfo";
-            return View();
            
+            return View();
         }
 
 
@@ -202,10 +202,11 @@ namespace SMSOA.Areas.Admin.Controllers
             }
             return null;
         }
-
+        
         public ActionResult DoEditActionInfo(ActionInfo model)
         {
-            model.SubTime = DateTime.Now;
+            model.ModifiedOnTime = DateTime.Now;
+            //！！注意以下方法必须执行（根据权限名称、控制器、区域生成ActionInfo对象中的Url属性
             model.GetUrl();
             if (actionInfoBLL.Update(model))
             {
@@ -248,17 +249,20 @@ namespace SMSOA.Areas.Admin.Controllers
         {
             //1 为分布式图中的下拉框添加要请求的地址
             //ViewBag.data = GetOption();
-            SetDropDonwList();
-            //2 从数据库中获取现有的可选的父级权限
-            SetDefualtOptions();
+            //SetDropDonwList();
+            ////2 从数据库中获取现有的可选的父级权限
+            //SetDefualtOptions();
             //提供显示页面提交时跳转到的权限名称
             //新增即跳转至新增页面
             ViewBag.backAction = "DoAddActionInfo";
+            ViewBag.GetAction_comboTree = "/Admin/Action/GetActionInfo4ComboTree";
             ViewBag.SubTime = DateTime.Now;
             ViewBag.ModityTime = DateTime.Now;
             //将与修改共用的试图页面返回
             return View("ShowEditInfo");
         }
+
+
 
         /// <summary>
         /// 显示编辑当前权限试图
@@ -266,26 +270,32 @@ namespace SMSOA.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult ShowEditActionInfo(int id)
-        {
+        {           
             //若有传入的id
-            //int id = int.Parse(Request["id"]);
-            //若有传入的id
-                //1 找到指定id的action对象
-                var model = actionInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
-                                                                                         //为分布式图中的下拉框添加要请求的地址
-                                                                                         // ViewBag.data = GetOption();//先不用easyui的控件
-                                                                                         //2 获取下拉请求类型的列表
-                SetDropDonwList();
-                //3 获取可选的父级权限列表
-                SetDefualtOptions();
-                //4 将指定id的action对象传给视图数据字典中的实体
-                ViewData.Model = model;
-                //5 提供显示页面提交时跳转到的权限名称
-                //修改即跳转至修改方法
-                ViewBag.backAction = "DoEditActionInfo";
-                //ViewData["actionInfo"] = model;
-                //return PartialView("EditActionWindow");
-                return View("ShowEditInfo");
+            //1 找到指定id的action对象
+            var model = actionInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
+
+            //4 将指定id的action对象传给视图数据字典中的实体
+            //ViewData.Model = model;
+            ViewBag.ID = model.ID;
+            ViewBag.SubTime = model.SubTime;
+            ViewBag.ActionInfoName = model.ActionInfoName;
+            ViewBag.ActionMethodName= model.ActionMethodName;
+            ViewBag.ControllerName = model.ControllerName;
+            ViewBag.AreaName = model.AreaName;
+            ViewBag.Remark = model.Remark;
+            ViewBag.ParentID=model.ParentID;
+            ViewBag.ActionType= model.ActionTypeEnum;
+            ViewBag.Sort = model.Sort;
+            ViewBag.isShow = model.isShow;
+            //5 提供显示页面提交时跳转到的权限名称
+            //修改即跳转至修改方法
+            ViewBag.backAction = "DoEditActionInfo";
+            ViewBag.GetAction_comboTree = "/Admin/Action/GetActionInfo4ComboTree";
+           
+            //ViewData["actionInfo"] = model;
+            //return PartialView("EditActionWindow");
+            return View("ShowEditInfo");
         }
         // GET: Admin/Action
         /// <summary>
@@ -311,6 +321,20 @@ namespace SMSOA.Areas.Admin.Controllers
 
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
+        /// <summary>
+        /// 获取Action下拉列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetActionInfo4ComboTree()
+        {
+            //1 查询所有的isShow为true的权限集合
+            var list_action= actionInfoBLL.GetListBy(a => a.DelFlag == false && a.isShow == true).ToList();
+            //2 将权限集合转成treegrid集合
+           var list_comboTree= PMS.Model.EasyUIModel.Action_ViewModel.ToEasyUIComboTree(list_action);
+            //3 序列化
+            return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
         }
 
         public void SetDefualtOptions()

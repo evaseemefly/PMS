@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Common.EasyUIFormat;
 
 
 namespace SMSOA.Areas.Contacts.Controllers
@@ -27,7 +28,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfobyGID";
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
-            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetComboGrid4GroupInfo";
             ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
@@ -116,6 +117,52 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(temp);
         }
 
+
+        /// <summary>
+        /// 6月12日修改
+        /// 将全部的分组集合对象转换为easyui中的ComboGrid解析的json格式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetComboGrid4GroupInfo(int pid)
+        {
+            if (pid == -1)
+            {
+
+            }
+            //1 查询指定pid对应的group群组集合
+            List<P_Group> list_groupbyPid = groupBLL.GetListByPerson(pid);
+
+            //2 查询全部group 
+            var list_groupAll = groupBLL.GetListBy(g => g.isDel == false).ToList();
+
+            //3 遍历指定pid所拥有的群组集合
+            foreach (var item in list_groupbyPid)
+            {
+
+                //3.1 将已经拥有的群组从全部群组集合中剔除
+                list_groupAll = list_groupAll.Where(g => g.GID != item.GID).ToList();
+            }
+
+            //4.2将group集合转换为对应的combobox集合
+            //****5月3日添加实体改为中间实体的方法
+            var list_combobox_groupByPid = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_groupbyPid, true);
+           
+            //4.2将全部群组集合中的选中按钮设置为false
+            //****5月3日添加实体改为中间实体的方法
+            var list_combobox_allgroup = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_groupAll, false);
+
+            //5 将全部群组集合加到指定pid所拥有的群组集合中（不用再去重）
+            list_groupbyPid.AddRange(list_groupAll);
+            list_combobox_groupByPid.AddRange(list_combobox_allgroup);
+            //4去重
+ 
+            //6将Checked替换为checked
+            string temp = Common.SerializerHelper.SerializerToString(list_combobox_groupByPid);
+            temp = temp.Replace("Checked", "checked");
+            return Content(temp);
+        }
+
+
         /// <summary>
         /// 将全部的分组集合对象转换为easyui中的Combobox解析的json格式
         /// </summary>
@@ -178,10 +225,15 @@ namespace SMSOA.Areas.Contacts.Controllers
                                                                                      //2 获取
                                                                                      //4 将指定id的action对象传给视图数据字典中的实体
                 //ViewData.Model = model;
-                ViewBag.Data = model;
+                //ViewBag.Data = model;
                 //5 提供显示页面提交时跳转到的权限名称
                 //修改即跳转至修改方法
                 ViewBag.backAction_jqSub = "/Contacts/Group/DoEditGroupInfo";
+                ViewBag.GID = model.GID;
+                ViewBag.SubTime= model.SubTime;
+                ViewBag.GroupName = model.GroupName;
+                ViewBag.Remark= model.Remark;
+                ViewBag.Sort= model.Sort;
                 //ViewData["actionInfo"] = model;
                 //return PartialView("EditActionWindow");
                 return View();
@@ -194,7 +246,7 @@ namespace SMSOA.Areas.Contacts.Controllers
            
             ViewBag.backAction_jqSub = "/Contacts/Group/DoAddGroupInfo";
             //ViewBag.backAction = "DoAddGroupInfo";
-            return View();
+            return View("ShowEditGroupInfo");
         }
 
 

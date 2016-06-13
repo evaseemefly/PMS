@@ -277,21 +277,19 @@
     <Content Include="Areas\Admin\Views\Action\Index-分部视图.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Test.cshtml" />
     <Content Include="Areas\Admin\Views\Action\EditActionInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\Action\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\ShowEditInfo-6月6日备份.cshtml" />
     <Content Include="Areas\Admin\Views\Action\AddActionInfo - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_MyPartialIndex-之前.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-分部视图的测试.cshtml" />
-    <Content Include="Areas\Admin\Views\Role\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\ShowEditInfo_6月5日备份.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutTest.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index - 复制.cshtml" />
-    <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_MyPartial_Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index-通过viewbag的方式实现.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Action\SetRoleAction.cshtml" />
     <Content Include="Areas\Contacts\Views\web.config" />
     <Content Include="Areas\Contacts\Views\Home\Index-v2.cshtml" />
@@ -305,13 +303,13 @@
     <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制%282%29.cshtml" />
-    <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo-6月7日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月15日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Test.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\Index-4月22日备份以前的.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\Index.cshtml" />
-    <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo-6月7日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\ShowAddSMSMissionInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index - 4月15日备份.cshtml" />
@@ -324,7 +322,7 @@
     <Content Include="Areas\Contacts\Views\Shared\View.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout-4月22日晚备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月22日晚-分部视图脚本整合为一个.cshtml" />
-    <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout-6月12日-修改移至分组时备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index - 4月22日晚-分部视图已经完成备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -339,6 +337,14 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission -5月1日复制%282%29.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ShowEditInfo-6月2日备份.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Action\ShowEditInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo-6月7日修改v1.cshtml" />
+    <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -362,8 +368,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyCSS\MyEasyUIValidate.js" />
+    <Content Include="Scripts\MyCSS\MyEditWin.css" />
     <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
+    <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
+    <Content Include="Scripts\MyScripts\Common\Submit.js" />
+    <Content Include="Scripts\MyScripts\EasyUI\SwitchBtn.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -407,6 +417,8 @@
     <Content Include="Views\Shared\MyPartialIndex.cshtml" />
     <Content Include="Views\Shared\_MyPartial_Index.cshtml" />
     <Content Include="Views\Shared\_SMS_Layout.cshtml" />
+    <Content Include="Views\Shared\_Admin_AddUser_Layout.cshtml" />
+    <Content Include="Views\Shared\_Contact_AddEdit_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

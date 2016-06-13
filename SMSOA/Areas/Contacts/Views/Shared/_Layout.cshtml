@@ -32,6 +32,14 @@
     @RenderSection("loadfunction",false)
     @RenderSection("afterEdit", false)
     <script type="text/javascript">
+        var groupColumns = [[
+         //{ field: 'ck', checkbox: true },
+         { field: 'GID', title: 'ID', width: 100, checkbox: true },
+         { field: 'GroupName', title: '群组名称', width: 150 },
+         { field: 'Remark', title: '群组名称', width: 150 }
+         //{ field: 'Operate', title: '是否禁用', width: 150 }
+        ]]
+
         //-----------------------1 各类toolbar------------------
         var PersonToolbar = [{
             iconCls: 'icon-add_person',
@@ -103,7 +111,7 @@
                 });
                 return;
             }
-            //**注意先加载iframe窗体的数据，在打开该窗口            
+            //**注意先加载iframe窗体的数据，在打开该窗口
 
             $("#addPersonFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].GID);//会出现重定向的错误
             $("#editPersonWindow").window('open');
@@ -305,24 +313,26 @@
         //-------------------6 页面加载首先运行-----------------
         //根据pid加载对应的群组并添加至combobox中
         function loadCombobox_Group(pid) {
-            $("#group").combobox({
+            $("#group").combogrid({
                 url: '@ViewBag.GetGroup_combobox?pid=' + pid,
                 method: 'get',
-                valueField: 'id',
-                textField: 'text',
+                idField: 'GID',
+                textField: 'GroupName',
                 panelWidth: 350,
-                panelHeight: 'auto',
+                panelHeight: 400,
                 multiple: true,@*设置为可以多选*@
-                formatter: formatItem_combobox,
+                //singleSelect:false,
+                //nowrap: true,
+                columns: groupColumns,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
-                    var opts = $(this).combobox('options');
-                    var target = this;
-                    var values = $(target).combobox('getValues');
-                    $.map(values, function (value) {
-                        var el = opts.finder.getEl(target, value);
-                        el.find('input.combobox-checkbox')._propAttr('checked', true);
-                    })
+                    var data = $("#group").combogrid("grid").datagrid("getData");
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
+                        if (rowData.checked) {
+                            $("#group").combogrid("grid").datagrid("selectRow", rowIndex);
+                        }
+                    });
                 }
             })
         }
@@ -333,6 +343,7 @@
                 url: '@ViewBag.GetDepartment_combotree',
                 valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
                 textField: 'text',
+                panelHeight: 400,
                 //valueField: "DID",
                 //textField: "DepartmentName",
                 required: true,
@@ -352,6 +363,31 @@
             $("#DepartmentName_combotree").combotree('setValue', data);
         }
 
+        //6月12日
+        //编辑或创建某个权限后执行的操作
+        function afterContact_Common(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editContactWindow").window('close');
+            $("#editPersonWindow").window('close');
+            
+        }
+
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editContactWindow").window('close');
+            $("#editPersonWindow").window('close');
+            //2 刷新当前页面
+            //$("#contactsdatagrid").datagrid('reload');
+            loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+        }
+
         function ComboboxEnableAndClear() {
             $("#group").combobox('enable');
             $("#group").combobox('clear');
@@ -362,8 +398,8 @@
         function ComboboxDisable() {
             //2 根据GroupID查询该群组所拥有的人员列表
             //将两个下拉框设置为不可选，且赋值“请选择联系人”
-            $("#group").combobox('disable');
-            $("#group").combobox('setValue', '--请选择联系人--');
+            //$("#group").combobox('disable');
+            //$("#group").combobox('setValue', '--请选择联系人--');
             $("#DepartmentName_combotree").combotree('disable');
             //$("#DepartmentName_combotree").combobox('loadData', [{
             //    id: -1,
@@ -372,16 +408,48 @@
             //    );
             //$("#DepartmentName_combotree").combobox('setValue', -1);
         }
+        
+        //页面加载时根据iframe的尺寸设置本Body的尺寸
+        function SetiframeHeight() {
+           
+
+            //1 获取iframe的高度
+            var my_iframes = window.parent.document.getElementsByTagName("iframe");
+            if (my_iframes.length > 0) {
+                var index = my_iframes.length - 1;
+                var iframeHeight = my_iframes[index].clientHeight;
+                var iframeWidth = my_iframes[index].clientWidth - 2;
+                //2 设置当前body的高度为iframe的高度
+                //$("#body").height = iframeHeight;
+                //$("#body").width = iframeWidth;
+                $("#body_layout").layout({
+                    height: iframeHeight,
+                    width: iframeWidth
+                });
+                //设置部门列表的高度
+                //$("#p").height = iframeHeight;
+            }
+            else if (my_iframes.length == 0) {
+                $("#body_layout").layout({
+                    height: 400,
+                    //width: iframeWidth
+                });
+            }
+
+            
+        }
 
         $(function () {
 
-            $("#editGroupWindow").window('close');
+            $("#editContactWindow").window('close');
             $("#editPersonWindow").window('close');
-            loadDataGrid('@ViewBag.GetInfo', myColumns);
+            @*loadDataGrid('@ViewBag.GetInfo', myColumns);*@
             //2 根据GroupID查询该群组所拥有的人员列表
             //将两个下拉框设置为不可选，且赋值“请选择联系人”
             ComboboxDisable();
             //2.1 加载所属群组下拉框
+
+            
 
             //2.2 加载上级部门下拉框
             //在加载窗体时先不加载部门下拉框（在点击联系人时加载部门下拉框）
@@ -390,9 +458,10 @@
         })
     </script>
 </head>
-<body style="overflow:hidden;">
+@*overflow:hidden;*@
+<body id="body" style="margin:0px;height:90%" onload="SetiframeHeight()">
     @RenderBody()
-    <div class="easyui-layout" style="width:100%;height:500px;">
+    <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
         @RenderSection("westdiv")
         <div data-options="region:'center'" title="联系人列表" style="width:70%">
             
@@ -401,12 +470,9 @@
                                 
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add_person',text: '添加联系人',plain:true" onclick="addPersonRow()"></a>
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
-                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br/>           
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br/>
                 移至分组:
-                <select class="easyui-combobox" id="group" panelHeight="auto" style="width:200px"
-                        data-options="">
-                    
-                </select>
+                <select class="easyui-combogrid" name="PDID" id="group" style="width:130px" data-options="@*required:true*@"></select>
                 选择所属部门
                 <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto"style="width:200px"data-options="">
                 </select>
@@ -414,7 +480,7 @@
         </div>
     </div>
     @RenderSection("showWindow") 
-    <div class="easyui-window" title="联系人" id="editPersonWindow" style="width:460px;height:320px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" title="联系人" id="editPersonWindow" style="width:460px;height:370px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="addPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
 </body>

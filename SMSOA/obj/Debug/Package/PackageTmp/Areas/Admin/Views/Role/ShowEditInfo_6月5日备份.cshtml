@@ -1,0 +1,92 @@
+﻿@model PMS.Model.RoleInfo
+
+@{
+    ViewBag.Title = "AddActionInfo";
+    //获取控制器传过来的修改页面提交到的url
+    string backAction = @ViewBag.backAction;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditActionWindow</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <script type="text/javascript">
+        function afterEdit(data) {
+
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //提交表单成功后关闭本页面
+            //无法关闭此窗口
+            //window.close();
+            if (data == "ok") {
+                window.parent.afterEdit("修改成功");
+            }
+            else {
+                window.parent.afterEdit("修改失败");
+            }
+            //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
+        }
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm(backAction, new { },
+                        new AjaxOptions()
+                        {
+                            OnSuccess = "afterEdit"
+                        }
+                        ))
+    {
+        <div>
+            @Html.HiddenFor(model => model.ID)
+            <table cellpadding="5">
+                <tr>
+                    <td>角色名称:</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.RoleName, new { htmlAttributes = new { @class = "easyui-textbox", @name = "RoleInfoName" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>顺序:</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Sort, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Sort" } })
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>创建时间</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.SubTime, new
+                   {
+                       htmlAttributes = new { @class = "easyui-textbox", @name = "SubTime" },
+                       @Value = (Model == null) ? DateTime.Now.ToShortDateString() : Model.SubTime.ToShortDateString()
+                   })
+                    </td>
+                </tr>
+                <tr>
+                    <td>修改时间</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ModifiedOnTime, new
+                   {
+                       htmlAttributes = new { @class = "easyui-textbox", @name = "SubTime" },
+                       @Value = (Model == null) ? DateTime.Now.ToShortDateString() : Model.ModifiedOnTime.ToShortDateString()
+                   })
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="提交" />
+            </div>
+        </div>
+    }
+
+</body>
+</html>

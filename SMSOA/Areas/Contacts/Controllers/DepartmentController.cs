@@ -104,8 +104,11 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetPersonUrl = "/Contacts/ContactPerson/GetPersonByDepartment";
 
             ViewBag.DelPerson_url = "/Contacts/Department/DoDelPersonInfobyDID";
-
-            ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
+            
+            //6月12日注释掉
+            //ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
+            //由以下方法替代
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetComboGrid4GroupInfo";
             ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
@@ -124,7 +127,9 @@ namespace SMSOA.Areas.Contacts.Controllers
             //1 根据用户id找到指定的联系人对象
             var person = personBLL.GetListBy(p => p.PID == pid).FirstOrDefault();
             //2 找到指定联系人所对应的部门对象
-            var department= person.P_DepartmentInfo.ToList().FirstOrDefault();
+            var department= person.P_DepartmentInfo.ToList().FirstOrDefault().ToMiddleModel();
+
+
             //3 将部门id返回
             return Content(department.DID.ToString());
         }
@@ -143,6 +148,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
         }
+        
 
         /// <summary>
         /// 在某一部门中点击添加联系人时，传入该部门的did
@@ -156,7 +162,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //2 查询全部group 
             var list_departmentAll = departmentBLL.GetListBy(g => g.isDel == false).ToList();
             //3 将已经拥有的群组从全部群组集合中剔除
-            list_departmentAll = list_departmentAll.Where(d => d.DID != departmentTemp.DID).ToList();
+            list_departmentAll = list_departmentAll.Where(d => d.DID != departmentTemp.DID).Select(d=>d.ToMiddleModel()).ToList();
             //4.1 已经拥有的群组集合
             List<P_DepartmentInfo> list_departmentOwned = new List<P_DepartmentInfo>();
             list_departmentOwned.Add(departmentTemp);

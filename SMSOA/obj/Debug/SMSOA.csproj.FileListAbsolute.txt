@@ -324,7 +324,6 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.BLL.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.DALSQLSer.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.IBLL.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.Model.dll
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\SMSOA.Login.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\Spring.Core.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\Spring.Web.Mvc4.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\System.Net.Http.Formatting.dll
@@ -347,7 +346,6 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.BLL.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.DALSQLSer.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.IBLL.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\PMS.Model.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\SMSOA.Login.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\EntityFramework.xml
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\Spring.Core.xml

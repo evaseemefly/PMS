@@ -129,6 +129,114 @@ namespace PMS.BLL
                 return list_group_isPass.ToList();
             }
             
+        }        
+
+        /// <summary>
+        /// 对发送短信内容进行高级搜索，并分页（不查询姓名及电话号码）
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="model">高级搜索的查询对象</param>
+        /// <param name="uid"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public List<S_SMSContent> GetSMSContentListByQuery_ExpNamePhone(int pageIndex, int pageSize, ref int rowCount,PMS.Model.ViewModel.ViewModel_QueryInfo model, int uid, bool isAsc, bool isMiddle)
+        {
+            //1 找到对应用户
+            var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+            //2 查询当前用户所拥有的全部短信
+            //rowCount = userModel.S_SMSContent.Count;
+            var query = userModel.S_SMSContent.ToList();
+            //不根据联系人名称以及联系人电话查询
+            //根据任务匹配
+            if (model.Mission_id!=0)
+            {
+                query= query.Where(u => u.SMID == model.Mission_id).ToList();
+                
+            }
+
+            //3 根据时间的三个参数获取指定时间范围
+            //3.1 只查询某日的 
+            if (model.Dt_finish == "999" && model.Dt_start == "999"&&model.Dt_target!="999")
+            {
+                DateTime dt = new DateTime();
+                DateTime.TryParse(model.Dt_target,out dt);
+                query = query.Where(u => u.SendDateTime.Date == dt.Date).ToList();
+            }
+            //3.2 查询一个时间范围
+            else if(model.Dt_target=="999"&&model.Dt_finish!="999"&&model.Dt_start!="999")
+            {
+                DateTime dt_start=new DateTime();
+                DateTime dt_finish=new DateTime();
+                if(model.Dt_start=="998")
+                {
+                    dt_start = new DateTime(2000, 1, 1);
+                }
+                if(model.Dt_finish=="998")
+                {
+                    dt_finish = DateTime.Now;
+                }
+                
+                    if(model.Dt_finish!="998"&&model.Dt_start!="998")
+                    {
+                        DateTime.TryParse(model.Dt_start, out dt_start);
+                        DateTime.TryParse(model.Dt_finish, out dt_finish);
+                    }
+                    else if(model.Dt_finish!="998"&&model.Dt_start=="998")
+                    {
+                        DateTime.TryParse(model.Dt_finish, out dt_finish);
+                    }
+                    else if (model.Dt_finish == "998" && model.Dt_start != "998")
+                    {
+                        DateTime.TryParse(model.Dt_start, out dt_start);
+                    }
+                
+
+                if(dt_start!=null&&dt_finish!=null)
+                {
+                    query = query.Where(u => u.SendDateTime.Date <= dt_finish.Date && u.SendDateTime.Date >= dt_start.Date).ToList();
+                }
+            }
+            //获取目标日期
+            //if(model.dt)
+            //query = query.Where(u => u.SendDateTime.Year == model.Dt_target.Year && u.SendDateTime.Month == model.Dt_target.Month && u.SendDateTime.Year == model.Dt_target.Day).ToList();
+            //4 进行分页查询
+            return ToListByPage(query, pageIndex, pageSize, ref rowCount, isAsc, isMiddle);
+           
+        }
+
+        /// <summary>
+        /// 对传入的S_SMSContent集合进行分页查询（并排序以及转为中间变量）
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        private List<S_SMSContent> ToListByPage(List<S_SMSContent> query,int pageIndex,int pageSize,ref int rowCount,bool isAsc,bool isMiddle)
+        {
+            if (isAsc)
+            {
+                query = query.OrderBy(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                query = query.OrderByDescending(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+
+            //3
+            if (isMiddle)
+            {
+                return query.Select(s => s.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return query;
+            }
         }
 
             /// <summary>
@@ -149,24 +257,27 @@ namespace PMS.BLL
             rowCount = userModel.S_SMSContent.Count;
             var query = userModel.S_SMSContent.ToList();
             //2 找到该用户所发送的短信
-            if (isAsc)
-            {
-               query= query.OrderBy(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            }
-         else
-            {
-                query = query.OrderByDescending(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            }
+            #region 封装至 ToListByPage 方法中
+            //   if (isAsc)
+            //   {
+            //      query= query.OrderBy(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            //   }
+            //else
+            //   {
+            //       query = query.OrderByDescending(c => c.SendDateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            //   }
 
-            //3
-            if(isMiddle)
-            {
-                return query.Select(s => s.ToMiddleModel()).ToList();
-            }
-            else
-            {
-                return query;
-            }
+            //   //3
+            //   if(isMiddle)
+            //   {
+            //       return query.Select(s => s.ToMiddleModel()).ToList();
+            //   }
+            //   else
+            //   {
+            //       return query;
+            //   }
+            #endregion
+           return ToListByPage(query, pageIndex, pageSize,ref rowCount, isAsc, isMiddle);
         }
 
         /// <summary>

@@ -116,7 +116,7 @@ namespace PMS.BLL
 
             try
             {
-                return this.CurrentDBSession.SaveChanges();
+                return (this.CurrentDBSession.SaveChanges());
             }
             catch (Exception ex)
             {

@@ -27,7 +27,9 @@ namespace Common.EasyUIFormat
                     Checked = IsChecked ? true : false,//此处需要加一个判断，若传入的选中的标记参数为true，true，否则为false
                     GID = item.GID,
                     GroupName = item.GroupName,
-                    selected = IsChecked ? true : false
+                    Remark = item.Remark,
+                    selected = IsChecked ? true : false,
+                    forbidDel = item.forbidDel
                 };
                 list_datagrid.Add(datagrid);
 
