@@ -58,12 +58,12 @@
 <body>
     @*<div class="easyui-panel" title="New Topic" style="width:400px">*@
     <div style="padding:10px 60px 20px 60px">
-        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+        <form id="ff" class="easyui-form" method="post">
             <input type="hidden" name="SMID" value=@ViewBag.SMID />
             <table cellpadding="3">
                  <tr>
                     <td style="color:#ffffff">任务名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="SMSMissionName" value=@ViewBag.Name data-options="required:true"></input></td>
+                    <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name required="true" missingMessage="任务名称必须填写"></input></td>
                 </tr>
                 <tr>
                     <td style="color:#ffffff">备注:</td>
