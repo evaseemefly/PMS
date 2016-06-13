@@ -7,8 +7,10 @@
 }
 @section SectionJS{
     <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
+
+    <script src="~/Scripts/MyScripts/Contact/my_loadUrl.js"></script>
     <script type="text/javascript">
-       function DoSubmit() {
+        function DoSubmit() {
             var myform = $("#ff");
             var options = {
                 url: '@ViewBag.backAction_jqSub',
@@ -19,7 +21,16 @@
             };
 
             myform.form('submit', options);
-       }
+        }
+
+        var groupColumns = [[
+         //{ field: 'ck', checkbox: true },
+         { field: 'GID', title: 'ID', width: 100, checkbox: true },
+         { field: 'GroupName', title: '群组名称', width: 150 },
+         { field: 'Remark', title: '群组名称', width: 150 },
+         { field: 'forbidDel', title: '禁止删除', width: 150,hidden:true }
+         //{ field: 'Operate', title: '是否禁用', width: 150 }
+        ]]
 
         //--------------1 加载页面中的下拉框中的数据-----------
         //1.1 加载全部部门下拉框
@@ -32,12 +43,12 @@
                 textField: 'text',
                 //valueField: "DID",
                 //textField: "DepartmentName",
-                
+
                 editable: false,
                 onlyLeafCheck: true,
                 cascaseCheck: true,
                 method: 'get',
-                panelHeight:150,
+                panelHeight: 150,
                 width: 210,
                 onLoadSuccess: AfterLoadDepartment
                 @*setValue:'@ViewBag.PDID'*@
@@ -45,12 +56,17 @@
             });
         }
 
+        function loadComboGrid_Group(gid) {
+            var url = '@ViewBag.GetAllGroup_combogrid';
+            my_loadCombobox_Group("GID", url, groupColumns);
+        }
+
         //1.2 根据pid加载对应的群组并添加至combobox中
-        function loadCombobox_Group(gid,pid) {
+        function loadCombobox_Group(gid, pid) {
             //var str =  (typeof(pid)!="undefined")? pid:"-1";
             $("#GID").combobox({
                 //注意此处需要加判断，若没有传入gid（即没有选择所属群组group，则返回全部的-未选中的-部门下拉框）
-                url:gid==""?'@ViewBag.GetAllGroup_combobox': '@ViewBag.GetGroupByGID_combobox?gid='+gid,//在ContactPerson控制器中的ShowAddPerson方法中添加
+                url: gid == "" ? '@ViewBag.GetAllGroup_combobox' : '@ViewBag.GetGroupByGID_combobox?gid=' + gid,//在ContactPerson控制器中的ShowAddPerson方法中添加
                 method: 'get',
                 valueField: 'id',
                 textField: 'text',
@@ -78,14 +94,18 @@
             return s;
         }
 
-        function AfterLoadDepartment(){
-            $("#DepartmentName_combotree").combotree('setValue','@ViewBag.PDID');
+        function AfterLoadDepartment() {
+            $("#DepartmentName_combotree").combotree('setValue', '@ViewBag.PDID');
         }
         $(function () {
             //加载全部群组下拉框
             var gid = "@ViewBag.GID";
             var did = "@ViewBag.DID";
-            loadCombobox_Group(gid);
+            //6月13日家 注释掉
+            //loadCombobox_Group(gid);
+            //6月13日家 修改为
+            loadComboGrid_Group();
+
             //加载全部部门下拉框
             loadComboTree_Department(did);
             //加载全部部门下拉框后根据选中的did
@@ -156,7 +176,7 @@
                 <tr>
                     <td>所属分组:</td>
                     <td class="comment">
-                        <select class="easyui-combobox" name="GID" id="GID" ></select>
+                        <select class="easyui-combogrid" name="GID" id="GID" ></select>
                     </td>
                 </tr>
                 <tr>

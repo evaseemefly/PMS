@@ -309,6 +309,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GID = gid==null?"":gid;
             ViewBag.DID = did == null ? "" : did;
             ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
+            ViewBag.GetAllGroup_combogrid = "/Contacts/Group/GetComboGridAllGroupInfo";
             ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
             ViewBag.GetDepartment_combotree= "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";

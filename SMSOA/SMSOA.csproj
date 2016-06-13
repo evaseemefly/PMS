@@ -374,6 +374,7 @@
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
     <Content Include="Scripts\MyScripts\Common\Submit.js" />
+    <Content Include="Scripts\MyScripts\Contact\my_loadUrl.js" />
     <Content Include="Scripts\MyScripts\EasyUI\my_ShowMessager.js" />
     <Content Include="Scripts\MyScripts\EasyUI\SwitchBtn.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />

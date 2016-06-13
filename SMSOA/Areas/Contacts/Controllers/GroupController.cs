@@ -75,6 +75,21 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         }
 
+        /// <summary>
+        /// 6月13日家添加
+        /// 获取全部的群组并以ComboGrid的方式返回
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetComboGridAllGroupInfo()
+        {
+            //查询全部的群组
+            var list_allgroup = groupBLL.GetListBy(g => g.isDel == false).ToList().Select(r => r.ToMiddleModel()).ToList();
+
+            var list_combobox_allgroup= ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_allgroup, false);
+
+            return Content(Common.SerializerHelper.SerializerToString(list_combobox_allgroup));
+        }
+
         public ActionResult GetCombobox4AllGroupInfo()
         {
             //查询全部的群组
