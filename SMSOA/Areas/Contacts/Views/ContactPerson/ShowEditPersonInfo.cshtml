@@ -7,8 +7,9 @@
 }
 @section SectionJS{
     <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
-
+<script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
     <script src="~/Scripts/MyScripts/Contact/my_loadUrl.js"></script>
+
     <script type="text/javascript">
         function DoSubmit() {
             var myform = $("#ff");
@@ -34,7 +35,7 @@
 
         //--------------1 加载页面中的下拉框中的数据-----------
         //1.1 加载全部部门下拉框
-        function loadComboTree_Department(did) {//2 加载上级部门下拉框
+        function loadComboTree_Department1(did) {//2 加载上级部门下拉框
 
             $("#DepartmentName_combotree").combotree({
                 //在ContactPerson控制器中的ShowAddPerson方法中添加
@@ -58,7 +59,13 @@
 
         function loadComboGrid_Group(gid) {
             var url = '@ViewBag.GetAllGroup_combogrid';
-            my_loadCombobox_Group("GID", url, groupColumns);
+            //var func_loadSucess_group=my_loadSuccess_Group("Group_combogrid", false,gid);
+            my_loadCombobox_Group("Group_combogrid", url, groupColumns, loadSuccess_Group);
+        }
+
+        function loadComboTree_Department() {
+            var url = '@ViewBag.GetDepartment_combotree';
+            my_loadComboTree_Department("DepartmentName_combotree", url, AfterLoadDepartment);
         }
 
         //1.2 根据pid加载对应的群组并添加至combobox中
@@ -104,17 +111,36 @@
             //6月13日家 注释掉
             //loadCombobox_Group(gid);
             //6月13日家 修改为
-            loadComboGrid_Group();
+            loadComboGrid_Group(gid);
 
             //加载全部部门下拉框
-            loadComboTree_Department(did);
+            //6月14日注释掉
+            //loadComboTree_Department(did);
+            //6月14日修改为
+            loadComboTree_Department();
+            //加载全部群组下拉框后根据选中的gid选中指定内容（单选）
+            //SetGroupCombogridValue(gid);
             //加载全部部门下拉框后根据选中的did
             SetDepartmentCombotreeValue(did);
 
         })
+        //加载全部部门下拉框后根据选中的did选中指定的部门
         function SetDepartmentCombotreeValue(data) {
             //1 找到部门下拉框
             $("#DepartmentName_combotree").combotree('setValue', data);
+        }
+        //加载全部群组下拉框后根据选中的gid选中指定内容（单选）
+        function SetGroupCombogridValue(data) {
+            //1 找到部门下拉框
+            $("#Group_combogrid").combogrid('setValue', data);
+        }
+
+        function loadSuccess_Group() {
+            my_loadSuccess_Group("Group_combogrid", false, "@ViewBag.GID");
+        }
+
+        function UnSelect_Group() {
+
         }
 
         function afterEdit(data) {
@@ -156,7 +182,7 @@
     <div>
         <form id="ff" class="easyui-form" method="post" data-options="novalidate:true" style="margin:0px;">
             <div style="height:30px;width:100%;background-color:#000000"></div>
-            <input type="hidden" name="DID" value="@ViewBag.DID" />
+           
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
             <table style="margin-left:40px;width:90%" cellpadding="3">
                 <tr>
@@ -176,13 +202,13 @@
                 <tr>
                     <td>所属分组:</td>
                     <td class="comment">
-                        <select class="easyui-combogrid" name="GID" id="GID" ></select>
+                        <select class="easyui-combogrid" name="GID" id="Group_combogrid" ></select>
                     </td>
                 </tr>
                 <tr>
                     <td style="">所属部门:</td>
                     <td class="comment">
-                        <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" ></select><br />
+                        <select class="easyui-combotree" name="DID" id="DepartmentName_combotree" ></select><br />
                         选择任职部门
                     </td>
                 </tr>

@@ -1,4 +1,7 @@
-﻿
+﻿function messagerAlertByAlert(title,msg) {
+    $.messager.alert(title, msg);
+}
+
 //使用此种方式消息框还未显示页面就已经刷新了
 function messagerShowOnCenter(title, msg) {
     ///	<summary>

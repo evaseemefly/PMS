@@ -304,7 +304,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //返回的部门下拉框为选中某一个did
             string did = Request["did"];
 
-            ViewBag.backAction = "DoAddPersonInfo";
+            ViewBag.backAction_jqSub = "DoAddPersonInfo";
             //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
             ViewBag.GID = gid==null?"":gid;
             ViewBag.DID = did == null ? "" : did;
@@ -332,7 +332,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //返回的部门下拉框为选中某一个did
             string did = Request["did"];
 
-            ViewBag.backAction = "DoAddPersonInfo";
+            ViewBag.backAction_jqSub = "DoAddPersonInfo";
            
             var model = personInfoBLL.GetListBy(a => a.PID == id).FirstOrDefault();
             //提供显示页面提交时跳转到的用户名称
