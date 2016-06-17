@@ -265,7 +265,7 @@
       <PropertyRef Name="PID" />
     </Key>
     <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PName" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="PName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
     <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="isVIP" Type="Boolean" Nullable="false" />

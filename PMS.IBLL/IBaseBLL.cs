@@ -10,7 +10,7 @@ namespace PMS.IBLL
    public interface IBaseBLL<T>
     {
         #region 新增实体- void Create(T model);
-        void Create(T model);
+        bool Create(T model);
         #endregion
 
         #region 2- 根据用户id删除数据库中记录

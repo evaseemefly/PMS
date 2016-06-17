@@ -29,7 +29,7 @@
          { field: 'GID', title: 'ID', width: 100, checkbox: true },
          { field: 'GroupName', title: '群组名称', width: 150 },
          { field: 'Remark', title: '群组名称', width: 150 },
-         { field: 'forbidDel', title: '禁止删除', width: 150,hidden:true }
+         { field: 'forbidDel', title: '禁止删除', width: 150, hidden: true }
          //{ field: 'Operate', title: '是否禁用', width: 150 }
         ]]
 
@@ -102,7 +102,7 @@
         }
 
         function AfterLoadDepartment() {
-            $("#DepartmentName_combotree").combotree('setValue', '@ViewBag.PDID');
+            $("#DepartmentName_combotree").combotree('setValue', '@ViewBag.DID');
         }
         $(function () {
             //加载全部群组下拉框
@@ -121,7 +121,7 @@
             //加载全部群组下拉框后根据选中的gid选中指定内容（单选）
             //SetGroupCombogridValue(gid);
             //加载全部部门下拉框后根据选中的did
-            SetDepartmentCombotreeValue(did);
+           // SetDepartmentCombotreeValue(did);
 
         })
         //加载全部部门下拉框后根据选中的did选中指定的部门
@@ -136,7 +136,15 @@
         }
 
         function loadSuccess_Group() {
-            my_loadSuccess_Group("Group_combogrid", false, "@ViewBag.GID");
+            var gid_str = "@ViewBag.GID";
+            //判断传入的GID是否为一个数组
+            //若GID中包含","说明传入的是一个数组
+            if (gid_str.indexOf(",") > 0) {
+                //将字符串转换
+               var gids_array= gid_str.split(',');
+            }
+
+            my_loadSuccess_Group("Group_combogrid", false, gids_array);
         }
 
         function UnSelect_Group() {
@@ -158,23 +166,6 @@
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
-
-        //6月13日注释掉
-        //function afterEdit(data) {
-
-        //    //$.messager.alert('提醒', '提交成功!');
-        //    //——经测试提交表单成功后可以执行OnSucess的回调函数
-        //    //提交表单成功后关闭本页面
-        //    //无法关闭此窗口
-        //    //window.close();
-        //    if (data == "ok") {
-        //        window.parent.afterEditContact("修改成功");
-        //    }
-        //    else {
-        //        window.parent.afterEditContact("修改失败");
-        //    }
-        //    //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
-        //}
     </script>
 }
 
@@ -184,6 +175,7 @@
             <div style="height:30px;width:100%;background-color:#000000"></div>
            
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
+            <input type="hidden" name="PID" value="@ViewBag.PID" />
             <table style="margin-left:40px;width:90%" cellpadding="3">
                 <tr>
                     <td>姓名:</td>

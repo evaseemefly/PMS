@@ -13,6 +13,8 @@ namespace SMSOA.Areas.Contacts.Models
 
         public string PhoneNum { get; set; }
 
+        public string Remark { get; set; }
+
         /// <summary>
         /// 群组id数组
         /// </summary>

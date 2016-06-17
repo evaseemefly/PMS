@@ -26,6 +26,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.ShowAddPerson = "/Contacts/ContactPerson/ShowAddPersonInfo";
             ViewBag.ShowEditPerson= "/Contacts/ContactPerson/ShowEditPersonInfo";
             ViewBag.DelPerson_url = "/Contacts/Group/DoDelPersonInfobyGID";
+            //6月15日
+            ViewBag.DelPersonByAll_url = "/Contacts/ContactPerson/DoDelPersonInfo_All";
             ViewBag.GetInfo = "/Contacts/Group/GetGroupInfo";
             ViewBag.GetPersonUrl= "/Contacts/ContactPerson/GetPersonByGroup";
             ViewBag.GetGroup_combobox = "/Contacts/Group/GetComboGrid4GroupInfo";
@@ -83,7 +85,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult GetComboGridAllGroupInfo()
         {
             //查询全部的群组
-            var list_allgroup = groupBLL.GetListBy(g => g.isDel == false).ToList().Select(r => r.ToMiddleModel()).ToList();
+            var list_allgroup = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList().Select(r => r.ToMiddleModel()).ToList();
 
             var list_combobox_allgroup= ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_allgroup, false);
 
@@ -314,6 +316,11 @@ namespace SMSOA.Areas.Contacts.Controllers
             //3 返回结果          
             return Content( state  == true ?  "ok" :  "error");
         }
+
+        //public ActionResult DoDelPersonInfoByGID_All()
+        //{
+
+        //}
 
         /// <summary>
         /// 执行软删除

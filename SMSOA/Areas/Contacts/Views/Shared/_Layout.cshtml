@@ -25,7 +25,7 @@
     <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     @*easyui的消息弹窗*@
     <script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
-
+    <script src="~/Scripts/MyScripts/Common/my_SetiframeBody.js"></script>
     @RenderSection("Scripts")
     @RenderSection("toobar_scripts", false)
     @RenderSection("colums_scripts", false)
@@ -55,6 +55,11 @@
             text: "删除联系人",
             handler: removePersonRow@*removeRow("@ViewBag.Del_url")*@
         }, '-',
+         {
+             iconCls: 'icon-edit_person',
+             text: "编辑联系人",
+             handler: editPersonRow@*removeRow("@ViewBag.Del_url")*@
+             }, '-',
         {
             iconCls: 'icon-save',
             text: "保存",
@@ -117,7 +122,7 @@
             }
             //**注意先加载iframe窗体的数据，在打开该窗口
 
-            $("#addPersonFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].GID);//会出现重定向的错误
+            $("#addPersonFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].PID);//会出现重定向的错误
             $("#editPersonWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -143,22 +148,48 @@
                     var pid = rows[0].PID;
                 //2.2 获取页面中保存的gid
                  var url;
+
+
+                //6月15日新加入
+                //若有禁止删除标记
+                 var rows_groupOrdepartment = $("#contactsdatagrid").datagrid('getSelections');
                 url = '@ViewBag.DelPerson_url?' + getDIDorGID();
-                url = url + '&pid=' + pid;
-                //2.3 提交请求删除
-                $.post(url, function (data) {
-                //3 请求成功后的回调函数
-                if (data == "ok") {
-                //3.1 重新加载datagrid
-                   $("#persondatagrid").datagrid('reload');
-                //3.2 清楚所选中的行
-                $("#persondatagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                if (rows_groupOrdepartment[0].forbidDel) {
+                //若要从全部联系人列表中删除联系人需要再次手动确认
+                if ($.messager.confirm("提示", "此操作会从其他群组及部门列表中删除该联系人！", function (r) {
+                if (r) {
+                url = '@ViewBag.DelPersonByAll_url?' + getDIDorGID();
+                my_post_del(url, pid);
             }
-            });
+            else {
+                alert("退出");
+                return;
             }
             }));
+            }
+                if (!rows_groupOrdepartment[0].forbidDel) {
+                my_post_del(url, pid);
+            }
+            }
+            }
+            ));
 
+        }
+
+        function my_post_del(url, pid) {
+            url = url + '&pid=' + pid;
+            //2.3 提交请求删除
+            $.post(url, function (data) {
+                //3 请求成功后的回调函数
+                if (data == "ok") {
+                    //3.1 重新加载datagrid
+                    $("#persondatagrid").datagrid('reload');
+                    //3.2 清楚所选中的行
+                    $("#persondatagrid").datagrid('clearSelections');
+                    $.messager.alert("提示", "删除成功");
+                }
+            }
+            );
         }
 
         //为用户保存选中的分组及部门
@@ -338,7 +369,7 @@
                     if (rowData.forbidDel) {
                         //若点击的这一行有禁止删除的标记
                         //则点击后仍为该行设置为选中，并提示
-                       
+
                             $("#group").combogrid("grid").datagrid("selectRow", rowIndex);
                             messagerShowOnCenter("提示", "全部联系人必须选中");
                     }
@@ -381,7 +412,7 @@
 
             $("#editContactWindow").window('close');
             $("#editPersonWindow").window('close');
-            
+
         }
 
         //编辑或创建某个权限后执行的操作
@@ -417,36 +448,8 @@
             //    );
             //$("#DepartmentName_combotree").combobox('setValue', -1);
         }
+
         
-        //页面加载时根据iframe的尺寸设置本Body的尺寸
-        function SetiframeHeight() {
-           
-
-            //1 获取iframe的高度
-            var my_iframes = window.parent.document.getElementsByTagName("iframe");
-            if (my_iframes.length > 0) {
-                var index = my_iframes.length - 1;
-                var iframeHeight = my_iframes[index].clientHeight;
-                var iframeWidth = my_iframes[index].clientWidth - 2;
-                //2 设置当前body的高度为iframe的高度
-                //$("#body").height = iframeHeight;
-                //$("#body").width = iframeWidth;
-                $("#body_layout").layout({
-                    height: iframeHeight,
-                    width: iframeWidth
-                });
-                //设置部门列表的高度
-                //$("#p").height = iframeHeight;
-            }
-            else if (my_iframes.length == 0) {
-                $("#body_layout").layout({
-                    height: 400,
-                    //width: iframeWidth
-                });
-            }
-
-            
-        }
 
         $(function () {
 
@@ -458,7 +461,7 @@
             ComboboxDisable();
             //2.1 加载所属群组下拉框
 
-            
+
 
             //2.2 加载上级部门下拉框
             //在加载窗体时先不加载部门下拉框（在点击联系人时加载部门下拉框）
@@ -468,7 +471,7 @@
     </script>
 </head>
 @*overflow:hidden;*@
-<body id="body" style="margin:0px;height:90%" onload="SetiframeHeight()">
+<body id="body" style="margin:0px;height:90%" onload="SetiframeHeight('body_layout')">
     @RenderBody()
     <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
         @RenderSection("westdiv")
@@ -479,6 +482,7 @@
                                 
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add_person',text: '添加联系人',plain:true" onclick="addPersonRow()"></a>
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit_person',text: '编辑联系人',plain:true" onclick="editPersonRow()"></a>
                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br/>
                 移至分组:
                 <select class="easyui-combogrid" name="PDID" id="group" style="width:130px" data-options="@*required:true*@"></select>

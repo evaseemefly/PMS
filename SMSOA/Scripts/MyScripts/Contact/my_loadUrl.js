@@ -60,6 +60,9 @@ function my_loadSuccess_Group(id,isChecked,gid) {
     ///	<param name="isChecked" type="bool">
     ///		是否要检查checked标记
     ///	</param>
+    ///	<param name="gid" type="Array">
+    ///		选中的群组id数组
+    ///	</param>
     var div_id = "#" + id;
     var data = $(div_id).combogrid("grid").datagrid("getData");
     var rowData = data.rows;
@@ -71,9 +74,17 @@ function my_loadSuccess_Group(id,isChecked,gid) {
         }
         else if (!isChecked) {
             if (gid != null) {
-                if (rowData.GID == gid) {
-                    $(div_id).combogrid("grid").datagrid("selectRow", rowIndex);
+                if (gid.length > 1) {
+                    if (gid.indexOf(rowData.GID.toString()) > -1) {
+                        $(div_id).combogrid("grid").datagrid("selectRow", rowIndex);
+                    }
                 }
+                else {
+                    if (rowData.GID == gid) {
+                        $(div_id).combogrid("grid").datagrid("selectRow", rowIndex);
+                    }
+                }
+
             }
         }
 

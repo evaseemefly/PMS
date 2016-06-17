@@ -104,7 +104,10 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetPersonUrl = "/Contacts/ContactPerson/GetPersonByDepartment";
 
             ViewBag.DelPerson_url = "/Contacts/Department/DoDelPersonInfobyDID";
-            
+
+            //6月15日添加
+            ViewBag.DelPersonByAll_url = "/Contacts/ContactPerson/DoDelPersonInfo_All";
+
             //6月12日注释掉
             //ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
             //由以下方法替代
@@ -278,6 +281,12 @@ namespace SMSOA.Areas.Contacts.Controllers
             //3 返回结果          
             return Content(state == true ? "ok" : "error");
         }
+
+        //public ActionResult DoDelPersonInfoByDID_All()
+        //{
+
+        //}
+
         public ActionResult DoEditDepartmentInfo(P_DepartmentInfo departmentModel)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值

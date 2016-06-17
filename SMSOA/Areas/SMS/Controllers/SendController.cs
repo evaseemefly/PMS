@@ -178,8 +178,15 @@ namespace SMSOA.Areas.SMS.Controllers
             //3 将联系人集合去重
             list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).ToList();
 
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = list_person.Count,
+                rows = list_person,
+                footer = null
+            };
+
             //4 序列化后返回
-            return Content(Common.SerializerHelper.SerializerToString(list_person));
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
         }
 
         protected string GetGroupByUser(int userId,bool isChecked)

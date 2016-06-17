@@ -53,6 +53,35 @@ namespace PMS.BLL
                 return false;
             }
         }
+
+        /// <summary>
+        /// 6月15日新添加
+        /// 根据传入的Person ID集合软删除删除该ID集合内的Person对象
+        /// 且清除这些Person对象与部门及群组的外键关系
+        /// </summary>
+        /// <param name="list">Person ID 集合</param>
+        /// <returns></returns>
+        public bool DelSoftPersonAndOtherRelation(List<int> list) 
+        {
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            foreach (var person in this.GetListByIds(list))
+            {
+                person.isDel = true;
+                person.P_DepartmentInfo.Clear();
+                person.P_Group.Clear();
+                list_person.Add(person);
+            }
+            try
+            {
+                this.UpdateByList(list_person);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的PersonInfo集合
         /// </summary>
@@ -91,6 +120,97 @@ namespace PMS.BLL
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 6月15日发现的添加联系人的bug做如下修改
+        /// 执行新建联系人的操作
+        /// </summary>
+        /// <param name="PName"></param>
+        /// <param name="PhoneNum"></param>
+        /// <param name="list_group_ids"></param>
+        /// <param name="id_department"></param>
+        /// <returns></returns>
+        public bool DoAddPerson(string PName,string PhoneNum,List<int> list_group_ids,int id_department)
+        {
+            PMS.Model.P_PersonInfo person_model = new P_PersonInfo();
+            person_model.PName = PName;
+            person_model.PhoneNum = PhoneNum;
+
+            var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
+           // person_model.P_DepartmentInfo = department_temp;
+
+            List<P_Group> list_group=new List<P_Group>();
+            //遍历添加group ids集合中的群组对象
+            foreach (var item in list_group_ids)
+            {
+                var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item).FirstOrDefault();
+                //list_group.Add(group_temp);
+                person_model.P_Group.Add(group_temp);
+            }
+
+            // person_model.P_Group = list_group;
+
+            person_model.P_DepartmentInfo.Add(department_temp);
+
+           return Create(person_model);
+            //try
+            //{
+            //    return (this.CurrentDBSession.SaveChanges());
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
+        }
+
+        /// <summary>
+        /// 对指定联系人执行修改操作
+        /// </summary>
+        /// <param name="pid">联系人ID</param>
+        /// <param name="PName">姓名</param>
+        /// <param name="PhoneNum">电话号码</param>
+        /// <param name="Remark">备注</param>
+        /// <param name="isVip"></param>
+        /// <param name="isDel"></param>
+        /// <param name="list_group_ids">该联系人所拥有的群组id集合</param>
+        /// <param name="id_department">该联系人所拥有的部门id</param>
+        /// <returns></returns>
+        public bool DoEditPerson(int pid,string PName, string PhoneNum,string Remark,bool isVip,bool isDel, List<int> list_group_ids, int id_department)
+        {
+           var person_model= this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p =>p.PID  == pid).FirstOrDefault();
+           
+            person_model.PName = PName;
+            person_model.PhoneNum = PhoneNum;
+            person_model.isVIP = isVip;
+            person_model.isDel = isDel;
+            
+            var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
+            // person_model.P_DepartmentInfo = department_temp;
+
+            List<P_Group> list_group = new List<P_Group>();
+            person_model.P_Group.Clear();
+            //遍历添加group ids集合中的群组对象
+            foreach (var item in list_group_ids)
+            {
+                var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item).FirstOrDefault();
+                //list_group.Add(group_temp);
+                person_model.P_Group.Add(group_temp);
+            }
+
+            // person_model.P_Group = list_group;
+            person_model.P_DepartmentInfo.Clear();
+            person_model.P_DepartmentInfo.Add(department_temp);
+
+            return Update(person_model);
+            //try
+            //{
+            //    return (this.CurrentDBSession.SaveChanges());
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
         }
 
         /// <summary>

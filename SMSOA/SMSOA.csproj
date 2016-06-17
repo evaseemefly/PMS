@@ -327,7 +327,7 @@
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\SMS\Views\web.config" />
-    <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\Send\Index-6月17使用分部视图替代前备份.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\Index.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowAddTemplate.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
@@ -346,6 +346,14 @@
     <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Layout_Send.cshtml" />
+    <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_Body.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_EditWin.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Layout_Statistics.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\Index -6月17日分布之前的备份.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Statistics_Last10.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Statistics_CurrentDay.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -373,6 +381,7 @@
     <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
+    <Content Include="Scripts\MyScripts\Common\my_SetiframeBody.js" />
     <Content Include="Scripts\MyScripts\Common\Submit.js" />
     <Content Include="Scripts\MyScripts\Contact\my_loadUrl.js" />
     <Content Include="Scripts\MyScripts\EasyUI\my_ShowMessager.js" />
@@ -429,7 +438,6 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
-    <Folder Include="Areas\SMS\Views\Shared\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
     <Folder Include="Scripts\Highcharts\js\" />

@@ -1,10 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_SMS_Layout.cshtml";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_Statistics.cshtml";
+
 }
 
-@section SectionJS{
+@section Scripts{
     <style type="text/css">
         /*#p2{
             float:left;
@@ -28,27 +29,30 @@
             var array = new Array(length);
             ////将数组中的每一个时间进行格式化
             $.each(date, function (index, value) {
-                array[index] = DataFormatter(date[index]);
+                array[index] = Date.getStrOfDate(value);
             })
             return array;
         }
         var myColumns = [[
                 { field: 'ContentID', title: 'ID', width: 100,hidden:true },
-                { field: 'MissionName', title: '短信任务', width: 80 },
-                { field: 'Content', title: '发送内容', width: 280 },
+                { field: 'MissionName', title: '短信任务', width: '15%' },
+                { field: 'Content', title: '发送内容', width: '40%' },
                 {
-                    field: 'SendDateTime', title: '发送时间', width: 80,
-                    formatter: DataFormatter
+                    field: 'SendDateTime', title: '发送时间', width: '15%',
+                    formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
                 },
-                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 80 },
-                { field: 'NotReceiveNum', title: '未收到人数', width: 80 }
+                { field: 'TotalOfReceiveNum', title: '发送总人数', width: '10%' },
+                { field: 'NotReceiveNum', title: '未收到人数', width: '10%' }
         ]]
 
         function loadDataGrid_Statistic() {
             $("#statisticlast10_datagrid").datagrid({
                 //width: 'auto',
-                width: 650,
-                height: 'auto',
+                //width: 650,
+                //height: 'auto',
+                fit:true,
                 fitColumns: true,//真正的自动展开/收缩列的大小，以适应网格的宽度，防止水平滚动。
                 striped: true,
                 singleSelect: true,
@@ -181,38 +185,12 @@
     </script>
 
     }
-<div id="p0" class="easyui-panel" style="height:720px;padding:5px;border:0px">
-    <div style="width:1100px;border:1px dashed #00ff90;">
-        <div style="width:660px;height:360px;border:1px dashed #808080;float:left">
-            <div id="p1" class="easyui-panel" title="当前用户发送短信统计" style="height:350px;padding:3px;"
-                 data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
-                <div class="easyui-datagrid" id="statisticlast10_datagrid" style="width:600px"></div>
-            </div>
-        </div>
-        <div id="p21" style="width:410px;border:1px dashed #808080;float:left;">
-            <div id="p2" class="easyui-panel" title="当前用户发送短信趋势图" style="width:400px;height:350px;padding:3px;"
-                 data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
-                <div id="last10_container" style="height: 300px;max-width:390px;"></div>
 
-            </div>
-        </div>
-    </div>
+@section Body{
+    <div id="body_layout" class="easyui-panel"  style="height:98%;width:98%;border:0px">
+        @Html.Partial("_Partial_Statistics_Last10")
+        @*@Html.Partial("_Partial_Statistics_CurrentDay")*@
 
-    <div style="width:1100px;border:1px dashed #ff6a00;">
-        <div style="width:660px;height:360px;border:1px dashed #808080;float:left">
-            <div id="p3" class="easyui-panel" title="用户当日发送短信统计" style="height:350px;padding:3px;"
-                 data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
-                <div class="easyui-datagrid" id="statisticCurrentDay_datagrid"></div>
-            </div>
-        </div>        
-        <div id="p41" style="width:410px;border:1px dashed #808080;float:left;">
-            <div id="p4" class="easyui-panel" title="用户当日发送短信趋势图" style="width:400px;height:350px;padding:3px;"
-                     data-options="collapsible:true,minimizable:true,maximizable:true,closable:true">
-                    <div id="currentDay_container" style="height: 300px;max-width:390px;"></div>
-            </div>
-       </div>
+</div>
+    }
 
-    </div>
-
-
-    </div>
