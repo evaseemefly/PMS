@@ -51,13 +51,13 @@
             $("#statisticlast10_datagrid").datagrid({
                 //width: 'auto',
                 //width: 650,
-                //height: 'auto',
+                //height: 650,
                 fit:true,
                 fitColumns: true,//真正的自动展开/收缩列的大小，以适应网格的宽度，防止水平滚动。
                 striped: true,
                 singleSelect: true,
                 url: '@ViewBag.GetStatisticLast10',
-                autoRowHeight: true,
+                //autoRowHeight: true,
                 nowrap: false,//自动换行
                 loadMsg: '数据加载中请稍后……',
                 pagination: true,//启用分页，默认每页10行
@@ -67,9 +67,11 @@
                 columns: myColumns
             });
 
+
             $("#statisticCurrentDay_datagrid").datagrid({
-                width: 'auto',
-                height: 'auto',
+                //width: 'auto',
+                //height: 'auto',
+                fit:true,
                 fitColumns: true,
                 striped: true,
                 singleSelect: true,
@@ -84,6 +86,8 @@
                 columns: myColumns
 
             });
+
+
         }
 
         function loadLast10_highcharts(data_sendDateTime, data_receive, data_notReceive) {
@@ -170,13 +174,42 @@
             return temp;
         }
 
+        function func_test(func) {
+            loadDataGrid_Statistic();
+
+            //找到西北的div
+            var my_div = window.document.getElementById("div_northwest");
+            var height1 = my_div.clientHeight;
+            var width1 = my_div.clientWidth;
+            var div_height = $("#div_northwest")[0].clientHeight;
+            var div_width = $("#div_northwest")[0].clientWidth;
+            $("#statisticlast10_datagrid").datagrid({
+                height: div_height-3,
+                width:div_width-3
+            });
+
+            var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
+            var array_last10 = eachFormatterDate(temp_last10.Arrat_DataTime);
+            loadLast10_highcharts(array_last10, temp_last10.Array_total, temp_last10.Array_revice);
+            //var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
+            func();
+        }
+
 
 
         $(function () {
             loadDataGrid_Statistic();
+
+            //找到西北的div
+            //var my_div = window.document.getElementById("div_northwest");
+            //var height1 = my_div.clientHeight
+            //var div_height = $("#div_northwest").clientHeight;
+            //var div_width = $("#div_northwest").clientWidth;
+
             var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
             var array_last10 = eachFormatterDate(temp_last10.Arrat_DataTime);
             loadLast10_highcharts(array_last10, temp_last10.Array_total, temp_last10.Array_revice);
+
             var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
             //将其中的时间进行修改
             var array_current= eachFormatterDate(temp_currentDay.Arrat_DataTime);
@@ -187,10 +220,9 @@
     }
 
 @section Body{
-    <div id="body_layout" class="easyui-panel"  style="height:98%;width:98%;border:0px">
+    <div id="body_layout" class="easyui-panel"  style="height:98%;width:98%;border:0px" data-options="fit:true">
         @Html.Partial("_Partial_Statistics_Last10")
-        @*@Html.Partial("_Partial_Statistics_CurrentDay")*@
-
-</div>
+        @Html.Partial("_Partial_Statistics_CurrentDay")
+   </div>
     }
 

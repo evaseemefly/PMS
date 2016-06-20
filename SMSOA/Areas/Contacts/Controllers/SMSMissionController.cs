@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
 using SMSOA.Areas.Contacts.Models;
+using PMS.Model.EqualCompare;
 
 namespace SMSOA.Areas.Contacts.Controllers
 {
@@ -281,7 +282,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                 list_personFromGroup.AddRange(list_personFromDep);
                 //5 此时的集合中可能存在重复，去重
                 list_personFromGroup = list_personFromGroup.Distinct(new PMS.Model.EqualCompare.P_PersonEqualCompare()).ToList();
-
+                
                 //6 取出组群中isPass为false的集合
                 isPass = false;
                 var list_group_isNotPass = GetGroups(isPass, SMSMission);
@@ -327,14 +328,14 @@ namespace SMSOA.Areas.Contacts.Controllers
         //    //2.获取当前任务已有的群组(已禁用)
         //    var list_group_isNotPass = GetGroups(isPass = false, SMSMission);
         //    //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
-            
+
         //    //2.获取所有的群组
         //    var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
         //    List<EasyUICombogrid_Group> list_EasyUICombogrid_Group = new List<EasyUICombogrid_Group>();
         //    //3.将已有的群组从所有群组中剔除，已拥有的群组（未禁用）排在前面
         //    foreach (var item in list_group)
         //    {
-                
+
         //        EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
         //        {
         //            selected = true,
@@ -351,7 +352,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         //    //4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
         //    foreach (var item in list_group_isNotPass)
         //    {
-                
+
         //        EasyUICombogrid_Group combogrid_Group = new EasyUICombogrid_Group()
         //        {
         //            selected = true,
@@ -384,7 +385,14 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         //}
 
+        
+        
 
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetGroup2Datagrid()
         {
             int smid = int.Parse(Request["smid"]);
@@ -454,14 +462,9 @@ namespace SMSOA.Areas.Contacts.Controllers
         }
 
 
-
-
-
-
-
-
         ///<summary>
         ///得到选中任务所包含的群组,并转换为Combogrid
+        /// 6月20日 此处有错误
         ///</summary>
         ///<returns></returns>
         public ActionResult GetDepartment2Treegrid()
@@ -470,42 +473,80 @@ namespace SMSOA.Areas.Contacts.Controllers
             var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
 
             //1.获取当前任务已有的部门(未禁用)
-            bool isPass = true;
-            var list_departments = GetDepartmemts(isPass, SMSMission);
+            //bool isPass = true;
+            var list_departments_isPass = GetDepartmemts(true, SMSMission);
             //2.获取当前任务已有的部门(已禁用)
-            var list_department_isNotPass = GetDepartmemts(isPass = false, SMSMission);
-            //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
+            var list_department_isNotPass = GetDepartmemts(false, SMSMission);
 
             //2.获取所有的部门
             var list_ALLDepartment = departmentBLL.GetListBy(p => p.isDel == false).ToList();
-            List<EasyUITreeGrid_Department> list_EasyUITreeGrid_Department = new List<EasyUITreeGrid_Department>();
+            List<P_DepartmentInfo> list_other = new List<P_DepartmentInfo>();
+            //if (list_departments_isPass.Count != 0)
+            //{
+           
+            //if (list_departments_isPass.Count != 0)
+            //{
+                list_other.AddRange(
+                    from ispass in list_departments_isPass
+                    from all in list_ALLDepartment
+                                     
+                                     where all.DID != ispass.DID&&list_departments_isPass.Count!=0
+                                     select all);
+        //list_other = (
+        //from all in list_ALLDepartment
+        //join ispass in list_departments_isPass on all.DID equals ispass.DID select all
+            //}
+            if (list_department_isNotPass.Count != 0)
+            {
+                list_other.AddRange(from ispass in list_department_isNotPass
+                                    from all in list_ALLDepartment
+                                    where ispass.DID != all.DID
+                                    select all);
+            }
+            else
+            {
+                list_other.AddRange(list_ALLDepartment);
+            }
+            //}
+            //else
+            //{
+            //    list_other = list_ALLDepartment;
+            //}
+            list_other.AddRange(list_departments_isPass);
+            list_other.AddRange(list_department_isNotPass);
 
-            //3.将已有的部门从所有部门中剔除，已拥有的部门（未禁用）排在前面
-            foreach (var item in list_departments)
-            {
-                item.Checked = true;
-                item.selected = true;
-                item.IsPass = true;
-                item.Text = "启用";
-                list_ALLDepartment = list_ALLDepartment.Where(p => p.DID != item.DID).ToList();
-            }
-            //4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
-            foreach (var item in list_department_isNotPass)
-            {
-                item.Checked = true;
-                item.selected = true;
-                list_ALLDepartment = list_ALLDepartment.Where(p => p.DID != item.DID).ToList();
-            }
-            //5.未拥有的群组
-            foreach (var item in list_ALLDepartment)
-            {
-                item.IsPass = true;
-                item.Text = "启用";
-            }
+            list_other= list_other.Distinct(new P_DepartmentEqualCompare()).ToList().ToList();
+            List < EasyUITreeGrid_Department > list_EasyUITreeGrid_Department = new List<EasyUITreeGrid_Department>();
 
-            list_departments.AddRange(list_department_isNotPass);
-            list_departments.AddRange(list_ALLDepartment);
-            List<Models.EasyUITreeGrid_Department> list_treegrid= Models.Department_ViewModel.ToEasyUITreeGrid(list_departments);
+            #region 6月20日 注释掉用上面的方法代替
+            ////3.将已有的部门从所有部门中剔除，已拥有的部门（未禁用）排在前面
+            //foreach (var item in list_departments)
+            //{
+            //    item.Checked = true;
+            //    item.selected = true;
+            //    item.IsPass = true;
+            //    item.Text = "启用";
+            //    list_ALLDepartment = list_ALLDepartment.Where(p => p.DID != item.DID).ToList();
+            //}
+            ////4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
+            //foreach (var item in list_department_isNotPass)
+            //{
+            //    item.Checked = true;
+            //    item.selected = true;
+            //    list_ALLDepartment = list_ALLDepartment.Where(p => p.DID != item.DID).ToList();
+            //}
+            ////5.未拥有的群组
+            //foreach (var item in list_ALLDepartment)
+            //{
+            //    item.IsPass = true;
+            //    item.Text = "启用";
+            //}
+
+            //list_departments.AddRange(list_department_isNotPass);
+            //list_departments.AddRange(list_ALLDepartment);
+            #endregion
+
+            List<Models.EasyUITreeGrid_Department> list_treegrid= Models.Department_ViewModel.ToEasyUITreeGrid(list_other,true);
             string temp = Common.SerializerHelper.SerializerToString(list_treegrid);
             temp = temp.Replace("Checked", "checked");
             return Content(temp);
@@ -538,12 +579,26 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             if(SMSMission != null)
             {
+                //6月20日对查询进行修改
             var list_R_Department_Mission = SMSMission.R_Department_Mission;
-            var list_department = (
-               from r in list_R_Department_Mission
-               where r.isPass == isPass
-               select r.P_DepartmentInfo
-                ).ToList();
+                var list_department = (
+                   from r in list_R_Department_Mission
+                   where r.isPass == isPass
+                   select r.P_DepartmentInfo
+                    ).Select(r => r = new P_DepartmentInfo
+                    {
+                        Area = r.Area,
+                        DepartmentName = r.DepartmentName,
+                        DID = r.DID,
+                        isDel = r.isDel,
+                        PDID = r.PDID,
+                        Remark = r.Remark,
+                        Text = r.Text,
+                        selected = isPass,
+                        Checked = isPass,
+                        IsPass = isPass
+                    }).ToList();
+
                 return list_department;
             }
             return null;
