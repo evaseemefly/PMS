@@ -2,7 +2,7 @@
 @{
     Layout = null;
     string backAction_jqSub = @ViewBag.backAction_jqSub;
-
+    
 }
 
 <!DOCTYPE html>
@@ -20,10 +20,11 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/MyScripts/Common/ValidateExtend.js"></script> 
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
-    <script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>
+    @*<script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>*@
     <script type="text/javascript">
         function DoSubmit() {
             var myform = $("#ff");
@@ -64,6 +65,15 @@
                  <tr>
                     <td style="color:#ffffff">任务名称:</td>
                     <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name required="true" missingMessage="任务名称必须填写"></input></td>
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td><input class="easyui-validatebox textbox" data-options="required:true,validType:'Mobile'"></td>
+                </tr>
+                <tr>
+                    <td>Chinese:</td>
+                    <td><input name="txtName" class="easyui-validatebox" data-options="required:'true',validType:'CHS'"></td>
+
                 </tr>
                 <tr>
                     <td style="color:#ffffff">备注:</td>

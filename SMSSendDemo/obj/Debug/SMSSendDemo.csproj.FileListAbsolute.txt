@@ -70,6 +70,7 @@ E:\03协同开发\短信\PMS\PMS\SMSSendDemo\bin\Debug\Newtonsoft.Json.xml
 E:\03协同开发\短信\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.exe
 E:\03协同开发\短信\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.pdb
+D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\SMSSendDemo.exe.config
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\SMSSendDemo.exe
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\SMSSendDemo.pdb
@@ -91,6 +92,5 @@ D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\EntityFramework.xml
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\System.Web.Mvc.xml
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\Newtonsoft.Json.pdb
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\bin\Debug\Newtonsoft.Json.xml
-D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.exe
 D:\VSWorkSpace\nmefc\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.pdb

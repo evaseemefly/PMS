@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Areas/Contacts/Views/Shared/_Layout_SMSMission.cshtml";
+}
+@section toobar_scripts{
+    <script type="text/javascript">
+        var toolbar = [{
+            iconCls: 'icon-add',
+            text: "新增",
+            handler: addSMSMissionRow@*addRow("@ViewBag.ShowAdd")*@
+        },
+           {
+               iconCls: 'icon-remove',
+               text: "删除",
+               handler: removeSMSMissionRow@*removeRow("@ViewBag.Del_url")*@
+           },
+           {
+               iconCls: 'icon-edit',
+               text: "编辑",
+               handler: editSMSMissionRow@*editRow("@ViewBag.ShowEdit")*@
+           }]
+
+        //var title = "";
+        function addSMSMissionRow() {
+            //从指定页面中预读取数据
+            $("#addGroupFrame").attr("src", '@ViewBag.ShowAdd');
+            //打开编辑窗体
+            // title = "新增任务";
+            $("#editSMSMissionWindow").window({ title: "新增任务" });
+            $("#editSMSMissionWindow").window('open');
+
+        }
+
+        function editSMSMissionRow() {
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //**注意先加载iframe窗体的数据，在打开该窗口
+            $("#addGroupFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].SMID);//会出现重定向的错误
+            //title = "编辑任务";
+            //更改窗口的Title
+            $("#editSMSMissionWindow").window({ title: "编辑任务" });
+            $("#editSMSMissionWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+
+        }
+
+
+        function removeSMSMissionRow() {
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].SMID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.Del_url?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#SMSMissiondatagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#SMSMissiondatagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+
+        }
+    </script>
+}
+@section loadDataGrid{
+    <script type="text/javascript">
+        function loadDataGrid(url, myColumns) {
+            //2 位datagrid加载数据
+            $("#SMSMissiondatagrid").datagrid({
+                width: '400px',
+                height: 'auto',
+
+                fitColumns: false,
+                striped: true,
+                showFooter: true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '加载中……',
+                columns: myColumns,
+                toolbar: toolbar
+
+            });
+        }
+    </script>
+
+}
+@section westdiv{
+    <div id="p" data-options="region:'west'" title="当前任务内群组列表" style="width:13%">
+        <table class="easyui-datagrid" id="SMSMissiondatagrid" style="height:100%;width:100%"></table>
+    </div>
+}
+@section showWindow{
+    <div class="easyui-window" title='title' id="editSMSMissionWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
+    <iframe id="addGroupFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+</div>
+
+    }
+
+
+    
+   
+
+
+

@@ -441,7 +441,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                     GroupName = item.GroupName,
                     Remark = item.Remark,
                     IsPass = true,
-                    Text = "启用"
+                    Text = "请选择"
                 };
                 list_EasyUIDatagrid_Group.Add(datagrid_Group);
             }

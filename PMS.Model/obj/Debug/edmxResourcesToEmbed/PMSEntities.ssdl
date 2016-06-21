@@ -44,6 +44,7 @@
     <Property Name="isDel" Type="bit" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="50" />
     <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="forbidDel" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="P_PersonInfo">
     <Key>

@@ -51,6 +51,7 @@ namespace SMSFactory
                 var _desc = Xml2StrHelper.xml2strList(returnMsg, "response/report/desc");
                 var _wgcode = Xml2StrHelper.xml2strList(returnMsg, "response/report/wgcode");
                 var _time = Xml2StrHelper.xml2strList(returnMsg, "response/report/time");
+                var _smsCount = Xml2StrHelper.xml2strList(returnMsg, "response/report/smsCount");
 
                 for (int i = 0; i < _status.Length; i++)
                 {
@@ -63,6 +64,7 @@ namespace SMSFactory
                         desc = _desc[i],
                         wgcode = _wgcode[i],
                         time = _time[i],
+                        smsCount = int.Parse(_smsCount[i])
                     };
                     list_r.Add(r);
 
@@ -103,7 +105,7 @@ namespace SMSFactory
                               + "<account>" + smsdata.account + "</account>"
                               + "<password>" + Encryption.MD5Encryption(smsdata.password) + "</password>"
                               + "<msgid>" + smsdata.smsId + "</msgid>"
-                              + "<phones>" + "" + "</phones>"
+                              + "<phone>" +""+ "</phone>"
                           + "</message>";
             return _data;
         }

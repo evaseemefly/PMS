@@ -443,10 +443,10 @@
         function loadDatagrid_Group(smid, myGroupColumns) {
             $("#group").datagrid({
                 url: '@ViewBag.GetGroup_datagrid?smid=' + smid,
-                panelWith: 400,
+                panelWidth: 400,
                 multiple: true,
                 method: 'get',
-                panelheight: 'auto',
+                panelHeight: 'auto',
                 loadMsg: '加载中……',
                 columns: myGroupColumns,
                 fitColumns: true,

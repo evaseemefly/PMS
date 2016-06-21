@@ -101,6 +101,6 @@ namespace PMS.IBLL
         /// 为用户分配权限
         /// </summary>
         /// <returns></returns>
-        bool SetUser4Action(int userID, List<int> list_actionIDs);
+        bool SetUser4Action(int userID, List<int> list_actionIDs, List<string> list_actionIsPass);
     }
 }

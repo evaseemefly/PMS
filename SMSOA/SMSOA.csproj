@@ -200,6 +200,9 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\EasyUIDataGrid_Action.cs" />
+    <Compile Include="Areas\Admin\Models\EasyUIDataGrid_Role.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModel_UserAction.cs" />
     <Compile Include="Areas\Contacts\ContactsAreaRegistration.cs" />
     <Compile Include="Areas\Contacts\Controllers\ContactPersonController.cs" />
     <Compile Include="Areas\Contacts\Controllers\DepartmentController.cs" />
@@ -345,6 +348,9 @@
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ShowEditInfo-7.cshtml" />
+    <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制%282%29.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index - 6月20日 复制.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -373,6 +379,7 @@
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
     <Content Include="Scripts\MyScripts\Common\Submit.js" />
+    <Content Include="Scripts\MyScripts\Common\ValidateExtend.js" />
     <Content Include="Scripts\MyScripts\EasyUI\SwitchBtn.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
     <Content Include="Scripts\respond.js" />
@@ -422,7 +429,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
