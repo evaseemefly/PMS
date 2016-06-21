@@ -62,3 +62,4 @@ E:\03协同开发\短信\PMS\PMS\PMS.Model\bin\Debug\EntityFramework.xml
 E:\03协同开发\短信\PMS\PMS\PMS.Model\bin\Debug\System.Web.Mvc.xml
 E:\03协同开发\短信\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 E:\03协同开发\短信\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+E:\03协同开发\短信\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
