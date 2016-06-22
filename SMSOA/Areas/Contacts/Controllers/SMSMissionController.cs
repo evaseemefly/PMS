@@ -256,6 +256,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         }
         ///<summary>
         ///通过短信任务得到联系人,并转换为Datagrid
+        ///
         ///</summary>
         ///<returns></returns>
         public ActionResult GetPersons2Datagrid()
@@ -301,6 +302,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                 //9 将现有集合中去掉isPass为false,isDel为true的
                 list_personFromGroup = list_personFromGroup.Where(a => !list_personFromDep_isNotPass.Contains(a)).ToList();
                 list_personFromGroup = list_personFromGroup.Where(a => a.isDel == false).ToList();
+            rowCount = list_personFromGroup.Count();
                 //10 分页
                 list_personFromGroup = list_personFromGroup.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(m=>m.ToMiddleModel()).ToList();
 
@@ -449,7 +451,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                     GroupName = item.GroupName,
                     Remark = item.Remark,
                     IsPass = true,
-                    Text = "启用"
+                    Text = "请选择"
                 };
                 list_EasyUIDatagrid_Group.Add(datagrid_Group);
             }
@@ -472,10 +474,10 @@ namespace SMSOA.Areas.Contacts.Controllers
             int smid = int.Parse(Request["smid"]);
             var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
 
-            //1.获取当前任务已有的部门(未禁用)
+            //1.获取当前任务已有的部门(启用)
             //bool isPass = true;
             var list_departments_isPass = GetDepartmemts(true, SMSMission);
-            //2.获取当前任务已有的部门(已禁用)
+            //2.获取当前任务已有的部门(禁用)
             var list_department_isNotPass = GetDepartmemts(false, SMSMission);
 
             //2.获取所有的部门
@@ -483,15 +485,42 @@ namespace SMSOA.Areas.Contacts.Controllers
             List<P_DepartmentInfo> list_other = new List<P_DepartmentInfo>();
             //if (list_departments_isPass.Count != 0)
             //{
-           
+
             //if (list_departments_isPass.Count != 0)
             //{
+            //3 6月22日第二版
+            //3.1 从全部部门中剔除启用的部门
+            list_ALLDepartment.Where(d=>list_department_isNotPass.Where(n=>n.DID==d.DID))
+            var list_temp = (from all in list_ALLDepartment
+                            from pass in list_departments_isPass
+                            where all.DID != pass.DID
+                            select all).ToList();
+            //3.2 继续从已经剔除启用的部门集合中继续剔除禁用的部门
+          var temp2=  from a in list_ALLDepartment
+            from b in list_department_isNotPass
+            where true
+            select a;
+
+            var temp3 = (from a in list_ALLDepartment
+                         join b in list_department_isNotPass
+                         on a.DID equals b.DID
+                         where list_department_isNotPass.Count!=0               
+                         select a).ToList();
+
+            var list_1 = (from other in list_temp
+                          from notPass in list_department_isNotPass
+                          where list_department_isNotPass.Count == 0 ? true : other.DID != notPass.DID
+                          select other).ToList();
+
+            list_temp.AddRange(list_departments_isPass);
+            list_temp.AddRange(list_department_isNotPass);
+
+
                 list_other.AddRange(
                     from ispass in list_departments_isPass
                     from all in list_ALLDepartment
-                                     
-                                     where all.DID != ispass.DID&&list_departments_isPass.Count!=0
-                                     select all);
+                    where all.DID != ispass.DID && list_departments_isPass.Count != 0
+                    select all);
         //list_other = (
         //from all in list_ALLDepartment
         //join ispass in list_departments_isPass on all.DID equals ispass.DID select all
@@ -515,6 +544,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             list_other.AddRange(list_departments_isPass);
             list_other.AddRange(list_department_isNotPass);
 
+            //6月22日注意此处不能去重，因为使用此方式去重只判断DID与DepartmentName是否不同， 若相同的话会去掉重复的对象，但此时可能第二个被去掉的对象selected、chekced等为true而第一个对象保留的为false
             list_other= list_other.Distinct(new P_DepartmentEqualCompare()).ToList().ToList();
             List < EasyUITreeGrid_Department > list_EasyUITreeGrid_Department = new List<EasyUITreeGrid_Department>();
 
@@ -594,8 +624,8 @@ namespace SMSOA.Areas.Contacts.Controllers
                         PDID = r.PDID,
                         Remark = r.Remark,
                         Text = r.Text,
-                        selected = isPass,
-                        Checked = isPass,
+                        selected = true,
+                        Checked = true,
                         IsPass = isPass
                     }).ToList();
 

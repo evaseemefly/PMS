@@ -334,8 +334,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //5 将发送的短信以及提交响应存入SMSContent
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
-            int scid;
-            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid, out scid);
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid);
             if (!isSaveMsgOk)
             {
                 return Content("服务器错误");
@@ -351,7 +350,13 @@ namespace SMSOA.Areas.SMS.Controllers
                     smsId = receive.msgid
                 };
                 List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
-                smsQuery.QueryMsg(queryMsg,out list_QueryReceive);
+                bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg,out list_QueryReceive);
+                if (!isGetReturnMsg)
+                {
+                    return Content("服务器错误");
+                }
+                //7 获取改次发送的SMSContent的ID
+                int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(receive.msgid)).FirstOrDefault().ID;
                 bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive,scid);
                 if (!isSaveCurrnetMsgOk)
                 {

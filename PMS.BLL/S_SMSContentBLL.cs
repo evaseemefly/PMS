@@ -18,7 +18,7 @@ namespace PMS.BLL
         /// <param name="smsContent"></param>
         /// <param name="mid"></param>
         /// <returns></returns>
-        public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid, out int scid)
+        public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid)
         {
             S_SMSContent s_smsContent = new S_SMSContent()
             {   UID = uid,
@@ -27,21 +27,19 @@ namespace PMS.BLL
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
                 BlackList = string.Join(",", receive.failPhones),
-                ResultCode = int.Parse(receive.result)//此处有错误
+                ResultCode = int.Parse(receive.result),//此处有错误
             };
-            this.CurrentDBSession.S_SMSContentDAL.Create(s_smsContent);
+
             //6月1日：此处有错，此时创建 短信内容对象，其中的id为默认值
-            scid = s_smsContent.ID;
             try
             {
-                
-                return this.CurrentDBSession.SaveChanges();
+                this.Create(s_smsContent);
+                return true;
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }
-
         }
 
         /// <summary>

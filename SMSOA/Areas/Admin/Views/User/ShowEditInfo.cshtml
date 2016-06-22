@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "ShowEditInfo_1";
+    Layout = null;
+    string backAction_jqSub = @ViewBag.backAction_jqSub;
     Layout = "~/Views/Shared/_Admin_AddUser_Layout.cshtml";
-    string backAction = ViewBag.backAction;
     int sort = (ViewBag.Sort == null ? 50 : ViewBag.Sort);
 }
 @section SectionJS{
     <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
+<script src="~/Scripts/MyScripts/Common/ValidateExtend.js"></script>
     <script type="text/javascript">
         function Save() {
             DoSubmit("ff", '@ViewBag.backAction');
@@ -31,7 +32,7 @@
     }
 
 <div >    
-        <form id="ff" class="easyui-form" method="post"  data-options="novalidate:true" style="margin:0px;">
+        <form id="ff" class="easyui-form" method="post" style="margin:0px;">
             <div style="height:30px;width:100%;background-color:#000000"></div>
             <input type="hidden" name="ID" value="@ViewBag.ID" />
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
@@ -39,11 +40,20 @@
                 <tr>
                     <td style="">用户名:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="UName" value="@ViewBag.UName"></input><br />
+                        <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="UName" value="@ViewBag.UName"></input><br />
                         请填写系统登录用户名
                     </td>    
                     @*<td style="">优先级:</td>*@                   
-                </tr>               
+                </tr>   
+                <tr>
+                    <td>Chinese:</td>
+                    <td><input name="txtName" class="easyui-validatebox" data-options="required:'true',validType:'CHS'"></td>
+
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td><input class="easyui-validatebox"data-options="required:'true'"></td>
+                </tr>            
                 <tr>
                     <td >密码:</td>
                     <td class="comment">
@@ -73,7 +83,7 @@
                         <input class="easyui-slider" name="Sort" style="width:80%" data-options=
                                "showTip:true,
                                rule: [0,'|',25,'|',50,'|',75,'|',100],
-                               value:'@sort'
+                               value:'@ViewBag.SMID'
                                "><br />
                         数字越小优先级越高
                     </td>

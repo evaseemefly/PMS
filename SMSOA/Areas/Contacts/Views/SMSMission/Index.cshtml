@@ -21,11 +21,13 @@
                handler: editSMSMissionRow@*editRow("@ViewBag.ShowEdit")*@
            }]
 
-
+        //var title = "";
         function addSMSMissionRow() {
             //从指定页面中预读取数据
             $("#addGroupFrame").attr("src", '@ViewBag.ShowAdd');
             //打开编辑窗体
+            // title = "新增任务";
+            $("#editSMSMissionWindow").window({ title: "新增任务" });
             $("#editSMSMissionWindow").window('open');
 
         }
@@ -44,6 +46,9 @@
             }
             //**注意先加载iframe窗体的数据，在打开该窗口
             $("#addGroupFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].SMID);//会出现重定向的错误
+            //title = "编辑任务";
+            //更改窗口的Title
+            $("#editSMSMissionWindow").window({ title: "编辑任务" });
             $("#editSMSMissionWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -117,7 +122,7 @@
     </div>
 }
 @section showWindow{
-    <div class="easyui-window" title="群组" id="editSMSMissionWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" title='title' id="editSMSMissionWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
     <iframe id="addGroupFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
 </div>
 

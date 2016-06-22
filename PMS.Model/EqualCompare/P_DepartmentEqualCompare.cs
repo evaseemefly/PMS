@@ -10,12 +10,24 @@ namespace PMS.Model.EqualCompare
     {
         public bool Equals(P_DepartmentInfo x, P_DepartmentInfo y)
         {
-            return x.DID.Equals(y.DID);
+            if (x.DID == y.DID && x.DepartmentName == y.DepartmentName)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           // return x.DID.Equals(y.DID);
         }
 
         public int GetHashCode(P_DepartmentInfo obj)
         {
-            return obj.GetHashCode();
+            if (obj == null)
+                return 0;
+            else
+                return obj.DID.ToString().GetHashCode();
+           // return 0;
         }
     }
 }

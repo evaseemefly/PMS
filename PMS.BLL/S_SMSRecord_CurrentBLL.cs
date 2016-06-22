@@ -23,8 +23,10 @@ namespace PMS.BLL
             {
                 //1.取得长短信条数
                 //6月1日此处为空
-                var smsContent = this.CurrentDBSession.S_SMSContentDAL.GetListBy(r => r.ID == scid).FirstOrDefault();
-                smsContent.smsCount = list_QueryReceive.FirstOrDefault().smsCount;
+                var s_smsContent = this.CurrentDBSession.S_SMSContentDAL.GetListBy(r => r.ID == scid).FirstOrDefault();
+                //将长短信条数存入S_SMSContent
+                s_smsContent.smsCount = list_QueryReceive.FirstOrDefault().smsCount;
+
                 //2. 遍历查询返回的集合
                 foreach (var item in list_QueryReceive)
                 {
