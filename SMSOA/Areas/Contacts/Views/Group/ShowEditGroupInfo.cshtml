@@ -42,7 +42,7 @@
 }
 <body  style="margin:0px;">
     <div>
-        <form id="ff" class="easyui-form" style="" method="post" data-options="novalidate:true">
+        <form id="ff" class="easyui-form" style="" method="post">
             <div style="height:30px;width:100%;background-color:#000000"></div>
             <input type="hidden" name="GID" value="@ViewBag.GID" />
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
@@ -50,7 +50,7 @@
                 <tr>
                     <td>群组名称:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="text" name="GroupName" value="@ViewBag.GroupName" data-options="required:true"></input><br />请填写群组名称
+                        <input class="easyui-validatebox" type="text" name="GroupName" value="@ViewBag.GroupName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />请填写群组名称
                     </td>
                 </tr>
                 <tr>

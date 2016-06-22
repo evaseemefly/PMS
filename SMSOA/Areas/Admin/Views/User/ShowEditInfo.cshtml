@@ -7,7 +7,7 @@
 }
 @section SectionJS{
     <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
-<script src="~/Scripts/MyScripts/Common/ValidateExtend.js"></script>
+    
     <script type="text/javascript">
         function Save() {
             DoSubmit("ff", '@ViewBag.backAction');
@@ -40,31 +40,22 @@
                 <tr>
                     <td style="">用户名:</td>
                     <td class="comment">
-                        <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="UName" value="@ViewBag.UName"></input><br />
+                        <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="UName" value="@ViewBag.UName" data-options="required:true,validType:['String','length[1,50]']"></input><br />
                         请填写系统登录用户名
                     </td>    
                     @*<td style="">优先级:</td>*@                   
-                </tr>   
-                <tr>
-                    <td>Chinese:</td>
-                    <td><input name="txtName" class="easyui-validatebox" data-options="required:'true',validType:'CHS'"></td>
-
-                </tr>
-                <tr>
-                    <td>Mobile:</td>
-                    <td><input class="easyui-validatebox"data-options="required:'true'"></td>
-                </tr>            
+                </tr>      
                 <tr>
                     <td >密码:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" style="width:80%;height:25px" type="password" name="UPwd" @*value="@ViewBag.UPwd"*@></input><br />
+                        <input class="easyui-validatebox" style="width:80%;height:25px" type="password" name="UPwd" @*value="@ViewBag.UPwd"*@ data-options="required:true,validType:['String','length[1,32]']"></input><br />
                         请输入登录密码
                     </td>
                 </tr>
                 <tr>
                     <td >请再次输入密码:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="password" style="width:80%;height:25px" name="PhoneNum_again" @*value="@ViewBag.UPwd"*@></input><br />
+                        <input class="easyui-validatebox" type="password" style="width:80%;height:25px" name="RUPwd" @*value="@ViewBag.UPwd"*@ required="required" validType="Equals['#UPwd']" ></input><br />
                         输入相同密码
                     </td>
                 </tr>
@@ -93,7 +84,7 @@
                 <div style="text-align:center;padding:5px">
                     @*<input type="submit" value="提交" />*@
                     <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">清空</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
                 </div>
             </div>
         </form>

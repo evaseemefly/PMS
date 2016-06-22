@@ -33,7 +33,7 @@
 }
 
 <div>
-    <form id="ff" class="easyui-form" method="post" data-options="novalidate:true" style="margin:0px;">
+    <form id="ff" class="easyui-form" method="post" style="margin:0px;">
         <div style="height:30px;width:100%;background-color:#000000"></div>
         <input type="hidden" name="ID" value="@ViewBag.ID" />
         <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td class="comment">
-                    <input class="easyui-textbox" type="text" style="width:60%;height:25px" name="RoleName" value="@ViewBag.RoleName"></input><br />
+                    <input class="easyui-validatebox" type="text" style="width:60%;height:25px" name="RoleName" value="@ViewBag.RoleName" data-options="required:true,validType:['CHS','lenght[1,50]']"></input><br />
                     请填写角色名称
                 </td>
             </tr>
