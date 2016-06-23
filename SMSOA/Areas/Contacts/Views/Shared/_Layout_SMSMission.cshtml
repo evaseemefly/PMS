@@ -21,7 +21,7 @@
         <script type="text/javascript">
             var myColumns = [[
 { field: 'SMID', title: 'ID', width: 100, hidden: true },
-{ field: 'SMSMissionName', title: '短信任务名称', width: 170 }
+{ field: 'SMSMissionName', title: '短信任务名称', width: "100%" }
             ]]
         </script>        
         }
@@ -50,9 +50,9 @@
             var DepartmentColumns = [[
                 { field: 'DID', checkbox: true },
 
-                { field: 'DepartmentName', title: '部门名称', width: 250 },
+                { field: 'DepartmentName', title: '部门名称', width: "70%" },
                 {
-                    field: 'IsPass', title: '是否禁用', width: 150,
+                    field: 'IsPass', title: '是否禁用', width: "15%",
                     formatter: function (value, row) {
                         if (value == false && row.Text == null) {
                             return "请选择";
@@ -79,10 +79,10 @@
             //群组
             var GroupColumns = [[
              { field: 'ck', checkbox: true },
-             { field: 'GroupName', title: '群组名称', width: 100 },
-             { field: 'Remark', title: '备注', width: 100 },
+             { field: 'GroupName', title: '群组名称', width: "30%" },
+             { field: 'Remark', title: '备注', width: "45%" },
              {
-                 field: 'IsPass', title: '是否禁用', width: 200,
+                 field: 'IsPass', title: '是否禁用', width: "15%",
                  //formatter: function (value) {
                  //    for (var i = 0; i < IsPass.length; i++) {
                  //        if (IsPass[i].value == value) return IsPass[i].name;
@@ -319,7 +319,7 @@
             }
             function loadTreegrid_Department(smid, myDepartmentColumns) {
                 $('#department').treegrid({
-                    rownumbers: true,
+                    rownumbers: true,                    
                     idField: 'DID',
                     treeField: 'DepartmentName',
                     animate: true,
@@ -378,18 +378,7 @@
                     })
                 }
             }
-            //var editingId;
-            //function edit() {
-            //    if (editingId != undefined) {
-            //        $('#department').treegrid('select', editingId);
-            //        return;
-            //    }
-            //    var row = $('#department').treegrid('getSelected');
-            //    if (row) {
-            //        editingId = row.DID
-            //        $('#department').treegrid('beginEdit', editingId);
-            //    }
-            //}
+
             //-------------------6 页面加载首先运行-----------------
             //根据smid加载对应的群组并添加至combogrid中
             function loadDatagrid_Group(smid, myGroupColumns) {
@@ -401,6 +390,7 @@
                     panelHeight: 'auto',
                     loadMsg: '加载中……',
                     columns: myGroupColumns,
+                    nowrap:false,
                     fitColumns: true,
                     onBeforeEdit: function (index, row) {
                         row.editing = true;

@@ -85,7 +85,7 @@
 
 <body style="margin:0px;">
     <div>
-        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true" style="margin:0px;">
+        <form id="ff" class="easyui-form" method="post" style="margin:0px;">
             <div style="height:30px;width:100%;background-color:#000000"></div>
             <input type="hidden" name="DID" value="@ViewBag.DID" />
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
@@ -101,7 +101,7 @@
                 <tr>
                     <td>部门名称:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="text" name="DepartmentName" value="@ViewBag.Name" @*data-options="required:true"*@></input>
+                        <input class="easyui-validatebox" type="text" name="DepartmentName" value="@ViewBag.Name" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,50]']"></input>
                         请输入登录密码
                     </td>
                 </tr>
@@ -115,7 +115,7 @@
                 <tr>
                     <td>备注:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:50px;width:80%;" value="@ViewBag.Remark"><br />
+                        <input class="easyui-textbox" type="text" name="Remark" data-options="multiline:true" style="height:50px;width:80%;" value="@ViewBag.Remark"><br />
                         可选
                     </td>
                 </tr>

@@ -467,6 +467,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///<summary>
         ///得到选中任务所包含的群组,并转换为Combogrid
         /// 6月20日 此处有错误
+        /// 6月23日 修改完成
         ///</summary>
         ///<returns></returns>
         public ActionResult GetDepartment2Treegrid()
@@ -481,72 +482,111 @@ namespace SMSOA.Areas.Contacts.Controllers
             var list_department_isNotPass = GetDepartmemts(false, SMSMission);
 
             //2.获取所有的部门
-            var list_ALLDepartment = departmentBLL.GetListBy(p => p.isDel == false).ToList();
+            var list_ALLDepartment = departmentBLL.GetListBy(p => p.isDel == false).ToList();           
+
+            //3 6月22日第二版            
+            List<P_DepartmentInfo> list_isPass = new List<P_DepartmentInfo>();
+            List<P_DepartmentInfo> list_notPass = new List<P_DepartmentInfo>();
+            //3.1 从全部部门中查询已经启用的部门，并保存该集合
+            if (list_departments_isPass.Count != 0)
+            {
+                list_isPass = (from all in list_ALLDepartment
+                               join pass in list_departments_isPass
+                               on all.DID equals pass.DID
+                               select all
+                             ).ToList();
+            }
+            else if (list_departments_isPass.Count == 0)
+            {
+                list_isPass = new List<P_DepartmentInfo>();
+            }
+            //3.2 从全部部门中查询禁用的部门，并保存该集合
+            list_notPass = (from all in list_ALLDepartment
+                            join not in list_department_isNotPass
+                            on all.DID equals not.DID
+                            select all
+                          ).ToList();
+
+            //3.3 从全部部门集合中去除掉 刚才查询到的 禁用 和 启用 的部门集合
+            //此时全部部门集合中只保留 除去 禁用 和 启用 的部门外的集合
+            list_ALLDepartment.RemoveAll(p => list_isPass.Contains(p));
+            list_ALLDepartment.RemoveAll(p => list_notPass.Contains(p));
+
+            #region 6月23日 不使用以下这种方式
+            //list_ALLDepartment.RemoveAll(p => list_isPass.Contains(p));
+            //从全部部门中找到不通过的集合
+            //list_notPass = (from all in list_ALLDepartment
+            //                from notPass in list_department_isNotPass
+            //                where list_department_isNotPass.Count == 0 ? true : all.DID != notPass.DID
+            //                select all).ToList();
+            ////并从全部部门集合中去掉
+            //list_ALLDepartment.RemoveAll(p => list_notPass.Contains(p));
+            #endregion
+
+            /*4 创建最终返回的部门集合
+             （此集合中包含 
+                            启用的部门集合（含selected、checked等标记）
+                            禁用的部门集合（。。。）
+                            以及 去除以上两个集合后的部门集合
+            */
             List<P_DepartmentInfo> list_other = new List<P_DepartmentInfo>();
-            //if (list_departments_isPass.Count != 0)
-            //{
+            list_other.AddRange(list_departments_isPass);
+            list_other.AddRange(list_department_isNotPass);
+            list_other.AddRange(list_ALLDepartment);
+            #region 6月23日  查询暂时注释掉的部分
+            //var list_isOwned = (from all in list_ALLDepartment
+            //                 join pass in list_departments_isPass 
+            //                 on all.DID equals pass.DID
+            //                where all.DID != pass.DID
+            //                select all).ToList();
 
-            //if (list_departments_isPass.Count != 0)
-            //{
-            //3 6月22日第二版
-            //3.1 从全部部门中剔除启用的部门
-            //list_ALLDepartment.Where(d=>list_department_isNotPass.Where(n=>n.DID==d.DID))
-            var list_temp = (from all in list_ALLDepartment
-                            from pass in list_departments_isPass
-                            where all.DID != pass.DID
-                            select all).ToList();
             //3.2 继续从已经剔除启用的部门集合中继续剔除禁用的部门
-          var temp2=  from a in list_ALLDepartment
-            from b in list_department_isNotPass
-            where true
-            select a;
+            //var temp2=  from a in list_ALLDepartment
+            //  from b in list_department_isNotPass
+            //  where true
+            //  select a;
 
-            var temp3 = (from a in list_ALLDepartment
-                         join b in list_department_isNotPass
-                         on a.DID equals b.DID
-                         where list_department_isNotPass.Count!=0               
-                         select a).ToList();
-
-            var list_1 = (from other in list_temp
-                          from notPass in list_department_isNotPass
-                          where list_department_isNotPass.Count == 0 ? true : other.DID != notPass.DID
-                          select other).ToList();
-
-            list_temp.AddRange(list_departments_isPass);
-            list_temp.AddRange(list_department_isNotPass);
+            //var temp3 = (from a in list_ALLDepartment
+            //             join b in list_department_isNotPass
+            //             on a.DID equals b.DID
+            //             where list_department_isNotPass.Count!=0               
+            //             select a).ToList();
 
 
-                list_other.AddRange(
-                    from ispass in list_departments_isPass
-                    from all in list_ALLDepartment
-                    where all.DID != ispass.DID && list_departments_isPass.Count != 0
-                    select all);
-        //list_other = (
-        //from all in list_ALLDepartment
-        //join ispass in list_departments_isPass on all.DID equals ispass.DID select all
+
+            //list_temp.AddRange(list_departments_isPass);
+            //list_temp.AddRange(list_department_isNotPass);
+
+
+            //list_other.AddRange(
+            //    from ispass in list_departments_isPass
+            //    from all in list_ALLDepartment
+            //    where all.DID != ispass.DID && list_departments_isPass.Count != 0
+            //    select all);
+            //list_other = (
+            //from all in list_ALLDepartment
+            //join ispass in list_departments_isPass on all.DID equals ispass.DID select all
             //}
-            if (list_department_isNotPass.Count != 0)
-            {
-                list_other.AddRange(from ispass in list_department_isNotPass
-                                    from all in list_ALLDepartment
-                                    where ispass.DID != all.DID
-                                    select all);
-            }
-            else
-            {
-                list_other.AddRange(list_ALLDepartment);
-            }
+            //if (list_department_isNotPass.Count != 0)
+            //{
+            //    list_other.AddRange(from ispass in list_department_isNotPass
+            //                        from all in list_ALLDepartment
+            //                        where ispass.DID != all.DID
+            //                        select all);
+            //}
+            //else
+            //{
+            //    list_other.AddRange(list_ALLDepartment);
+            //}
             //}
             //else
             //{
             //    list_other = list_ALLDepartment;
             //}
-            list_other.AddRange(list_departments_isPass);
-            list_other.AddRange(list_department_isNotPass);
+            #endregion
 
             //6月22日注意此处不能去重，因为使用此方式去重只判断DID与DepartmentName是否不同， 若相同的话会去掉重复的对象，但此时可能第二个被去掉的对象selected、chekced等为true而第一个对象保留的为false
-            list_other= list_other.Distinct(new P_DepartmentEqualCompare()).ToList().ToList();
-            List < EasyUITreeGrid_Department > list_EasyUITreeGrid_Department = new List<EasyUITreeGrid_Department>();
+            List< EasyUITreeGrid_Department > list_EasyUITreeGrid_Department = new List<EasyUITreeGrid_Department>();
 
             #region 6月20日 注释掉用上面的方法代替
             ////3.将已有的部门从所有部门中剔除，已拥有的部门（未禁用）排在前面
@@ -576,6 +616,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //list_departments.AddRange(list_ALLDepartment);
             #endregion
 
+            //5 将最终的集合转换成要返回的TreeGrid集合
             List<Models.EasyUITreeGrid_Department> list_treegrid= Models.Department_ViewModel.ToEasyUITreeGrid(list_other,true);
             string temp = Common.SerializerHelper.SerializerToString(list_treegrid);
             temp = temp.Replace("Checked", "checked");

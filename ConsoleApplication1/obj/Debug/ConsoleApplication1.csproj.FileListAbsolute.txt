@@ -1,0 +1,9 @@
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\bin\Debug\ServiceStack.dll
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\bin\Debug\ServiceStack.Interfaces.dll
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\bin\Debug\ServiceStack.ServiceInterface.dll
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\01编程\02协作开发\SMSOA\PMS\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

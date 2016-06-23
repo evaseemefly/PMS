@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ServiceStack.Redis;
 
 namespace SMSSendDemo
 {
@@ -12,8 +13,14 @@ namespace SMSSendDemo
         static void Main(string[] args)
         {
             Console.WriteLine("初始化队列");
-            StartConstumer();
-            StartProducer();
+
+            var client = new RedisClient("192.168.31.202");
+            client.Set<string>("user", "登录用户名");
+           var pwd= client.Get<string>("user");
+            Console.WriteLine(pwd);
+
+            //StartConstumer();
+            //StartProducer();
             Console.ReadLine();
         }
 

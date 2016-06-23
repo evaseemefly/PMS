@@ -372,7 +372,9 @@
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />
-    <None Include="Properties\PublishProfiles\nmefcSMSConfig.pubxml" />
+    <None Include="Properties\PublishProfiles\nmefcSMSConfig.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\nmefcSMSTestConfig.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
@@ -388,7 +390,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\MyCSS\MyEasyUIValidate.js" />
     <Content Include="Scripts\MyCSS\MyEditWin.css" />
     <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
