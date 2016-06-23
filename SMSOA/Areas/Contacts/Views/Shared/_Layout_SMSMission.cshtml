@@ -50,9 +50,9 @@
             var DepartmentColumns = [[
                 { field: 'DID', checkbox: true },
 
-                { field: 'DepartmentName', title: '部门名称', width: 250 },
+                { field: 'DepartmentName', title: '部门名称', width: "70%" },
                 {
-                    field: 'IsPass', title: '是否禁用', width: 150,
+                    field: 'IsPass', title: '是否禁用', width: "15%",
                     formatter: function (value, row) {
                         if (value == false && row.Text == null) {
                             return "请选择";
@@ -79,10 +79,10 @@
             //群组
             var GroupColumns = [[
              { field: 'ck', checkbox: true },
-             { field: 'GroupName', title: '群组名称', width: 100 },
-             { field: 'Remark', title: '备注', width: 100 },
+             { field: 'GroupName', title: '群组名称', width: "30%" },
+             { field: 'Remark', title: '备注', width: "45%" },
              {
-                 field: 'IsPass', title: '是否禁用', width: 200,
+                 field: 'IsPass', title: '是否禁用', width: "15%",
                  //formatter: function (value) {
                  //    for (var i = 0; i < IsPass.length; i++) {
                  //        if (IsPass[i].value == value) return IsPass[i].name;
@@ -319,7 +319,7 @@
             }
             function loadTreegrid_Department(smid, myDepartmentColumns) {
                 $('#department').treegrid({
-                    rownumbers: true,
+                    rownumbers: true,                    
                     idField: 'DID',
                     treeField: 'DepartmentName',
                     animate: true,
@@ -401,6 +401,7 @@
                     panelHeight: 'auto',
                     loadMsg: '加载中……',
                     columns: myGroupColumns,
+                    nowrap:false,
                     fitColumns: true,
                     onBeforeEdit: function (index, row) {
                         row.editing = true;
