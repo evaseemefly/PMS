@@ -62,7 +62,7 @@
 }
 
 <div>
-    <form id="ff" class="easyui-form" method="post" data-options="novalidate:true" style="margin:0px;">
+    <form id="ff" class="easyui-form" method="post" style="margin:0px;">
         <div style="height:30px;width:100%;background-color:#000000"></div>
         <input type="hidden" name="ID" value="@ViewBag.ID" />
         <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
@@ -71,36 +71,36 @@
             <tr>
                 <td style="">权限名称:</td>
                 <td class="comment">
-                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ActionInfoName" value="@ViewBag.ActionInfoName"></input><br />
+                    <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="ActionInfoName" value="@ViewBag.ActionInfoName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />
                     请填写权限名称
                 </td>
                 <td style="">上级菜单:</td>
                 <td class="comment">
-                    <select id="combo_parent" name="ParentID" class="easyui-combobox" style="width:80%;height:25px;" /><br />
+                    <select id="combo_parent" name="ParentID" class="easyui-combobox" style="width:80%;height:25px;" required="required"/><br />
                     选择该权限所属的上级菜单
                 </td>
             </tr>
             <tr>
                 <td style="">区域名称:</td>
                 <td class="comment">
-                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="AreaName" value="@ViewBag.AreaName"></input><br />
+                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="AreaName" value="@ViewBag.AreaName" required="required"></input><br />
                     请填写区域名称
                 </td>
                 <td style="">控制器名称:</td>
                 <td class="comment">
-                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ControllerName" value="@ViewBag.ControllerName"></input><br />
+                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ControllerName" value="@ViewBag.ControllerName" required="required"></input><br />
                     请填写控制器名称
                 </td>
             </tr>
             <tr>
                 <td style="">方法（权限）名称:</td>
                 <td class="comment">
-                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ActionMethodName" value="@ViewBag.ActionMethodName"></input><br />
+                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ActionMethodName" value="@ViewBag.ActionMethodName" required="required"></input><br />
                     请填写控制器中方法名称
                 </td>
                 <td style="">请求类型:</td>
                 <td class="comment">
-                    <select id="combo_actionType" class="easyui-combobox" name="ActionTypeEnum" style="width:80%;height:25px; "data-options="panelHeight: 'auto'">
+                    <select id="combo_actionType" class="easyui-combobox" name="ActionTypeEnum" style="width:80%;height:25px; "data-options="panelHeight: 'auto'" required="required">
                         <option value="1">Get</option>
                         <option value="2">Post</option>
                         <option value="3">Both</option>

@@ -19,10 +19,11 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/MyScripts/Common/ValidateExtend.js"></script> 
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
-    <script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>
+    @*<script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>*@
     <script type="text/javascript">
         function DoSubmit() {
             var myform = $("#ff");
@@ -93,16 +94,16 @@
 <body>
     @*<div class="easyui-panel" title="New Topic" style="width:400px">*@
     <div style="padding:10px 60px 20px 60px">
-        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+        <form id="ff" class="easyui-form" method="post">
             <input type="hidden" id="UID" name="UID" value="@ViewBag.LoginUserID" />
             @*换一种显示方式*@
             <div style="margin-bottom:20px">
                 <div style="color:#ffffff">模板名称:</div>
-                <input class="easyui-textbox"name="MsgName"value="@ViewBag.MsgName" data-options="prompt:'输入名称'@*,validType:'email'*@" style="width:100%;">
+                <input class="easyui-validatebox" type="text" name="MsgName"value="@ViewBag.MsgName" data-options="prompt:'输入名称',required:'true',validType:['String','length[1,50]']" style="width:100%;">
             </div>
             <div style="margin-bottom:20px">
                 <div style="color:#ffffff">所属任务:</div>
-                <select class="easyui-combogrid" name="SMID"value="@ViewBag.SMID" id="smsMission_combogrid"></select>
+                <select class="easyui-combogrid" name="SMID"value="@ViewBag.SMID" id="smsMission_combogrid" required="required"></select>
             </div>
             <div style="margin-bottom:20px">
                 <div style="color:#ffffff">模板内容:</div>

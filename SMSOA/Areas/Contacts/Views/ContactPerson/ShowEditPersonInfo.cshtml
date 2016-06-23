@@ -171,7 +171,7 @@
 
 <body style="margin:0px;">
     <div>
-        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true" style="margin:0px;">
+        <form id="ff" class="easyui-form" method="post" style="margin:0px;">
             <div style="height:30px;width:100%;background-color:#000000"></div>
            
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
@@ -180,14 +180,14 @@
                 <tr>
                     <td>姓名:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="text" name="PName" value="@ViewBag.PName" @*data-options="required:true"*@></input><br />
+                        <input class="easyui-textbox" type="text" name="PName" value="@ViewBag.PName" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,5]']"></input><br />
                         请输入联系人姓名
                     </td>
                 </tr>
                 <tr>
                     <td>电话:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="text" name="PhoneNum" value="@ViewBag.PhoneNum" @*data-options="required:true"*@></input><br />
+                        <input class="easyui-textbox" type="text" name="PhoneNum" value="@ViewBag.PhoneNum" @*data-options="required:true"*@ data-options="required:true, validType:'Mobile'"></input><br />
                         输入手机号码（不要输入固定电话）
                     </td>
                 </tr>

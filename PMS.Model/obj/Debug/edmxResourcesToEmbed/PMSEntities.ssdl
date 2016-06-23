@@ -51,7 +51,7 @@
       <PropertyRef Name="PID" />
     </Key>
     <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PName" Type="nvarchar" MaxLength="5" Nullable="false" />
     <Property Name="PhoneNum" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="50" />
     <Property Name="isVIP" Type="bit" Nullable="false" />

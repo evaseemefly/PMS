@@ -443,6 +443,8 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool SetUser4Action(int userID, List<int> list_actionIDs, List<string> list_actionIsPass)
         {
+
+
             List<bool> list_isPass = new List<bool>();
             if (list_actionIDs != null)
             {
@@ -470,6 +472,8 @@ namespace PMS.BLL
             int times = 0;
             foreach (var aid in list_actionIDs)
             {
+                //如果
+              
                 var r_user_action = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID && r.ActionInfoID == aid).FirstOrDefault();
                 //根据ActionID与UserID从R表中找到唯一的记录
                 if(r_user_action != null)
@@ -490,7 +494,7 @@ namespace PMS.BLL
                 times++;
             }
             var list_del_User_action = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID &&!list_actionIDs.Contains(r.ActionInfoID));
- 
+            
             foreach (var item in list_del_User_action)
             {
                 this.CurrentDBSession.R_UserInfo_ActionInfoDAL.Del(item);
