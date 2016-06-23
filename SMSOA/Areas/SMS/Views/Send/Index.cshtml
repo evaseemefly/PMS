@@ -1,31 +1,10 @@
 ﻿
 @{
-    Layout = null;
-    if(ViewBag.LoginUserID!=-999)
-    {
-
-    }
+    ViewBag.Title = "View";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_Send.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
-    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
-
-    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
-
-
-    @Scripts.Render("~/mvcAjax")
-
-    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
-    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
-    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
-    @*自己写的图标样式*@
-    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+@section Scripts{
     <script type="text/javascript">
         var missionColumns = [[
                  { field: 'SMID', title: 'ID', width: 100, checkbox: true },
@@ -66,6 +45,8 @@
         function loadComboTree_Department(missionId) {
             //2.2 加载上级部门下拉框
             $("#DepartmentName_combotree").combotree({
+                panelWidth: 250,
+                panelHeight: 250,
                 url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
                 //required: true,
                 method: 'get',
@@ -127,6 +108,8 @@
                 fit: true,
                 url: url,
                 showHeader: true,
+              // pagination:true,//在数据表格控件底部显示分页工具栏
+                rownumbers: true, //是否加行号 
                 loadMsg: '加载中……',
                 columns: PersonColumns,
                 onLoadSuccess: function () {
@@ -136,6 +119,11 @@
                         $("#persondatagrid").datagrid("selectRow", rowIndex);
                     });
                 }
+            });
+
+            var p=$("#persondatagrid").datagrid('getPager');
+            p.pagination({
+                displayMsg: '共{total}条数据'
             });
         }
 
@@ -183,7 +171,7 @@
                 textField: 'GroupName',
                 //width:120,
                 panelWidth: 180,
-                panelHeight: 'auto',
+                panelHeight: 300,
                 multiple: true,
                 columns: groupColumns,
                 //onClickRow: function (rowIndex, rowData) {
@@ -256,6 +244,9 @@
             //2 刷新当前页面
             //$("#contactstreegrid").treegrid('reload');
             //loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+            //6月17日添加
+            //注意需要重新加载短信任务下拉框（不必加载群组及部门下拉框——因为这两个下拉框是在点击短信任务后才会加载）
+            loadCombogrid_byUser();
         }
 
         function DoSend() {
@@ -323,7 +314,7 @@
         function loadtextbox_Template(smid,userid){
             $.ajax({
                 url:"@ViewBag.GetTemplateByUidAndMission"+"?userId="+userid+"&smId="+smid ,
-                
+
                 contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
                 async: false,
                 type: 'POST',
@@ -403,74 +394,11 @@
                 HiddenOftenCombo();
             });
         })
-    </script>
-</head>
-<body>
-    <div class="easyui-layout"  style="width:900px;height:600px;"@*dataoptions="fit:true"*@>
-        @*<div data-options="region:'north'" style="height:20px"></div>
-        <div data-options="region:'south',split:true" style="height:20px;"></div>*@
-        <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@style="width:230px;">
-                <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
-        </div>
-        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok',@*fit:true*@">
-            <div class="easyui-panel" title="短信发送" style="" @*dataoptions="fit:true"*@>
-                <div style="padding:10px 30px 20px 30px">
-                    <form id="ff" method="post">
-                        <table cellspacing="10" style="font-size:15px;">
-                            <tr>
-                                <td>短信任务:</td>
-                                <td >
-                                    <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select>
-                                </td> 
-                                <td>
-                                    <input type="checkbox" name="qx" id="isShowOftenMission" value="1" />设置常用任务
-                                </td> 
-                                <td >
-                                    <select class="easyui-combogrid" name="OftensmsMission" id="OftensmsMission_combogrid" style="width:150px"></select>
-                                </td>                               
-                            </tr>
-                            <tr>
-                                <td>修改群组:</td>
-                                <td >
-                                    <select class="easyui-combogrid" id="group_combogrid"multiple name="group" style="width:150px"></select>
-                                    @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>修改部门:</td>
-                                <td >
-                                    <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:150px"multiple data-options=""></select>
-                                    @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>设置常用任务及群组:</td>
-                                <td>
-                                    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'"onclick="showEditWindow()">添加设置</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>短信内容:</td>
-                                <td colspan="3"><input class="easyui-textbox" name="message"id="message" data-options="multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px" ></td>
-                            </tr>
-                        </table>
-                    </form>
-                    <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
-                        <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'"  onclick="DoSend()" style="width:80px">发送短信</a>
-                        <a class="easyui-linkbutton c2" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="ClearContent()" style="width:80px">清除</a>
-                        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
-                    </div>
-                    @*<div style="text-align:center;padding:5px">
-                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
-                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
-                    </div>*@
-                </div>
+</script>
+    }
 
-            </div>
-        </div>
-    </div>
-    <div class="easyui-window" title="联系人" id="editWindow" style="width:460px;height:320px;overflow: hidden" data-options="shadow:true,modal:true">
-        <iframe id="SetFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
-    </div>
-</body>
-</html>
+@section Body{
+@Html.Partial("_Partial_Send_Body")
+@Html.Partial("_Partial_Send_EditWin")
+    }
+

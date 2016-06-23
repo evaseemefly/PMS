@@ -43,7 +43,8 @@ namespace PMS.DALFactory
                 return index >= 0; 
             }
             //此处抛出异常使用DB.Save时的异常类
-            catch (DbEntityValidationException dbEx)
+            //DbEntityValidationException
+            catch (Exception dbEx)
             {
 
                 return false;

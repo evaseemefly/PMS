@@ -63,3 +63,4 @@ D:\VSWorkSpace\nmefc\PMS\PMS.Model\bin\Debug\EntityFramework.xml
 D:\VSWorkSpace\nmefc\PMS\PMS.Model\bin\Debug\System.Web.Mvc.xml
 D:\VSWorkSpace\nmefc\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache

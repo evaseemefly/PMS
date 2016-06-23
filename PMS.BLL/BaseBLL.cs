@@ -62,13 +62,13 @@ namespace PMS.BLL
         /// 1- 新增实体
         /// </summary>
         /// <param name="model"></param>
-        public void Create(T model)
+        public bool Create(T model)
         {
             //1.1 执行添加操作只是将要修改的对象标记为添加标记
             //UserInfoDAL.Create(model);
             CurrentDAL.Create(model);
             //1.2 执行保存操作
-            CurrentDBSession.SaveChanges();
+           return CurrentDBSession.SaveChanges();
             
         }
         #endregion

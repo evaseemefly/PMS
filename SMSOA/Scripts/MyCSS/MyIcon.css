@@ -16,12 +16,21 @@
 .icon-del_person{
 	background:url('/Images/Icon/Contact/del_person.png') no-repeat center center;
 }
+.icon-edit_person{
+	background:url('/Images/Icon/Contact/edit_person.png') no-repeat center center;
+}
 .icon-menu_person{
 	background:url('/Images/Icon/menu/person_normal.png') no-repeat center center;
 }
 .icon-menu_department{
-	background:url('/Images/Icon/menu/department_normal.png') no-repeat center center;
+	background:url('/Images/Icon/menu/department_small.png') no-repeat center center;
 }
 .icon-menu_group{
-	background:url('/Images/Icon/menu/group_normal.png') no-repeat center center;
+	background:url('/Images/Icon/menu/group_small.png') no-repeat center center;
+}
+.icon-contacts_setdepartment{
+	background:url('/Images/Icon/menu/department.png') no-repeat center center;
+}
+.icon-contacts_setgroup{
+	background:url('/Images/Icon/menu/group.png') no-repeat center center;
 }

@@ -555,9 +555,9 @@
         <table cellspacing="5" style="font-size:15px">
             <tr>
                 <td>指定联系人名称</td>
-                <td><input class="easyui-textbox" id="personName" style="width:200px"></td>
+                <td><input class="easyui-validatebox" type="text" id="personName" style="width:200px" data-options="validType:['CHS','length[1,5]']"></td>
                 <td>匹配电话号码</td>
-                <td><input class="easyui-textbox" id="personPhoneNum" style="width:200px"></td>
+                <td><input class="easyui-validatebox" type="text" id="personPhoneNum" style="width:200px" data-options="validType:'Mobile'"></td>
                 <td><a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPerson()">查询</a></td>
             </tr>
         </table>

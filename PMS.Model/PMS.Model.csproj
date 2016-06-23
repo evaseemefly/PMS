@@ -69,6 +69,7 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
+    <Compile Include="EqualCompare\P_DepartmentEqualCompare.cs" />
     <Compile Include="EqualCompare\P_GroupEqualCompare.cs" />
     <Compile Include="EqualCompare\P_PersonEqualCompare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />

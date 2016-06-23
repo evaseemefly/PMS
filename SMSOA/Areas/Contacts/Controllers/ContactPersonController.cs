@@ -202,10 +202,10 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///编辑联系人操作
         ///</summary>
         ///<return></return>
-        public ActionResult DoEditPersonInfo(P_PersonInfo model)
+        public ActionResult DoEditPersonInfo(Models.ViewModel_Person personModel)
         {
 
-            if (personInfoBLL.Update(model))
+            if (personInfoBLL.DoEditPerson(personModel.PID,personModel.PName,personModel.PhoneNum,personModel.Remark,false,false,personModel.GID.ToList(),personModel.DID))
             {
                 return Content("ok");
             }
@@ -220,25 +220,27 @@ namespace SMSOA.Areas.Contacts.Controllers
             //1 将传入的对象转换为Person对象
 
             //2 需要根据 传入的联系人对象中所带的部门ID（DID)以及群组ID（数组）获取对应的部门集合以及群组集合
-            List<int> list_groupIds = personModel.GID.ToList();
-            List<int> list_departmentIds = new List<int>();
-            list_departmentIds.Add(personModel.DID);
-           var list_Group= groupBLL.GetListByIds(list_groupIds);
-            var list_department = departmentBLL.GetListByIds(list_departmentIds);
-            PMS.Model.P_PersonInfo model = new P_PersonInfo()
-            {
-                PName = personModel.PName,
-                PID = personModel.PID,
-                isVIP = false,
-                isDel = false,
-                PhoneNum = personModel.PhoneNum,
-                P_DepartmentInfo = list_department,
-                P_Group =list_Group
-            };
+            //6月15日 第一次修改 问题仍无法解决
+           // List<int> list_groupIds = personModel.GID.ToList();
+           // List<int> list_departmentIds = new List<int>();
+           // list_departmentIds.Add(personModel.DID);
+           //var list_Group= groupBLL.GetListByIds(list_groupIds);
+           // var list_department = departmentBLL.GetListByIds(list_departmentIds);
+           // PMS.Model.P_PersonInfo model = new P_PersonInfo()
+           // {
+           //     PName = personModel.PName,
+           //     PID = personModel.PID,
+           //     isVIP = false,
+           //     isDel = false,
+           //     PhoneNum = personModel.PhoneNum,
+           //     P_DepartmentInfo = list_department,
+           //     P_Group =list_Group
+           // };
             try
             {
-                
-                personInfoBLL.Create(model);
+                //6月15日修改方式二 
+                personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, personModel.GID.ToList(), personModel.DID);
+                //personInfoBLL.Create(model);
                 return Content("ok");
             }
             catch
@@ -271,7 +273,14 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(state);
         }
 
-        
+        public ActionResult DoDelPersonInfo_All()
+        {
+            int pid = int.Parse(Request.QueryString["pid"]);
+            List<int> list_ids = new List<int>();
+            list_ids.Add(pid);
+            string state = personInfoBLL.DelSoftPersonAndOtherRelation(list_ids) == true ? state = "ok" : state = "error";
+            return Content(state);
+        }
 
         ///<summary>
         ///逻辑删除用户
@@ -304,16 +313,17 @@ namespace SMSOA.Areas.Contacts.Controllers
             //返回的部门下拉框为选中某一个did
             string did = Request["did"];
 
-            ViewBag.backAction = "DoAddPersonInfo";
+            ViewBag.backAction_jqSub = "DoAddPersonInfo";
             //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
             ViewBag.GID = gid==null?"":gid;
             ViewBag.DID = did == null ? "" : did;
             ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
+            ViewBag.GetAllGroup_combogrid = "/Contacts/Group/GetComboGridAllGroupInfo";
             ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
             ViewBag.GetDepartment_combotree= "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.GetDepartmentByDID_combotree = "/Contacts/Department/GetCombobox4GroupInfoByDID";
-            return View("ShowAddPersonInfo");
+            return View("ShowEditPersonInfo");
         }
 
         ///<summary>
@@ -324,11 +334,45 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             //1 获取选中的联系人
             int id = int.Parse(Request.QueryString["id"]);
+            //若传入的是gid（group）群组，说明向指定群组下添加该联系人
+            //返回的群组下拉框位选中某一个gid
+            string gid = Request["gid"];//若为传入则为null
+            //若传入的did（department）部门，说明向指定部门下添加该联系人
+            //返回的部门下拉框为选中某一个did
+            string did = Request["did"];
+
+
+
+            ViewBag.backAction_jqSub = "DoEditPersonInfo";
+           
             var model = personInfoBLL.GetListBy(a => a.PID == id).FirstOrDefault();
+
+            did= model.P_DepartmentInfo.FirstOrDefault().DID.ToString();
+            //查找当前联系人所属的群组
+            var groups = model.P_Group.ToList().Select(g => g.ToMiddleModel());
+            string groups_str = "";
+            //遍历群组对象
+            foreach (var item in groups)
+            {                
+                groups_str = item.GID + "," + groups_str;
+            }
+            gid = groups_str;
             //提供显示页面提交时跳转到的用户名称
-            ViewBag.Model = model;
+            //ViewBag.Model = model;
+            ViewBag.PID = model.PID;
+            ViewBag.PName = model.PName;
+            ViewBag.PhoneNum = model.PhoneNum;
+            //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
+            ViewBag.GID = gid == null ? "" : gid;
+            ViewBag.DID = did == null ? "" : did;
+            ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
+            ViewBag.GetAllGroup_combogrid = "/Contacts/Group/GetComboGridAllGroupInfo";
+            ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
+            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
+            ViewBag.GetDepartmentByDID_combotree = "/Contacts/Department/GetCombobox4GroupInfoByDID";
             //修改即跳转至修改方法
-            @ViewBag.backAction = "DoEditPersonInfo";
+            ViewBag.backAction = "DoEditPersonInfo";
             return View("ShowEditPersonInfo");
         }
 

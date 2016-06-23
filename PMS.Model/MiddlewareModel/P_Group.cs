@@ -22,7 +22,9 @@ namespace PMS.Model
                 Remark = this.Remark,
                 Sort = this.Sort,
                 SubTime = this.SubTime,
-                isDel = this.isDel
+                isDel = this.isDel,
+                forbidDel = this.forbidDel,
+                Checked = this.Checked
             };
         }
     }
