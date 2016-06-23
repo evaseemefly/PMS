@@ -490,7 +490,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //{
             //3 6月22日第二版
             //3.1 从全部部门中剔除启用的部门
-            list_ALLDepartment.Where(d=>list_department_isNotPass.Where(n=>n.DID==d.DID))
+            //list_ALLDepartment.Where(d=>list_department_isNotPass.Where(n=>n.DID==d.DID))
             var list_temp = (from all in list_ALLDepartment
                             from pass in list_departments_isPass
                             where all.DID != pass.DID
