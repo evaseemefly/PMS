@@ -358,8 +358,6 @@
     <Content Include="Areas\SMS\Views\Shared\_Partial_Statistics_Last10.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Partial_Statistics_CurrentDay.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo-7.cshtml" />
-    <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制%282%29.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Index - 6月20日 复制.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_Partial_Role_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_Partial_Role_setActionRole.cshtml" />

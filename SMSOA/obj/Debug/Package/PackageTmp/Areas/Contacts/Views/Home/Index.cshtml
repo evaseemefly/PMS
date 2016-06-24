@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>   
+
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Scripts/EasyUI/themes/black")*@
+    @Scripts.Render("~/mvcAjax")
+    @*@Scripts.Render("~/Scripts/easyUIJS")*@
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    @*自己写的图标样式*@
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //现修改为：
+        //点击该按钮时加载群组的首页
+        //而不是点击按钮加载群组的datagrid
+        function ShowGroup() {
+            //$("#loadContactDiv").load("/Contacts/Group/Index");
+            //$("#loadContactDiv").src("/Contacts/Group/Index");
+            $("#iframeContactDiv").attr("src", "/Contacts/Group/Index");
+        }
+    </script>
+</head>
+<body>
+    <h2>Fluid Layout</h2>
+    <p>Percentage width of region panel in a layout.</p>
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-layout" style="width:700px;height:350px;">
+        <div id="p" data-options="region:'west'" title="West" style="width:30%;padding:10px">
+            <p>width: 30%</p>
+        </div>
+        <div data-options="region:'center'" title="Center">
+        </div>
+    </div>
+</body>
+</html>

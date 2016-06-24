@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+    string backAction_jqSub = @ViewBag.backAction_jqSub;
+    Layout = "~/Views/Shared/_Admin_AddUser_Layout.cshtml";
+    int sort = (ViewBag.Sort == null ? 50 : ViewBag.Sort);
+}
+@section SectionJS{
+    <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
+    
+    <script type="text/javascript">
+        function Save() {
+            DoSubmit("ff", '@ViewBag.backAction');
+        }
+
+        $(function () {
+            @*DoSubmit("ff", ' @ViewBag.backAction');*@
+        })
+    </script>
+    <style type="text/css">
+        td{
+            font-family:'Microsoft YaHei UI';
+            color:#ffffff;
+            font-weight:200;
+        }
+
+        .comment{
+            font-family:'Microsoft YaHei';font-size:small;color:#aaa6a6
+        }
+    </style>
+     
+    }
+
+<div >    
+        <form id="ff" class="easyui-form" method="post" style="margin:0px;">
+            <div style="height:30px;width:100%;background-color:#000000"></div>
+            <input type="hidden" name="ID" value="@ViewBag.ID" />
+            <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
+            <table style="margin-left:40px;width:90%" cellpadding="3">
+                <tr>
+                    <td style="">用户名:</td>
+                    <td class="comment">
+                        <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="UName" value="@ViewBag.UName" data-options="required:true,validType:['String','length[1,50]']"></input><br />
+                        请填写系统登录用户名
+                    </td>    
+                    @*<td style="">优先级:</td>*@                   
+                </tr>      
+                <tr>
+                    <td >密码:</td>
+                    <td class="comment">
+                        <input class="easyui-validatebox" style="width:80%;height:25px" type="password" name="UPwd" @*value="@ViewBag.UPwd"*@ data-options="required:true,validType:['String','length[1,32]']"></input><br />
+                        请输入登录密码
+                    </td>
+                </tr>
+                <tr>
+                    <td >请再次输入密码:</td>
+                    <td class="comment">
+                        <input class="easyui-validatebox" type="password" style="width:80%;height:25px" name="RUPwd" @*value="@ViewBag.UPwd"*@ required="required" validType="Equals['#UPwd']" ></input><br />
+                        输入相同密码
+                    </td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:50px;width:80%;" value="@ViewBag.Remark"><br />
+                        可选
+                    </td>
+                </tr>
+                <tr>
+                    <td>优先级:</td>
+                </tr>
+                <tr>
+                    <td class="comment" colspan="2">
+                        <input class="easyui-slider" name="Sort" style="width:80%" data-options=
+                               "showTip:true,
+                               rule: [0,'|',25,'|',50,'|',75,'|',100],
+                               value:'@ViewBag.SMID'
+                               "><br />
+                        数字越小优先级越高
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <div style="text-align:center;padding:5px">
+                    @*<input type="submit" value="提交" />*@
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                </div>
+            </div>
+        </form>
+</div>
+

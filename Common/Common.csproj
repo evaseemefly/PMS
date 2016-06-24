@@ -46,6 +46,15 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\SMSOA\Libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -72,6 +81,8 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedisConfig.cs" />
+    <Compile Include="RedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />
     <Compile Include="Xml2StrHelper.cs" />
