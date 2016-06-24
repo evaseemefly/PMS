@@ -271,19 +271,25 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult DoAddGroupInfo(P_Group groupModel)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            groupModel.isDel = false;
-            groupModel.SubTime = DateTime.Now;
-            groupModel.ModifiedOnTime = DateTime.Now;
+            //数据验证
+            if (!groupBLL.AddValidation(groupModel.GroupName))
+            {
+                groupModel.isDel = false;
+                groupModel.SubTime = DateTime.Now;
+                groupModel.ModifiedOnTime = DateTime.Now;
 
-            try
-            {
-                groupBLL.Create(groupModel);
-                return Content("ok");
+                try
+                {
+                    groupBLL.Create(groupModel);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
+
             }
-            catch
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
         }
 
 

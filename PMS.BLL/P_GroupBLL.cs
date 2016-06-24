@@ -102,5 +102,10 @@ namespace PMS.BLL
             }
 
         }
+        public bool AddValidation(String name)
+        {
+            var list_model = this.GetListBy(r => r.isDel == false).ToList();
+            return list_model.Exists(r => r.GroupName.Equals(name));
+        }
     }
 }

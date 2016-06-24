@@ -308,13 +308,15 @@
     <script type="text/javascript">
         //6月12日
         //编辑或创建某个权限后执行的操作
-        function afterContact_Common(msg) {
+        function afterContact_Common(msg,type) {
             //editWindow
             //1 关闭加载的iframe页面
             $.messager.alert('提示', msg);
+            if (type == 0) {
+                $("#editContactWindow").window('close');
+                $("#editPersonWindow").window('close');
+            }
 
-            $("#editContactWindow").window('close');
-            $("#editPersonWindow").window('close');
 
         }
 
