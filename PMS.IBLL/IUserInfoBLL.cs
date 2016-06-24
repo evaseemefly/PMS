@@ -106,6 +106,6 @@ namespace PMS.IBLL
         /// 数据验证
         /// </summary>
         /// <returns></returns>
-        bool Validation(String name);
+        bool AddValidation(String name);
     }
 }

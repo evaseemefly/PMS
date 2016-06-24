@@ -91,7 +91,7 @@ namespace PMS.BLL
 
         }
         //数据验证
-        public bool Validation(String name)
+        public bool AddValidation(String name)
         {
             var list_model = this.GetListBy(r => r.DelFlag == false).ToList();
             return list_model.Exists(r => r.RoleName.Equals(name));

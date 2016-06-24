@@ -176,7 +176,8 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult DoAddRoleInfo(RoleInfo model)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            if (!roleInfoBLL.Validation(model.RoleName))
+            //数据验证
+            if (!roleInfoBLL.AddValidation(model.RoleName))
             {
                     model.DelFlag = false;
                 model.SubTime = DateTime.Now;

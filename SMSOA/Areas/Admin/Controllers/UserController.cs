@@ -36,7 +36,7 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoAddUserInfo(UserInfo model)
         {
-            if (!userInfoBLL.Validation(model.UName))
+            if (!userInfoBLL.AddValidation(model.UName))
             {
                 model.DelFlag = false;
                 model.SubTime = DateTime.Now;

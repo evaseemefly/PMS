@@ -225,7 +225,7 @@ namespace SMSOA.Areas.Admin.Controllers
 
         public ActionResult DoAddActionInfo(ActionInfo model)
         {
-            if (!actionInfoBLL.Validation(model.ActionInfoName))
+            if (!actionInfoBLL.AddValidation(model.ActionInfoName))
             {
 
                     //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
