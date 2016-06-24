@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PMS.IBLL
 {
     public partial interface IActionInfoBLL
@@ -22,7 +23,10 @@ namespace PMS.IBLL
         /// <returns></returns>
         bool DelSoftActionInfos(List<int> list_ids);
 
-
-        
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        bool Validation(String name);
     }
 }

@@ -205,40 +205,48 @@ namespace SMSOA.Areas.Admin.Controllers
         
         public ActionResult DoEditActionInfo(ActionInfo model)
         {
-            model.ModifiedOnTime = DateTime.Now;
-            //！！注意以下方法必须执行（根据权限名称、控制器、区域生成ActionInfo对象中的Url属性
-            model.GetUrl();
-            if (actionInfoBLL.Update(model))
-            {
-                return Content("ok");
-            }
-            else
-            {
-                return Content("error");
-            }
+          
+                    model.ModifiedOnTime = DateTime.Now;
+                //！！注意以下方法必须执行（根据权限名称、控制器、区域生成ActionInfo对象中的Url属性
+                model.GetUrl();
+                if (actionInfoBLL.Update(model))
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("error");
+                }
+
+
         }
 
         
 
         public ActionResult DoAddActionInfo(ActionInfo model)
         {
-            //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            model.DelFlag = false;
-            model.SubTime = DateTime.Now;
-            model.ModifiedOnTime = DateTime.Now;
-            model.GetUrl();//根据
-            model.MenuIcon = "";
-            model.IconWidth = 0;
-            model.IconHeight = 0;
-            try
+            if (!actionInfoBLL.Validation(model.ActionInfoName))
             {
-                actionInfoBLL.Create(model);
-                return Content("ok");
+
+                    //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
+                    model.DelFlag = false;
+                model.SubTime = DateTime.Now;
+                model.ModifiedOnTime = DateTime.Now;
+                model.GetUrl();//根据
+                model.MenuIcon = "";
+                model.IconWidth = 0;
+                model.IconHeight = 0;
+                try
+                {
+                    actionInfoBLL.Create(model);
+                    return Content("ok");
+                }
+               catch
+                {
+                    return Content("error");
+                }
             }
-           catch
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
         }
 
         /// <summary>

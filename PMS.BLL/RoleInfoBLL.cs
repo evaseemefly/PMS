@@ -90,6 +90,12 @@ namespace PMS.BLL
             //(3)向查找到的RoleInfo对象写入指定的ActionInfo
 
         }
+        //数据验证
+        public bool Validation(String name)
+        {
+            var list_model = this.GetListBy(r => r.DelFlag == false).ToList();
+            return list_model.Exists(r => r.RoleName.Equals(name));
+        }
 
     }
 }

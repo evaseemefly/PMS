@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PMS.IBLL
 {
     public partial interface IRoleInfoBLL
@@ -23,5 +24,10 @@ namespace PMS.IBLL
         bool DelSoftRoleInfos(List<int> list_ids);
 
         bool SetRole4Action(int roleId, List<int> list_actionIds);
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        bool Validation(String name);
     }
 }

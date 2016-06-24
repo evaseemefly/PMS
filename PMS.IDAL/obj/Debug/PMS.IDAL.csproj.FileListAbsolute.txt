@@ -64,3 +64,14 @@ D:\VSWorkSpace\nmefc\PMS\PMS.IDAL\bin\Debug\System.Web.Mvc.xml
 D:\VSWorkSpace\nmefc\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\PMS.Model.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\EntityFramework.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\System.Web.Mvc.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\PMS.Model.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\EntityFramework.xml
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\bin\Debug\System.Web.Mvc.xml
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.pdb

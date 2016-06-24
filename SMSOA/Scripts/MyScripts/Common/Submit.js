@@ -1,4 +1,4 @@
-﻿function DoSubmit(id, url) {
+﻿function DoSubmit(id, url, name) {
     ///	<summary>
     ///	执行提交操作
     ///
@@ -14,14 +14,14 @@
         url: url,
         type: 'post',
         success: function (data) {
-            afterEdit(data);
+            afterEdit(data,name);
         }
     };
 
     myform.form('submit', options);
 }
 
-function afterEdit(data) {
+function afterEdit(data,name) {
 
     //$.messager.alert('提醒', '提交成功!');
     //——经测试提交表单成功后可以执行OnSucess的回调函数
@@ -29,10 +29,13 @@ function afterEdit(data) {
     //无法关闭此窗口
     //window.close();
     if (data == "ok") {
-        window.parent.afterEdit("修改成功");
+        window.parent.afterEdit("修改成功",0);
+    }
+    else if(data=="validation fails"){
+        window.parent.afterEdit(name + "已存在，请重新输入", 1);
     }
     else {
-        window.parent.afterEdit("修改失败");
+        window.parent.afterEdit("修改失败",0);
     }
     //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
 }

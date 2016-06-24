@@ -102,5 +102,10 @@ namespace PMS.IBLL
         /// </summary>
         /// <returns></returns>
         bool SetUser4Action(int userID, List<int> list_actionIDs, List<string> list_actionIsPass);
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        bool Validation(String name);
     }
 }

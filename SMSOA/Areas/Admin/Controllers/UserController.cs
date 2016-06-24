@@ -36,21 +36,26 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoAddUserInfo(UserInfo model)
         {
-            model.DelFlag = false;
-            model.SubTime = DateTime.Now;
-            model.ModifiedOnTime = DateTime.Now;
-            //5月25日补充，对传入的密码进行md5加密
-            model.UPwd = Encryption.MD5Encryption(model.UPwd);
-            //model.Remark = "";
-            try
+            if (!userInfoBLL.Validation(model.UName))
             {
-                userInfoBLL.Create(model);
-                return Content("ok");
+                model.DelFlag = false;
+                model.SubTime = DateTime.Now;
+                model.ModifiedOnTime = DateTime.Now;
+                //5月25日补充，对传入的密码进行md5加密
+                model.UPwd = Encryption.MD5Encryption(model.UPwd);
+                //model.Remark = "";
+                try
+                {
+                    userInfoBLL.Create(model);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
+
             }
-            catch
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
 
         }
         ///<summary>
@@ -95,16 +100,18 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoEditUserInfo(UserInfo model)
         {
-            model.ModifiedOnTime = DateTime.Now;
 
-            if (userInfoBLL.Update(model))
-            {
-                return Content("ok");
-            }
-            else
-            {
-                return Content("error");
-            }
+                    model.ModifiedOnTime = DateTime.Now;
+
+                if (userInfoBLL.Update(model))
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("error");
+                }
+
         }
         ///<summary>
         ///显示编辑用户视图
