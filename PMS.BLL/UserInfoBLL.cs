@@ -516,5 +516,11 @@ namespace PMS.BLL
             return list_model.Exists(r => r.UName.Equals(name));
         }
 
+        //数据验证
+        public bool EditValidation(int id, String name)
+        {
+            var list_model = this.GetListBy(r => r.ID != id && r.DelFlag == false).ToList();
+            return list_model.Exists(r => r.UName.Equals(name));
+        }
     }
 }

@@ -102,10 +102,25 @@ namespace PMS.BLL
             }
 
         }
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
         public bool AddValidation(String name)
         {
             var list_model = this.GetListBy(r => r.isDel == false).ToList();
             return list_model.Exists(r => r.GroupName.Equals(name));
+        }
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        public bool EditValidation(int id, String name)
+        {
+            var list_model = this.GetListBy(r => r.GID != id && r.isDel == false).ToList();
+            return list_model.Exists(r => r.GroupName.Equals(name));
+
+            
         }
     }
 }

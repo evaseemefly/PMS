@@ -100,8 +100,9 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoEditUserInfo(UserInfo model)
         {
+            if (!userInfoBLL.EditValidation(model.ID, model.UName)){
 
-                    model.ModifiedOnTime = DateTime.Now;
+                model.ModifiedOnTime = DateTime.Now;
 
                 if (userInfoBLL.Update(model))
                 {
@@ -111,6 +112,8 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
+            }
+            return Content("validation fails");
 
         }
         ///<summary>

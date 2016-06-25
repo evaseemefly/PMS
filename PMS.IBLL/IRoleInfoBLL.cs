@@ -29,5 +29,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <returns></returns>
         bool AddValidation(String name);
+
+        bool EditValidation(int id, String name);
     }
 }

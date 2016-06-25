@@ -51,5 +51,7 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool AddValidation(String name);
+
+        bool EditValidation(int id, String name);
     }
 }

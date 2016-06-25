@@ -205,7 +205,8 @@ namespace SMSOA.Areas.Admin.Controllers
         
         public ActionResult DoEditActionInfo(ActionInfo model)
         {
-          
+            if (!actionInfoBLL.EditValidation(model.ID, model.ActionInfoName))
+            {
                     model.ModifiedOnTime = DateTime.Now;
                 //！！注意以下方法必须执行（根据权限名称、控制器、区域生成ActionInfo对象中的Url属性
                 model.GetUrl();
@@ -217,6 +218,9 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
+
+            }
+            return Content("validation fails");
 
 
         }

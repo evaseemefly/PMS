@@ -75,6 +75,11 @@ namespace PMS.BLL
             var list_model = this.GetListBy(r => r.DelFlag == false).ToList();
             return list_model.Exists(r => r.ActionInfoName.Equals(name));
         }
-
+        //数据验证
+        public bool EditValidation(int id, String name)
+        {
+            var list_model = this.GetListBy(r => r.ID != id && r.DelFlag == false).ToList();
+            return list_model.Exists(r => r.ActionInfoName.Equals(name));
+        }
     }
 }

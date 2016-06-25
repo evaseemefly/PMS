@@ -158,6 +158,8 @@ namespace SMSOA.Areas.Admin.Controllers
 
         public ActionResult DoEditRoleInfo(RoleInfo model)
         {
+            if (!roleInfoBLL.EditValidation(model.ID, model.RoleName))
+            {
                     model.ModifiedOnTime = DateTime.Now;
             
                 if (roleInfoBLL.Update(model))
@@ -169,6 +171,8 @@ namespace SMSOA.Areas.Admin.Controllers
                     return Content("error");
                 }
 
+            }
+            return Content("validation fails");
         }
 
 
