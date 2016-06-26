@@ -90,7 +90,6 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\EntityFramework.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\System.Web.Mvc.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\log4net.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\Memcached.ClientLibrary.dll
-D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\ICSharpCode.SharpZipLib.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\ISMS.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\SMSFactory.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
@@ -114,3 +113,4 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csprojRes
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csproj.SMSSendDemo.exe.config
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.exe
 D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.pdb
+D:\01编程\02协作开发\SMSOA\PMS\SMSSendDemo\bin\Debug\ServiceStack.dll
