@@ -11,6 +11,9 @@
         function Save() {
             DoSubmit("ff", '@ViewBag.backAction',"角色名称");
         }
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
 
         $(function () {
             @*DoSubmit("ff", ' @ViewBag.backAction');*@

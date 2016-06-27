@@ -13,6 +13,9 @@
         function Save() {
             DoSubmit("ff", '@ViewBag.backAction',"权限名称");
         }
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
 
         function SetActionParentCombotreeValue(data) {
             //1 找到部门下拉框
@@ -128,7 +131,7 @@
                     数字越小优先级越高
                 </td>
                 <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()" >提交</a></td>
-                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >清空</a></td>
+                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >取消</a></td>
             </tr>
         </table>
     </form>
