@@ -43,7 +43,9 @@ namespace SMSFactory
 
             //前一部分没有问题再解析后一部分
             //先尝试解析第一个值
+            //6月27日 此方法无法取出xml节点中的值
             var _status = Xml2StrHelper.xml2strList(returnMsg, "response/report/status");
+
             //如果第一个值有内容则继续，否则说明没有后续内容
             if (_status != null)
             {
@@ -105,7 +107,7 @@ namespace SMSFactory
                               + "<account>" + smsdata.account + "</account>"
                               + "<password>" + Encryption.MD5Encryption(smsdata.password) + "</password>"
                               + "<msgid>" + smsdata.smsId + "</msgid>"
-                              + "<phone>" +""+ "</phone>"
+                              + "<phone>" +""/*smsdata.phoneNums*/+ "</phone>"
                           + "</message>";
             return _data;
         }

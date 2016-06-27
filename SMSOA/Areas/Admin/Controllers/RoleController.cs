@@ -158,16 +158,21 @@ namespace SMSOA.Areas.Admin.Controllers
 
         public ActionResult DoEditRoleInfo(RoleInfo model)
         {
-            model.ModifiedOnTime = DateTime.Now;
+            if (!roleInfoBLL.EditValidation(model.ID, model.RoleName))
+            {
+                    model.ModifiedOnTime = DateTime.Now;
             
-            if (roleInfoBLL.Update(model))
-            {
-                return Content("ok");
+                if (roleInfoBLL.Update(model))
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("error");
+                }
+
             }
-            else
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
         }
 
 
@@ -175,19 +180,25 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult DoAddRoleInfo(RoleInfo model)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            model.DelFlag = false;
-            model.SubTime = DateTime.Now;
-            model.ModifiedOnTime = DateTime.Now;
+            //数据验证
+            if (!roleInfoBLL.AddValidation(model.RoleName))
+            {
+                    model.DelFlag = false;
+                model.SubTime = DateTime.Now;
+                model.ModifiedOnTime = DateTime.Now;
            
-            try
-            {
-                roleInfoBLL.Create(model);
-                return Content("ok");
+                try
+                {
+                    roleInfoBLL.Create(model);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
+
             }
-            catch
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
         }
 
         /// <summary>

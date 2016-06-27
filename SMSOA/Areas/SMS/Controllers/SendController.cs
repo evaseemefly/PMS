@@ -308,6 +308,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+            
             //2 获取短信内容
             var content = model.Content;
             //2.1 设置发送对象相关参数
@@ -316,10 +317,15 @@ namespace SMSOA.Areas.SMS.Controllers
             string subCode="";//短信子码"74431"，接收回馈信息用
             string sign= "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
                          //短信发送与查询所需参数
-            string phones;//电话号码
+            string phones="";//电话号码
             string smsContent= content;//短信内容
             string sendTime;//计划发送时间，为空则立即发送
                             //3 对短信内容进行校验——先暂时不做
+
+            //6月27日新增将List电话集合转成用,拼接的字符串
+            //查询时不需要联系人电话
+           // phones = string.Join(",", list_person.Select(p => p.PhoneNum));
+           // phones = phones.Substring(0, phones.Length);
             PMS.Model.SMSModel.SMSModel_Send sendMsg = new PMS.Model.SMSModel.SMSModel_Send()
             {
                 account = account,
@@ -341,6 +347,7 @@ namespace SMSOA.Areas.SMS.Controllers
             redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
                 msgid = receive.msgid,
                 Dt = DateTime.Now
+               // PhoneNums=phones
             });
             if (!isSaveMsgOk)
             {

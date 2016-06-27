@@ -58,7 +58,6 @@ namespace Common.Redis
             //反序列化
             List<T> list_final = new List<T>();
             list_temp.ForEach(p => list_final.Add(Common.SerializerHelper.DeSerializerToObject<T>(p)));
-
             return list_final;
         }
 

@@ -11,5 +11,7 @@ namespace PMS.Model.QueryModel
         public string msgid { get; set; }
 
         public DateTime Dt { get; set; }
+
+        public string PhoneNums { get; set; }
     }
 }

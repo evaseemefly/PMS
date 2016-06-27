@@ -87,7 +87,7 @@ namespace SMSbackground
                 if (list_final.First().Dt < DateTime.Now.AddSeconds(seconds_add))
                 {
                     //3.1 超过约定的时间执行查询操作
-                    ToQuery(list_final.First().msgid);
+                    ToQuery(list_final.First());
                     ToShow("从最近的Redis集合中取出msgid" + DateTime.Now.ToLongDateString());
                     //3.2 并从redis中删除第一个对象
                     redisListhelper.Delete(list_id);
@@ -122,11 +122,16 @@ namespace SMSbackground
         /// 根据msgid执行查询接收短信状态
         /// </summary>
         /// <param name="msgid"></param>
-        public static void ToQuery(string msgid)
+        public static void ToQuery(PMS.Model.QueryModel.Redis_SMSContent model)
         {
-            if(msgid==string.Empty)
+            if(model.msgid==string.Empty)
             {
                 ToShow("读取msgid错误");
+                return;
+            }
+            if (model.PhoneNums == string.Empty)
+            {
+                ToShow("发送联系人列表为空");
                 return;
             }
             string account = "dh74381"; //账号"dh74381";
@@ -136,7 +141,8 @@ namespace SMSbackground
             {
                 account = account,
                 password = passWord,
-                smsId = msgid
+                smsId = model.msgid,
+                //phoneNums=model.PhoneNums
             };
             List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
             bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
@@ -145,7 +151,7 @@ namespace SMSbackground
                // return Content("服务器错误");
             }
             //7 获取改次发送的SMSContent的ID
-            int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(msgid)).FirstOrDefault().ID;
+            int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(model.msgid)).FirstOrDefault().ID;
             bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
             //暂时不用
             #region 6月26日 暂时注释掉的——与前台交互的代码
