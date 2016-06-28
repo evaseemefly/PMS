@@ -64,7 +64,9 @@
 
                 });
         })
-
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
         function afterEdit(data) {
 
             //$.messager.alert('提醒', '提交成功!');
@@ -136,7 +138,7 @@
                 <div style="text-align:center;padding:5px">
                     @*<input type="submit" value="提交" />*@
                     <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">清空</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
                 </div>
             </div>
         </form>

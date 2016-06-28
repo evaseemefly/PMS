@@ -12,7 +12,9 @@
         function Save() {
             DoSubmit("ff", '@ViewBag.backAction',"用户名");
         }
-
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
         $(function () {
             @*DoSubmit("ff", ' @ViewBag.backAction');*@
         })

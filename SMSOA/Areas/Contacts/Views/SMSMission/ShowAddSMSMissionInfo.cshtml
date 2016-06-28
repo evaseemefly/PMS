@@ -38,6 +38,9 @@
 
             myform.form('submit', options);
         }
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
 
         function afterEdit(data) {
 
@@ -67,15 +70,6 @@
                     <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name required="true" missingMessage="任务名称必须填写"></input></td>
                 </tr>
                 <tr>
-                    <td>Mobile:</td>
-                    <td><input class="easyui-validatebox textbox" data-options="required:true,validType:'Mobile'"></td>
-                </tr>
-                <tr>
-                    <td>Chinese:</td>
-                    <td><input name="txtName" class="easyui-validatebox" data-options="required:'true',validType:'CHS'"></td>
-
-                </tr>
-                <tr>
                     <td style="color:#ffffff">备注:</td>
                     <td>
                         <input class="easyui-textbox" name="Remark" style="height:50px" value=@ViewBag.Remark data-options="multiline:true"></input>
@@ -92,6 +86,7 @@
             </table>
             <div style="text-align:center;padding:5px">
                 <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" style="width:80px" type="submit" onclick="DoSubmit()">提交</a>
+                <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a>
             </div>
         </form>
     </div>
