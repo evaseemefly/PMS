@@ -69,6 +69,7 @@ namespace PMS.BLL
                 person.isDel = true;
                 person.P_DepartmentInfo.Clear();
                 person.P_Group.Clear();
+                
                 list_person.Add(person);
             }
             try

@@ -33,5 +33,11 @@ namespace Common
             md5.Clear();
             return sb.ToString();
         }
+
+        //public static string SHA256Encryption(string str)
+        //{
+        //    SHA256Managed sha256 = new SHA256Managed();
+
+        //}
     }
 }

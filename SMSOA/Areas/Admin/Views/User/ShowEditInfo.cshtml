@@ -50,14 +50,14 @@
                 <tr>
                     <td >密码:</td>
                     <td class="comment">
-                        <input id="UPwd" class="easyui-validatebox" style="width:80%;height:25px" type="password" name="UPwd" @*value="@ViewBag.UPwd"*@ data-options="required:true,validType:['String','length[1,32]']"></input><br />
+                        <input id="UPwd" class="easyui-validatebox" style="width:80%;height:25px" type="password" name="UPwd" value="@ViewBag.UPwd" data-options="required:true,validType:['String','length[1,32]']"></input><br />
                         请输入登录密码
                     </td>
                 </tr>
                 <tr>
                     <td >请再次输入密码:</td>
                     <td class="comment">
-                        <input id="RUPwd" class="easyui-validatebox" type="password" style="width:80%;height:25px" name="RUPwd" @*value="@ViewBag.UPwd"*@ required="required" validType="Equals['#UPwd']" ></input><br />
+                        <input id="RUPwd" class="easyui-validatebox" type="password" style="width:80%;height:25px" name="RUPwd" value="@ViewBag.UPwd" required="required" validType="Equals['#UPwd']" ></input><br />
                         输入相同密码
                     </td>
                 </tr>

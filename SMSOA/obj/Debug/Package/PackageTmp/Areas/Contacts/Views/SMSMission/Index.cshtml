@@ -54,7 +54,9 @@
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
 
         }
-
+        function Cancel() {
+            $("#editSMSMissionWindow").window('close');
+        }
 
         function removeSMSMissionRow() {
             var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
