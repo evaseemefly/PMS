@@ -204,15 +204,19 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///<return></return>
         public ActionResult DoEditPersonInfo(Models.ViewModel_Person personModel)
         {
+            if(personInfoBLL.EditValidation(personModel.PID, personModel.PhoneNum))
+            {
+                if (personInfoBLL.DoEditPerson(personModel.PID,personModel.PName,personModel.PhoneNum,personModel.Remark,false,false,personModel.GID.ToList(),personModel.DID))
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("error");
+                }
 
-            if (personInfoBLL.DoEditPerson(personModel.PID,personModel.PName,personModel.PhoneNum,personModel.Remark,false,false,personModel.GID.ToList(),personModel.DID))
-            {
-                return Content("ok");
             }
-            else
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
         }
 
         public ActionResult DoAddPersonInfo(Models.ViewModel_Person personModel)
@@ -221,32 +225,37 @@ namespace SMSOA.Areas.Contacts.Controllers
 
             //2 需要根据 传入的联系人对象中所带的部门ID（DID)以及群组ID（数组）获取对应的部门集合以及群组集合
             //6月15日 第一次修改 问题仍无法解决
-           // List<int> list_groupIds = personModel.GID.ToList();
-           // List<int> list_departmentIds = new List<int>();
-           // list_departmentIds.Add(personModel.DID);
-           //var list_Group= groupBLL.GetListByIds(list_groupIds);
-           // var list_department = departmentBLL.GetListByIds(list_departmentIds);
-           // PMS.Model.P_PersonInfo model = new P_PersonInfo()
-           // {
-           //     PName = personModel.PName,
-           //     PID = personModel.PID,
-           //     isVIP = false,
-           //     isDel = false,
-           //     PhoneNum = personModel.PhoneNum,
-           //     P_DepartmentInfo = list_department,
-           //     P_Group =list_Group
-           // };
-            try
+            // List<int> list_groupIds = personModel.GID.ToList();
+            // List<int> list_departmentIds = new List<int>();
+            // list_departmentIds.Add(personModel.DID);
+            //var list_Group= groupBLL.GetListByIds(list_groupIds);
+            // var list_department = departmentBLL.GetListByIds(list_departmentIds);
+            // PMS.Model.P_PersonInfo model = new P_PersonInfo()
+            // {
+            //     PName = personModel.PName,
+            //     PID = personModel.PID,
+            //     isVIP = false,
+            //     isDel = false,
+            //     PhoneNum = personModel.PhoneNum,
+            //     P_DepartmentInfo = list_department,
+            //     P_Group =list_Group
+            // };
+            if (!personInfoBLL.AddValidation(personModel.PhoneNum))
             {
-                //6月15日修改方式二 
-                personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, personModel.GID.ToList(), personModel.DID);
-                //personInfoBLL.Create(model);
-                return Content("ok");
+                    try
+                {
+                    //6月15日修改方式二 
+                    personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, personModel.GID.ToList(), personModel.DID);
+                    //personInfoBLL.Create(model);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
+
             }
-            catch
-            {
-                return Content("error");
-            }
+            return Content("validation fails");
         }
 
         ///<summary>

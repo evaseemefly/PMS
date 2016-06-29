@@ -80,5 +80,15 @@ namespace PMS.IBLL
         /// <param name="list_departmentIds"></param>
         /// <returns></returns>
         bool SetPerson4Group(int personId, List<int> list_groupIds);
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        bool AddValidation(String phoneNum);
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        bool EditValidation(int id, String phoneNum);
     }
 }

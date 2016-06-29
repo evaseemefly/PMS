@@ -19,9 +19,9 @@ namespace PMS.BLL
         public bool DeleteLogicPersonInfos(List<int> list)
         {
             var PersonInfoList = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(u => list.Contains(u.PID));
-            if(PersonInfoList != null)
+            if (PersonInfoList != null)
             {
-                foreach(var person in PersonInfoList)
+                foreach (var person in PersonInfoList)
                 {
                     this.CurrentDBSession.P_PersonInfoDAL.Del(person);
                 }
@@ -37,12 +37,12 @@ namespace PMS.BLL
         public bool DelSoftPersonInfos(List<int> list)
         {
 
-                List<P_PersonInfo> list_person = new List<P_PersonInfo>();
-                foreach (var person in this.GetListByIds(list))
-                {
-                    person.isDel = true;
-                    list_person.Add(person);
-                }
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            foreach (var person in this.GetListByIds(list))
+            {
+                person.isDel = true;
+                list_person.Add(person);
+            }
             try
             {
                 this.UpdateByList(list_person);
@@ -61,7 +61,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list">Person ID 集合</param>
         /// <returns></returns>
-        public bool DelSoftPersonAndOtherRelation(List<int> list) 
+        public bool DelSoftPersonAndOtherRelation(List<int> list)
         {
             List<P_PersonInfo> list_person = new List<P_PersonInfo>();
             foreach (var person in this.GetListByIds(list))
@@ -99,10 +99,10 @@ namespace PMS.BLL
         /// <param name="personId"></param>
         /// <param name="list_departmentIds"></param>
         /// <returns></returns>
-        public bool SetPerson4Department(int personId,List<int> list_departmentIds)
+        public bool SetPerson4Department(int personId, List<int> list_departmentIds)
         {
             //1 根据联系人id查询联系人
-            var person =this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == personId).FirstOrDefault();
+            var person = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == personId).FirstOrDefault();
             //2 清除该联系人所属的部门
             person.P_DepartmentInfo.Clear();
             //3 根据群组id为该联系人赋予对应的部门权限
@@ -131,16 +131,16 @@ namespace PMS.BLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        public bool DoAddPerson(string PName,string PhoneNum,List<int> list_group_ids,int id_department)
+        public bool DoAddPerson(string PName, string PhoneNum, List<int> list_group_ids, int id_department)
         {
             PMS.Model.P_PersonInfo person_model = new P_PersonInfo();
             person_model.PName = PName;
             person_model.PhoneNum = PhoneNum;
 
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
-           // person_model.P_DepartmentInfo = department_temp;
+            // person_model.P_DepartmentInfo = department_temp;
 
-            List<P_Group> list_group=new List<P_Group>();
+            List<P_Group> list_group = new List<P_Group>();
             //遍历添加group ids集合中的群组对象
             foreach (var item in list_group_ids)
             {
@@ -153,7 +153,7 @@ namespace PMS.BLL
 
             person_model.P_DepartmentInfo.Add(department_temp);
 
-           return Create(person_model);
+            return Create(person_model);
             //try
             //{
             //    return (this.CurrentDBSession.SaveChanges());
@@ -176,15 +176,15 @@ namespace PMS.BLL
         /// <param name="list_group_ids">该联系人所拥有的群组id集合</param>
         /// <param name="id_department">该联系人所拥有的部门id</param>
         /// <returns></returns>
-        public bool DoEditPerson(int pid,string PName, string PhoneNum,string Remark,bool isVip,bool isDel, List<int> list_group_ids, int id_department)
+        public bool DoEditPerson(int pid, string PName, string PhoneNum, string Remark, bool isVip, bool isDel, List<int> list_group_ids, int id_department)
         {
-           var person_model= this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p =>p.PID  == pid).FirstOrDefault();
-           
+            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == pid).FirstOrDefault();
+
             person_model.PName = PName;
             person_model.PhoneNum = PhoneNum;
             person_model.isVIP = isVip;
             person_model.isDel = isDel;
-            
+
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
             // person_model.P_DepartmentInfo = department_temp;
 
@@ -230,7 +230,7 @@ namespace PMS.BLL
             //3 根据群组id为该联系人赋予对应的群组权限
             foreach (var item in list_groupIds)
             {
-                var groupInfo = this.CurrentDBSession.P_GroupDAL.GetListBy(g =>g.GID == item).FirstOrDefault();
+                var groupInfo = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item).FirstOrDefault();
                 person.P_Group.Add(groupInfo);
             }
 
@@ -242,6 +242,21 @@ namespace PMS.BLL
             {
                 return false;
             }
+        }
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        public bool AddValidation(String phoneNum)
+        {
+            var list_model = this.GetListBy(r => r.isDel == false).ToList();
+            return list_model.Exists(r => r.PhoneNum.Equals(phoneNum));
+        }
+        //数据验证
+        public bool EditValidation(int id, String phoneNum)
+        {
+            var list_model = this.GetListBy(r => r.PID != id && r.isDel == false).ToList();
+            return list_model.Exists(r => r.PhoneNum.Equals(phoneNum));
         }
     }
 }
