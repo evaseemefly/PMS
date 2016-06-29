@@ -25,6 +25,6 @@ namespace PMS.Model.SMSModel
         /// </summary>
         public string smsId { get; set; }
 
-  
+        //public string phoneNums { get; set; }
     }
 }

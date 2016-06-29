@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PMS.Model.UserInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UPwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DelFlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedOnTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sort)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UPwd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DelFlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedOnTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sort)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

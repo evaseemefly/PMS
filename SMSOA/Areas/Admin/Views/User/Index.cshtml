@@ -486,6 +486,7 @@
             $("#editWindow").window('close');
         }
         //编辑或创建某个权限后执行的操作
+        
         function afterEdit(msg,type) {
             //editWindow
             //1 关闭加载的iframe页面
@@ -495,6 +496,7 @@
                 //2 刷新当前页面
                 $("#datagrid").datagrid('reload');
             }
+          
         }
 
         function CancelRoleAssign() {

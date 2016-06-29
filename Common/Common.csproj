@@ -46,8 +46,19 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\SMSOA\Libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -65,6 +76,7 @@
     <Compile Include="Attributes\SkipLoginAttribute.cs" />
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
     <Compile Include="Attributes\ViewAttribute.cs" />
+    <Compile Include="ConfigHelper.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Mission.cs" />
@@ -72,6 +84,11 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redis\BaseRedisHelper.cs" />
+    <Compile Include="Redis\ListReidsHelper.cs" />
+    <Compile Include="Redis\RedisConfig.cs" />
+    <Compile Include="Redis\RedisHelper.cs" />
+    <Compile Include="Redis\HashRedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />
     <Compile Include="Xml2StrHelper.cs" />

@@ -114,6 +114,7 @@
     <Compile Include="P_PersonInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="QueryModel\Redis_SMSContent.cs" />
     <Compile Include="RoleInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>

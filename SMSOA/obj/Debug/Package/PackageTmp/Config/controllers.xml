@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object type="SMSOA.Controllers.HomeController, SMSOA" singleton="false" >
+    <property name="userInfoBLL" ref="userInfoService" />    
+  </object>
+  <object type="SMSOA.Areas.Login.Controllers.LoginController, SMSOA" singleton="false" >
+    <property name="userInfoBLL" ref="userInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Admin.Controllers.HomeController, SMSOA" singleton="false" >
+    <property name="userInfoBLL" ref="userInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Admin.Controllers.ActionController, SMSOA" singleton="false" >
+    <property name="actionInfoBLL" ref="actionInfoService" />
+    <property name="roleInfoBLL" ref="roleInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Admin.Controllers.UserController, SMSOA" singleton="false" >
+    <property name="userInfoBLL" ref="userInfoService" />
+    <property name="roleInfoBLL" ref="roleInfoService" />
+    <property name="actionInfoBLL" ref="actionInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Admin.Controllers.RoleController, SMSOA" singleton="false" >
+    <property name="roleInfoBLL" ref="roleInfoService" />
+    <property name="actionInfoBLL" ref="actionInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.ContactPersonController, SMSOA" singleton="false" >
+    <property name="personInfoBLL" ref="personInfoService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.GroupController, SMSOA" singleton="false" >
+    <property name="groupBLL" ref="groupInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.DepartmentController, SMSOA" singleton="false" >
+    <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.SMSMissionController, SMSOA" singleton="false" >
+    <property name="smsmissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.SendController, SMSOA" singleton="false" >
+    <property name="smsMissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
+    <property name="smsSendBLL" ref="smsSendService" />
+    <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />
+    <property name="smsQuery" ref="smsQueryService" />
+    <property name="smsRecord_CurrentBLL" ref="smsRecord_CurrentService" />
+    
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
+    <property name="smsMsgContentBLL" ref="smsMsgTemplateService" />
+    <property name="smsMissionBLL" ref="smsmissionService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.StatisticsController, SMSOA" singleton="false" >
+    <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />    
+  </object>
+</objects>

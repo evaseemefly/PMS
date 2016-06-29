@@ -10,6 +10,7 @@ using Common.EasyUIFormat;
 using PMS.Model.EqualCompare;
 using ISMS;
 using SMSOA.Areas.SMS.Models;
+using Common.Redis;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -27,6 +28,7 @@ namespace SMSOA.Areas.SMS.Controllers
         ISMSQuery smsQuery { get; set; }
         IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
 
+        private string list_id = "mylist";
 
         public ActionResult Index()
         {
@@ -306,6 +308,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+            
             //2 获取短信内容
             var content = model.Content;
             //2.1 设置发送对象相关参数
@@ -314,10 +317,15 @@ namespace SMSOA.Areas.SMS.Controllers
             string subCode="";//短信子码"74431"，接收回馈信息用
             string sign= "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
                          //短信发送与查询所需参数
-            string phones;//电话号码
+            string phones="";//电话号码
             string smsContent= content;//短信内容
             string sendTime;//计划发送时间，为空则立即发送
                             //3 对短信内容进行校验——先暂时不做
+
+            //6月27日新增将List电话集合转成用,拼接的字符串
+            //查询时不需要联系人电话
+           // phones = string.Join(",", list_person.Select(p => p.PhoneNum));
+           // phones = phones.Substring(0, phones.Length);
             PMS.Model.SMSModel.SMSModel_Send sendMsg = new PMS.Model.SMSModel.SMSModel_Send()
             {
                 account = account,
@@ -335,6 +343,12 @@ namespace SMSOA.Areas.SMS.Controllers
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
             bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid);
+            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
+            redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
+                msgid = receive.msgid,
+                Dt = DateTime.Now
+               // PhoneNums=phones
+            });
             if (!isSaveMsgOk)
             {
                 return Content("服务器错误");
@@ -343,33 +357,34 @@ namespace SMSOA.Areas.SMS.Controllers
             if ("0".Equals(receive.result))
             {
                 //6 查询发送状态(是否加入等待时间？)
-                PMS.Model.SMSModel.SMSModel_Query queryMsg = new PMS.Model.SMSModel.SMSModel_Query()
-                {
-                    account = account,
-                    password = passWord,
-                    smsId = receive.msgid
-                };
-                List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
-                bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg,out list_QueryReceive);
-                if (!isGetReturnMsg)
-                {
-                    return Content("服务器错误");
-                }
-                //7 获取改次发送的SMSContent的ID
-                int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(receive.msgid)).FirstOrDefault().ID;
-                bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive,scid);
-                if (!isSaveCurrnetMsgOk)
-                {
-                    return Content("服务器错误");
-                }
+                return Content("ok");
+                //PMS.Model.SMSModel.SMSModel_Query queryMsg = new PMS.Model.SMSModel.SMSModel_Query()
+                //{
+                //    account = account,
+                //    password = passWord,
+                //    smsId = receive.msgid
+                //};
+                //List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
+                //bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg,out list_QueryReceive);
+                //if (!isGetReturnMsg)
+                //{
+                //    return Content("服务器错误");
+                //}
+                ////7 获取改次发送的SMSContent的ID
+                //int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(receive.msgid)).FirstOrDefault().ID;
+                //bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive,scid);
+                //if (!isSaveCurrnetMsgOk)
+                //{
+                //    return Content("服务器错误");
+                //}
 
-                PMS.Model.SMSModel.SMSModel_MsgResult msgResult = new PMS.Model.SMSModel.SMSModel_MsgResult();
-                //7 返回blacklist中的电话号码
-                smsContentBLL.getResult(receive, msgResult);
-                //8 返回查询结果中的失败的电话号码
-                smsRecord_CurrentBLL.getResult(list_QueryReceive,msgResult);
-                var result = Common.SerializerHelper.SerializerToString(msgResult);
-                return Content(result);
+                //PMS.Model.SMSModel.SMSModel_MsgResult msgResult = new PMS.Model.SMSModel.SMSModel_MsgResult();
+                ////7 返回blacklist中的电话号码
+                //smsContentBLL.getResult(receive, msgResult);
+                ////8 返回查询结果中的失败的电话号码
+                //smsRecord_CurrentBLL.getResult(list_QueryReceive,msgResult);
+                //var result = Common.SerializerHelper.SerializerToString(msgResult);
+                //return Content(result);
             }
             else
             {

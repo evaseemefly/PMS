@@ -39,7 +39,7 @@ namespace SMSFactory
         public bool QueryMsg(SMSModel_Query smsdata, out List<SMSModel_QueryReceive> list_receiveModel)
         {
             String _data = null;//XML文本
-            String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
+            String _serverURL = "http://wt.3tong.net/http/sms/Report";//服务器地址
             string returnMsg;
             //1 判断参数是否足够
             if (!SendBeforeCheck(smsdata))
@@ -57,6 +57,7 @@ namespace SMSFactory
                 return false;
             }
             //2.2 将接收到的短信发送回执转换为对象
+            //此处有问题
             list_receiveModel = ObjTransform.Xml2Model_queryReceiveMsg(returnMsg);
             return true;
 
