@@ -4,82 +4,367 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PMS2016Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="PMS2016ModelStoreContainer" />
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="PMS2016Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+    <Schema Namespace="PMS20160325Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionInfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ActionInfoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
-          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ActionMethodName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="ControllerName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="ActionTypeEnum" Type="Int16" Nullable="false" />
-          <Property Name="MenuIcon" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="IconWidth" Type="Int32" Nullable="false" />
-          <Property Name="IconHeight" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_ActionInfo" FromRole="ActionInfo" ToRole="R_UserInfo_ActionInfo" />
-          <NavigationProperty Name="RoleInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="ActionInfo" ToRole="RoleInfo" />
-          <Property Name="AreaName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="ParentID" Type="Int32" Nullable="false" />
-          <Property Name="isShow" Type="Boolean" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="ActionInfoName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="DelFlag" Type="bit" Nullable="false" />
+          <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+          <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="32" />
+          <Property Name="ActionMethodName" Type="nvarchar" MaxLength="32" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="32" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="ActionTypeEnum" Type="smallint" Nullable="false" />
+          <Property Name="MenuIcon" Type="varchar" MaxLength="512" />
+          <Property Name="IconWidth" Type="int" Nullable="false" />
+          <Property Name="IconHeight" Type="int" Nullable="false" />
+          <Property Name="isShow" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P_DepartmentInfo">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PDID" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="P_Group">
+          <Key>
+            <PropertyRef Name="GID" />
+          </Key>
+          <Property Name="GID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubTime" Type="date" Nullable="false" />
+          <Property Name="ModifiedOnTime" Type="date" Nullable="false" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="forbidDel" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P_PersonInfo">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PName" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="PhoneNum" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="isVIP" Type="bit" Nullable="false" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_Department_Mission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="MissionID" Type="int" Nullable="false" />
+          <Property Name="SubTime" Type="date" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_Group_Mission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MissionID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_Person_Department">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="DerpartmentID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="DerpartmentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_Person_Group">
+          <Key>
+            <PropertyRef Name="GID" />
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="GID" Type="int" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_RoleInfo_ActionInfo">
+          <Key>
+            <PropertyRef Name="RoleInfoID" />
+            <PropertyRef Name="ActionInfoID" />
+          </Key>
+          <Property Name="RoleInfoID" Type="int" Nullable="false" />
+          <Property Name="ActionInfoID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_ActionInfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserInfoID" Type="Int32" Nullable="false" />
-          <Property Name="ActionInfoID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_ActionInfo" FromRole="R_UserInfo_ActionInfo" ToRole="ActionInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_UserInfo" FromRole="R_UserInfo_ActionInfo" ToRole="UserInfo" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserInfoID" Type="int" Nullable="false" />
+          <Property Name="ActionInfoID" Type="int" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_DepartmentInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="DID" Type="int" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="GID" Type="int" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_PersonInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_RoleInfo">
+          <Key>
+            <PropertyRef Name="UserInfoID" />
+            <PropertyRef Name="RoleInfoID" />
+          </Key>
+          <Property Name="UserInfoID" Type="int" Nullable="false" />
+          <Property Name="RoleInfoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_SMSMission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SMID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="isPass" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleInfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ActionInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="RoleInfo" ToRole="ActionInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.R_UserInfo_RoleInfo" FromRole="RoleInfo" ToRole="UserInfo" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DelFlag" Type="bit" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+          <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_SMSContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="SMSContent" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="msgId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SendDateTime" Type="date" Nullable="false" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+          <Property Name="SMID" Type="int" Nullable="false" />
+          <Property Name="BlackList" Type="nvarchar(max)" />
+          <Property Name="ResultCode" Type="int" Nullable="false" />
+          <Property Name="smsCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_SMSMission">
+          <Key>
+            <PropertyRef Name="SMID" />
+          </Key>
+          <Property Name="SMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SMSMissionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubTime" Type="date" Nullable="false" />
+          <Property Name="ModifiedOnTime" Type="date" Nullable="false" />
+          <Property Name="Remark" Type="nchar" MaxLength="50" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+          <Property Name="isMMS" Type="bit" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_SMSMsgContent">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SMID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" />
+          <Property Name="MsgContent" Type="nvarchar(max)" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+          <Property Name="SubTime" Type="date" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="MsgName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_SMSRecord_Current">
+          <Key>
+            <PropertyRef Name="SRID" />
+          </Key>
+          <Property Name="SRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCID" Type="int" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="DescContent" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="S_SMSRecord_History">
+          <Key>
+            <PropertyRef Name="SRID" />
+          </Key>
+          <Property Name="SRID" Type="int" Nullable="false" />
+          <Property Name="SCID" Type="int" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="DescContent" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UPwd" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_ActionInfo" />
-          <NavigationProperty Name="RoleInfo" Relationship="Self.R_UserInfo_RoleInfo" FromRole="UserInfo" ToRole="RoleInfo" />
-          <NavigationProperty Name="R_UserInfo_Group" Relationship="PMS2016Model.FK_R_UserInfo_Group_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_Group" />
-          <NavigationProperty Name="R_UserInfo_SMSMission" Relationship="PMS2016Model.FK_R_UserInfo_SMSMission_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_SMSMission" />
-          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSContent_UserInfo" FromRole="UserInfo" ToRole="S_SMSContent" />
-          <NavigationProperty Name="R_UserInfo_DepartmentInfo" Relationship="PMS2016Model.FK_R_UserInfo_DepartmentInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_DepartmentInfo" />
-          <NavigationProperty Name="R_UserInfo_PersonInfo" Relationship="PMS2016Model.FK_R_UserInfo_PersonInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_PersonInfo" />
-          <NavigationProperty Name="S_SMSMsgContent" Relationship="PMS2016Model.FK_S_SMSMsgContent_UserInfo" FromRole="UserInfo" ToRole="S_SMSMsgContent" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPwd" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="DelFlag" Type="bit" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+          <Property Name="Sort" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_R_Department_Mission_P_DepartmentInfo">
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_DepartmentInfo">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="R_Department_Mission">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Department_Mission_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="R_Department_Mission">
+              <PropertyRef Name="MissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Group_Mission_P_Group">
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_Group">
+              <PropertyRef Name="GID" />
+            </Principal>
+            <Dependent Role="R_Group_Mission">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Group_Mission_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="R_Group_Mission">
+              <PropertyRef Name="MissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Person_Department_P_DepartmentInfo">
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="R_Person_Department" Type="Self.R_Person_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_DepartmentInfo">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="R_Person_Department">
+              <PropertyRef Name="DerpartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Person_Department_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="R_Person_Department" Type="Self.R_Person_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="R_Person_Department">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Person_Group_P_Group">
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="R_Person_Group" Type="Self.R_Person_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_Group">
+              <PropertyRef Name="GID" />
+            </Principal>
+            <Dependent Role="R_Person_Group">
+              <PropertyRef Name="GID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Person_Group_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="R_Person_Group" Type="Self.R_Person_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="R_Person_Group">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_RoleInfo_ActionInfo_ActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
+          <End Role="R_RoleInfo_ActionInfo" Type="Self.R_RoleInfo_ActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_RoleInfo_ActionInfo">
+              <PropertyRef Name="ActionInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_RoleInfo_ActionInfo_RoleInfo">
+          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="1" />
+          <End Role="R_RoleInfo_ActionInfo" Type="Self.R_RoleInfo_ActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_RoleInfo_ActionInfo">
+              <PropertyRef Name="RoleInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_R_UserInfo_ActionInfo_ActionInfo">
           <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
           <End Role="R_UserInfo_ActionInfo" Type="Self.R_UserInfo_ActionInfo" Multiplicity="*" />
@@ -104,342 +389,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="R_RoleInfo_ActionInfo">
-          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="*" />
-          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="*" />
-        </Association>
-        <Association Name="R_UserInfo_RoleInfo">
-          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="*" />
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="PMS2016Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" />
-          <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" />
-          <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" />
-          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
-          <AssociationSet Name="FK_R_UserInfo_ActionInfo_ActionInfo" Association="Self.FK_R_UserInfo_ActionInfo_ActionInfo">
-            <End Role="ActionInfo" EntitySet="ActionInfo" />
-            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_ActionInfo_UserInfo" Association="Self.FK_R_UserInfo_ActionInfo_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
-          </AssociationSet>
-          <AssociationSet Name="R_RoleInfo_ActionInfo" Association="Self.R_RoleInfo_ActionInfo">
-            <End Role="ActionInfo" EntitySet="ActionInfo" />
-            <End Role="RoleInfo" EntitySet="RoleInfo" />
-          </AssociationSet>
-          <AssociationSet Name="R_UserInfo_RoleInfo" Association="Self.R_UserInfo_RoleInfo">
-            <End Role="RoleInfo" EntitySet="RoleInfo" />
-            <End Role="UserInfo" EntitySet="UserInfo" />
-          </AssociationSet>
-          <EntitySet Name="P_DepartmentInfo" EntityType="PMS2016Model.P_DepartmentInfo" />
-          <EntitySet Name="P_Group" EntityType="PMS2016Model.P_Group" />
-          <EntitySet Name="P_PersonInfo" EntityType="PMS2016Model.P_PersonInfo" />
-          <EntitySet Name="R_Department_Mission" EntityType="PMS2016Model.R_Department_Mission" />
-          <EntitySet Name="R_Group_Mission" EntityType="PMS2016Model.R_Group_Mission" />
-          <EntitySet Name="S_SMSMission" EntityType="PMS2016Model.S_SMSMission" />
-          <AssociationSet Name="FK_R_Department_Mission_P_DepartmentInfo" Association="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo">
-            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
-            <End Role="R_Department_Mission" EntitySet="R_Department_Mission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_Group_Mission_P_Group" Association="PMS2016Model.FK_R_Group_Mission_P_Group">
-            <End Role="P_Group" EntitySet="P_Group" />
-            <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_Department_Mission_S_SMSMission" Association="PMS2016Model.FK_R_Department_Mission_S_SMSMission">
-            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
-            <End Role="R_Department_Mission" EntitySet="R_Department_Mission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_Group_Mission_S_SMSMission" Association="PMS2016Model.FK_R_Group_Mission_S_SMSMission">
-            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
-            <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
-          </AssociationSet>
-          <AssociationSet Name="R_Person_Department" Association="PMS2016Model.R_Person_Department">
-            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
-            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
-          </AssociationSet>
-          <AssociationSet Name="R_Person_Group" Association="PMS2016Model.R_Person_Group">
-            <End Role="P_Group" EntitySet="P_Group" />
-            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
-          </AssociationSet>
-          <EntitySet Name="R_UserInfo_Group" EntityType="PMS2016Model.R_UserInfo_Group" />
-          <EntitySet Name="R_UserInfo_SMSMission" EntityType="PMS2016Model.R_UserInfo_SMSMission" />
-          <EntitySet Name="S_SMSContent" EntityType="PMS2016Model.S_SMSContent" />
-          <EntitySet Name="S_SMSRecord_Current" EntityType="PMS2016Model.S_SMSRecord_Current" />
-          <AssociationSet Name="FK_R_UserInfo_Group_P_Group" Association="PMS2016Model.FK_R_UserInfo_Group_P_Group">
-            <End Role="P_Group" EntitySet="P_Group" />
-            <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSRecord_Current_P_PersonInfo" Association="PMS2016Model.FK_S_SMSRecord_Current_P_PersonInfo">
-            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
-            <End Role="S_SMSRecord_Current" EntitySet="S_SMSRecord_Current" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_Group_UserInfo" Association="PMS2016Model.FK_R_UserInfo_Group_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_SMSMission_S_SMSMission" Association="PMS2016Model.FK_R_UserInfo_SMSMission_S_SMSMission">
-            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
-            <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_SMSMission_UserInfo" Association="PMS2016Model.FK_R_UserInfo_SMSMission_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSContent_UserInfo" Association="PMS2016Model.FK_S_SMSContent_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSRecord_Current_S_SMSContent" Association="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent">
-            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
-            <End Role="S_SMSRecord_Current" EntitySet="S_SMSRecord_Current" />
-          </AssociationSet>
-          <EntitySet Name="R_UserInfo_DepartmentInfo" EntityType="PMS2016Model.R_UserInfo_DepartmentInfo" />
-          <EntitySet Name="R_UserInfo_PersonInfo" EntityType="PMS2016Model.R_UserInfo_PersonInfo" />
-          <EntitySet Name="S_SMSRecord_History" EntityType="PMS2016Model.S_SMSRecord_History" />
-          <AssociationSet Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" Association="PMS2016Model.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
-            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
-            <End Role="R_UserInfo_DepartmentInfo" EntitySet="R_UserInfo_DepartmentInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_PersonInfo_P_PersonInfo" Association="PMS2016Model.FK_R_UserInfo_PersonInfo_P_PersonInfo">
-            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
-            <End Role="R_UserInfo_PersonInfo" EntitySet="R_UserInfo_PersonInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSRecord_History_P_PersonInfo" Association="PMS2016Model.FK_S_SMSRecord_History_P_PersonInfo">
-            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
-            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_DepartmentInfo_UserInfo" Association="PMS2016Model.FK_R_UserInfo_DepartmentInfo_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="R_UserInfo_DepartmentInfo" EntitySet="R_UserInfo_DepartmentInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_R_UserInfo_PersonInfo_UserInfo" Association="PMS2016Model.FK_R_UserInfo_PersonInfo_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="R_UserInfo_PersonInfo" EntitySet="R_UserInfo_PersonInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSRecord_History_S_SMSMission" Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission">
-            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
-            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
-          </AssociationSet>
-          <EntitySet Name="S_SMSMsgContent" EntityType="PMS2016Model.S_SMSMsgContent" />
-          <AssociationSet Name="FK_S_SMSMsgContent_S_SMSMission" Association="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission">
-            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
-            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSMsgContent_UserInfo" Association="PMS2016Model.FK_S_SMSMsgContent_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSContent_S_SMSMission" Association="PMS2016Model.FK_S_SMSContent_S_SMSMission">
-            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
-            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_SMSRecord_History_S_SMSContent" Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent">
-            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
-            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="P_DepartmentInfo">
-          <Key>
-            <PropertyRef Name="DID" />
-          </Key>
-          <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PDID" Type="Int32" Nullable="false" />
-          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Area" Type="Int32" Nullable="false" />
-          <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <Property Name="Remark" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="R_Department_Mission" Relationship="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo" FromRole="P_DepartmentInfo" ToRole="R_Department_Mission" />
-          <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.R_Person_Department" FromRole="P_DepartmentInfo" ToRole="P_PersonInfo" />
-          <NavigationProperty Name="R_UserInfo_DepartmentInfo" Relationship="PMS2016Model.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" FromRole="P_DepartmentInfo" ToRole="R_UserInfo_DepartmentInfo" />
-        </EntityType>
-        <EntityType Name="P_Group">
-          <Key>
-            <PropertyRef Name="GID" />
-          </Key>
-          <Property Name="GID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="R_Group_Mission" Relationship="PMS2016Model.FK_R_Group_Mission_P_Group" FromRole="P_Group" ToRole="R_Group_Mission" />
-          <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.R_Person_Group" FromRole="P_Group" ToRole="P_PersonInfo" />
-          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="R_UserInfo_Group" Relationship="PMS2016Model.FK_R_UserInfo_Group_P_Group" FromRole="P_Group" ToRole="R_UserInfo_Group" />
-          <Property Name="forbidDel" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="P_PersonInfo">
-          <Key>
-            <PropertyRef Name="PID" />
-          </Key>
-          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PName" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isVIP" Type="Boolean" Nullable="false" />
-          <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="P_DepartmentInfo" Relationship="PMS2016Model.R_Person_Department" FromRole="P_PersonInfo" ToRole="P_DepartmentInfo" />
-          <NavigationProperty Name="P_Group" Relationship="PMS2016Model.R_Person_Group" FromRole="P_PersonInfo" ToRole="P_Group" />
-          <NavigationProperty Name="S_SMSRecord_Current" Relationship="PMS2016Model.FK_S_SMSRecord_Current_P_PersonInfo" FromRole="P_PersonInfo" ToRole="S_SMSRecord_Current" />
-          <NavigationProperty Name="R_UserInfo_PersonInfo" Relationship="PMS2016Model.FK_R_UserInfo_PersonInfo_P_PersonInfo" FromRole="P_PersonInfo" ToRole="R_UserInfo_PersonInfo" />
-          <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_P_PersonInfo" FromRole="P_PersonInfo" ToRole="S_SMSRecord_History" />
-        </EntityType>
-        <EntityType Name="R_Department_Mission">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <Property Name="MissionID" Type="Int32" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="P_DepartmentInfo" Relationship="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo" FromRole="R_Department_Mission" ToRole="P_DepartmentInfo" />
-          <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_R_Department_Mission_S_SMSMission" FromRole="R_Department_Mission" ToRole="S_SMSMission" />
-        </EntityType>
-        <EntityType Name="R_Group_Mission">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MissionID" Type="Int32" Nullable="false" />
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="P_Group" Relationship="PMS2016Model.FK_R_Group_Mission_P_Group" FromRole="R_Group_Mission" ToRole="P_Group" />
-          <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_R_Group_Mission_S_SMSMission" FromRole="R_Group_Mission" ToRole="S_SMSMission" />
-        </EntityType>
-        <EntityType Name="S_SMSMission">
-          <Key>
-            <PropertyRef Name="SMID" />
-          </Key>
-          <Property Name="SMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SMSMissionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <Property Name="isMMS" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="R_Department_Mission" Relationship="PMS2016Model.FK_R_Department_Mission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_Department_Mission" />
-          <NavigationProperty Name="R_Group_Mission" Relationship="PMS2016Model.FK_R_Group_Mission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_Group_Mission" />
-          <NavigationProperty Name="R_UserInfo_SMSMission" Relationship="PMS2016Model.FK_R_UserInfo_SMSMission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_UserInfo_SMSMission" />
-          <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSRecord_History" />
-          <NavigationProperty Name="S_SMSMsgContent" Relationship="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSMsgContent" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSContent" />
-        </EntityType>
-        <Association Name="FK_R_Department_Mission_P_DepartmentInfo">
-          <End Type="PMS2016Model.P_DepartmentInfo" Role="P_DepartmentInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_Department_Mission" Role="R_Department_Mission" Multiplicity="*" />
+        <Association Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_DepartmentInfo" Type="Self.R_UserInfo_DepartmentInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_DepartmentInfo">
               <PropertyRef Name="DID" />
             </Principal>
-            <Dependent Role="R_Department_Mission">
-              <PropertyRef Name="DepartmentID" />
+            <Dependent Role="R_UserInfo_DepartmentInfo">
+              <PropertyRef Name="DID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_R_Group_Mission_P_Group">
-          <End Type="PMS2016Model.P_Group" Role="P_Group" Multiplicity="1" />
-          <End Type="PMS2016Model.R_Group_Mission" Role="R_Group_Mission" Multiplicity="*" />
+        <Association Name="FK_R_UserInfo_DepartmentInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_DepartmentInfo" Type="Self.R_UserInfo_DepartmentInfo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="P_Group">
-              <PropertyRef Name="GID" />
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="R_Group_Mission">
-              <PropertyRef Name="GroupID" />
+            <Dependent Role="R_UserInfo_DepartmentInfo">
+              <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_R_Department_Mission_S_SMSMission">
-          <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
-          <End Type="PMS2016Model.R_Department_Mission" Role="R_Department_Mission" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="S_SMSMission">
-              <PropertyRef Name="SMID" />
-            </Principal>
-            <Dependent Role="R_Department_Mission">
-              <PropertyRef Name="MissionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_R_Group_Mission_S_SMSMission">
-          <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
-          <End Type="PMS2016Model.R_Group_Mission" Role="R_Group_Mission" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="S_SMSMission">
-              <PropertyRef Name="SMID" />
-            </Principal>
-            <Dependent Role="R_Group_Mission">
-              <PropertyRef Name="MissionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="R_Person_Department">
-          <End Type="PMS2016Model.P_DepartmentInfo" Role="P_DepartmentInfo" Multiplicity="*" />
-          <End Type="PMS2016Model.P_PersonInfo" Role="P_PersonInfo" Multiplicity="*" />
-        </Association>
-        <Association Name="R_Person_Group">
-          <End Type="PMS2016Model.P_Group" Role="P_Group" Multiplicity="*" />
-          <End Type="PMS2016Model.P_PersonInfo" Role="P_PersonInfo" Multiplicity="*" />
-        </Association>
-        <EntityType Name="R_UserInfo_Group">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="GID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="P_Group" Relationship="PMS2016Model.FK_R_UserInfo_Group_P_Group" FromRole="R_UserInfo_Group" ToRole="P_Group" />
-          <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_Group_UserInfo" FromRole="R_UserInfo_Group" ToRole="UserInfo" />
-        </EntityType>
-        <EntityType Name="R_UserInfo_SMSMission">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="SMID" Type="Int32" Nullable="false" />
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_R_UserInfo_SMSMission_S_SMSMission" FromRole="R_UserInfo_SMSMission" ToRole="S_SMSMission" />
-          <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_SMSMission_UserInfo" FromRole="R_UserInfo_SMSMission" ToRole="UserInfo" />
-        </EntityType>
-        <EntityType Name="S_SMSContent">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="SMSContent" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="msgId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="SendDateTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <Property Name="SMID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_S_SMSContent_UserInfo" FromRole="S_SMSContent" ToRole="UserInfo" />
-          <NavigationProperty Name="S_SMSRecord_Current" Relationship="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_Current" />
-          <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSContent" ToRole="S_SMSMission" />
-          <NavigationProperty Name="S_SMSRecord_History" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
-          <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ResultCode" Type="Int32" Nullable="false" />
-          <Property Name="smsCount" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="S_SMSRecord_Current">
-          <Key>
-            <PropertyRef Name="SRID" />
-          </Key>
-          <Property Name="SRID" Type="Int32" Nullable="false" />
-          <Property Name="SCID" Type="Int32" Nullable="false" />
-          <Property Name="PID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.FK_S_SMSRecord_Current_P_PersonInfo" FromRole="S_SMSRecord_Current" ToRole="P_PersonInfo" />
-          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSRecord_Current" ToRole="S_SMSContent" />
-          <Property Name="StatusCode" Type="Int32" Nullable="false" />
-          <Property Name="DescContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_R_UserInfo_Group_P_Group">
-          <End Type="PMS2016Model.P_Group" Role="P_Group" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_Group" Role="R_UserInfo_Group" Multiplicity="*" />
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_Group">
               <PropertyRef Name="GID" />
@@ -449,21 +425,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_S_SMSRecord_Current_P_PersonInfo">
-          <End Type="PMS2016Model.P_PersonInfo" Role="P_PersonInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSRecord_Current" Role="S_SMSRecord_Current" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="P_PersonInfo">
-              <PropertyRef Name="PID" />
-            </Principal>
-            <Dependent Role="S_SMSRecord_Current">
-              <PropertyRef Name="PID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_R_UserInfo_Group_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_Group" Role="R_UserInfo_Group" Multiplicity="*" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
@@ -473,9 +437,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_R_UserInfo_PersonInfo_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_PersonInfo" Type="Self.R_UserInfo_PersonInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_PersonInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_PersonInfo" Type="Self.R_UserInfo_PersonInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_PersonInfo">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_RoleInfo_RoleInfo">
+          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_RoleInfo" Type="Self.R_UserInfo_RoleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_RoleInfo">
+              <PropertyRef Name="RoleInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_RoleInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_RoleInfo" Type="Self.R_UserInfo_RoleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_RoleInfo">
+              <PropertyRef Name="UserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_R_UserInfo_SMSMission_S_SMSMission">
-          <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_SMSMission" Role="R_UserInfo_SMSMission" Multiplicity="*" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
               <PropertyRef Name="SMID" />
@@ -486,8 +498,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_SMSMission_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_SMSMission" Role="R_UserInfo_SMSMission" Multiplicity="*" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
@@ -497,9 +509,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_S_SMSContent_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="S_SMSContent">
+              <PropertyRef Name="SMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_S_SMSContent_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSContent" Role="S_SMSContent" Multiplicity="*" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
@@ -509,144 +533,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_S_SMSRecord_Current_S_SMSContent">
-          <End Type="PMS2016Model.S_SMSContent" Role="S_SMSContent" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSRecord_Current" Role="S_SMSRecord_Current" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="S_SMSContent">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="S_SMSRecord_Current">
-              <PropertyRef Name="SCID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="R_UserInfo_DepartmentInfo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="DID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="P_DepartmentInfo" Relationship="PMS2016Model.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" FromRole="R_UserInfo_DepartmentInfo" ToRole="P_DepartmentInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_DepartmentInfo_UserInfo" FromRole="R_UserInfo_DepartmentInfo" ToRole="UserInfo" />
-        </EntityType>
-        <EntityType Name="R_UserInfo_PersonInfo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UID" Type="Int32" Nullable="false" />
-          <Property Name="PID" Type="Int32" Nullable="false" />
-          <Property Name="isPass" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.FK_R_UserInfo_PersonInfo_P_PersonInfo" FromRole="R_UserInfo_PersonInfo" ToRole="P_PersonInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_PersonInfo_UserInfo" FromRole="R_UserInfo_PersonInfo" ToRole="UserInfo" />
-        </EntityType>
-        <EntityType Name="S_SMSRecord_History">
-          <Key>
-            <PropertyRef Name="SRID" />
-          </Key>
-          <Property Name="SRID" Type="Int32" Nullable="false" />
-          <Property Name="SCID" Type="Int32" Nullable="false" />
-          <Property Name="PID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="P_PersonInfo" Relationship="PMS2016Model.FK_S_SMSRecord_History_P_PersonInfo" FromRole="S_SMSRecord_History" ToRole="P_PersonInfo" />
-          <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" FromRole="S_SMSRecord_History" ToRole="S_SMSMission" />
-          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSRecord_History" ToRole="S_SMSContent" />
-          <Property Name="StatusCode" Type="Int32" Nullable="false" />
-          <Property Name="DescContent" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
-          <End Type="PMS2016Model.P_DepartmentInfo" Role="P_DepartmentInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_DepartmentInfo" Role="R_UserInfo_DepartmentInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="P_DepartmentInfo">
-              <PropertyRef Name="DID" />
-            </Principal>
-            <Dependent Role="R_UserInfo_DepartmentInfo">
-              <PropertyRef Name="DID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_R_UserInfo_PersonInfo_P_PersonInfo">
-          <End Type="PMS2016Model.P_PersonInfo" Role="P_PersonInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_PersonInfo" Role="R_UserInfo_PersonInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="P_PersonInfo">
-              <PropertyRef Name="PID" />
-            </Principal>
-            <Dependent Role="R_UserInfo_PersonInfo">
-              <PropertyRef Name="PID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_S_SMSRecord_History_P_PersonInfo">
-          <End Type="PMS2016Model.P_PersonInfo" Role="P_PersonInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSRecord_History" Role="S_SMSRecord_History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="P_PersonInfo">
-              <PropertyRef Name="PID" />
-            </Principal>
-            <Dependent Role="S_SMSRecord_History">
-              <PropertyRef Name="PID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_R_UserInfo_DepartmentInfo_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_DepartmentInfo" Role="R_UserInfo_DepartmentInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="R_UserInfo_DepartmentInfo">
-              <PropertyRef Name="UID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_R_UserInfo_PersonInfo_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="PMS2016Model.R_UserInfo_PersonInfo" Role="R_UserInfo_PersonInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="R_UserInfo_PersonInfo">
-              <PropertyRef Name="UID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_S_SMSRecord_History_S_SMSMission">
-          <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSRecord_History" Role="S_SMSRecord_History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="S_SMSMission">
-              <PropertyRef Name="SMID" />
-            </Principal>
-            <Dependent Role="S_SMSRecord_History">
-              <PropertyRef Name="SCID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="S_SMSMsgContent">
-          <Key>
-            <PropertyRef Name="TID" />
-          </Key>
-          <Property Name="TID" Type="Int32" Nullable="false" />
-          <Property Name="SMID" Type="Int32" Nullable="false" />
-          <Property Name="MsgContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMsgContent" ToRole="S_SMSMission" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="MsgName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UID" Type="Int32" />
-          <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_S_SMSMsgContent_UserInfo" FromRole="S_SMSMsgContent" ToRole="UserInfo" />
-        </EntityType>
         <Association Name="FK_S_SMSMsgContent_S_SMSMission">
-          <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSMsgContent" Role="S_SMSMsgContent" Multiplicity="*" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
               <PropertyRef Name="SMID" />
@@ -657,8 +546,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSMsgContent_UserInfo">
-          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="PMS2016Model.S_SMSMsgContent" Role="S_SMSMsgContent" Multiplicity="*" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="ID" />
@@ -668,21 +557,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_S_SMSContent_S_SMSMission">
-          <End Type="PMS2016Model.S_SMSMission" Role="S_SMSMission" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSContent" Role="S_SMSContent" Multiplicity="*" />
+        <Association Name="FK_S_SMSRecord_Current_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="S_SMSRecord_Current" Type="Self.S_SMSRecord_Current" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="S_SMSMission">
-              <PropertyRef Name="SMID" />
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
             </Principal>
-            <Dependent Role="S_SMSContent">
-              <PropertyRef Name="SMID" />
+            <Dependent Role="S_SMSRecord_Current">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSRecord_Current_S_SMSContent">
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="1" />
+          <End Role="S_SMSRecord_Current" Type="Self.S_SMSRecord_Current" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_SMSRecord_Current">
+              <PropertyRef Name="SCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSRecord_History_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="S_SMSRecord_History" Type="Self.S_SMSRecord_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="S_SMSRecord_History">
+              <PropertyRef Name="PID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSRecord_History_S_SMSContent">
-          <End Type="PMS2016Model.S_SMSContent" Role="S_SMSContent" Multiplicity="1" />
-          <End Type="PMS2016Model.S_SMSRecord_History" Role="S_SMSRecord_History" Multiplicity="*" />
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="1" />
+          <End Role="S_SMSRecord_History" Type="Self.S_SMSRecord_History" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSContent">
               <PropertyRef Name="ID" />
@@ -692,13 +605,1083 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="PMS20160325ModelStoreContainer">
+          <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P_DepartmentInfo" EntityType="Self.P_DepartmentInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P_Group" EntityType="Self.P_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P_PersonInfo" EntityType="Self.P_PersonInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_Department_Mission" EntityType="Self.R_Department_Mission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_Group_Mission" EntityType="Self.R_Group_Mission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_Person_Department" EntityType="Self.R_Person_Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_Person_Group" EntityType="Self.R_Person_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_RoleInfo_ActionInfo" EntityType="Self.R_RoleInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_DepartmentInfo" EntityType="Self.R_UserInfo_DepartmentInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_Group" EntityType="Self.R_UserInfo_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_PersonInfo" EntityType="Self.R_UserInfo_PersonInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_RoleInfo" EntityType="Self.R_UserInfo_RoleInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_SMSMission" EntityType="Self.R_UserInfo_SMSMission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SMSContent" EntityType="Self.S_SMSContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SMSMission" EntityType="Self.S_SMSMission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SMSMsgContent" EntityType="Self.S_SMSMsgContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SMSRecord_Current" EntityType="Self.S_SMSRecord_Current" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SMSRecord_History" EntityType="Self.S_SMSRecord_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_R_Department_Mission_P_DepartmentInfo" Association="Self.FK_R_Department_Mission_P_DepartmentInfo">
+            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
+            <End Role="R_Department_Mission" EntitySet="R_Department_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Department_Mission_S_SMSMission" Association="Self.FK_R_Department_Mission_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="R_Department_Mission" EntitySet="R_Department_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Group_Mission_P_Group" Association="Self.FK_R_Group_Mission_P_Group">
+            <End Role="P_Group" EntitySet="P_Group" />
+            <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Group_Mission_S_SMSMission" Association="Self.FK_R_Group_Mission_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Person_Department_P_DepartmentInfo" Association="Self.FK_R_Person_Department_P_DepartmentInfo">
+            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
+            <End Role="R_Person_Department" EntitySet="R_Person_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Person_Department_P_PersonInfo" Association="Self.FK_R_Person_Department_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="R_Person_Department" EntitySet="R_Person_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Person_Group_P_Group" Association="Self.FK_R_Person_Group_P_Group">
+            <End Role="P_Group" EntitySet="P_Group" />
+            <End Role="R_Person_Group" EntitySet="R_Person_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Person_Group_P_PersonInfo" Association="Self.FK_R_Person_Group_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="R_Person_Group" EntitySet="R_Person_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_RoleInfo_ActionInfo_ActionInfo" Association="Self.FK_R_RoleInfo_ActionInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="R_RoleInfo_ActionInfo" EntitySet="R_RoleInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_RoleInfo_ActionInfo_RoleInfo" Association="Self.FK_R_RoleInfo_ActionInfo_RoleInfo">
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+            <End Role="R_RoleInfo_ActionInfo" EntitySet="R_RoleInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_ActionInfo_ActionInfo" Association="Self.FK_R_UserInfo_ActionInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_ActionInfo_UserInfo" Association="Self.FK_R_UserInfo_ActionInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" Association="Self.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
+            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
+            <End Role="R_UserInfo_DepartmentInfo" EntitySet="R_UserInfo_DepartmentInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_DepartmentInfo_UserInfo" Association="Self.FK_R_UserInfo_DepartmentInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_DepartmentInfo" EntitySet="R_UserInfo_DepartmentInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_Group_P_Group" Association="Self.FK_R_UserInfo_Group_P_Group">
+            <End Role="P_Group" EntitySet="P_Group" />
+            <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_Group_UserInfo" Association="Self.FK_R_UserInfo_Group_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_PersonInfo_P_PersonInfo" Association="Self.FK_R_UserInfo_PersonInfo_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="R_UserInfo_PersonInfo" EntitySet="R_UserInfo_PersonInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_PersonInfo_UserInfo" Association="Self.FK_R_UserInfo_PersonInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_PersonInfo" EntitySet="R_UserInfo_PersonInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_RoleInfo_RoleInfo" Association="Self.FK_R_UserInfo_RoleInfo_RoleInfo">
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+            <End Role="R_UserInfo_RoleInfo" EntitySet="R_UserInfo_RoleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_RoleInfo_UserInfo" Association="Self.FK_R_UserInfo_RoleInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_RoleInfo" EntitySet="R_UserInfo_RoleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_SMSMission_S_SMSMission" Association="Self.FK_R_UserInfo_SMSMission_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_SMSMission_UserInfo" Association="Self.FK_R_UserInfo_SMSMission_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSContent_S_SMSMission" Association="Self.FK_S_SMSContent_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSContent_UserInfo" Association="Self.FK_S_SMSContent_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSMsgContent_S_SMSMission" Association="Self.FK_S_SMSMsgContent_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSMsgContent_UserInfo" Association="Self.FK_S_SMSMsgContent_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_Current_P_PersonInfo" Association="Self.FK_S_SMSRecord_Current_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="S_SMSRecord_Current" EntitySet="S_SMSRecord_Current" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_Current_S_SMSContent" Association="Self.FK_S_SMSRecord_Current_S_SMSContent">
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+            <End Role="S_SMSRecord_Current" EntitySet="S_SMSRecord_Current" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_History_P_PersonInfo" Association="Self.FK_S_SMSRecord_History_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_History_S_SMSContent" Association="Self.FK_S_SMSRecord_History_S_SMSContent">
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PMS20160325Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActionInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="ActionInfoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
+          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AreaName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ActionMethodName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="ActionTypeEnum" Type="Int16" Nullable="false" />
+          <Property Name="MenuIcon" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="IconWidth" Type="Int32" Nullable="false" />
+          <Property Name="IconHeight" Type="Int32" Nullable="false" />
+          <Property Name="isShow" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_ActionInfo" FromRole="ActionInfo" ToRole="R_UserInfo_ActionInfo" />
+          <NavigationProperty Name="RoleInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="ActionInfo" ToRole="RoleInfo" />
+        </EntityType>
+        <EntityType Name="P_DepartmentInfo">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PDID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="R_Department_Mission" Relationship="Self.FK_R_Department_Mission_P_DepartmentInfo" FromRole="P_DepartmentInfo" ToRole="R_Department_Mission" />
+          <NavigationProperty Name="R_UserInfo_DepartmentInfo" Relationship="Self.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" FromRole="P_DepartmentInfo" ToRole="R_UserInfo_DepartmentInfo" />
+          <NavigationProperty Name="P_PersonInfo" Relationship="Self.R_Person_Department" FromRole="P_DepartmentInfo" ToRole="P_PersonInfo" />
+        </EntityType>
+        <EntityType Name="P_Group">
+          <Key>
+            <PropertyRef Name="GID" />
+          </Key>
+          <Property Name="GID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="forbidDel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="R_Group_Mission" Relationship="Self.FK_R_Group_Mission_P_Group" FromRole="P_Group" ToRole="R_Group_Mission" />
+          <NavigationProperty Name="R_UserInfo_Group" Relationship="Self.FK_R_UserInfo_Group_P_Group" FromRole="P_Group" ToRole="R_UserInfo_Group" />
+          <NavigationProperty Name="P_PersonInfo" Relationship="Self.R_Person_Group" FromRole="P_Group" ToRole="P_PersonInfo" />
+        </EntityType>
+        <EntityType Name="P_PersonInfo">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isVIP" Type="Boolean" Nullable="false" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="R_UserInfo_PersonInfo" Relationship="Self.FK_R_UserInfo_PersonInfo_P_PersonInfo" FromRole="P_PersonInfo" ToRole="R_UserInfo_PersonInfo" />
+          <NavigationProperty Name="S_SMSRecord_Current" Relationship="Self.FK_S_SMSRecord_Current_P_PersonInfo" FromRole="P_PersonInfo" ToRole="S_SMSRecord_Current" />
+          <NavigationProperty Name="S_SMSRecord_History" Relationship="Self.FK_S_SMSRecord_History_P_PersonInfo" FromRole="P_PersonInfo" ToRole="S_SMSRecord_History" />
+          <NavigationProperty Name="P_DepartmentInfo" Relationship="Self.R_Person_Department" FromRole="P_PersonInfo" ToRole="P_DepartmentInfo" />
+          <NavigationProperty Name="P_Group" Relationship="Self.R_Person_Group" FromRole="P_PersonInfo" ToRole="P_Group" />
+        </EntityType>
+        <EntityType Name="R_Department_Mission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="MissionID" Type="Int32" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="P_DepartmentInfo" Relationship="Self.FK_R_Department_Mission_P_DepartmentInfo" FromRole="R_Department_Mission" ToRole="P_DepartmentInfo" />
+          <NavigationProperty Name="S_SMSMission" Relationship="Self.FK_R_Department_Mission_S_SMSMission" FromRole="R_Department_Mission" ToRole="S_SMSMission" />
+        </EntityType>
+        <EntityType Name="R_Group_Mission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MissionID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="P_Group" Relationship="Self.FK_R_Group_Mission_P_Group" FromRole="R_Group_Mission" ToRole="P_Group" />
+          <NavigationProperty Name="S_SMSMission" Relationship="Self.FK_R_Group_Mission_S_SMSMission" FromRole="R_Group_Mission" ToRole="S_SMSMission" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_ActionInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfoID" Type="Int32" Nullable="false" />
+          <Property Name="ActionInfoID" Type="Int32" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_ActionInfo" FromRole="R_UserInfo_ActionInfo" ToRole="ActionInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_UserInfo" FromRole="R_UserInfo_ActionInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_DepartmentInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="DID" Type="Int32" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="P_DepartmentInfo" Relationship="Self.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" FromRole="R_UserInfo_DepartmentInfo" ToRole="P_DepartmentInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_DepartmentInfo_UserInfo" FromRole="R_UserInfo_DepartmentInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="GID" Type="Int32" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="P_Group" Relationship="Self.FK_R_UserInfo_Group_P_Group" FromRole="R_UserInfo_Group" ToRole="P_Group" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_Group_UserInfo" FromRole="R_UserInfo_Group" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_PersonInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="P_PersonInfo" Relationship="Self.FK_R_UserInfo_PersonInfo_P_PersonInfo" FromRole="R_UserInfo_PersonInfo" ToRole="P_PersonInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_PersonInfo_UserInfo" FromRole="R_UserInfo_PersonInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_SMSMission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SMID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="isPass" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="S_SMSMission" Relationship="Self.FK_R_UserInfo_SMSMission_S_SMSMission" FromRole="R_UserInfo_SMSMission" ToRole="S_SMSMission" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_SMSMission_UserInfo" FromRole="R_UserInfo_SMSMission" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="RoleInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActionInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="RoleInfo" ToRole="ActionInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.R_UserInfo_RoleInfo" FromRole="RoleInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="S_SMSContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="SMSContent" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="msgId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SendDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <Property Name="SMID" Type="Int32" Nullable="false" />
+          <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResultCode" Type="Int32" Nullable="false" />
+          <Property Name="smsCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="S_SMSMission" Relationship="Self.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSContent" ToRole="S_SMSMission" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_S_SMSContent_UserInfo" FromRole="S_SMSContent" ToRole="UserInfo" />
+          <NavigationProperty Name="S_SMSRecord_Current" Relationship="Self.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_Current" />
+          <NavigationProperty Name="S_SMSRecord_History" Relationship="Self.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSContent" ToRole="S_SMSRecord_History" />
+        </EntityType>
+        <EntityType Name="S_SMSMission">
+          <Key>
+            <PropertyRef Name="SMID" />
+          </Key>
+          <Property Name="SMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SMSMissionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <Property Name="isMMS" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="R_Department_Mission" Relationship="Self.FK_R_Department_Mission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_Department_Mission" />
+          <NavigationProperty Name="R_Group_Mission" Relationship="Self.FK_R_Group_Mission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_Group_Mission" />
+          <NavigationProperty Name="R_UserInfo_SMSMission" Relationship="Self.FK_R_UserInfo_SMSMission_S_SMSMission" FromRole="S_SMSMission" ToRole="R_UserInfo_SMSMission" />
+          <NavigationProperty Name="S_SMSContent" Relationship="Self.FK_S_SMSContent_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSContent" />
+          <NavigationProperty Name="S_SMSMsgContent" Relationship="Self.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMission" ToRole="S_SMSMsgContent" />
+        </EntityType>
+        <EntityType Name="S_SMSMsgContent">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SMID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" />
+          <Property Name="MsgContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MsgName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="S_SMSMission" Relationship="Self.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMsgContent" ToRole="S_SMSMission" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_S_SMSMsgContent_UserInfo" FromRole="S_SMSMsgContent" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="S_SMSRecord_Current">
+          <Key>
+            <PropertyRef Name="SRID" />
+          </Key>
+          <Property Name="SRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCID" Type="Int32" Nullable="false" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <Property Name="DescContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="P_PersonInfo" Relationship="Self.FK_S_SMSRecord_Current_P_PersonInfo" FromRole="S_SMSRecord_Current" ToRole="P_PersonInfo" />
+          <NavigationProperty Name="S_SMSContent" Relationship="Self.FK_S_SMSRecord_Current_S_SMSContent" FromRole="S_SMSRecord_Current" ToRole="S_SMSContent" />
+        </EntityType>
+        <EntityType Name="S_SMSRecord_History">
+          <Key>
+            <PropertyRef Name="SRID" />
+          </Key>
+          <Property Name="SRID" Type="Int32" Nullable="false" />
+          <Property Name="SCID" Type="Int32" Nullable="false" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <Property Name="DescContent" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="P_PersonInfo" Relationship="Self.FK_S_SMSRecord_History_P_PersonInfo" FromRole="S_SMSRecord_History" ToRole="P_PersonInfo" />
+          <NavigationProperty Name="S_SMSContent" Relationship="Self.FK_S_SMSRecord_History_S_SMSContent" FromRole="S_SMSRecord_History" ToRole="S_SMSContent" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UPwd" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DelFlag" Type="Boolean" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOnTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_ActionInfo" />
+          <NavigationProperty Name="R_UserInfo_DepartmentInfo" Relationship="Self.FK_R_UserInfo_DepartmentInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_DepartmentInfo" />
+          <NavigationProperty Name="R_UserInfo_Group" Relationship="Self.FK_R_UserInfo_Group_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_Group" />
+          <NavigationProperty Name="R_UserInfo_PersonInfo" Relationship="Self.FK_R_UserInfo_PersonInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_PersonInfo" />
+          <NavigationProperty Name="R_UserInfo_SMSMission" Relationship="Self.FK_R_UserInfo_SMSMission_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_SMSMission" />
+          <NavigationProperty Name="S_SMSContent" Relationship="Self.FK_S_SMSContent_UserInfo" FromRole="UserInfo" ToRole="S_SMSContent" />
+          <NavigationProperty Name="S_SMSMsgContent" Relationship="Self.FK_S_SMSMsgContent_UserInfo" FromRole="UserInfo" ToRole="S_SMSMsgContent" />
+          <NavigationProperty Name="RoleInfo" Relationship="Self.R_UserInfo_RoleInfo" FromRole="UserInfo" ToRole="RoleInfo" />
+        </EntityType>
+        <Association Name="FK_R_UserInfo_ActionInfo_ActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_ActionInfo" Type="Self.R_UserInfo_ActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_ActionInfo">
+              <PropertyRef Name="ActionInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Department_Mission_P_DepartmentInfo">
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_DepartmentInfo">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="R_Department_Mission">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_DepartmentInfo" Type="Self.R_UserInfo_DepartmentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_DepartmentInfo">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_DepartmentInfo">
+              <PropertyRef Name="DID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Group_Mission_P_Group">
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_Group">
+              <PropertyRef Name="GID" />
+            </Principal>
+            <Dependent Role="R_Group_Mission">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_Group_P_Group">
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_Group">
+              <PropertyRef Name="GID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_Group">
+              <PropertyRef Name="GID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_PersonInfo_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_PersonInfo" Type="Self.R_UserInfo_PersonInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSRecord_Current_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="S_SMSRecord_Current" Type="Self.S_SMSRecord_Current" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="S_SMSRecord_Current">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSRecord_History_P_PersonInfo">
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="S_SMSRecord_History" Type="Self.S_SMSRecord_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="P_PersonInfo">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="S_SMSRecord_History">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Department_Mission_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="R_Department_Mission">
+              <PropertyRef Name="MissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_Group_Mission_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="R_Group_Mission">
+              <PropertyRef Name="MissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_ActionInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_ActionInfo" Type="Self.R_UserInfo_ActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_ActionInfo">
+              <PropertyRef Name="UserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_DepartmentInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_DepartmentInfo" Type="Self.R_UserInfo_DepartmentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_DepartmentInfo">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_Group_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_Group">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_PersonInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_PersonInfo" Type="Self.R_UserInfo_PersonInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_PersonInfo">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_SMSMission_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_SMSMission_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_SMSMission">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSContent_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="S_SMSContent">
+              <PropertyRef Name="SMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSContent_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_SMSContent">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSRecord_Current_S_SMSContent">
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="1" />
+          <End Role="S_SMSRecord_Current" Type="Self.S_SMSRecord_Current" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_SMSRecord_Current">
+              <PropertyRef Name="SCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSRecord_History_S_SMSContent">
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="1" />
+          <End Role="S_SMSRecord_History" Type="Self.S_SMSRecord_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_SMSRecord_History">
+              <PropertyRef Name="SCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSMsgContent_S_SMSMission">
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSMission">
+              <PropertyRef Name="SMID" />
+            </Principal>
+            <Dependent Role="S_SMSMsgContent">
+              <PropertyRef Name="SMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_SMSMsgContent_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_SMSMsgContent">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_Person_Department">
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="*" />
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="R_Person_Group">
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="*" />
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="R_RoleInfo_ActionInfo">
+          <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="*" />
+          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="R_UserInfo_RoleInfo">
+          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="*" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PMS2016Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" />
+          <EntitySet Name="P_DepartmentInfo" EntityType="Self.P_DepartmentInfo" />
+          <EntitySet Name="P_Group" EntityType="Self.P_Group" />
+          <EntitySet Name="P_PersonInfo" EntityType="Self.P_PersonInfo" />
+          <EntitySet Name="R_Department_Mission" EntityType="Self.R_Department_Mission" />
+          <EntitySet Name="R_Group_Mission" EntityType="Self.R_Group_Mission" />
+          <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" />
+          <EntitySet Name="R_UserInfo_DepartmentInfo" EntityType="Self.R_UserInfo_DepartmentInfo" />
+          <EntitySet Name="R_UserInfo_Group" EntityType="Self.R_UserInfo_Group" />
+          <EntitySet Name="R_UserInfo_PersonInfo" EntityType="Self.R_UserInfo_PersonInfo" />
+          <EntitySet Name="R_UserInfo_SMSMission" EntityType="Self.R_UserInfo_SMSMission" />
+          <EntitySet Name="RoleInfo" EntityType="Self.RoleInfo" />
+          <EntitySet Name="S_SMSContent" EntityType="Self.S_SMSContent" />
+          <EntitySet Name="S_SMSMission" EntityType="Self.S_SMSMission" />
+          <EntitySet Name="S_SMSMsgContent" EntityType="Self.S_SMSMsgContent" />
+          <EntitySet Name="S_SMSRecord_Current" EntityType="Self.S_SMSRecord_Current" />
+          <EntitySet Name="S_SMSRecord_History" EntityType="Self.S_SMSRecord_History" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <AssociationSet Name="FK_R_UserInfo_ActionInfo_ActionInfo" Association="Self.FK_R_UserInfo_ActionInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Department_Mission_P_DepartmentInfo" Association="Self.FK_R_Department_Mission_P_DepartmentInfo">
+            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
+            <End Role="R_Department_Mission" EntitySet="R_Department_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo" Association="Self.FK_R_UserInfo_DepartmentInfo_P_DepartmentInfo">
+            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
+            <End Role="R_UserInfo_DepartmentInfo" EntitySet="R_UserInfo_DepartmentInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Group_Mission_P_Group" Association="Self.FK_R_Group_Mission_P_Group">
+            <End Role="P_Group" EntitySet="P_Group" />
+            <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_Group_P_Group" Association="Self.FK_R_UserInfo_Group_P_Group">
+            <End Role="P_Group" EntitySet="P_Group" />
+            <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_PersonInfo_P_PersonInfo" Association="Self.FK_R_UserInfo_PersonInfo_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="R_UserInfo_PersonInfo" EntitySet="R_UserInfo_PersonInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_Current_P_PersonInfo" Association="Self.FK_S_SMSRecord_Current_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="S_SMSRecord_Current" EntitySet="S_SMSRecord_Current" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_History_P_PersonInfo" Association="Self.FK_S_SMSRecord_History_P_PersonInfo">
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Department_Mission_S_SMSMission" Association="Self.FK_R_Department_Mission_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="R_Department_Mission" EntitySet="R_Department_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_Group_Mission_S_SMSMission" Association="Self.FK_R_Group_Mission_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_ActionInfo_UserInfo" Association="Self.FK_R_UserInfo_ActionInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_DepartmentInfo_UserInfo" Association="Self.FK_R_UserInfo_DepartmentInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_DepartmentInfo" EntitySet="R_UserInfo_DepartmentInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_Group_UserInfo" Association="Self.FK_R_UserInfo_Group_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_PersonInfo_UserInfo" Association="Self.FK_R_UserInfo_PersonInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_PersonInfo" EntitySet="R_UserInfo_PersonInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_SMSMission_S_SMSMission" Association="Self.FK_R_UserInfo_SMSMission_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_SMSMission_UserInfo" Association="Self.FK_R_UserInfo_SMSMission_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_SMSMission" EntitySet="R_UserInfo_SMSMission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSContent_S_SMSMission" Association="Self.FK_S_SMSContent_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSContent_UserInfo" Association="Self.FK_S_SMSContent_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_Current_S_SMSContent" Association="Self.FK_S_SMSRecord_Current_S_SMSContent">
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+            <End Role="S_SMSRecord_Current" EntitySet="S_SMSRecord_Current" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSRecord_History_S_SMSContent" Association="Self.FK_S_SMSRecord_History_S_SMSContent">
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+            <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSMsgContent_S_SMSMission" Association="Self.FK_S_SMSMsgContent_S_SMSMission">
+            <End Role="S_SMSMission" EntitySet="S_SMSMission" />
+            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_SMSMsgContent_UserInfo" Association="Self.FK_S_SMSMsgContent_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="S_SMSMsgContent" EntitySet="S_SMSMsgContent" />
+          </AssociationSet>
+          <AssociationSet Name="R_Person_Department" Association="Self.R_Person_Department">
+            <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+          </AssociationSet>
+          <AssociationSet Name="R_Person_Group" Association="Self.R_Person_Group">
+            <End Role="P_Group" EntitySet="P_Group" />
+            <End Role="P_PersonInfo" EntitySet="P_PersonInfo" />
+          </AssociationSet>
+          <AssociationSet Name="R_RoleInfo_ActionInfo" Association="Self.R_RoleInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="R_UserInfo_RoleInfo" Association="Self.R_UserInfo_RoleInfo">
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PMS2016ModelStoreContainer" CdmEntityContainer="PMS2016Entities">
-          </EntityContainerMapping>
+        <EntityContainerMapping StorageEntityContainer="PMS20160325ModelStoreContainer" CdmEntityContainer="PMS2016Entities">
+          <EntitySetMapping Name="ActionInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.ActionInfo">
+              <MappingFragment StoreEntitySet="ActionInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ActionInfoName" ColumnName="ActionInfoName" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ActionMethodName" ColumnName="ActionMethodName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ActionTypeEnum" ColumnName="ActionTypeEnum" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="IconWidth" ColumnName="IconWidth" />
+                <ScalarProperty Name="IconHeight" ColumnName="IconHeight" />
+                <ScalarProperty Name="isShow" ColumnName="isShow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_DepartmentInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.P_DepartmentInfo">
+              <MappingFragment StoreEntitySet="P_DepartmentInfo">
+                <ScalarProperty Name="DID" ColumnName="DID" />
+                <ScalarProperty Name="PDID" ColumnName="PDID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_Group">
+            <EntityTypeMapping TypeName="PMS20160325Model.P_Group">
+              <MappingFragment StoreEntitySet="P_Group">
+                <ScalarProperty Name="GID" ColumnName="GID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="forbidDel" ColumnName="forbidDel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_PersonInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.P_PersonInfo">
+              <MappingFragment StoreEntitySet="P_PersonInfo">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="isVIP" ColumnName="isVIP" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_Department_Mission">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_Department_Mission">
+              <MappingFragment StoreEntitySet="R_Department_Mission">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="MissionID" ColumnName="MissionID" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_Group_Mission">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_Group_Mission">
+              <MappingFragment StoreEntitySet="R_Group_Mission">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MissionID" ColumnName="MissionID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_UserInfo_ActionInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_UserInfo_ActionInfo">
+              <MappingFragment StoreEntitySet="R_UserInfo_ActionInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserInfoID" ColumnName="UserInfoID" />
+                <ScalarProperty Name="ActionInfoID" ColumnName="ActionInfoID" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_UserInfo_DepartmentInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_UserInfo_DepartmentInfo">
+              <MappingFragment StoreEntitySet="R_UserInfo_DepartmentInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="DID" ColumnName="DID" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_UserInfo_Group">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_UserInfo_Group">
+              <MappingFragment StoreEntitySet="R_UserInfo_Group">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="GID" ColumnName="GID" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_UserInfo_PersonInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_UserInfo_PersonInfo">
+              <MappingFragment StoreEntitySet="R_UserInfo_PersonInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_UserInfo_SMSMission">
+            <EntityTypeMapping TypeName="PMS20160325Model.R_UserInfo_SMSMission">
+              <MappingFragment StoreEntitySet="R_UserInfo_SMSMission">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SMID" ColumnName="SMID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="isPass" ColumnName="isPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.RoleInfo">
+              <MappingFragment StoreEntitySet="RoleInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SMSContent">
+            <EntityTypeMapping TypeName="PMS20160325Model.S_SMSContent">
+              <MappingFragment StoreEntitySet="S_SMSContent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="SMSContent" ColumnName="SMSContent" />
+                <ScalarProperty Name="msgId" ColumnName="msgId" />
+                <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="SMID" ColumnName="SMID" />
+                <ScalarProperty Name="BlackList" ColumnName="BlackList" />
+                <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+                <ScalarProperty Name="smsCount" ColumnName="smsCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SMSMission">
+            <EntityTypeMapping TypeName="PMS20160325Model.S_SMSMission">
+              <MappingFragment StoreEntitySet="S_SMSMission">
+                <ScalarProperty Name="SMID" ColumnName="SMID" />
+                <ScalarProperty Name="SMSMissionName" ColumnName="SMSMissionName" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="isMMS" ColumnName="isMMS" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SMSMsgContent">
+            <EntityTypeMapping TypeName="PMS20160325Model.S_SMSMsgContent">
+              <MappingFragment StoreEntitySet="S_SMSMsgContent">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="SMID" ColumnName="SMID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="MsgContent" ColumnName="MsgContent" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="MsgName" ColumnName="MsgName" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SMSRecord_Current">
+            <EntityTypeMapping TypeName="PMS20160325Model.S_SMSRecord_Current">
+              <MappingFragment StoreEntitySet="S_SMSRecord_Current">
+                <ScalarProperty Name="SRID" ColumnName="SRID" />
+                <ScalarProperty Name="SCID" ColumnName="SCID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SMSRecord_History">
+            <EntityTypeMapping TypeName="PMS20160325Model.S_SMSRecord_History">
+              <MappingFragment StoreEntitySet="S_SMSRecord_History">
+                <ScalarProperty Name="SRID" ColumnName="SRID" />
+                <ScalarProperty Name="SCID" ColumnName="SCID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="DescContent" ColumnName="DescContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="PMS20160325Model.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UName" ColumnName="UName" />
+                <ScalarProperty Name="UPwd" ColumnName="UPwd" />
+                <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+                <ScalarProperty Name="ModifiedOnTime" ColumnName="ModifiedOnTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="R_Person_Department" TypeName="PMS20160325Model.R_Person_Department" StoreEntitySet="R_Person_Department">
+            <EndProperty Name="P_DepartmentInfo">
+              <ScalarProperty Name="DID" ColumnName="DerpartmentID" />
+            </EndProperty>
+            <EndProperty Name="P_PersonInfo">
+              <ScalarProperty Name="PID" ColumnName="PersonID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="R_Person_Group" TypeName="PMS20160325Model.R_Person_Group" StoreEntitySet="R_Person_Group">
+            <EndProperty Name="P_Group">
+              <ScalarProperty Name="GID" ColumnName="GID" />
+            </EndProperty>
+            <EndProperty Name="P_PersonInfo">
+              <ScalarProperty Name="PID" ColumnName="PID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="R_RoleInfo_ActionInfo" TypeName="PMS20160325Model.R_RoleInfo_ActionInfo" StoreEntitySet="R_RoleInfo_ActionInfo">
+            <EndProperty Name="ActionInfo">
+              <ScalarProperty Name="ID" ColumnName="ActionInfoID" />
+            </EndProperty>
+            <EndProperty Name="RoleInfo">
+              <ScalarProperty Name="ID" ColumnName="RoleInfoID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="R_UserInfo_RoleInfo" TypeName="PMS20160325Model.R_UserInfo_RoleInfo" StoreEntitySet="R_UserInfo_RoleInfo">
+            <EndProperty Name="RoleInfo">
+              <ScalarProperty Name="ID" ColumnName="RoleInfoID" />
+            </EndProperty>
+            <EndProperty Name="UserInfo">
+              <ScalarProperty Name="ID" ColumnName="UserInfoID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -712,9 +1695,9 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>

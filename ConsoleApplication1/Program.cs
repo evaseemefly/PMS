@@ -151,8 +151,8 @@ namespace SMSbackground
                // return Content("服务器错误");
             }
             //7 获取改次发送的SMSContent的ID
-            int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(model.msgid)).FirstOrDefault().ID;
-            bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
+            S_SMSContent smsContent = smsContentBLL.GetListBy(p => p.msgId.Equals(model.msgid)).FirstOrDefault();
+            bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, smsContent.ID);
             //暂时不用
             #region 6月26日 暂时注释掉的——与前台交互的代码
             //if (!isSaveCurrnetMsgOk)

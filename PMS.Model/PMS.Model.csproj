@@ -89,6 +89,11 @@
     <Compile Include="MiddlewareModel\S_SMSMsgContent.cs" />
     <Compile Include="MiddlewareModel\S_SMSRecord_Current.cs" />
     <Compile Include="MiddlewareModel\UserInfo.cs" />
+    <Compile Include="PMS2016Entities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PMS2016Entities.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="PMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +120,8 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryModel\Redis_SMSContent.cs" />
+    <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
+    <Compile Include="Dictionary\SMSDictionary.cs" />
     <Compile Include="RoleInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
@@ -127,8 +134,6 @@
     <Compile Include="R_UserInfo_ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
-    <Compile Include="Dictionary\SMSDictionary.cs" />
     <Compile Include="R_UserInfo_DepartmentInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
@@ -186,6 +191,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PMS2016Entities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PMS2016Entities.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="PMSEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PMSEntities.edmx</DependentUpon>

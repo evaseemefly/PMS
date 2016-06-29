@@ -20,16 +20,19 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid)
         {
+            double count = (double)smsContent.Length/70;
             S_SMSContent s_smsContent = new S_SMSContent()
-            {   UID = uid,
+            { UID = uid,
                 SMSContent = smsContent,
                 msgId = receive.msgid,
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
                 BlackList = string.Join(",", receive.failPhones),
-                ResultCode = int.Parse(receive.result),//此处有错误
+                ResultCode = int.Parse(receive.result),
+                smsCount =  (int)Math.Ceiling(count)
+                //此处有错误
             };
-
+            
             //6月1日：此处有错，此时创建 短信内容对象，其中的id为默认值
             try
             {

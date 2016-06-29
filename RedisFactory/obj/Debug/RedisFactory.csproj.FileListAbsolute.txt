@@ -1,0 +1,5 @@
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\bin\Debug\RedisFactory.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\bin\Debug\RedisFactory.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.pdb
