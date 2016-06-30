@@ -178,7 +178,7 @@
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="SMSContent" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="msgId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SendDateTime" Type="date" Nullable="false" />
+          <Property Name="SendDateTime" Type="datetime" Nullable="false" />
           <Property Name="isDel" Type="bit" Nullable="false" />
           <Property Name="SMID" Type="int" Nullable="false" />
           <Property Name="BlackList" Type="nvarchar(max)" />
@@ -1157,7 +1157,7 @@
           <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="SMSContent" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="msgId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="SendDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SendDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="isDel" Type="Boolean" Nullable="false" />
           <Property Name="SMID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_S_SMSContent_UserInfo" FromRole="S_SMSContent" ToRole="UserInfo" />

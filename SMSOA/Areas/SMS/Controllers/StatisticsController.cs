@@ -187,7 +187,7 @@ namespace SMSOA.Areas.SMS.Controllers
             int rowCount = 0;
 
             //1 分页查询当前登录用户的的发送短信内容集合
-           var list_SMSContent= userBLL.GetSMSContentListByUID(pageIndex, pageSize,ref rowCount, base.LoginUser.ID, true, false);
+           var list_SMSContent= userBLL.GetSMSContentListByUID(pageIndex, pageSize,ref rowCount, base.LoginUser.ID,false, false);
 
             List<ViewModel_StatisticsLast10> list_statisticsFinal = new List<ViewModel_StatisticsLast10>();
             //2.1 将短信内容实体对象集合转成要在datagrid中显示的统计对象集合
@@ -269,7 +269,7 @@ namespace SMSOA.Areas.SMS.Controllers
             var userTemp= userBLL.GetListBy(u => u.ID == userInfo.ID).FirstOrDefault();
 
             //2 获取该用户所发送的短信内容——只获取当日的发送的短信（或发送最近的前十条短信）
-            var list_last10 = userTemp.S_SMSContent.OrderBy(c => c.SendDateTime).Take(10).ToList();
+            var list_last10 = userTemp.S_SMSContent.OrderByDescending(c => c.SendDateTime).Take(10).ToList();
 
             List<ViewModel_StatisticsLast10> list_statisticslast10 = new List<ViewModel_StatisticsLast10>();
             //2.1 将短信内容实体对象集合转成要在datagrid中显示的统计对象集合
@@ -298,7 +298,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //2 获取该用户所发送的短信内容——只获取当日的发送的短信（或发送最近的前十条短信）
             //2 获取该用户所发送的短信内容——只获取当日的发送的短信
             var currentDate = DateTime.Now.ToShortDateString();
-            var list_currentDay = userTemp.S_SMSContent.OrderBy(c => c.SendDateTime).Where(s => s.SendDateTime.ToShortDateString() == currentDate).ToList();
+            var list_currentDay = userTemp.S_SMSContent.OrderByDescending(c => c.SendDateTime).Where(s => s.SendDateTime.ToShortDateString() == currentDate).ToList();
 
             List<ViewModel_StatisticsLast10> list_statisticslast10 = new List<ViewModel_StatisticsLast10>();
             //2.1 将短信内容实体对象集合转成要在datagrid中显示的统计对象集合

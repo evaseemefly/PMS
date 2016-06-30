@@ -173,7 +173,7 @@
     <Property Name="UID" Type="int" Nullable="false" />
     <Property Name="SMSContent" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="msgId" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="SendDateTime" Type="date" Nullable="false" />
+    <Property Name="SendDateTime" Type="datetime" Nullable="false" />
     <Property Name="isDel" Type="bit" Nullable="false" />
     <Property Name="SMID" Type="int" Nullable="false" />
     <Property Name="BlackList" Type="nvarchar(max)" />

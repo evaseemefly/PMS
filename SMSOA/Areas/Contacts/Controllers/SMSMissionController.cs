@@ -166,15 +166,16 @@ namespace SMSOA.Areas.Contacts.Controllers
 
                 ViewBag.Name = model.SMSMissionName;
                 ViewBag.Remark = model.Remark;
-                ViewBag.ModifiedOnTime = model.ModifiedOnTime;
+               // ViewBag.ModifiedOnTime = model.ModifiedOnTime;
                 ViewBag.SubTime = model.SubTime;
+                ViewBag.Sort = model.Sort;
                 ViewBag.SMID = model.SMID;
                 ViewBag.isMMS = model.isMMS;
                 //5 提供显示页面提交时跳转到的权限名称
                 //修改即跳转至修改方法
                 ViewBag.backAction_jqSub = backDoEdit_url;
 
-                return View("ShowAddSMSMissionInfo");
+                return View("ShowEditSMSMissionInfo");
             }
             return Content("no");
         }
@@ -186,7 +187,8 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult ShowAddSMSMissionInfo()
         {
             ViewBag.backAction_jqSub = backDoAdd_url;
-            return View();
+            ViewBag.SubTime = DateTime.Now;
+            return View("ShowEditSMSMissionInfo");
         }
 
         #endregion
@@ -219,7 +221,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             mission.isDel = false;
             mission.isMMS = false;
-            mission.SubTime = DateTime.Now;
+            //mission.SubTime = DateTime.Now;
             mission.ModifiedOnTime = DateTime.Now;
             try
             {

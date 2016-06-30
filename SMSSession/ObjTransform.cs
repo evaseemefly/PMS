@@ -54,21 +54,25 @@ namespace SMSFactory
                 var _wgcode = Xml2StrHelper.xml2strList(returnMsg, "response/report/wgcode");
                 var _time = Xml2StrHelper.xml2strList(returnMsg, "response/report/time");
                 var _smsCount = Xml2StrHelper.xml2strList(returnMsg, "response/report/smsCount");
+                var _smsIndex = Xml2StrHelper.xml2strList(returnMsg, "response/report/smsIndex");
 
                 for (int i = 0; i < _status.Length; i++)
                 {
-                    SMSModel_QueryReceive r = new SMSModel_QueryReceive()
-                    //封装语句
+                    if (int.Parse(_smsIndex[i]) == 1)
                     {
-
-                        phoneNumber = _phone[i],
-                        status = _status[i],
-                        desc = _desc[i],
-                        wgcode = _wgcode[i],
-                        time = _time[i],
-                        smsCount = int.Parse(_smsCount[i])
-                    };
-                    list_r.Add(r);
+                        SMSModel_QueryReceive r = new SMSModel_QueryReceive()
+                        //封装语句
+                        {
+                            phoneNumber = _phone[i],
+                            status = _status[i],
+                            desc = _desc[i],
+                            wgcode = _wgcode[i],
+                            time = _time[i],
+                            smsCount = int.Parse(_smsCount[i])
+                        };
+                        list_r.Add(r);
+                    }
+                   
 
                 }
             }

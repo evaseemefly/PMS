@@ -364,6 +364,7 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout_GroupDepartment.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout-6月22日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission.cshtml" />
+    <Content Include="Areas\Contacts\Views\SMSMission\ShowEditSMSMissionInfo.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

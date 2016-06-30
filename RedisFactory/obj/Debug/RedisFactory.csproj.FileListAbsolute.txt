@@ -3,3 +3,8 @@ D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\bin\Debug\RedisFactory.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.pdb
+E:\03协同开发\短信\PMS\0630\PMS\RedisFactory\bin\Debug\RedisFactory.dll
+E:\03协同开发\短信\PMS\0630\PMS\RedisFactory\bin\Debug\RedisFactory.pdb
+E:\03协同开发\短信\PMS\0630\PMS\RedisFactory\obj\Debug\RedisFactory.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\0630\PMS\RedisFactory\obj\Debug\RedisFactory.dll
+E:\03协同开发\短信\PMS\0630\PMS\RedisFactory\obj\Debug\RedisFactory.pdb
