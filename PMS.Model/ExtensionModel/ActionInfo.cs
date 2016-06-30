@@ -20,7 +20,7 @@ namespace PMS.Model
             set { _checked = value; }
             get { return _checked; }
         }
-
+        public bool byRole { get; set; }
         /// <summary>
         /// 1 
         /// </summary>

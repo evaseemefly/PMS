@@ -411,7 +411,9 @@
                     onCheck: function (index,row) {
                         $('#group').datagrid('beginEdit', index);
                     },
-                    onUncheck: function (index) {
+                    onUncheck: function (index,row) {
+                        row.checked = false;
+                        row.Text = "请选择";
                         $('#group').datagrid('cancelEdit', index);
                     },
                     onLoadSuccess: function (data) {

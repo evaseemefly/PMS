@@ -57,16 +57,22 @@
         //角色
         var RoleColumns = [[
             { field: 'ck', checkbox: true },
-            { field: 'RoleName', title: '角色名称', width: 200 },
-            { field: 'Remark', title: '备注', width: 200},
+            { field: 'RoleName', title: '角色名称', width: 100 },
+            { field: 'SubTime', title: '创建时间', width: 150 },
+            { field: 'ModifiedTime',title:'最后修改时间', width:150},
+            { field: 'Remark', title: '备注', width: 100},
+            { field: 'Sort',title:'顺序',width:50},
         ]]
 
         //权限(包括是否禁用)
         var ActionColumns = [[
             { field: 'ck', checkbox: true },
-            { field: 'ActionName', title: '权限名称', width: 250 },
-            {
-                field: 'IsPass', title: '是否禁用', width: 150,
+            { field: 'ActionName', title: '权限名称', width: 100 },
+            { field: 'SubTime', title: '创建时间', width: 100 },
+            { field: 'ModifiedTime', title: '最后修改时间', width: 100 },
+            { field: 'byRole',title:'是否由角色赋予',width:50},
+        {
+            field: 'IsPass', title: '是否禁用', width: 50,
                 formatter: function (value, row) {
                     return row.Text;
                 },
@@ -111,6 +117,7 @@
 
 
         function loadDatagrid_Action(UserId, myActionColumns) {
+            var editRow = undefined;
             $("#action").datagrid({
                 url: '@ViewBag.ShowAssignActionInfo?id= ' + UserId,
                 panelWidth: 400,
@@ -126,22 +133,25 @@
                 },
                 onAfterEdit: function (index, row) {
                     row.editing = false;
-                    $("#action").datagrid('refreshRow', index);
-                },
-                onCancelEdit: function (index, row) {
-                    row.editing = false;
-                    $("#action").datagrid('refreshRow', index);
                 },
                 onEndEdit: function (index, row) {
                     var ed = $('#action').datagrid('getEditor', { index: index, field: 'IsPass' });
                     row.IsPass = $(ed.target).combobox('getText');
                 },
-                onCheck: function (index) {
+                onSelect: function (index,row) {
                     $('#action').datagrid('beginEdit', index);
                 },
-                onUncheck: function (index) {
+                onUnselect: function (index, row) {
+                    row.checked = false;
+                    row.Text = "请选择";
                     $('#action').datagrid('cancelEdit', index);
                 },
+                //onCheck: function (index) {
+                //    $('#action').datagrid('beginEdit', index);
+                //},
+                //onUncheck: function (index) {
+                //    $('#action').datagrid('cancelEdit', index);
+                //},
                 onLoadSuccess: function (data) {
                     if (data) {
                         //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
@@ -153,6 +163,8 @@
                             }
                         })
                     }
+
+                    //设置某些框不可选
                 }
             })
         }
