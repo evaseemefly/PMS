@@ -142,9 +142,17 @@
                     $('#action').datagrid('beginEdit', index);
                 },
                 onUnselect: function (index, row) {
-                    row.checked = false;
-                    row.Text = "请选择";
-                    $('#action').datagrid('cancelEdit', index);
+                    if (row.byRole == true) {
+                        $('#action').datagrid('checkRow', index);
+                        $.messager.alert('提示', "该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员");
+
+                        return;
+                    } else {
+
+                        row.checked = false;
+                        row.Text = "请选择";
+                        $('#action').datagrid('cancelEdit', index);
+                    }
                 },
                 //onCheck: function (index) {
                 //    $('#action').datagrid('beginEdit', index);
