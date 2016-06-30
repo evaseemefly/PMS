@@ -244,5 +244,21 @@ namespace PMS.BLL
                 return false;
             }
         }
+
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <returns></returns>
+        public bool AddValidation(String phoneNum)
+        {
+            var list_model = this.GetListBy(r => r.isDel == false).ToList();
+            return list_model.Exists(r => r.PhoneNum.Equals(phoneNum));
+        }
+        //数据验证
+        public bool EditValidation(int id, String phoneNum)
+        {
+            var list_model = this.GetListBy(r => r.PID != id && r.isDel == false).ToList();
+            return list_model.Exists(r => r.PhoneNum.Equals(phoneNum));
+        }
     }
 }

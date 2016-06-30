@@ -161,10 +161,13 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("修改成功", 0);
+            }
+            else if (data == "validation fails") {
+                window.parent.afterEdit("该电话号码已存在，请重新输入", 1)
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("修改失败", 0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
