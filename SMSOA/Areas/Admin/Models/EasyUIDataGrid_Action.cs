@@ -58,5 +58,10 @@ namespace SMSOA.Areas.Admin.Models
             set { _checked = value; }
             get { return _checked; }
         }
+
+        ///<summary>
+        ///该权限是否为角色赋予的
+        /// </summary>
+        public bool byRole { get; set; }
     }
 }

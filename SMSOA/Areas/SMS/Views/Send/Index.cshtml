@@ -8,6 +8,7 @@
     <script type="text/javascript">
         var missionColumns = [[
                  { field: 'SMID', title: 'ID', width: 100, checkbox: true },
+                 //{ field: 'SMID', title: 'ID', width: 100,hidden:true },
                  { field: 'SMSMissionName', title: '任务名称', width: 150 }
         ]]
 
@@ -28,42 +29,6 @@
             var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
             return s;
         }
-        function test(rowIndex,rowData) {
-            alert("点击了第"+rowIndex+"行"+":"+rowData);
-        }
-
-        function loadComboGrid(rowIndex,rowData) {
-            //1 根据传入的行对象获取行对象中的MissionId
-            var missionId = rowData.SMID;
-            //2 根据MissionId查找该任务所拥有的部门
-
-            //3 根据MissionId查找该任务所拥有的群组
-
-        }
-
-        //加载全部部门下拉框
-        function loadComboTree_Department(missionId) {
-            //2.2 加载上级部门下拉框
-            $("#DepartmentName_combotree").combotree({
-                panelWidth: 250,
-                panelHeight: 250,
-                url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
-                //required: true,
-                method: 'get',
-                //width: 210,
-                cascadeCheck: $(this).is(':checked'),//选中子节点不会选中父节点
-                //formatter: formatItem_combobox
-                onCheck: function (node) {
-                    //alert("选中" + node);
-                    //var nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
-                    //alert("选中了" + nodes.length+"个节点");
-                    loadDataGridByGroupDepartment_Personss();
-                }
-            });
-            //选中子节点不会选中父节点
-            //$('#DepartmentName_combotree').combotree({ cascadeCheck: $(this).is(':checked') })
-
-        }
 
         function split4id(obj, index) {
             var ids = "";
@@ -74,143 +39,10 @@
             return ids;
         }
 
-        function loadDataGridByGroupDepartment_Personss() {
-            //1 获取当前选中的group以及department下拉框所选中的ids
-            //1.1 获取当前选中的群组下拉框
-            var grid = $("#group_combogrid").combogrid("grid");
-            var group_checkeds = grid.datagrid("getChecked");
-            var group_ids = split4id(group_checkeds, "GID");
-            //获取选中行的id
-            //alert(split4id(checkeds, "GID"));
-            //var ids_group = "";
-            //for (var i = 0; i < checkeds.length; i++) {
-            //    ids_group = ids_group + checkeds[i].GID + ",";
-            //}
-            //1.2 获取当前选中的部门下拉tree
-            var department_nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
-            var department_ids = split4id(department_nodes, "id");
-            //var ids_department = "";
-            //for (var i = 0; i < nodes.length; i++) {
-            //    ids_department = ids_department + nodes[i].id + ",";
-            //}
-            //alert(split4id(nodes, "id"));
-            //2 请求url加载至Person_DataGrid
-            var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
 
-            loadDataGrid_Person(url);
-        }
-
-        function loadDataGrid_Person(url) {
-            $("#persondatagrid").datagrid({
-                fitColumns: true,
-                striped: true,
-                multiple: true,     //单选
-                fit: true,
-                url: url,
-                showHeader: true,
-              // pagination:true,//在数据表格控件底部显示分页工具栏
-                rownumbers: true, //是否加行号 
-                loadMsg: '加载中……',
-                columns: PersonColumns,
-                onLoadSuccess: function () {
-                    var data = $("#persondatagrid").datagrid("getData");
-                    var rowData = data.rows;
-                    $.each(rowData, function (rowIndex, rowData) {
-                        $("#persondatagrid").datagrid("selectRow", rowIndex);
-                    });
-                }
-            });
-
-            var p=$("#persondatagrid").datagrid('getPager');
-            p.pagination({
-                displayMsg: '共{total}条数据'
-            });
-        }
-
-        function OnSelected_Group() {
-            $("#group_combogrid").combogrid({
-                //把此方法放在外侧
-                //onSelect: function (rowIndex, rowData) {
-                //    alert("选中" + rowIndex);
-                //    //var checkeds = $("#group_combogrid").combogrid("getSelections");
-                //    //注意此处!!!!需要将combogrid先转换为grid，再调用grid的方法
-                //    var grid = $("#group_combogrid").combogrid("grid");
-                //    var checkeds = grid.datagrid("getChecked");
-                //    alert("选中了" + checkeds.length + "行");
-                //    //alert("选中了" + checkeds);
-                //},
-                //onUnselect: function (rowIndex, rowData) {
-                //    alert("取消选中" + rowIndex);
-                //    var grid = $("#group_combogrid").combogrid("grid");
-                //    var checkeds = grid.datagrid("getChecked");
-                //    alert("选中了" + checkeds.length + "行");
-                //    //var checkeds = $("#group_combogrid").combogrid("getChecked");
-                //    //alert("选中了" + checkeds);
-                //},
-                onClickRow: function (rowIndex, rowData) {
-                    alert("选中第" + rowIndex+"行");
-                    //var checkeds = $("#group_combogrid").combogrid("getSelections");
-                    //注意此处!!!!需要将combogrid先转换为grid，再调用grid的方法
-                    var grid = $("#group_combogrid").combogrid("grid");
-                    var checkeds = grid.datagrid("getChecked");
-                    alert("一共选中了" + checkeds.length + "行");
-                    //alert("选中了" + checkeds);
-
-                    loadDataGridByGroupDepartment_Personss();
-                }
-            })
-        }
-
-        function loadComboGrid_Group(missionId,userId) {
-
-            //加载全部短信任务种类
-            $("#group_combogrid").combogrid({
-                url: '@ViewBag.GetGroupByMID_combogrid?mid='+missionId+'&uid='+userId,
-                method: 'get',
-                idField: 'GID',
-                textField: 'GroupName',
-                //width:120,
-                panelWidth: 180,
-                panelHeight: 300,
-                multiple: true,
-                columns: groupColumns,
-                //onClickRow: function (rowIndex, rowData) {
-                //    alert("点击某一行了");
-                //    //var checkeds = $("#group_combogrid").combogrid("getChecked");
-                //    //alert("选中了" + checkeds);
-                //},
-                //onCheck:function (rowIndex, rowData) {
-                //    alert("选中"+rowIndex);
-                //    //var checkeds = $("#group_combogrid").combogrid("getChecked");
-                //    //alert("选中了" + checkeds);
-                //},
-                onClickRow: function (rowIndex, rowData) {
-                    //alert("选中第" + rowIndex+"行");
-                    //var checkeds = $("#group_combogrid").combogrid("getSelections");
-                    //注意此处!!!!需要将combogrid先转换为grid，再调用grid的方法
-                    //var grid = $("#group_combogrid").combogrid("grid");
-                    //var checkeds = grid.datagrid("getChecked");
-                    loadDataGridByGroupDepartment_Personss();
-
-                },
-                //formatter: formatItem_combobox,
-                //获取数据成功后启动事件
-                onLoadSuccess: function () {
-                    var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
-                    var rowData = data.rows;
-                    $.each(rowData, function (rowIndex, rowData) {
-                        if (rowData.checked) {
-                            $("#group_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
-                        }
-                    });
-                }
-            })
-        }
-
-        function OnChecks() {
-
-            var ids= $("#group_combogrid").combobox("getChecked");
-        }
+        //function OnChecks() {
+        //    var ids= $("#group_combogrid").combobox("getChecked");
+        //}
 
 
 
@@ -276,6 +108,8 @@
             alert("取消发送短信");
         }
 
+        //----------------------------加载几个下拉框-----------------------------
+        //根据登录的用户加载其选中的常用 短信任务
         //加载短信任务combogrid
         function loadCombogrid_byUser() {
             var myurl = '@ViewBag.GetMissionByUID';
@@ -295,10 +129,13 @@
                 //width:120,
                 panelWidth: 180,
                 panelHeight: 'auto',
+                editable: false,
                 multiple: false,@*设置为单选*@
-                formatter: formatItem_combobox,
-                columns: missionColumns,
-                onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
+                //formatter: formatItem_combobox,
+                columns: missionColumns,               
+                onSelect:function(rowIndex, rowData){
+                    //点击任务后显示该任务所拥有的群组以及部门
+                    //alert("被点击了");
                     loadComboGrid_Group(rowData.SMID,userId);
                     loadComboTree_Department(rowData.SMID);
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
@@ -309,6 +146,126 @@
                 }
             })
         }
+
+        //根据选中的短信任务加载该任务所拥有的群组下拉框
+        function loadComboGrid_Group(missionId,userId) {
+
+            //加载全部短信任务种类
+            $("#group_combogrid").combogrid({
+                url: '@ViewBag.GetGroupByMID_combogrid?mid='+missionId+'&uid='+userId,
+                //method: 'get',
+                idField: 'GID',
+                textField: 'GroupName',
+                editable: false,
+                //width:120,
+                panelWidth: 180,
+                panelHeight: 300,
+                multiple: true,
+                columns: groupColumns,
+                onSelect:function(rowIndex, rowData){
+                    //alert("选中了一行");
+                    loadDataGridByGroupDepartment_Personss();
+                },
+                onUnselect:function(rowIndex, rowData){
+                    //alert("去掉已经选中的一行");
+                    loadDataGridByGroupDepartment_Personss();
+                },
+               // formatter: formatItem_combobox,
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
+                        if (rowData.checked) {
+                            $("#group_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
+                        }
+                    });
+                }
+            })
+        }
+
+        //加载全部部门下拉框
+        function loadComboTree_Department(missionId) {
+            //2.2 加载上级部门下拉框
+            $("#DepartmentName_combotree").combotree({
+                panelWidth: 250,
+                panelHeight: 250,
+                url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
+                //required: true,
+                method: 'get',
+                //width: 210,
+                cascadeCheck: $(this).is(':checked'),//选中子节点不会选中父节点
+                //formatter: formatItem_combobox
+                onCheck: function (node) {
+                    //alert("选中" + node);
+                    //var nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
+                    //alert("选中了" + nodes.length+"个节点");
+                    loadDataGridByGroupDepartment_Personss();
+                }
+            });
+            //选中子节点不会选中父节点
+            //$('#DepartmentName_combotree').combotree({ cascadeCheck: $(this).is(':checked') })
+
+        }
+
+        function loadDataGridByGroupDepartment_Personss() {
+            //1 获取当前选中的group以及department下拉框所选中的ids
+            //1.1 获取当前选中的群组下拉框
+            var grid = $("#group_combogrid").combogrid("grid");
+            var group_checkeds = grid.datagrid("getChecked");
+            var group_ids = split4id(group_checkeds, "GID");
+            //获取选中行的id
+            //alert(split4id(checkeds, "GID"));
+            //var ids_group = "";
+            //for (var i = 0; i < checkeds.length; i++) {
+            //    ids_group = ids_group + checkeds[i].GID + ",";
+            //}
+            //1.2 获取当前选中的部门下拉tree
+            var department_nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
+            var department_ids = split4id(department_nodes, "id");
+            //var ids_department = "";
+            //for (var i = 0; i < nodes.length; i++) {
+            //    ids_department = ids_department + nodes[i].id + ",";
+            //}
+            //alert(split4id(nodes, "id"));
+            //2 请求url加载至Person_DataGrid
+            var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
+
+            loadDataGrid_Person(url);
+        }
+
+
+
+
+
+        function loadDataGrid_Person(url) {
+            $("#persondatagrid").datagrid({
+                fitColumns: true,
+                striped: true,
+                multiple: true,     //单选
+                fit: true,
+                url: url,
+                showHeader: true,
+                // pagination:true,//在数据表格控件底部显示分页工具栏
+                rownumbers: true, //是否加行号
+                loadMsg: '加载中……',
+                columns: PersonColumns,
+                onLoadSuccess: function () {
+                    var data = $("#persondatagrid").datagrid("getData");
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
+                        $("#persondatagrid").datagrid("selectRow", rowIndex);
+                    });
+                }
+            });
+
+            var p=$("#persondatagrid").datagrid('getPager');
+            p.pagination({
+                displayMsg: '共{total}条数据'
+            });
+        }
+
+
 
         //根据短信任务以及用户id加载该任务所拥有的短信
         function loadtextbox_Template(smid,userid){
@@ -327,48 +284,9 @@
             })
         }
 
+        //暂时不使用
         //加载常用的短信任务
-        function loadcombogrid_AllMission() {
-            var myurl='@ViewBag.GetAllMission_combogrid';
-            //加载全部短信任务种类
-            $("#OftensmsMission_combogrid").combogrid({
-                url: myurl,
-                method: 'get',
-                idField: 'SMID',
-                textField: 'SMSMissionName',
-                //width:120,
-                panelWidth: 180,
-                panelHeight: 'auto',
-                multiple: true,@*设置为单选*@
-                formatter: formatItem_combobox,
-                columns: missionColumns,
-                onClickRow: function (rowIndex, rowData) {
-                    //在常用短信下拉框中
-                    //加载当前任务已经选中的任务列表
 
-                }
-            })
-        }
-
-        function HiddenOftenCombo() {
-
-            if ($("#isShowOftenMission").prop("checked")) {
-                //alert("选中复选框了");
-                //若当前的复选框被选中，则显示下拉框，若未选中则隐藏下来狂
-                //$("#OftensmsMission_combogrid").combogrid("hidden");//无效果
-                //$("#OftensmsMission_combogrid").show();//无效果
-                //$("#OftensmsMission_combogrid").attr("visible", true);
-                $("#OftensmsMission_combogrid").combogrid({ disabled: false });//下拉框变成可以显示的
-                loadcombogrid_AllMission();
-            }
-            else {
-                //alert("取消复选框了");
-                //$("#OftensmsMission_combogrid").combogrid("hidden");
-                //$("#OftensmsMission_combogrid").hidden();
-                //$("#OftensmsMission_combogrid").attr("visible", false);
-                $("#OftensmsMission_combogrid").combogrid({ disabled: true });
-            }
-        }
 
         function showEditWindow() {
             //从指定页面中预读取数据
@@ -385,14 +303,10 @@
             //OnSelected_Group();
             $("#DepartmentName_combotree").combotree({
                 onCheck: function () {
-                    alert("选中了");
+                    alert("此部门被选中了");
                 }
             });
-            HiddenOftenCombo();
-            $("#isShowOftenMission").click(function () {
-                //隐藏或显示常用任务下拉框
-                HiddenOftenCombo();
-            });
+
         })
 </script>
     }

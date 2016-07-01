@@ -20,7 +20,8 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid)
         {
-            double count = (double)smsContent.Length / 70;
+            //计算字数要加上{国家海洋预报台}
+            double count = ((double)smsContent.Length + 9 )/ 70;
             S_SMSContent s_smsContent = new S_SMSContent()
             {   UID = uid,
                 SMSContent = smsContent,

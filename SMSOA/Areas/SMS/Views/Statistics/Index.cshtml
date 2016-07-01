@@ -44,7 +44,18 @@
                     }
                 },
                 { field: 'TotalOfReceiveNum', title: '发送总人数', width: '10%' },
-                { field: 'NotReceiveNum', title: '未收到人数', width: '10%' }
+                {
+                    field: 'NotReceiveNum', title: '未收到人数', width: '10%',
+                    formatter: function (value) {
+                        if (value == 0) {
+                            return '<span style="color:#4cff00;">' + value + '</span>';
+                        }
+                        else {
+                            return '<span style="color:orangered;">' + value + '</span>';
+                        }                       
+                       
+                    }
+                }
         ]]
 
         function loadDataGrid_Statistic() {
@@ -221,6 +232,7 @@
 
 @section Body{
     <div id="body_layout" class="easyui-panel"  style="height:98%;width:98%;border:0px" data-options="fit:true">
+        @*<span style="color:orangered;"></span>*@
         @Html.Partial("_Partial_Statistics_Last10")
         @Html.Partial("_Partial_Statistics_CurrentDay")
    </div>
