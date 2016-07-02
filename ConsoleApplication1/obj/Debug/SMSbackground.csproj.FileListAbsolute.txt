@@ -78,8 +78,6 @@ E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
 E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.dll
 E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.xml
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\SMSbackground.exe.config
-E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
-E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\SMSbackground.exe
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\SMSbackground.pdb
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\Common.dll
@@ -117,3 +115,5 @@ E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\System.Web.M
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.csproj.SMSbackground.exe.config
+E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
+E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
