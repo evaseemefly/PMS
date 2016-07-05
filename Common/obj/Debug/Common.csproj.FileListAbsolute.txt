@@ -161,3 +161,4 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.csproj
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\Common.dll.config
+D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\Common.dll.config
