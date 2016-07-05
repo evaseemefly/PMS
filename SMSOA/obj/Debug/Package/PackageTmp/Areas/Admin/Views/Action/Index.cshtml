@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+@Html.Partial("_MyPartial_Index")
+<script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
+<script type="text/javascript">
+    
+    var toolbar= [ {
+        iconCls: 'icon-add',
+        text: "新增",
+        handler: addRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-', 
+        {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
+            }, '-',
+           {
+               iconCls: 'icon-edit',
+               text: "编辑",
+               handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+               }]
+
+    var myColumns = [[
+                { field: 'ID', title: 'ID', width:'5%', hidden: true },
+                { field: 'ActionInfoName', title: '权限名称', width: '10%' },
+                {
+                    field: 'SubTime', title: '创建时间', width: '15%',
+                    formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                { field: 'AreaName', title: '区域名', width: '10%' },
+                { field: 'ControllerName', title: '控制器名', width: '10%' },
+                { field: 'ActionMethodName', title: '方法名', width: '10%' },
+                { field: 'Remark', title: '备注', width: '30%' },
+                { field: 'Sort', title: '顺序', width: '5%' }
+    ]]
+
+    function provideAction() {
+
+    }
+    function CancelSend() {
+        $("#editWindow").window('close');
+    }
+    
+</script>
+  
+<div class="easyui-window" title="新建权限" id="editWindow" style="overflow: hidden;width:700px;height:380px" data-options="shadow:true,modal:true">
+    <iframe id="setActionRoleFrame" scrolling="no" @*scroll="no"*@ frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+</div>     

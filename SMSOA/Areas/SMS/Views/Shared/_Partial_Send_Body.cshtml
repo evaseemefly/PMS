@@ -2,7 +2,7 @@
     <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@ style="width:230px;">
         <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
     </div>
-    <div data-options="region:'center'" title="联系人列表" style="width:70%">
+    <div data-options="region:'center'" title="短信编辑" style="width:70%">
             <div style="padding:10px 30px 20px 30px">
                 <form id="ff" method="post">
                     <table cellspacing="10" style="font-size:15px;">
@@ -12,12 +12,6 @@
                                 <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select><br />
                                 请先选择短信任务种类
                             </td>
-                            @*<td>
-                                <input type="checkbox" name="qx" id="isShowOftenMission" value="1" />设置常用任务
-                            </td>
-                            <td>
-                                <select class="easyui-combogrid" name="OftensmsMission" id="OftensmsMission_combogrid" style="width:150px"></select>
-                            </td>*@
                         </tr>
                         <tr>
                             <td>修改群组:</td>
@@ -53,10 +47,6 @@
                     <a class="easyui-linkbutton c2" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="ClearContent()" style="width:80px">清除</a>
                     <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
                 </div>
-                @*<div style="text-align:center;padding:5px">
-                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
-                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
-                </div>*@
             </div>
 
 

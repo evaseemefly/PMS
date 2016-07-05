@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "ShowEditInfo_1";
+    Layout = "~/Views/Shared/_Admin_AddUser_Layout.cshtml";
+    string backAction = ViewBag.backAction;
+    int sort = (ViewBag.Sort== null ? 50 : ViewBag.Sort);
+}
+@section SectionJS{
+    <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
+    <script src="~/Scripts/MyScripts/EasyUI/SwitchBtn.js"></script>
+<link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function Save() {
+            DoSubmit("ff", '@ViewBag.backAction',"权限名称");
+        }
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
+
+        function SetActionParentCombotreeValue(data) {
+            //1 找到部门下拉框
+            $("#DepartmentName_combotree").combotree('setValue', data);
+        }
+
+        //加载isShow为true的权限树状列表
+        function loadComboTree_Action(id, url) {
+            //2.2 加载上级部门下拉框
+            var str = "#" + id;
+            $(str).combotree({
+                url: url,
+                valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
+                textField: 'text',
+                //valueField: "DID",
+                //textField: "DepartmentName",
+                //required: true,
+                editable: false,
+                onlyLeafCheck: true,
+                cascaseCheck: true,
+                method: 'get',
+                width: 210
+                //onLoadSuccess: AfterLoadDepartment
+                @*setValue:'@ViewBag.PDID'*@
+            });
+        }
+
+        $(function () {
+            loadComboTree_Action("combo_parent", '@ViewBag.GetAction_comboTree');
+
+            //1 为上级菜单赋值
+            $("#combo_parent").combotree('setValue', '@ViewBag.ParentID');
+
+            //2 为请求类型赋值
+            $("#combo_actionType").combobox('setValue', '@ViewBag.ActionType');
+
+            //3 为switch按钮绑定事件以及赋值
+            var temp = '@ViewBag.isShow';
+            SetValCheckBySwitchBtn("isShow", temp);
+            
+            SwitchButtonBindSetValue("isShow");
+           
+        })
+
+
+    </script>
+}
+
+<div>
+    <form id="ff" class="easyui-form" method="post" style="margin:0px;">
+        <div style="height:30px;width:100%;background-color:#000000"></div>
+        <input type="hidden" name="ID" value="@ViewBag.ID" />
+        <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
+        <input type="hidden" id="hidden_isShow" @*name="isShow"*@ value="" />
+        <table style="margin-left:40px;width:95%" cellpadding="3">
+            <tr>
+                <td style="">权限名称:</td>
+                <td class="comment">
+                    <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="ActionInfoName" value="@ViewBag.ActionInfoName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />
+                    请填写权限名称
+                </td>
+                <td style="">上级菜单:</td>
+                <td class="comment">
+                    <select id="combo_parent" name="ParentID" class="easyui-combobox" style="width:80%;height:25px;" required="required"/><br />
+                    选择该权限所属的上级菜单
+                </td>
+            </tr>
+            <tr>
+                <td style="">区域名称:</td>
+                <td class="comment">
+                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="AreaName" value="@ViewBag.AreaName" required="required"></input><br />
+                    请填写区域名称
+                </td>
+                <td style="">控制器名称:</td>
+                <td class="comment">
+                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ControllerName" value="@ViewBag.ControllerName" required="required"></input><br />
+                    请填写控制器名称
+                </td>
+            </tr>
+            <tr>
+                <td style="">方法（权限）名称:</td>
+                <td class="comment">
+                    <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ActionMethodName" value="@ViewBag.ActionMethodName" required="required"></input><br />
+                    请填写控制器中方法名称
+                </td>
+                <td style="">请求类型:</td>
+                <td class="comment">
+                    <select id="combo_actionType" class="easyui-combobox" name="ActionTypeEnum" style="width:80%;height:25px; "data-options="panelHeight: 'auto',editable: false" required="required">
+                        <option value="1">Get</option>
+                        <option value="2">Post</option>
+                        <option value="3">Both</option>
+                        </select><br />
+                    选择该权限所属的上级菜单
+                </td>
+            </tr>
+            <tr>
+                <td>备注:</td>
+                <td class="comment" colspan="2">
+                    <input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:40px;width:80%;" value="@ViewBag.Remark"><br />
+                    可选
+                </td>
+                <td style="">是否可见: <input id="isShow" name="isShow" class="easyui-switchbutton" ></td>
+            </tr>           
+            <tr>
+                <td>优先级:</td>
+            </tr>
+            <tr>
+                <td class="comment" colspan="2">
+                    <input class="easyui-slider" name="Sort" style="width:80%" data-options="showTip:true,
+                               rule: [0,'|',25,'|',50,'|',75,'|',100],
+                               value:'@sort'
+                               "><br />
+                    数字越小优先级越高
+                </td>
+                <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()" >提交</a></td>
+                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >取消</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+

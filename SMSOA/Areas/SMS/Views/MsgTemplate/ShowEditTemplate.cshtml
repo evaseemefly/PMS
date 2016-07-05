@@ -73,6 +73,7 @@
             $("#smsMission_combogrid").combogrid({
                 url: '@ViewBag.GetAllMission_combogrid?userId=' + userId+"&tid="+tid,
                 method: 'get',
+                editable:false,
                 idField: 'SMID',
                 textField: 'SMSMissionName',
                 width:120,

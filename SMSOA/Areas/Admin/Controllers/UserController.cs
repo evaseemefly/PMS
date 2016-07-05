@@ -200,6 +200,9 @@ namespace SMSOA.Areas.Admin.Controllers
                     from r in userInfo.RoleInfo //linq
                     from a in r.ActionInfo
                     select a).ToList();
+                //标识出此权限由角色赋予
+                foreach(var item in list_actionByID) { item.byRole = true; }
+
                 var list_R_User_Action = userInfo.R_UserInfo_ActionInfo;
                 //3 取出userInfo id为2的用户所对应的Action集合（路线一的方式）
                 //var temp = (
@@ -249,7 +252,9 @@ namespace SMSOA.Areas.Admin.Controllers
                         selected = true,
                         Checked = true,
                         IsPass = true,
-                        Text = "启用"
+                        Text = "启用",
+                        byRole = item.byRole
+                        
                     };
                     
                     list_Datagrid_action.Add(datagrid_Action);
@@ -267,7 +272,8 @@ namespace SMSOA.Areas.Admin.Controllers
                         selected = true,
                         Checked = true,
                         IsPass = false,
-                        Text = "禁用"
+                        Text = "禁用",
+                        byRole = item.byRole
                     };
 
                     list_Datagrid_action.Add(datagrid_Action);
@@ -302,7 +308,8 @@ namespace SMSOA.Areas.Admin.Controllers
                         selected = false,
                         Checked = false,
                         IsPass = true,
-                        Text = "请选择"
+                        Text = "请选择",
+                        byRole = item.byRole
                     };
 
                     list_Datagrid_action.Add(datagrid_Action);

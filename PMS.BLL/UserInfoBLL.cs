@@ -493,6 +493,7 @@ namespace PMS.BLL
                 }
                 times++;
             }
+
             var list_del_User_action = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(r => r.UserInfoID == userID &&!list_actionIDs.Contains(r.ActionInfoID));
             
             foreach (var item in list_del_User_action)

@@ -1,0 +1,322 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Scripts/EasyUI/themes/black")*@
+    @Scripts.Render("~/mvcAjax")
+    @*@Scripts.Render("~/Scripts/easyUIJS")*@
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    @*自己写的图标样式*@
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        function addRow() {
+            //从指定页面中预读取数据
+            $("#setContactsFrame").attr("src", '@ViewBag.ShowAdd');
+            //打开编辑窗体
+            $("#editWindow").window('open');
+
+        }
+
+        function editRow() {
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //**注意先加载iframe窗体的数据，在打开该窗口
+            $("#setContactsFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].GID);//会出现重定向的错误
+            $("#editWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+
+        }
+
+
+        function removeRow() {
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].GID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.Del_url?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#contactsdatagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#contactsdatagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+
+        }
+
+
+        function addPersonRow() {
+            //从指定页面中预读取数据
+            $("#addPersonFrame").attr("src", '@ViewBag.ShowAddPerson');
+            //打开编辑窗体
+            $("#editWindow").window('open');
+
+        }
+
+        function editPersonRow() {
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //**注意先加载iframe窗体的数据，在打开该窗口
+            $("#setContactsFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].GID);//会出现重定向的错误
+            $("#editWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+
+        }
+
+
+        function removePersonRow() {
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].GID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.Del_urlPerson?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#contactsdatagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#contactsdatagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+
+        }
+
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editWindow").window('close');
+            //2 刷新当前页面
+            $("#contactsdatagrid").datagrid('reload');
+        }
+
+        var myColumns = [[
+{ field: 'GID', title: 'ID', width: 100,hidden:true },
+{ field: 'GroupName', title: '群组名称', width: 150 }
+        ]]
+
+
+
+        var PersonColumns = [[
+                 { field: 'PID', title: 'ID', width: 100, checkbox: true },
+                 { field: 'PName', title: '用户名称', width: 150 },
+                 { field: 'PhoneNum', title: '电话号码', width: 250 },
+                 { field: 'Remark', title: '备注', width: 120 }
+        ]]
+
+        var toolbar = [{
+            iconCls: 'icon-add',
+            text: "新增",
+            handler: addRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-',
+        {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
+        }, '-',
+           {
+               iconCls: 'icon-edit',
+               text: "编辑",
+               handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+           }]
+
+        var PersonToolbar = [{
+            iconCls: 'icon-add_person',
+            text: "添加联系人",
+            handler: addPersonRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-',
+        {
+            iconCls: 'icon-del_person',
+            text: "删除联系人",
+            handler: removePersonRow@*removeRow("@ViewBag.Del_url")*@
+        }]
+
+
+
+        function loadPersonGrid(url, myPersonColumns, myPersonToolbar) {
+            //1 获取选中的行
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].GID;
+            url = url + "?gid=" + strId;
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $("#persondatagrid").datagrid({
+                width: '400px',
+                height:'280px',
+                //height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: false,
+                //fit: true,
+                url: url,
+                showHeader:true,
+                loadMsg: '加载中……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 20,   //设置 页容量为 5
+                pageList: [20, 40, 60],//设置 页容量下拉框
+                columns: myPersonColumns,
+                toolbar: myPersonToolbar
+
+
+            });
+        }
+
+        function loadDataGrid(url, myColumns) {
+            //2 位datagrid加载数据
+            $("#contactsdatagrid").datagrid({
+                width: '400px',
+                height: 'auto',
+                
+                fitColumns: false,
+                striped: true,
+                showFooter:true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '加载中……',
+                columns: myColumns,
+                toolbar: toolbar
+
+            });
+        }
+
+
+        $(function () {
+
+            $("#editWindow").window('close');
+            loadDataGrid('@ViewBag.GetInfo', myColumns);
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $("#contactsdatagrid").datagrid({
+                onClickRow: function (index, field, value) {
+                    loadPersonGrid("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+                }
+            });
+
+        })
+    </script>
+</head>
+<body style="overflow:hidden;">
+   
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-layout" style="width:700px;height:350px;">
+        <div id="p" data-options="region:'west'" title="West" style="width:30%">
+            <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
+        </div>
+        <div data-options="region:'center'" title="Center" style="width:600px">
+            <div id="tb" style="padding:2px 5px;">
+                Language:
+                <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+                    <option value="java">Java</option>
+                    <option value="c">C</option>
+                    <option value="basic">Basic</option>
+                    <option value="perl">Perl</option>
+                    <option value="python">Python</option>
+                </select>
+                @*<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>*@
+            </div>
+            <table class="easyui-datagrid" id="persondatagrid" style="height:280px;width:100%">
+
+            </table>
+           
+        </div>
+        @*<div data-options="region:'east'" title="east"style="width:600px">
+            <table class="easyui-datagrid" id="personsourcedatagrid" style="height:100%;width:100%"></table>
+        </div>*@
+    </div>
+    
+    <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
+        <iframe id="addPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    </div>
+</body>
+</html>
+
+
+
