@@ -61,6 +61,7 @@
 
             $("#addPersonFrame").attr("src", url);
             //打开编辑窗体
+            $("#editPersonWindow").panel({title:"新建联系人"});
             $("#editPersonWindow").window('open');
 
         }
@@ -81,6 +82,7 @@
             //**注意先加载iframe窗体的数据，在打开该窗口
 
             $("#addPersonFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].PID);//会出现重定向的错误
+            $("#editPersonWindow").panel({ title: "编辑联系人" });
             $("#editPersonWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个

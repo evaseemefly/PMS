@@ -1,10 +1,10 @@
 ﻿
 function addRow(urlAdd) {
-
-    //打开编辑窗体
-    $("#editWindow").window('open');
     //从指定页面中预读取数据
     $("#setActionRoleFrame").attr("src", urlAdd);
+    $("#editWindow").panel({ title: "创建权限" });
+    //打开编辑窗体
+    $("#editWindow").window('open');    
 
 }
 
@@ -20,10 +20,12 @@ function editRow(urlEdit) {
         });
         return;
     }
-    $("#editWindow").window('open');
+    $("#editWindow").panel({ title: "编辑权限" });
     //若选中了一行数据则执行修改操作
     //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
     $("#setActionRoleFrame").attr("src", urlEdit + "?id=" + rows[0].ID);//会出现重定向的错误
+    $("#editWindow").window('open');
+    
 }
 
 

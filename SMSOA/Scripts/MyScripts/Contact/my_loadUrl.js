@@ -22,6 +22,8 @@ function my_loadCombobox_Group(id, url,groupColumns, func_loadSuccess, func_onUn
                 //若点击的这一行有禁止删除的标记
                 //则点击后仍为该行设置为选中，并提示
                 $(div_id).combogrid("grid").datagrid("selectRow", rowIndex);
+                //收起下拉框
+                $(div_id).combogrid('hidePanel');
                 messagerShowOnCenter("提示", "全部联系人必须选中");
             }
         }

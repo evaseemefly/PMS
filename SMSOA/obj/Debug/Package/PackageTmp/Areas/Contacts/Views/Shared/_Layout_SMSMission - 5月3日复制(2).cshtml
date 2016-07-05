@@ -1,0 +1,529 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+
+    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Scripts/EasyUI/themes/black")*@
+    @Scripts.Render("~/mvcAjax")
+    @*@Scripts.Render("~/Scripts/easyUIJS")*@
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    @*自己写的图标样式*@
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+    @RenderSection("toobar_scripts", false)
+    @RenderSection("colums_scripts", false)
+    @RenderSection("crud_scripts", false)
+    @RenderSection("loadDataGrid", false)
+    <script type="text/javascript">
+        //-----------------------1 各类toolbar------------------
+
+
+        //-----------------------2 列对象----------------------------
+        var myToolbar = [
+            {
+                iconCls: 'icon-search',
+                text: "为当前短信任务分配部门",
+                handler: AssignDepartment
+            }
+        ]
+        var myColumns = [[
+        { field: 'SMID', title: 'ID', width: 100, hidden: true },
+        { field: 'SMSMissionName', title: '短信任务名称', width: 170 }
+        ]]
+
+
+        var PersonColumns = [[
+         //{ field: 'PID', title: 'ID', width: 100, checkbox: true },
+         { field: 'PName', title: '联系人姓名', width: 150 },
+         { field: 'PhoneNum', title: '电话', width: 250 },
+         { field: 'isVIP', title: '是否是VIP', width: 120 },
+         { field: 'Remark', title: '备注', width: 120 }
+        ]]
+
+        //是否禁用
+        var IsPassColumns = [{
+            "IsPass": false,
+            "Text": "禁用",
+        }, {
+            "IsPass": true,
+            "Text": "启用",
+        }];
+        //部门
+        var DepartmentColumns = [[
+            { field: 'DID', checkbox: true },
+     
+            { field: 'DepartmentName', title: '部门名称', width: 250 },
+            {
+                field: 'IsPass', title: '是否禁用', width: 150,
+                formatter: function (value, row) {
+                    return row.Text;
+                },
+                editor: {
+                    type: 'combobox',
+                    options: {
+                        valueField: 'IsPass',
+                        textField: 'Text',
+                        panelHeight: 'auto',
+                        data: IsPassColumns,
+                        required: true,
+                        editable: false
+                    }
+                }
+            }
+        ]]
+
+        //群组
+        var GroupColumns = [[
+         { field: 'ck', checkbox: true },
+         { field: 'GroupName', title: '群组名称', width: 100 },
+         { field: 'Remark', title: '备注', width: 100 },
+         {
+             field: 'IsPass', title: '是否禁用', width: 200,
+             //formatter: function (value) {
+             //    for (var i = 0; i < IsPass.length; i++) {
+             //        if (IsPass[i].value == value) return IsPass[i].name;
+             //    }
+             //    return value;
+             //},
+             formatter: function (value, row) {
+                 return row.Text;
+             },
+             editor: {
+                 type: 'combobox',
+                 options: {
+                     valueField: 'IsPass',
+                     textField: 'Text',
+                     panelHeight: 'auto',
+                     data: IsPassColumns,
+                     required: true,
+                     editable: false
+                 }
+             }
+         }
+        ]]
+        //-----------------3 增删改操作--------------------
+        //分配部门按钮的方法
+        function AssignDepartment() {
+            $("#showDepartmentWindow").window('open');
+        }
+        function Accept() {
+
+            $('#group').combogrid('grid').datagrid('acceptChanges');
+            //获取选中的部门
+            var d_rows = $("#department").treegrid('getSelections');
+            
+            $.each(d_rows, function (i, item) {
+                $('#department').treegrid('endEdit', item.DID);
+            })
+            //获取选中的群组
+            var g_rows = $('#group').combogrid('grid').datagrid('getChecked');
+
+            var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
+            if (rows_SMSMission == null) {
+
+                messagerShowOnCenter("提示", "未选择短信任务");
+                return;
+            }
+
+            var SMSMissionID = rows_SMSMission.SMID;
+            var GIDs = "";
+            var G_IsPasses = "";
+            var DIDs = "";
+            var D_IsPasses = "";
+
+
+            for (var i = 0; i < g_rows.length; i++) {
+                GIDs = GIDs + g_rows[i].GID + ",";
+                G_IsPasses = G_IsPasses + g_rows[i].IsPass + ",";
+            }
+            for (var i = 0; i < d_rows.length; i++) {
+                DIDs = DIDs + d_rows[i].DID + ",";
+                D_IsPasses = D_IsPasses + d_rows[i].IsPass + ",";
+            }
+
+            if (GIDs == "" & DIDs == "") {
+                messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
+
+                return;
+            }
+            //去掉结尾的逗号
+            GIDs = GIDs.substr(0, GIDs.length - 1);
+
+            G_IsPasses = G_IsPasses.substr(0, G_IsPasses.length - 1);
+
+            DIDs = DIDs.substr(0, DIDs.length - 1);
+
+            D_IsPasses = D_IsPasses.substr(0, D_IsPasses.length - 1);
+
+            //获取选中的任务
+
+            var result = confirm_center({
+                'SMSMissionID': SMSMissionID,
+                'groupIds': GIDs,
+                'g_isPasses': G_IsPasses,
+                'departmentIds': DIDs,
+                'd_isPasses': D_IsPasses
+            });
+
+
+        }
+
+        //为用户保存选中的分组及部门
+        function SavePerson() {
+            //判断group的下拉框是否选中
+            var selectGroupValue = $("#group").combobox('getValues');
+            var GroupIds = selectGroupValue;
+            var selectDepartmentValue = $("#DepartmentName_combotree").combobox('getValue');
+            var DepartmentId = selectDepartmentValue;
+
+            //若部门与群组均为选中则提示，并不做任何操作
+            if (!selectGroupValue & !selectDepartmentValue) {
+                messagerShowOnCenter("提示", "部门与群组请至少选择一项");
+
+                return;
+            }
+
+            //if (!selectGroupValue) {
+            //    alert("请选择群组");
+            //    return;
+            //}
+            //if (!selectDepartmentValue) {
+            //    alert("请选择部门");
+            //    return;
+            //}
+
+            var rows = $("#groupdatagrid").datagrid('getSelections');
+            //获取选中行中的UserId
+            var UserId = rows[0].PID;
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                messagerShowOnCenter("提示", "请选中某一个人");
+                //统一用从页面中间弹出消息框的方式，以下注释
+                //$.messager.show({
+                //    title: '提示',
+                //    msg: '请选中某一个人',
+                //    showType: 'show'
+                //});
+                return;
+            }
+            //弹出提示是否要向此人赋予什么权限
+            //先不这么做，弹出提示是否要执行此操作
+            //$("#win_savePerson").window('open');
+            //若执行此操作
+            var result = confirm_center({
+                'userId': UserId,
+                'groupIds': GroupIds,
+                'departmentId': DepartmentId
+            });
+
+        }
+
+        //------------4 对页面的公共操作------------------
+        function refresh() {
+            window.location.reload();//刷新当前页面.
+        }
+
+
+        //使用此种方式消息框还未显示页面就已经刷新了
+        function messagerShowOnCenter(title, msg) {
+            $.messager.show({
+                title: title,
+                msg: msg,
+                showType: 'show',
+                style: {
+                    right: '',
+                    bottom: ''
+                }
+
+            });
+        }
+
+        //提交
+        function confirm_center(obj) {
+            $.messager.confirm('请确认', '是否要执行此操作?', function (r) {
+                if (r) {
+                    //alert("执行提交操作");
+                    $.ajax({
+                        type: "POST",
+                        url: "@ViewBag.DoAssignGroup2SMSMission",
+                        //dataType: "json",//注意若使用ajax提交时若调用回调函数时，若指定数据类型为json需严格遵守格式规定
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(obj),
+                        success: function (data) {
+                            //alert("修改成功");
+
+                            if (data == "ok") {
+                                //使用此种方式会出现还未等到消息框弹出页面就刷新的问题
+                                //messagerShowOnCenter("提示", "修改成功");
+                                $.messager.alert("提示", "操作成功", "info", function () { window.close(); refresh(); });
+                                //refresh();
+                            }
+                            else {
+                                $.messager.alert("提示", "操作失败", "warning", function () { window.close(); refresh(); });
+                                //refresh();
+                            }
+                        },
+                        error: function () {
+
+                            $.messager.alert("错误", "服务器错误", "error", function () { window.close(); refresh(); });
+                            //refresh();
+                        }
+                    });
+                }
+                return;
+            });
+        }
+
+
+
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editSMSMissionWindow").window('close');
+            //2 刷新当前页面
+            $("#SMSMissiondatagrid").datagrid('reload');
+        }
+
+        //--------------------5 加载datagrid---------------------------
+
+        function formatItem_combobox(row) {
+            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span><br/>' +
+					'<span style="color:#7CFC00">' + row.remark + '</span>';
+            return s;
+        }
+
+        //加载联系人信息列表
+        function loadPersonGrid(url, myPersonColumns) {
+            //1 获取选中的行
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].SMID;
+            url = url + "?smid=" + strId;
+            loadCombogrid_Group(strId, GroupColumns);
+            loadTreegrid_Department(strId, DepartmentColumns);
+            //loadTreegrid_Department(strId, DepartmentColums);
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $("#persondatagrid").datagrid({
+                //width: '488px',
+                height: '450px',
+                //height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: false,
+                //fit: true,
+                url: url,
+                showHeader: true,
+                loadMsg: '加载中……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 20,   //设置 页容量为 5
+                pageList: [20, 40, 60],//设置 页容量下拉框
+                columns: myPersonColumns,
+                toolbar: myToolbar
+            });
+        }
+        function loadTreegrid_Department(smid, myDepartmentColumns) {
+            $('#department').treegrid({
+                rownumbers: true,
+                idField: 'DID',
+                treeField: 'DepartmentName',
+                animate: true,
+                width: '400px',
+                height: 'auto',
+                fitColumns: true,
+                showFooter: true,
+                singleSelect: false,
+                collapsible:true,
+                url: '@ViewBag.GetDepartment_treegrid?smid=' + smid,
+                logMsg: '加载中……',
+                columns: myDepartmentColumns,
+                //onBeforeEdit: function (row) {
+                //    alert("onBeforeEdit");
+                //    //$('#department').treegrid('refresh', row.DID);
+                //},
+                //onAfterEdit: function (index, row) {
+                //    alert("onAfterEdit");
+                //    //$('#department').treegrid('refresh', row.DID);
+                //},
+                //onCancelEdit: function (index, row) {
+                //    alert("onCancelEdit");
+                //    //$('#department').treegrid('refresh', row.DID);
+                //},
+                //onEndEdit: function (index, row) {
+                //    alert("onEndEdit");
+                //    //var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
+                //    //row.IsPass = $(ed.target).combobox('getText');
+                //},
+                onCheck: function (row) {
+                    $('#department').treegrid('beginEdit', row.DID);
+                },
+                onUncheck: function (row) {
+                    $('#department').treegrid('cancelEdit', row.DID);
+                },
+                onLoadSuccess: function (row,data) {
+                    if (data) {
+                        //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
+                        getChecked_treegrid(data)
+                    }
+                }
+            });
+        }
+        //递归，遍历每一个子节点
+        function getChecked_treegrid(data) {
+            if (data.length > 0) {
+                $.each(data, function (i, item) {
+                    if (item.checked) {
+                        $('#department').treegrid('select', item.DID);
+                    }
+                })
+                $.each(data, function (i, item) {
+                    if (item.children.length >0) {
+                        getChecked_treegrid(item.children)
+                    }
+                })
+            }
+        }
+        //var editingId;
+        //function edit() {
+        //    if (editingId != undefined) {
+        //        $('#department').treegrid('select', editingId);
+        //        return;
+        //    }
+        //    var row = $('#department').treegrid('getSelected');
+        //    if (row) {
+        //        editingId = row.DID
+        //        $('#department').treegrid('beginEdit', editingId);
+        //    }
+        //}
+        //-------------------6 页面加载首先运行-----------------
+        //根据smid加载对应的群组并添加至combogrid中
+        function loadCombogrid_Group(smid, myGroupColumns) {
+            $("#group").combogrid({
+                url: '@ViewBag.GetGroup_combogrid?smid=' + smid,
+                panelWith: 400,
+                multiple: true,
+                idField: 'GID',
+                textField: 'GroupName',
+                method: 'get',
+                panelheight: 'auto',
+                loadMsg: '加载中……',
+                columns: myGroupColumns,
+                fitColumns: true,
+                onBeforeEdit: function (index, row) {
+                    row.editing = true;
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
+                },
+                onAfterEdit: function (index, row) {
+                    row.editing = false;
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
+                },
+                onCancelEdit: function (index, row) {
+                    row.editing = false;
+                    $("#group").combogrid('grid').datagrid('refreshRow', index);
+                },
+                onEndEdit: function (index, row) {
+                    var ed = $('#group').combogrid('grid').datagrid('getEditor', { index: index, field: 'IsPass' });
+                    row.IsPass = $(ed.target).combobox('getText');
+                },
+                onCheck: function (index) {
+                    $('#group').combogrid('grid').datagrid('beginEdit', index);
+                },
+                onUncheck: function (index) {
+                    $('#group').combogrid('grid').datagrid('cancelEdit', index);
+                },
+                onLoadSuccess: function (data) {
+                    if (data) {
+                        //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
+                        $.each(data.rows, function (index, item) {
+                            if (item.checked) {
+
+                                $('#group').combogrid('grid').datagrid('checkRow', index);
+
+                            }
+                        })
+                    }
+                }
+            })
+        }
+
+
+        $(function () {
+
+            $("#editSMSMissionWindow").window('close');
+            $("#editPersonWindow").window('close');
+            $("#showDepartmentWindow").window('close');
+            loadDataGrid('@ViewBag.GetInfo', myColumns);
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $("#SMSMissiondatagrid").datagrid({
+                onClickRow: function (index, field, value) {
+                    $('#group').combogrid('clear');
+                    //$('#department').treegrid('loadData', []);
+                    $('#department').treegrid('unselectAll');
+                    loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
+                }
+            });
+        })
+    </script>
+</head>
+<body style="overflow:hidden;">
+    @RenderBody()
+    <div class="easyui-layout" style="width:100%;height:500px;">
+        @RenderSection("westdiv")
+        <div data-options="region:'center'" title="当前任务内联系人列表" style="width:70%">
+            <div id="tb" style="padding:2px 5px;">
+                    为当前任务分配群组:
+                    <select class="easyui-combogrid" id="group" panelHeight="auto" style="width:30%"
+                            data-options=""></select>
+
+                <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="Accept()">保存</a>
+               <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
+            </div>
+                @RenderSection("showWindow")  
+            @*分配部门的窗体*@
+            <div class="easyui-window" id="showDepartmentWindow" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+                <div class="easyui-layout" data-options="fit:true" style="border:0px">
+                    @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
+                    <div data-options="region:'center'" style="border:0px">
+                            <select class="easyui-treegrid" id="department" data-options="fit:true"></select>
+                        <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
+                            <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@ onclick="getActionDgSelection()" style="width:80px">提交</a>
+                            <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="test()" style="width:80px">取消</a>
+                        </div>
+                    </div>
+                </div>
+                @* scrolling 不显示滚动条*@
+
+            </div>
+
+
+               </div>
+    </div>
+</body>
+</html>

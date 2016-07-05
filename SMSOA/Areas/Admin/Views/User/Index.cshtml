@@ -432,9 +432,11 @@
         function addRow() {
 
             //打开编辑窗体
-            $("#editWindow").window('open');
+            $("#editWindow").panel({ title: "新建用户" });
             //从指定页面中预读取数据
             $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
+            $("#editWindow").window('open');
+           
 
         }
 
@@ -486,7 +488,7 @@
                 });
                 return;
             }
-            $("#editWindow").window('open');
+            $("#editWindow").panel({ title: "编辑用户" });
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
             $("#setUserRoleFrame").attr("src", "/Admin/User/ShowEditUserInfo?id=" + rows[0].ID);//会出现重定向的错误
@@ -497,6 +499,8 @@
 
             //    $("#editWindow").html(data);
             //});
+            $("#editWindow").window('open');
+           
         }
 
         function provideAction() {
