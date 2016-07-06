@@ -432,6 +432,7 @@
         function addRow() {
 
             //打开编辑窗体
+            $('#editWindow').window({ title: '新建用户' });
             $("#editWindow").window('open');
             //从指定页面中预读取数据
             $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
@@ -486,6 +487,7 @@
                 });
                 return;
             }
+            $("#editWindow").window({title:'编辑用户'});
             $("#editWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -571,7 +573,7 @@
 <body>
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
-        <div class="easyui-window" title="新建用户" scrolling="no" id="editWindow" style="width:400px;height:440px;overflow: hidden" data-options="shadow:true,modal:true">
+        <div class="easyui-window" title="title" scrolling="no" id="editWindow" style="width:400px;height:440px;overflow: hidden" data-options="shadow:true,modal:true">
             <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" scroll="no" @*不显示滚动条*@></iframe>
         </div>
    </div>
