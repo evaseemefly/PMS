@@ -86,7 +86,9 @@ namespace PMS.BLL
             //遍历需要查找的Action集合
             foreach (var item in this.GetListByIds(list_ids))
             {
-                //修改其中的删除标记
+                //清空与该群组有关联的人员外键
+                item.P_PersonInfo.Clear();
+                ///修改其中的删除标记
                 item.isDel = true;
                 //并添加至新创建的集合中
                 list.Add(item);

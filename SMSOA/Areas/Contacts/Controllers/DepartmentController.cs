@@ -320,7 +320,9 @@ namespace SMSOA.Areas.Contacts.Controllers
                 list.Add(int.Parse(Id));
             }
             //删除状态
+           
             string state = departmentBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
+            
             return Content(state);
         }
 

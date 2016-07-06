@@ -344,6 +344,8 @@ namespace SMSOA.Areas.Contacts.Controllers
                 list.Add(int.Parse(Id));
             }
             //删除状态
+            //注意在删除某个群组时，不仅要删除该群组，还要将与该群组有关联的人员也同时删除掉
+            
             string state = groupBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
             return Content(state);
         }

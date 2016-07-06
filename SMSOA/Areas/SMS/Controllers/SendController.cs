@@ -271,6 +271,11 @@ namespace SMSOA.Areas.SMS.Controllers
             return Content(temp);
         }
 
+        /// <summary>
+        /// 发送模块中保存设置的 常用任务 及 常用群组
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public ActionResult DoSave(Models.ViewModel_GroupMission model)
         {
             //获取提交的群组id以及任务id数组
@@ -298,7 +303,11 @@ namespace SMSOA.Areas.SMS.Controllers
             {
                  group_isSuccess = userBLL.SetUser4Group(userId, group_ids.ToList());
             }
-            
+            else if (group_ids == null)
+            {
+                //执行清空操作
+                group_isSuccess = userBLL.SetUser4Group(userId, new List<int>());
+            }
             if (mission_isSuccess && group_isSuccess)
             {
                 return Content("ok");
