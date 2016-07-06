@@ -15,7 +15,15 @@ namespace SMSOA.Areas.SMS.Models
         {
             get
             {
-                return Array.ConvertAll<string, int>(group_Ids.Split(','), s => int.Parse(s));
+                if (group_Ids == string.Empty)
+                {
+                    return null;
+                }
+                else
+                {
+                    return Array.ConvertAll<string, int>(group_Ids.Split(','), s => int.Parse(s));
+                }
+               
             }
         }
         public int[] MissionId_Int

@@ -10,6 +10,8 @@ function my_loadCombobox_Group(id, url,groupColumns, func_loadSuccess, func_onUn
         width: 210,
         panelHeight: 200,
         multiple: true,
+        checkOnSelect: true,
+        selectOncheck:true,
         //singleSelect:false,
         //nowrap: true,
         columns: groupColumns,
@@ -22,6 +24,12 @@ function my_loadCombobox_Group(id, url,groupColumns, func_loadSuccess, func_onUn
                 //若点击的这一行有禁止删除的标记
                 //则点击后仍为该行设置为选中，并提示
                 $(div_id).combogrid("grid").datagrid("selectRow", rowIndex);
+                //7月6日 修改存在bug 若点击的是前面的checkbox，则会出现全部联系人 扔为选中，但checkbox为未选中状态，此时需要手动再为其checkbox设置为选中状态
+                $(div_id).combogrid("grid").datagrid('checkRow', rowIndex);
+                //$(div_id).combogrid('checkRow', rowIndex);
+                //rowData.Checked = true;
+                //rowData.Selected = true;
+                //rowData.selected = true;
                 //收起下拉框
                 $(div_id).combogrid('hidePanel');
                 messagerShowOnCenter("提示", "全部联系人必须选中");

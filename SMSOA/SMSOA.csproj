@@ -301,7 +301,6 @@
     <Content Include="Areas\Contacts\Views\web.config" />
     <Content Include="Areas\Contacts\Views\Home\Index-v2.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
-    <Content Include="Areas\Contacts\Views\ContactPerson\ShowAddPersonInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo-6月13日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Home\Index - 复制.cshtml" />

@@ -274,7 +274,17 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult DoSave(Models.ViewModel_GroupMission model)
         {
             //获取提交的群组id以及任务id数组
-            var group_ids = model.GroupId_Int;
+            //可能为提交群组
+            int[] group_ids;
+            if (model.group_Ids == null)
+            {
+                group_ids = null;
+            }
+            else
+            {
+                group_ids = model.GroupId_Int;
+            }
+
             var mission_ids = model.MissionId_Int;
 
             //获取当前登录的userId
@@ -283,7 +293,12 @@ namespace SMSOA.Areas.SMS.Controllers
             //修改当前用户所拥有的任务
            var mission_isSuccess= userBLL.SetUser4Mission(userId, mission_ids.ToList());
             //修改当前用户所拥有的群组
-            var group_isSuccess = userBLL.SetUser4Group(userId, group_ids.ToList());
+            bool group_isSuccess = true;
+            if (group_ids != null)
+            {
+                 group_isSuccess = userBLL.SetUser4Group(userId, group_ids.ToList());
+            }
+            
             if (mission_isSuccess && group_isSuccess)
             {
                 return Content("ok");

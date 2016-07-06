@@ -76,10 +76,10 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEditContact("修改成功");
+                window.parent.afterEditContact("修改成功",0);
             }
             else {
-                window.parent.afterEditContact("修改失败");
+                window.parent.afterEditContact("修改失败",0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }

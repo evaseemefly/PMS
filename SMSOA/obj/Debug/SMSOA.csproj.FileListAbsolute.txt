@@ -876,3 +876,4 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
+E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
