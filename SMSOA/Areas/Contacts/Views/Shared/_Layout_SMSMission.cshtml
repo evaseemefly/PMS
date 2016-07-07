@@ -54,11 +54,11 @@
                 {
                     field: 'IsPass', title: '是否禁用', width: "15%",
                     formatter: function (value, row) {
-                        if (value == false && row.Text == null) {
+                        if (row.Text == null) {
                             return "请选择";
                         }
                         else {
-                            //return row.Text;
+                            return row.Text;
                         }
                        
                     },
@@ -327,7 +327,7 @@
                     rownumbers: true,                    
                     idField: 'DID',
                     treeField: 'DepartmentName',
-                    animate: true,
+                    animate: true,//折叠时显示动画效果
                     width: '400px',
                     height: 'auto',
                     fitColumns: true,
@@ -345,14 +345,10 @@
                     //    row.editing = false;
                     //    $("#department").treegrid('refreshRow', index);
                     //},
-                    onCancelEdit: function (row) {
-                        //row.editing = false;
-                        $("#department").treegrid('refreshRow', row.DID);
-                    },
-                    //onEndEdit: function (index, row) {
-                    //    var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
-                    //    row.IsPass = $(ed.target).combobox('getText');
-                    //},
+                    //onCancelEdit: function (row,index) {
+                    //    //row.editing = false;
+                    //    $("#department").treegrid('refreshRow', row.DID);
+                    //},                   
                     onCheck: function (row) {
                         //注意此时传入的row中的selected以及checked均为false
                         $('#department').treegrid('beginEdit', row.DID);
@@ -400,10 +396,10 @@
                     columns: myGroupColumns,
                     nowrap:false,
                     fitColumns: true,
-                    onBeforeEdit: function (index, row) {
-                        row.editing = true;
-                        $("#group").datagrid('refreshRow', index);
-                    },
+                    //onBeforeEdit: function (index, row) {
+                    //    row.editing = true;
+                    //    $("#group").datagrid('refreshRow', index);
+                    //},
                     onAfterEdit: function (index, row) {
                         row.editing = false;
                         $("#group").datagrid('refreshRow', index);
@@ -412,10 +408,10 @@
                         row.editing = false;
                         $("#group").datagrid('refreshRow', index);
                     },
-                    onEndEdit: function (index, row) {
-                        var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
-                        row.IsPass = $(ed.target).combobox('getText');
-                    },
+                    //onEndEdit: function (index, row) {
+                    //    var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
+                    //    row.IsPass = $(ed.target).combobox('getText');
+                    //},
                     onCheck: function (index,row) {
                         $('#group').datagrid('beginEdit', index);
                     },
