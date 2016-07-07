@@ -345,10 +345,10 @@
                     //    row.editing = false;
                     //    $("#department").treegrid('refreshRow', index);
                     //},
-                    //onCancelEdit: function (index, row) {
-                    //    row.editing = false;
-                    //    $("#department").treegrid('refreshRow', index);
-                    //},
+                    onCancelEdit: function (row) {
+                        //row.editing = false;
+                        $("#department").treegrid('refreshRow', row.DID);
+                    },
                     //onEndEdit: function (index, row) {
                     //    var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
                     //    row.IsPass = $(ed.target).combobox('getText');
@@ -358,6 +358,9 @@
                         $('#department').treegrid('beginEdit', row.DID);
                     },
                     onUncheck: function (row) {
+                        row.checked = false;
+                        row.Text = "请选择";
+                        row.IsPass = null;
                         $('#department').treegrid('cancelEdit', row.DID);
                     },
                     onLoadSuccess: function (row, data) {

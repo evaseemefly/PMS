@@ -60,7 +60,12 @@
                 async: false,
                 type: 'POST',
                 success: function (data) {
-                    alert("提交成功");
+                    if("ok" == data){
+                        alert("提交成功");
+
+                    }else if("out of range" == data){
+                        alert("短信字数超过300字，提交失败");
+                    }
                 }
 
             })

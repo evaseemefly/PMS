@@ -335,6 +335,9 @@ namespace SMSOA.Areas.SMS.Controllers
             
             //2 获取短信内容
             var content = model.Content;
+            //超出300字，不执行发送操作，返回
+            if(content.Length + 9 >= 300) { return Content("out of range"); }
+
             //2.1 设置发送对象相关参数
             string account= "dh74381"; //账号"dh74381";
             string passWord= "uAvb3Qey";//密码 = "uAvb3Qey";
