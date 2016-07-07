@@ -34,6 +34,7 @@
             //从指定页面中预读取数据
             $("#addGroupFrame").attr("src", '@ViewBag.ShowAddGroup');
             //打开编辑窗体
+            $("#editContactWindow").panel({ title: "新建群组" });
             $("#editContactWindow").window('open');
 
         }
@@ -52,6 +53,7 @@
             }
             //**注意先加载iframe窗体的数据，在打开该窗口
             $("#addGroupFrame").attr("src", "@ViewBag.ShowEditGroup" + "?id=" + rows[0].GID);//会出现重定向的错误
+            $("#editContactWindow").panel({ title: "编辑群组" });
             $("#editContactWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -103,6 +105,10 @@
                 //重新加载datagrid
                    $("#contactsdatagrid").datagrid('reload');
                 //清楚所选中的行
+                //7月7日
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
+                ComboboxDisable();
                 $("#contactsdatagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");
             }

@@ -137,13 +137,15 @@
 
         function loadSuccess_Group() {
             var gid_str = "@ViewBag.GID";
+            var gids_array;
+            gids_array = gid_str;
             //判断传入的GID是否为一个数组
             //若GID中包含","说明传入的是一个数组
             if (gid_str.indexOf(",") > 0) {
                 //将字符串转换
-               var gids_array= gid_str.split(',');
+               gids_array= gid_str.split(',');
             }
-
+            
             my_loadSuccess_Group("Group_combogrid", false, gids_array);
         }
 

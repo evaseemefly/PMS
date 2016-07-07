@@ -61,6 +61,7 @@
 
             $("#addPersonFrame").attr("src", url);
             //打开编辑窗体
+            $("#editPersonWindow").panel({title:"新建联系人"});
             $("#editPersonWindow").window('open');
 
         }
@@ -81,6 +82,7 @@
             //**注意先加载iframe窗体的数据，在打开该窗口
 
             $("#addPersonFrame").attr("src", "@ViewBag.ShowEditPerson" + "?id=" + rows[0].PID);//会出现重定向的错误
+            $("#editPersonWindow").panel({ title: "编辑联系人" });
             $("#editPersonWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -160,20 +162,15 @@
             //}
 
             var rows = $("#persondatagrid").datagrid('getSelections');
-            //获取选中行中的UserId
-            var UserId = rows[0].PID;
+            
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
-                messagerShowOnCenter("提示", "请选中某一个人");
-                //统一用从页面中间弹出消息框的方式，以下注释
-                //$.messager.show({
-                //    title: '提示',
-                //    msg: '请选中某一个人',
-                //    showType: 'show'
-                //});
+                messagerShowOnCorner("提示", "请选中某一个人");
                 return;
             }
+            //获取选中行中的UserId
+            var UserId = rows[0].PID;
             //弹出提示是否要向此人赋予什么权限
             //先不这么做，弹出提示是否要执行此操作
             //$("#win_savePerson").window('open');
@@ -242,6 +239,7 @@
             //$("#group").combobox('disable');
             //$("#group").combobox('setValue', '--请选择联系人--');
             $("#DepartmentName_combotree").combotree('disable');
+            $("#group").combogrid('disable');
             //$("#DepartmentName_combotree").combobox('loadData', [{
             //    id: -1,
             //    text: '请选择联系人'
@@ -293,6 +291,17 @@
 					'<span style="color:#7CFC00">' + row.remark + '</span>';
             return s;
         }
+
+        //清空右侧联系人列表中的全部联系人
+        function ClearPersonGrid() {
+            //2 根据GroupID查询该群组所拥有的人员列表
+            $('#persondatagrid').datagrid('loadData', { total: 0, rows: [] });
+
+        }
+
+        function ClosePersonWindow() {
+            $("#editPersonWindow").window('close');
+        }
     </script>    
     }
 
@@ -323,6 +332,7 @@
             $("#editContactWindow").window('close');
             $("#editPersonWindow").window('close');
         }
+
         //编辑或创建某个权限后执行的操作
         function afterEdit(msg, type) {
             //editWindow
@@ -349,6 +359,7 @@
             //1 找到部门下拉框
             $("#DepartmentName_combotree").combotree('setValue', data);
         }
+
 
 
         function loadPersonGrid(url, myPersonColumns, myPersonToolbar) {
@@ -446,7 +457,7 @@
                 panelHeight: 400,
                 //valueField: "DID",
                 //textField: "DepartmentName",
-                required: true,
+                //required: true,
                 editable: false,
                 onlyLeafCheck: true,
                 cascaseCheck: true,

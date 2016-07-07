@@ -185,7 +185,7 @@ namespace PMS.BLL
             person_model.PhoneNum = PhoneNum;
             person_model.isVIP = isVip;
             person_model.isDel = isDel;
-            
+            person_model.Remark = Remark;
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
             // person_model.P_DepartmentInfo = department_temp;
 

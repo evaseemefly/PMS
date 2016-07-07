@@ -63,6 +63,10 @@
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
 
+        function CloseMyWin() {
+            window.parent.CloseWindow();
+        }
+
         function save_success(data) {
             //alert("修改成功");
 
@@ -218,7 +222,7 @@
                     <div style="text-align:center;padding:5px">
                         @*<input type="submit" value="提交" />*@
                         <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
-                        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">清空</a>
+                        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CloseMyWin()" style="width:80px">取消</a>
                     </div>
                 </div>
                 </form>

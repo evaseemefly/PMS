@@ -372,6 +372,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
             ViewBag.GID = gid == null ? "" : gid;
             ViewBag.DID = did == null ? "" : did;
+            ViewBag.Remark = model.Remark;
             ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
             ViewBag.GetAllGroup_combogrid = "/Contacts/Group/GetComboGridAllGroupInfo";
             ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";

@@ -10,6 +10,7 @@
       { field: 'DepartmentName', title: '部门名称', width:"100%" }
         ]]
 
+
         var toolbar = [{
             iconCls: 'icon-add',
             text: "新增",
@@ -86,6 +87,10 @@
                    $("#contactsdatagrid").treegrid('reload');
                 //清楚所选中的行
                 $("#contactsdatagrid").treegrid('clearSelections');
+                //7月7日
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
+                ComboboxDisable();
                 $.messager.alert("提示", "删除成功");
             }
             });

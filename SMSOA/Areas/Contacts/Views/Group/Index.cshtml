@@ -105,6 +105,10 @@
                 //重新加载datagrid
                    $("#contactsdatagrid").datagrid('reload');
                 //清楚所选中的行
+                //7月7日
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
+                ComboboxDisable();
                 $("#contactsdatagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");
             }

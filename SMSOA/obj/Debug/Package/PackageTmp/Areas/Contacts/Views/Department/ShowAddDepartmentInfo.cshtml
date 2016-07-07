@@ -76,10 +76,10 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEditContact("修改成功");
+                window.parent.afterEditContact("修改成功",0);
             }
             else {
-                window.parent.afterEditContact("修改失败");
+                window.parent.afterEditContact("修改失败",0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -97,22 +97,22 @@
                     <td style="">所属上级机构:</td>
                     <td class="comment">
                         <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" @*data-options="required:true"*@></select><br />
-                        请填写系统登录用户名
+                        请选择该部门属于哪个上级机构
                     </td>
                     @*<td style="">优先级:</td>*@
                 </tr>
                 <tr>
                     <td>部门名称:</td>
                     <td class="comment">
-                        <input class="easyui-validatebox" type="text" name="DepartmentName" value="@ViewBag.Name" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,50]']"></input>
-                        请输入登录密码
+                        <input class="easyui-validatebox" type="text" name="DepartmentName" value="@ViewBag.Name" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,50]']"></input><br />
+                        请输入该部门的名称（只能填写中文）
                     </td>
                 </tr>
                 <tr>
                     <td>区域:</td>
                     <td class="comment">
                         <select class="easyui-combobox" name="Area" id="Area_combox" @*data-options="required:true"*@></select><br />
-                        输入相同密码
+                        选择该部门所在的区域
                     </td>
                 </tr>
                 <tr>

@@ -23,6 +23,7 @@
     @*自己写的图标样式*@
     <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     <link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
+    <script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
     <script type="text/javascript">
         var missionColumns = [[
                  //{ field: 'ck', checkbox: true },
@@ -62,6 +63,10 @@
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
 
+        function CloseMyWin() {
+            window.parent.CloseWindow();
+        }
+
         function save_success(data) {
             //alert("修改成功");
 
@@ -94,8 +99,14 @@
             var group_checkeds = grid_group.datagrid("getChecked");
             var group_ids = split4id(group_checkeds, "GID");
 
+            //注意此处：短信任务必须选中一项
             var grid_mission = $("#smsMission_combogrid").combogrid("grid");
             var mission_checkeds = grid_mission.datagrid("getChecked");
+            if (mission_checkeds.length < 1) {
+                //提示
+                messagerShowOnCenter("提示", "必须选择至少一个短信任务");
+                return;
+            }
             var mission_ids = split4id(mission_checkeds, "SMID");
 
             //alert("群组选中id" + group_ids + "|||" + "选中的任务id" + mission_ids);
@@ -191,7 +202,7 @@
                     <tr>
                         <td class="comment">
                             @*加载全部短信任务列表，并将当前用户所拥有的短信任务设置为勾选*@
-                            <select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="height:25px;width:100%;" data-options="required:true"></select><br />
+                            <select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="height:25px;width:100%;" @*data-options="required:true"*@></select><br />
                             请选择你常用的短信任务种类<br />（此任务会出现在发送界面的短信任务列表中）
                         </td>
                     </tr>
@@ -211,7 +222,7 @@
                     <div style="text-align:center;padding:5px">
                         @*<input type="submit" value="提交" />*@
                         <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
-                        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">清空</a>
+                        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CloseMyWin()" style="width:80px">取消</a>
                     </div>
                 </div>
                 </form>
