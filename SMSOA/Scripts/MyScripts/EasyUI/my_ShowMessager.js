@@ -2,6 +2,19 @@
     $.messager.alert(title, msg);
 }
 
+//弹出确认按钮
+function messagerConfirm(title,msg) {
+    $.messager.confirm(title, msg, function (r) {
+        if (r) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    });
+}
+
 //使用此种方式消息框还未显示页面就已经刷新了
 function messagerShowOnCenter(title, msg) {
     ///	<summary>

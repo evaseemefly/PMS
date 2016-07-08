@@ -58,7 +58,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Home/Index.cshtml">
-      <publishTime>07/05/2016 16:12:18</publishTime>
+      <publishTime>07/08/2016 16:46:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Home/NotFound.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -106,7 +106,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/Index.cshtml">
-      <publishTime>07/06/2016 09:52:08</publishTime>
+      <publishTime>07/07/2016 14:27:15</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/ShowEditInfo-6月2日备份.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -178,7 +178,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/ContactPerson/ShowEditPersonInfo.cshtml">
-      <publishTime>07/06/2016 15:54:02</publishTime>
+      <publishTime>07/07/2016 14:24:09</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Department/Index-4月22日备份以前的.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -190,7 +190,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Department/ShowAddDepartmentInfo.cshtml">
-      <publishTime>07/06/2016 16:06:14</publishTime>
+      <publishTime>07/08/2016 14:42:11</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Group/Index - 4月22日晚-分部视图已经完成备份.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -235,7 +235,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Group/ShowEditGroupInfo.cshtml">
-      <publishTime>07/06/2016 16:00:05</publishTime>
+      <publishTime>07/08/2016 10:38:51</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Group/Test.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -274,7 +274,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml">
-      <publishTime>07/07/2016 11:11:35</publishTime>
+      <publishTime>07/07/2016 11:13:08</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_Person - 复制.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -295,13 +295,13 @@
       <publishTime>06/23/2016 08:31:49</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_SMSMission.cshtml">
-      <publishTime>07/07/2016 10:43:01</publishTime>
+      <publishTime>07/08/2016 09:08:28</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/SMSMission/Index - 复制.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/SMSMission/Index.cshtml">
-      <publishTime>06/30/2016 15:08:42</publishTime>
+      <publishTime>07/08/2016 09:19:19</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/SMSMission/ShowAddSMSMissionInfo.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -319,7 +319,7 @@
       <publishTime>05/13/2016 14:30:02</publishTime>
     </File>
     <File Include="Areas/Login/Views/Login/Index.cshtml">
-      <publishTime>07/05/2016 15:54:15</publishTime>
+      <publishTime>07/08/2016 15:51:42</publishTime>
     </File>
     <File Include="Areas/Login/Views/web.config">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -346,22 +346,28 @@
       <publishTime>04/29/2016 08:15:24</publishTime>
     </File>
     <File Include="Areas/SMS/Views/MsgTemplate/Index.cshtml">
-      <publishTime>06/23/2016 08:31:49</publishTime>
+      <publishTime>07/08/2016 14:31:41</publishTime>
     </File>
     <File Include="Areas/SMS/Views/MsgTemplate/ShowAddTemplate.cshtml">
       <publishTime>07/02/2016 08:07:25</publishTime>
     </File>
+    <File Include="Areas/SMS/Views/MsgTemplate/ShowEditTemplate-7月8日备份.cshtml">
+      <publishTime>07/08/2016 10:35:00</publishTime>
+    </File>
     <File Include="Areas/SMS/Views/MsgTemplate/ShowEditTemplate.cshtml">
-      <publishTime>07/02/2016 08:07:25</publishTime>
+      <publishTime>07/08/2016 14:39:52</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/Index-6月17使用分部视图替代前备份.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/Index.cshtml">
-      <publishTime>07/07/2016 10:46:22</publishTime>
+      <publishTime>07/08/2016 14:59:37</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/ShowSetWindow.cshtml">
       <publishTime>07/07/2016 10:48:21</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/_Layout_MsgTemplate_Edit.cshtml">
+      <publishTime>07/08/2016 10:41:04</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Shared/_Layout_Send.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -370,7 +376,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Shared/_Partial_Send_Body.cshtml">
-      <publishTime>07/05/2016 15:51:05</publishTime>
+      <publishTime>07/08/2016 14:51:35</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Shared/_Partial_Send_EditWin.cshtml">
       <publishTime>07/02/2016 08:07:25</publishTime>
@@ -400,13 +406,13 @@
       <publishTime>06/30/2016 09:35:53</publishTime>
     </File>
     <File Include="bin/Common.dll">
-      <publishTime>07/06/2016 09:59:46</publishTime>
+      <publishTime>07/08/2016 16:44:18</publishTime>
     </File>
     <File Include="bin/Common.Logging.dll">
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="bin/Common.pdb">
-      <publishTime>07/06/2016 09:59:46</publishTime>
+      <publishTime>07/08/2016 16:44:18</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/30/2016 09:35:54</publishTime>
@@ -418,10 +424,10 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="bin/ISMS.dll">
-      <publishTime>07/06/2016 09:59:45</publishTime>
+      <publishTime>07/08/2016 16:44:19</publishTime>
     </File>
     <File Include="bin/ISMS.pdb">
-      <publishTime>07/06/2016 09:59:45</publishTime>
+      <publishTime>07/08/2016 16:44:19</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -478,40 +484,40 @@
       <publishTime>06/30/2016 09:35:54</publishTime>
     </File>
     <File Include="bin/PMS.BLL.dll">
-      <publishTime>07/07/2016 10:24:52</publishTime>
+      <publishTime>07/08/2016 16:44:19</publishTime>
     </File>
     <File Include="bin/PMS.BLL.pdb">
-      <publishTime>07/07/2016 10:24:52</publishTime>
+      <publishTime>07/08/2016 16:44:19</publishTime>
     </File>
     <File Include="bin/PMS.DALFactory.dll">
-      <publishTime>07/07/2016 09:10:35</publishTime>
+      <publishTime>07/08/2016 16:44:19</publishTime>
     </File>
     <File Include="bin/PMS.DALFactory.pdb">
-      <publishTime>07/07/2016 09:10:35</publishTime>
+      <publishTime>07/08/2016 16:44:19</publishTime>
     </File>
     <File Include="bin/PMS.DALSQLSer.dll">
-      <publishTime>07/07/2016 08:55:10</publishTime>
+      <publishTime>07/08/2016 16:44:17</publishTime>
     </File>
     <File Include="bin/PMS.DALSQLSer.pdb">
-      <publishTime>07/07/2016 08:55:10</publishTime>
+      <publishTime>07/08/2016 16:44:17</publishTime>
     </File>
     <File Include="bin/PMS.IBLL.dll">
-      <publishTime>07/06/2016 09:59:45</publishTime>
+      <publishTime>07/08/2016 16:44:17</publishTime>
     </File>
     <File Include="bin/PMS.IBLL.pdb">
-      <publishTime>07/06/2016 09:59:45</publishTime>
+      <publishTime>07/08/2016 16:44:17</publishTime>
     </File>
     <File Include="bin/PMS.IDAL.dll">
-      <publishTime>07/06/2016 09:59:43</publishTime>
+      <publishTime>07/08/2016 16:44:16</publishTime>
     </File>
     <File Include="bin/PMS.IDAL.pdb">
-      <publishTime>07/06/2016 09:59:43</publishTime>
+      <publishTime>07/08/2016 16:44:16</publishTime>
     </File>
     <File Include="bin/PMS.Model.dll">
-      <publishTime>07/06/2016 09:52:08</publishTime>
+      <publishTime>07/08/2016 16:44:15</publishTime>
     </File>
     <File Include="bin/PMS.Model.pdb">
-      <publishTime>07/06/2016 09:52:08</publishTime>
+      <publishTime>07/08/2016 16:44:15</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/30/2016 09:35:54</publishTime>
@@ -556,16 +562,16 @@
       <publishTime>06/30/2016 09:35:55</publishTime>
     </File>
     <File Include="bin/SMSFactory.dll">
-      <publishTime>07/07/2016 10:24:52</publishTime>
+      <publishTime>07/08/2016 16:44:20</publishTime>
     </File>
     <File Include="bin/SMSFactory.pdb">
-      <publishTime>07/07/2016 10:24:52</publishTime>
+      <publishTime>07/08/2016 16:44:20</publishTime>
     </File>
     <File Include="bin/SMSOA.dll">
-      <publishTime>07/07/2016 10:31:07</publishTime>
+      <publishTime>07/08/2016 16:48:09</publishTime>
     </File>
     <File Include="bin/SMSOA.pdb">
-      <publishTime>07/07/2016 10:31:07</publishTime>
+      <publishTime>07/08/2016 16:48:08</publishTime>
     </File>
     <File Include="bin/Spring.Core.dll">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -805,7 +811,7 @@
       <publishTime>06/23/2016 08:31:49</publishTime>
     </File>
     <File Include="Scripts/MyScripts/Admin/IndexOperation.js">
-      <publishTime>07/06/2016 09:52:08</publishTime>
+      <publishTime>07/08/2016 14:12:22</publishTime>
     </File>
     <File Include="Scripts/MyScripts/Common/my_FormatDate.js">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -820,10 +826,10 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Scripts/MyScripts/Contact/my_loadUrl.js">
-      <publishTime>07/06/2016 11:42:54</publishTime>
+      <publishTime>07/07/2016 14:46:51</publishTime>
     </File>
     <File Include="Scripts/MyScripts/EasyUI/my_ShowMessager.js">
-      <publishTime>06/30/2016 09:35:49</publishTime>
+      <publishTime>07/08/2016 14:57:20</publishTime>
     </File>
     <File Include="Scripts/MyScripts/EasyUI/SwitchBtn.js">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -916,7 +922,7 @@
       <publishTime>06/30/2016 09:35:50</publishTime>
     </File>
     <File Include="Views/Shared/_Contact_AddEdit_Layout.cshtml">
-      <publishTime>06/30/2016 11:19:19</publishTime>
+      <publishTime>07/08/2016 10:40:04</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>06/30/2016 09:35:50</publishTime>
@@ -925,7 +931,7 @@
       <publishTime>06/30/2016 09:35:50</publishTime>
     </File>
     <File Include="Views/Shared/_MyPartial_Index.cshtml">
-      <publishTime>06/30/2016 09:35:50</publishTime>
+      <publishTime>07/08/2016 14:10:59</publishTime>
     </File>
     <File Include="Views/Shared/_SMS_Layout.cshtml">
       <publishTime>06/30/2016 09:35:50</publishTime>
@@ -937,7 +943,7 @@
       <publishTime>06/30/2016 09:35:50</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/07/2016 11:12:22</publishTime>
+      <publishTime>07/08/2016 16:44:45</publishTime>
     </File>
   </ItemGroup>
 </Project>

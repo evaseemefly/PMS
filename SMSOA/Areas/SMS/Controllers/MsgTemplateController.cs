@@ -24,7 +24,7 @@ namespace SMSOA.Areas.SMS.Controllers
             
             ViewBag.ShowAdd = "/SMS/MsgTemplate/ShowAddTemplate";
             ViewBag.ShowEdit= "/SMS/MsgTemplate/ShowEditTemplate";
-            
+            ViewBag.Del_url = "/SMS/MsgTemplate/DoDelTemplate";
             //ViewBag.ShowEdit = "/Admin/Action/ShowEditActionInfo";
             //ViewBag.GetInfo = "/Admin/Action/GetActionInfo";
             return View();
@@ -73,7 +73,7 @@ namespace SMSOA.Areas.SMS.Controllers
             }
             ViewBag.GetAllMission_combogrid = "/SMS/Send/GetMissionByUserUnChecked";
             ViewBag.backAction_jqSub = "/SMS/MsgTemplate/DoAddTemplate";
-            return View();
+            return View("ShowEditTemplate");
         }
 
         /// <summary>
@@ -107,6 +107,8 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             templateModel.isDel = false;
+            templateModel.SubTime = DateTime.Now;
+            
             //departmentModel.ModifiedOnTime = DateTime.Now;
             
             try
@@ -135,6 +137,15 @@ namespace SMSOA.Areas.SMS.Controllers
             {
                 return Content("error");
             }
+        }
+
+        public ActionResult DoDelTemplate(S_SMSMsgContent templateModel)
+        {
+            string ids=Request.QueryString["ids"];
+            //获取传过来的要批量删除的id数组
+            var list_tid= ids.Split(',').Select(t=>int.Parse(t)).ToList();
+           var state = smsMsgContentBLL.DelSoftTemplate(list_tid);
+            return Content(state == true ? "ok" : "error");
         }
 
         public ActionResult GetTemplateByUserIdAndMission(int userId,int SMId)

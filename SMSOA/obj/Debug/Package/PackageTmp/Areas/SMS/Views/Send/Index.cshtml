@@ -5,6 +5,7 @@
 }
 
 @section Scripts{
+<script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
     <script type="text/javascript">
         var missionColumns = [[
                  { field: 'SMID', title: 'ID', width: 100, checkbox: true },
@@ -60,7 +61,12 @@
                 async: false,
                 type: 'POST',
                 success: function (data) {
-                    alert("提交成功");
+                    if("ok" == data){
+                        messagerShowOnCenter("提交成功");
+
+                    }else if("out of range" == data){
+                        messagerShowOnCorner("短信字数超过300字，提交失败");
+                    }
                 }
 
             })
@@ -82,8 +88,12 @@
         }
 
         function DoSend() {
-            alert("要发送短信了");
+            //alert("要发送短信了");
             //1 获取右侧联系人datagrid列表中选中的联系人id
+            var state= messagerConfirm("请确认","是否要执行发送短信操作?");
+            if(state==false){
+                return;
+            }
             var checkeds = $("#persondatagrid").datagrid("getChecked");
             //1.1 获取选中的联系人id用,分隔，并提交
             var ids_person = split4id(checkeds, "PID");
@@ -93,7 +103,7 @@
             var grid_mission= $("#smsMission_combogrid").combogrid("grid");
             var mission_checkeds = grid_mission.datagrid("getChecked");
             var mission_id = mission_checkeds[0]["SMID"];
-            alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
+            //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
             //3 发送（进行校验）
             AjaxSubmit(ids_person, content, url, mission_id);
         }

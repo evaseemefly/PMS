@@ -280,7 +280,6 @@
     <Content Include="Areas\Login\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index-4月24日重新设计手风琴样式之前的备份.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Index-分部视图.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Test.cshtml" />
     <Content Include="Areas\Admin\Views\Action\EditActionInfo.cshtml" />
@@ -299,13 +298,10 @@
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Action\SetRoleAction.cshtml" />
     <Content Include="Areas\Contacts\Views\web.config" />
-    <Content Include="Areas\Contacts\Views\Home\Index-v2.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotFound.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo-6月13日备份.cshtml" />
-    <Content Include="Areas\Contacts\Views\Home\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo.cshtml" />
-    <Content Include="Areas\Contacts\Views\Home\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowAddGroupInfo - 复制%282%29.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\ShowEditGroupInfo-6月7日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts.cshtml" />
@@ -314,10 +310,8 @@
     <Content Include="Areas\Contacts\Views\Department\ShowAddDepartmentInfo-6月7日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\ShowAddSMSMissionInfo.cshtml" />
-    <Content Include="Areas\Contacts\Views\Home\Index - 4月15日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月19日-修改为分部视图之前的部分.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Person.cshtml" />
-    <Content Include="Areas\Contacts\Views\Shared\_Layout_Person - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Group\Index-4月19日晚备份-重要.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\View.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout-4月22日晚备份.cshtml" />
@@ -329,14 +323,11 @@
     <Content Include="Areas\SMS\Views\web.config" />
     <Content Include="Areas\SMS\Views\Send\Index-6月17使用分部视图替代前备份.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\Index.cshtml" />
-    <Content Include="Areas\SMS\Views\MsgTemplate\ShowAddTemplate.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission-6月22日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\Index - 复制.cshtml" />
-    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission -5月1日复制%282%29.cshtml" />
-    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo-6月2日备份.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Role\ShowEditInfo.cshtml" />
@@ -362,10 +353,11 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout-6月22日备份.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission.cshtml" />
     <Content Include="Areas\Contacts\Views\SMSMission\ShowEditSMSMissionInfo.cshtml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission - 5月3日复制%282%29.cshtml" />
-    <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Layout_MsgTemplate_Edit.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
+    <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate-7月8日备份.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />
     <None Include="Properties\PublishProfiles\nmefcSMSConfig.pubxml">
@@ -445,6 +437,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Contacts\Views\Home\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Content\Images\login\" />

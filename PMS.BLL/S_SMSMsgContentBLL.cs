@@ -31,6 +31,37 @@ namespace PMS.BLL
             }
         }
 
+        /// <summary>
+        /// 根据传入的id集合对该集合所包含的模板对象执行软删除操作
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool DelSoftTemplate(List<int> list_ids)
+        {
+            List<S_SMSMsgContent> list = new List<S_SMSMsgContent>();
+            //对传入的id集合遍历删除包含的对象
+            foreach (var item in this.GetListByIds(list_ids))
+            {
+                item.isDel = true;
+                
+                list.Add(item);
+            }
+            try
+            {
+                this.UpdateByList(list);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
+
+        public List<S_SMSMsgContent> GetListByIds(List<int> list_ids)
+        {
+            return GetListBy(t => list_ids.Contains(t.TID)).ToList();
+        }
+
        new public bool Update(S_SMSMsgContent model)
         {
             //同删除

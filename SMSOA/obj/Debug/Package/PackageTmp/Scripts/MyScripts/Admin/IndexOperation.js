@@ -2,7 +2,7 @@
 function addRow(urlAdd) {
     //从指定页面中预读取数据
     $("#setActionRoleFrame").attr("src", urlAdd);
-    $("#editWindow").panel({ title: "创建权限" });
+    //$("#editWindow").panel({ title: "创建任务模板" });
     //打开编辑窗体
     $("#editWindow").window('open');    
 

@@ -351,6 +351,7 @@
                     //},                   
                     onCheck: function (row) {
                         //注意此时传入的row中的selected以及checked均为false
+                        row.IsPass = true;
                         $('#department').treegrid('beginEdit', row.DID);
                     },
                     onUncheck: function (row) {
@@ -408,10 +409,10 @@
                         row.editing = false;
                         $("#group").datagrid('refreshRow', index);
                     },
-                    //onEndEdit: function (index, row) {
-                    //    var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
-                    //    row.IsPass = $(ed.target).combobox('getText');
-                    //},
+                    onEndEdit: function (index, row) {
+                        var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
+                        row.IsPass = $(ed.target).combobox('getText');
+                    },
                     onCheck: function (index,row) {
                         $('#group').datagrid('beginEdit', index);
                     },

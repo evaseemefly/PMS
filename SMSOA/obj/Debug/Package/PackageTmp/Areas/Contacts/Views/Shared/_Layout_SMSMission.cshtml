@@ -54,11 +54,11 @@
                 {
                     field: 'IsPass', title: '是否禁用', width: "15%",
                     formatter: function (value, row) {
-                        if (value == false && row.Text == null) {
+                        if (row.Text == null) {
                             return "请选择";
                         }
                         else {
-                            //return row.Text;
+                            return row.Text;
                         }
                        
                     },
@@ -327,7 +327,7 @@
                     rownumbers: true,                    
                     idField: 'DID',
                     treeField: 'DepartmentName',
-                    animate: true,
+                    animate: true,//折叠时显示动画效果
                     width: '400px',
                     height: 'auto',
                     fitColumns: true,
@@ -345,19 +345,19 @@
                     //    row.editing = false;
                     //    $("#department").treegrid('refreshRow', index);
                     //},
-                    //onCancelEdit: function (index, row) {
-                    //    row.editing = false;
-                    //    $("#department").treegrid('refreshRow', index);
-                    //},
-                    //onEndEdit: function (index, row) {
-                    //    var ed = $('#department').treegrid('getEditor', { index: index, field: 'IsPass' });
-                    //    row.IsPass = $(ed.target).combobox('getText');
-                    //},
+                    //onCancelEdit: function (row,index) {
+                    //    //row.editing = false;
+                    //    $("#department").treegrid('refreshRow', row.DID);
+                    //},                   
                     onCheck: function (row) {
                         //注意此时传入的row中的selected以及checked均为false
+                        row.IsPass = true;
                         $('#department').treegrid('beginEdit', row.DID);
                     },
                     onUncheck: function (row) {
+                        row.checked = false;
+                        row.Text = "请选择";
+                        row.IsPass = null;
                         $('#department').treegrid('cancelEdit', row.DID);
                     },
                     onLoadSuccess: function (row, data) {
@@ -397,10 +397,10 @@
                     columns: myGroupColumns,
                     nowrap:false,
                     fitColumns: true,
-                    onBeforeEdit: function (index, row) {
-                        row.editing = true;
-                        $("#group").datagrid('refreshRow', index);
-                    },
+                    //onBeforeEdit: function (index, row) {
+                    //    row.editing = true;
+                    //    $("#group").datagrid('refreshRow', index);
+                    //},
                     onAfterEdit: function (index, row) {
                         row.editing = false;
                         $("#group").datagrid('refreshRow', index);

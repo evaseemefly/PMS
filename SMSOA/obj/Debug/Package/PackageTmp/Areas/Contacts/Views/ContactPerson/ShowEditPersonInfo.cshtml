@@ -187,7 +187,7 @@
                 <tr>
                     <td>姓名:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" type="text" name="PName" value="@ViewBag.PName" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,5]']"></input><br />
+                        <input class="easyui-textbox" type="text" name="PName" value="@ViewBag.PName" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,20]']"></input><br />
                         请输入联系人姓名
                     </td>
                 </tr>
@@ -207,7 +207,7 @@
                 <tr>
                     <td style="">所属部门:</td>
                     <td class="comment">
-                        <select class="easyui-combotree" name="DID" id="DepartmentName_combotree" ></select><br />
+                        <select class="easyui-combotree" name="DID" id="DepartmentName_combotree" required="required"></select><br />
                         选择任职部门
                     </td>
                 </tr>

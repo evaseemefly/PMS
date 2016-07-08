@@ -269,50 +269,79 @@ namespace SMSOA.Areas.Contacts.Controllers
 
                 int rowCount = 0;
                 int smid = int.Parse(Request["smid"]);
-                var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
-                //2.根据路线2得到isPass为true群组集合
-                bool isPass = true;
-                var list_group = GetGroups(isPass, SMSMission);
-                List<P_PersonInfo> list_personFromGroup = new List<P_PersonInfo>();
-                list_group.ForEach(g => list_personFromGroup.AddRange(g.P_PersonInfo.ToList()));
-                //3 根据路线一查询  SMSMission对应的部门，并得到部门中包含的联系人
-                //取出isPass为true的所有集合
-                var list_department = GetDepartmemts(isPass, SMSMission);
-                List<P_PersonInfo> list_personFromDep = new List<P_PersonInfo>();
-                list_department.ForEach(g => list_personFromDep.AddRange(g.P_PersonInfo.ToList()));
+            //var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+            #region 7月8日注释掉的部分
+            //    //2.根据路线2得到isPass为true群组集合
+            //    bool isPass = true;
+            //    var list_group = GetGroups(isPass, SMSMission);
+            //    List<P_PersonInfo> list_personFromGroup = new List<P_PersonInfo>();
+            //    list_group.ForEach(g => list_personFromGroup.AddRange(g.P_PersonInfo.ToList()));
+            //    //3 根据路线一查询  SMSMission对应的部门，并得到部门中包含的联系人
+            //    //取出isPass为true的所有集合
+            //    var list_department = GetDepartmemts(isPass, SMSMission);
+            //    List<P_PersonInfo> list_personFromDep = new List<P_PersonInfo>();
+            //    list_department.ForEach(g => list_personFromDep.AddRange(g.P_PersonInfo.ToList()));
 
-                //4 将路线一与路线二取出的Person集合合并
-                list_personFromGroup.AddRange(list_personFromDep);
-                //5 此时的集合中可能存在重复，去重
-                list_personFromGroup = list_personFromGroup.Distinct(new PMS.Model.EqualCompare.P_PersonEqualCompare()).ToList();
-                
-                //6 取出组群中isPass为false的集合
-                isPass = false;
-                var list_group_isNotPass = GetGroups(isPass, SMSMission);
-                List<P_PersonInfo> list_personFromGroup_isNotPass = new List<P_PersonInfo>();
-                list_group_isNotPass.ForEach(g => list_personFromGroup_isNotPass.AddRange(g.P_PersonInfo.ToList()));
+            //    //4 将路线一与路线二取出的Person集合合并
+            //    list_personFromGroup.AddRange(list_personFromDep);
+            //    //5 此时的集合中可能存在重复，去重
+            //    list_personFromGroup = list_personFromGroup.Distinct(new PMS.Model.EqualCompare.P_PersonEqualCompare()).ToList();
 
-                //7 将现有集合中去掉isPass为false的ActionInfo
-                list_personFromGroup = list_personFromGroup.Where(a => !list_personFromGroup_isNotPass.Contains(a)).ToList();
+            //    //6 取出组群中isPass为false的集合
+            //    isPass = false;
+            //    var list_group_isNotPass = GetGroups(isPass, SMSMission);
+            //    List<P_PersonInfo> list_personFromGroup_isNotPass = new List<P_PersonInfo>();
+            //    list_group_isNotPass.ForEach(g => list_personFromGroup_isNotPass.AddRange(g.P_PersonInfo.ToList()));
 
-                //8 取出组织机构中isPass为false的集合
-                var list_department_isNotPass = GetDepartmemts(isPass, SMSMission);
-                List<P_PersonInfo> list_personFromDep_isNotPass = new List<P_PersonInfo>();
-                list_department_isNotPass.ForEach(g => list_personFromDep_isNotPass.AddRange(g.P_PersonInfo.ToList()));
+            //    //7 将现有集合中去掉isPass为false的ActionInfo
+            //    list_personFromGroup = list_personFromGroup.Where(a => !list_personFromGroup_isNotPass.Contains(a)).ToList();
 
-
-                //9 将现有集合中去掉isPass为false,isDel为true的
-                list_personFromGroup = list_personFromGroup.Where(a => !list_personFromDep_isNotPass.Contains(a)).ToList();
-                list_personFromGroup = list_personFromGroup.Where(a => a.isDel == false).ToList();
-            rowCount = list_personFromGroup.Count();
-                //10 分页
-                list_personFromGroup = list_personFromGroup.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(m=>m.ToMiddleModel()).ToList();
+            //    //8 取出组织机构中isPass为false的集合
+            //    var list_department_isNotPass = GetDepartmemts(isPass, SMSMission);
+            //    List<P_PersonInfo> list_personFromDep_isNotPass = new List<P_PersonInfo>();
+            //    list_department_isNotPass.ForEach(g => list_personFromDep_isNotPass.AddRange(g.P_PersonInfo.ToList()));
 
 
-                PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            //    //9 将现有集合中去掉isPass为false,isDel为true的
+            //    list_personFromGroup = list_personFromGroup.Where(a => !list_personFromDep_isNotPass.Contains(a)).ToList();
+            //    list_personFromGroup = list_personFromGroup.Where(a => a.isDel == false).ToList();
+            //rowCount = list_personFromGroup.Count();
+            #endregion
+
+            //7月8日修改
+            //使用Send/GetPersonByMission这个方法替换上面注释掉的方法
+
+            //1 根据mid获取指定任务对象
+            var mission = smsmissionBLL.GetListBy(s => s.SMID == smid).FirstOrDefault();
+            //2 根据短信任务查找对应的群组
+            var group = mission.R_Group_Mission.ToList();
+            //2.1 创建该任务所拥有的群组对象集合
+            List<P_Group> list_group = new List<P_Group>();
+            //2.2 添加至群组对象集合中
+            group.ForEach(g => list_group.Add(g.P_Group));
+            //2.3 根据群组对象集合获取该群组集合中所共有的联系人
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
+
+            //3 根据短信任务查找对应的部门
+            var department = mission.R_Department_Mission.ToList();
+            //3.1 创建该任务所拥有的部门对象集合
+            List<P_DepartmentInfo> list_department = new List<P_DepartmentInfo>();
+            //3.2 添加至部门对象集合中
+            department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
+            //3.3 根据部门对象集合获取该群组集合中所共有的联系人
+            list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
+
+            //4 将联系人集合去重
+            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
+            rowCount = list_person.Count();
+            //10 分页
+            list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(m => m.ToMiddleModel()).ToList();
+
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
                 {
                     total = rowCount,
-                    rows = list_personFromGroup,
+                    rows = list_person,
                     footer = null
                 };
                 return Content(Common.SerializerHelper.SerializerToString(dgModel));
