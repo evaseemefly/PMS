@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index_AdvancedSearch";
-    Layout = "~/Views/Shared/_SMS_Layout.cshtml";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_AdvSearch.cshtml";
 }
 
 @section SectionJS{
@@ -17,6 +17,7 @@
             $("#mm1").menu({
                 onClick: function (item) {
                     SetDateVal(item, now_date);
+                    //$("#date_menu").menu('hide');
                 }
             })
 
@@ -245,6 +246,7 @@
                                 //根据当前的name进行判断
                                 var item = { name: names };
                                 SetDateVal(item, date);
+                                $("#date_menu").menu('hide');
                                 //$("#date_menu").menu('destroy');
                             })
                         }
@@ -358,18 +360,9 @@
                  //{ field: 'Operate', title: '是否禁用', width: 150 }
         ]]
 
-        var myColumns = [[
-                { field: 'ContentID', title: 'ID', width: 100, hidden: true },
-                { field: 'MissionName', title: '短信任务', width: 80 },
-                { field: 'Content', title: '发送内容', width: 280 },
-                {
-                    field: 'SendDateTime', title: '发送时间', width: 80,
-                    formatter: DataFormatter
-                },
-                { field: 'TotalOfReceiveNum', title: '发送总人数', width: 80 },
-                { field: 'NotReceiveNum', title: '未收到人数', width: 80 }
-        ]]
-
+        //由分部视图替代重用的代码部分
+       @Html.Partial("_Partial_Common_pColumns")
+        
         var myColumns_person = [[
                 { field: 'ContentID', title: 'ID', width: 100, hidden: true },
                 { field: 'PersonName', title: '联系人', width: 80 },
@@ -460,106 +453,11 @@
     </script>
     }
 
-<div style="height:300px">
-    <table class="easyui-datagrid" id="datagrid" data-options="toolbar:'#tb'"></table>
-    
-    <div id="tb" style="padding:2px 5px;">
-        <input type="hidden" id="date_target" name="date_target" />
-        <input type="hidden"id="date_start" name="date_start" />
-        <input type="hidden"id="date_finish" name="date_finish" />
-        <input type="hidden" id="cid"/>
-        <table cellspacing="5" style="font-size:15px">
-            @*<tr>
-                <td>指定联系人名称</td>
-                <td><input class="easyui-textbox" id="personName"style="width:200px"></td>
-                <td>匹配电话号码</td>
-                <td><input class="easyui-textbox"id="personPhoneNum" style="width:200px"></td>
-               
-            </tr>*@
-            <tr>
-                <td>短信任务种类</td>
-                <td><select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="width:130px" data-options="required:true,editable:false"></select></td>
-                <td>查询日期</td>
-                <td><a href="#" class="easyui-menubutton"id="date_menu" data-options="menu:'#mm1',iconCls:'icon-edit'">选择日期</a></td>
-                <td><a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a></td>
-            </tr>
-        </table>        
-    </div>
-
-    <div id="mm1" style="width:150px;">        
-        <div class="menu-sep"></div>
-        <div data-options="name:'today'">今日</div>
-        <div data-options="name:'lastWeek'">最近一周</div>
-        <div data-options="name:'lastMonth'">本月</div>
-        <div class="menu-sep"></div>
-        <div>
-            <span>具体某天</span>
-            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
-                <div>某天</div>
-                <div class="easyui-calendar"name="today" id="calendar_today"style="width:250px;height:250px;"></div>
-                <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"@*onclick="getTargetDate()"*@ >提交</a>
-            </div>
-           
-        </div>
-        <div>
-            <span>某天之前</span>
-            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
-                <div>某天</div>
-                <div class="easyui-calendar" name="beforesomeday" id="calendar_beforeSomeDay" style="width:250px;height:250px;"></div>
-                <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'"id="ok" @*onclick="getTargetDate()"*@>提交</a>
-            </div>
-        </div>
-        <div>
-            <span>某天之后</span>
-            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
-                <div>某天</div>
-                @*<input class="easyui-datebox"></input>*@
-                <div class="easyui-calendar" name="aftersomeday" id="calendar_afterSomeDay"  style="width:250px;height:250px;"></div>
-                <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" @*onclick="getTargetDate()"*@>提交</a>
-            </div>
-        </div>
-        <div>
-            <span>时间范围</span>
-            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
-                <table cellspacing="2" style="font-size:15px">
-                    <tr>
-                        <td>起始时间</td>                        
-                        <td>终止时间</td>
-                    </tr>
-                    <tr>
-                        <td><div class="easyui-calendar" name="date_start" id="calendar_start" style="width:250px;height:250px;"></div></td>
-                        <td><div class="easyui-calendar"name="date_finish" id="calendar_finish" style="width:250px;height:250px;"></div></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><div style="margin:20px 0"></div>
-<a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" @*onclick="getTargetDate()"*@>提交</a></td>
-                    </tr>
-                    </table>
-            </div>
-        </div>        
-    </div>
-
-    <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:400px;height:400px;overflow: hidden" data-options="shadow:true,modal:true">
-        <iframe id="setActionRoleFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
-    </div>
-
+@section Body{
+<div id="body_layout" class="easyui-panel" style="height:100%;width:100%;border:0px" data-options="fit:true">
+    @Html.Partial("_Partial_AdvSearch_Content")
+    <div style="margin:5px 0"></div>
+    @Html.Partial("_Partial_AdvSearch_Record")
 </div>
-<div style="margin:20px 0"></div>
-<div style="height:300px">
-    <table class="easyui-datagrid" id="datagrid_person" data-options="toolbar:'#tb1'"></table>
-    <div id="tb1" style="padding:2px 5px;">
-        <table cellspacing="5" style="font-size:15px">
-            <tr>
-                <td>指定联系人名称</td>
-                <td><input class="easyui-validatebox" type="text" id="personName" style="width:200px" data-options="@*validType:['CHS','length[1,5]']*@"></td>
-                <td>匹配电话号码</td>
-                <td><input class="easyui-validatebox" type="text" id="personPhoneNum" style="width:200px" data-options="@*validType:'Mobile'*@"></td>
-                <td><a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPerson()">查询</a></td>
-            </tr>
-        </table>
-    </div>
-</div>
+}
+

@@ -339,12 +339,11 @@
     <Content Include="Areas\Contacts\Views\ContactPerson\ShowEditPersonInfo.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_Send.cshtml" />
     <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
-    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_Body.cshtml" />
-    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_EditWin.cshtml" />
+    <Content Include="Areas\SMS\Views\Send\_Partial_Send_Body.cshtml" />
+    <Content Include="Areas\SMS\Views\Send\_Partial_Send_EditWin.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_Statistics.cshtml" />
-    <Content Include="Areas\SMS\Views\Statistics\Index -6月17日分布之前的备份.cshtml" />
-    <Content Include="Areas\SMS\Views\Shared\_Partial_Statistics_Last10.cshtml" />
-    <Content Include="Areas\SMS\Views\Shared\_Partial_Statistics_CurrentDay.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_Last10.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_CurrentDay.cshtml" />
     <Content Include="Areas\Admin\Views\User\ShowEditInfo-7.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_Partial_Role_Edit.cshtml" />
@@ -355,6 +354,10 @@
     <Content Include="Areas\Contacts\Views\SMSMission\ShowEditSMSMissionInfo.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_MsgTemplate_Edit.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\_Partial_AdvSearch_Content.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\_Partial_AdvSearch_Record.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\_Partial_Common_pColumns.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Layout_AdvSearch.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate-7月8日备份.cshtml" />
