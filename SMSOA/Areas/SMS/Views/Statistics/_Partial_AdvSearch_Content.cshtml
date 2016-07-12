@@ -35,18 +35,15 @@
         <div class="menu-sep"></div>
         <div>
             <span>具体某天</span>
-            @*<div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">*@
+            <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
             <div>
                 <div>某天</div>
-                <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left">
-                    <div class="easyui-calendar" name="today" id="calendar_today" style="width:250px;height:250px;"></div>
-                    </div>
-                    @*<div style="margin:20px 0"></div>*@
-                    @*<a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'">提交</a>*@
-                <div class="menu-sep"></div>
-                <div>提交</div>
-                </div>
-
+                <div id="mm3" class="menu-content" style="background:#808080;padding:10px;text-align:left"></div>
+                <div class="easyui-calendar" name="today" id="calendar_today" style="width:250px;height:250px;"></div>
+                <div style="margin:20px 0"></div>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="hideMyMenu()">提交</a>  
+            </div>
+            </div>
         </div>
         <div>
             <span>某天之前</span>
@@ -54,7 +51,7 @@
                 <div>某天</div>
                 <div class="easyui-calendar" name="beforesomeday" id="calendar_beforeSomeDay" style="width:250px;height:250px;"></div>
                 <div style="margin:20px 0"></div>
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" id="ok" @*onclick="getTargetDate()"*@>提交</a>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" id="ok" onclick="hideMyMenu()">提交</a>
             </div>
         </div>
         <div>

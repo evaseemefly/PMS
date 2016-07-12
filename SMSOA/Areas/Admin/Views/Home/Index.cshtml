@@ -22,6 +22,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <style type="text/css">
@@ -50,7 +51,8 @@
         #top_title span{
             font-size:30px;
             border:5px;
-            font-family:'Microsoft YaHei UI';
+            /*font-family:'Microsoft YaHei UI';*/
+            font-family:STZhongsong;
             color:#ffffff;
         }
     </style>
@@ -176,9 +178,10 @@
             <span>国家海洋环境预报中心短信发送平台</span>
         </div>
         <div id="top_reminder">
-            <span class="txt">@userMsg </span><br/>
+            @Html.Partial("_Partial_Home_Top")
+            @*<span class="txt">@userMsg </span><br/>
             <span class="txt">日期：@DateTime.Now.ToString("yyyy-MM-dd")</span><br/>
-            <a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a>
+            <a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a>*@
         </div>        
     </div>
     <div data-options="region:'west',split:true,title:'操作列表'" style="width:130px; padding:0px;">

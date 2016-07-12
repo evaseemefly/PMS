@@ -13,8 +13,16 @@ namespace SMSOA.Areas.SMS.Models
         {
             get
             {
-                //使用新的方法将string数组转成int数组
-                return Array.ConvertAll<string,int>(PersonIds.Split(','),s=>int.Parse(s));
+                if (PersonIds.Length > 0)
+                {
+                    //使用新的方法将string数组转成int数组
+                    return Array.ConvertAll<string, int>(PersonIds.Split(','), s => int.Parse(s));
+                }
+                else
+                {
+                    return null;
+                }
+                
             }
         }
 

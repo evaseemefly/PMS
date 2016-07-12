@@ -34,3 +34,28 @@
 .icon-contacts_setgroup{
 	background:url('/Images/Icon/menu/group.png') no-repeat center center;
 }
+
+.icon-home-user{
+	background:url('/Images/Icon/home/24/user.png') no-repeat center center;
+}
+
+.icon-home-personalsetting{
+	background:url('/Images/Icon/home/16/personsetting.png') no-repeat center center;
+}
+
+.icon-home-setpassword{
+	background:url('/Images/Icon/home/16/setpassword.png') no-repeat center center;
+}
+
+.icon-home-logout{
+	background:url('/Images/Icon/home/16/logout.png') no-repeat center center;
+}
+.icon-home-logout-middle{
+	background:url('/Images/Icon/home/24/logout.png') no-repeat center center;
+}
+.icon-home-logoutgreen{
+	background:url('/Images/Icon/home/16/logout-green.png') no-repeat center center;
+}
+.icon-home-logoutyellow{
+	background:url('/Images/Icon/home/16/logout-yellow.png') no-repeat center center;
+}
