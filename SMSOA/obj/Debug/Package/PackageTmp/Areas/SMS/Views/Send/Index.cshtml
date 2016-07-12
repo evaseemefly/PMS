@@ -63,9 +63,14 @@
                 success: function (data) {
                     if("ok" == data){
                         messagerShowOnCenter("提交成功");
-
+                    }else if("empty contact list" == data){
+                        alert("联系人名单为空，发送失败")
                     }else if("out of range" == data){
-                        messagerShowOnCorner("短信字数超过300字，提交失败");
+						messagerShowOnCorner("短信字数超过300字，提交失败");
+                       
+                    }else if("empty content" == data){
+						messagerShowOnCorner("短信内容为空，发送失败");
+                      
                     }
                 }
 
