@@ -96,6 +96,7 @@ namespace PMS.Model
                 text = this.ActionInfoName,
                 state = "open",
                 Checked = false,
+                iconCls=this.MenuIcon,
                 attributes = new { url = this.GetUrl() },
                 children = new List<EasyUIModel.EasyUITreeNode>()
             };

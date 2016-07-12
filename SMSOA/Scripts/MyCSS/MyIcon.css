@@ -59,3 +59,62 @@
 .icon-home-logoutyellow{
 	background:url('/Images/Icon/home/16/logout-yellow.png') no-repeat center center;
 }
+
+/*----------------------权限样式--16px--------------------*/
+.icon-action-action16{
+	background:url('/Images/Icon/action/16/action-action.png') no-repeat center center;
+}
+.icon-action-role16{
+	background:url('/Images/Icon/action/16/action-role.png') no-repeat center center;
+}
+.icon-action-user16{
+	background:url('/Images/Icon/action/16/action-user.png') no-repeat center center;
+}
+
+.icon-action-department16{
+	background:url('/Images/Icon/action/16/action-department.png') no-repeat center center;
+}
+.icon-action-group16{
+	background:url('/Images/Icon/action/16/action-group.png') no-repeat center center;
+}
+.icon-action-mission16{
+	background:url('/Images/Icon/action/16/action-mission.png') no-repeat center center;
+}
+
+.icon-action-send16{
+	background:url('/Images/Icon/action/16/action-send.png') no-repeat center center;
+}
+.icon-action-template16{
+	background:url('/Images/Icon/action/16/action-template.png') no-repeat center center;
+}
+
+/*----------------------权限样式--24px--------------------*/
+
+.icon-action-action24{
+	background:url('/Images/Icon/action/24/action-action.png') no-repeat center center;
+}
+.icon-action-role24{
+	background:url('/Images/Icon/action/24/action-role.png') no-repeat center center;
+}
+.icon-action-user24{
+	background:url('/Images/Icon/action/24/action-user.png') no-repeat center center;
+}
+
+.icon-action-department24{
+	background:url('/Images/Icon/action/24/action-department.png') no-repeat center center;
+}
+.icon-action-group24{
+	background:url('/Images/Icon/action/24/action-group.png') no-repeat center center;
+}
+.icon-action-mission24{
+	background:url('/Images/Icon/action/24/action-mission.png') no-repeat center center;
+}
+
+.icon-action-send24{
+	background:url('/Images/Icon/action/24/action-send.png') no-repeat center center;
+}
+.icon-action-template24{
+	background:url('/Images/Icon/action/16/action-template.png') no-repeat center center;
+}
+
+
