@@ -230,9 +230,12 @@
                 success: function (data) {
                     if("ok" == data){
                         alert("提交成功");
-
+                    }else if("empty contact list" == data){
+                        alert("联系人名单为空，发送失败")
                     }else if("out of range" == data){
-                        alert("短信字数超过300字，提交失败");
+                        alert("短信字数超过300字，发送失败");
+                    }else if("empty content" == data){
+                        alert("短信内容为空，发送失败");
                     }
                 }
 
