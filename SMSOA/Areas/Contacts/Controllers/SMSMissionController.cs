@@ -216,20 +216,22 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult DoAddSMSMissionInfo(S_SMSMission mission)
         {
-            //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            mission.isDel = false;
-            mission.isMMS = false;
-            mission.SubTime = DateTime.Now;
-            mission.ModifiedOnTime = DateTime.Now;
-            try
-            {
-                smsmissionBLL.Create(mission);
-                return Content("ok");
-            }
-            catch
-            {
-                return Content("error");
-            }
+            //数据验证
+            if (smsmissionBLL.AddValidation(mission.SMSMissionName)) { return Content("validation fails"); }
+                //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
+                mission.isDel = false;
+                mission.isMMS = false;
+                mission.SubTime = DateTime.Now;
+                mission.ModifiedOnTime = DateTime.Now;
+                try
+                {
+                    smsmissionBLL.Create(mission);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
         }
 
         /// <summary>
@@ -239,20 +241,21 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult DoEditSMSMissionInfo(S_SMSMission mission)
         {
-            //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            mission.isDel = false;
-            mission.isMMS = false;
-            mission.ModifiedOnTime = DateTime.Now;
+            if (smsmissionBLL.EditValidation(mission.SMID, mission.SMSMissionName)) { return Content("validation fails"); }
+               //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
+                mission.isDel = false;
+                mission.isMMS = false;
+                mission.ModifiedOnTime = DateTime.Now;
 
-            try
-            {
-                smsmissionBLL.Update(mission);
-                return Content("ok");
-            }
-            catch
-            {
-                return Content("error");
-            }
+                try
+                {
+                    smsmissionBLL.Update(mission);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
         }
         ///<summary>
         ///通过短信任务得到联系人,并转换为Datagrid

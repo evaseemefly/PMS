@@ -272,30 +272,27 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             //数据验证
-            if (!groupBLL.AddValidation(groupModel.GroupName))
+            if (groupBLL.AddValidation(groupModel.GroupName)) { return Content("validation fails"); }
+            groupModel.isDel = false;
+            groupModel.SubTime = DateTime.Now;
+            groupModel.ModifiedOnTime = DateTime.Now;
+
+            try
             {
-                groupModel.isDel = false;
-                groupModel.SubTime = DateTime.Now;
-                groupModel.ModifiedOnTime = DateTime.Now;
-
-                try
-                {
-                    groupBLL.Create(groupModel);
-                    return Content("ok");
-                }
-                catch
-                {
-                    return Content("error");
-                }
-
+                groupBLL.Create(groupModel);
+                return Content("ok");
             }
-            return Content("validation fails");
+            catch
+            {
+                return Content("error");
+            }
         }
 
 
 
         public ActionResult DoEditGroupInfo(P_Group groupModel)
         {
+            if(groupBLL.EditValidation(groupModel.GID, groupModel.GroupName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             groupModel.isDel = false;            
             groupModel.ModifiedOnTime = DateTime.Now;
@@ -307,8 +304,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
             catch
             {
-                return Content("error");
-            }
+                    return Content("error");
+             }
         }
 
         public ActionResult DoDelPersonInfobyGID()

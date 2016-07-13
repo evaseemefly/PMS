@@ -204,8 +204,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///<return></return>
         public ActionResult DoEditPersonInfo(Models.ViewModel_Person personModel)
         {
-            if (!personInfoBLL.EditValidation(personModel.PID, personModel.PhoneNum))
-            {
+            if (personInfoBLL.EditValidation(personModel.PID, personModel.PhoneNum)) { return Content("validation fails"); }
                 if (personInfoBLL.DoEditPerson(personModel.PID, personModel.PName, personModel.PhoneNum, personModel.Remark, false, false, personModel.GID.ToList(), personModel.DID))
                 {
                     return Content("ok");
@@ -214,8 +213,6 @@ namespace SMSOA.Areas.Contacts.Controllers
                 {
                     return Content("error");
                 }
-            }
-            return Content("validation fails");
         }
 
         public ActionResult DoAddPersonInfo(Models.ViewModel_Person personModel)
@@ -239,8 +236,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //     P_DepartmentInfo = list_department,
             //     P_Group =list_Group
             // };
-            if (!personInfoBLL.AddValidation(personModel.PhoneNum))
-            {
+            if (personInfoBLL.AddValidation(personModel.PhoneNum)) { return Content("validation fails"); }
                 try
                 {
                     //6月15日修改方式二 
@@ -252,8 +248,6 @@ namespace SMSOA.Areas.Contacts.Controllers
                 {
                     return Content("error");
                 }
-            }
-            return Content("validation fails");
         }
 
         ///<summary>

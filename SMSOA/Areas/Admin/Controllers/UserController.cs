@@ -36,8 +36,7 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoAddUserInfo(UserInfo model)
         {
-            if (!userInfoBLL.AddValidation(model.UName))
-            {
+            if (userInfoBLL.AddValidation(model.UName)) { return Content("validation fails"); }
                 model.DelFlag = false;
                 model.SubTime = DateTime.Now;
                 model.ModifiedOnTime = DateTime.Now;
@@ -53,10 +52,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-
-            }
-            return Content("validation fails");
-
         }
         ///<summary>
         /// 显示添加用户
@@ -100,7 +95,8 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoEditUserInfo(UserInfo model)
         {
-            if (!userInfoBLL.EditValidation(model.ID, model.UName)){
+            //数据验证
+            if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
 
                 model.ModifiedOnTime = DateTime.Now;
 
@@ -112,9 +108,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-            }
-            return Content("validation fails");
-
         }
         ///<summary>
         ///显示编辑用户视图
