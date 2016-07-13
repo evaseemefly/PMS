@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "ShowEditGroupInfo";
+    Layout = "~/Views/Shared/_Contact_AddEdit_Layout.cshtml";
+    string backAction_jqSub = @ViewBag.backAction_jqSub;
+    //int sort = (ViewBag.Sort == null ? 50 : ViewBag.Sort);
+    int sort = (ViewBag.Sort == null ? 50 : ViewBag.Sort);
+}
+
+@section SectionJS{
+    <script type="text/javascript">
+        function DoSubmit() {
+            var myform = $("#ff");
+            var options = {
+                url: '@ViewBag.backAction_jqSub',
+                type: 'post',
+                success: function (data) {
+                    afterEdit(data,"群组名称");
+                }
+            };
+
+            myform.form('submit', options);
+        }
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
+
+        function afterEdit(data,name) {
+
+
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //提交表单成功后关闭本页面
+            //无法关闭此窗口
+            //window.close();
+            if (data == "ok") {
+                window.parent.afterEditContact("修改成功",0);
+            }
+            else if(data=="validation fails"){
+                window.parent.afterEditContact(name + "已经存在，请重新输入", 1);
+            }
+            else {
+                window.parent.afterEditContact("修改失败",0);
+            }
+            //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
+        }
+    </script>
+}
+<body  style="margin:0px;">
+    <div>
+        <form id="ff" class="easyui-form" style="" method="post">
+            <div style="height:30px;width:100%;background-color:#000000"></div>
+            <input type="hidden" name="GID" value="@ViewBag.GID" />
+            <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
+            <table cellpadding="3" style="margin-left:40px;width:95%">
+                <tr>
+                    <td>群组名称:</td>
+                    <td class="comment">
+                        <input class="easyui-validatebox" type="text" name="GroupName" value="@ViewBag.GroupName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />请填写群组名称
+                    </td>
+                </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" name="Remark" value="@ViewBag.Remark" style="height:50px" data-options="multiline:true"></input><br />请描述群组功能（可选）
+                    </td>
+                </tr>
+                <tr>
+                    <td>优先级:</td>
+                </tr>
+                <tr>
+                    <td class="comment" colspan="2">
+                        <input class="easyui-slider" name="Sort" style="width:80%" data-options="showTip:true,
+                               rule: [1,'|',25,'|',50,'|',75,'|',100],
+                               value:'@sort'
+                               "><br />
+                        数字越小优先级越高
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <div style="text-align:center;padding:5px">
+                    @*<input type="submit" value="提交" />*@
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" >提交</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >取消</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+

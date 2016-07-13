@@ -1,15 +1,15 @@
 ﻿
 @{
     Layout = null;
-    string userMsg = null;
-    if(ViewBag.UserInfo!="")
-    {
-        userMsg = "欢迎:" + ViewBag.UserInfo + "登录";
-    }
-    else
-    {
-        userMsg = "未登录";
-    }
+    //string userMsg = null;
+    //if(ViewBag.UserInfo!="")
+    //{
+    //    userMsg = "欢迎:" + ViewBag.UserInfo + "登录";
+    //}
+    //else
+    //{
+    //    userMsg = "未登录";
+    //}
 }
 <!DOCTYPE html>
 <html>
@@ -153,7 +153,8 @@
                     closable: true,
                     //style:{overflow: hidden},
                     fit: true,
-                    content: createNewIframe(treeNode.attributes.url),
+                    //href:treeNode.attributes.url,
+                   content: createNewIframe(treeNode.attributes.url),
                     //style: { overflow: "hidden" }//?
                 });
             }
@@ -167,6 +168,11 @@
         //}
         function createNewIframe(url) {
             var iframeStr = "<iframe frameborder='0' src='" + url + "' style='width:100%;height:99.5%;frameborder:0px solid #000;'></iframe>";
+            return iframeStr;
+        }
+        function createNewAjaxDiv(url) {
+            var divStr = "<div style='width:100%;height:99.5%;'></div>";
+
             return iframeStr;
         }
     </script>
@@ -196,7 +202,7 @@
         <span class="txt" style="position:relative;width:100%;height:100%;">
         预报中心网络部开发 Copyright ? nmefc</span> 
     </div>
-    <div data-options="region:'center',title:'Center'" style="overflow-x:hidden;overflow-y:hidden">
+    <div data-options="region:'center',title:'我的桌面'" style="overflow-x:hidden;overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;">
 
         </div>

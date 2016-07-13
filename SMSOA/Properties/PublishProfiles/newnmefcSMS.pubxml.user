@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\02编程\2016年\01协同开发\发布版\SMS_V1</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/Admin/Views/Action/AddActionInfo - 复制.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/EditActionInfo.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/Index-分部视图.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/Index.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/SetRoleAction.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/ShowEditInfo-6月6日备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/ShowEditInfo.cshtml">
+      <publishTime>07/01/2016 10:41:24</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Action/Test.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Home/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Home/NotFound.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Home/_Partial_Home_Top.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/Index - 复制.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/Index-分部视图的测试.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/Index-通过viewbag的方式实现.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/Index.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/ShowEditInfo.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/ShowEditInfo_6月5日备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/_Partial_Role_Edit.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Role/_Partial_Role_setActionRole.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_LayoutTest.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_Layout_Admin.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_MyPartialIndex-之前.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_MyPartial_Index.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Test/Index.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/ShowEditInfo-6月2日备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/ShowEditInfo-7.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/ShowEditInfo.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/web.config">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/_ViewStart.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/ContactPerson/Index - 复制.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/ContactPerson/Index.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/ContactPerson/ShowEditPersonInfo-6月13日备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/ContactPerson/ShowEditPersonInfo.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Department/Index-4月22日备份以前的.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Department/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Department/ShowAddDepartmentInfo-6月7日备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Department/ShowAddDepartmentInfo.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/Index - 4月22日晚-分部视图已经完成备份.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/Index-4月19日-修改为分部视图之前的部分.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/Index-4月19日晚备份-重要.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/Index-4月22日晚-分部视图脚本整合为一个.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/ShowAddGroupInfo - 复制%282%29.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/ShowAddGroupInfo.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/ShowEditGroupInfo-6月7日修改v1.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/ShowEditGroupInfo-6月7日备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Group/ShowEditGroupInfo.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/View.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout-4月22日晚备份.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout-6月12日-修改移至分组时备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout-6月22日备份.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_Contacts - 复制.cshtml">
+      <publishTime>05/04/2016 09:06:24</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_Contacts.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_Person.cshtml">
+      <publishTime>04/25/2016 14:01:10</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_SMSMission -5月1日复制%282%29.cshtml">
+      <publishTime>05/04/2016 09:06:24</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_SMSMission-6月22日备份.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_SMSMission.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/SMSMission/Index - 复制.cshtml">
+      <publishTime>05/04/2016 09:06:24</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/SMSMission/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/SMSMission/ShowAddSMSMissionInfo.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/SMSMission/ShowEditSMSMissionInfo.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/web.config">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/Login/Views/Login/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/Login/Views/web.config">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/MsgTemplate/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/MsgTemplate/ShowEditTemplate-7月8日备份.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/MsgTemplate/ShowEditTemplate.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Send/Index-6月17使用分部视图替代前备份.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Send/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Send/ShowSetWindow.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Send/_Partial_Send_Body.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Send/_Partial_Send_EditWin.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/_Layout_AdvSearch.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/_Layout_MsgTemplate_Edit.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/_Layout_Send.cshtml">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/_Layout_Statistics.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/Index_AdvancedSearch.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/_Partial_AdvSearch_Content.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/_Partial_AdvSearch_Record.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/_Partial_Common_pColumns.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/_Partial_Statistics_CurrentDay.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Statistics/_Partial_Statistics_Last10.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/web.config">
+      <publishTime>04/28/2016 10:43:03</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="bin/Common.dll">
+      <publishTime>07/13/2016 14:29:27</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="bin/Common.pdb">
+      <publishTime>07/13/2016 14:29:27</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="bin/ISMS.dll">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/ISMS.pdb">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="bin/Memcached.ClientLibrary.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/PMS.BLL.dll">
+      <publishTime>07/13/2016 14:29:28</publishTime>
+    </File>
+    <File Include="bin/PMS.BLL.pdb">
+      <publishTime>07/13/2016 14:29:28</publishTime>
+    </File>
+    <File Include="bin/PMS.DALFactory.dll">
+      <publishTime>07/13/2016 14:29:27</publishTime>
+    </File>
+    <File Include="bin/PMS.DALFactory.pdb">
+      <publishTime>07/13/2016 14:29:27</publishTime>
+    </File>
+    <File Include="bin/PMS.DALSQLSer.dll">
+      <publishTime>07/13/2016 14:29:27</publishTime>
+    </File>
+    <File Include="bin/PMS.DALSQLSer.pdb">
+      <publishTime>07/13/2016 14:29:27</publishTime>
+    </File>
+    <File Include="bin/PMS.IBLL.dll">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/PMS.IBLL.pdb">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/PMS.IDAL.dll">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/PMS.IDAL.pdb">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/PMS.Model.dll">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/PMS.Model.pdb">
+      <publishTime>07/13/2016 14:29:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.Interfaces.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/SMSFactory.dll">
+      <publishTime>07/13/2016 14:29:28</publishTime>
+    </File>
+    <File Include="bin/SMSFactory.pdb">
+      <publishTime>07/13/2016 14:29:28</publishTime>
+    </File>
+    <File Include="bin/SMSOA.dll">
+      <publishTime>07/13/2016 14:42:53</publishTime>
+    </File>
+    <File Include="bin/SMSOA.pdb">
+      <publishTime>07/13/2016 14:42:53</publishTime>
+    </File>
+    <File Include="bin/Spring.Core.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="bin/Spring.Web.Mvc4.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>05/07/2013 13:09:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>05/07/2013 13:09:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>05/07/2013 13:09:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>04/14/2016 15:27:47</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.SqlServer.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.AspNet.Identity.Core.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.AspNet.Identity.EntityFramework.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.AspNet.Identity.Owin.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.Host.SystemWeb.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.Security.Facebook.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.Security.Google.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.Security.MicrosoftAccount.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.Security.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Owin.Security.Twitter.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>07/01/2016 09:21:09</publishTime>
+    </File>
+    <File Include="Config/controllers.xml">
+      <publishTime>05/31/2016 20:24:33</publishTime>
+    </File>
+    <File Include="Config/service.xml">
+      <publishTime>05/31/2016 10:21:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/3DSMAX.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/7_7.jpg">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/Alien Folder.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/bg.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/bg3.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/big.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/blue_glow.jpg">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/Program Files Folder.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Images/Xp-G5 006.png">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Images/Icon/Contact/group-large.png">
+      <publishTime>07/13/2016 09:57:06</publishTime>
+    </File>
+    <File Include="Images/Icon/Contact/group.png">
+      <publishTime>07/13/2016 09:57:06</publishTime>
+    </File>
+    <File Include="Images/Icon/Contact/phonebook-large.png">
+      <publishTime>07/13/2016 09:57:06</publishTime>
+    </File>
+    <File Include="Images/Icon/Contact/phonebook.png">
+      <publishTime>07/13/2016 09:57:06</publishTime>
+    </File>
+    <File Include="Images/Image/page404.jpg">
+      <publishTime>07/13/2016 09:57:06</publishTime>
+    </File>
+    <File Include="Libs/Common.Logging.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Libs/Spring.Core.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Libs/Spring.Web.Mvc4.dll">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>04/14/2016 15:27:46</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/EasyUI/jquery.easyui.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/EasyUI/jquery.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/EasyUI/locale/easyui-lang-zh_CN.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/MyCSS/MyEditWin.css">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Scripts/MyCSS/MyIcon.css">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/Admin/IndexOperation.js">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/Common/my_FormatDate.js">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/Common/my_SetiframeBody.js">
+      <publishTime>06/20/2016 15:25:10</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/Common/Submit.js">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/Common/ValidateExtend.js">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/Contact/my_loadUrl.js">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/EasyUI/my_ShowMessager.js">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/EasyUI/SwitchBtn.js">
+      <publishTime>06/20/2016 08:42:51</publishTime>
+    </File>
+    <File Include="Scripts/MyScripts/jquery.msgProcess.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Views/Account/ConfirmEmail.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginFailure.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPassword.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPassword.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/SendCode.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/VerifyCode.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Manage/AddPhoneNumber.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Manage/ChangePassword.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Manage/Index.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Manage/ManageLogins.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Manage/SetPassword.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Shared/Lockout.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Shared/MyPartialIndex.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Shared/_Admin_AddUser_Layout.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_Contact_AddEdit_Layout.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/Shared/_MyPartial_Index.cshtml">
+      <publishTime>07/13/2016 08:11:35</publishTime>
+    </File>
+    <File Include="Views/Shared/_SMS_Layout.cshtml">
+      <publishTime>07/01/2016 09:21:08</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>04/14/2016 15:27:45</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>07/13/2016 14:42:55</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
