@@ -117,3 +117,6 @@ E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackgroun
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.csproj.SMSbackground.exe.config
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
 E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ConsoleApplication1\bin\Debug\SMSbackground.exe.config
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
