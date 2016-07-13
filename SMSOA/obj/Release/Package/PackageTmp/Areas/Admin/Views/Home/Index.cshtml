@@ -22,8 +22,40 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <style type="text/css">
+        #top_reminder{
+            float:right;
+            margin-right:20px;
+            margin-top:4px;
+        }
+        #top_logo{
+            float:left;
+            width: 50px;
+            height: 50px;
+            background: url('/Content/Images/login/logo.png') no-repeat;
+            background-size:50px 50px;
+            margin-left:30px;
+            margin-top:4px;
+        }
+        #top_title{
+            margin:8px auto;
+            float:left;
+            /*margin-left:auto;
+            margin-right:auto;*/
+            text-align:center;
+            width:600px;
+        }
+        #top_title span{
+            font-size:30px;
+            border:5px;
+            /*font-family:'Microsoft YaHei UI';*/
+            font-family:STZhongsong;
+            color:#ffffff;
+        }
+    </style>
     <script type="text/javascript">
         
             $(function () {
@@ -134,23 +166,32 @@
         //    return iframeStr;
         //}
         function createNewIframe(url) {
-            var iframeStr = "<iframe frameborder='0'  src='" + url + "' style='width:100%;height:99%;frameborder:0px solid #000;'></iframe>";
+            var iframeStr = "<iframe frameborder='0' src='" + url + "' style='width:100%;height:99.5%;frameborder:0px solid #000;'></iframe>";
             return iframeStr;
         }
     </script>
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height:60px; padding:10px;background-image:url(/Content/Images/background/blue2_background.png);background-size:100%;background-repeat:no-repeat">    
-        <span class="txt">@userMsg @DateTime.Now.ToString("yyyy-MM-dd")</span> 
+    <div data-options="region:'north',border:false" style="height:60px; padding:2px;background-image:url(/Content/Images/background/blue2_background.png);background-size:100%;background-repeat:no-repeat">
+        <div id="top_logo"></div>
+        <div id="top_title">
+            <span>国家海洋环境预报中心短信发送平台</span>
+        </div>
+        <div id="top_reminder">
+            @Html.Partial("_Partial_Home_Top")
+            @*<span class="txt">@userMsg </span><br/>
+            <span class="txt">日期：@DateTime.Now.ToString("yyyy-MM-dd")</span><br/>
+            <a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a>*@
+        </div>        
     </div>
-    <div data-options="region:'west',split:true,title:'操作列表'" style="width:200px; padding:0px;">
+    <div data-options="region:'west',split:true,title:'操作列表'" style="width:130px; padding:0px;">
         <div class="easyui-accordion" id="WestAccordion" style="width:100%;padding:0px">
         </div>
         <div class="easyui-panel" style="padding:0px;border:0px;overflow-x:hidden">
         </div>
     </div>
-    <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
-    </div>
+    @*<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
+    </div>*@
     <div data-options="region:'south',border:false" style="height:50px;padding:10px;background-image:url(/Content/Images/background/blue2_background.png);background-size:100%;background-repeat:no-repeat">
         <span class="txt" style="position:relative;width:100%;height:100%;">
         预报中心网络部开发 Copyright ? nmefc</span> 

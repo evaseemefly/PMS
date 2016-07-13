@@ -22,6 +22,8 @@
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     @*自己写的图标样式*@
     <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
+    <link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
+    <script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
     <script type="text/javascript">
         var missionColumns = [[
                  //{ field: 'ck', checkbox: true },
@@ -61,6 +63,10 @@
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
 
+        function CloseMyWin() {
+            window.parent.CloseWindow();
+        }
+
         function save_success(data) {
             //alert("修改成功");
 
@@ -93,11 +99,17 @@
             var group_checkeds = grid_group.datagrid("getChecked");
             var group_ids = split4id(group_checkeds, "GID");
 
+            //注意此处：短信任务必须选中一项
             var grid_mission = $("#smsMission_combogrid").combogrid("grid");
             var mission_checkeds = grid_mission.datagrid("getChecked");
+            if (mission_checkeds.length < 1) {
+                //提示
+                messagerShowOnCenter("提示", "必须选择至少一个短信任务");
+                return;
+            }
             var mission_ids = split4id(mission_checkeds, "SMID");
 
-            alert("群组选中id" + group_ids + "|||" + "选中的任务id" + mission_ids);
+            //alert("群组选中id" + group_ids + "|||" + "选中的任务id" + mission_ids);
             var model = new Object();
             model.group_Ids = group_ids;
             model.mission_Ids = mission_ids;
@@ -125,7 +137,7 @@
                 textField: 'GroupName',
                 //width: 150,
                 panelWidth: 180,
-                panelHeight: 'auto',
+                panelHeight: 150,
                 multiple: true,
                 columns: groupColumns,
                 //获取数据成功后启动事件
@@ -151,7 +163,7 @@
                 textField: 'SMSMissionName',
                 //width: 150,
                 panelWidth: 180,
-                panelHeight: 'auto',
+                panelHeight: 200,
                 multiple: true,
                 columns: missionColumns,
                 onClickRow: function (rowIndex, rowData) {
@@ -181,31 +193,39 @@
 </head>
 <body>
     <div style="height:100%">
-        <div style="padding:10px 60px 20px 60px;height:100%">
             <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
                 <input type="hidden" name="DID" value="@ViewBag.DID" />
                 <table cellspacing="10" style="font-size:15px;">
                     <tr>
                         <td style="color:#ffffff">设置常用短信任务:</td>
-                        <td>
+                    </tr>
+                    <tr>
+                        <td class="comment">
                             @*加载全部短信任务列表，并将当前用户所拥有的短信任务设置为勾选*@
-                            <select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="width:130px" data-options="required:true"></select>
+                            <select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="height:25px;width:100%;" @*data-options="required:true"*@></select><br />
+                            请选择你常用的短信任务种类<br />（此任务会出现在发送界面的短信任务列表中）
                         </td>
                     </tr>
                     <tr>
                         <td style="color:#ffffff">设置常用短信群组:</td>
-                        <td>
+
+                    </tr>
+                    <tr>
+                        <td class="comment">
                             @*加载全部短信群组列表，并将当前用户所拥有的短信群组设置为勾选*@
-                            <select class="easyui-combotree" name="PDID" id="group_combogrid" style="width:130px"data-options="@*required:true*@"></select>
+                            <select class="easyui-combotree" name="PDID" id="group_combogrid" style="height:25px;width:100%;" data-options="@*required:true*@"></select><br />
+                            请选择你常用的短信群组<br />（此群组会出现在发送界面的短信任务列表中）
                         </td>
                     </tr>
                     </table>
-                <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
-                    <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">保存</a>                    
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                <div style="text-align:center;padding:5px">
+                    <div style="text-align:center;padding:5px">
+                        @*<input type="submit" value="提交" />*@
+                        <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
+                        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CloseMyWin()" style="width:80px">取消</a>
+                    </div>
                 </div>
                 </form>
-            </div>
         </div>
 </body>
 </html>
