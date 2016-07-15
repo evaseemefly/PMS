@@ -247,5 +247,29 @@ namespace PMS.BLL
                 return false;
             }
         }
+
+
+        /// <summary>
+        /// 添加新任务时的数据验证（是否重名）
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool AddValidation(String name)
+        {
+            var list_model = this.GetListBy(p => p.isDel == false).ToList();
+            return list_model.Exists(p => p.SMSMissionName.Equals(name));
+        }
+        /// <summary>
+        /// 编辑任务时候的数据验证(是否重名)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool EditValidation(int id,String name)
+        {
+            var list_model = this.GetListBy(p => p.SMID != id && p.isDel == false).ToList();
+            return list_model.Exists(p => p.SMSMissionName.Equals(name));
+        }
+        
     }
 }

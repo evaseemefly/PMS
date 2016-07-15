@@ -205,9 +205,9 @@ namespace SMSOA.Areas.Admin.Controllers
         
         public ActionResult DoEditActionInfo(ActionInfo model)
         {
-            if (!actionInfoBLL.EditValidation(model.ID, model.ActionInfoName))
-            {
-                    model.ModifiedOnTime = DateTime.Now;
+            if (actionInfoBLL.EditValidation(model.ID, model.ActionInfoName)) { return Content("validation fails"); }
+      
+                model.ModifiedOnTime = DateTime.Now;
                 //！！注意以下方法必须执行（根据权限名称、控制器、区域生成ActionInfo对象中的Url属性
                 model.GetUrl();
                 if (actionInfoBLL.Update(model))
@@ -218,22 +218,16 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-
-            }
-            return Content("validation fails");
-
-
         }
 
         
 
         public ActionResult DoAddActionInfo(ActionInfo model)
         {
-            if (!actionInfoBLL.AddValidation(model.ActionInfoName))
-            {
+            if (actionInfoBLL.AddValidation(model.ActionInfoName)) { return Content("validation fails"); }
 
                     //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-                    model.DelFlag = false;
+                model.DelFlag = false;
                 model.SubTime = DateTime.Now;
                 model.ModifiedOnTime = DateTime.Now;
                 model.GetUrl();//根据
@@ -249,8 +243,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-            }
-            return Content("validation fails");
         }
 
         /// <summary>
