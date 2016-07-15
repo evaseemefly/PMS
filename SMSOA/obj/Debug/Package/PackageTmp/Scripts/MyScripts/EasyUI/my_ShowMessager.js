@@ -3,10 +3,11 @@
 }
 
 //弹出确认按钮
-function messagerConfirm(title,msg) {
+function messagerConfirm(title,msg,func) {
     $.messager.confirm(title, msg, function (r) {
         if (r) {
-            return true;
+            func();
+            //return true;
         }
         else {
             return false;
