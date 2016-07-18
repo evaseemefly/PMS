@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "View";
+    int showDepToolbar = ViewBag.ShowDepartmentToolbar;
+    int showPerToolbar = ViewBag.ShowPersonToolbar;
     Layout = "~/Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml";
 }
 @section Scripts{
@@ -12,16 +14,19 @@
 
 
         var toolbar = [{
+            id:'add_department',
             iconCls: 'icon-add',
             text: "新增",
             handler: addDepartmentRow@*addRow("@ViewBag.ShowAdd")*@
             },
            {
+               id: 'del_department',
                iconCls: 'icon-remove',
                text: "删除",
                handler: removeDepartmentRow@*removeRow("@ViewBag.Del_url")*@
                },
            {
+               id: 'edit_department',
                iconCls: 'icon-edit',
                text: "编辑",
                handler: editDepartmentRow@*editRow("@ViewBag.ShowEdit")*@
@@ -161,7 +166,12 @@
             //为隐藏域赋值
             $("#did_Hidden").val(strId);
             url = url + "?did=" + strId;
-            loadPersonGrid(url, myPersonColumns, myPersonToolbar);
+            // var isloadCombo= ''=='1'?true:false;
+            var isloadCombo = false;
+            if(@showPerToolbar==1){
+                isloadCombo=true;
+            }
+            loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo);
         }
 
         $(function () {
@@ -175,17 +185,43 @@
                     ComboboxEnableAndClear();
                     ComboboxDisable();
                     loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+                    checkShowToolbar("@showDepToolbar", "@showPerToolbar", "department");
                 }
             });
+            //根据权限隐藏toolbar
+            checkShowToolbar("@showDepToolbar", "@showPerToolbar", "department");
+            @*var showdepartmentToolbar = "@showDepToolbar";
+            var showPerToolbar = "@showPerToolbar";*@
+            ////此方法可用
+            //if (showdepartmentToolbar == '0') {
+            //    $("#add_department").hide();
+            //    $("#del_department").hide();
+            //    $("#edit_department").hide();
+            //    //$('div.datagrid div.datagrid-toolbar a').hide();
+            //}
+            //if (showPerToolbar == '0') {
+            //    $("#tb").hide();
+            //    //$("#add_person").hide();
+            //    //$("#del_person").hide();
+            //    //$("#edit_person").hide();
+            //    //$("#save_person").hide();
+            //}
+
         })
 
     </script>
+    @Html.Partial("_Partial_ShowToolbar")
 }
 
+
+
+
 @section westdiv{
-    <div id="p" data-options="region:'west'" title="部门列表" style="width:21%">
-        <input type="hidden" id="did_Hidden" />
-        <table class="easyui-treegrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
+    <div id="west_contacts_div" data-options="region:'west'" title="部门列表" style="width:21%">
+        <div id="mydiv_contacts" style="height:100%;width:100%;">
+            <input type="hidden" id="did_Hidden" />
+            <table class="easyui-treegrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
+        </div>        
     </div>
 }
 @section showWindow{

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SMSOA.Areas.SMS.Models;
 using PMS.Model;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -39,23 +40,32 @@ namespace SMSOA.Areas.SMS.Controllers
         }
 
        
-
+        /// <summary>
+        /// 根据smsContent ID 查询对应的记录
+        /// 注意此处使用分页查询
+        /// </summary>
+        /// <param name="cid"></param>
+        /// <returns></returns>
         public ActionResult GetRecordByCID(int cid)
         {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
             //1 根据SMSContent的id查询该短信内容所发送的短信记录列表
             //返回的有CID，PName，PhoneNum，StatusCode状态码
             var smsContent= smsContentBLL.GetListBy(c => c.ID == cid).FirstOrDefault();
-
             //2 找到其的发送记录
-          var list_record=  smsContent.S_SMSRecord_Current.ToList().Select(r => r.ToMiddleModel()).ToList();
-
-            
+            var list_record = smsContent.S_SMSRecord_Current.ToList().Select(r => r.ToMiddleModel());
+            //2.1 获取当总行数
+            rowCount = list_record.Count();
+            //2.2 分页返回记录
+            var list_record_pagelist= list_record.Skip((pageIndex-1)*pageSize).Take(pageSize).ToList();
 
             //3 转成datagrid识别的json格式数据            
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
-                total = list_record.Count,
-                rows = list_record,
+                total = rowCount,
+                rows = list_record_pagelist,
                 footer = null
             };
             //4 序列化
@@ -130,9 +140,13 @@ namespace SMSOA.Areas.SMS.Controllers
 
         }
 
+        /// <summary>
+        /// 根据任务及时间查询发送短信内容
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public ActionResult LoadSearchData(PMS.Model.ViewModel.ViewModel_QueryInfo model)
         {
-
 
             #region 不用此种方式转换时间
             //不用以下的方法
@@ -157,7 +171,7 @@ namespace SMSOA.Areas.SMS.Controllers
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
             //1 进行过滤
-            var list_SMSContent = userBLL.GetSMSContentListByQuery_ExpNamePhone(pageIndex, pageSize, ref rowCount,model, base.LoginUser.ID, true, false);
+            var list_SMSContent = userBLL.GetSMSContentListByQuery_ExpNamePhone(pageIndex, pageSize, ref rowCount,model, base.LoginUser.ID, false, false);
 
             //1 分页查询当前登录用户的的发送短信内容集合
             //var list_SMSContent = userBLL.GetSMSContentListByUID(pageIndex, pageSize, ref rowCount, base.LoginUser.ID, true, false);
@@ -316,6 +330,18 @@ namespace SMSOA.Areas.SMS.Controllers
             //4 序列化
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
 
+        }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "SMS",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
         }
     }
 }

@@ -14,12 +14,13 @@
             var now_date = new Date();
             now_date = now_date.toLocaleDateString();
             onLinkClickBind();
-            $("#mm1").menu({
-                onClick: function (item) {
-                    SetDateVal(item, now_date);
-                    //$("#date_menu").menu('hide');
-                }
-            })
+            //$("#mm1").menu({
+            //    onClick: function (item) {
+            //        SetDateVal(item, now_date);
+            //        //hideMyMenu();
+            //        //$("#date_menu").menu('hide');
+            //    }
+            //})
 
             //$("#calendar_today").calendar({
             //    onSelect: function (date) {
@@ -131,7 +132,14 @@
             //获取短信任务种类
             var grid_mission = $("#smsMission_combogrid").combogrid("grid");
             var mission_checkeds = grid_mission.datagrid("getChecked");
-            var mission_id = mission_checkeds[0]["SMID"];
+            var mission_id
+            if (mission_checkeds[0] == null) {
+                mission_id = -1;
+            }
+            else {
+                mission_id = mission_checkeds[0]["SMID"];
+            }
+            
             //获取时间
             var dt_target = $("#date_target").val();
             var dt_start = $("#date_start").val();
@@ -226,6 +234,7 @@
                 $(this).click(function () {
                     //alert("被点击了");
                     //1.1 找到父级元素
+                    //注意此处的parent为div id=mm4 的这个div
                     var parent = $(this).parent(".menu-content");
                     //1.2 获取calenars（注意：此处若calenars为0时，说明是点击的有两个日历的按钮）
                     var calenars = parent.children(".calendar");
@@ -240,7 +249,7 @@
                             calenars.each(function (temp) {
                                 //1.4 对于日历calendar可以使用.calendar('options')['current']获取当前时间，也可以通过.calendar('options')['year']获取年（month可以获取月，但没有day）
                                 var date = $(this).calendar('options')['current'].toLocaleDateString();
-                                alert("被点击的日期为" + date);
+                                //alert("被点击的日期为" + date);
                                 //获取当前被点击的对象的name值
                                 var names = $(this).attr("name");
                                 //根据当前的name进行判断
@@ -271,6 +280,8 @@
 
                 })
             })
+
+
         }
 
 
@@ -363,15 +374,20 @@
         //由分部视图替代重用的代码部分
        @Html.Partial("_Partial_Common_pColumns")
         
-        var myColumns_person = [[
-                { field: 'ContentID', title: 'ID', width: 100, hidden: true },
-                { field: 'PersonName', title: '联系人', width: 80 },
-                { field: 'PhoneNum', title: '电话', width: 120 },
-                {
-                    field: 'StatusCode', title: '接收状态', width: 80,
-                    //formatter: DataFormatter
-                }
-        ]]
+       @Html.Partial("_Partial_Common_RecordColumns")
+        //var myColumns_person = [[
+        //        { field: 'ContentID', title: 'ID', width: 100, hidden: true },
+        //        { field: 'PersonName', title: '联系人', width: 80 },
+        //        { field: 'PhoneNum', title: '电话', width: 120 },
+        //        {
+        //            field: 'StatusCode', title: '接收状态', width: 80,
+        //            //formatter: DataFormatter
+        //        }
+        //]]
+
+        function hideMyMenu() {
+            $("#mm1").menu('hide');
+        }
 
         function loadComboGrid_Mission() {
 

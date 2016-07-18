@@ -1,0 +1,45 @@
+﻿<script type="text/javascript">
+    function checkShowToolbar(dep,per,temp) {
+        //根据权限隐藏toolbar
+        var showContactCommonToolbar = dep;
+        var showPerToolbar = per;
+        //此方法可用
+        if (showContactCommonToolbar == '0') {
+            $("#add_" + temp).linkbutton('disable');
+            $("#del_" + temp).linkbutton('disable');
+            $("#edit_" + temp).linkbutton('disable');
+            //$('div.datagrid div.datagrid-toolbar a').hide();
+        }
+        if (showPerToolbar == '0') {
+            //$("#tb").hide();
+            //获取tb下的所有a标签
+            //var buttons= $("#tb a");
+            //注意此处需要使用filter
+            var buttons = $('#tb a').filter('[class^=easyui]');
+            if (buttons.length > 0) {
+                buttons.linkbutton('disable');
+            }
+            var combogrids = $('#tb select').filter('[class^=easyui-combogrid]');
+            if (combogrids.length > 0) {
+                combogrids.combogrid('disable');
+            }
+            var combotrees = $('#tb select').filter('[class^=easyui-combotree]')
+            if (combotrees.length > 0) {
+                combotrees.combotree('disable');
+            }
+
+            //if ("#tb") {
+                
+            //}
+            //else {
+            //    $("#assign_group").hide();
+            //    $("#assign_department").hide();
+            //    $("#assign_save").hide();
+            //}
+            //$("#add_person").hide();
+            //$("#del_person").hide();
+            //$("#edit_person").hide();
+            //$("#save_person").hide();
+        }
+    }
+</script>

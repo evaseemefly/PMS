@@ -6,11 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Common.EasyUIFormat;
-
+using SMSOA.Areas.Admin.Controllers;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Contacts.Controllers
 {
-    public class GroupController : Controller
+    public class GroupController : BaseController
     {
         IP_GroupBLL groupBLL { get; set; }
 
@@ -34,6 +35,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
+            ViewBag.ShowGroupToolbar = base.CheckContactCommonToolBar() == true ? 1 : 0;
+            ViewBag.ShowPersonToolbar = base.CheckPersonToolBar() == true ? 1 : 0;
             return View();
         }
 
@@ -272,30 +275,27 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             //数据验证
-            if (!groupBLL.AddValidation(groupModel.GroupName))
+            if (groupBLL.AddValidation(groupModel.GroupName)) { return Content("validation fails"); }
+            groupModel.isDel = false;
+            groupModel.SubTime = DateTime.Now;
+            groupModel.ModifiedOnTime = DateTime.Now;
+
+            try
             {
-                groupModel.isDel = false;
-                groupModel.SubTime = DateTime.Now;
-                groupModel.ModifiedOnTime = DateTime.Now;
-
-                try
-                {
-                    groupBLL.Create(groupModel);
-                    return Content("ok");
-                }
-                catch
-                {
-                    return Content("error");
-                }
-
+                groupBLL.Create(groupModel);
+                return Content("ok");
             }
-            return Content("validation fails");
+            catch
+            {
+                return Content("error");
+            }
         }
 
 
 
         public ActionResult DoEditGroupInfo(P_Group groupModel)
         {
+            if(groupBLL.EditValidation(groupModel.GID, groupModel.GroupName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             groupModel.isDel = false;            
             groupModel.ModifiedOnTime = DateTime.Now;
@@ -307,8 +307,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
             catch
             {
-                return Content("error");
-            }
+                    return Content("error");
+             }
         }
 
         public ActionResult DoDelPersonInfobyGID()
@@ -349,6 +349,19 @@ namespace SMSOA.Areas.Contacts.Controllers
             string state = groupBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
             return Content(state);
         }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Contacts",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
+        }
+
         ///<summary>
         ///得到选中任务所包含的群组
         ///</summary>
@@ -365,7 +378,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         //        //3.将已有的群组从所有群组中剔除，已拥有的群组排在前面
         //        foreach (var item in list_groupbySmid)
         //        {
-                
+
         //            item.Checked = true;
         //            list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
         //            list_ShowGroup.Add(item);

@@ -9,6 +9,7 @@ using PMS.Model;
 using Common;
 using SMSOA.Filters;
 using SMSOA.Areas.Admin.Models;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -36,8 +37,7 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoAddUserInfo(UserInfo model)
         {
-            if (!userInfoBLL.AddValidation(model.UName))
-            {
+            if (userInfoBLL.AddValidation(model.UName)) { return Content("validation fails"); }
                 model.DelFlag = false;
                 model.SubTime = DateTime.Now;
                 model.ModifiedOnTime = DateTime.Now;
@@ -53,10 +53,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-
-            }
-            return Content("validation fails");
-
         }
         ///<summary>
         /// 显示添加用户
@@ -100,7 +96,8 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoEditUserInfo(UserInfo model)
         {
-            if (!userInfoBLL.EditValidation(model.ID, model.UName)){
+            //数据验证
+            if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
 
                 model.ModifiedOnTime = DateTime.Now;
 
@@ -112,9 +109,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-            }
-            return Content("validation fails");
-
         }
         ///<summary>
         ///显示编辑用户视图
@@ -447,5 +441,16 @@ namespace SMSOA.Areas.Admin.Controllers
                 return Content("ok");
         }
 
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Admin",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
+        }
     }
 }

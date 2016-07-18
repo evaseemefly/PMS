@@ -26,6 +26,7 @@
           <Property Name="IconWidth" Type="int" Nullable="false" />
           <Property Name="IconHeight" Type="int" Nullable="false" />
           <Property Name="isShow" Type="bit" Nullable="false" />
+          <Property Name="MethodTypeEnum" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -776,6 +777,7 @@
           <Property Name="AreaName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="ParentID" Type="Int32" Nullable="false" />
           <Property Name="isShow" Type="Boolean" Nullable="false" />
+          <Property Name="MethodTypeEnum" Type="Int16" Nullable="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_ActionInfo">
           <Key>
@@ -1444,6 +1446,7 @@
           <EntitySetMapping Name="ActionInfo">
             <EntityTypeMapping TypeName="PMS2016Model.ActionInfo">
               <MappingFragment StoreEntitySet="ActionInfo">
+                <ScalarProperty Name="MethodTypeEnum" ColumnName="MethodTypeEnum" />
                 <ScalarProperty Name="isShow" ColumnName="isShow" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="AreaName" ColumnName="AreaName" />

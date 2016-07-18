@@ -23,6 +23,7 @@
     <Property Name="AreaName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
     <Property Name="ParentID" Type="Int32" Nullable="false" />
     <Property Name="isShow" Type="Boolean" Nullable="false" />
+    <Property Name="MethodTypeEnum" Type="Int16" Nullable="false" />
   </EntityType>
   <EntityType Name="R_UserInfo_ActionInfo">
     <Key>

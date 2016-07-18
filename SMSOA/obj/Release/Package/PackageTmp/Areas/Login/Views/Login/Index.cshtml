@@ -65,17 +65,21 @@
         }
 
         #loginlogo {
-            width: 700px;
-            height: 100px;
-            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            overflow: auto;
             background: url('/Content/Images/login/logo.png') no-repeat;
+            background-size:200px 200px;
             margin-top: 50px;
+            z-index:999;
         }
 
         #loginpanel {
             width: 729px;
-            position: relative;
+            position: fixed;
             height: 300px;
+            margin-top:-80px;
+            z-index:1;
         }
 
         .panel-h {
@@ -216,7 +220,7 @@
                                         验证码：
                                     </td>
                                     <td align="left">
-                                        <input type="text" class="login-text" id="code" name="vCode" value="1" />
+                                        <input type="text" class="login-text" id="code" name="vCode" value="" />
                                     </td>
                                 </tr>
                                 <tr>

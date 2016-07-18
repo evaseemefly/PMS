@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PMS.IBLL;
 using PMS.Model;
 using Common.EasyUIFormat;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -197,6 +198,18 @@ namespace SMSOA.Areas.SMS.Controllers
             int tid = int.Parse(Request["tid"]);
             var temp = GetMissionByUser(userId, tid, true);
             return Content(temp);
+        }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "SMS",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
         }
     }
 }

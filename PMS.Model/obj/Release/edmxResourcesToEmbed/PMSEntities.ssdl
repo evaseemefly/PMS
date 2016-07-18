@@ -20,6 +20,7 @@
     <Property Name="MenuIcon" Type="varchar" MaxLength="512" />
     <Property Name="IconWidth" Type="int" Nullable="false" />
     <Property Name="IconHeight" Type="int" Nullable="false" />
+    <Property Name="isShow" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="P_DepartmentInfo">
     <Key>
@@ -43,13 +44,14 @@
     <Property Name="isDel" Type="bit" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="50" />
     <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="forbidDel" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="P_PersonInfo">
     <Key>
       <PropertyRef Name="PID" />
     </Key>
     <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="PName" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="PhoneNum" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="50" />
     <Property Name="isVIP" Type="bit" Nullable="false" />
@@ -167,13 +169,16 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UID" Type="int" Nullable="false" />
     <Property Name="SMSContent" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="msgId" Type="int" Nullable="false" />
-    <Property Name="SendDateTime" Type="date" Nullable="false" />
+    <Property Name="msgId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SendDateTime" Type="datetime" Nullable="false" />
     <Property Name="isDel" Type="bit" Nullable="false" />
     <Property Name="SMID" Type="int" Nullable="false" />
+    <Property Name="BlackList" Type="nvarchar(max)" />
+    <Property Name="ResultCode" Type="int" Nullable="false" />
+    <Property Name="smsCount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="S_SMSMission">
     <Key>
@@ -206,10 +211,11 @@
     <Key>
       <PropertyRef Name="SRID" />
     </Key>
-    <Property Name="SRID" Type="int" Nullable="false" />
+    <Property Name="SRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SCID" Type="int" Nullable="false" />
     <Property Name="PID" Type="int" Nullable="false" />
-    <Property Name="ResultCode" Type="int" Nullable="false" />
+    <Property Name="StatusCode" Type="int" Nullable="false" />
+    <Property Name="DescContent" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="S_SMSRecord_History">
     <Key>
@@ -218,7 +224,8 @@
     <Property Name="SRID" Type="int" Nullable="false" />
     <Property Name="SCID" Type="int" Nullable="false" />
     <Property Name="PID" Type="int" Nullable="false" />
-    <Property Name="ResultCode" Type="int" Nullable="false" />
+    <Property Name="StatusCode" Type="int" Nullable="false" />
+    <Property Name="DescContent" Type="nvarchar" MaxLength="5" />
   </EntityType>
   <EntityType Name="UserInfo">
     <Key>

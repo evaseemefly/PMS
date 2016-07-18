@@ -21,6 +21,7 @@
     <Property Name="IconWidth" Type="int" Nullable="false" />
     <Property Name="IconHeight" Type="int" Nullable="false" />
     <Property Name="isShow" Type="bit" Nullable="false" />
+    <Property Name="MethodTypeEnum" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="P_DepartmentInfo">
     <Key>

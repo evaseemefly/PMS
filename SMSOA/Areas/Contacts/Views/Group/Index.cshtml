@@ -1,8 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "View";
+    int showGroupToolbar = ViewBag.ShowGroupToolbar;
+    int showPerToolbar = ViewBag.ShowPersonToolbar;
     Layout = "~/Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml";
-}
+    }
 @section Scripts{
     <script type="text/javascript">
         var myColumns = [[
@@ -11,18 +13,21 @@
         ]]
 
         var toolbar = [{
+            id: 'add_group',
             iconCls: 'icon-add',
             text: "新增",
             //width:"15px",
             handler: addGroupRow@*addRow("@ViewBag.ShowAdd")*@
             },
            {
+               id: 'del_group',
                iconCls: 'icon-remove',
                text: "删除",
                //width: "15px",
                handler: removeGroupRow@*removeRow("@ViewBag.Del_url")*@
                },
            {
+               id: 'edit_group',
                iconCls: 'icon-edit',
                text: "编辑",
                //width: "15px",
@@ -167,7 +172,11 @@
             //为隐藏域赋值
             $("#gid_Hidden").val(strId);
             url = url + "?gid=" + strId;
-            loadPersonGrid(url, myPersonColumns, myPersonToolbar);
+           var isloadCombo = false;
+            if(@showPerToolbar==1){
+                isloadCombo=true;
+            }
+            loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo);
         }
 
         $(function () {
@@ -182,8 +191,10 @@
                     ComboboxDisable();
                     //2
                     loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+                    checkShowToolbar("@showGroupToolbar", "@showPerToolbar", "group");
                 }
             });
+            checkShowToolbar("@showGroupToolbar", "@showPerToolbar", "group");
         })
 
         function loadDataGrid(url, myColumns) {
@@ -205,6 +216,7 @@
             });
         }
     </script>
+@Html.Partial("_Partial_ShowToolbar")
     }
 
 @section westdiv{

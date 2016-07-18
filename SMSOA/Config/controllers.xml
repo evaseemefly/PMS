@@ -3,9 +3,11 @@
   <object type="SMSOA.Controllers.HomeController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />    
   </object>
+
   <object type="SMSOA.Areas.Login.Controllers.LoginController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
-  </object>
+  </object> 
+  
   <object type="SMSOA.Areas.Admin.Controllers.HomeController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
   </object>

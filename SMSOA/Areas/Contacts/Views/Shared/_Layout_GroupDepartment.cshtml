@@ -25,21 +25,25 @@
 @section center_Columns{
     <script type="text/javascript">    
         var PersonToolbar = [{
+            //id:'add_person',
             iconCls: 'icon-add_person',
             text: "添加联系人",
             handler: addPersonRow@*addRow("@ViewBag.ShowAdd")*@
             },
             {
+                //id: 'del_person',
             iconCls: 'icon-del_person',
             text: "删除联系人",
             handler: removePersonRow@*removeRow("@ViewBag.Del_url")*@
             }, '-',
             {
+               // id: 'edit_person',
             iconCls: 'icon-edit_person',
             text: "编辑联系人",
             handler: editPersonRow@*removeRow("@ViewBag.Del_url")*@
             }, '-',
             {
+               // id: 'save_person',
             iconCls: 'icon-save',
             text: "保存",
             handler: SavePerson@*removeRow("@ViewBag.Del_url")*@
@@ -362,7 +366,7 @@
 
 
 
-        function loadPersonGrid(url, myPersonColumns, myPersonToolbar) {
+        function loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo) {
             //2 根据GroupID查询该群组所拥有的人员列表
             $("#persondatagrid").datagrid({
                 fitColumns: true,
@@ -377,6 +381,7 @@
                 pageSize: 20,   //设置 页容量为 5
                 pageList: [20, 40, 60],//设置 页容量下拉框
                 columns: myPersonColumns,
+                //toolbar: '#tb',
                 toolbar: '#tb',
                 //toolbar: myPersonToolbar,
                 onClickRow: function (rowIndex, rowData) {
@@ -384,15 +389,17 @@
                     var row = $("#persondatagrid").datagrid('getSelected');
                     //2 取出选中的第一行,并找出对应的PID
                     var pid = row["PID"];
-                    //3.1 根据pid加载该人员所属的部门以及所属的群组（多个）
-                    loadCombobox_Group(pid);
-                    //3.2 根据pid将部门下拉框选中为该联系人所属部门的pid
-                    //3.2.1 加载部门的下拉框
-                    loadComboTree_Department();
-                    //3.2.2 设置下拉框为指定pid联系人所对应的部门
-                    $.post('@ViewBag.GetDepartmentIdByPid?pid=' + pid, function (did) {
-                        SetDepartmentCombotreeValue(did);
-                    });
+                    if (isloadCombo) {
+                        //3.1 根据pid加载该人员所属的部门以及所属的群组（多个）
+                        loadCombobox_Group(pid);
+                        //3.2 根据pid将部门下拉框选中为该联系人所属部门的pid
+                        //3.2.1 加载部门的下拉框
+                        loadComboTree_Department();
+                        //3.2.2 设置下拉框为指定pid联系人所对应的部门
+                        $.post('@ViewBag.GetDepartmentIdByPid?pid=' + pid, function (did) {
+                            SetDepartmentCombotreeValue(did);
+                        });
+                    }                   
 
                 }
 
@@ -492,11 +499,10 @@
 
 @section person_tb{
     <div id="tb" style="padding:2px 5px;">
-
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add_person',text: '添加联系人',plain:true" onclick="addPersonRow()"></a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit_person',text: '编辑联系人',plain:true" onclick="editPersonRow()"></a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br />
+    <a href="#" class="easyui-linkbutton" id="add_person" data-options="iconCls:'icon-add_person',text: '添加联系人',plain:true" onclick="addPersonRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_person" data-options="iconCls:'icon-del_person',text: '删除联系人',plain:true" onclick="removePersonRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_person" data-options="iconCls:'icon-edit_person',text: '编辑联系人',plain:true" onclick="editPersonRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="save_person" data-options="iconCls:'icon-save',text: '保存',plain:true" onclick="SavePerson()"></a><br />
     移至分组:
     <select class="easyui-combogrid" name="PDID" id="group" style="width:130px" data-options="editable: false@*required:true*@"></select>
     选择所属部门

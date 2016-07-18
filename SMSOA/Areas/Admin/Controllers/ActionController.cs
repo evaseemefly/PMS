@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
 using SMSOA.Filters;
+using PMS.Model.ViewModel;
+using PMS.Model.EasyUIModel;
+using PMS.Model.Dictionary;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -41,20 +44,7 @@ namespace SMSOA.Areas.Admin.Controllers
             // new SelectListItem(){ Text="easyui连接",Value="1"},
             // new SelectListItem(){ Text="打开新窗体",Value="2"}
             //};
-        }
-
-        public ActionResult Test()
-        {
-            //若有传入的id
-            int id = int.Parse(Request["id"]);
-                //找到指定id的action对象
-                var model = actionInfoBLL.GetListBy(a => a.ID == id);
-                //为分布式图中的下拉框添加要请求的地址
-                ViewBag.Url = "/Admin/Action/GetOption";
-                //return PartialView("EditActionWindow");
-                return View();
-        
-        }
+        }        
 
         //[Common.Attributes.ViewAttribute]
         //[LoginValidate]
@@ -205,9 +195,9 @@ namespace SMSOA.Areas.Admin.Controllers
         
         public ActionResult DoEditActionInfo(ActionInfo model)
         {
-            if (!actionInfoBLL.EditValidation(model.ID, model.ActionInfoName))
-            {
-                    model.ModifiedOnTime = DateTime.Now;
+            if (actionInfoBLL.EditValidation(model.ID, model.ActionInfoName)) { return Content("validation fails"); }
+      
+                model.ModifiedOnTime = DateTime.Now;
                 //！！注意以下方法必须执行（根据权限名称、控制器、区域生成ActionInfo对象中的Url属性
                 model.GetUrl();
                 if (actionInfoBLL.Update(model))
@@ -218,22 +208,16 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-
-            }
-            return Content("validation fails");
-
-
         }
 
         
 
         public ActionResult DoAddActionInfo(ActionInfo model)
         {
-            if (!actionInfoBLL.AddValidation(model.ActionInfoName))
-            {
+            if (actionInfoBLL.AddValidation(model.ActionInfoName)) { return Content("validation fails"); }
 
                     //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-                    model.DelFlag = false;
+                model.DelFlag = false;
                 model.SubTime = DateTime.Now;
                 model.ModifiedOnTime = DateTime.Now;
                 model.GetUrl();//根据
@@ -249,8 +233,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-            }
-            return Content("validation fails");
         }
 
         /// <summary>
@@ -270,6 +252,7 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.GetAction_comboTree = "/Admin/Action/GetActionInfo4ComboTree";
             ViewBag.SubTime = DateTime.Now;
             ViewBag.ModityTime = DateTime.Now;
+            ViewBag.GetMethodType_combo = "/Admin/Action/GetMethodType4Combo";
             //将与修改共用的试图页面返回
             return View("ShowEditInfo");
         }
@@ -300,11 +283,12 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.ActionType= model.ActionTypeEnum;
             ViewBag.Sort = model.Sort;
             ViewBag.isShow = model.isShow;
+            ViewBag.MethodType = model.MethodTypeEnum;
             //5 提供显示页面提交时跳转到的权限名称
             //修改即跳转至修改方法
             ViewBag.backAction = "DoEditActionInfo";
             ViewBag.GetAction_comboTree = "/Admin/Action/GetActionInfo4ComboTree";
-           
+            ViewBag.GetMethodType_combo = "/Admin/Action/GetMethodType4Combo";
             //ViewData["actionInfo"] = model;
             //return PartialView("EditActionWindow");
             return View("ShowEditInfo");
@@ -347,6 +331,27 @@ namespace SMSOA.Areas.Admin.Controllers
            var list_comboTree= PMS.Model.EasyUIModel.Action_ViewModel.ToEasyUIComboTree(list_action);
             //3 序列化
             return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
+        }
+
+        public ActionResult GetMethodType4Combo()
+        {
+            //根据字典查询
+            var dict_methodType = MethodTypeDictonary.GetMethodTypeCode();
+            List<EasyUICombobox> list_combox = new List<EasyUICombobox>();
+            
+            list_combox = (from d in dict_methodType
+                           select new EasyUICombobox()
+                           {
+                               id = d.Key,
+                               text = d.Value
+                           }).ToList();
+            return Content(Common.SerializerHelper.SerializerToString(list_combox));
+            //from d in dict_methodType
+            //select list_combox.Add(new EasyUICombobox()
+            //{
+            //    id = d.Key,
+            //    text = d.Value
+            //}); 
         }
 
         public void SetDefualtOptions()
@@ -422,7 +427,16 @@ namespace SMSOA.Areas.Admin.Controllers
             return Content(state);
         }
 
-
-
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Admin",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
+        }
     }
 }

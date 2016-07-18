@@ -46,12 +46,17 @@
     <property name="personBLL" ref="personInfoService" />
     <property name="smsSendBLL" ref="smsSendService" />
     <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />
+    <property name="smsQuery" ref="smsQueryService" />
+    <property name="smsRecord_CurrentBLL" ref="smsRecord_CurrentService" />
+    
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
-    <property name="smsMsgContentBLL" ref="smsMsgContentService" />
+    <property name="smsMsgContentBLL" ref="smsMsgTemplateService" />
     <property name="smsMissionBLL" ref="smsmissionService" />
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.StatisticsController, SMSOA" singleton="false" >
     <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />    
   </object>
 </objects>

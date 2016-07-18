@@ -28,6 +28,16 @@ namespace PMS.IBLL
         List<P_Group> GetRestGroupListByIds(List<int> list_ids_group, int uid, bool isMiddel);
 
         /// <summary>
+        /// 7月17日 
+        /// 封装成此方法
+        /// 根据用户id 查询该用户所拥有的全部权限（去掉禁用的权限）
+        /// </summary>
+        /// <param name="uid">用户id</param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        List<ActionInfo> GetActionListByUID(int uid, bool AllowNotShow, bool isMiddle);
+
+        /// <summary>
         /// 根据用户Id查询该用户所拥有的群组集合
         /// </summary>
         /// <param name="uid">用户Id</param>

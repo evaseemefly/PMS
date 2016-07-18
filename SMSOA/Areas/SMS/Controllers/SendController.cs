@@ -11,6 +11,7 @@ using PMS.Model.EqualCompare;
 using ISMS;
 using SMSOA.Areas.SMS.Models;
 using Common.Redis;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -325,8 +326,19 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <returns></returns>
         public ActionResult DoSend(ViewModel_Message model)
         {
+            //1 有效性判断
+            //1.1 联系人名单为空，不执行发送操作，返回
+            if (model.PersonIds == null) { return Content("empty contact list"); }
+            //1.2 短信内容为空，不执行发送操作，返回
+            if (model.Content == null) { return Content("empty content"); }
+            //1.3 超出300字，不执行发送操作，返回
+            if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
+
+
+
             //1 获取联系人id 数组
-           var ids= model.PersonId_Int;
+
+            var ids= model.PersonId_Int;
             //1.1 根据联系人id数组获取指定的联系人
             var list_person= personBLL.GetListByIds(ids.ToList());
             //1.2 获取
@@ -335,8 +347,7 @@ namespace SMSOA.Areas.SMS.Controllers
             
             //2 获取短信内容
             var content = model.Content;
-            //超出300字，不执行发送操作，返回
-            if(content.Length + 9 >= 300) { return Content("out of range"); }
+
 
             //2.1 设置发送对象相关参数
             string account= "dh74381"; //账号"dh74381";
@@ -477,6 +488,18 @@ namespace SMSOA.Areas.SMS.Controllers
             };
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(model));
+        }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "SMS",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
         }
     }
 }

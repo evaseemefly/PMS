@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
 using SMSOA.Filters;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
@@ -158,9 +159,8 @@ namespace SMSOA.Areas.Admin.Controllers
 
         public ActionResult DoEditRoleInfo(RoleInfo model)
         {
-            if (!roleInfoBLL.EditValidation(model.ID, model.RoleName))
-            {
-                    model.ModifiedOnTime = DateTime.Now;
+            if (roleInfoBLL.EditValidation(model.ID, model.RoleName)) { return Content("validation fails"); }
+                 model.ModifiedOnTime = DateTime.Now;
             
                 if (roleInfoBLL.Update(model))
                 {
@@ -170,9 +170,6 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
-
-            }
-            return Content("validation fails");
         }
 
 
@@ -181,9 +178,8 @@ namespace SMSOA.Areas.Admin.Controllers
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             //数据验证
-            if (!roleInfoBLL.AddValidation(model.RoleName))
-            {
-                    model.DelFlag = false;
+            if (roleInfoBLL.AddValidation(model.RoleName)) { return Content("validation fails"); }
+                model.DelFlag = false;
                 model.SubTime = DateTime.Now;
                 model.ModifiedOnTime = DateTime.Now;
            
@@ -197,8 +193,6 @@ namespace SMSOA.Areas.Admin.Controllers
                     return Content("error");
                 }
 
-            }
-            return Content("validation fails");
         }
 
         /// <summary>
@@ -356,6 +350,18 @@ namespace SMSOA.Areas.Admin.Controllers
             string state =
             roleInfoBLL.DeleteLogicRoleInfos(list) == true ? state = "ok" : state = "error";
             return Content(state);
+        }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Admin",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
         }
     }
 }

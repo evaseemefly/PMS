@@ -5,10 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
+using SMSOA.Areas.Admin.Controllers;
+using PMS.Model.ViewModel;
+
 
 namespace SMSOA.Areas.Contacts.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : BaseController
     {
         IP_DepartmentInfoBLL departmentBLL { get; set; }
         IP_PersonInfoBLL personBLL { get; set; }
@@ -60,6 +63,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             get
             { return "/Contacts/Department/GetDepartmentInfo"; }
         }
+
+       
 
         private string getInfobyComboTree_rul
         {
@@ -115,6 +120,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
+            ViewBag.ShowDepartmentToolbar = base.CheckContactCommonToolBar()==true?1:0;
+            ViewBag.ShowPersonToolbar = base.CheckPersonToolBar() == true ? 1:0;
             return View();
         }
 
@@ -351,5 +358,16 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         }
 
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Contacts",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
+        }
     }
 }

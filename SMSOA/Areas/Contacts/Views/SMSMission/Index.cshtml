@@ -1,21 +1,25 @@
 ﻿
 @{
     ViewBag.Title = "View";
+   
     Layout = "~/Areas/Contacts/Views/Shared/_Layout_SMSMission.cshtml";
 }
 @section toobar_scripts{
     <script type="text/javascript">
         var toolbar = [{
+            id: 'add_mission',
             iconCls: 'icon-add',
             text: "新增",
             handler: addSMSMissionRow@*addRow("@ViewBag.ShowAdd")*@
         },
            {
+               id: 'del_mission',
                iconCls: 'icon-remove',
                text: "删除",
                handler: removeSMSMissionRow@*removeRow("@ViewBag.Del_url")*@
            },
            {
+               id: 'edit_mission',
                iconCls: 'icon-edit',
                text: "编辑",
                handler: editSMSMissionRow@*editRow("@ViewBag.ShowEdit")*@
@@ -53,9 +57,6 @@
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
 
-        }
-        function Cancel() {
-            $("#editSMSMissionWindow").window('close');
         }
 
         function removeSMSMissionRow() {
@@ -112,7 +113,6 @@
                 loadMsg: '加载中……',
                 columns: myColumns,
                 toolbar: toolbar
-
             });
         }
     </script>

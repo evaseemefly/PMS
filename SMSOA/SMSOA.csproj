@@ -281,10 +281,7 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Index-分部视图.cshtml" />
-    <Content Include="Areas\Admin\Views\Action\Test.cshtml" />
     <Content Include="Areas\Admin\Views\Action\EditActionInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\Action\ShowEditInfo-6月6日备份.cshtml" />
-    <Content Include="Areas\Admin\Views\Action\AddActionInfo - 复制.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_MyPartialIndex-之前.cshtml" />
     <Content Include="Areas\Admin\Views\Action\Index.cshtml" />
@@ -358,6 +355,10 @@
     <Content Include="Areas\SMS\Views\Statistics\_Partial_AdvSearch_Record.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Common_pColumns.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_AdvSearch.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top.cshtml" />
+    <Content Include="Areas\SMS\Views\Statistics\_Partial_Common_RecordColumns.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Partial_ShowToolbar.cshtml" />
+    <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate-7月8日备份.cshtml" />

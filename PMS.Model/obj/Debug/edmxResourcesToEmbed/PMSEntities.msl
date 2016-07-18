@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ActionInfo">
       <EntityTypeMapping TypeName="PMS2016Model.ActionInfo">
         <MappingFragment StoreEntitySet="ActionInfo">
+          <ScalarProperty Name="MethodTypeEnum" ColumnName="MethodTypeEnum" />
           <ScalarProperty Name="isShow" ColumnName="isShow" />
           <ScalarProperty Name="ParentID" ColumnName="ParentID" />
           <ScalarProperty Name="AreaName" ColumnName="AreaName" />

@@ -32,7 +32,11 @@ namespace PMS.Model
                 Remark = this.Remark,
                 Sort = this.Sort,
                 Url = this.Url,
-                SubTime = this.SubTime
+                SubTime = this.SubTime,
+                byRole = this.byRole,
+                isShow = this.isShow,
+                MethodTypeEnum = this.MethodTypeEnum
+                 
             };
         }
     }

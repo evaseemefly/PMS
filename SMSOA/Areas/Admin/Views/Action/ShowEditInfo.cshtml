@@ -11,7 +11,7 @@
 <link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
     <script type="text/javascript">
         function Save() {
-            DoSubmit("ff", '@ViewBag.backAction',"权限名称");
+            DoSubmit("ff", '@ViewBag.backAction', "权限名称");
         }
         function CancelSend() {
             window.parent.CancelSend();
@@ -21,6 +21,10 @@
             //1 找到部门下拉框
             $("#DepartmentName_combotree").combotree('setValue', data);
         }
+
+        //function loadCombo_MethodType() {
+            
+        //}
 
         //加载isShow为true的权限树状列表
         function loadComboTree_Action(id, url) {
@@ -43,9 +47,23 @@
             });
         }
 
+        function loadCombo_MethodType(id, url) {
+            var div_id = "#" + id;
+            $(div_id).combobox({
+                valueField: 'id',
+                textField: 'text',
+                url: url,
+            })
+        }
+
+
+
         $(function () {
             loadComboTree_Action("combo_parent", '@ViewBag.GetAction_comboTree');
+            var url = '@ViewBag.GetMethodType_combo';
 
+            loadCombo_MethodType("combo_MethodTypeEnum", url);
+            $("#combo_MethodTypeEnum").combobox('setValue', '@ViewBag.MethodType');
             //1 为上级菜单赋值
             $("#combo_parent").combotree('setValue', '@ViewBag.ParentID');
 
@@ -55,9 +73,9 @@
             //3 为switch按钮绑定事件以及赋值
             var temp = '@ViewBag.isShow';
             SetValCheckBySwitchBtn("isShow", temp);
-            
+
             SwitchButtonBindSetValue("isShow");
-           
+
         })
 
 
@@ -120,7 +138,14 @@
                 <td style="">是否可见: <input id="isShow" name="isShow" class="easyui-switchbutton" ></td>
             </tr>           
             <tr>
-                <td>优先级:</td>
+                <td colspan="2">优先级:</td>
+                <td style="">请求类型:</td>
+                <td class="comment">
+                    <select id="combo_MethodTypeEnum" class="easyui-combobox" name="MethodTypeEnum" style="width:80%;height:25px; " data-options="panelHeight: 'auto',editable: false" required="required">                        
+                    </select><br />
+                    选择该权限所属的上级菜单
+                </td>
+                @*<td style="">是否可见: <input id="isShow" name="isShow" class="easyui-switchbutton"></td>*@
             </tr>
             <tr>
                 <td class="comment" colspan="2">
@@ -130,9 +155,14 @@
                                "><br />
                     数字越小优先级越高
                 </td>
-                <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()" >提交</a></td>
-                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >取消</a></td>
+                <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()">提交</a></td>
+                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a></td>
             </tr>
+            @*<tr>
+                <td colspan="2"></td>
+                <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()">提交</a></td>
+                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a></td>
+            </tr>*@
         </table>
     </form>
 </div>

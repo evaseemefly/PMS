@@ -73,6 +73,10 @@ namespace PMS.IBLL
 
         bool RemoveAllDepartment(int smid);
 
+        bool AddValidation(String name);
+
+        bool EditValidation(int id, String name);
+
     }
 
 }

@@ -105,6 +105,88 @@ namespace PMS.BLL
            
         }
 
+
+        /// <summary>
+        /// 7月17日 
+        /// 封装成此方法
+        /// 根据用户id 查询该用户所拥有的全部权限（去掉禁用的权限）
+        /// </summary>
+        /// <param name="uid">用户id</param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public List<ActionInfo> GetActionListByUID(int uid,bool AllowNotShow,bool isMiddle)
+        {
+            //1 从数据库中读取指定的用户对象
+            var userInfo = this.GetListBy(u => u.ID == uid).FirstOrDefault();
+            if (userInfo != null)
+            {
+                //2 通过路线二查询 UserInfo所对应的角色，并查询该角色中包含的Action
+                var list_action = (
+                    from r in userInfo.RoleInfo //linq
+                    from a in r.ActionInfo
+                    select a).ToList();
+
+                //from r in userInfo.RoleInfo
+                //select r.ActionInfo
+
+                //3 获取该用户对象对应的R_UserInfo_ActionInfo导航属性集合
+                //list_R_User_Action存储的是userInfoId为1的R_User_Action对象的集合
+                var list_R_User_Action = userInfo.R_UserInfo_ActionInfo;
+                //4 取出userInfo id为2的用户所对应的Action集合（路线一的方式）
+                //var temp = (
+                //    from r in list_R_User_Action
+                //    select r.ActionInfo
+                //    ).ToList();
+                //4.1 取出isPass为true的所有集合
+                var list_action_isPass = (
+                   from r in list_R_User_Action
+                   where r.isPass == true
+                   select r.ActionInfo
+                    ).ToList();
+
+                //4.2 将路线一与路线二取出的ActionInfo集合合并
+                list_action.AddRange(list_action_isPass);
+                //4.3 此时的集合中可能存在重复，去重
+                list_action = list_action.Distinct(new PMS.Model.EqualCompare.ActionEqualCompare()).ToList();
+                // IEqualityComparer<ActionInfo>
+                //list_action.Distinct()
+
+                //4.4 取出isPass为false的集合
+                var list_action_isNotPass = (
+                  from r in list_R_User_Action
+                  where r.isPass == false
+                  select r.ActionInfo
+                   ).ToList();
+
+                //4.5 将现有集合中去掉isPass为false的ActionInfo
+                if(AllowNotShow)
+                {
+                    list_action = (from a in list_action
+                                   where !list_action_isNotPass.Contains(a)
+                                   
+                                   select a).ToList();
+                }
+                else
+                {
+                    list_action = (from a in list_action
+                                   where !list_action_isNotPass.Contains(a)
+                                   where a.isShow == true
+                                   select a).ToList();
+                }
+
+                //list_action = list_action.Where(a => !list_action_isNotPass.Contains(a)).ToList();
+                if (isMiddle)
+                {
+                    return list_action.Select(a=>a.ToMiddleModel()).ToList();
+                }
+                else
+                {
+                    return list_action;
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// 根据用户Id查询该用户所拥有的群组集合（根据用户id获取常用群组）
         /// </summary>
@@ -149,9 +231,10 @@ namespace PMS.BLL
             //2 查询当前用户所拥有的全部短信
             //rowCount = userModel.S_SMSContent.Count;
             var query = userModel.S_SMSContent.ToList();
+            rowCount = query.Count();
             //不根据联系人名称以及联系人电话查询
             //根据任务匹配
-            if (model.Mission_id!=0)
+            if (model.Mission_id!=-1)
             {
                 query= query.Where(u => u.SMID == model.Mission_id).ToList();
                 
@@ -202,7 +285,9 @@ namespace PMS.BLL
             //获取目标日期
             //if(model.dt)
             //query = query.Where(u => u.SendDateTime.Year == model.Dt_target.Year && u.SendDateTime.Month == model.Dt_target.Month && u.SendDateTime.Year == model.Dt_target.Day).ToList();
-            //4 进行分页查询
+            //4 降序排列
+            //query = query.OrderBy(s => s.SendDateTime).ToList();
+            //5 进行分页查询
             return ToListByPage(query, pageIndex, pageSize, ref rowCount, isAsc, isMiddle);
            
         }

@@ -1,15 +1,15 @@
 ﻿
 @{
     Layout = null;
-    string userMsg = null;
-    if(ViewBag.UserInfo!="")
-    {
-        userMsg = "欢迎:" + ViewBag.UserInfo + "登录";
-    }
-    else
-    {
-        userMsg = "未登录";
-    }
+    //string userMsg = null;
+    //if(ViewBag.UserInfo!="")
+    //{
+    //    userMsg = "欢迎:" + ViewBag.UserInfo + "登录";
+    //}
+    //else
+    //{
+    //    userMsg = "未登录";
+    //}
 }
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <style type="text/css">
@@ -50,7 +51,8 @@
         #top_title span{
             font-size:30px;
             border:5px;
-            font-family:'Microsoft YaHei UI';
+            /*font-family:'Microsoft YaHei UI';*/
+            font-family:STZhongsong;
             color:#ffffff;
         }
     </style>
@@ -151,7 +153,8 @@
                     closable: true,
                     //style:{overflow: hidden},
                     fit: true,
-                    content: createNewIframe(treeNode.attributes.url),
+                    //href:treeNode.attributes.url,
+                   content: createNewIframe(treeNode.attributes.url),
                     //style: { overflow: "hidden" }//?
                 });
             }
@@ -167,6 +170,11 @@
             var iframeStr = "<iframe frameborder='0' src='" + url + "' style='width:100%;height:99.5%;frameborder:0px solid #000;'></iframe>";
             return iframeStr;
         }
+        function createNewAjaxDiv(url) {
+            var divStr = "<div style='width:100%;height:99.5%;'></div>";
+
+            return iframeStr;
+        }
     </script>
 </head>
 <body class="easyui-layout">
@@ -176,9 +184,10 @@
             <span>国家海洋环境预报中心短信发送平台</span>
         </div>
         <div id="top_reminder">
-            <span class="txt">@userMsg </span><br/>
+            @Html.Partial("_Partial_Home_Top")
+            @*<span class="txt">@userMsg </span><br/>
             <span class="txt">日期：@DateTime.Now.ToString("yyyy-MM-dd")</span><br/>
-            <a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a>
+            <a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a>*@
         </div>        
     </div>
     <div data-options="region:'west',split:true,title:'操作列表'" style="width:130px; padding:0px;">
@@ -193,7 +202,7 @@
         <span class="txt" style="position:relative;width:100%;height:100%;">
         预报中心网络部开发 Copyright ? nmefc</span> 
     </div>
-    <div data-options="region:'center',title:'Center'" style="overflow-x:hidden;overflow-y:hidden">
+    <div data-options="region:'center',title:'我的桌面'" style="overflow-x:hidden;overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;">
 
         </div>

@@ -1,16 +1,17 @@
 ﻿
-@{
-    Layout = null;
+@{    
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
-@Html.Partial("_MyPartial_Index")
 
+@section Scripts{
+    <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
 <script type="text/javascript">
 
     var toolbar= [ {
         iconCls: 'icon-add',
         text: "新增",
         handler: addRow@*addRow("@ViewBag.ShowAdd")*@
-        }, '-', 
+        }, '-',
         {
             iconCls: 'icon-remove',
             text: "删除",
@@ -28,13 +29,22 @@
                 }]
 
     var myColumns=[[
-                { field: 'ID', title: 'ID', width: 100 },
-                { field: 'RoleName', title: '角色名称', width: 150 },
-                { field: 'SubTime', title: '创建时间', width: 250 },
-                { field: 'Remark', title: '备注', width: 200 },
-                { field: 'Sort', title: '排序', width: 100 }
+                { field: 'ID', title: 'ID', width: '5%', hidden: true },
+                { field: 'RoleName', title: '角色名称', width: '20%' },
+                {
+                    field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                {
+                    field: 'ModifiedOnTime', title: '修改时间', width: '15%', formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                { field: 'Remark', title: '备注', width: '30%' },
+                { field: 'Sort', title: '顺序', width: '10%' }
     ]]
-    
+
     var myActionColumns = [[
             { field: 'checked', checkbox: true },
             //{ checkbox: true },
@@ -45,7 +55,7 @@
             { field: 'ControllerName', title: '控制器名', width: 120 },
             { field: 'ActionMethodName', title: '方法名', width: 200 },
             { field: 'Remark', title: '备注', width: 200 },
-            { field: 'Sort', title: '排序', width: 100 },
+            { field: 'Sort', title: '顺序', width: 100 },
             //{
             //    field: 'Operation', title: '操作', width: 100, align: 'right',
             //    formatter: function (value, row, index) {
@@ -69,7 +79,7 @@
         }
         //去掉最后一个逗号
         strIds = strIds.substr(0, strIds.length - 1);
-        
+
         if ($.messager.confirm("提示", "准备提交？", function (r) {
                 if (r) {
 
@@ -78,18 +88,18 @@
             //执行afterEdit
              $("#showActionWindow").window('close');
             afterEdit("修改成功");
-           
-            
+
+
         });
 
 
 
         }
         }));
-          
+
 
     }
-        
+
     var RoleId="";
 
 
@@ -156,27 +166,18 @@
     $(function () {
         //1 编辑窗口关闭
         $("#showActionWindow").window('close');
-
+        //$("#editWindow").css({ width: "400px",height:"440px" });
     });
-    
+
 </script>
 
-<div id="setActionRoleDiv">
-    <div class="easyui-window" id="showActionWindow" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
-        <div class="easyui-layout" data-options="fit:true"style="border:0px">
-            @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
-            <div data-options="region:'center'" style="border:0px">
-                <table class="easyui-datagrid" id="actiondatagrid" data-options="fit:true"></table>
-            </div>
-            <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@  onclick="getActionDgSelection()" style="width:80px">提交</a>
-                <a class="easyui-linkbutton c5"style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="test()" style="width:80px">取消</a>
-            </div>
-        </div>
-        @* scrolling 不显示滚动条*@
-        
-    </div>
-</div>
+    }
+
+@section other_div{
+ @Html.Partial("_Partial_Role_Edit")
+@Html.Partial("_Partial_Role_setActionRole")
+    }
+
 
 
 

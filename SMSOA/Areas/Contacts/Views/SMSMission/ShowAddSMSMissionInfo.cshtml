@@ -32,7 +32,7 @@
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data);
+                    afterEdit(data,"短信任务名称");
                 }
             };
 
@@ -42,7 +42,7 @@
             window.parent.CancelSend();
         }
 
-        function afterEdit(data) {
+        function afterEdit(data,name) {
 
             //$.messager.alert('提醒', '提交成功!');
             //——经测试提交表单成功后可以执行OnSucess的回调函数
@@ -50,10 +50,13 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("修改成功",0);
             }
-            else {
-                window.parent.afterEdit("修改失败");
+            else if (data == "validation fails") {
+                window.parent.afterEdit(name + "已经存在，请重新输入",1)
+            }
+            else{
+                window.parent.afterEdit("修改失败",0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -67,7 +70,7 @@
             <table cellpadding="3">
                  <tr>
                     <td style="color:#ffffff">任务名称:</td>
-                    <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name required="true" missingMessage="任务名称必须填写"></input></td>
+                    <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name data-options="required:true,validType:['CHS','length[1,50]']" missingMessage="任务名称必须填写"></input></td>
                 </tr>
                 <tr>
                     <td style="color:#ffffff">备注:</td>
