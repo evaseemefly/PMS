@@ -13,5 +13,7 @@ namespace PMS.IBLL
         bool SaveReceieveMsg(List<SMSModel_QueryReceive> list_QueryReceive,int scid);
 
         void getResult(List<SMSModel_QueryReceive> list_QueryReceive, SMSModel_MsgResult result);
+
+        bool SaveTempReceieveMsg(string msgid, List<string> list_phones);
     }
 }

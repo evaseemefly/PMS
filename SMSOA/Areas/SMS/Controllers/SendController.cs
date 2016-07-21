@@ -381,6 +381,9 @@ namespace SMSOA.Areas.SMS.Controllers
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
             bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid);
+            //6 在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
+
+
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
             redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
                 msgid = receive.msgid,

@@ -163,3 +163,4 @@ D:\01编程\02协作开发\SMSOA\PMS\Common\bin\Debug\zh-Hans\System.Web.Mvc.res
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.dll
 D:\01编程\02协作开发\SMSOA\PMS\Common\obj\Debug\Common.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\Common\bin\Debug\Common.dll.config

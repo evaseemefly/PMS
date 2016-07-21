@@ -877,3 +877,4 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.M
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\obj\Debug\SMSOA.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
