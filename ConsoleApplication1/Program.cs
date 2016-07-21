@@ -167,7 +167,7 @@ namespace SMSbackground
                 }
                 bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
             }
-            
+
             //暂时不用
             #region 6月26日 暂时注释掉的——与前台交互的代码
             //if (!isSaveCurrnetMsgOk)
