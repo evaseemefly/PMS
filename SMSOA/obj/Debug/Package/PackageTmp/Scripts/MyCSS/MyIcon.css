@@ -1,0 +1,120 @@
+﻿.icon-mygroup{
+	background:url('/Images/Icon/Contact/group-large.png') no-repeat center center;
+}
+.icon-myPhonebook{
+	background:url('/Images/Icon/Contact/phonebook-large.png') no-repeat center center;
+}
+.icon-addContacts{
+	background:url('/Images/Icon/Contact/add_contacts.png') no-repeat center center;
+}
+.icon-addContacts-small{
+	background:url('/Images/Icon/Contact/add_contacts-small.png') no-repeat center center;
+}
+.icon-add_person{
+	background:url('/Images/Icon/Contact/add_person.png') no-repeat center center;
+}
+.icon-del_person{
+	background:url('/Images/Icon/Contact/del_person.png') no-repeat center center;
+}
+.icon-edit_person{
+	background:url('/Images/Icon/Contact/edit_person.png') no-repeat center center;
+}
+.icon-menu_person{
+	background:url('/Images/Icon/menu/person_normal.png') no-repeat center center;
+}
+.icon-menu_department{
+	background:url('/Images/Icon/menu/department_small.png') no-repeat center center;
+}
+.icon-menu_group{
+	background:url('/Images/Icon/menu/group_small.png') no-repeat center center;
+}
+.icon-contacts_setdepartment{
+	background:url('/Images/Icon/menu/department.png') no-repeat center center;
+}
+.icon-contacts_setgroup{
+	background:url('/Images/Icon/menu/group.png') no-repeat center center;
+}
+
+.icon-home-user{
+	background:url('/Images/Icon/home/24/user.png') no-repeat center center;
+}
+
+.icon-home-personalsetting{
+	background:url('/Images/Icon/home/16/personsetting.png') no-repeat center center;
+}
+
+.icon-home-setpassword{
+	background:url('/Images/Icon/home/16/setpassword.png') no-repeat center center;
+}
+
+.icon-home-logout{
+	background:url('/Images/Icon/home/16/logout.png') no-repeat center center;
+}
+.icon-home-logout-middle{
+	background:url('/Images/Icon/home/24/logout.png') no-repeat center center;
+}
+.icon-home-logoutgreen{
+	background:url('/Images/Icon/home/16/logout-green.png') no-repeat center center;
+}
+.icon-home-logoutyellow{
+	background:url('/Images/Icon/home/16/logout-yellow.png') no-repeat center center;
+}
+
+/*----------------------权限样式--16px--------------------*/
+.icon-action-action16{
+	background:url('/Images/Icon/action/16/action-action.png') no-repeat center center;
+}
+.icon-action-role16{
+	background:url('/Images/Icon/action/16/action-role.png') no-repeat center center;
+}
+.icon-action-user16{
+	background:url('/Images/Icon/action/16/action-user.png') no-repeat center center;
+}
+
+.icon-action-department16{
+	background:url('/Images/Icon/action/16/action-department.png') no-repeat center center;
+}
+.icon-action-group16{
+	background:url('/Images/Icon/action/16/action-group.png') no-repeat center center;
+}
+.icon-action-mission16{
+	background:url('/Images/Icon/action/16/action-mission.png') no-repeat center center;
+}
+
+.icon-action-send16{
+	background:url('/Images/Icon/action/16/action-send.png') no-repeat center center;
+}
+.icon-action-template16{
+	background:url('/Images/Icon/action/16/action-template.png') no-repeat center center;
+}
+
+/*----------------------权限样式--24px--------------------*/
+
+.icon-action-action24{
+	background:url('/Images/Icon/action/24/action-action.png') no-repeat center center;
+}
+.icon-action-role24{
+	background:url('/Images/Icon/action/24/action-role.png') no-repeat center center;
+}
+.icon-action-user24{
+	background:url('/Images/Icon/action/24/action-user.png') no-repeat center center;
+}
+
+.icon-action-department24{
+	background:url('/Images/Icon/action/24/action-department.png') no-repeat center center;
+}
+.icon-action-group24{
+	background:url('/Images/Icon/action/24/action-group.png') no-repeat center center;
+}
+.icon-action-mission24{
+	background:url('/Images/Icon/action/24/action-mission.png') no-repeat center center;
+}
+
+.icon-action-send24{
+	background:url('/Images/Icon/action/24/action-send.png') no-repeat center center;
+}
+.icon-action-template24{
+	background:url('/Images/Icon/action/16/action-template.png') no-repeat center center;
+}
+
+
