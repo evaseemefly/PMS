@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.Model.ViewModel;
 
 namespace PMS.IBLL
 {
@@ -45,7 +46,7 @@ namespace PMS.IBLL
         /// <param name="list_groupIDs"></param>
         /// <param name="list_isPass"></param>
         /// <returns></returns>
-        bool SetSMSMission4Group(int smid, List<int> list_groupIDs, List<bool> list_isPass);
+        bool SetSMSMission4Group(int smid, List<ViewModel_isPass_Group> list_isPass_group);
         /// <summary>
         /// 将传入的部门id集合赋给传入的Id对应的任务对象
         /// </summary>
@@ -54,7 +55,7 @@ namespace PMS.IBLL
         /// <param name="list_isPass"></param>
         /// <returns></returns>
 
-        bool SetSMSMission4Department(int smid, List<int> list_departmentIDs, List<bool> list_isPass);
+        bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_group);
 
 
         /// <summary>

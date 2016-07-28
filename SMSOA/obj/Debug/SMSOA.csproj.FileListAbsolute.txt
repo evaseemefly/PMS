@@ -758,6 +758,7 @@ E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.
 E:\03协同开发\短信\PMS\0630\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\0630\PMS\SMSOA\obj\Debug\SMSOA.dll
 E:\03协同开发\短信\PMS\0630\PMS\SMSOA\obj\Debug\SMSOA.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\roslyn\csc.exe
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -874,6 +875,5 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\zh-Hans\Microsoft.Ow
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.pdb
