@@ -24,5 +24,20 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftTemplate(List<int> list_ids);
+
+
+
+        ///<summary>
+        ///数据验证
+        ///</summary>
+        ///<param name="name"></param>
+        bool AddValidation(string name);
+
+        ///<summary>
+        ///数据验证
+        ///</summary>
+        ///<param name="name"></param>
+        ///<returns></returns>
+        bool EditValidation(int id, string name);
     }
 }

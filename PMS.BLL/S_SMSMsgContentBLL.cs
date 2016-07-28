@@ -31,6 +31,26 @@ namespace PMS.BLL
             }
         }
 
+        ///<summary>
+        ///数据约束
+        ///</summary>
+        ///<param name="name"></param>
+        public bool AddValidation(string name)
+        {
+            var list_model = this.GetListBy(p => p.isDel == false).ToList();
+            return list_model.Exists(p => p.MsgName.Equals(name));
+        }
+
+        ///<summary>
+        ///数据约束
+        ///</summary>
+        ///<param name="name"></param>
+        public bool EditValidation(int id, string name)
+        {
+            var list_model = this.GetListBy(p => p.isDel == false && p.TID != id).ToList();
+            return list_model.Exists(p => p.MsgName.Equals(name));
+        }
+
         /// <summary>
         /// 根据传入的id集合对该集合所包含的模板对象执行软删除操作
         /// </summary>
@@ -69,5 +89,7 @@ namespace PMS.BLL
             //return idal.SaveChange();
             return CurrentDBSession.SaveChanges();
         }
+
+
     }
 }

@@ -77,7 +77,9 @@ namespace SMSFactory
             //2.2 将接收到的短信发送回执转换为对象
             receiveModel = ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
 
+            
            
+
             //等待信息发送完成后
             //System.Threading.Thread.Sleep(10000);//10秒
             ////自动重发
