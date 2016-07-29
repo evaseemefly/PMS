@@ -13,7 +13,5 @@ namespace SMSOA.Areas.Admin.Models
             public string ActionID { get; set; }
 
             public string A_isPasses { get; set; }
-            
-
     }
 }
