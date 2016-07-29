@@ -1,0 +1,184 @@
+﻿
+@{    
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+@section Scripts{
+    <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
+<script type="text/javascript">
+
+    var toolbar= [ {
+        iconCls: 'icon-add',
+        text: "新增",
+        handler: addRow@*addRow("@ViewBag.ShowAdd")*@
+        }, '-',
+        {
+            iconCls: 'icon-remove',
+            text: "删除",
+            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
+        }, '-',
+           {
+                iconCls: 'icon-edit',
+                text: "编辑",
+                handler: editRow@*editRow("@ViewBag.ShowEdit")*@
+            }, '-',
+                {
+                    iconCls: 'icon-search',
+                    text: "分配权限",
+                    handler: provideAction    //无法传参数
+                }]
+
+    var myColumns=[[
+                { field: 'ID', title: 'ID', width: '5%', hidden: true },
+                { field: 'RoleName', title: '角色名称', width: '20%' },
+                {
+                    field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                {
+                    field: 'ModifiedOnTime', title: '修改时间', width: '15%', formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
+                { field: 'Remark', title: '备注', width: '30%' },
+                { field: 'Sort', title: '顺序', width: '10%' }
+    ]]
+
+    var myActionColumns = [[
+            { field: 'checked', checkbox: true },
+            //{ checkbox: true },
+            { field: 'ID', title: 'ID', width: 100 },
+            { field: 'ActionInfoName', title: '权限名称', width: 150 },
+            { field: 'SubTime', title: '创建时间', width: 250 },
+            { field: 'AreaName', title: '区域名', width: 120 },
+            { field: 'ControllerName', title: '控制器名', width: 120 },
+            { field: 'ActionMethodName', title: '方法名', width: 200 },
+            { field: 'Remark', title: '备注', width: 200 },
+            { field: 'Sort', title: '顺序', width: 100 },
+            //{
+            //    field: 'Operation', title: '操作', width: 100, align: 'right',
+            //    formatter: function (value, row, index) {
+            //        var str = "<a href='javascript:void(0)' ids='" + row.ID + "' class='deleteLink'>删除</a>";
+            //    }
+
+            //}
+    ]]
+
+    //获取datagrid中checkbox选中的行
+
+    //获取选中的id
+    function getActionDgSelection() {
+        //alert("开始获取id");
+        //获取选中的datagrid中的对象
+        //使用此方法无法获取到checked的行？？？？？？？？
+        var rows = $("#actiondatagrid").datagrid("getChecked");
+        var strIds = "";
+        for (var i = 0; i < rows.length; i++) {
+            strIds = strIds + rows[i].ID + ",";
+        }
+        //去掉最后一个逗号
+        strIds = strIds.substr(0, strIds.length - 1);
+
+        if ($.messager.confirm("提示", "准备提交？", function (r) {
+                if (r) {
+
+               $.post("@ViewBag.SetRole4Action?RoleId=" + RoleId + "&&ids=" + strIds, function (data) {
+            //请求成功后的回调函数
+            //执行afterEdit
+             $("#showActionWindow").window('close');
+            afterEdit("修改成功");
+
+
+        });
+
+
+
+        }
+        }));
+
+
+    }
+
+    var RoleId="";
+
+
+    function provideAction() {
+        //弹出新的窗体
+        //1 获取选中的行并判断
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length != 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请选择唯一一行',
+                showType: 'show'
+            });
+            return;
+        }
+        else {
+
+            RoleId=rows[0].ID;
+            //打开设置权限的窗体
+            $("#showActionWindow").window('open');
+
+            //2 位datagrid加载数据
+            $("#actiondatagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+                fitColumns: true,
+                //singleSelect: true,    //单选:false；多选:true
+                //singleSelect:true,
+                singleSelect: false,
+                checkOnSelect: true,
+                selectOnCheck: true,
+
+                striped: true,
+
+                //url: "/Admin/Action/SetRoleAction?id=" + RoleId,
+                url: "/Admin/Action/SetRoleActionNoPagination?id=" + RoleId,
+                loadMsg: '数据加载中请稍后……',
+                //pagination: true,//启用分页，默认每页10行
+                //rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                //pageSize: 10,   //设置 页容量为 5
+                //pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myActionColumns,
+                //存在bug——返回的data中checkbox 列中有true or false，且面板有 勾选，但通过datagrid('getChecked')无法取到
+                onLoadSuccess: function (data) {
+                    if (data) {
+                        //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
+                        $.each(data.rows, function (index, item) {
+                            if (item.checked) {
+
+                                $('#actiondatagrid').datagrid('checkRow', index);
+
+                            }
+                        })
+                    }
+                }
+                //$("#setActionRoleFrame")
+                ////为设置权限的iframe设置请求的url
+                //$("#setActionRoleFrame").attr("src", "/Admin/Action/SetRoleAction?id=" + rows[0].ID);
+            })
+        }
+    }
+    $(function () {
+        //1 编辑窗口关闭
+        $("#showActionWindow").window('close');
+        //$("#editWindow").css({ width: "400px",height:"440px" });
+    });
+
+</script>
+
+    }
+
+@section other_div{
+ @Html.Partial("_Partial_Role_Edit")
+@Html.Partial("_Partial_Role_setActionRole")
+    }
+
+
+
+
+
