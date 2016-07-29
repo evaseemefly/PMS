@@ -13,5 +13,7 @@ namespace PMS.Model.QueryModel
         public DateTime Dt { get; set; }
 
         public string PhoneNums { get; set; }
+
+        public int PersonCount { get; set; }
     }
 }

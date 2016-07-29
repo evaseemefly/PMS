@@ -12,6 +12,7 @@ using ISMS;
 using PMS.IBLL;
 using Common;
 
+
 namespace SMSbackground
 {
     public class UserTemp
@@ -86,8 +87,16 @@ namespace SMSbackground
             {
                 if (list_final.First().Dt < DateTime.Now.AddSeconds(seconds_add))
                 {
-                    //3.1 超过约定的时间执行查询操作
-                    ToQuery(list_final.First());
+                    //7月28日添加若发送人数超过一百人需要连续进行两次查询
+                    var model = list_final.First();
+                    //获取总共需要查几遍
+                    int pageCount = (model.PersonCount / 100)+1;
+                    //多次查询多次插入
+                    for (int i = 0; i < pageCount; i++)
+                    {
+                        //3.1 超过约定的时间执行查询操作
+                        ToQuery(list_final.First());                        
+                    }
                     ToShow("从最近的Redis集合中取出msgid" + DateTime.Now.ToLongDateString());
                     //3.2 并从redis中删除第一个对象
                     redisListhelper.Delete(list_id);

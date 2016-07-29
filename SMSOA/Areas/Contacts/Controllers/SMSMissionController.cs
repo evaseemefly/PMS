@@ -10,6 +10,7 @@ using SMSOA.Areas.Admin.Controllers;
 using PMS.Model.EqualCompare;
 using PMS.Model.ViewModel;
 
+
 namespace SMSOA.Areas.Contacts.Controllers
 {
     public class SMSMissionController : BaseController
@@ -741,24 +742,62 @@ namespace SMSOA.Areas.Contacts.Controllers
                 else
                 {
                     //2.2 分配群组操作
-                    List<int> list_groupIDs = new List<int>();
+                   // List<int> list_groupIDs = new List<int>();
                     string[] groupIDs = model.groupIds.Split(',');
-                    List<bool> list_isPass = new List<bool>();
+                    //List<bool> list_isPass = new List<bool>();
                     string[] g_isPasses = model.g_isPasses.Split(',');
-                    //2.2.1修改禁用功能
-                    foreach (var item in g_isPasses)
+                    //7月28日
+                    //现准备将传入的对象转换为ViewModel_isPass_xxxx对象
+                    //2.2先转换群组   
+                    List<ViewModel_isPass_Group> list_group_isPass = new List<ViewModel_isPass_Group>();                 
+                    //2.2.1 转换群组为ViewModel对象集合
+                    if (groupIDs.Count() == g_isPasses.Count())
                     {
-                        if (item.Equals("启用"))
+                        for (int i = 0; i < g_isPasses.Count(); i++)
                         {
-                            list_isPass.Add(true);
+                            switch (g_isPasses[i])
+                            {
+                                case "启用":
+                                    list_group_isPass.Add(new ViewModel_isPass_Group()
+                                    {
+                                        gid = int.Parse(groupIDs[i]),
+                                        isPass = true
+                                    });
+                                    break;
+                                case "禁用":
+                                    list_group_isPass.Add(new ViewModel_isPass_Group()
+                                    {
+                                        gid = int.Parse(groupIDs[i]),
+                                        isPass = false
+                                    });
+                                    break;
+                            }
                         }
-                        else if (item.Equals("禁用"))
-                        {
-                            list_isPass.Add(false);
-                        }
+                        //foreach (var item in g_isPasses)
+                        //{
+                            
+                        //}
                     }
-                    groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
-                    var g_result = this.smsmissionBLL.SetSMSMission4Group(smid, list_groupIDs, list_isPass);
+
+                    
+                    //2.2.1修改禁用功能
+                    #region 7月28日——使用上面的方式替换
+                    //foreach (var item in g_isPasses)
+                    //{
+                    //    if (item.Equals("启用"))
+                    //    {
+                    //        list_isPass.Add(true);
+                    //    }
+                    //    else if (item.Equals("禁用"))
+                    //    {
+                    //        list_isPass.Add(false);
+                    //    }
+                    //}
+                    //groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
+                    #endregion
+
+
+                    var g_result = this.smsmissionBLL.SetSMSMission4Group(smid, list_group_isPass);
 
                     if (g_result)
                     {
@@ -780,29 +819,65 @@ namespace SMSOA.Areas.Contacts.Controllers
                 else
                 {
                     //3.2 分配部门操作
-                    List<int> list_departmentIDs = new List<int>();
+                   // List<int> list_departmentIDs = new List<int>();
                     string[] departmentIDs = model.departmentIds.Split(',');
-                    List<bool> list_disPass = new List<bool>();
+                    //List<bool> list_disPass = new List<bool>();
                     string[] d_isPasses = model.d_isPasses.Split(',');
-                    //3.2.1修改禁用功能  
-                    foreach (var item in d_isPasses)
+
+                    List<ViewModel_isPass_Department> list_department_isPass = new List<ViewModel_isPass_Department>();
+                    //2.2.1 转换群组为ViewModel对象集合
+                    if (departmentIDs.Count() == d_isPasses.Count())
                     {
-                        if (item.Equals("true"))
+                        for (int i = 0; i < d_isPasses.Count(); i++)
                         {
-                            list_disPass.Add(true);
+                            switch (d_isPasses[i])
+                            {
+                                case "true":
+                                    list_department_isPass.Add(new ViewModel_isPass_Department()
+                                    {
+                                        did = int.Parse(departmentIDs[i]),
+                                        isPass = true
+                                    });
+                                    break;
+                                case "false":
+                                    list_department_isPass.Add(new ViewModel_isPass_Department()
+                                    {
+                                        did = int.Parse(departmentIDs[i]),
+                                        isPass = false
+                                    });
+                                    break;
+                            }
                         }
-                        else if (item.Equals("false"))
-                        {
-                            list_disPass.Add(false);
-                        }
+                        //foreach (var item in g_isPasses)
+                        //{
+
+                        //}
                     }
-                    departmentIDs.ToList().ForEach(a => list_departmentIDs.Add(int.Parse(a)));
-                    var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_disPass);
+                    var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_department_isPass);
+
                     if (d_result)
                     {
                         isDepartmentOk = true;
                     }
-                    }
+                    //3.2.1修改禁用功能  
+                    //foreach (var item in d_isPasses)
+                    //{
+                    //    if (item.Equals("true"))
+                    //    {
+                    //        list_disPass.Add(true);
+                    //    }
+                    //    else if (item.Equals("false"))
+                    //    {
+                    //        list_disPass.Add(false);
+                    //    }
+                    //}
+                    //departmentIDs.ToList().ForEach(a => list_departmentIDs.Add(int.Parse(a)));
+                    //var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_disPass);
+                    //if (d_result)
+                    //{
+                    //    isDepartmentOk = true;
+                    //}
+                }
                 }
 
             if (isGroupOk && isDepartmentOk)

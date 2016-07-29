@@ -381,9 +381,10 @@ namespace SMSOA.Areas.SMS.Controllers
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
             bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid);
-            
+
             //6 在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
-            if(!smsRecord_CurrentBLL.SaveTempReceieveMsg(receive.msgid, list_phones))
+            //7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
+            if (!smsRecord_CurrentBLL.CreateReceieveMsg(receive.msgid, list_phones))
             {
                 return Content("服务器错误");
             }
@@ -391,7 +392,8 @@ namespace SMSOA.Areas.SMS.Controllers
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
             redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
                 msgid = receive.msgid,
-                Dt = DateTime.Now
+                Dt = DateTime.Now,
+                PersonCount=list_phones.Count//7月28日添加：在redis中保存的缓存对象集合中记录该次发送共发送的人数
                // PhoneNums=phones
             });
             if (!isSaveMsgOk)

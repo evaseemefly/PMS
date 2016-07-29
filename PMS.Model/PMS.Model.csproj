@@ -168,10 +168,14 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LoginUser.cs" />
+    <Compile Include="ViewModel\ViewModel_isPass_Department.cs" />
+    <Compile Include="ViewModel\ViewModel_isPass_Group.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_SMSMission.cs" />
+    <Compile Include="ViewModel\ViewModel_isPass_Base.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
