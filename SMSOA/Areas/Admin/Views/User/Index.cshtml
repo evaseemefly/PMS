@@ -10,10 +10,12 @@
     <title>GetUserInfo</title>
     <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
     <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @Scripts.Render("~/Scripts/myJquery")
+    @*@Scripts.Render("~/Scripts/easyUIJS")*@
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
@@ -145,8 +147,7 @@
                     if (row.byRole == true) {
                         $('#action').datagrid('checkRow', index);
                         $.messager.alert('提示', "该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员");
-
-                        return;
+                        row.checked = true;
                     } else {
 
                         row.checked = false;
@@ -157,18 +158,13 @@
                 //onCheck: function (index) {
                 //    $('#action').datagrid('beginEdit', index);
                 //},
-                //onUncheck: function (index) {
-                //    $('#action').datagrid('cancelEdit', index);
-                //},
+
+                
                 onLoadSuccess: function (data) {
                     if (data) {
                         //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
                         $.each(data.rows, function (index, item) {
-                            if (item.checked) {
-
-                                $('#action').datagrid('checkRow', index);
-
-                            }
+                            if (item.checked) { $('#action').datagrid('checkRow', index); }
                         })
                     }
 

@@ -370,7 +370,14 @@
                     //},                   
                     onCheck: function (row) {
                         //注意此时传入的row中的selected以及checked均为false
-                        row.IsPass = true;
+                        //if (row.IsPass == false) {
+                        //    row.IsPass = false;
+                        //}
+                        //1 若未选中的窗台，当选中该行时，默认为其赋为选中（isPass为true）
+                        if (row.checked == false) {
+                            row.IsPass = true;
+                        }
+                        
                         $('#department').treegrid('beginEdit', row.DID);
                     },
                     onUncheck: function (row) {

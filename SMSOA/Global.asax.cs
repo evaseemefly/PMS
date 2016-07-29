@@ -23,6 +23,7 @@ namespace SMSOA
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleTable.EnableOptimizations = true;
 
             string fileLogPath = Server.MapPath("/Log/");//保存错误日志文件的文件夹路径
             ThreadPool.QueueUserWorkItem((a)=>CallBack(), fileLogPath);  

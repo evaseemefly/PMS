@@ -28,17 +28,17 @@ namespace SMSOA
                       "~/Content/site.css"));
 
             //绑定easyui的css文件
-            bundles.Add(new StyleBundle("~/Scripts/EasyUI/themes/black").Include(
+            bundles.Add(new StyleBundle("~/Scripts/EasyUICss").Include(
                 "~/Scripts/EasyUI/themes/color.css",
                 "~/Scripts/EasyUI/themes/black/easyui.css",
                 "~/Scripts/EasyUI/themes/icon.css"));
 
 
             //绑定jquery的js文件
-            bundles.Add(new ScriptBundle("~/mvcAjax").Include(
-              "~/Scripts/jquery-1.10.2.min.js",
-              "~/Scripts/jquery.validate.min.js",
-              "~/Scripts/jquery.validate.unobtrusive.min.js",
+            bundles.Add(new ScriptBundle("~/Scripts/myJquery").Include(
+              "~/Scripts/jquery-1.10.2.js",
+              "~/Scripts/jquery.validate.js",
+              "~/Scripts/jquery.validate.unobtrusive.js",
               "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             //绑定easyui的js文件

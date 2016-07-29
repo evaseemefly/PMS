@@ -223,6 +223,8 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
     <Compile Include="Areas\Login\Controllers\LoginController.cs" />
     <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
+    <Compile Include="Areas\News\Controllers\HomeController.cs" />
+    <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
@@ -358,6 +360,11 @@
     <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Common_RecordColumns.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Partial_ShowToolbar.cshtml" />
+    <Content Include="Areas\News\Views\web.config" />
+    <Content Include="Areas\News\Views\Shared\_Layout_Common.cshtml" />
+    <Content Include="Areas\News\Views\Home\Index.cshtml" />
+    <Content Include="Areas\News\Views\Home\_Partial_News_SystemMessages.cshtml" />
+    <Content Include="Areas\News\Views\Home\_Partial_News_ImportantNotice.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -444,6 +451,8 @@
     <Folder Include="Areas\Contacts\Views\Home\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
+    <Folder Include="Areas\News\Models\" />
+    <Folder Include="Areas\News\Views\News\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\" />
     <Folder Include="Scripts\Highcharts\js\" />

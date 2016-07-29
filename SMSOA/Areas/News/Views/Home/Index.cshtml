@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/News/Views/Shared/_Layout_Common.cshtml";
+}
+@section CSS{
+  <style type="text/css">
+
+</style>  
+    }
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+    </script>
+    }
+
+@section Body{
+   <div id="body_layout" class="easyui-panel" style="height:98%;width:98%;border:0px" data-options="fit:true">
+    @*<span style="color:orangered;"></span>*@
+    @Html.Partial("_Partial_News_SystemMessages")
+    @Html.Partial("_Partial_News_ImportantNotice")
+</div>
+    }
