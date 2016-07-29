@@ -153,9 +153,12 @@
                         $('#action').datagrid('cancelEdit', index);
                     }
                 },
-                //onCheck: function (index) {
-                //    $('#action').datagrid('beginEdit', index);
-                //},
+                onUncheck: function (index,row) {
+                    if (row.byRole == true) {
+                        row.checked = true;
+                        $('#action').datagrid('refreshRow', index);
+                    }
+                },
 
                 
                 onLoadSuccess: function (data) {
