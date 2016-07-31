@@ -11,6 +11,13 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region N_NewsDAL   
+	//N_News数据访问层
+	public class N_NewsDAL:BaseDAL<N_News>,IN_NewsDAL
+    {
+    }
+	#endregion
+
 		#region P_DepartmentInfoDAL   
 	//P_DepartmentInfo数据访问层
 	public class P_DepartmentInfoDAL:BaseDAL<P_DepartmentInfo>,IP_DepartmentInfoDAL
@@ -63,6 +70,13 @@ namespace PMS.DALSQLSer
 		#region R_UserInfo_GroupDAL   
 	//R_UserInfo_Group数据访问层
 	public class R_UserInfo_GroupDAL:BaseDAL<R_UserInfo_Group>,IR_UserInfo_GroupDAL
+    {
+    }
+	#endregion
+
+		#region R_UserInfo_NewsDAL   
+	//R_UserInfo_News数据访问层
+	public class R_UserInfo_NewsDAL:BaseDAL<R_UserInfo_News>,IR_UserInfo_NewsDAL
     {
     }
 	#endregion

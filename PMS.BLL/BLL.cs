@@ -18,6 +18,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	N_NewsBLL
+    public partial class N_NewsBLL : BaseBLL<N_News>, IN_NewsBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为N_NewsDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.N_NewsDAL;
+        }
+    }
+	#endregion
 	   #region	P_DepartmentInfoBLL
     public partial class P_DepartmentInfoBLL : BaseBLL<P_DepartmentInfo>, IP_DepartmentInfoBLL
     {	
@@ -119,6 +132,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.R_UserInfo_GroupDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_NewsBLL
+    public partial class R_UserInfo_NewsBLL : BaseBLL<R_UserInfo_News>, IR_UserInfo_NewsBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_NewsDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_NewsDAL;
         }
     }
 	#endregion

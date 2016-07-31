@@ -12,7 +12,35 @@
 @section Scripts{
 
     <script type="text/javascript">
+        var myColumns = [[
+                { field: 'Title', title: '题目', width: 100, hidden: true },
+                { field: 'SubDateTime', title: '发布时间', width: '15%' }]]
 
+        function load_sysNotice() {
+            $("#sysNotice_datagrid").datagrid({
+                //width: 'auto',
+                //height: 'auto',
+                fit: true,
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: '@ViewBag.GetAllNewsList',
+                autoRowHeight: true,
+                nowrap: false,//自动换行
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns
+
+            });
+        }
+        
+
+        $(function () {
+            load_sysNotice();
+        })
     </script>
     }
 

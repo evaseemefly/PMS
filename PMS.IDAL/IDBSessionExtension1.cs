@@ -10,6 +10,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IN_NewsDAL
+      IDAL.IN_NewsDAL N_NewsDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IP_DepartmentInfoDAL
       IDAL.IP_DepartmentInfoDAL P_DepartmentInfoDAL { get; set; }
 	  #endregion
@@ -47,6 +52,11 @@ namespace PMS.IDAL
 	  
 	  #region IR_UserInfo_GroupDAL
       IDAL.IR_UserInfo_GroupDAL R_UserInfo_GroupDAL { get; set; }
+	  #endregion
+
+	  
+	  #region IR_UserInfo_NewsDAL
+      IDAL.IR_UserInfo_NewsDAL R_UserInfo_NewsDAL { get; set; }
 	  #endregion
 
 	  

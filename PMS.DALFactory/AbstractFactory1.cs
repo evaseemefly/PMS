@@ -23,6 +23,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建N_News的实例
+        /// <summary>
+        /// 创建N_News的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IN_NewsDAL CreateN_NewsDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".N_NewsDAL";
+            return CreateInstance(fullClassName) as IN_NewsDAL;
+        }
+		#endregion
+	 
 		#region 创建P_DepartmentInfo的实例
         /// <summary>
         /// 创建P_DepartmentInfo的实例
@@ -124,6 +137,19 @@ namespace PMS.DALFactory
             //获取类的全名称：命名空间+类名
             string fullClassName = NameSpace + ".R_UserInfo_GroupDAL";
             return CreateInstance(fullClassName) as IR_UserInfo_GroupDAL;
+        }
+		#endregion
+	 
+		#region 创建R_UserInfo_News的实例
+        /// <summary>
+        /// 创建R_UserInfo_News的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IR_UserInfo_NewsDAL CreateR_UserInfo_NewsDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".R_UserInfo_NewsDAL";
+            return CreateInstance(fullClassName) as IR_UserInfo_NewsDAL;
         }
 		#endregion
 	 

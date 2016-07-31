@@ -260,5 +260,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="R_UserInfo_News">
+      <EntityTypeMapping TypeName="PMS2016Model.R_UserInfo_News">
+        <MappingFragment StoreEntitySet="R_UserInfo_News">
+          <ScalarProperty Name="isCheck" ColumnName="isCheck" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="N_News">
+      <EntityTypeMapping TypeName="PMS2016Model.N_News">
+        <MappingFragment StoreEntitySet="N_News">
+          <ScalarProperty Name="isDel" ColumnName="isDel" />
+          <ScalarProperty Name="SubDateTime" ColumnName="SubDateTime" />
+          <ScalarProperty Name="NewsContent" ColumnName="NewsContent" />
+          <ScalarProperty Name="NewsType" ColumnName="NewsType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="SNID" ColumnName="SNID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

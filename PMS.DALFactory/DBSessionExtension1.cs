@@ -32,6 +32,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _N_NewsDAL 属性 
+	private IDAL.IN_NewsDAL _N_NewsDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取N_NewsDAL的实例
+        /// </summary>
+        public IN_NewsDAL N_NewsDAL
+        {
+            get
+            {
+                if(_N_NewsDAL==null)
+                {
+                    _N_NewsDAL = AbstractFactory.CreateN_NewsDAL();
+                }
+                return _N_NewsDAL;
+            }
+
+            set
+            {
+                _N_NewsDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _P_DepartmentInfoDAL 属性 
 	private IDAL.IP_DepartmentInfoDAL _P_DepartmentInfoDAL;
 	#endregion
@@ -243,6 +270,33 @@ public partial class DBSession
             set
             {
                 _R_UserInfo_GroupDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _R_UserInfo_NewsDAL 属性 
+	private IDAL.IR_UserInfo_NewsDAL _R_UserInfo_NewsDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_NewsDAL的实例
+        /// </summary>
+        public IR_UserInfo_NewsDAL R_UserInfo_NewsDAL
+        {
+            get
+            {
+                if(_R_UserInfo_NewsDAL==null)
+                {
+                    _R_UserInfo_NewsDAL = AbstractFactory.CreateR_UserInfo_NewsDAL();
+                }
+                return _R_UserInfo_NewsDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_NewsDAL = value;
             }
         }
 	#endregion

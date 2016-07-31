@@ -50,6 +50,11 @@
         <AssociationConnector Association="PMS2016Model.FK_S_SMSMsgContent_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSContent_S_SMSMission" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent" />
+        <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_News" Width="1.5" PointX="7.5" PointY="23.5" />
+        <EntityTypeShape EntityType="PMS2016Model.N_News" Width="1.5" PointX="12.75" PointY="14.125" />
+        <AssociationConnector Association="PMS2016Model.FK_N_News_R_UserInfo_News" />
+        <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_News_UserInfo" />
+        <AssociationConnector Association="PMS2016Model.FK_N_News_UserInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

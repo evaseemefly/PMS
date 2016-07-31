@@ -9,6 +9,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IN_NewsBLL:IBaseBLL<N_News>
+    {
+        
+
+    }
 	    public partial interface IP_DepartmentInfoBLL:IBaseBLL<P_DepartmentInfo>
     {
         
@@ -45,6 +50,11 @@ namespace PMS.IBLL
 
     }
 	    public partial interface IR_UserInfo_GroupBLL:IBaseBLL<R_UserInfo_Group>
+    {
+        
+
+    }
+	    public partial interface IR_UserInfo_NewsBLL:IBaseBLL<R_UserInfo_News>
     {
         
 

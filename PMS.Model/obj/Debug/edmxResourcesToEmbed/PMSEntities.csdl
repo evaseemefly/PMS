@@ -70,6 +70,8 @@
     <NavigationProperty Name="R_UserInfo_DepartmentInfo" Relationship="PMS2016Model.FK_R_UserInfo_DepartmentInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_DepartmentInfo" />
     <NavigationProperty Name="R_UserInfo_PersonInfo" Relationship="PMS2016Model.FK_R_UserInfo_PersonInfo_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_PersonInfo" />
     <NavigationProperty Name="S_SMSMsgContent" Relationship="PMS2016Model.FK_S_SMSMsgContent_UserInfo" FromRole="UserInfo" ToRole="S_SMSMsgContent" />
+    <NavigationProperty Name="R_UserInfo_News" Relationship="PMS2016Model.FK_R_UserInfo_News_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_News" />
+    <NavigationProperty Name="N_News" Relationship="PMS2016Model.FK_N_News_UserInfo" FromRole="UserInfo" ToRole="N_News" />
   </EntityType>
   <Association Name="FK_R_UserInfo_ActionInfo_ActionInfo">
     <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
@@ -229,6 +231,20 @@
     <AssociationSet Name="FK_S_SMSRecord_History_S_SMSContent" Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSContent">
       <End Role="S_SMSContent" EntitySet="S_SMSContent" />
       <End Role="S_SMSRecord_History" EntitySet="S_SMSRecord_History" />
+    </AssociationSet>
+    <EntitySet Name="R_UserInfo_News" EntityType="PMS2016Model.R_UserInfo_News" />
+    <EntitySet Name="N_News" EntityType="PMS2016Model.N_News" />
+    <AssociationSet Name="FK_N_News_R_UserInfo_News" Association="PMS2016Model.FK_N_News_R_UserInfo_News">
+      <End Role="R_UserInfo_News" EntitySet="R_UserInfo_News" />
+      <End Role="N_News" EntitySet="N_News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_R_UserInfo_News_UserInfo" Association="PMS2016Model.FK_R_UserInfo_News_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="R_UserInfo_News" EntitySet="R_UserInfo_News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_N_News_UserInfo" Association="PMS2016Model.FK_N_News_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="N_News" EntitySet="N_News" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="P_DepartmentInfo">
@@ -680,6 +696,72 @@
       </Principal>
       <Dependent Role="S_SMSRecord_History">
         <PropertyRef Name="SCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="R_UserInfo_News">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="UID" Type="Int32" Nullable="false" />
+    <Property Name="NID" Type="Int32" Nullable="false" />
+    <Property Name="isCheck" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="N_News" Relationship="PMS2016Model.FK_N_News_R_UserInfo_News" FromRole="R_UserInfo_News" ToRole="N_News" />
+    <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_R_UserInfo_News_UserInfo" FromRole="R_UserInfo_News" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="N_News">
+    <Key>
+      <PropertyRef Name="SNID" />
+      <PropertyRef Name="UID" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="NewsType" />
+      <PropertyRef Name="SubDateTime" />
+      <PropertyRef Name="isDel" />
+    </Key>
+    <Property Name="SNID" Type="Int32" Nullable="false" />
+    <Property Name="UID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NewsType" Type="Int32" Nullable="false" />
+    <Property Name="NewsContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SubDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isDel" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="R_UserInfo_News" Relationship="PMS2016Model.FK_N_News_R_UserInfo_News" FromRole="N_News" ToRole="R_UserInfo_News" />
+    <NavigationProperty Name="UserInfo" Relationship="PMS2016Model.FK_N_News_UserInfo" FromRole="N_News" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="FK_N_News_R_UserInfo_News">
+    <End Type="PMS2016Model.R_UserInfo_News" Role="R_UserInfo_News" Multiplicity="1" />
+    <End Type="PMS2016Model.N_News" Role="N_News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="R_UserInfo_News">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="N_News">
+        <PropertyRef Name="SNID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_R_UserInfo_News_UserInfo">
+    <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="PMS2016Model.R_UserInfo_News" Role="R_UserInfo_News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="R_UserInfo_News">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_N_News_UserInfo">
+    <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="PMS2016Model.N_News" Role="N_News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="N_News">
+        <PropertyRef Name="UID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -17,6 +17,19 @@ namespace PMS.IDAL
     }
 	#endregion
 
+	   #region IN_NewsDAL   
+	//N_News数据访问层
+	/// <summary>
+    /// 定义N_News实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IN_NewsDAL:IBaseDAL<N_News>
+    {
+    }
+	#endregion
+
 	   #region IP_DepartmentInfoDAL   
 	//P_DepartmentInfo数据访问层
 	/// <summary>
@@ -117,6 +130,19 @@ namespace PMS.IDAL
     /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
     /// </summary>
 	public interface IR_UserInfo_GroupDAL:IBaseDAL<R_UserInfo_Group>
+    {
+    }
+	#endregion
+
+	   #region IR_UserInfo_NewsDAL   
+	//R_UserInfo_News数据访问层
+	/// <summary>
+    /// 定义R_UserInfo_News实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IR_UserInfo_NewsDAL:IBaseDAL<R_UserInfo_News>
     {
     }
 	#endregion
