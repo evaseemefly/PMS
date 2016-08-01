@@ -369,6 +369,9 @@
     <Content Include="Areas\News\Views\Home\Index.cshtml" />
     <Content Include="Areas\News\Views\Home\_Partial_News_SystemMessages.cshtml" />
     <Content Include="Areas\News\Views\Home\_Partial_News_ImportantNotice.cshtml" />
+    <Content Include="Areas\News\Views\Home\_Partial_Common_ShowWindow.cshtml" />
+    <Content Include="Areas\News\Views\Shared\_Layout_ShowWindow.cshtml" />
+    <Content Include="Areas\News\Views\Home\ShowMsg.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

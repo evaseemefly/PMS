@@ -14,6 +14,11 @@ namespace PMS.Model
     
     public partial class N_News
     {
+        public N_News()
+        {
+            this.R_UserInfo_News = new HashSet<R_UserInfo_News>();
+        }
+    
         public int SNID { get; set; }
         public int UID { get; set; }
         public string Title { get; set; }
@@ -22,7 +27,7 @@ namespace PMS.Model
         public System.DateTime SubDateTime { get; set; }
         public bool isDel { get; set; }
     
-        public virtual R_UserInfo_News R_UserInfo_News { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+        public virtual ICollection<R_UserInfo_News> R_UserInfo_News { get; set; }
     }
 }

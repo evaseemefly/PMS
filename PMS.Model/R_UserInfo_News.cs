@@ -14,17 +14,12 @@ namespace PMS.Model
     
     public partial class R_UserInfo_News
     {
-        public R_UserInfo_News()
-        {
-            this.N_News = new HashSet<N_News>();
-        }
-    
         public int ID { get; set; }
         public int UID { get; set; }
         public int NID { get; set; }
         public bool isCheck { get; set; }
     
-        public virtual ICollection<N_News> N_News { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+        public virtual N_News N_News { get; set; }
     }
 }

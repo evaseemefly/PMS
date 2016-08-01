@@ -81,6 +81,7 @@
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
+    <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
     <Compile Include="MiddlewareModel\P_Group.cs" />
     <Compile Include="MiddlewareModel\P_PersonInfo.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="ViewModel\ViewModel_isPass_Department.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Group.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
+    <Compile Include="ViewModel\ViewModel_News.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />

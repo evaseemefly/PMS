@@ -13,8 +13,16 @@
 
     <script type="text/javascript">
         var myColumns = [[
-                { field: 'Title', title: '题目', width: 100, hidden: true },
-                { field: 'SubDateTime', title: '发布时间', width: '15%' }]]
+            { field: 'SNID', title: 'ID', width: '15%',hidden:true },
+                { field: 'Title', title: '题目', width: '15%' },
+                { field: 'SubDateTime', title: '发布时间', width: '25%' },
+                {
+                    field:'Operate',title:'操作',width:'25%',formatter:myfunction
+                }]]
+
+        function myfunction(value) {
+            return value;
+        }
 
         function load_sysNotice() {
             $("#sysNotice_datagrid").datagrid({
@@ -32,11 +40,21 @@
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
-                columns: myColumns
-
+                columns: myColumns,
+                onClickRow: function (index,data) {
+                    ShowWindow(index, data);
+                }
             });
         }
         
+        function ShowWindow(rowIndex,rowData) {
+            //从指定页面中预读取数据
+            var snid = rowData.SNID;
+            $("#viewMsgFrame").attr("src", "@ViewBag.ShowMsg"+"?snid="+snid);
+            //$("#editWindow").panel({ title: "创建任务模板" });
+            //打开编辑窗体
+            $("#viewMsgWindow").window('open');
+        }
 
         $(function () {
             load_sysNotice();
@@ -51,3 +69,8 @@
     @Html.Partial("_Partial_News_ImportantNotice")
 </div>
     }
+
+@section showWindow{
+    @Html.Partial("_Partial_Common_ShowWindow")
+    }
+
