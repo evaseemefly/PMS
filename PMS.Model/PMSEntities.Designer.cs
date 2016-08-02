@@ -1,4 +1,4 @@
-﻿// 为模型“E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\PMSEntities.edmx”启用了 T4 代码生成。
+﻿// 为模型“D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\PMSEntities.edmx”启用了 T4 代码生成。
 // 要启用旧代码生成功能，请将“代码生成策略”设计器属性的值
 // 更改为“旧的 ObjectContext”。当在设计器中打开该模型时，此属性会出现在
 // “属性”窗口中。

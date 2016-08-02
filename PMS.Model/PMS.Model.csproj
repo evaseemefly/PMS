@@ -68,6 +68,7 @@
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
+    <Compile Include="Enum\ExistEnum.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
     <Compile Include="EqualCompare\P_DepartmentEqualCompare.cs" />

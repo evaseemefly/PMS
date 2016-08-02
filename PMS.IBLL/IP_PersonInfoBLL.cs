@@ -91,5 +91,14 @@ namespace PMS.IBLL
         /// </summary>
         /// <returns></returns>
         bool EditValidation(int id, String phoneNum);
+
+        /// <summary>
+        /// 更新联系人：为导入的联系人建立与群组和部门的关联
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <param name="id_group"></param>
+        /// <param name="id_department"></param>
+        /// <returns></returns>
+        bool UpdatePerson(int pid, int id_group, int id_department);
     }
 }

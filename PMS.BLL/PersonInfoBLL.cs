@@ -214,6 +214,28 @@ namespace PMS.BLL
             //}
         }
 
+       /// <summary>
+       /// 更新联系人：为导入的联系人建立与群组和部门的关联
+       /// </summary>
+       /// <param name="pid"></param>
+       /// <param name="id_group"></param>
+       /// <param name="id_department"></param>
+       /// <returns></returns>
+        public bool UpdatePerson(int pid, int id_group, int id_department)
+        {
+            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == pid).FirstOrDefault();
+            
+            var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();           
+                var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == id_group).FirstOrDefault();
+                //为联系人分配群组
+             person_model.P_Group.Add(group_temp);
+            //为联系人分配部门
+            person_model.P_DepartmentInfo.Add(department_temp);
+
+            return Update(person_model);
+
+        }
+
         /// <summary>
         /// 将传入的部门id集合赋给传入的Id对应的联系人对象
         /// </summary>
