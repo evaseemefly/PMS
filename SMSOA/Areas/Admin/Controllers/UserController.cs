@@ -322,6 +322,7 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoAssignActionInfo(Models.ViewModel_UserAction model)
         {
+
             //1 从URL获取选中的用户ID,以及所添加的权限ID
             var userID = int.Parse(model.UserId);
             var a_actionIDs = model.ActionID;
@@ -336,21 +337,12 @@ namespace SMSOA.Areas.Admin.Controllers
                 string[] isPassSubmits = isPassSubmit.Split(',');
                 foreach (var item in acionIDs)
                 {
-                    if (item != "")
-                    {
-                        list_actionIDs.Add(int.Parse(item));
-
-                    }
+                    if (item != "") { list_actionIDs.Add(int.Parse(item));}
                 }
                 foreach (var item in isPassSubmits)
                 {
-                    if (item != "")
-                    {
-                        list_actionIsPass.Add(item);
-
-                    }
+                    if (item != ""){list_actionIsPass.Add(item);}
                 }
-
             }
             //3 更改选中用户与其权限的关系表
             userInfoBLL.SetUser4Action(userID, list_actionIDs, list_actionIsPass);

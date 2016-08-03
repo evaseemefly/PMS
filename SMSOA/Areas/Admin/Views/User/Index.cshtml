@@ -155,9 +155,12 @@
                         $('#action').datagrid('cancelEdit', index);
                     }
                 },
-                //onCheck: function (index) {
-                //    $('#action').datagrid('beginEdit', index);
-                //},
+                onUncheck: function (index,row) {
+                    if (row.byRole == true) {
+                        row.checked = true;
+                        $('#action').datagrid('refreshRow', index);
+                    }
+                },
 
                 
                 onLoadSuccess: function (data) {
@@ -238,23 +241,22 @@
             //保存Editor的编辑结果
             $('#action').datagrid('acceptChanges');
             var strIds = "";
-            for (var i = 0; i < rows.length; i++) {
-                strIds = strIds + rows[i].AID + ",";
-            }
-            //去掉最后一个逗号
-            strIds = strIds.substr(0, strIds.length - 1);
-
             var isPassSubmit = "";
             for (var i = 0; i < rows.length; i++) {
-                isPassSubmit = isPassSubmit + rows[i].IsPass + ",";
+                if (!rows[i].byRole)
+                {
+                    isPassSubmit = isPassSubmit + rows[i].IsPass + ",";
+                    strIds = strIds + rows[i].AID + ",";
+                }
             }
+            //去掉最后一个逗号
             isPassSubmit = isPassSubmit.substr(0, isPassSubmit.length - 1);
-
+            strIds = strIds.substr(0, strIds.length - 1);
 
             var result = confirm_center({
                 'UserId': UserId,
                 'ActionID': strIds,
-                'A_isPasses': isPassSubmit
+                'A_isPasses': isPassSubmit,
             });
 
             $("#showActionWindow").window("close");

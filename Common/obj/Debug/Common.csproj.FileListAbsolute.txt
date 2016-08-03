@@ -163,3 +163,4 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\bin\Debug\zh-Hans\Syste
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\Common\obj\Debug\Common.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\Common\bin\Debug\Common.dll.config

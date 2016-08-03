@@ -883,3 +883,4 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\bin\zh-Hans\Microsoft.Ow
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
