@@ -23,16 +23,59 @@ namespace PersonImporting
 
         static void Main(string[] args)
         {
-            sourcePath = @"C:\Users\evase\Documents\20160620统计表\";
-            string fileName = "101海啸警报及解除.txt";
+            string fileName;
+            while (true)
+            {
+                Console.WriteLine("请输入文件所在路径：");
+                sourcePath = Console.ReadLine();
+                if (!CheckedDirExist(sourcePath))
+                {
+                    Console.WriteLine("路径不存在请重新输入");
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+
+            while (true)
+            {
+                Console.WriteLine("请输入文件名：");
+                fileName = Console.ReadLine();
+                if (!CheckedFileExist(Path.Combine(sourcePath,fileName)))
+                {
+                    Console.WriteLine("不存在指定文件");
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+            //string fileName = "999测试群组二.txt";
             groupBLL = new BLL.P_GroupBLL();
             departmentBLL = new BLL.P_DepartmentBLL();
             personBLL = new BLL.P_PersonBLL();
             r_personBLL = new PMS.BLL.P_PersonInfoBLL();
-          var list=  LoadFile(sourcePath,fileName);
+            var list=  LoadFile(sourcePath,fileName);
             DBOperate(list);
+            Console.WriteLine("录入联系人成功！共录入："+list.Count()+" 人");
+            Console.WriteLine("点击任意键退出");
+            Console.ReadKey();
         }
 
+        private static bool CheckedDirExist(string path)
+        {
+           return Directory.Exists(path);
+        }
+
+        private static bool CheckedFileExist(string fullpath)
+        {
+            return File.Exists(fullpath);
+        }
 
         #region 读取文件并转成对象集合，并返回
         private static List<ViewModel.PersonModel> LoadFile(string path, string fileName)
@@ -99,9 +142,15 @@ namespace PersonImporting
                 int gid = groupBLL.GetGroupId(item.GroupName);
                 int did = departmentBLL.GetDepartmentId(item.DepartmentName);
                 personBLL.CreatPersonRelationship(item.Phone, gid,did);
+                ShowMsg("导入联系人：" + item.PersonName + "- 电话：" + item.Phone + "- 部门：" + item.DepartmentName+"                 成功！");
             }
         }
         #endregion
 
+
+        public static void ShowMsg(string msg)
+        {
+            Console.WriteLine(msg);
+        }
     }
 }

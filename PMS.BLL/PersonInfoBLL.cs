@@ -221,15 +221,16 @@ namespace PMS.BLL
        /// <param name="id_group"></param>
        /// <param name="id_department"></param>
        /// <returns></returns>
-        public bool UpdatePerson(int pid, int id_group, int id_department)
+        public bool UpdatePerson(string phone, int id_group, int id_department)
         {
-            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PID == pid).FirstOrDefault();
+            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PhoneNum == phone).FirstOrDefault();
             
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();           
                 var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == id_group).FirstOrDefault();
                 //为联系人分配群组
              person_model.P_Group.Add(group_temp);
             //为联系人分配部门
+            person_model.P_DepartmentInfo.Clear();
             person_model.P_DepartmentInfo.Add(department_temp);
 
             return Update(person_model);

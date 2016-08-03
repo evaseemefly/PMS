@@ -39,13 +39,16 @@ namespace PersonImporting.BLL
         {
             bool isOk = false;
             //根据电话号码（唯一）查找指定联系人
-            var list_person = personBLL.GetListBy(p => p.PhoneNum == phone).ToList();
-            //若存在指定联系人
-            if (list_person.Count > 0)
-            {
-                var pid = list_person.FirstOrDefault().PID;
-               isOk = personBLL.UpdatePerson(pid, gid, did);
-            }
+            isOk = personBLL.UpdatePerson(phone, gid, did);
+            #region 8月3日注释掉
+            //var list_person = personBLL.GetListBy(p => p.PhoneNum == phone).ToList();
+            ////若存在指定联系人
+            //if (list_person.Count > 0)
+            //{
+            //    var pid = list_person.FirstOrDefault().PID;
+            //   isOk = personBLL.UpdatePerson(pid, gid, did);
+            //}
+            #endregion
             return isOk;
         }
     }
