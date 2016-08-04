@@ -299,7 +299,9 @@ namespace PersonImporting
             }
             else
             {
-                string fileName = list_model.FirstOrDefault().GroupSort + list_model.FirstOrDefault().GroupName + ".txt";
+                //如果Sort不足三位，则左侧补0补齐至三位
+                string sort = list_model.FirstOrDefault().GroupSort.ToString().PadLeft(3, '0');
+                string fileName = sort + list_model.FirstOrDefault().GroupName + ".txt";
                 string fullPath = Path.Combine(sourcePath, fileName);
                 //此构造函数中第二参数是布尔值，如果此值为false，则创建一个新文件，如果存在原文件，则覆盖。如果此值为true，则打开文件保留原来数据，如果找不到文件，则创建新文件。
                 try
