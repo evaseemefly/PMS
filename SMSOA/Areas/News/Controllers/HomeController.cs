@@ -24,7 +24,7 @@ namespace SMSOA.Areas.News.Controllers
             //根据传入的snid查找对应的消息具体内容
             var news= newsBLL.GetNewsBySNID(snid, true);
             //ViewBag.Title = news.Title;
-            ViewBag.Title = news.Title;
+            ViewBag.NewsTitle = news.Title;
             //ViewBag.CreateUser=news.
             ViewBag.NewsContent = news.NewsContent;
             //ViewData["news"] = news;

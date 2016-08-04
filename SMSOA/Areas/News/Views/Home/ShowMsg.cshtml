@@ -8,40 +8,24 @@
 }
 
 @section Body{
-    
-@*<div class="my-header">
-    <strong>测试测试</strong>
-</div>
-<div class="my-body">
-    <div>
-        <header>
-            <h3>测试题目</h3>
-        </header>
-        <section>
-            <p>测试内容测试内容</p>
-        </section>
-        <footer></footer>
-    </div>
-</div>*@
 <div style="height:30px;width:100%;background-color:#000000"></div>
 <input type="hidden" id="UID" name="UID" value="" />
 <input type="hidden" id="TID" name="TID" value="" />
 <table cellpadding="3" style="margin-left:40px;width:95%">
     <tr>
         <td>题目:</td>
-        <td class="comment">
-            @ViewBag.Title
+        <td >
+            @ViewBag.NewsTitle
         </td>
     </tr>
     <tr>
         <td>发布人:</td>
-        <td class="comment">
-           
+        <td >
+           123
         </td>
     </tr>
-    <tr>
-        <td>内容:</td>
-        <td class="comment">
+    <tr>        
+        <td colspan="2" style="margin:20px">
            @ViewBag.NewsContent
         </td>
     </tr>
