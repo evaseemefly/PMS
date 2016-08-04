@@ -236,7 +236,7 @@ namespace PersonImporting
                 int gid = groupBLL.GetGroupId(item.GroupName);
                 int did = departmentBLL.GetDepartmentId(item.DepartmentName);
                 personBLL.CreatPersonRelationship(item.Phone, gid,did);
-                ShowMsg("导出联系人：" + item.PersonName + "- 电话：" + item.Phone + "- 部门：" + item.DepartmentName+"                 成功！");
+                ShowMsg("导出联系人：" + item.PersonName + "- 电话：" + item.Phone + "- 部门：" + item.DepartmentName);
             }
         }
         #endregion
@@ -304,12 +304,12 @@ namespace PersonImporting
                 //此构造函数中第二参数是布尔值，如果此值为false，则创建一个新文件，如果存在原文件，则覆盖。如果此值为true，则打开文件保留原来数据，如果找不到文件，则创建新文件。
                 try
                 {
-                    StreamWriter sw = new StreamWriter(fullPath, true);
+                    StreamWriter sw = new StreamWriter(fullPath, false);
                      foreach(var item in list_model)
                     {
-                        string info = item.DepartmentName + "," + item.PersonName + ',' + item.PersonName;
+                        string info = item.DepartmentName + "," + item.PersonName + ',' + item.Phone;
                         sw.WriteLine(info);
-                        ShowMsg("导入联系人：" + item.PersonName + "- 电话：" + item.Phone + "- 部门：" + item.DepartmentName + "                 成功！");
+                        ShowMsg("导入联系人：" + item.PersonName + "- 电话：" + item.Phone + "- 部门：" + item.DepartmentName);
                     }
                      sw.Close();
 
