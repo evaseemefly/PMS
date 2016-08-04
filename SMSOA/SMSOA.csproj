@@ -269,6 +269,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Icon\Common\16\new.png" />
+    <Content Include="Images\Icon\Common\24\new.png" />
     <Content Include="Images\Icon\Contact\group-large.png" />
     <Content Include="Images\Icon\Contact\group.png" />
     <Content Include="Images\Icon\Contact\phonebook-large.png" />

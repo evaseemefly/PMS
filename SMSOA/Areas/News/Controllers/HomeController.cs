@@ -33,8 +33,8 @@ namespace SMSOA.Areas.News.Controllers
         }
         public ActionResult GetAllNewsList()
         {
-
-           var list= newsBLL.GetAllNewsListByUser(this.LoginUser.ID, 5);
+           //获取登录用户可以查看的全部新消息
+           var list= newsBLL.GetAllNewsPageListByUser(this.LoginUser.ID,1,true,5);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {

@@ -14,14 +14,14 @@
     <script type="text/javascript">
         var myColumns = [[
             { field: 'SNID', title: 'ID', width: '15%',hidden:true },
-                { field: 'Title', title: '题目', width: '15%' },
-                { field: 'SubDateTime', title: '发布时间', width: '40%' },
+                { field: 'Title', title: '题目', width: '30%' },
+                { field: 'SubDateTime', title: '发布时间', width: '45%' },
                 {
-                    field:'Operate',title:'操作',width:'25%',formatter:myfunction
+                    field:'Operate',title:'操作',width:'9%',formatter:myfunction
                 }]]
 
         function myfunction(value) {
-            return '<img src="../../Images/Icon/action/16/action-action.png" />';
+            return '<img src="../../Images/Icon/Common/24/new.png" />';
         }
 
         function load_sysNotice() {
