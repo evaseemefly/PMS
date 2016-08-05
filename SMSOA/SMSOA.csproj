@@ -269,6 +269,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Icon\Common\16\new.png" />
+    <Content Include="Images\Icon\Common\24\new.png" />
     <Content Include="Images\Icon\Contact\group-large.png" />
     <Content Include="Images\Icon\Contact\group.png" />
     <Content Include="Images\Icon\Contact\phonebook-large.png" />
@@ -386,6 +388,12 @@
     <Content Include="Scripts\EasyUI\jquery.easyui.min.js" />
     <Content Include="Scripts\EasyUI\jquery.min.js" />
     <Content Include="Scripts\EasyUI\locale\easyui-lang-zh_CN.js" />
+    <Content Include="Scripts\EasyUI\themes\color.css" />
+    <Content Include="Scripts\EasyUI\themes\icon.css" />
+    <Content Include="Scripts\EasyUI\themes\mobile.css" />
+    <Content Include="Scripts\EasyUI_backup\jquery.easyui.min.js" />
+    <Content Include="Scripts\EasyUI_backup\jquery.min.js" />
+    <Content Include="Scripts\EasyUI_backup\locale\easyui-lang-zh_CN.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -461,7 +469,14 @@
     <Folder Include="Areas\News\Models\" />
     <Folder Include="Areas\News\Views\News\" />
     <Folder Include="Content\Images\login\" />
-    <Folder Include="Scripts\EasyUI\themes\" />
+    <Folder Include="Scripts\EasyUI\themes\black\" />
+    <Folder Include="Scripts\EasyUI\themes\bootstrap\" />
+    <Folder Include="Scripts\EasyUI\themes\default\" />
+    <Folder Include="Scripts\EasyUI\themes\gray\" />
+    <Folder Include="Scripts\EasyUI\themes\icons\" />
+    <Folder Include="Scripts\EasyUI\themes\material\" />
+    <Folder Include="Scripts\EasyUI\themes\metro\" />
+    <Folder Include="Scripts\EasyUI_backup\themes\" />
     <Folder Include="Scripts\Highcharts\js\" />
   </ItemGroup>
   <ItemGroup>

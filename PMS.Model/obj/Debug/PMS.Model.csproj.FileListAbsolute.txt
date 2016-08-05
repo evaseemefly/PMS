@@ -79,7 +79,6 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\bin\Debug\zh-Hans\En
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\bin\Debug\PMS.Model.dll.config
 E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\bin\Debug\PMS.Model.dll
@@ -93,3 +92,4 @@ E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\bin\Debug\zh-Hans\System.Web.Mvc
 E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 E:\03协同开发\短信\PMS\0630\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache

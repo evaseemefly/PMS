@@ -14,7 +14,7 @@ namespace SMSOA.Areas.News.Controllers
         // GET: News/News
         public ActionResult Index()
         {
-            ViewBag.GetAllNewsList = "GetAllNewsList";
+            ViewBag.GetAllNewsList = "GetNewsByTypeList";
             ViewBag.ShowMsg= "/News/Home/ShowMsg";
             return View();
         }
@@ -31,10 +31,10 @@ namespace SMSOA.Areas.News.Controllers
             //ViewData.Model = news;
             return View();
         }
-        public ActionResult GetAllNewsList()
+        public ActionResult GetNewsByTypeList(int type)
         {
-
-           var list= newsBLL.GetAllNewsListByUser(this.LoginUser.ID, 5);
+           //获取登录用户可以查看的全部新消息
+           var list= newsBLL.GetTargetTypeNewsPageListByUser(this.LoginUser.ID,1,true,type,5);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
