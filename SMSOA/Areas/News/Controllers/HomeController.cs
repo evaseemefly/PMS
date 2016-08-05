@@ -31,6 +31,21 @@ namespace SMSOA.Areas.News.Controllers
             //ViewData.Model = news;
             return View();
         }
+
+        public ActionResult ShowEditMsg()
+        {
+            return Content("");
+        }
+
+        /// <summary>
+        /// 获取消息种类：不查数据库（可不写此方法）
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetNewsType()
+        {
+               //从字典中取出
+        }
+
         public ActionResult GetNewsByTypeList(int type)
         {
            //获取登录用户可以查看的全部新消息
@@ -44,6 +59,11 @@ namespace SMSOA.Areas.News.Controllers
             };
             //4 序列化
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
+        public ActionResult DoEditNews()
+        {
+
         }
 
         public override ViewModel_MyHttpContext GetHttpContext()

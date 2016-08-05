@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/News/Views/Shared/_Layout_Common.cshtml";
 }
+
 @section CSS{
   <style type="text/css">
 
@@ -22,7 +23,7 @@
 
         function myfunction(value) {
             //return '<img src="../../Images/Icon/action/16/action-action.png" />';
-            return '<img src="../../Images/Icon/Common/16/new.png" />';
+            return '<img src="../../Images/Icon/Common/24/new.png" />';
         }
         function myload_datagrid(id_div,type, url) {
             $("#"+id_div).datagrid({
@@ -70,6 +71,7 @@
 @section Body{
    <div id="body_layout" class="easyui-panel" style="height:98%;width:98%;border:0px" data-options="fit:true">
     @*<span style="color:orangered;"></span>*@
+       
     @Html.Partial("_Partial_News_SystemMessages")
     @Html.Partial("_Partial_News_ImportantNotice")
 </div>

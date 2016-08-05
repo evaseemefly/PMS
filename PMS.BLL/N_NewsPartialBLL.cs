@@ -90,5 +90,15 @@ namespace PMS.BLL
             //var list_news= this.GetPageList(1, count, n => n.isDel == false, u => u.SubDateTime, false).ToList().Select(n=>n.ToMiddleModel()).ToList();
             return list_newsByUser.ToList();
         }
+
+        /// <summary>
+        /// 存入消息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool CreateNews(N_News model)
+        {
+            return false;
+        }
     }
 }
