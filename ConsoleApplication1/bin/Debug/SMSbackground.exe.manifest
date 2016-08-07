@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YkUfTfAu+y6ZcZ+dXjDrhefrHFf3llEDgI/j8moTpso=</dsig:DigestValue>
+        <dsig:DigestValue>zU+HDoBQ/SY4Y6LnxxrPEM0mZy6HJtZkX4AepHnphlw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISMS.dll" size="4096">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISMS.dll" size="4608">
       <assemblyIdentity name="ISMS" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>KvZXkS0wxXkDamTW3OYVO2nnpDZ7tu0CA2ASMVI6rKg=</dsig:DigestValue>
+        <dsig:DigestValue>zJihugRTfpKzm1ogaprYXOdCtWnwkQC77O6+ML6TxTI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -126,14 +126,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.BLL.dll" size="55808">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.BLL.dll" size="56832">
       <assemblyIdentity name="PMS.BLL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fHx2IT1Vzqc+YYgoYTEICkSmIzFQhdTb/lVjUZtEveQ=</dsig:DigestValue>
+        <dsig:DigestValue>nTlwqms0/O0ZJpgQPF7vvGrgszAlXM29mH8xHYbNHyc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -145,43 +145,43 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sigqxKq3AlWQqr0jgWc5mcXEv/Ow3eML7gzjm2X8fvI=</dsig:DigestValue>
+        <dsig:DigestValue>dVpbqL8qmljNNj2PXJjQOYDufEn9Wj+IS3E6j8v98w0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.DALSQLSer.dll" size="9216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.DALSQLSer.dll" size="9728">
       <assemblyIdentity name="PMS.DALSQLSer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>RAgaw5Ne7REdANGsloQFA47Qf+uxn5k4WMAzZEtC29Y=</dsig:DigestValue>
+        <dsig:DigestValue>JMy+H3qWf7T3zK1sTdwsAE6ieQXLkiBYCmX0zOdZMYI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.IBLL.dll" size="9728">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.IBLL.dll" size="10240">
       <assemblyIdentity name="PMS.IBLL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UgANAcKp8epdS7XKsgOoSWi43sflUF3IdvEGmcNXM+U=</dsig:DigestValue>
+        <dsig:DigestValue>Rc3JMGqaJ9chUQm+kjiO4Gm0IwWdyB2EHQneTO4DVP8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.IDAL.dll" size="8192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PMS.IDAL.dll" size="8704">
       <assemblyIdentity name="PMS.IDAL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5ARFrNI02NxLGaXOKgzvSkXS5ATDhhQh4L1MGwNlv/I=</dsig:DigestValue>
+        <dsig:DigestValue>oKY4Lx64PRDyXVUDLpzUJW2Yqq1FY5Ug/vE7OI/26M4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -193,7 +193,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NiNFQ13DWqjfO8vZXW9DrC6uIetQ64X9yO/vp4r+HG0=</dsig:DigestValue>
+        <dsig:DigestValue>2GJuj2/DN3idEl6AARks0Kw83JrUDunZd3R2IMvjfQw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -234,14 +234,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMSbackground.exe" size="8192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMSbackground.exe" size="8704">
       <assemblyIdentity name="SMSbackground" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sHSJj6PWfhUe+5CcgSsPug7hTD6vvM3TcbdEH/WGRx8=</dsig:DigestValue>
+        <dsig:DigestValue>T0gij2wciP5fJzzaQ799OTESppLCzuiotauWKhXog1Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -253,7 +253,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4jk+aLoK/bJz3zA9AaFTTqHpCyvB/Gaht9oSIdJqZkY=</dsig:DigestValue>
+        <dsig:DigestValue>/bIPe8gZKI1kzO4ZyOk3uT4lQuYaQYsg8HXeBQ2Yumg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

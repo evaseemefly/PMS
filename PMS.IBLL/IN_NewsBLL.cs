@@ -14,11 +14,12 @@ namespace PMS.IBLL
         /// 根据登录用户查询该用户所拥有的全部消息（未查看、查看了的都算）——分页查询
         /// </summary>
         /// <param name="uid">用户id</param>
+        /// <param name="rowCount">总数</param>
+        /// <param name="isMiddleint">是否转成中间变量</param>
         /// <param name="index">页码</param>
-        /// <param name="isMiddleint"></param>
         /// <param name="count">页容量（可不填，不填默认为-1），为-1则不进行分页查询</param>
         /// <returns></returns>
-        List<N_News> GetAllNewsPageListByUser(int uid, int index, bool isMiddleint, int count = -1);
+        List<N_News> GetAllNewsPageListByUser(int uid, ref int rowCount, bool isMiddleint, int index, int count = -1);
 
         /// <summary>
         /// 通过分页查询的方式获取当前登录用户的
