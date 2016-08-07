@@ -22,13 +22,7 @@ namespace SMSOA.Areas.News.Controllers
         public ActionResult ShowMsg(int snid)
         {
             //根据传入的snid查找对应的消息具体内容
-            var news= newsBLL.GetNewsBySNID(snid, true);
-            //ViewBag.Title = news.Title;
-            ViewBag.NewsTitle = news.Title;
-            //ViewBag.CreateUser=news.
-            ViewBag.NewsContent = news.NewsContent;
-            //ViewData["news"] = news;
-            //ViewData.Model = news;
+            var list_news= newsBLL.GetNewsBySNID(snid, true);
             return View();
         }
 

@@ -16,6 +16,12 @@ namespace PersonImporting.BLL
         {
             groupBLL = new PMS.BLL.P_GroupBLL();
         }
+        /// <summary>
+        /// 检查是否存在群组，并创建--------导入通讯录时使用
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="sort"></param>
+        /// <returns></returns>
         public ExistEnum CheckGroupExist(string groupName,int sort)
         {
             //根据群组名称获取群组集合
@@ -37,6 +43,19 @@ namespace PersonImporting.BLL
             }
             return enum_exist;
         }
+
+
+        /// <summary>
+        /// 通过名称得到群组对象
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns></returns>
+        public P_Group getGroupByName(string groupName)
+        {
+            //根据群组名称获取群组集合
+          return groupBLL.GetListBy(g => g.GroupName.Equals(groupName)).FirstOrDefault();
+        }
+
         /// <summary>
         /// 根据群组名称得到Id
         /// </summary>

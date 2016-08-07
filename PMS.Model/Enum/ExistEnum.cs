@@ -19,6 +19,11 @@ namespace PMS.Model.Enum
         /// <summary>
         /// 写入失败
         /// </summary>
-        error
+        error,
+        ///<summary>
+        /// 不存在
+        /// </summary>
+        isNotExist
+
     }
 }

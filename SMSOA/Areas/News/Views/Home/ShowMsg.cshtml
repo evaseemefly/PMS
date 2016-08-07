@@ -1,48 +1,23 @@
 ﻿
 @{
-
     ViewBag.Title = "ShowMsg";
-    //将通过ViewData的方式传入的news对象转成ViewModel_News类型
-    PMS.Model.ViewModel.ViewModel_News model = ViewData["news"] as PMS.Model.ViewModel.ViewModel_News;
     Layout = "~/Areas/News/Views/Shared/_Layout_ShowWindow.cshtml";
 }
 
 @section Body{
-<div style="height:30px;width:100%;background-color:#000000"></div>
-<input type="hidden" id="UID" name="UID" value="" />
-<input type="hidden" id="TID" name="TID" value="" />
-<table cellpadding="3" style="margin-left:40px;width:95%">
-    <tr>
-        <td>题目:</td>
-        <td >
-            @ViewBag.NewsTitle
-        </td>
-    </tr>
-    <tr>
-        <td>发布人:</td>
-        <td >
-           123
-        </td>
-    </tr>
-    <tr>        
-        <td colspan="2" style="margin:20px">
-           @ViewBag.NewsContent
-        </td>
-    </tr>
-    <tr>
-        <td>阅读人数:</td>
-    </tr>
-    <tr>
-        <td class="comment" colspan="2">
-            XX1，XX2
-        </td>
-    </tr>
-</table>
-<div style="text-align:center;padding:5px">
-    <div style="text-align:center;padding:5px">
-        @*<input type="submit" value="提交" />*@
-        <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()">提交</a>
-        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a>
+    
+<div class="my-header">
+    <strong>测试测试</strong>
+</div>
+<div class="my-body">
+    <div>
+        <header>
+            <h3>测试题目</h3>
+        </header>
+        <section>
+            <p>测试内容测试内容</p>
+        </section>
+        <footer></footer>
     </div>
 </div>
     }
