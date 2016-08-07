@@ -1,3 +1,14 @@
-﻿<div class="easyui-window" title="查看消息" id="viewMsgWindow" scrolling="no" style="width:400px;height:350px;overflow: hidden;" data-options="shadow:true,modal:true">
+﻿<script type="text/javascript">
+    function ShowWindow(rowIndex, rowData) {
+        //从指定页面中预读取数据
+        var snid = rowData.SNID;
+        $("#viewMsgFrame").attr("src", "@ViewBag.ShowMsg" + "?snid=" + snid);
+        //$("#editWindow").panel({ title: "创建任务模板" });
+        //打开编辑窗体
+        $("#viewMsgWindow").window('open');
+    }
+</script>
+
+<div class="easyui-window" title="查看消息" id="viewMsgWindow" scrolling="no" style="width:745px;height:540px;overflow: hidden;" data-options="shadow:true,modal:true">
     <iframe id="viewMsgFrame" frameborder="0" width="100%" height="100%"></iframe>
 </div>

@@ -375,6 +375,8 @@
     <Content Include="Areas\News\Views\Shared\_Layout_ShowWindow.cshtml" />
     <Content Include="Areas\News\Views\Home\ShowMsg.cshtml" />
     <Content Include="Areas\News\Views\Home\ShowEditMsg.cshtml" />
+    <Content Include="Areas\News\Views\Home\NewsListShow.cshtml" />
+    <Content Include="Areas\News\Views\Home\_Partial_NewsListShow_loadNews.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

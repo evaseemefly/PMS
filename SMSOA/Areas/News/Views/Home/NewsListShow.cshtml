@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "NewsListShow";
+    Layout = "~/Areas/News/Views/Shared/_Layout_Common.cshtml";
+}
+@section Scripts{
+    @Html.Partial("_Partial_NewsListShow_loadNews")
+    <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
+    <script type="text/javascript">
+        //加载该用户所拥有的全部消息列表（分页查询）
+        
+        var myColumns = [[
+            { field: 'SNID', title: 'ID', width: '15%',hidden:true },
+            {
+                field: 'Title', title: '题目', align: 'center', width: '25%', formatter: function (value, row, index) {
+                    return '<span style="color:#f7e9e9;font-weight: bold">(' + value + ')</span>';
+                }
+            },
+            {
+                field: 'SubDateTime', title: '发布时间', width: '12%', formatter: function (value, row, index) {
+                    return Date.getStrOfDate(value);
+                }
+            },
+            {
+                field: 'NewsContent', title: '消息内容', width: '55%', formatter: function (value,row,index) {
+                    //超过50字只显示前50字，后面用。。替换
+                    if (value.length > 70) {
+                        var str = value.replace(/\s+/g, "");
+                        return str.substring(0, 70) + "...";
+                    }
+                    return value;
+                }},
+        ]]
+        $(function () {
+            $("#viewMsgWindow").window('close');
+            load_news("news_datagrid", "@ViewBag.GetNewsList", myColumns);
+            $("#news_datagrid").datagrid({
+                onClickRow: function (index, data) {
+                    ShowWindow(index, data);
+                }
+            })
+        })
+    </script>
+    }
+
+@section Body{
+    <div data-options="" title="联系人列表" style="width:70%;height:500px;">
+
+    <table class="easyui-datagrid" id="news_datagrid" data-options="fit:true" @*style="width:100%;height:500px"*@></table>
+    @*@RenderSection("news_tb", false)*@
+</div>
+    }
+@section showWindow{
+    @Html.Partial("_Partial_Common_ShowWindow")
+}
+
