@@ -14,7 +14,7 @@ namespace SMSOA.Areas.News.Controllers
         // GET: News/News
         public ActionResult Index()
         {
-            ViewBag.GetAllNewsList = "GetAllNewsList";
+            ViewBag.GetAllNewsList = "GetNewsByTypeList";
             ViewBag.ShowMsg= "/News/Home/ShowMsg";
             return View();
         }
@@ -24,17 +24,32 @@ namespace SMSOA.Areas.News.Controllers
             //根据传入的snid查找对应的消息具体内容
             var news= newsBLL.GetNewsBySNID(snid, true);
             //ViewBag.Title = news.Title;
-            ViewBag.Title = news.Title;
+            ViewBag.NewsTitle = news.Title;
             //ViewBag.CreateUser=news.
             ViewBag.NewsContent = news.NewsContent;
             //ViewData["news"] = news;
             //ViewData.Model = news;
             return View();
         }
-        public ActionResult GetAllNewsList()
-        {
 
-           var list= newsBLL.GetAllNewsListByUser(this.LoginUser.ID, 5);
+        public ActionResult ShowEditMsg()
+        {
+            return Content("");
+        }
+
+        /// <summary>
+        /// 获取消息种类：不查数据库（可不写此方法）
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetNewsType()
+        {
+               //从字典中取出
+        }
+
+        public ActionResult GetNewsByTypeList(int type)
+        {
+           //获取登录用户可以查看的全部新消息
+           var list= newsBLL.GetTargetTypeNewsPageListByUser(this.LoginUser.ID,1,true,type,5);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
@@ -44,6 +59,11 @@ namespace SMSOA.Areas.News.Controllers
             };
             //4 序列化
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
+        public ActionResult DoEditNews()
+        {
+
         }
 
         public override ViewModel_MyHttpContext GetHttpContext()

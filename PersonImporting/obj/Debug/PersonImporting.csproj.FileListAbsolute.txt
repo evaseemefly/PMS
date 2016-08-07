@@ -35,8 +35,6 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PersonImporting\bin\Debug\Enti
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PersonImporting\bin\Debug\EntityFramework.SqlServer.xml
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PersonImporting\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\PersonImporting.exe.config
-E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\obj\Debug\PersonImporting.exe
-E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\obj\Debug\PersonImporting.pdb
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\PersonImporting.exe
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\PersonImporting.pdb
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\Common.dll
@@ -70,3 +68,5 @@ E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\zh-Hans\EntityFr
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\obj\Debug\PersonImporting.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\obj\Debug\PersonImporting.exe
+E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\obj\Debug\PersonImporting.pdb

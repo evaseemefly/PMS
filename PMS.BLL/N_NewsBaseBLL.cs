@@ -10,17 +10,23 @@ namespace PMS.BLL
 {
     public partial class N_NewsBLL
     {
-        //
-        public List<N_News> GetAllNewsListByUser(int uid,int count)
+        /// <summary>
+        /// 查询该id登录的用户所拥有的全部消息列表
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        protected IEnumerable<N_News> GetBaseAllNewsList(int uid)
         {
             //1 根据传入的uid查询指定 的用户
-            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID==uid).FirstOrDefault();
+            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == uid).FirstOrDefault();
+
             //2 根据用户查找对应的消息对象
-            //var list_temp= this.GetListBy(n => n.isDel == false).ToList();
-            //
-           var list_news= this.GetPageList(1, count, n => n.isDel == false, u => u.SubDateTime, false).ToList().Select(n=>n.ToMiddleModel()).ToList();
-            return list_news;
+            var list_newsByUser = (from r in user.R_UserInfo_News
+                                   orderby r.ID
+                                   select r.N_News).OrderByDescending(r => r.SubDateTime);
+            return list_newsByUser;
         }
+        
 
         /// <summary>
         /// 根据id查找对应的News对象
