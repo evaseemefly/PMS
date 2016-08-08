@@ -44,9 +44,9 @@
     }
 
 @section Body{
-    <div data-options="" title="联系人列表" style="width:70%;height:500px;">
+    <div class="easyui-panel" id="my_panel" data-options="fit:true" title="消息列表" style="width:100%;height:100%;">
 
-    <table class="easyui-datagrid" id="news_datagrid" data-options="fit:true" @*style="width:100%;height:500px"*@></table>
+    <table class="easyui-datagrid"  style="margin-left:auto;margin-right:auto;" id="news_datagrid" data-options="fit:true" @*style="width:100%;height:500px"*@></table>
     @*@RenderSection("news_tb", false)*@
 </div>
     }

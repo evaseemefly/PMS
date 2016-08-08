@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Recycled/Views/Shared/_Layout_Common.cshtml";
+}
+
+@Html.Partial("~/Areas/News/Views/Home/_Partial_NewsListShow_loadNews.cshtml")
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            load_news()
+        })
+    </script>
+    }
+
+@section div_Body{
+        <div>
+            <table class="easyui-datagrid" id="datagrid"></table>
+        </div>
+    }
+
+@section tb_person{
+    <div id="tb" style="padding:2px 5px;">   
+    <a href="#" class="easyui-linkbutton" id="del_person" data-options="iconCls:'icon-del_person',text: '删除',plain:true" onclick="removeRow()"></a>
+    选择
+    <select class="easyui-combotree" name="PDID" id="area_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
+</div>
+    }
+
