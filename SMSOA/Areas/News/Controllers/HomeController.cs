@@ -38,8 +38,33 @@ namespace SMSOA.Areas.News.Controllers
             ViewBag.GetNewsList= "GetAllNewsList";
             return View();
         }
+        #region 添加/编辑消息
+        /// <summary>
+        /// 添加消息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowAddMsg()
+        {
+            ViewBag.ShowAddMsg = "/News/Home/ShowEditMsg";
+            ViewBag.SubTime = DateTime.Now;
+            return View("ShowEditMsg");
+        }
+
+        /// <summary>
+        /// 编辑消息
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ShowEditMsg()
         {
+            //1. 得到前台返回的消息id
+            int id = int.Parse(Request["id"]);
+            if (id != 0)
+            {
+                var model = newsBLL.GetNewsBySNID(id, true);
+
+            }
+
+
             return Content("");
         }
 
@@ -53,6 +78,11 @@ namespace SMSOA.Areas.News.Controllers
             return Content("");
         }
 
+        public ActionResult DoEditNews()
+        {
+            return Content("");
+        }
+        #endregion
         public ActionResult GetAllNewsList()
         {
             int pageSize = int.Parse(Request.Form["rows"]);
@@ -84,11 +114,6 @@ namespace SMSOA.Areas.News.Controllers
             };
             //4 序列化
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
-        }
-
-        public ActionResult DoEditNews()
-        {
-            return Content("");
         }
 
         public override ViewModel_MyHttpContext GetHttpContext()

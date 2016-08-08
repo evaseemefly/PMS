@@ -12,7 +12,14 @@ namespace PersonImporting
 {
     class Program
     {
+        /// <summary>
+        /// 导出目录
+        /// </summary>
         private static string sourcePath { get; set; }
+        /// <summary>
+        /// 导入文件的绝对路径
+        /// </summary>
+        private static string fullPath { get; set; }
         protected static BLL.P_GroupBLL groupBLL { get; set; }
 
         protected static BLL.P_DepartmentBLL departmentBLL { get; set; }
@@ -107,14 +114,17 @@ namespace PersonImporting
         }
         private static void Import()
         {
+            //文件名
             string fileName;
+            //绝对路径
             while (true)
             {
-                ShowMsg("请输入文件所在路径：");
-                sourcePath = Console.ReadLine();
-                if (!CheckedDirExist(sourcePath))
+                ShowMsg("请输入文件的绝对路径：");
+                fullPath = Console.ReadLine();
+                fileName = Path.GetFileName(fullPath);
+                if (!CheckedFileExist(fullPath))
                 {
-                    ShowMsg("路径不存在请重新输入");
+                    ShowMsg("不存在指定文件，请重新输入");
                     continue;
                 }
                 else
@@ -124,27 +134,27 @@ namespace PersonImporting
 
             }
 
-            while (true)
-            {
-                ShowMsg("请输入文件名：");
-                fileName = Console.ReadLine();
-                if (!CheckedFileExist(Path.Combine(sourcePath, fileName)))
-                {
-                    ShowMsg("不存在指定文件");
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
+            //while (true)
+            //{
+            //    ShowMsg("请输入文件名：");
+            //    fileName = Console.ReadLine();
+            //    if (!CheckedFileExist(Path.Combine(sourcePath, fileName)))
+            //    {
+            //        ShowMsg("不存在指定文件");
+            //        continue;
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
 
-            }
+            //}
             //string fileName = "999测试群组二.txt";
             groupBLL = new BLL.P_GroupBLL();
             departmentBLL = new BLL.P_DepartmentBLL();
             personBLL = new BLL.P_PersonBLL();
             r_personBLL = new PMS.BLL.P_PersonInfoBLL();
-            var list = LoadFile(sourcePath, fileName);
+            var list = LoadFile(fullPath, fileName);
             DBOperate(list);
             ShowMsg("导入联系人成功！共录入：" + list.Count() + " 人");
             ShowMsg("点击任意键退出");
@@ -172,10 +182,10 @@ namespace PersonImporting
         }
         
         #region 读取文件并转成对象集合，并返回
-        private static List<ViewModel.PersonModel> LoadFile(string path, string fileName)
+        private static List<ViewModel.PersonModel> LoadFile(string fullPath, string fileName)
         {
             //1 将文件以流的形式读取，并转成对象集合
-            string fullPath = Path.Combine(path, fileName);
+      
             //去掉file的后缀
             var groupName = fileName.Substring(3, fileName.IndexOf('.') - 3);
 
