@@ -5,12 +5,30 @@
 }
 
 @Html.Partial("~/Areas/News/Views/Home/_Partial_NewsListShow_loadNews.cshtml")
-
+<script src="~/Scripts/MyScripts/Common/my_loadDataGrid.js"></script>
 @section Scripts{
+
     <script type="text/javascript">
+        //获取选中的下拉框类型
+        //1 根据字典加载下拉框（下拉框中显示的是字典的value）
+        //1.1 点击下拉框获取的id是字典的key
+        //1.2 点击下拉框后根据id的值重新加载datagrid以及datagrid中的columns（刘）
+
+        //2 点选datagrid中的某一行（多行），执行相应的删错操作（屈远）
+
+        //3 还原（刘）
+
+        //加载下拉框（要删除的对象种类）
+        function load_actionType_ComboTree() {
+
+        }
+
         $(function () {
-            load_news()
+            var url="?type="+id;
+            load_datagrid("datagrid", url, myColumns, "tb",true,true,10,[20,40,60])
         })
+
+        
     </script>
     }
 
