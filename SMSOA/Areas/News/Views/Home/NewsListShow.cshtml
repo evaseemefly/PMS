@@ -8,7 +8,6 @@
     <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
     <script type="text/javascript">
         //加载该用户所拥有的全部消息列表（分页查询）
-        
         var myColumns = [[
             { field: 'SNID', title: 'ID', width: '15%',hidden:true },
             {
@@ -35,6 +34,7 @@
             $("#viewMsgWindow").window('close');
             load_news("news_datagrid", "@ViewBag.GetNewsList", myColumns);
             $("#news_datagrid").datagrid({
+
                 onClickRow: function (index, data) {
                     ShowWindow(index, data);
                 }
@@ -44,7 +44,7 @@
     }
 
 @section Body{
-    <div class="easyui-panel" id="my_panel" data-options="fit:true" title="消息列表" style="width:100%;height:100%;">
+    <div class="easyui-panel" id="my_panel" data-options="fit:true" title="公告列表" style="width:100%;height:100%;">
 
     <table class="easyui-datagrid"  style="margin-left:auto;margin-right:auto;" id="news_datagrid" data-options="fit:true" @*style="width:100%;height:500px"*@></table>
     @*@RenderSection("news_tb", false)*@

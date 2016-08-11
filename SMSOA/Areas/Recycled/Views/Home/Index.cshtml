@@ -5,12 +5,22 @@
 }
 
 @Html.Partial("~/Areas/News/Views/Home/_Partial_NewsListShow_loadNews.cshtml")
-
+<script src="~/Scripts/MyScripts/Common/my_loadDataGrid.js"></script>
 @section Scripts{
+
     <script type="text/javascript">
+        //获取选中的下拉框类型
+        //加载下拉框（要删除的对象种类）
+        function load_actionType_ComboTree() {
+
+        }
+
         $(function () {
-            load_news()
+            var url="?type="+id;
+            load_datagrid("datagrid", url, myColumns, "tb",true,true,10,[20,40,60])
         })
+
+        
     </script>
     }
 
