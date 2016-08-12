@@ -5,11 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.Model.Dictionary;
+using PMS.IBLL;
 
 namespace SMSOA.Areas.Recycled.Controllers
 {
     public class HomeController : Controller
     {
+        IBaseDelBLL delBLL { get; set; }
+
         // GET: Recycled/Home
         public ActionResult Index()
         {
@@ -51,6 +54,29 @@ namespace SMSOA.Areas.Recycled.Controllers
 
         }
 
+        /// <summary>
+        /// 传入actionType以及要物理删除的对象id数组（用,分割）
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoDel(List<int> list_ids)
+        {
+            //执行删除操作
+            delBLL.PhysicsDel(list_ids);
+            return Content("");
+        }
+
+        /// <summary>
+        /// 传入type的id，根据回收站类型返回该类型的isDel为true全部集合
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetAllDelInfoByType()
+        {
+            //使用工厂模式实现：
+            //1 根据传入的type id获取对应的bll层对象
+            // 在BLL中的各类中已经实现IBaseDelBLL接口（该接口实现：bool PhysicsDel(List<int> list_ids)方法，注意此方法需要自己实现)
+            //2 执行物理删除操作调用本控制器中的DoDel方法
+            return Content("");
+        }
        
     }
 }

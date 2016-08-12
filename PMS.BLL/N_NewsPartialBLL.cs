@@ -1,4 +1,5 @@
-﻿using PMS.Model;
+﻿using PMS.IBLL;
+using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PMS.BLL
 {
-    public partial class N_NewsBLL
+    public partial class N_NewsBLL 
     {
         //继续拓展消息类
 
@@ -100,6 +101,27 @@ namespace PMS.BLL
         public bool CreateNews(N_News model)
         {
             return false;
+        }
+
+
+        public bool DelSoftNews(List<int> list_ids)
+        {
+            List<N_News> list = new List<N_News>();
+            foreach (var id in list_ids)
+            {
+                var model = this.GetListBy(p => p.SNID == id).FirstOrDefault();
+                model.isDel = true;
+                list.Add(model);
+            }
+            try
+            {
+                this.UpdateByList(list);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

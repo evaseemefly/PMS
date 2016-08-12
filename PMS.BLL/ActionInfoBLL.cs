@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.IBLL;
 
 namespace PMS.BLL
 {
-   public partial class ActionInfoBLL
+   public partial class ActionInfoBLL: IBaseDelBLL
     {
         /// <summary>
         /// 根据id集合批量删除action
@@ -27,7 +28,10 @@ namespace PMS.BLL
             return this.CurrentDBSession.SaveChanges();
         }
 
-
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
+        }
 
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的ActionInfo集合

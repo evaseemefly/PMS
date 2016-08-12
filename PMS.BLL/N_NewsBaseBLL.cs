@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
 using PMS.Model.ViewModel;
+using PMS.IBLL;
 
 namespace PMS.BLL
 {
-    public partial class N_NewsBLL
+    public partial class N_NewsBLL: IBaseDelBLL
     {
         /// <summary>
         /// 查询该id登录的用户所拥有的全部消息列表
@@ -26,7 +27,11 @@ namespace PMS.BLL
                                    select r.N_News).OrderByDescending(r => r.SubDateTime);
             return list_newsByUser;
         }
-        
+
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
+        }
 
         /// <summary>
         /// 根据id查找对应的News对象
