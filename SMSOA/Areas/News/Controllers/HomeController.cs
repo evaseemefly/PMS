@@ -12,6 +12,7 @@ namespace SMSOA.Areas.News.Controllers
     public class HomeController : Admin.Controllers.BaseController
     {
         IN_NewsBLL newsBLL;
+        IUserInfoBLL userBLL;
         // GET: News/News
         public ActionResult Index()
         {
@@ -66,6 +67,19 @@ namespace SMSOA.Areas.News.Controllers
             model.SubDateTime = DateTime.Now;
             try
             {
+                //8月12日修改：此处不仅需要在N_News中添加一个消息对象，还需要添加该消息与全部用户之前的关系
+                //1 查询所有用户
+               var users= userBLL.GetListBy(u => u.DelFlag == false).Select(u => u.ID);
+                //2 遍历用户数组，并添加要创建的news与user的关系
+                foreach (var item in users)
+                {
+                    R_UserInfo_News r_user_news = new R_UserInfo_News()
+                    {
+                        NID = model.SNID,
+                        UID = item
+                    };
+                    model.R_UserInfo_News.Add(r_user_news);
+                }
                 newsBLL.Create(model);
                 return Content("ok");
             }
