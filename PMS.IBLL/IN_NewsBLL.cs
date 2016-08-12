@@ -42,5 +42,14 @@ namespace PMS.IBLL
         /// <param name="toMiddle"></param>
         /// <returns></returns>
         ViewModel_News GetNewsBySNID(int snid, bool toMiddle);
+
+
+
+        /// <summary>
+        /// 软删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        bool DelSoftNews(List<int> list_ids);
     }
 }

@@ -101,5 +101,26 @@ namespace PMS.BLL
         {
             return false;
         }
+
+
+        public bool DelSoftNews(List<int> list_ids)
+        {
+            List<N_News> list = new List<N_News>();
+            foreach (var id in list_ids)
+            {
+                var model = this.GetListBy(p => p.SNID == id).FirstOrDefault();
+                model.isDel = true;
+                list.Add(model);
+            }
+            try
+            {
+                this.UpdateByList(list);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

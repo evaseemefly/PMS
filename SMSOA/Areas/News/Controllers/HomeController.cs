@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.IBLL;
 using PMS.Model.ViewModel;
+using PMS.Model;
 
 namespace SMSOA.Areas.News.Controllers
 {
@@ -16,6 +17,7 @@ namespace SMSOA.Areas.News.Controllers
         {
             ViewBag.GetAllNewsList = "GetNewsByTypeList";
             ViewBag.ShowMsg= "/News/Home/ShowMsg";
+           
             return View();
         }
 
@@ -34,42 +36,101 @@ namespace SMSOA.Areas.News.Controllers
 
         public ActionResult NewsListShow()
         {
+            ViewBag.ShowAdd = "/News/Home/ShowAddMsg";
             ViewBag.ShowMsg= "/News/Home/ShowMsg";
             ViewBag.GetNewsList= "GetAllNewsList";
+            ViewBag.ShowEdit = "/News/Home/ShowEditMsg";
+            @ViewBag.DoDel = "/News/Home/DoDelMsg";
             return View();
         }
-        #region 添加/编辑消息
+        #region 添加/编辑/删除消息
         /// <summary>
-        /// 添加消息
+        /// 添加公告的前台展示
         /// </summary>
         /// <returns></returns>
         public ActionResult ShowAddMsg()
         {
-            ViewBag.ShowAddMsg = "/News/Home/ShowEditMsg";
-            ViewBag.SubTime = DateTime.Now;
+            ViewBag.backAction = "DoAddMsg";
+            ViewBag.SubDateTime = DateTime.Now;
             return View("ShowEditMsg");
         }
 
         /// <summary>
-        /// 编辑消息
+        /// 添加公告的功能实现
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoAddMsg(N_News model)
+        {
+            model.UID = base.LoginUser.ID;
+            model.isDel = false;
+            model.SubDateTime = DateTime.Now;
+            try
+            {
+                newsBLL.Create(model);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("error");
+            }
+        }
+
+        /// <summary>
+        /// 编辑公告的前台展示
         /// </summary>
         /// <returns></returns>
         public ActionResult ShowEditMsg()
         {
+
             //1. 得到前台返回的消息id
             int id = int.Parse(Request["id"]);
-            if (id != 0)
+            //2. 得到消息对象
+            var model = newsBLL.GetListBy(p => p.SNID == id).FirstOrDefault();
+            ViewBag.SNID = model.SNID;
+            ViewBag.NewsTitle = model.Title;
+            ViewBag.NewsType = model.NewsType;
+            ViewBag.NewsContent = model.NewsContent;
+            ViewBag.SubDateTime = model.SubDateTime;
+            ViewBag.backAction = "DoEditMsg";
+            return View();
+        }
+        /// <summary>
+        /// 编辑公告的功能实现
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoEditMsg(N_News model)
+        {
+            model.isDel = false;
+            model.SubDateTime = DateTime.Now;
+            model.UID = base.LoginUser.ID;
+            try
             {
-                var model = newsBLL.GetNewsBySNID(id, true);
-
+                newsBLL.Update(model);
+                return Content("ok");
             }
-
-
-            return Content("");
+            catch
+            {
+                return Content("error");
+            }
+        }
+        /// <summary>
+        /// 软删除公告
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoDelMsg(string ids)
+        {
+            string[] strIds = ids.Split(',');
+            List<int> list = new List<int>();
+            foreach (var Id in strIds)
+            {
+                list.Add(int.Parse(Id));
+            }
+            string state = newsBLL.DelSoftNews(list) == true? state="ok":state = "error";
+            return Content(state);
         }
 
         /// <summary>
-        /// 获取消息种类：不查数据库（可不写此方法）
+        /// 获取公告种类：不查数据库（可不写此方法）
         /// </summary>
         /// <returns></returns>
         public ActionResult GetNewsType()
@@ -78,10 +139,6 @@ namespace SMSOA.Areas.News.Controllers
             return Content("");
         }
 
-        public ActionResult DoEditNews()
-        {
-            return Content("");
-        }
         #endregion
         public ActionResult GetAllNewsList()
         {
