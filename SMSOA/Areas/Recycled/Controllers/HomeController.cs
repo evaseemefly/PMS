@@ -17,6 +17,7 @@ namespace SMSOA.Areas.Recycled.Controllers
         public ActionResult Index()
         {
             ViewBag.LoadActionType_ComboGrid = "GetAllRecycled_ComboGrid";
+            ViewBag.LoadAllDelInfo_DataGrid = "";
             return View();
         }
 
@@ -60,6 +61,7 @@ namespace SMSOA.Areas.Recycled.Controllers
         /// <returns></returns>
         public ActionResult DoDel(List<int> list_ids)
         {
+
             //执行删除操作
             delBLL.PhysicsDel(list_ids);
             return Content("");

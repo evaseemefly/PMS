@@ -51,8 +51,9 @@
 
         $(function () {
             //var url = "?type=" + id;
-            var url_load_combo="@ViewBag.LoadActionType_ComboGrid";
-            load_actionType_ComboGrid("area_combotree", url_load_combo, "id", "text", actionType_Columns);
+            var url_load_combo = "@ViewBag.LoadActionType_ComboGrid";
+            var url_load_datagrid = "@ViewBag.LoadAllDelInfo_DataGrid";
+            load_actionType_ComboGrid("area_combotree", url_load_combo, url_load_datagrid, "id", "text", actionType_Columns);
             //load_datagrid("datagrid", url, myColumns, "tb",true,true,10,[20,40,60])
         })
 
