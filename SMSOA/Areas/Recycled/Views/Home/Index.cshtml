@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Recycled/Views/Shared/_Layout_Common.cshtml";
+}
+
+@Html.Partial("~/Areas/News/Views/Home/_Partial_NewsListShow_loadNews.cshtml")
+<script src="~/Scripts/MyScripts/Common/my_loadDataGrid.js"></script>
+@section Scripts{
+
+    <script type="text/javascript">
+        //获取选中的下拉框类型
+        //加载下拉框（要删除的对象种类）
+        //刘实现的：
+        //1 根据字典加载下拉框
+        //2 点选下拉框中之后调用加载的方法
+        var actionType_Columns = [[
+        { field: 'id', title: 'id', width: 60, hidden: true},
+        { field: 'text', title: '删除类型', width: '90%'}
+        ]];
+
+        //3 屈远完成
+        //3.1 定义加载的columns
+
+        //3.2 加载datagrid方法体
+        //注：加载的load方法可使用外置js "~/Scripts/MyScripts/Common/my_loadDataGrid.js"
+        //中的load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList) 方法
+        function load_actionType_ComboGrid(div_id,myurl,url_loaddatagrid, myid, mytext, myColumns) {
+            //根据当前登录用户加载该用户所拥有的短信任务
+            $("#" + div_id).combogrid({
+                url: myurl,
+                method: 'get',
+                idField: myid,
+                textField: mytext,
+                width:100,
+                panelWidth: 100,
+                panelHeight: 'auto',
+                editable: false,
+                multiple: false,@*设置为单选*@
+                //formatter: formatItem_combobox,
+                columns: myColumns,
+                onSelect:function(rowIndex, rowData){
+                    //点击下拉框中的回收站类型并加载datagrid
+                    var url = url_loaddatagrid + "?type=" + rowData.id;
+                    //屈远：注意需要填写第三个及第四个参数为datagrid的columns对象以及toolbar的id
+                    //方法签名：load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList)
+                    load_datagrid("datagrid", url, '', '', false, true, 20, [20, 40, 60]);
+                }
+            })
+        }
+
+        $(function () {
+            //var url = "?type=" + id;
+            var url_load_combo = "@ViewBag.LoadActionType_ComboGrid";
+            var url_load_datagrid = "@ViewBag.LoadAllDelInfo_DataGrid";
+            load_actionType_ComboGrid("area_combotree", url_load_combo, url_load_datagrid, "id", "text", actionType_Columns);
+            //load_datagrid("datagrid", url, myColumns, "tb",true,true,10,[20,40,60])
+        })
+
+
+    </script>
+    }
+
+@section div_Body{
+        <div>
+            <table class="easyui-datagrid" id="datagrid"></table>
+        </div>
+    }
+
+@section tb_person{
+    <div id="tb" style="padding:2px 5px;">   
+    <a href="#" class="easyui-linkbutton" id="del_person" data-options="iconCls:'icon-del_person',text: '删除',plain:true" onclick="removeRow()"></a>
+    选择
+    <select class="easyui-combotree" name="PDID" id="area_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
+</div>
+    }
+

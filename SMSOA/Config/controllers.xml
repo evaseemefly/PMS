@@ -62,5 +62,6 @@
   </object>
   <object type="SMSOA.Areas.News.Controllers.HomeController, SMSOA" singleton="false" >
     <property name="newsBLL" ref="newsService" />
+    <property name="userBLL" ref="userInfoService" />
   </object>
 </objects>

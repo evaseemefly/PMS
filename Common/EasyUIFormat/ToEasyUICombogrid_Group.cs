@@ -32,7 +32,6 @@ namespace Common.EasyUIFormat
                     forbidDel = item.forbidDel
                 };
                 list_datagrid.Add(datagrid);
-
             }
             return list_datagrid;
         }

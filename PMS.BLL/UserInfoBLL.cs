@@ -9,7 +9,7 @@ using PMS.IBLL;
 
 namespace PMS.BLL
 {
-    public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL
+    public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL
     {
         ///// <summary>
         ///// 
@@ -69,6 +69,17 @@ namespace PMS.BLL
             }
 
         }
+
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
+        }
+
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的ActionInfo集合
         /// </summary>
@@ -462,6 +473,8 @@ namespace PMS.BLL
             return this.CurrentDBSession.SaveChanges();
 
         }
+
+        
 
         /// <summary>
         /// 为指定User重新赋予新的群组——指定用户的常用群组（删除不在此任务id集合中的现有群组关系）

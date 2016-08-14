@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace PMS.BLL
 {
-    public partial class P_PersonInfoBLL : BaseBLL<P_PersonInfo>, IP_PersonInfoBLL
+    public partial class P_PersonInfoBLL : BaseBLL<P_PersonInfo>, IP_PersonInfoBLL, IBaseDelBLL
     {
         /// <summary>
         /// 逻辑删除（物理删除）
@@ -52,6 +52,16 @@ namespace PMS.BLL
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
         }
 
         /// <summary>

@@ -7,8 +7,23 @@
         //打开编辑窗体
         $("#viewMsgWindow").window('open');
     }
+
+    //点击已阅按钮后
+    function afterSubmit_Common(msg, type) {
+        //editWindow
+        //1 关闭加载的iframe页面
+        $.messager.alert('提示', msg);
+        if (type == 0) {
+            $("#viewMsgWindow").window('close');
+        }
+        refresh();
+
+    }
 </script>
 
-<div class="easyui-window" title="查看消息" id="viewMsgWindow" scrolling="no" style="width:745px;height:540px;overflow: hidden;" data-options="shadow:true,modal:true">
+<div class="easyui-window" title="查看消息" id="viewMsgWindow" scrolling="no" style="width:745px;height:400px;overflow: hidden;" data-options="shadow:true,modal:true">
     <iframe id="viewMsgFrame" frameborder="0" width="100%" height="100%"></iframe>
 </div>
+
+
+

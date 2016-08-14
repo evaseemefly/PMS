@@ -765,6 +765,7 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\obj\Debug\SMSOA.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\ICSharpCode.SharpZipLib.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\controllers.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\service.xml
+D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.BLL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\roslyn\csc.exe
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -831,7 +832,6 @@ D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.DALFactory.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\ServiceStack.Interfaces.dll
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\Common.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\ISMS.pdb
-D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.BLL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.DALSQLSer.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.IBLL.pdb
 D:\01编程\02协作开发\SMSOA\PMS\SMSOA\bin\PMS.Model.pdb

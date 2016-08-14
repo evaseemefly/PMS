@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.IBLL;
 
 namespace PMS.BLL
 {
-    public partial class RoleInfoBLL
+    public partial class RoleInfoBLL : IBaseDelBLL
     {
         /// <summary>
         /// 根据id集合批量删除RoleInfo
@@ -68,7 +69,15 @@ namespace PMS.BLL
 
         }
 
-
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
+        }
 
         public bool SetRole4Action(int roleId, List<int> list_actionIds)
         {

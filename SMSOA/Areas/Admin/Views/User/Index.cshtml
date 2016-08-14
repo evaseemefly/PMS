@@ -19,9 +19,11 @@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
     <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
+    @Html.Partial("_Partial_BtnAction")
+    @Html.Partial("_Partial_SonWindow")
     <script type="text/javascript">
-
         var toolbar = [{
             iconCls: 'icon-add',
             text: "新增",
@@ -42,7 +44,11 @@
             iconCls: 'icon-search',
             text: "用户角色设置",
             handler: AssignRole
-        }]
+        },"-", {
+            iconCls: 'icon-key-16',
+             text: "重置密码",
+             handler: ResetPassword
+         }]
 
         //是否禁用
         var IsPassColumns = [
@@ -179,39 +185,10 @@
 
 
         var UserId = "";
-        function AssignRole() {
-            var rows = $("#datagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length != 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-            $("#showRoleWindow").window('open');
-            UserId = rows[0].ID;
-            loadDatagrid_Role(UserId, RoleColumns);
-        }
 
-        function AssignAction() {
-            var rows = $("#datagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length != 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-            $("#showActionWindow").window('open');
-            UserId = rows[0].ID;
-            loadDatagrid_Action(UserId, ActionColumns);
-        }
+
+
+        
 
         function getRoleSelection() {
             //获取所选的角色
@@ -312,80 +289,6 @@
         }
         //后续优化：将AssignRole和AssignAction的前台代码合并一下
 
-        @*function AssignAction() {
-            var rows = $("#datagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length != 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-            $("#assignActionWindow").window('open');
-            UserId = rows[0].ID;
-            //可装载组合框
-            $('#combo_action').combobox({
-                url: '@ViewBag.ShowAssignActionInfo?id= ' + UserId,
-                valueField: 'id',
-                textField: 'text',
-                //设置为允许多选
-                multiple: true,
-
-                panelHeight: 'auto',
-                formatter: function (row) {
-                    var opts = $(this).combobox('options');
-                    return '<input type="checkbox" class="combobox-checkbox">' + row[opts.textField]
-                },
-                //获取数据成功后启动事件
-                onLoadSuccess: function () {
-                    var opts = $(this).combobox('options');
-                    var target = this;
-                    var values = $(target).combobox('getValues');
-                    $.map(values, function (value) {
-                        var el = opts.finder.getEl(target, value);
-                        el.find('input.combobox-checkbox')._propAttr('checked', true);
-                    })
-                },
-                //选中某项后启动事件
-                onSelect: function (row) {
-                    var opts = $(this).combobox('options');
-                    var el = opts.finder.getEl(this, row[opts.valueField]);
-                    el.find('input.combobox-checkbox')._propAttr('checked', true);
-                },
-                //取消选中后启动事件
-                onUnselect: function (row) {
-                    var opts = $(this).combobox('options');
-                    var el = opts.finder.getEl(this, row[opts.valueField]);
-                    el.find('input.combobox-checkbox')._propAttr('checked', false);
-                }
-            });
-
-        }
-
-        function getActionSelection() {
-            //获取所选的角色
-            var val = $('#combo_action').combobox('getValues');
-            var tex = $('#combo_action').combobox('getText');
-
-            if ($.messager.confirm("提示", "您已选择：" + tex + "; 准备提交？", function (r) {
-                    if (r) {
-                   $.post("@ViewBag.DoAssignActionInfo?UserId=" + UserId + "&&ids=" + val, function (data) {
-                //请求成功后的回调函数
-                //执行afterEdit
-                 $("#assignActionWindow").window('close');
-                afterEdit("修改成功");
-            });
-            }
-            }));
-        }*@
-
-
-
-
-
         //提交
         function submitForm() {
             //$("#editWindow").submit()
@@ -427,83 +330,7 @@
         }
 
 
-        function addRow() {
-
-            //打开编辑窗体
-
-            $('#editWindow').window({ title: '新建用户' });
-           
-            //从指定页面中预读取数据
-            $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
-			 $("#editWindow").window('open');
-           
-
-        }
-
-        function removeRow() {
-            var rows = $("#datagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length < 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-            //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
-                if (r) {
-                    var strId = "";
-                for (var i = 0; i < rows.length; i++) {
-                        strId = strId + rows[i].ID + ",";
-            }
-                //去掉最后一个逗号
-                strId = strId.substr(0, strId.length - 1);
-                $.post("/Admin/User/DelSoftUserInfos?ids=" + strId, function (data) {
-                //请求成功后的回调函数
-                if (data == "ok") {
-                //重新加载datagrid
-                   $("#datagrid").datagrid('reload');
-                //清楚所选中的行
-                $("#datagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
-            }
-            });
-            }
-            }));
-
-        }
-
-        function editRow() {
-            var rows = $("#datagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length != 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
-          
-            $("#editWindow").window({title:'编辑用户'});
-            $("#editWindow").window('open');
-            //若选中了一行数据则执行修改操作
-            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
-            $("#setUserRoleFrame").attr("src", "/Admin/User/ShowEditUserInfo?id=" + rows[0].ID);//会出现重定向的错误
-            //$("#setActionRoleFrame").attr("src", "/Admin/Action/Test");
-
-            //$.get("/Admin/Action/EditActionInfo/" + rows[0].ID, null, function (data) {
-            //    //成功执行毁掉函数，为当前的将返回的html页面给当前的指定div
-
-            //    $("#editWindow").html(data);
-            //});
-            //$("#editWindow").window('open');
-           
-        }
+        
 
         function provideAction() {
 
@@ -538,6 +365,7 @@
             $("#addWindow").window('close');
             $("#showRoleWindow").window('close');
             $("#showActionWindow").window('close');
+            $("#showResetPwdWindow").window('close');
             //2 位datagrid加载数据
             $("#datagrid").datagrid({
                 width: 'auto',
@@ -581,37 +409,6 @@
             <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" scroll="no" @*不显示滚动条*@></iframe>
         </div>
    </div>
-    <div id="setRoleDiv">
-        <div class="easyui-window" id="showRoleWindow" title="分配角色" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
-            <div class="easyui-layout" data-options="fit:true" style="border:0px">
-                @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
-                <div data-options="region:'center'" style="border:0px">
-                    <table class="easyui-datagrid" id="role" data-options="fit:true"></table>
-                </div>
-                <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
-                    <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@ onclick="getRoleSelection()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelRoleAssign()" style="width:80px">取消</a>
-                </div>
-            </div>
-            @* scrolling 不显示滚动条*@
-
-        </div>
-    </div>
-    <div id="setActionDiv">
-        <div class="easyui-window" id="showActionWindow" title="分配权限" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
-            <div class="easyui-layout" data-options="fit:true" style="border:0px">
-                @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
-                <div data-options="region:'center'" style="border:0px">
-                    <table class="easyui-datagrid" id="action" data-options="fit:true"></table>
-                </div>
-                <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
-                    <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" @*href="javascript:void(0)"*@ onclick="getActionSelection()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelActionAssign()" style="width:80px">取消</a>
-                </div>
-            </div>
-            @* scrolling 不显示滚动条*@
-
-        </div>
-    </div>
+   
 </body>
 </html>

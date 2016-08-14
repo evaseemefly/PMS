@@ -9,7 +9,7 @@ using PMS.Model.SMSModel;
 
 namespace PMS.BLL
 {
-    public partial class S_SMSRecord_CurrentBLL:BaseBLL<S_SMSRecord_Current>,IS_SMSRecord_CurrentBLL
+    public partial class S_SMSRecord_CurrentBLL:BaseBLL<S_SMSRecord_Current>,IS_SMSRecord_CurrentBLL, IBaseDelBLL
     {
         /// <summary>
         /// 将查询结果写入数据库
@@ -86,6 +86,16 @@ namespace PMS.BLL
                 }
             }
             return this.CurrentDBSession.SaveChanges();
+        }
+
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
         }
 
         #region 暂时不使用了

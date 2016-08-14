@@ -10,7 +10,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class S_SMSMissionBLL: BaseBLL<S_SMSMission>, IS_SMSMissionBLL
+    public partial class S_SMSMissionBLL: BaseBLL<S_SMSMission>, IS_SMSMissionBLL,IBaseDelBLL
     {
         /// <summary>
         /// 查询全部的短信任务
@@ -49,6 +49,16 @@ namespace PMS.BLL
                 return GetListBy(s => s.isDel == false).ToList();
             }
             
+        }
+
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
         }
 
         /// <summary>

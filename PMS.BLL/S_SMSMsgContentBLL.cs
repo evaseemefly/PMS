@@ -9,7 +9,7 @@ using PMS.IBLL;
 
 namespace PMS.BLL
 {
-   public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL
+   public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL, IBaseDelBLL
     {
         /// <summary>
         /// 根据用户id以及任务id查询与之相对应的短信模板实体对象
@@ -77,6 +77,15 @@ namespace PMS.BLL
             }
         }
 
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
+        }
         public List<S_SMSMsgContent> GetListByIds(List<int> list_ids)
         {
             return GetListBy(t => list_ids.Contains(t.TID)).ToList();

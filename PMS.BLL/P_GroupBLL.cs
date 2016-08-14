@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using PMS.Model;
+using PMS.IBLL;
 
 namespace PMS.BLL
 {
-   public partial class P_GroupBLL
+   public partial class P_GroupBLL : IBaseDelBLL
     {
         /// <summary>
         /// 查询指定联系人id的所属群组集合
@@ -44,6 +45,16 @@ namespace PMS.BLL
             {
                 return list_group_rest.ToList();
             }
+        }
+
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
         }
 
         /// <summary>

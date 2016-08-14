@@ -225,6 +225,8 @@
     <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
     <Compile Include="Areas\News\Controllers\HomeController.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
+    <Compile Include="Areas\Recycled\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Recycled\RecycledAreaRegistration.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
@@ -270,6 +272,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Icon\Common\16\new.png" />
+    <Content Include="Images\Icon\Common\16\key_16.png" />
+    <Content Include="Images\Icon\Common\24\key_24.png" />
     <Content Include="Images\Icon\Common\24\new.png" />
     <Content Include="Images\Icon\Contact\group-large.png" />
     <Content Include="Images\Icon\Contact\group.png" />
@@ -377,6 +381,12 @@
     <Content Include="Areas\News\Views\Home\ShowEditMsg.cshtml" />
     <Content Include="Areas\News\Views\Home\NewsListShow.cshtml" />
     <Content Include="Areas\News\Views\Home\_Partial_NewsListShow_loadNews.cshtml" />
+    <Content Include="Areas\Recycled\Views\web.config" />
+    <Content Include="Areas\Recycled\Views\Shared\_Layout_Common.cshtml" />
+    <Content Include="Areas\Recycled\Views\Home\Index.cshtml" />
+    <Content Include="Areas\News\Views\Home\ShowMsg - 8月13日修改备份.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_Partial_BtnAction.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_Partial_SonWindow.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -411,6 +421,7 @@
     <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
+    <Content Include="Scripts\MyScripts\Common\my_loadDataGrid.js" />
     <Content Include="Scripts\MyScripts\Common\my_SetiframeBody.js" />
     <Content Include="Scripts\MyScripts\Common\Submit.js" />
     <Content Include="Scripts\MyScripts\Common\ValidateExtend.js" />
@@ -462,6 +473,7 @@
     <Content Include="Views\Shared\_SMS_Layout.cshtml" />
     <Content Include="Views\Shared\_Admin_AddUser_Layout.cshtml" />
     <Content Include="Views\Shared\_Contact_AddEdit_Layout.cshtml" />
+    <Content Include="Views\Shared\_Partial_loadDataGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -471,6 +483,7 @@
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Areas\News\Models\" />
     <Folder Include="Areas\News\Views\News\" />
+    <Folder Include="Areas\Recycled\Models\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\black\" />
     <Folder Include="Scripts\EasyUI\themes\bootstrap\" />

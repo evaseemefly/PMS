@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.IBLL;
 
 namespace PMS.BLL
 {
-   public partial class P_DepartmentInfoBLL
+   public partial class P_DepartmentInfoBLL : IBaseDelBLL
     {
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的DepartmentInfo集合
@@ -21,6 +22,10 @@ namespace PMS.BLL
 
         }
 
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
+        }
 
         /// <summary>
         /// 根据部门DID删除指定PID的联系人
