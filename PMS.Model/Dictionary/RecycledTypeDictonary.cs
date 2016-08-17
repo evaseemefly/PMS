@@ -10,6 +10,10 @@ namespace PMS.Model.Dictionary
     {
         private static Dictionary<int, string> recycledType;
 
+        /// <summary>
+        /// 获取字典
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<int, string> GetRecycledTypeCode()
         {
             return recycledType;

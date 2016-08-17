@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IActionInfoBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
+    <Compile Include="IBaseDelBLL.cs" />
     <Compile Include="IBLL.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

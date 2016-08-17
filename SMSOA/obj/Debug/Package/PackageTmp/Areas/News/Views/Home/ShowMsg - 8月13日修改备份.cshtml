@@ -1,0 +1,105 @@
+﻿
+@{
+
+    ViewBag.Title = "ShowMsg";
+    //将通过ViewData的方式传入的news对象转成ViewModel_News类型
+    PMS.Model.ViewModel.ViewModel_News model = ViewData["news"] as PMS.Model.ViewModel.ViewModel_News;
+    Layout = "~/Areas/News/Views/Shared/_Layout_ShowWindow.cshtml";
+}
+@section Body{
+    <style>
+        .my_header{
+            font-family: 'Microsoft YaHei UI';
+            /*font-weight:bolder;*/
+        }
+        tr{
+            /*margin-top:50px;*/
+            /*line-height:50px;*/
+        }
+    </style>
+    <div style="height:30px;width:100%;background-color:#000000"></div>
+    <input type="hidden" id="UID" name="UID" value="" />
+    <input type="hidden" id="TID" name="TID" value="" />
+<table cellpadding="3" style="margin-left:40px;width:70%;border:groove;border-color:dodgerblue;border-collapse:collapse;border-spacing:100px;">
+    <!--<tr style="line-height:10px;border-top-style:groove;border-top-color:dodgerblue;border-left-style:groove;border-left-color:dodgerblue;border-right-style:groove;border-right-color:dodgerblue">-->
+    <tr style="line-height:10px;">
+        <td class="my_header"><h4>题目:</h4></td>
+    </tr>
+    <!--<tr style="border-bottom-style:groove;border-bottom-color:dodgerblue;border-left-style:groove;border-left-color:dodgerblue;border-right-style:groove;border-right-color:dodgerblue">-->
+    <tr style="line-height:10px;border-bottom-style:outset;border-bottom-color:lawngreen;">
+        <td>
+            @ViewBag.NewsTitle
+        </td>
+    </tr>
+    <tr>
+        <td>发布人:</td>
+    </tr>
+    <tr style="line-height:10px;border-bottom-style:outset;border-bottom-color:lawngreen;">
+        <td>
+            123
+        </td>
+    </tr>
+
+    <tr>
+        <td><h1>内容:</h1></td>
+    </tr>
+    @*<tr style="line-height:10px;border-bottom-style:outset;border-bottom-color:lawngreen;">*@
+    <tr style="border-bottom-style:outset;border-bottom-color:lawngreen;">
+        <td style="margin:20px">
+            @ViewBag.NewsContent
+        </td>
+    </tr>
+    <tr>
+        <td>阅读人数:</td>
+    </tr>
+    <tr>
+        <td class="comment" colspan="1">
+            XX1，XX2
+        </td>
+    </tr>
+</table>
+    @*<table cellpadding="3" style="margin-left:40px;width:95%;border-collapse:collapse;border-spacing:100px;">
+        <tr>
+            <td class="my_header"><h4>题目:</h4></td>
+        </tr>
+        <tr>
+            <td>
+                @ViewBag.NewsTitle
+            </td>
+        </tr>
+        <tr>
+            <td>发布人:</td>
+        </tr>
+        <tr>
+            <td>
+                123
+            </td>
+        </tr>
+        <tr>
+            <td><h5>内容:</h5></td>
+        </tr>
+        <tr>
+           
+            <td colspan="2" style="margin:20px">
+                @ViewBag.NewsContent
+            </td>
+        </tr>
+        <tr>
+           
+            <td>阅读人数:</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="comment" colspan="2">
+                XX1，XX2
+            </td>
+        </tr>
+    </table>*@
+    <div style="text-align:center;padding:5px">
+        <div style="text-align:center;padding:5px">
+            @*<input type="submit" value="提交" />*@
+            <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()">提交</a>
+            <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a>
+        </div>
+    </div>
+}

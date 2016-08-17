@@ -10,7 +10,7 @@ using PMS.Model.SMSModel;
 
 namespace PMS.BLL
 {
-    public partial class S_SMSContentBLL : BaseBLL<S_SMSContent>, IS_SMSContentBLL
+    public partial class S_SMSContentBLL : BaseBLL<S_SMSContent>, IS_SMSContentBLL, IBaseDelBLL
     {
         /// <summary>
         /// 将短信存入SMSMsgContent
@@ -75,6 +75,16 @@ namespace PMS.BLL
             {
                 return query;
             }
+        }
+
+        /// <summary>
+        /// 根据传入的id集合执行物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool PhysicsDel(List<int> list_ids)
+        {
+            return true;
         }
 
         /// <summary>

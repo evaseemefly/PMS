@@ -319,29 +319,33 @@ namespace SMSOA.Areas.Contacts.Controllers
             //7月8日修改
             //使用Send/GetPersonByMission这个方法替换上面注释掉的方法
 
-            //1 根据mid获取指定任务对象
-            var mission = smsmissionBLL.GetListBy(s => s.SMID == smid).FirstOrDefault();
-            //2 根据短信任务查找对应的群组
-            var group = mission.R_Group_Mission.ToList();
-            //2.1 创建该任务所拥有的群组对象集合
-            List<P_Group> list_group = new List<P_Group>();
-            //2.2 添加至群组对象集合中
-            group.ForEach(g => list_group.Add(g.P_Group));
-            //2.3 根据群组对象集合获取该群组集合中所共有的联系人
-            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
-            list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
+            #region 8月16日 临时注释掉
+            ////1 根据mid获取指定任务对象
+            //var mission = smsmissionBLL.GetListBy(s => s.SMID == smid).FirstOrDefault();
+            ////2 根据短信任务查找对应的群组
+            //var group = mission.R_Group_Mission.ToList();
+            ////2.1 创建该任务所拥有的群组对象集合
+            //List<P_Group> list_group = new List<P_Group>();
+            ////2.2 添加至群组对象集合中
+            //group.ForEach(g => list_group.Add(g.P_Group));
+            ////2.3 根据群组对象集合获取该群组集合中所共有的联系人
+            //List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            //list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
 
-            //3 根据短信任务查找对应的部门
-            var department = mission.R_Department_Mission.ToList();
-            //3.1 创建该任务所拥有的部门对象集合
-            List<P_DepartmentInfo> list_department = new List<P_DepartmentInfo>();
-            //3.2 添加至部门对象集合中
-            department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
-            //3.3 根据部门对象集合获取该群组集合中所共有的联系人
-            list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
+            ////3 根据短信任务查找对应的部门
+            //var department = mission.R_Department_Mission.ToList();
+            ////3.1 创建该任务所拥有的部门对象集合
+            //List<P_DepartmentInfo> list_department = new List<P_DepartmentInfo>();
+            ////3.2 添加至部门对象集合中
+            //department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
+            ////3.3 根据部门对象集合获取该群组集合中所共有的联系人
+            //list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
 
-            //4 将联系人集合去重
-            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
+            ////4 将联系人集合去重
+            //list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
+            #endregion
+
+            var list_person= smsmissionBLL.GetPersonByMission(smid, true);
             rowCount = list_person.Count();
             //10 分页
             list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(m => m.ToMiddleModel()).ToList();

@@ -57,6 +57,14 @@ namespace PMS.IBLL
 
         bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_group);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        List<P_PersonInfo> GetPersonByMission(int smid, bool isMiddle);
+
 
         /// <summary>
         /// 移除所有传入ID的任务所拥有的群组

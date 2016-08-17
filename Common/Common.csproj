@@ -79,6 +79,7 @@
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
+    <Compile Include="EasyUIFormat\ToEasyUICombogrid_Common.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Mission.cs" />
     <Compile Include="Encryption.cs" />

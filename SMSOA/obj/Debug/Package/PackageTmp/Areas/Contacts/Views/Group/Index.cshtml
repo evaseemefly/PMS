@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    int showGroupToolbar = ViewBag.ShowGroupToolbar;
+    int showPerToolbar = ViewBag.ShowPersonToolbar;
+    Layout = "~/Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml";
+    }
+@section Scripts{
+    <script type="text/javascript">
+        var myColumns = [[
+{ field: 'GID', title: 'ID', width: 100, hidden: true },
+{ field: 'GroupName', title: '群组名称', width: "100%" }
+        ]]
+
+        var toolbar = [{
+            id: 'add_group',
+            iconCls: 'icon-add',
+            text: "新增",
+            //width:"15px",
+            handler: addGroupRow@*addRow("@ViewBag.ShowAdd")*@
+            },
+           {
+               id: 'del_group',
+               iconCls: 'icon-remove',
+               text: "删除",
+               //width: "15px",
+               handler: removeGroupRow@*removeRow("@ViewBag.Del_url")*@
+               },
+           {
+               id: 'edit_group',
+               iconCls: 'icon-edit',
+               text: "编辑",
+               //width: "15px",
+               handler: editGroupRow@*editRow("@ViewBag.ShowEdit")*@
+               }]
+
+
+        function addGroupRow() {
+            //从指定页面中预读取数据
+            $("#addGroupFrame").attr("src", '@ViewBag.ShowAddGroup');
+            //打开编辑窗体
+            $("#editContactWindow").panel({ title: "新建群组" });
+            $("#editContactWindow").window('open');
+
+        }
+
+        function editGroupRow() {
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //**注意先加载iframe窗体的数据，在打开该窗口
+            $("#addGroupFrame").attr("src", "@ViewBag.ShowEditGroup" + "?id=" + rows[0].GID);//会出现重定向的错误
+            $("#editContactWindow").panel({ title: "编辑群组" });
+            $("#editContactWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+
+        }
+
+
+        function removeGroupRow() {
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                //6月13日添加判断forbidDel属性
+                        //判断若禁用属性为true，说明为全部联系人不可删除，则跳过
+                        if (rows[i].forbidDel) {
+                //提示全部联系人无法删除
+                $.messager.show({
+                title: '提示',
+                msg: '全部联系人禁止删除',
+                showType: 'show'
+            });
+            }
+            else {
+                 strId = strId + rows[i].GID + ",";
+            }
+            }
+                //若选择删除的是全部联系人最终的strId长度会为0，若此时提交后台会出错，此处添加一个判断
+                if (strId.length == 0) {
+                return;
+            }
+            else {
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.DelGroup_url?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   $("#contactsdatagrid").datagrid('reload');
+                //清楚所选中的行
+                //7月7日
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
+                ComboboxDisable();
+                $("#contactsdatagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+
+            }
+            }));
+
+        }
+
+       //编辑或创建某个权限后执行的操作
+        function afterEditContact(msg,type) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            //$.messager.alert('提示', msg);
+
+            //$("#editGroupWindow").window('close');
+
+            afterContact_Common(msg,type);
+            //$("#editPersonWindow").window('close');
+            //2 刷新当前页面
+            loadDataGrid('@ViewBag.GetInfo', myColumns);
+        }
+         @*
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editGroupWindow").window('close');
+            $("#editPersonWindow").window('close');
+            //2 刷新当前页面
+            //$("#contactsdatagrid").datagrid('reload');
+            loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+        }*@
+
+        //获取群组或部门id
+        function loadPersonGridByGID(url, myPersonColumns, myPersonToolbar) {
+            //1 获取选中的行
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].GID;
+            //this.gid = strId;
+            //为隐藏域赋值
+            $("#gid_Hidden").val(strId);
+            url = url + "?gid=" + strId;
+           var isloadCombo = false;
+            if(@showPerToolbar==1){
+                isloadCombo=true;
+            }
+            loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo);
+        }
+
+        $(function () {
+
+            loadDataGrid('@ViewBag.GetInfo', myColumns);
+
+            //为点击群组datgrid添加点击事件
+            $("#contactsdatagrid").datagrid({
+                onClickRow: function (index, field, value) {
+                    //1 点击某一群组后两个下拉框设置为Enable并清除其中的选中项
+                    ComboboxEnableAndClear();
+                    ComboboxDisable();
+                    //2
+                    loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+                    checkShowToolbar("@showGroupToolbar", "@showPerToolbar", "group");
+                }
+            });
+            checkShowToolbar("@showGroupToolbar", "@showPerToolbar", "group");
+        })
+
+        function loadDataGrid(url, myColumns) {
+            //2 位datagrid加载数据
+            $("#contactsdatagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+
+                fitColumns: false,
+                striped: true,
+                showFooter: true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '加载中……',
+                columns: myColumns,
+                toolbar: toolbar
+
+            });
+        }
+    </script>
+@Html.Partial("_Partial_ShowToolbar")
+    }
+
+@section westdiv{
+    <div id="p" data-options="region:'west'" title="群组列表"]
+style="width:21%">
+        <input type="hidden" id="gid_Hidden" />
+    <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
+    </div>
+    }
+
+@section showWindow{
+    <div class="easyui-window" title="编辑部门" id="editContactWindow" style="width:460px;height:405px;overflow: hidden" data-options="shadow:true,modal:true">
+    <iframe id="addGroupFrame" frameborder="0" width="100%" height="100%" scrolling="no" @*不显示滚动条*@></iframe>
+</div>
+    }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PMS.BLL
 {
-   public abstract class BaseBLL<T>
+   public abstract class BaseBLL<T>/*:BaseDelBLL<T>*/
     {
 
         /// <summary>

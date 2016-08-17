@@ -22,7 +22,8 @@ namespace SMSOA.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-
+            ViewBag.UserId = base.LoginUser.ID;
+            ViewBag.ResetPwd = "/Admin/User/ResetPwd";
             return View();
         }
 
