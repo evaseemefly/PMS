@@ -17,6 +17,8 @@ namespace SMSOA.Areas.News.Controllers
         public ActionResult Index()
         {
             ViewBag.GetAllNewsList = "GetNewsByTypeList";
+            ViewBag.RecentAllNews = "GetRecentAllNews";
+            ViewBag.RecentUnReadNew = "GetRecentUnReadNews";
             ViewBag.ShowMsg= "/News/Home/ShowMsg";
            
             return View();
@@ -30,9 +32,28 @@ namespace SMSOA.Areas.News.Controllers
             ViewBag.NewsTitle = news.Title;
             //ViewBag.CreateUser=news.
             ViewBag.NewsContent = news.NewsContent;
+            ViewBag.UID = base.LoginUser.ID;
+            ViewBag.NID = news.SNID;
+            ViewBag.IsReadUrl = "IsRead";
             //ViewData["news"] = news;
             //ViewData.Model = news;
             return View();
+        }
+
+        /// <summary>
+        /// 已阅
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult IsRead()
+        {
+            //获取传入的用户id以及消息id
+            int uid = int.Parse(Request["uid"]);
+            int nid  = int.Parse(Request["nid"]);
+            //将该用户的打开的当前消息设置为已阅
+            //修改R_UserInfo_News表中的isCheck字段
+            //已封装至NewsBLL层中
+            return newsBLL.IsRead(uid, nid) == true ? Content("ok") : Content("error");
+
         }
 
         public ActionResult NewsListShow()
@@ -40,6 +61,7 @@ namespace SMSOA.Areas.News.Controllers
             ViewBag.ShowAdd = "/News/Home/ShowAddMsg";
             ViewBag.ShowMsg= "/News/Home/ShowMsg";
             ViewBag.GetNewsList= "GetAllNewsList";
+
             ViewBag.ShowEdit = "/News/Home/ShowEditMsg";
             @ViewBag.DoDel = "/News/Home/DoDelMsg";
             return View();
@@ -154,13 +176,30 @@ namespace SMSOA.Areas.News.Controllers
         }
 
         #endregion
-        public ActionResult GetAllNewsList()
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type">1 全部消息 2 最近（5条）未读消息（不分种类） 3 最近（5条）消息</param>
+        /// <returns></returns>
+        private ActionResult BaseGetNewsList(int type)
         {
-            int pageSize = int.Parse(Request.Form["rows"]);
-            int pageIndex = int.Parse(Request.Form["page"]);
+            int pageSize = 0;
+            int pageIndex = 0;
+            if (Request.Form["rows"]==null|| Request.Form["page"] == null)
+            {
+                
+            }
+            else
+            {
+            pageSize = int.Parse(Request.Form["rows"]);
+            pageIndex = int.Parse(Request.Form["page"]);
+            }
+
             int count = 0;
             //根据登录用户查询其接收到的全部消息
-            var list = newsBLL.GetAllNewsPageListByUser(this.LoginUser.ID,ref count, true,pageIndex, pageSize);
+            var list = GetAllKindsOfNewsFactory(type, ref count, pageIndex, pageSize);
+            //var list = newsBLL.GetAllNewsPageListByUser(this.LoginUser.ID, ref count, true, pageIndex, pageSize);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = count,
@@ -169,6 +208,67 @@ namespace SMSOA.Areas.News.Controllers
             };
             //序列化
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
+       
+
+        public List<N_News> GetAllKindsOfNewsFactory(int type,ref int count,int pageIndex,int pageSize)
+        {
+            List<N_News> list_news = new List<N_News>();
+            switch (type)
+            {
+                //获取该用户的全部消息
+                case 1:
+                    list_news= newsBLL.GetAllNewsPageListByUser(this.LoginUser.ID, ref count, true, pageIndex, pageSize);
+                    break;
+                //获取当前登录用户的最近（5条）未读消息（不分种类）
+                case 2:
+                    list_news = newsBLL.GetRecentUnReadNewsPageListByUser(this.LoginUser.ID,  true);
+                    break;
+                //获取当前登录用户的最近（5条）消息
+                case 3:
+                    list_news = newsBLL.GetRecentAllNewsPageListByUser(this.LoginUser.ID, true);
+                    break;
+                default:
+                    break;
+            }
+            return list_news;
+
+        }
+
+        public ActionResult GetAllNewsList()
+        {
+            #region 已抽象
+            //int pageSize = int.Parse(Request.Form["rows"]);
+            //int pageIndex = int.Parse(Request.Form["page"]);
+            //int count = 0;
+            ////根据登录用户查询其接收到的全部消息
+            //var list = newsBLL.GetAllNewsPageListByUser(this.LoginUser.ID,ref count, true,pageIndex, pageSize);
+            //PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            //{
+            //    total = count,
+            //    rows = list,
+            //    footer = null
+            //};
+            ////序列化
+            //return Content(Common.SerializerHelper.SerializerToString(dgModel));
+            #endregion
+           return BaseGetNewsList(1);
+        }
+
+        public ActionResult GetAllUnReadNewsList()
+        {
+            return BaseGetNewsList(4);
+        }
+
+        public ActionResult GetRecentUnReadNews()
+        {
+            return BaseGetNewsList(2);
+        }
+
+        public ActionResult GetRecentAllNews()
+        {
+            return BaseGetNewsList(3);
         }
 
         public ActionResult GetNewsByTypeList(int type)

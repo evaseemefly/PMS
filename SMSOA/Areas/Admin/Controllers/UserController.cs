@@ -28,6 +28,7 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.DoAssignRoleInfo = "/Admin/User/DoAssignRoleInfo";
             ViewBag.ShowAssignActionInfo = "/Admin/User/ShowAssignActionInfo";
             ViewBag.DoAssignActionInfo = "/Admin/User/DoAssignActionInfo";
+            ViewBag.ResetPwd = "ResetPwd";
             return View();
         }
 
@@ -53,6 +54,16 @@ namespace SMSOA.Areas.Admin.Controllers
                 {
                     return Content("error");
                 }
+        }
+
+        public ActionResult ResetPwd()
+        {
+            int uid = int.Parse(Request.QueryString["uid"]);
+            //Request.Form
+            string pwd = Request.QueryString["pwd"];
+            var model = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault();
+                model.UPwd= Encryption.MD5Encryption(pwd);
+            return userInfoBLL.Update(model) == true ? Content("ok") : Content("error");
         }
         ///<summary>
         /// 显示添加用户

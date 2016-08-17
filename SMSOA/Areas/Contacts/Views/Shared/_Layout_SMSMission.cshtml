@@ -375,9 +375,20 @@
                         //}
                         //1 若未选中的窗台，当选中该行时，默认为其赋为选中（isPass为true）
                         if (row.checked == false) {
-                            row.IsPass = true;
+                            if (row.IsPass == true)
+                                row.IsPass = true;
+                            else {
+                                row.IsPass = false;
+                            }
                         }
-                        
+                        if (row.checked == undefined) {
+                            
+                            if (row.IsPass==true)   
+                                row.IsPass = true;
+                            else {
+                                row.IsPass = false;
+                            }
+                        }
                         $('#department').treegrid('beginEdit', row.DID);
                     },
                     onUncheck: function (row) {
@@ -398,7 +409,7 @@
             function getChecked_treegrid(data) {
                 if (data.length > 0) {
                     $.each(data, function (i, item) {
-                        if (item.checked) {
+                        if (item.selected) {
                             $('#department').treegrid('select', item.DID);
                         }
                     })

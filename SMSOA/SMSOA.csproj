@@ -272,6 +272,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Icon\Common\16\new.png" />
+    <Content Include="Images\Icon\Common\16\key_16.png" />
+    <Content Include="Images\Icon\Common\24\key_24.png" />
     <Content Include="Images\Icon\Common\24\new.png" />
     <Content Include="Images\Icon\Contact\group-large.png" />
     <Content Include="Images\Icon\Contact\group.png" />
@@ -382,6 +384,11 @@
     <Content Include="Areas\Recycled\Views\web.config" />
     <Content Include="Areas\Recycled\Views\Shared\_Layout_Common.cshtml" />
     <Content Include="Areas\Recycled\Views\Home\Index.cshtml" />
+    <Content Include="Areas\News\Views\Home\ShowMsg - 8月13日修改备份.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_Partial_BtnAction.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_Partial_SonWindow.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Partial_ResetPwd.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top_BtnAction.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

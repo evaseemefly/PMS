@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "ShowEditMsg";
+    Layout = "~/Areas/News/Views/Shared/_Layout_ShowWindow.cshtml";
+}
+
+@section CSS{
+    <style type="text/css">
+        td {
+            font-family: 'Microsoft YaHei UI';
+            color: #ffffff;
+            font-weight: 200;
+        }
+
+        .comment {
+            font-family: 'Microsoft YaHei';
+            font-size: small;
+            color: #aaa6a6;
+        }
+    </style>
+    }
+
+@section Scripts{
+    <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
+    <script type="text/javascript">
+        function Save() {
+            DoSubmit("ff", '@ViewBag.backAction',"公告");
+        }
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
+        function AfterLoadNewsType() {
+            $("#NewsType_combobox").combobox('setValue', '@ViewBag.NewsType');
+        }
+        var data_NewsType = [
+        { value: "0", text: "系统维护公告" },
+        { value: "1", text: "通讯录更新公告" },
+        { value: "2", text: "系统介绍公告" }]
+        $(function () {
+            @*DoSubmit("ff", ' @ViewBag.backAction');*@
+            $("#NewsType_combobox").combobox({
+                width: 100,
+                valueField: 'value',
+                textField: 'text',
+                data: data_NewsType,
+                panelHeight: 'auto',
+                editable: false,
+                onLoadSuccess: AfterLoadNewsType
+            });
+            })
+    </script>
+    }
+
+@section Body{
+   <form id="ff" class="easyui-form" method="post" style="margin:0px;">
+    <div style="height:30px;width:100%;background-color:#000000"></div>
+    <input type="hidden" name="SNID" value="@ViewBag.SNID" />
+    <input type="hidden" name="SubDateTime" value="@ViewBag.SubDateTime" />
+    <input type="hidden" name="UID" value="@ViewBag.UID" />
+    <table style="margin-left:40px;width:90%" cellpadding="3">
+
+        <tr>
+            <td style="">公告题目:</td>
+        </tr>
+        <tr>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" style="width:60%;height:25px" name="Title" value="@ViewBag.NewsTitle" data-options="required:true,validType:['String','length[1,50]']"><br />
+                请填写题目，长度不超过50字
+            </td>
+        </tr>
+        <tr>
+            <td style="">公告类型:</td>
+        </tr>
+        <tr>
+            <td class="comment">
+               <select class="easyui-combobox" name="NewsType" id="NewsType_combobox" required="required"style="height:30px;width:50%" ></select>
+                请选择公告类型
+            </td>
+        </tr>
+        <tr>
+            <td style="">公告内容:</td>
+        </tr>
+        <tr>            
+            <td colspan="2" class="comment">
+              <input class="easyui-textbox" type="text" name="NewsContent" id="NewsContent" value="@ViewBag.NewsContent" data-options="required:true,multiline:true" style="height:80px;width:300px">
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center;padding:5px">
+        <div style="text-align:center;padding:5px">
+            @*<input type="submit" value="提交" />*@
+            <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
+            <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+        </div>
+    </div>
+</form>
+    }
+

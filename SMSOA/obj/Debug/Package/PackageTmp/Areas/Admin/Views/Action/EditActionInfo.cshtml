@@ -1,0 +1,84 @@
+﻿@model PMS.Model.ActionInfo
+@{
+    Layout = null;
+}
+@using PMS.Model
+<!DOCTYPE html>
+@*@{
+
+    ViewData["actionInfo"] == null ? ViewData["actionInfo"] as ActionInfo : string.Empty;
+        }*@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditActionWindow</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/myJquery")
+    @Scripts.Render("~/Scripts/easyUIJS")
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>*@
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+
+</head>
+<body>
+    <div>
+        @*@using (Html.BeginForm())
+            {*@
+        <table cellpadding="5">
+            <tr>
+                <td>权限名称:</td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="ActionInfoName" data-options="required:true,value:'@*@ViewData["actionInfo"]*@@Model.ActionInfoName'"></input>
+                </td>
+            </tr>
+            <tr>
+                <td>上级菜单:</td>
+                <td>
+                    <select class="easyui-combobox" id="ParentActionOptions" style="width:100px" name="ParentID" data-options="data: @ViewBag.data ,                            panelHeight:'auto',valueField: 'id',textField: 'text'"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>区域名称:</td>
+                <td><input class="easyui-textbox" type="text" name="AreaName" data-options="required:true,value:'@Model.AreaName'">  </input></td>
+            </tr>
+            <tr>
+                <td>控制器名称:</td>
+                <td><input class="easyui-textbox" type="text" name="ControllerName" data-options="required:true,value:'@Model.ControllerName'"></input></td> 
+                
+            </tr>
+            <tr>
+                <td>方法名称（权限）:</td>
+                <td><input class="easyui-textbox" type="text" name="ActionMethodName" data-options="required:true,value:'@Model.ActionInfoName'"></input></td>
+            </tr>
+            <tr>
+                <td>顺序:</td>
+                <td><input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input></td>
+            </tr>
+            <tr>
+                <td>请求类型:</td>
+                <td>
+                    <select class="easyui-combobox" name="ActionTypeEnum">
+                        <option value="0">POST</option>
+                        <option value="1">GET</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+        </table>
+        <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" type="submit">提交</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>
+        </div>
+        @*})*@
+
+
+
+    </div>
+</body>
+</html>
+

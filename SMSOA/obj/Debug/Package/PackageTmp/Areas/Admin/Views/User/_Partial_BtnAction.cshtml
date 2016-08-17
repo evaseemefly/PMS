@@ -1,0 +1,166 @@
+﻿<script type="text/javascript">
+    //-----------------对用户重置密码操作------!>
+    function DoResetPwd() {
+        var rows = $("#datagrid").datagrid('getSelections');
+        var uid = rows[0].ID;
+        if ($.messager.confirm("提示", "准备提交？", function (r) {
+                if (r) {
+            //获取修改的密码
+            var newPwd = $("#UPwd").val();
+               $.post("@ViewBag.ResetPwd?uid=" + uid + "&&pwd=" + newPwd, function (data) {
+            //请求成功后的回调函数
+            //执行afterEdit
+            afterEdit("修改成功");
+             $("#showResetPwdWindow").window('close');
+        });
+        }
+        }));
+    }
+
+    function ResetPassword() {
+        //判断是否有选中的行
+        if (Common_checkSelectedRows()) {
+            //执行对该选中行对象的重置密码操作
+            $("#showResetPwdWindow").window({ title: '重置密码' });
+            $("#showResetPwdWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+            
+        }
+    }
+
+    //-----------------对用户的增删改操作------!>
+    function addRow() {
+
+        //打开编辑窗体
+
+        $('#editWindow').window({ title: '新建用户' });
+
+        //从指定页面中预读取数据
+        $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
+        $("#editWindow").window('open');
+
+
+    }
+
+    function removeRow() {
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length < 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请至少选中一行数据',
+                showType: 'show'
+            });
+            return;
+        }
+        //post请求至软删除方法
+        if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if (r) {
+                var strId = "";
+            for (var i = 0; i < rows.length; i++) {
+                    strId = strId + rows[i].ID + ",";
+        }
+            //去掉最后一个逗号
+            strId = strId.substr(0, strId.length - 1);
+            $.post("/Admin/User/DelSoftUserInfos?ids=" + strId, function (data) {
+            //请求成功后的回调函数
+            if (data == "ok") {
+            //重新加载datagrid
+               $("#datagrid").datagrid('reload');
+            //清楚所选中的行
+            $("#datagrid").datagrid('clearSelections');
+            $.messager.alert("提示", "删除成功");
+        }
+        });
+        }
+        }));
+
+    }
+
+
+
+    function editRow() {
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length != 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请选择一行数据',
+                showType: 'show'
+            });
+            return;
+        }
+
+        $("#editWindow").window({ title: '编辑用户' });
+        $("#editWindow").window('open');
+        //若选中了一行数据则执行修改操作
+        //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+        $("#setUserRoleFrame").attr("src", "/Admin/User/ShowEditUserInfo?id=" + rows[0].ID);//会出现重定向的错误
+        //$("#setActionRoleFrame").attr("src", "/Admin/Action/Test");
+
+        //$.get("/Admin/Action/EditActionInfo/" + rows[0].ID, null, function (data) {
+        //    //成功执行毁掉函数，为当前的将返回的html页面给当前的指定div
+
+        //    $("#editWindow").html(data);
+        //});
+        //$("#editWindow").window('open');
+
+    }
+
+    //-----------------对用户的赋予角色及权限操作------!>
+    function AssignAction() {
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length != 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请选择一行数据',
+                showType: 'show'
+            });
+            return;
+        }
+        $("#showActionWindow").window('open');
+        UserId = rows[0].ID;
+        loadDatagrid_Action(UserId, ActionColumns);
+    }
+
+
+    function AssignRole() {
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length != 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请选择一行数据',
+                showType: 'show'
+            });
+            return;
+        }
+        $("#showRoleWindow").window('open');
+        UserId = rows[0].ID;
+        loadDatagrid_Role(UserId, RoleColumns);
+    }
+
+
+    function Common_checkSelectedRows() {
+        var rows = $("#datagrid").datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length != 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请选择一行数据',
+                showType: 'show'
+            });
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

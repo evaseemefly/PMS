@@ -22,6 +22,22 @@ namespace PMS.IBLL
         List<N_News> GetAllNewsPageListByUser(int uid, ref int rowCount, bool isMiddleint, int index, int count = -1);
 
         /// <summary>
+        /// 获取最近的几个未读消息（最近5个）——未指定类型
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="isMiddleint"></param>
+        /// <returns></returns>
+        List<N_News> GetRecentUnReadNewsPageListByUser(int uid, bool isMiddleint);
+
+        /// <summary>
+        /// 获取最近的几个全部消息（最近5个——含已阅的消息）——未指定类型
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="isMiddleint"></param>
+        /// <returns></returns>
+        List<N_News> GetRecentAllNewsPageListByUser(int uid, bool isMiddleint);
+
+        /// <summary>
         /// 通过分页查询的方式获取当前登录用户的
         /// 指定类型的消息
         /// </summary>
@@ -51,5 +67,13 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftNews(List<int> list_ids);
+
+        /// <summary>
+        /// 将指定用户阅读的指定消息设置为已阅状态
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="nid"></param>
+        /// <returns></returns>
+        bool IsRead(int uid, int nid);
     }
 }
