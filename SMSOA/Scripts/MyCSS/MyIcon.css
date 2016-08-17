@@ -118,3 +118,7 @@
 }
 
 
+/*----------------------其他按钮样式--16px--------------------*/
+.icon-key-16 {
+    background: url('/Images/Icon/Common/16/key_16.png') no-repeat center center;
+}

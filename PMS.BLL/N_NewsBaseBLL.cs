@@ -27,20 +27,26 @@ namespace PMS.BLL
                                    select r.N_News).OrderByDescending(r => r.SubDateTime);
             return list_newsByUser;
         }
-        /// <summary>
-        /// 还原
-        /// </summary>
-        /// <returns></returns>
-        public bool Recovery(List<int> list_id)
-        {
-            return true;
-        }
 
         /// <summary>
-        /// 物理删除
+        /// 查询该用户id的全部未阅读消息
         /// </summary>
-        /// <param name="list_ids"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
+        protected IEnumerable<N_News> GetAllUnReadNewsList(int uid)
+        {
+            //1 根据传入的uid查询指定 的用户
+            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == uid).FirstOrDefault();
+
+            //2 根据用户查找对应的消息对象
+            var list_newsByUser = (from r in user.R_UserInfo_News
+                                   where r.isCheck==false
+                                   orderby r.ID
+                                   select r.N_News).OrderByDescending(r => r.SubDateTime);
+            return list_newsByUser;
+
+        }
+
         public bool PhysicsDel(List<int> list_ids)
         {
             return true;
