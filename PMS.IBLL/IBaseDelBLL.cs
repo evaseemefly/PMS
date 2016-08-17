@@ -8,6 +8,19 @@ namespace PMS.IBLL
 {
     public interface IBaseDelBLL
     {
+        /// <summary>
+        /// 物理删除
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
         bool PhysicsDel(List<int> list_ids);
+
+
+        /// <summary>
+        /// 还原
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        bool Recovery(List<int> list_ids);
     }
 }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model.Dictionary;
 using PMS.IBLL;
+using RecycledFactory;
 
 namespace SMSOA.Areas.Recycled.Controllers
 {
@@ -18,6 +19,7 @@ namespace SMSOA.Areas.Recycled.Controllers
         {
             ViewBag.LoadActionType_ComboGrid = "GetAllRecycled_ComboGrid";
             ViewBag.LoadAllDelInfo_DataGrid = "";
+            
             return View();
         }
 
@@ -25,11 +27,11 @@ namespace SMSOA.Areas.Recycled.Controllers
         /// 读取字典
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetRecycledType()
-        {
-            //根据下拉框选中的id获取该id对应的回收站中内容的种类
-            return View();
-        }
+        //public ActionResult GetRecycledType()
+        //{
+        //    根据下拉框选中的id获取该id对应的回收站中内容的种类
+        //    return View();
+        //}
 
         /// <summary>
         /// 获取下拉框中应该显示的内容
@@ -75,10 +77,18 @@ namespace SMSOA.Areas.Recycled.Controllers
         {
             //使用工厂模式实现：
             //1 根据传入的type id获取对应的bll层对象
-            // 在BLL中的各类中已经实现IBaseDelBLL接口（该接口实现：bool PhysicsDel(List<int> list_ids)方法，注意此方法需要自己实现)
-            //2 执行物理删除操作调用本控制器中的DoDel方法
+            var typeId = int.Parse(Request["id"]);
+            
+            //switch (switch_on)
+            //{
+            //    var typeBLL
+            //    default:
+            //}
+            
             return Content("");
         }
+
+       
        
     }
 }

@@ -91,7 +91,16 @@ namespace PMS.IDAL
         /// <param name="isAsc">是否为升序，true为升序</param>
         /// <returns>查询结果序列</returns>
         IQueryable<T> GetPageList<TKey>(int pageIndex, int pageSize, ref int rowCount, Expression<Func<T, bool>> whereLambda, Expression<Func<T, TKey>> orderByLambda, bool isAsc);
-         #endregion
+        #endregion
 
+
+        #region 6 从数据库中批量删除实体 +bool DelByList(List<T> list);
+        /// <summary>
+        /// 6 从数据库中批量删除实体
+        /// </summary>
+        /// <param name="model">删除的实体对象</param>
+        /// <returns></returns>
+        bool DelByList(List<T> list);
+        #endregion
     }
 }

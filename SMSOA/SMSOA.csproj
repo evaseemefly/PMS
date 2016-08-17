@@ -523,6 +523,10 @@
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RecycledFactory\RecycledFactory.csproj">
+      <Project>{56ec4f35-5575-471f-ab72-a2f50ad221b4}</Project>
+      <Name>RecycledFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
       <Name>SMSFactory</Name>

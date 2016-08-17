@@ -71,13 +71,59 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 还原
+        /// </summary>
+        /// <returns></returns>
+        public bool Recovery(List<int> list_id)
+        {
+            var list_model = this.GetListByIds(list_id);
+            list_model.ForEach(p => p.DelFlag = false);
+            try
+            {
+                this.UpdateByList(list_model);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 根据传入的id集合执行物理删除
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
         public bool PhysicsDel(List<int> list_ids)
         {
-            return true;
+            //1. 得到所有要删除的实体集合
+            var list_model = this.GetListByIds(list_ids);
+            if (list_model == null) { return false; }
+            foreach (var item in list_model)
+            {
+                //2.清除关系表中的数据
+                item.R_UserInfo_ActionInfo.Clear();
+                item.RoleInfo.Clear();
+                item.R_UserInfo_Group.Clear();
+                item.R_UserInfo_SMSMission.Clear();
+                item.S_SMSContent.Clear();
+                item.R_UserInfo_DepartmentInfo.Clear();
+                item.R_UserInfo_PersonInfo.Clear();
+                item.S_SMSMsgContent.Clear();
+                item.R_UserInfo_News.Clear();
+                item.N_News.Clear();
+            }
+            try
+            {
+                //3. 从数据库中删除这些实体对象
+                this.CurrentDAL.UpdateByList(list_model);
+                this.CurrentDAL.DelByList(list_model);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>

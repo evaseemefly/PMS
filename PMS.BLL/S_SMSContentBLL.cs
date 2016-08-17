@@ -78,6 +78,16 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 还原
+        /// </summary>
+        /// <returns></returns>
+        public bool Recovery(List<int> list_id)
+        {
+            return true;
+        }
+
+
+        /// <summary>
         /// 根据传入的id集合执行物理删除
         /// </summary>
         /// <param name="list_ids"></param>
