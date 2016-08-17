@@ -79,5 +79,10 @@ namespace PMS.BLL
             };
 
         }
+
+        public bool Recovery(List<int> list_ids)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model.Dictionary;
 using PMS.IBLL;
+using RecycledFactory;
 
 namespace SMSOA.Areas.Recycled.Controllers
 {
@@ -17,7 +18,8 @@ namespace SMSOA.Areas.Recycled.Controllers
         public ActionResult Index()
         {
             ViewBag.LoadActionType_ComboGrid = "GetAllRecycled_ComboGrid";
-            ViewBag.LoadAllDelInfo_DataGrid = "";
+            ViewBag.LoadAllDelInfo_DataGrid = "GetAllDelInfoByType";
+            ViewBag.DoDel = "DoDel";
             return View();
         }
 
@@ -25,11 +27,11 @@ namespace SMSOA.Areas.Recycled.Controllers
         /// 读取字典
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetRecycledType()
-        {
-            //根据下拉框选中的id获取该id对应的回收站中内容的种类
-            return View();
-        }
+        //public ActionResult GetRecycledType()
+        //{
+        //    根据下拉框选中的id获取该id对应的回收站中内容的种类
+        //    return View();
+        //}
 
         /// <summary>
         /// 获取下拉框中应该显示的内容
@@ -59,11 +61,18 @@ namespace SMSOA.Areas.Recycled.Controllers
         /// 传入actionType以及要物理删除的对象id数组（用,分割）
         /// </summary>
         /// <returns></returns>
-        public ActionResult DoDel(List<int> list_ids)
+        public ActionResult DoDel()
         {
+            
+            var ids = Request.QueryString["ids"];
+            //
+            var typeId = int.Parse(Request["type"]);
 
+            var myBLL = SimpleRecFactory.CreateBLL(typeId);
+            string[] strIds = ids.Split(',');
+            var list_ids = strIds.Select(p=>int.Parse(p)).ToList();
             //执行删除操作
-            delBLL.PhysicsDel(list_ids);
+            myBLL.PhysicsDel(list_ids);
             return Content("");
         }
 
@@ -75,10 +84,26 @@ namespace SMSOA.Areas.Recycled.Controllers
         {
             //使用工厂模式实现：
             //1 根据传入的type id获取对应的bll层对象
-            // 在BLL中的各类中已经实现IBaseDelBLL接口（该接口实现：bool PhysicsDel(List<int> list_ids)方法，注意此方法需要自己实现)
-            //2 执行物理删除操作调用本控制器中的DoDel方法
-            return Content("");
+            var typeId = int.Parse(Request["type"]);
+
+            var myBLL= SimpleRecFactory.CreateBLL(typeId);
+            this.delBLL = myBLL;
+            //2 需要向BaseDel父类中添加一个公用的获取全部已删除的集合的方法
+           var list= myBLL.GetIsDelList();
+
+            //3 将combogrid集合序列化并返回
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = 0,
+                rows = list,
+                footer = null
+            };
+            var temp = Common.SerializerHelper.SerializerToString(model);
+            //temp = temp.Replace("Checked", "checked");
+            return Content(temp);
         }
+
+       
        
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PMS.Model;
 using PMS.IBLL;
 using System.Linq.Expressions;
+using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
@@ -52,6 +53,14 @@ namespace PMS.BLL
             {
                 return false;
             }
+        }
+        /// <summary>
+        /// 还原
+        /// </summary>
+        /// <returns></returns>
+        public bool Recovery(List<int> list_id)
+        {
+            return true;
         }
 
         /// <summary>
@@ -292,6 +301,11 @@ namespace PMS.BLL
         {
             var list_model = this.GetListBy(r => r.PID != id && r.isDel == false).ToList();
             return list_model.Exists(r => r.PhoneNum.Equals(phoneNum));
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            return null;
         }
     }
 }

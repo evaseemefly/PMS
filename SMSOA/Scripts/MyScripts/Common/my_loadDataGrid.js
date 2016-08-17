@@ -1,6 +1,8 @@
-﻿function load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList) {
+﻿/// <reference path="D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSOA\Areas/News/Views/Home/_Partial_News_SystemMessages.cshtml" />
+function load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList) {
     //2 根据GroupID查询该群组所拥有的人员列表
     $("#" + id).datagrid({
+
         fitColumns: true,
         striped: true,
         singleSelect: isSingle,     //单选

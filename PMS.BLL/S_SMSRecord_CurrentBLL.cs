@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PMS.IBLL;
 using PMS.Model;
 using PMS.Model.SMSModel;
+using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
@@ -89,6 +90,16 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 还原
+        /// </summary>
+        /// <returns></returns>
+        public bool Recovery(List<int> list_id)
+        {
+            return true;
+        }
+
+
+        /// <summary>
         /// 根据传入的id集合执行物理删除
         /// </summary>
         /// <param name="list_ids"></param>
@@ -163,6 +174,11 @@ namespace PMS.BLL
                     result.list_SendFails.Add(sendFails);
                 }
             }
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            return null;
         }
     }
 }
