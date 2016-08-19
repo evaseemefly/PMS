@@ -109,25 +109,64 @@ namespace PMS.BLL
             foreach (var item in list_model)
             {
                 //2.清除关系表中的数据
-                item.R_UserInfo_ActionInfo.Clear();
-                item.RoleInfo.Clear();
+                /*
+                8月18日
+                注意：
+                    清除用户的关联关系时需要注意有三张表：
+                    S_SMSMsgContent和S_SMSContent、N_News
+                    在以上两张表中UserID是作为该表的外键存在
+                    （所以在删除时，需要重新为这两张表中包含当前UserId的行重新赋予一个新的UserId——否则会出现主外键约束错误）
+                    Role与User是通过一张中间关系表映射关系的
+
+                */
+                //方式一：报错
+                //item.R_UserInfo_ActionInfo.Clear();
+                // this.Update(item);
+
+                //方式二：报错
+                /*
+                DELETE 语句与 REFERENCE 约束"FK_R_UserInfo_ActionInfo_UserInfo"冲突。该冲突发生于数据库"PMS20160425"，表"dbo.R_UserInfo_ActionInfo", column 'UserInfoID'。
+                  语句已终止。
+                */
+                this.Del(item);
                 item.R_UserInfo_Group.Clear();
                 item.R_UserInfo_SMSMission.Clear();
-                item.S_SMSContent.Clear();
                 item.R_UserInfo_DepartmentInfo.Clear();
                 item.R_UserInfo_PersonInfo.Clear();
-                item.S_SMSMsgContent.Clear();
                 item.R_UserInfo_News.Clear();
-                item.N_News.Clear();
+               
+                //this.CurrentDAL.Update(item);
+                //this.CurrentDAL.UpdateByList(list_model);
+                //this.CurrentDAL.SaveChange();
+                item.RoleInfo.Clear();
+                
+                //8月18日
+                //此处需要先查询“已删除”用户的id
+                var temp = this.GetListBy(u => u.UName == "已删除").FirstOrDefault();
+                //将与User有主外键关联的表中的UID替换为“已删除”用户的id
+                if (temp != null)
+                {
+                    var uid = temp.ID;
+                    item.S_SMSContent.ToList().ForEach(s => s.UID = uid);
+
+                    item.S_SMSMsgContent.ToList().ForEach(m => m.UID = uid);
+
+                    item.N_News.ToList().ForEach(n => n.UID = uid);
+                }
+               
             }
             try
             {
                 //3. 从数据库中删除这些实体对象
-                this.CurrentDAL.UpdateByList(list_model);
+                
                 this.CurrentDAL.DelByList(list_model);
+                this.CurrentDAL.SaveChange();
+                /*
+                		Message	"操作失败: 无法更改关系，因为一个或多个外键属性不可以为 null。对关系作出更改后，会将相关的外键属性设置为 null 值。如果外键不支持 null 值，则必须定义新的关系，必须向外键属性分配另一个非 null 值，或必须删除无关的对象。"	string
+                */
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

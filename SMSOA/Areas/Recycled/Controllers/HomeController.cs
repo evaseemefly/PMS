@@ -64,7 +64,7 @@ namespace SMSOA.Areas.Recycled.Controllers
         public ActionResult DoDel()
         {
             
-            var ids = Request.QueryString["ids"];
+             var ids = Request.QueryString["ids"];
             //
             var typeId = int.Parse(Request["type"]);
 

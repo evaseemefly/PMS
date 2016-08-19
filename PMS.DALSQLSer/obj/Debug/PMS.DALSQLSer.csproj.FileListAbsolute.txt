@@ -108,7 +108,6 @@ D:\01编程\02协作开发\SMSOA\PMS\PMS.DALSQLSer\bin\Debug\zh-Hans\System.Web.
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\PMS.DALSQLSer.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\PMS.DALSQLSer.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\EntityFramework.dll
@@ -119,6 +118,7 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\PMS.ID
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\PMS.Model.pdb
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\EntityFramework.xml
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\System.Web.Mvc.xml
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.DALSQLSer\obj\Debug\PMS.DALSQLSer.dll

@@ -74,6 +74,7 @@ namespace PMS.BLL
                 //3. 从数据库中删除这些实体对象
                 this.CurrentDAL.UpdateByList(list_model);
                 this.CurrentDAL.DelByList(list_model);
+                this.CurrentDAL.SaveChange();
                 return true;
             }
             catch (Exception)
