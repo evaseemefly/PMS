@@ -4,18 +4,18 @@
                 { field: 'PersonName', title: '联系人', width: 80 },
                 { field: 'PhoneNum', title: '电话', width: 120 },
                 {
-                    field: 'StatusCode', title: '接收状态', width: 80,
-                    formatter: RecvieStatusFormat
+                    field: 'DescContent', title: '接收状态', width: 180
+                    @*formatter: RecvieStatusFormat*@
                 }
     ]]
 
-    function RecvieStatusFormat(value) {
+    @*function RecvieStatusFormat(value) {
         if (value == 0) {
             return "成功";
         }
         else {
             return "失败";
         }
-    }
+    }*@
 
 

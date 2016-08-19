@@ -57,6 +57,8 @@
     </Compile>
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
     <Compile Include="Dictionary\RecycledTypeDictonary.cs" />
+    <Compile Include="Dictionary\SMSQueryDictionary.cs" />
+    <Compile Include="Dictionary\SMSUserDictionary.cs" />
     <Compile Include="EasyUIModel\Action_ViewModel.cs" />
     <Compile Include="EasyUIModel\Department_ViewModel.cs" />
     <Compile Include="EasyUIModel\EasyUICombobox.cs" />

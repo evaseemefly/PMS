@@ -64,7 +64,7 @@
     <property name="newsBLL" ref="newsService" />
     <property name="userBLL" ref="userInfoService" />
   </object>
-  <!--<object type="SMSOA.Areas.Recycled.Controllers.HomeController, SMSOA" singleton="false" >
-    <property name="delBLL" ref="delService" />
-  </object>-->
+  <object type="PMS.BLL.UserInfoBLL, PMS.BLL" singleton="false" >
+    <property name="contentBLL" ref="smsContentService" />
+  </object>
 </objects>

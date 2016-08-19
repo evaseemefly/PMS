@@ -12,6 +12,7 @@ namespace PMS.BLL
 {
     public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL
     {
+        IS_SMSContentBLL contentBLL { get; set; }
         ///// <summary>
         ///// 
         ///// </summary>
@@ -329,11 +330,29 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<S_SMSContent> GetSMSContentListByQuery_ExpNamePhone(int pageIndex, int pageSize, ref int rowCount,PMS.Model.ViewModel.ViewModel_QueryInfo model, int uid, bool isAsc, bool isMiddle)
         {
-            //1 找到对应用户
-            var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+            var query = new List<S_SMSContent>();
+            //if (model.MissionUser_id == 1)
+            //{
+
+            //}
+            //查询全部用户（0），还是当前用户（1）
+            switch (model.MissionUser_id)
+            {
+                case 1:
+                    //1 找到对应用户
+                    var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+                    query = userModel.S_SMSContent.ToList();
+                    break;
+                case 0:
+                    // 查询全部用发送的短信内容
+                    contentBLL = new S_SMSContentBLL();
+                    query = contentBLL.GetListBy(c => c.isDel == false).ToList();
+                    break;
+            }
+
             //2 查询当前用户所拥有的全部短信
             //rowCount = userModel.S_SMSContent.Count;
-            var query = userModel.S_SMSContent.ToList();
+            
             rowCount = query.Count();
             //不根据联系人名称以及联系人电话查询
             //根据任务匹配
