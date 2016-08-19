@@ -112,9 +112,12 @@ namespace SMSOA.Areas.SMS.Controllers
             //2.2 需要统计该短信发送的人员个数以及未收到的人员个数
             foreach (var item in listsource)
             {
+                //1.得到发送人姓名
+                var userName = userBLL.GetListBy(p => p.ID == item.UID && p.DelFlag == false).FirstOrDefault().UName;
                 list_statistics.Add(
                     new ViewModel_StatisticsLast10()
                     {
+                        UserName = userName,
                         ContentID = item.ID,
                         Content = item.SMSContent,
                         MissionName = item.S_SMSMission.SMSMissionName,
@@ -124,6 +127,8 @@ namespace SMSOA.Areas.SMS.Controllers
                         NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count()
                     });
             }
+            //2.3 按照发送时间排序，需讨论
+            list_statistics.OrderBy(p => p.SendDateTime);
         }
 
         public ActionResult LoadSearchRecordData(PMS.Model.ViewModel.ViewModel_RecordQueryInfo model)

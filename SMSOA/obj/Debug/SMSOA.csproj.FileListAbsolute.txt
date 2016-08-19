@@ -890,3 +890,5 @@ E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.
 E:\03协同开发\短信\PMS\0630\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\0630\PMS\SMSOA\obj\Debug\SMSOA.dll
 E:\03协同开发\短信\PMS\0630\PMS\SMSOA\obj\Debug\SMSOA.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.dll
+D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.pdb
