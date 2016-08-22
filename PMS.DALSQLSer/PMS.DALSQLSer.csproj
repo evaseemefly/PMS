@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="DBContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfoDAL.cs" />
     <Compile Include="UserInfoMySQL.cs" />
   </ItemGroup>
   <ItemGroup>

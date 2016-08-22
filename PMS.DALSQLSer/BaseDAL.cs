@@ -58,8 +58,15 @@ namespace PMS.DALSQLSer
             Db.Set<T>().Attach(model);
             //2 将该实体对象标记为删除
             Db.Set<T>().Remove(model);
+            
             return true;
         }
+
+        //public bool PhysicsDel(T model)
+        //{
+            
+        //}
+
         #endregion
 
         #region 对于委托的示例

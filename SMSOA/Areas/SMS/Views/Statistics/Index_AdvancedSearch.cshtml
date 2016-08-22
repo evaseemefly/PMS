@@ -163,7 +163,6 @@
             }
 
             loadDataGrid('@ViewBag.LoadSearchData', myColumns, queryData);
-
             @*DoPost('@ViewBag.LoadSearchData', queryData);*@
         }
 
@@ -408,6 +407,7 @@
         //查询用户：加载下拉框
         function loadComboGrid_User() {
 
+            
             //加载全部短信任务种类
             $("#smsUserInfo_combogrid").combogrid({
                 url: '@ViewBag.GetUserInfo',
@@ -421,8 +421,13 @@
                 columns: userColumns,
                 onClickRow: function (rowIndex, rowData) {
                     //loadDataGridByGroupDepartment_Personss();
+                },
+                onLoadSuccess: function () {
+                //默认选中当前用户
+                    $("#smsUserInfo_combogrid").combogrid('grid').datagrid('selectRecord', 1);
                 }
             })
+            
         }
 
         function loadComboGrid_Mission() {
