@@ -9,6 +9,7 @@
         $(function () {
             $("#editWindow").window('close');
             loadDataGrid('@ViewBag.GetPageStatisticList', myColumns);
+            loadComboGrid_User();
             loadComboGrid_Mission();
             loadDataGrid_person('', myColumns_person);
             var now_date = new Date();
@@ -130,15 +131,19 @@
 
 
             //获取短信任务种类
+            var grid_user = $("#smsUserInfo_combogrid").combogrid("grid");
             var grid_mission = $("#smsMission_combogrid").combogrid("grid");
             var mission_checkeds = grid_mission.datagrid("getChecked");
-            var mission_id
+            var user_checkeds = grid_user.datagrid("getChecked");
+            var mission_id;
+            var user_id = user_checkeds[0]["id"];
             if (mission_checkeds[0] == null) {
                 mission_id = -1;
             }
             else {
                 mission_id = mission_checkeds[0]["SMID"];
             }
+
             
             //获取时间
             var dt_target = $("#date_target").val();
@@ -151,6 +156,7 @@
                 //PersonName: personName,
                 //PhoneNum: phoneNum,
                 Mission_id: mission_id,
+                MissionUser_id: user_id,
                 Dt_target: dt_target,
                 Dt_start: dt_start,
                 Dt_finish: dt_finish
@@ -364,6 +370,16 @@
             return str;
         }
 
+
+        //查询用户：下拉框属性
+        var userColumns = [[
+         //{ field: 'ck', checkbox: true },
+         { field: 'id', title: 'ID', width: 100, checkbox: true },
+         { field: 'text', title: '群组名称', width: 150 }
+         //{ field: 'Operate', title: '是否禁用', width: 150 }
+        ]]
+
+        //查询任务：下拉框属性
         var missionColumns = [[
                  //{ field: 'ck', checkbox: true },
                  { field: 'SMID', title: 'ID', width: 100, checkbox: true },
@@ -387,6 +403,26 @@
 
         function hideMyMenu() {
             $("#mm1").menu('hide');
+        }
+
+        //查询用户：加载下拉框
+        function loadComboGrid_User() {
+
+            //加载全部短信任务种类
+            $("#smsUserInfo_combogrid").combogrid({
+                url: '@ViewBag.GetUserInfo',
+                method: 'get',
+                idField: 'id',
+                textField: 'text',
+                //width: 150,
+                panelWidth: 180,
+                panelHeight: 'auto',
+                multiple: false,
+                columns: userColumns,
+                onClickRow: function (rowIndex, rowData) {
+                    //loadDataGridByGroupDepartment_Personss();
+                }
+            })
         }
 
         function loadComboGrid_Mission() {

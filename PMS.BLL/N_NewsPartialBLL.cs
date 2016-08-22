@@ -1,5 +1,6 @@
 ﻿using PMS.IBLL;
 using PMS.Model;
+using PMS.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,12 @@ namespace PMS.BLL
                 }
             }
             return list_newsByUser.ToList();
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            var array = this.GetListBy(a => a.isDel == true).ToList();
+            return array.Select(a => a.ToRecycleModel()).ToList();
         }
 
         /// <summary>

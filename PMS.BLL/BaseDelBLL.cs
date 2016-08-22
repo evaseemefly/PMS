@@ -9,16 +9,12 @@ namespace PMS.BLL
    public abstract class BaseDelBLL<T>
     {
 
-        //public abstract List<T> GetListByIds(List<int> list_ids);
+        //public abstract bool PhysicsDel(List<int> list_ids);
 
-        //public abstract List<T> EditDelFlag(List<int> list_ids);
-
-        public abstract bool PhysicsDel(List<int> list_ids);
-
-        public bool DoPhysicsDel(List<int> list_ids)
-        {
-            return PhysicsDel(list_ids);
-        }
+        //public bool DoPhysicsDel(List<int> list_ids)
+        //{
+        //    return PhysicsDel(list_ids);
+        //}        
 
         /// <summary>
         /// 修改指定的ActionId 的对象集合的删除标记为删除

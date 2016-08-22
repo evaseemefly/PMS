@@ -54,5 +54,10 @@ namespace PMS.DALSQLSer
         {
             throw new NotImplementedException();
         }
+
+        public bool DelByList(List<UserInfo> list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

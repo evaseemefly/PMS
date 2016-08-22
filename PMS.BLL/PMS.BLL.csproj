@@ -43,6 +43,7 @@
     <Compile Include="ActionInfoBLL.cs" />
     <Compile Include="BaseBLL.cs" />
     <Compile Include="BaseDelBLL.cs" />
+    <Compile Include="BaseDelListBLL.cs" />
     <Compile Include="BLL.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

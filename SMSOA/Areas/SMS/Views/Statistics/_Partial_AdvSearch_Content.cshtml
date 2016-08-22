@@ -10,8 +10,11 @@
             <input type="hidden" id="date_finish" name="date_finish" />
             <input type="hidden" id="cid" />
             <table cellspacing="5" style="font-size:15px">
+                
                 <tr>
-                    <td>短信任务种类</td>
+                    <td>查询用户</td>
+                    <td><select class="easyui-combotree" name="UDID" id="smsUserInfo_combogrid" style="width:130px" data-options="editable:false"></select></td>
+                    <td>查询任务种类</td>
                     <td><select class="easyui-combotree" name="PDID" id="smsMission_combogrid" style="width:130px" data-options="editable:false"></select></td>
                     <td>查询日期</td>
                     <td><a href="#" class="easyui-menubutton" id="date_menu" data-options="menu:'#mm1',iconCls:'icon-edit'">选择日期</a></td>
@@ -22,9 +25,9 @@
 
         <div id="mm1" style="width:150px;">
             <div class="menu-sep"></div>
-            <div data-options="name:'today'">今日</div>
-            <div data-options="name:'lastWeek'">最近一周</div>
-            <div data-options="name:'lastMonth'">本月</div>
+            <div data-options="name:'today'">今日（未实现）</div>
+            <div data-options="name:'lastWeek'">最近一周（未实现）</div>
+            <div data-options="name:'lastMonth'">本月（未实现）</div>
             <div class="menu-sep"></div>
             <div>
                 <span>具体某天</span>

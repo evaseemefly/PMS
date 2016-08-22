@@ -236,5 +236,25 @@ namespace PMS.DALSQLSer
         }
         #endregion
 
+
+        #region 7 批量删除实体对象+public bool UpdateByList(List<T> list)
+        /// <summary>
+        ///  7 批量删除实体对象
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public bool DelByList(List<T> list)
+        {
+            //遍历传入的要修改的集合，将每个对象的状态均设置为修改状态
+            foreach (var item in list)
+            {
+                //1 将实体对象添加到上下文中
+                Db.Set<T>().Attach(item);
+                //2 将该实体对象标记为删除
+                Db.Set<T>().Remove(item);
+            }
+            return true;
+        }
+        #endregion
     }
 }

@@ -17,15 +17,15 @@
     <meta charset="UTF-8">
     @*@Styles.Render("~/Scripts/EasyUICss")*@
     @Scripts.Render("~/Scripts/myJquery")
-    @Scripts.Render("~/Scripts/easyUIJS")
+    @*@Scripts.Render("~/Scripts/easyUIJS")*@
     <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
     <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
     @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
-    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>*@
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />   
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <style type="text/css">
@@ -60,8 +60,11 @@
         }
     </style>
     <script type="text/javascript">
-        
-            $(function () {
+        $(function () {
+            //1 关闭一些窗体
+            //1.1 关闭重置密码窗体
+            $("#showResetPwdWindow").window('close');
+
                 //1 初始化手风琴
                 $("#WestAccordion").accordion({
                     fillSpace: true,

@@ -9,7 +9,6 @@ namespace PMS.Model.Dictionary
     public class RecycledTypeDictonary
     {
         private static Dictionary<int, string> recycledType;
-
         /// <summary>
         /// 获取字典
         /// </summary>

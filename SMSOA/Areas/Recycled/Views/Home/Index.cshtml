@@ -5,11 +5,20 @@
 }
 
 @Html.Partial("~/Areas/News/Views/Home/_Partial_NewsListShow_loadNews.cshtml")
-<script src="~/Scripts/MyScripts/Common/my_loadDataGrid.js"></script>
-@section Scripts{
 
+
+@section Scripts{
+<script src="~/Scripts/MyScripts/Common/my_loadDataGrid.js"></script>
     <script type="text/javascript">
         //获取选中的下拉框类型
+        //1 根据字典加载下拉框（下拉框中显示的是字典的value）
+        //1.1 点击下拉框获取的id是字典的key
+        //1.2 点击下拉框后根据id的值重新加载datagrid以及datagrid中的columns（刘）
+
+        //2 点选datagrid中的某一行（多行），执行相应的删错操作（屈远）
+
+        //3 还原（刘）
+
         //加载下拉框（要删除的对象种类）
         //刘实现的：
         //1 根据字典加载下拉框
@@ -19,6 +28,52 @@
         { field: 'text', title: '删除类型', width: '90%'}
         ]];
 
+        var recycle_Columns = [[
+        { field: 'Id', title: 'id', width: 60, hidden: true },
+        { field: 'Name', title: '名称', width: '30%' }
+        ,
+        { field: 'Sort', title: '排序', width: '30%' }
+        ,
+        { field: 'SubDateTime', title: '创建时间', width: '30%' }
+        ]];
+
+        function doDel() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            var type = $("#area_combotree").combogrid('getValue');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].Id + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.DoDel" + "?ids=" + strId + "&&type=" + type, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载treegrid
+                   $("#datagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#datagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+        }
+           
+                
         //3 屈远完成
         //3.1 定义加载的columns
 
@@ -44,7 +99,7 @@
                     var url = url_loaddatagrid + "?type=" + rowData.id;
                     //屈远：注意需要填写第三个及第四个参数为datagrid的columns对象以及toolbar的id
                     //方法签名：load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList)
-                    load_datagrid("datagrid", url, '', '', false, true, 20, [20, 40, 60]);
+                    load_datagrid("datagrid", url, recycle_Columns, '', false, true, 20, [20, 40, 60]);
                 }
             })
         }
@@ -53,7 +108,17 @@
             //var url = "?type=" + id;
             var url_load_combo = "@ViewBag.LoadActionType_ComboGrid";
             var url_load_datagrid = "@ViewBag.LoadAllDelInfo_DataGrid";
+
             load_actionType_ComboGrid("area_combotree", url_load_combo, url_load_datagrid, "id", "text", actionType_Columns);
+
+            $('#datagrid').datagrid({
+
+                toolbar: '#tb'
+            });
+
+
+
+
             //load_datagrid("datagrid", url, myColumns, "tb",true,true,10,[20,40,60])
         })
 
@@ -62,16 +127,18 @@
     }
 
 @section div_Body{
-        <div>
-            <table class="easyui-datagrid" id="datagrid"></table>
-        </div>
-    }
+<div class="easyui-panel" id="my_panel" data-options="fit:true" title="" style="width:100%;height:100%;">
+    <div>
+        <table class="easyui-datagrid" id="datagrid" style="width:100%;height:300px" @*data-options="fit:true"*@ ></table>
+    </div>
+</div>
+}
 
 @section tb_person{
-    <div id="tb" style="padding:2px 5px;">   
-    <a href="#" class="easyui-linkbutton" id="del_person" data-options="iconCls:'icon-del_person',text: '删除',plain:true" onclick="removeRow()"></a>
-    选择
-    <select class="easyui-combotree" name="PDID" id="area_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
-</div>
-    }
+    <div id="tb" style="padding:2px 5px;">
+        <a href="#" class="easyui-linkbutton" id="del_person" data-options="iconCls:'icon-del_person',text: '删除',plain:true" onclick="doDel()"></a>
+        选择
+        <select class="easyui-combotree" name="PDID" id="area_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
+    </div>
+}
 

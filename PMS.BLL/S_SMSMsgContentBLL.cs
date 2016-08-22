@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PMS.Model;
 using System.Linq.Expressions;
 using PMS.IBLL;
+using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
@@ -76,6 +77,14 @@ namespace PMS.BLL
                 return false;
             }
         }
+        /// <summary>
+        /// 还原
+        /// </summary>
+        /// <returns></returns>
+        public bool Recovery(List<int> list_id)
+        {
+            return true;
+        }
 
         /// <summary>
         /// 根据传入的id集合执行物理删除
@@ -99,6 +108,9 @@ namespace PMS.BLL
             return CurrentDBSession.SaveChanges();
         }
 
-
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            return null;
+        }
     }
 }

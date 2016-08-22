@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using PMS.Model;
 using System.Linq.Expressions;
 using PMS.IBLL;
+using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
     public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL
     {
+        IS_SMSContentBLL contentBLL { get; set; }
         ///// <summary>
         ///// 
         ///// </summary>
@@ -70,6 +72,31 @@ namespace PMS.BLL
 
         }
 
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            var array = this.GetListBy(a => a.DelFlag == true).ToList();
+            return array.Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        /// <summary>
+        /// 还原
+        /// </summary>
+        /// <returns></returns>
+        public bool Recovery(List<int> list_id)
+        {
+            var list_model = this.GetListByIds(list_id);
+            list_model.ForEach(p => p.DelFlag = false);
+            try
+            {
+                this.UpdateByList(list_model);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// 根据传入的id集合执行物理删除
         /// </summary>
@@ -77,7 +104,73 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool PhysicsDel(List<int> list_ids)
         {
-            return true;
+            //1. 得到所有要删除的实体集合
+            var list_model = this.GetListByIds(list_ids);
+            if (list_model == null) { return false; }
+            foreach (var item in list_model)
+            {
+                //2.清除关系表中的数据
+                /*
+                8月18日
+                注意：
+                    清除用户的关联关系时需要注意有三张表：
+                    S_SMSMsgContent和S_SMSContent、N_News
+                    在以上两张表中UserID是作为该表的外键存在
+                    （所以在删除时，需要重新为这两张表中包含当前UserId的行重新赋予一个新的UserId——否则会出现主外键约束错误）
+                    Role与User是通过一张中间关系表映射关系的
+
+                */
+                //方式一：报错
+                //item.R_UserInfo_ActionInfo.Clear();
+                // this.Update(item);
+
+                //方式二：报错
+                /*
+                DELETE 语句与 REFERENCE 约束"FK_R_UserInfo_ActionInfo_UserInfo"冲突。该冲突发生于数据库"PMS20160425"，表"dbo.R_UserInfo_ActionInfo", column 'UserInfoID'。
+                  语句已终止。
+                */
+                this.Del(item);
+                item.R_UserInfo_Group.Clear();
+                item.R_UserInfo_SMSMission.Clear();
+                item.R_UserInfo_DepartmentInfo.Clear();
+                item.R_UserInfo_PersonInfo.Clear();
+                item.R_UserInfo_News.Clear();
+               
+                //this.CurrentDAL.Update(item);
+                //this.CurrentDAL.UpdateByList(list_model);
+                //this.CurrentDAL.SaveChange();
+                item.RoleInfo.Clear();
+                
+                //8月18日
+                //此处需要先查询“已删除”用户的id
+                var temp = this.GetListBy(u => u.UName == "已删除").FirstOrDefault();
+                //将与User有主外键关联的表中的UID替换为“已删除”用户的id
+                if (temp != null)
+                {
+                    var uid = temp.ID;
+                    item.S_SMSContent.ToList().ForEach(s => s.UID = uid);
+
+                    item.S_SMSMsgContent.ToList().ForEach(m => m.UID = uid);
+
+                    item.N_News.ToList().ForEach(n => n.UID = uid);
+                }
+               
+            }
+            try
+            {
+                //3. 从数据库中删除这些实体对象
+                
+                this.CurrentDAL.DelByList(list_model);
+                this.CurrentDAL.SaveChange();
+                /*
+                		Message	"操作失败: 无法更改关系，因为一个或多个外键属性不可以为 null。对关系作出更改后，会将相关的外键属性设置为 null 值。如果外键不支持 null 值，则必须定义新的关系，必须向外键属性分配另一个非 null 值，或必须删除无关的对象。"	string
+                */
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -237,11 +330,29 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<S_SMSContent> GetSMSContentListByQuery_ExpNamePhone(int pageIndex, int pageSize, ref int rowCount,PMS.Model.ViewModel.ViewModel_QueryInfo model, int uid, bool isAsc, bool isMiddle)
         {
-            //1 找到对应用户
-            var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+            var query = new List<S_SMSContent>();
+            //if (model.MissionUser_id == 1)
+            //{
+
+            //}
+            //查询全部用户（0），还是当前用户（1）
+            switch (model.MissionUser_id)
+            {
+                case 1:
+                    //1 找到对应用户
+                    var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+                    query = userModel.S_SMSContent.ToList();
+                    break;
+                case 0:
+                    // 查询全部用发送的短信内容
+                    contentBLL = new S_SMSContentBLL();
+                    query = contentBLL.GetListBy(c => c.isDel == false).ToList();
+                    break;
+            }
+
             //2 查询当前用户所拥有的全部短信
             //rowCount = userModel.S_SMSContent.Count;
-            var query = userModel.S_SMSContent.ToList();
+            
             rowCount = query.Count();
             //不根据联系人名称以及联系人电话查询
             //根据任务匹配

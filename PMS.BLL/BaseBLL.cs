@@ -178,6 +178,20 @@ namespace PMS.BLL
         #endregion
 
 
+        #region 6- 批量删除
+        /// <summary>
+        /// 3- 批量修改
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public bool DelByList(List<T> list)
+        {
+            CurrentDAL.DelByList(list);
+            //return idal.SaveChange();
+            return CurrentDBSession.SaveChanges();
+        }
+        #endregion
+
 
     }
 }

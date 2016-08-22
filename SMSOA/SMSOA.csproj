@@ -387,6 +387,8 @@
     <Content Include="Areas\News\Views\Home\ShowMsg - 8月13日修改备份.cshtml" />
     <Content Include="Areas\Admin\Views\User\_Partial_BtnAction.cshtml" />
     <Content Include="Areas\Admin\Views\User\_Partial_SonWindow.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Partial_ResetPwd.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top_BtnAction.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -527,6 +529,10 @@
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecycledFactory\RecycledFactory.csproj">
+      <Project>{56ec4f35-5575-471f-ab72-a2f50ad221b4}</Project>
+      <Name>RecycledFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>

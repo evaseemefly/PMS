@@ -12,6 +12,11 @@ namespace PMS.Model.ViewModel
 
         public string PhoneNum { get; set; }
 
+        /// <summary>
+        /// 查询当前用户（1）还是查询全部用户（0）
+        /// </summary>
+        public int MissionUser_id { get; set; }
+
         public int Mission_id { get; set; }
 
         public string Dt_target { get; set; }

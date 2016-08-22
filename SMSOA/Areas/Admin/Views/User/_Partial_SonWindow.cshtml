@@ -1,4 +1,8 @@
-﻿<div id="setRoleDiv">
+﻿<link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
+
+
+
+<div id="setRoleDiv">
     <div class="easyui-window" id="showRoleWindow" title="分配角色" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
         <div class="easyui-layout" data-options="fit:true" style="border:0px">
             @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
@@ -30,32 +34,6 @@
 
     </div>
 </div>
-<div id="resetPwdDiv">
-        <div class="easyui-window" id="showResetPwdWindow" title="重置密码" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
-            <div style="height:30px;width:100%;background-color:#000000"></div>
-            <table style="margin-left:40px;width:90%" cellpadding="3">
-                <tr>
-                    <td>密码:</td>
-                    <td class="comment">
-                        <input id="UPwd" class="easyui-validatebox" style="width:80%;height:25px" type="password" name="UPwd" value="@ViewBag.UPwd" data-options="required:true,validType:['String','length[1,32]']"></input><br />
-                        请输入登录密码
-                    </td>
-                </tr>
-                <tr>
-                    <td>请再次输入密码:</td>
-                    <td class="comment">
-                        <input id="RUPwd" class="easyui-validatebox" type="password" style="width:80%;height:25px" name="RUPwd" value="@ViewBag.UPwd" required="required" validType="Equals['#UPwd']"></input><br />
-                        输入相同密码
-                    </td>
-                </tr>
-            </table>
-            <div style="text-align:center;padding:5px">
-                <div style="text-align:center;padding:5px">
-                    @*<input type="submit" value="提交" />*@
-                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoResetPwd()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+
+@*！！注意此处的分部视图在Shared/..中*@
+@Html.Partial("_Partial_ResetPwd")

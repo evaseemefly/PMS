@@ -24,7 +24,8 @@ namespace PMS.Model
                 SCID = this.SCID,
                 PersonName = this.P_PersonInfo.PName,
                 PhoneNum = this.P_PersonInfo.PhoneNum,
-                StatusCode = this.StatusCode
+                StatusCode = this.StatusCode,
+                DescContent=this.DescContent
             };
         }
     }

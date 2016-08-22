@@ -57,6 +57,8 @@
     </Compile>
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
     <Compile Include="Dictionary\RecycledTypeDictonary.cs" />
+    <Compile Include="Dictionary\SMSQueryDictionary.cs" />
+    <Compile Include="Dictionary\SMSUserDictionary.cs" />
     <Compile Include="EasyUIModel\Action_ViewModel.cs" />
     <Compile Include="EasyUIModel\Department_ViewModel.cs" />
     <Compile Include="EasyUIModel\EasyUICombobox.cs" />
@@ -122,6 +124,13 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryModel\Redis_SMSContent.cs" />
+    <Compile Include="RecycleModel\ActionInfo.cs" />
+    <Compile Include="RecycleModel\N_News.cs" />
+    <Compile Include="RecycleModel\P_DepartmentInfo.cs" />
+    <Compile Include="RecycleModel\P_Group.cs" />
+    <Compile Include="RecycleModel\RoleInfo.cs" />
+    <Compile Include="RecycleModel\S_SMSMission.cs" />
+    <Compile Include="RecycleModel\UserInfo.cs" />
     <Compile Include="RoleInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
@@ -184,6 +193,7 @@
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_Recycle.cs" />
     <Compile Include="ViewModel\ViewModel_SMSMission.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Base.cs" />
   </ItemGroup>
