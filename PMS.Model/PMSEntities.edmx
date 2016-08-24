@@ -412,7 +412,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_ActionInfo_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_ActionInfo" Type="Self.R_UserInfo_ActionInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -436,7 +438,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_DepartmentInfo_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_DepartmentInfo" Type="Self.R_UserInfo_DepartmentInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -460,7 +464,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_Group_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -484,7 +490,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_News_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_News" Type="Self.R_UserInfo_News" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -508,7 +516,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_PersonInfo_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_PersonInfo" Type="Self.R_UserInfo_PersonInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -532,7 +542,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_RoleInfo_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_RoleInfo" Type="Self.R_UserInfo_RoleInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -556,7 +568,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_SMSMission_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -604,7 +618,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSMsgContent_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">

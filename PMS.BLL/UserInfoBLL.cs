@@ -12,6 +12,7 @@ namespace PMS.BLL
 {
     public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL
     {
+        IS_SMSContentBLL contentBLL { get; set; }
         ///// <summary>
         ///// 
         ///// </summary>
@@ -128,18 +129,51 @@ namespace PMS.BLL
                 DELETE 语句与 REFERENCE 约束"FK_R_UserInfo_ActionInfo_UserInfo"冲突。该冲突发生于数据库"PMS20160425"，表"dbo.R_UserInfo_ActionInfo", column 'UserInfoID'。
                   语句已终止。
                 */
-                this.Del(item);
-                item.R_UserInfo_Group.Clear();
-                item.R_UserInfo_SMSMission.Clear();
-                item.R_UserInfo_DepartmentInfo.Clear();
-                item.R_UserInfo_PersonInfo.Clear();
-                item.R_UserInfo_News.Clear();
-               
-                //this.CurrentDAL.Update(item);
-                //this.CurrentDAL.UpdateByList(list_model);
-                //this.CurrentDAL.SaveChange();
-                item.RoleInfo.Clear();
-                
+
+                //方式三：报错
+                /*
+                DELETE 语句与 REFERENCE 约束"FK_R_UserInfo_ActionInfo_UserInfo"冲突。该冲突发生于数据库"PMS20160325"，表"dbo.R_UserInfo_ActionInfo", column 'UserInfoID'。
+                    语句已终止。
+                */
+                //可以解决问题
+                //this.Del(item);
+                #region 可行，暂时注释掉
+                //item.R_UserInfo_Group.Clear();
+                //var list_del_User_Group = this.CurrentDBSession.R_UserInfo_GroupDAL.GetListBy(r => r.UID == item.ID);
+
+                //foreach (var obj in list_del_User_Group)
+                //{
+                //    this.CurrentDBSession.R_UserInfo_GroupDAL.Del(obj);
+                //}
+                ////item.R_UserInfo_SMSMission.Clear();
+                //var list_del_User_SMSMission = this.CurrentDBSession.R_UserInfo_SMSMissionDAL.GetListBy(u => u.UID == item.ID);
+                //this.CurrentDBSession.R_UserInfo_SMSMissionDAL.DelByList(list_del_User_SMSMission.ToList());
+
+                ////item.R_UserInfo_ActionInfo.Clear();
+                //var list_del_User_Action = this.CurrentDBSession.R_UserInfo_ActionInfoDAL.GetListBy(u => u.UserInfoID == item.ID);
+                //this.CurrentDBSession.R_UserInfo_ActionInfoDAL.DelByList(list_del_User_Action.ToList());
+
+                ////item.R_UserInfo_DepartmentInfo.Clear();
+                //var list_del_User_Department = this.CurrentDBSession.R_UserInfo_DepartmentInfoDAL.GetListBy(u => u.UID == item.ID);
+                //this.CurrentDBSession.R_UserInfo_DepartmentInfoDAL.DelByList(list_del_User_Department.ToList());
+
+                ////item.R_UserInfo_PersonInfo.Clear();  
+                //var list_del_User_Person = this.CurrentDBSession.R_UserInfo_PersonInfoDAL.GetListBy(u => u.UID == item.ID);
+                //this.CurrentDBSession.R_UserInfo_PersonInfoDAL.DelByList(list_del_User_Person.ToList());
+
+
+                ////this.CurrentDAL.Update(item);
+                //////this.CurrentDAL.UpdateByList(list_model);
+                ////this.CurrentDAL.SaveChange();
+                //item.RoleInfo.Clear();
+                #endregion
+
+               //8月22日 
+               /*
+                 最终解决办法：
+                 修改数据库，为外键设置为级联关系（删除该外键的主键对象时，该外键行也会被删除）
+                */
+
                 //8月18日
                 //此处需要先查询“已删除”用户的id
                 var temp = this.GetListBy(u => u.UName == "已删除").FirstOrDefault();
@@ -158,7 +192,8 @@ namespace PMS.BLL
             try
             {
                 //3. 从数据库中删除这些实体对象
-                
+                //this.CurrentDAL.DelByList(list_model);
+               // this.CurrentDAL.SaveChange();
                 this.CurrentDAL.DelByList(list_model);
                 this.CurrentDAL.SaveChange();
                 /*
@@ -329,11 +364,29 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<S_SMSContent> GetSMSContentListByQuery_ExpNamePhone(int pageIndex, int pageSize, ref int rowCount,PMS.Model.ViewModel.ViewModel_QueryInfo model, int uid, bool isAsc, bool isMiddle)
         {
-            //1 找到对应用户
-            var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+            var query = new List<S_SMSContent>();
+            //if (model.MissionUser_id == 1)
+            //{
+
+            //}
+            //查询全部用户（0），还是当前用户（1）
+            switch (model.MissionUser_id)
+            {
+                case 1:
+                    //1 找到对应用户
+                    var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
+                    query = userModel.S_SMSContent.ToList();
+                    break;
+                case 0:
+                    // 查询全部用发送的短信内容
+                    contentBLL = new S_SMSContentBLL();
+                    query = contentBLL.GetListBy(c => c.isDel == false).ToList();
+                    break;
+            }
+
             //2 查询当前用户所拥有的全部短信
             //rowCount = userModel.S_SMSContent.Count;
-            var query = userModel.S_SMSContent.ToList();
+            
             rowCount = query.Count();
             //不根据联系人名称以及联系人电话查询
             //根据任务匹配

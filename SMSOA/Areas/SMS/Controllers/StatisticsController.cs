@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using SMSOA.Areas.SMS.Models;
 using PMS.Model;
 using PMS.Model.ViewModel;
+using Common.EasyUIFormat;
+using PMS.Model.Dictionary;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -36,10 +38,10 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.LoadSearchData = "/SMS/Statistics/LoadSearchData";
             ViewBag.LoadSearchRecordData = "/SMS/Statistics/LoadSearchRecordData";
             ViewBag.GetRecordByCID = "/SMS/Statistics/GetRecordByCID";
+            ViewBag.GetUserInfo = "GetUserInfo";
             return View();
         }
 
-       
         /// <summary>
         /// 根据smsContent ID 查询对应的记录
         /// 注意此处使用分页查询
@@ -56,6 +58,8 @@ namespace SMSOA.Areas.SMS.Controllers
             var smsContent= smsContentBLL.GetListBy(c => c.ID == cid).FirstOrDefault();
             //2 找到其的发送记录
             var list_record = smsContent.S_SMSRecord_Current.ToList().Select(r => r.ToMiddleModel());
+            //2.0 排序，将未成功的记录放在列表前面
+            list_record.OrderBy(p => p.StatusCode);
             //2.1 获取当总行数
             rowCount = list_record.Count();
             //2.2 分页返回记录
@@ -108,9 +112,12 @@ namespace SMSOA.Areas.SMS.Controllers
             //2.2 需要统计该短信发送的人员个数以及未收到的人员个数
             foreach (var item in listsource)
             {
+                //1.得到发送人姓名
+                var userName = userBLL.GetListBy(p => p.ID == item.UID && p.DelFlag == false).FirstOrDefault().UName;
                 list_statistics.Add(
                     new ViewModel_StatisticsLast10()
                     {
+                        UserName = userName,
                         ContentID = item.ID,
                         Content = item.SMSContent,
                         MissionName = item.S_SMSMission.SMSMissionName,
@@ -120,6 +127,8 @@ namespace SMSOA.Areas.SMS.Controllers
                         NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count()
                     });
             }
+            //2.3 按照发送时间排序，需讨论
+            list_statistics.OrderBy(p => p.SendDateTime);
         }
 
         public ActionResult LoadSearchRecordData(PMS.Model.ViewModel.ViewModel_RecordQueryInfo model)
@@ -342,6 +351,29 @@ namespace SMSOA.Areas.SMS.Controllers
                 Url = Request.Url.ToString()
             };
             return httpModel;
+        }
+
+        /// <summary>
+        /// 查询用户
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetUserInfo()
+        {
+            //int userId = int.Parse(Request["uid"]);
+            //1 获取回收站字典
+            var dic = SMSUserDictionary.GetResponseCode();
+            //2 将回收站字典转换为easyUI的Combogrid
+            var list = ToEasyUICombogrid_Common.ToEasyUIDataGrid(dic,false);
+            //3 将combogrid集合序列化并返回
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = 0,
+                rows = list,
+                footer = null
+            };
+            var temp = Common.SerializerHelper.SerializerToString(model);
+            temp = temp.Replace("Checked", "checked");
+            return Content(temp);
         }
     }
 }
