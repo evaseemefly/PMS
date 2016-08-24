@@ -149,7 +149,10 @@ namespace SMSOA.Areas.SMS.Controllers
             string ids=Request.QueryString["ids"];
             //获取传过来的要批量删除的id数组
             var list_tid= ids.Split(',').Select(t=>int.Parse(t)).ToList();
-           var state = smsMsgContentBLL.DelSoftTemplate(list_tid);
+            //8月24日：
+            //删除模板时采用物理删除
+            //var state = smsMsgContentBLL.DelSoftTemplate(list_tid);
+            var state = smsMsgContentBLL.PhysicsDel(list_tid);
             return Content(state == true ? "ok" : "error");
         }
 

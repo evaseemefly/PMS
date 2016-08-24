@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PMS.IBLL
 {
-   public partial interface IS_SMSMsgContentBLL
+   public partial interface IS_SMSMsgContentBLL:IBaseDelBLL
     {
         /// <summary>
         /// 根据用户id以及任务id查询与之相对应的短信模板实体对象
