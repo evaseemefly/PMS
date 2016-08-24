@@ -8,6 +8,10 @@ namespace SMSOA.Areas.SMS.Models
     public class ViewModel_StatisticsLast10
     {
         /// <summary>
+        /// 发送人
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
         /// 短信任务名称
         /// </summary>
         public string MissionName { get; set; }
