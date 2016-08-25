@@ -107,7 +107,7 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult DoAddTemplate(S_SMSMsgContent templateModel)
         {
             //数据验证：是否存在同名的模板
-            if (smsMsgContentBLL.AddValidation(templateModel.MsgName)) { return Content("validation fails"); }
+           // if (smsMsgContentBLL.AddValidation(templateModel.MsgName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             templateModel.isDel = false;
             templateModel.SubTime = DateTime.Now;
@@ -128,7 +128,7 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult DoEditTemplate(S_SMSMsgContent templateModel)
         {
             //数据验证：是否存在同名的模板
-            if (smsMsgContentBLL.EditValidation(templateModel.TID, templateModel.MsgName)) { return Content("validation fails"); }
+            //if (smsMsgContentBLL.EditValidation(templateModel.TID, templateModel.MsgName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             templateModel.isDel = false;
            
