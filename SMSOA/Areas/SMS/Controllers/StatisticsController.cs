@@ -59,7 +59,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //2 找到其的发送记录
             var list_record = smsContent.S_SMSRecord_Current.ToList().Select(r => r.ToMiddleModel());
             //2.0 排序，将未成功的记录放在列表前面
-            list_record.OrderBy(p => p.StatusCode);
+            list_record=list_record.OrderByDescending(p => p.StatusCode);
             //2.1 获取当总行数
             rowCount = list_record.Count();
             //2.2 分页返回记录

@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\02编程\2016年\01协同开发\发布版\SMS_V1.3</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\02编程\2016年\01协同开发\发布版\SMS_V1.4</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Admin/Views/Action/AddActionInfo - 复制.cshtml">
@@ -34,7 +34,7 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Home/Index.cshtml">
-      <publishTime>08/15/2016 16:19:31</publishTime>
+      <publishTime>08/25/2016 10:33:17</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Home/NotFound.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -280,7 +280,7 @@
       <publishTime>07/08/2016 10:35:00</publishTime>
     </File>
     <File Include="Areas/SMS/Views/MsgTemplate/ShowEditTemplate.cshtml">
-      <publishTime>08/01/2016 08:22:13</publishTime>
+      <publishTime>08/24/2016 16:20:44</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/Index-6月17使用分部视图替代前备份.cshtml">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -343,13 +343,13 @@
       <publishTime>06/30/2016 09:35:53</publishTime>
     </File>
     <File Include="bin/Common.dll">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:44</publishTime>
     </File>
     <File Include="bin/Common.Logging.dll">
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="bin/Common.pdb">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:44</publishTime>
     </File>
     <File Include="bin/Config/controllers.xml">
       <publishTime>08/19/2016 16:21:38</publishTime>
@@ -367,10 +367,10 @@
       <publishTime>06/30/2016 09:35:49</publishTime>
     </File>
     <File Include="bin/ISMS.dll">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:43</publishTime>
     </File>
     <File Include="bin/ISMS.pdb">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:43</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -427,46 +427,46 @@
       <publishTime>06/30/2016 09:35:54</publishTime>
     </File>
     <File Include="bin/PMS.BLL.dll">
-      <publishTime>08/23/2016 16:40:06</publishTime>
+      <publishTime>08/25/2016 10:28:55</publishTime>
     </File>
     <File Include="bin/PMS.BLL.pdb">
-      <publishTime>08/23/2016 16:40:06</publishTime>
+      <publishTime>08/25/2016 10:28:55</publishTime>
     </File>
     <File Include="bin/PMS.DALFactory.dll">
-      <publishTime>08/23/2016 16:40:06</publishTime>
+      <publishTime>08/25/2016 10:16:44</publishTime>
     </File>
     <File Include="bin/PMS.DALFactory.pdb">
-      <publishTime>08/23/2016 16:40:06</publishTime>
+      <publishTime>08/25/2016 10:16:44</publishTime>
     </File>
     <File Include="bin/PMS.DALSQLSer.dll">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:44</publishTime>
     </File>
     <File Include="bin/PMS.DALSQLSer.pdb">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:44</publishTime>
     </File>
     <File Include="bin/PMS.IBLL.dll">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:43</publishTime>
     </File>
     <File Include="bin/PMS.IBLL.pdb">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:43</publishTime>
     </File>
     <File Include="bin/PMS.IDAL.dll">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:42</publishTime>
     </File>
     <File Include="bin/PMS.IDAL.pdb">
-      <publishTime>08/23/2016 16:40:05</publishTime>
+      <publishTime>08/25/2016 10:16:42</publishTime>
     </File>
     <File Include="bin/PMS.Model.dll">
-      <publishTime>08/23/2016 16:31:08</publishTime>
+      <publishTime>08/25/2016 10:16:41</publishTime>
     </File>
     <File Include="bin/PMS.Model.pdb">
-      <publishTime>08/23/2016 16:31:08</publishTime>
+      <publishTime>08/25/2016 10:16:41</publishTime>
     </File>
     <File Include="bin/RecycledFactory.dll">
-      <publishTime>08/23/2016 16:40:07</publishTime>
+      <publishTime>08/25/2016 10:28:56</publishTime>
     </File>
     <File Include="bin/RecycledFactory.pdb">
-      <publishTime>08/23/2016 16:40:07</publishTime>
+      <publishTime>08/25/2016 10:28:56</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/30/2016 09:35:54</publishTime>
@@ -511,16 +511,16 @@
       <publishTime>06/30/2016 09:35:55</publishTime>
     </File>
     <File Include="bin/SMSFactory.dll">
-      <publishTime>08/23/2016 16:40:07</publishTime>
+      <publishTime>08/25/2016 10:28:56</publishTime>
     </File>
     <File Include="bin/SMSFactory.pdb">
-      <publishTime>08/23/2016 16:40:07</publishTime>
+      <publishTime>08/25/2016 10:28:56</publishTime>
     </File>
     <File Include="bin/SMSOA.dll">
-      <publishTime>08/23/2016 16:53:42</publishTime>
+      <publishTime>08/25/2016 10:34:08</publishTime>
     </File>
     <File Include="bin/SMSOA.pdb">
-      <publishTime>08/23/2016 16:53:42</publishTime>
+      <publishTime>08/25/2016 10:34:08</publishTime>
     </File>
     <File Include="bin/Spring.Core.dll">
       <publishTime>06/30/2016 09:35:49</publishTime>
@@ -925,7 +925,7 @@
       <publishTime>06/30/2016 09:35:50</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/23/2016 16:53:44</publishTime>
+      <publishTime>08/25/2016 10:34:10</publishTime>
     </File>
   </ItemGroup>
 </Project>
