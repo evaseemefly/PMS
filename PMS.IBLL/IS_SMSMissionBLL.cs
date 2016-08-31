@@ -29,7 +29,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="missionIdsByUser"></param>
         /// <returns></returns>
-        List<S_SMSMission> GetMissionExt(List<int> missionIdsByUser);
+        List<S_SMSMission> GetMissionExt(List<int> missionIdsByUser, bool showDel);
 
         /// <summary>
         /// 修改指定的S_SMSMissionId 的对象集合的删除标记为删除

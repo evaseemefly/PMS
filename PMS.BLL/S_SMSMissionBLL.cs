@@ -27,10 +27,15 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="missionIdsByUser"></param>
         /// <returns></returns>
-        public List<S_SMSMission> GetMissionExt(List<int> missionIdsByUser)
+        public List<S_SMSMission> GetMissionExt(List<int> missionIdsByUser,bool showDel)
         {
             var list_missionExt= GetAllList();
+            //8月31日修改签名及方法
+            
             list_missionExt = list_missionExt.Where(m => !missionIdsByUser.Contains(m.SMID)).ToList();
+            //若显示删除标记为false，则取出所有未被删除的任务集合
+            if (!showDel)
+                list_missionExt=list_missionExt.Where(m => m.isDel == false).ToList();
             return list_missionExt;
         }
 
@@ -62,6 +67,7 @@ namespace PMS.BLL
             List<P_PersonInfo> list_person_allow = new List<P_PersonInfo>();
             //禁用的联系人
             List<P_PersonInfo> list_person_forbid = new List<P_PersonInfo>();
+
             groups_allow.ToList().ForEach(g => list_person_allow.AddRange(g.P_PersonInfo));
             groups_forbid.ToList().ForEach(g => list_person_forbid.AddRange(g.P_PersonInfo));
 
@@ -69,6 +75,7 @@ namespace PMS.BLL
             var departments_allow = from r in mission.R_Department_Mission
                                     where r.isPass == true
                                     select r.P_DepartmentInfo;
+
             var departments_forbid = from r in mission.R_Department_Mission
                                     where r.isPass == false
                                     select r.P_DepartmentInfo;

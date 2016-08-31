@@ -158,7 +158,10 @@ namespace SMSOA.Areas.SMS.Controllers
 
         public ActionResult GetTemplateByUserIdAndMission(int userId,int SMId)
         {
-            var templateModel= smsMsgContentBLL.GetListBy(t => t.UID == userId && t.SMID == SMId).FirstOrDefault();
+
+            //8月31日修改
+            //删选条件改为根据用户id以及短信任务id获取未被删除的第一个模板
+            var templateModel= smsMsgContentBLL.GetListBy(t => t.UID == userId && t.SMID == SMId&&t.isDel==false).FirstOrDefault();
             if(templateModel!=null)
             {
                return Content(templateModel.MsgContent);
@@ -177,7 +180,7 @@ namespace SMSOA.Areas.SMS.Controllers
             var list_owned_mission=smsMsgContentBLL.GetListBy(c => c.UID == userId && c.TID == tid).Select(c => c.S_SMSMission).ToList();
             var missionIdsbyUser = list_owned_mission.Select(m => m.SMID).ToList();
             //2 获取剩余的未拥有的全部短信任务
-            var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser);
+            var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser,false);
             var list = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_owned_mission, isChecked);
             //2 从所有的群组中删除该任务所拥有的群组集合
             var list_excludeOwned_group = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_Ext_mission, false);

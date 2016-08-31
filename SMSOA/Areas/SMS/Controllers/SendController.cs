@@ -73,10 +73,11 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             
             //1 获取该用户所拥有的短信任务（常用短信任务）
-            var list_owned_mission = userBLL.GetMissionListByUID(userId, true);
+            var list_owned_mission = userBLL.GetMissionListByUID(userId, true,false);
+            
             var missionIdsbyUser = list_owned_mission.Select(m => m.SMID).ToList();
             //2 获取剩余的未拥有的全部短信任务
-            var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser);
+            var list_Ext_mission = smsMissionBLL.GetMissionExt(missionIdsbyUser,false);
             var list = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_owned_mission, isChecked);
             //2 从所有的群组中删除该任务所拥有的群组集合
             var list_excludeOwned_group = ToEasyUICombogrid_Mission.ToEasyUIDataGrid(list_Ext_mission, false);
@@ -199,7 +200,7 @@ namespace SMSOA.Areas.SMS.Controllers
         protected string GetGroupByUser(int userId,bool isChecked)
         {
             //1 获取该用户所拥有的权限集合
-            var list_owned_group = userBLL.GetGroupListByUID(userId, true);
+            var list_owned_group = userBLL.GetGroupListByUID(userId, true,false);
             //List<int> list_group = new List<int>();
             var list_owned_Ids = list_owned_group.Select(g => g.GID).ToList();
             //2 获取该用户剩余可以拥有的权限集合
@@ -258,7 +259,10 @@ namespace SMSOA.Areas.SMS.Controllers
             list_owned_group = list_owned_group.Select(g => g.ToMiddleModel()).ToList();
             var list_owned_Ids = list_owned_group.Select(g => g.GID).ToList();
 
-            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
+            //8月31日
+            //之前的备份
+            //var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
+            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, false);
             //2 从所有的群组中删除该任务所拥有的群组集合
             //2.1 获取当前用户所拥有的常用群组(通过User查询对应的Group）
             var list_excludeOwned_group = userBLL.GetRestGroupListByIds(list_owned_Ids, userId, true);
@@ -457,7 +461,10 @@ namespace SMSOA.Areas.SMS.Controllers
             List<int> list_id = new List<int>();
             mission.R_Department_Mission.ToList().ForEach(r => list_id.Add(r.DepartmentID));
            var list_alldepartment= departmentBLL.GetListBy(d => d.isDel == false).ToList().Select(d=>d.ToMiddleModel()).ToList();
-            List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, list_id.ToArray());
+            //8月31日
+            //备份如下
+            //List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, list_id.ToArray());
+            List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, null);
 
             var temp= Common.SerializerHelper.SerializerToString(list_combotree);
             temp = temp.Replace("Checked", "checked");
@@ -468,7 +475,7 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             int uid = int.Parse(Request["userId"]);
             //1 根据传入的userId查询该User所拥有的短信任务
-            var list_mission= userBLL.GetMissionListByUID(uid, true);
+            var list_mission= userBLL.GetMissionListByUID(uid, true,false);
 
             //2 
             PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()

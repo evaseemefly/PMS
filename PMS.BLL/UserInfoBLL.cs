@@ -229,7 +229,7 @@ namespace PMS.BLL
         public List<P_Group> GetRestGroupListByIds(List<int> list_ids_group,int uid,bool isMiddel)
         {
             //1 获取常用群组
-           var list_restgroup= GetGroupListByUID(uid, true);
+           var list_restgroup= GetGroupListByUID(uid, true,false);
             //2 从常用群组中剔除该用户已经拥有的群组
             list_restgroup = list_restgroup.Where(g => !list_ids_group.Contains(g.GID)).ToList();
             if(isMiddel)
@@ -331,7 +331,7 @@ namespace PMS.BLL
         /// <param name="uid">用户Id</param>
         /// <param name="isMiddle">是否中间转换</param>
         /// <returns></returns>
-        public List<P_Group> GetGroupListByUID(int uid,bool isMiddle)
+        public List<P_Group> GetGroupListByUID(int uid,bool isMiddle,bool showDel)
         {
             //1 找到指定用户
             var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
@@ -340,6 +340,12 @@ namespace PMS.BLL
            var list_group_isPass= userModel.R_UserInfo_Group.Where(r => r.isPass == true).Select(r=>r.P_Group);
             var list_groupId_isNotPass = userModel.R_UserInfo_Group.Where(r => r.isPass == false).Select(g => g.GID);
             list_group_isPass= list_group_isPass.Where(r => !list_groupId_isNotPass.Contains(r.GID)).ToList();
+            //8月31日修改
+            //根据传入的显示删除标记判断，若为false，则只显示未删除的群组集合
+            if (!showDel)
+            {
+                list_group_isPass = list_group_isPass.Where(g => g.isDel == false).ToList();
+            }
             if(isMiddle)
             {
                 return list_group_isPass.ToList().Select(g => g.ToMiddleModel()).ToList();
@@ -387,12 +393,13 @@ namespace PMS.BLL
             //2 查询当前用户所拥有的全部短信
             //rowCount = userModel.S_SMSContent.Count;
             
-            rowCount = query.Count();
+            //rowCount = query.Count();
             //不根据联系人名称以及联系人电话查询
             //根据任务匹配
             if (model.Mission_id!=-1)
             {
-                query= query.Where(u => u.SMID == model.Mission_id).ToList();
+                //query= query.Where(u =>u.SMID== model.Mission_id).ToList();
+                query = query.Where(u =>model.Mission_ids.Contains(u.SMID)).ToList();
                 
             }
 
@@ -443,6 +450,7 @@ namespace PMS.BLL
             //query = query.Where(u => u.SendDateTime.Year == model.Dt_target.Year && u.SendDateTime.Month == model.Dt_target.Month && u.SendDateTime.Year == model.Dt_target.Day).ToList();
             //4 降序排列
             //query = query.OrderBy(s => s.SendDateTime).ToList();
+            rowCount = query.Count();
             //5 进行分页查询
             return ToListByPage(query, pageIndex, pageSize, ref rowCount, isAsc, isMiddle);
            
@@ -527,7 +535,7 @@ namespace PMS.BLL
         /// <param name="uid">UserInfo ID</param>
         /// <param name="isMiddle">是否转成中间变量（转成中间变量为true）</param>
         /// <returns></returns>
-        public List<S_SMSMission> GetMissionListByUID(int uid,bool isMiddle)
+        public List<S_SMSMission> GetMissionListByUID(int uid,bool isMiddle,bool showDel)
         {
             //1 找到对应的用户
             var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
@@ -535,6 +543,10 @@ namespace PMS.BLL
             //2 根据用户查找该用户所用的Mission
             userModel.R_UserInfo_SMSMission.Where(r=>r.isPass==true).ToList().ForEach(r => list_mission.Add(r.S_SMSMission));
             //3 将对应的任务集合转成中间实体
+            //4 8月31日
+            // 判断若显示删除标记为false，则说明不显示已经删除（软删除）的任务
+            if (!showDel)
+                list_mission = list_mission.Where(m => m.isDel == false).ToList();
             if (isMiddle)
             {
                 return list_mission.Select(m => m.ToMiddleModel()).ToList();
