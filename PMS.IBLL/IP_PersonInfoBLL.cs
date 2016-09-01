@@ -99,6 +99,6 @@ namespace PMS.IBLL
         /// <param name="id_group"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        bool UpdatePerson(string phone, int id_group, int id_department);
+        bool UpdatePerson(string phone, int[] id_group, int[] id_department);
     }
 }
