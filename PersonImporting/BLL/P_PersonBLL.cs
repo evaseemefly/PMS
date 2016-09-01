@@ -35,11 +35,11 @@ namespace PersonImporting.BLL
             return enum_exist;
         }
 
-        public bool CreatPersonRelationship(string phone,int gid,int did)
+        public bool CreatPersonRelationship(string phone,int[] gids,int[] dids)
         {
             bool isOk = false;
             //根据电话号码（唯一）查找指定联系人
-            isOk = personBLL.UpdatePerson(phone, gid, did);
+            isOk = personBLL.UpdatePerson(phone, gids, dids);
             #region 8月3日注释掉
             //var list_person = personBLL.GetListBy(p => p.PhoneNum == phone).ToList();
             ////若存在指定联系人

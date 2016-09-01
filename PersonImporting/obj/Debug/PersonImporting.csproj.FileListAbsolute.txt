@@ -70,3 +70,4 @@ D:\01编程\02协作开发\SMSOA\PMS\PersonImporting\bin\Debug\zh-Hans\System.We
 D:\01编程\02协作开发\SMSOA\PMS\PersonImporting\obj\Debug\PersonImporting.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PersonImporting\obj\Debug\PersonImporting.exe
 D:\01编程\02协作开发\SMSOA\PMS\PersonImporting\obj\Debug\PersonImporting.pdb
+E:\03协同开发\短信\PMS\0630\PMS\PersonImporting\obj\Debug\PersonImporting.csprojResolveAssemblyReference.cache
