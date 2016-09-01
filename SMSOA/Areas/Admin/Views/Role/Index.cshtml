@@ -119,7 +119,8 @@
         }
         else {
 
-            RoleId=rows[0].ID;
+            RoleId = rows[0].ID;
+            $("#showActionWindow").window({title:'分配权限'});
             //打开设置权限的窗体
             $("#showActionWindow").window('open');
 
