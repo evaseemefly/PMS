@@ -124,7 +124,7 @@ namespace PMS.BLL
             {
                 query = query.Where(c => c.PhoneNum.Contains(model.PhoneNum)).ToList();
             }
-
+            rowCount = query.Count();
             return ToListByPage(query, pageIndex, pageSize, ref rowCount, isAsc, false);
 
         }

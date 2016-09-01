@@ -128,19 +128,22 @@
 
         //点击搜索按钮执行的方法
         function searchBy(obj) {
-
-
             //获取短信任务种类
             var grid_user = $("#smsUserInfo_combogrid").combogrid("grid");
             var grid_mission = $("#smsMission_combogrid").combogrid("grid");
             var mission_checkeds = grid_mission.datagrid("getChecked");
             var user_checkeds = grid_user.datagrid("getChecked");
             var mission_id;
+            var mission_ids = new Array();
             var user_id = user_checkeds[0]["id"];
             if (mission_checkeds[0] == null) {
                 mission_id = -1;
             }
             else {
+                var count = mission_checkeds.length;
+                for (var i = 0; i < count; i++) {
+                    mission_ids[i] = mission_checkeds[i]["SMID"];
+                }
                 mission_id = mission_checkeds[0]["SMID"];
             }
 
@@ -157,6 +160,7 @@
                 //PhoneNum: phoneNum,
                 Mission_id: mission_id,
                 MissionUser_id: user_id,
+                Mission_ids:mission_ids,
                 Dt_target: dt_target,
                 Dt_start: dt_start,
                 Dt_finish: dt_finish
@@ -441,12 +445,18 @@
                 //width: 150,
                 panelWidth: 180,
                 panelHeight: 'auto',
-                multiple: false,
+                multiple: true,
                 columns: missionColumns,
                 onClickRow: function (rowIndex, rowData) {
                     //loadDataGridByGroupDepartment_Personss();
                 }
             })
+
+            //$("#smsMission_combogrid").datagrid({
+            //    singleSelect: false,
+            //    checkOnSelect: true,
+            //    selectOnCheck: true
+            //})
         }
 
         function loadDataGrid_person(url, myColumns, model) {

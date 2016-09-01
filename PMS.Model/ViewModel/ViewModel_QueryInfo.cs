@@ -19,6 +19,8 @@ namespace PMS.Model.ViewModel
 
         public int Mission_id { get; set; }
 
+        public int[] Mission_ids { get; set; }
+
         public string Dt_target { get; set; }
 
         public string Dt_start { get; set; }
