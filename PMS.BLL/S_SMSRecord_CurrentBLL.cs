@@ -68,7 +68,6 @@ namespace PMS.BLL
         public bool SaveReceieveMsg(List<SMSModel_QueryReceive> list_QueryReceive, int scid)
         {
             //1.取得长短信条数-------------------已经在S_SMSContentBLL的saveMsg方法中实现，不需要在这里实现了
-
             if (list_QueryReceive != null)
             {
                 //创建回执Desc的字典
@@ -108,7 +107,6 @@ namespace PMS.BLL
                     record.StatusCode = int.Parse(item.status);
                     record.DescContent = desc;
                     list_current.Add(record);
-
                 }
                 //批量更新
                 this.CurrentDBSession.S_SMSRecord_CurrentDAL.UpdateByList(list_current);
