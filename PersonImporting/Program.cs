@@ -8,6 +8,7 @@ using PMS.IBLL;
 
 using PMS.Model;
 
+
 namespace PersonImporting
 {
     class Program
@@ -36,12 +37,12 @@ namespace PersonImporting
             ShowMsg("               通讯录导入导出程序");
             ShowMsg("--------------------------------------------------------------------------");
             ShowMsg("   说明：通讯录需为TXT格式，文件名为'优先级+群组名称+.txt'，中间去掉'+'号");
-            ShowMsg("         ,txt文件中的每一行为一个联系人，格式为'所在机构名称，联系人姓名");
-            ShowMsg("         ,电话'，各项由逗号分隔。");
+            ShowMsg("         ,其中，优先级需要三位数。txt文件中的每一行为一个联系人，格式为'");
+            ShowMsg("         所在机构名称，联系人姓名 ,电话'，各项由逗号分隔。");
             ShowMsg("--------------------------------------------------------------------------");
             while (true)
             {
-                ShowMsg("请选择操作类型，A：导入通讯录，B：导出通讯录 C:退出" );
+                ShowMsg("请选择操作类型，a：导入通讯录，b：导出通讯录 c:退出" );
                 option = Console.ReadLine();
                 if (!CheckedOption(option))
                 {
@@ -56,17 +57,17 @@ namespace PersonImporting
             //根据选项，执行导入或导出
             switch (option)
             {
-                case "A":
+                case "a":
                     ShowMsg("--------------------------------------------------------------------------");
                     ShowMsg("                              导入通讯录");
                     Import();
                     break;
-                case "B":
+                case "b":
                     ShowMsg("--------------------------------------------------------------------------");
                     ShowMsg("                              导出通讯录");
                     Export();
                     break;
-                case "C":
+                case "c":
                     break;
                 default:
                     break;
@@ -150,19 +151,36 @@ namespace PersonImporting
 
             //}
             //string fileName = "999测试群组二.txt";
-            groupBLL = new BLL.P_GroupBLL();
-            departmentBLL = new BLL.P_DepartmentBLL();
-            personBLL = new BLL.P_PersonBLL();
-            r_personBLL = new PMS.BLL.P_PersonInfoBLL();
-            var list = LoadFile(fullPath, fileName);
-            DBOperate(list);
-            ShowMsg("导入联系人成功！共录入：" + list.Count() + " 人");
-            ShowMsg("点击任意键退出");
-            Console.ReadKey();
+
+            //2 文件格式验证
+            if (Utils.ImportExportUtils.FileFormateValidation(fullPath))
+            {
+                groupBLL = new BLL.P_GroupBLL();
+                departmentBLL = new BLL.P_DepartmentBLL();
+                personBLL = new BLL.P_PersonBLL();
+                r_personBLL = new PMS.BLL.P_PersonInfoBLL();
+                var list = LoadFile(fullPath, fileName);
+                if(list.Count < 1)
+                {
+                    ShowMsg("文件内容格式错误，请检查联系人信息是否完整，电话位数是否正确，并按说明要求导入");
+                }
+                else
+                {
+                    DBOperate(list);
+                    ShowMsg("导入联系人成功！共录入：" + list.Count() + " 人");
+                }
+            }
+            else
+            {
+                ShowMsg("文件名格式错误，请按说明要求导入");
+
+            }
+                ShowMsg("点击任意键退出");
+                Console.ReadKey();
         }
         private static bool CheckedOption(string option)
         {
-            if (option.Equals("A") || option.Equals("B") || option.Equals("C"))
+            if (option.Equals("a") || option.Equals("b") || option.Equals("c"))
             {
                 return true;
             }
@@ -185,7 +203,9 @@ namespace PersonImporting
         private static List<ViewModel.PersonModel> LoadFile(string fullPath, string fileName)
         {
             //1 将文件以流的形式读取，并转成对象集合
-      
+
+
+
             //去掉file的后缀
             var groupName = fileName.Substring(3, fileName.IndexOf('.') - 3);
 
@@ -197,16 +217,24 @@ namespace PersonImporting
             while (!sr.EndOfStream)
             {
                 string textLine = sr.ReadLine();
-                try
+                //数据验证：文件内容验证
+                if (!Utils.ImportExportUtils.ContactsValidation(textLine))
                 {
-                    var obj = BLL.OperateBLL.Array2Obj(textLine, groupName, sort);
-                    list_model.Add(obj);
-                    //文本处理
+                    list_model.Clear();
+                    break;
                 }
-                catch (IOException ex)
+                else
                 {
+                    try
+                    {
+                        var obj = BLL.OperateBLL.Array2Obj(textLine, groupName, sort);
+                        list_model.Add(obj);
+                        //文本处理
+                    }
+                    catch (IOException ex)
+                    {
+                    }
 
-                    throw ex;
                 }
 
             }

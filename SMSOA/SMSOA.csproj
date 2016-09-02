@@ -425,6 +425,7 @@
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
     <Content Include="Scripts\MyScripts\Common\my_loadDataGrid.js" />
     <Content Include="Scripts\MyScripts\Common\my_SetiframeBody.js" />
+    <Content Include="Scripts\MyScripts\Common\Overload_ToLocaleDateString.js" />
     <Content Include="Scripts\MyScripts\Common\Submit.js" />
     <Content Include="Scripts\MyScripts\Common\ValidateExtend.js" />
     <Content Include="Scripts\MyScripts\Contact\my_loadUrl.js" />

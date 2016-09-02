@@ -5,6 +5,7 @@
 
 @section Scripts{
     <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
+    <script src="~/Scripts/MyScripts/Common/Overload_ToLocaleDateString.js"></script>
 <script type="text/javascript">
 
     var toolbar= [ {
@@ -119,7 +120,8 @@
         }
         else {
 
-            RoleId=rows[0].ID;
+            RoleId = rows[0].ID;
+            $("#showActionWindow").window({title:'分配权限'});
             //打开设置权限的窗体
             $("#showActionWindow").window('open');
 

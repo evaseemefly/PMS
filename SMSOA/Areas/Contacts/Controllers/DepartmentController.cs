@@ -263,6 +263,8 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         public ActionResult DoAddDepartmentInfo(P_DepartmentInfo departmentModel)
         {
+            //数据验证
+            if (departmentBLL.AddValidation(departmentModel.DepartmentName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             departmentModel.isDel = false;
             
@@ -296,6 +298,8 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         public ActionResult DoEditDepartmentInfo(P_DepartmentInfo departmentModel)
         {
+            //数据验证
+            if (departmentBLL.EditValidation(departmentModel.DID, departmentModel.DepartmentName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             departmentModel.isDel = false;
             //departmentModel.ModifiedOnTime = DateTime.Now;

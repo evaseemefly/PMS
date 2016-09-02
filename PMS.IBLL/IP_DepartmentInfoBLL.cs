@@ -29,5 +29,14 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftRoleInfos(List<int> list_ids);
+
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        bool AddValidation(String name);
+
+        bool EditValidation(int id, String name);
     }
 }

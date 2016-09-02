@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PMS20160425Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActionInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentID" Type="int" Nullable="false" />
+    <Property Name="ActionInfoName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="DelFlag" Type="bit" Nullable="false" />
+    <Property Name="ModifiedOnTime" Type="datetime" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+    <Property Name="Url" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="32" />
+    <Property Name="ActionMethodName" Type="nvarchar" MaxLength="32" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="32" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="ActionTypeEnum" Type="smallint" Nullable="false" />
+    <Property Name="MenuIcon" Type="varchar" MaxLength="512" />
+    <Property Name="IconWidth" Type="int" Nullable="false" />
+    <Property Name="IconHeight" Type="int" Nullable="false" />
+    <Property Name="isShow" Type="bit" Nullable="false" />
+    <Property Name="MethodTypeEnum" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PMS20160425ModelStoreContainer">
+    <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

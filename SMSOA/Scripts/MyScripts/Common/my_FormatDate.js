@@ -17,7 +17,7 @@
 
     var date = new Date(date_str);
     //var str = date.getYear() + "/" + (date.getMonth() + 1) + +"/" + date.getDate() +" " + date.getHours + ":" + date.getMinutes;
-    var str = date.toLocaleDateString() + " " + date.getHours() + ":" + date.getMinutes();
+    var str = date.toLocaleDateString("yyyy-MM-dd") + " " + date.getHours() + ":" + date.getMinutes();
 
     return str;
 }
