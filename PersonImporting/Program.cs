@@ -224,6 +224,7 @@ namespace PersonImporting
             //判断是否已经存在群组
             //list 
             //2.1 判断或创建群组对象
+
             var temp = list.FirstOrDefault();
             var group_name= temp.GroupName;
             var group_sort = temp.GroupSort;
@@ -236,6 +237,8 @@ namespace PersonImporting
                                    select d.DepartmentName).ToList();
 
             department_names.ForEach(d => departmentBLL.CheckDepartmentExist(d));
+            string group_name_required = "全部联系人";
+            var group_required= groupBLL.getGroupByName(group_name_required);
 
             //2.3 批量创建联系人
             foreach (var item in list)
@@ -245,7 +248,10 @@ namespace PersonImporting
                 //2.3.2 查找该联系人对象
                 int gid = groupBLL.GetGroupId(item.GroupName);
                 int did = departmentBLL.GetDepartmentId(item.DepartmentName);
-                personBLL.CreatPersonRelationship(item.Phone, gid,did);
+                int[] gids = new int[] { gid, group_required.GID };
+                int[] dids = new int[] { did };
+                personBLL.CreatPersonRelationship(item.Phone, gids, dids);
+               
                 ShowMsg("导出联系人：" + item.PersonName + "- 电话：" + item.Phone + "- 部门：" + item.DepartmentName);
             }
         }

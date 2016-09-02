@@ -16,7 +16,7 @@ namespace PMS.IBLL
         /// <param name="uid">UserInfo ID</param>
         /// <param name="isMiddle">是否转成中间变量（转成中间变量为true）</param>
         /// <returns></returns>
-        List<S_SMSMission> GetMissionListByUID(int uid, bool isMiddle);
+        List<S_SMSMission> GetMissionListByUID(int uid, bool isMiddle, bool showDel);
 
         /// <summary>
         /// 根据传入的用户id获取该用户的常用群组，并从常用群组中删除传入的群组id集合
@@ -43,7 +43,7 @@ namespace PMS.IBLL
         /// <param name="uid">用户Id</param>
         /// <param name="isMiddle">是否中间转换</param>
         /// <returns></returns>
-        List<P_Group> GetGroupListByUID(int uid, bool isMiddle);
+        List<P_Group> GetGroupListByUID(int uid, bool isMiddle,bool showDel);
 
 
 
