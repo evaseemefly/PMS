@@ -1,7 +1,6 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="WFTest.MainStatistics"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="WFTest.MainStatistics" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="WFTest.MainStatistics_1"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
- xmlns:local="clr-namespace:WFTest"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -10,14 +9,6 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <x:Members>
-    <x:Property Name="my_Argument" Type="InArgument(x:String)" />
-    <x:Property Name="state" Type="InArgument(x:Boolean)" />
-  </x:Members>
-  <mva:VisualBasic.Settings>
-    <x:Null />
-  </mva:VisualBasic.Settings>
-  <sap2010:WorkflowViewState.IdRef>WFTest.MainStatistics_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -87,17 +78,9 @@
                     <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="向数据库中写入这些状态" />
                     <FlowStep.Next>
                       <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_10">
-                        <DoWhile sap2010:WorkflowViewState.IdRef="DoWhile_1" Condition="[state]">
-                          <Sequence DisplayName="根据msgid查询状态并休眠" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                            <local:QueryStatesByMsgid_Code State="{x:Null}" Text="{x:Null}" query_model="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_3" />
-                            <local:Sleep_Code Sec="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="Sleep_Code_2" />
-                          </Sequence>
+                        <DoWhile DisplayName="遍历查询结果" sap2010:WorkflowViewState.IdRef="DoWhile_1" Condition="True">
+                          <local:QueryAndSleep_Activity sap2010:WorkflowViewState.IdRef="QueryAndSleep_Activity_1" xmlns:local="clr-namespace:WFTest" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
                         </DoWhile>
-                        <FlowStep.Next>
-                          <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_11">
-                            <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="结束" />
-                          </FlowStep>
-                        </FlowStep.Next>
                       </FlowStep>
                     </FlowStep.Next>
                   </FlowStep>
@@ -113,8 +96,7 @@
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>d0BFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljcy54YW1sEEsDdg8CAQFOCU5VAgEQUQ1RWQIBDlQRVF0CAQxXFVdjAgEKWhlfIwIBBGIdYmICAQJOR05SAgERUUtRVgIBD1RPVFoCAQ1XU1dgAgELWlhaYQIBCFsbXiYCAQViW2JfAgEDXB1csgECAQddHV1/AgEG</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz9EOlwwMee8lueoi1wwMuWNj+S9nOW8gOWPkVxTTVNPQVxQTVNcV0ZUZXN0XE1haW5TdGF0aXN0aWNzLnhhbWwLQgNkDwIBAUUJRVUCAQtIDUhZAgEJSxFLXQIBB04VTmMCAQVRGVMjAgECRUdFUgIBDEhLSFYCAQpLT0taAgEITlNOYAIBBlFtUXMCAQQ=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -146,43 +128,20 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="QueryStatesByMsgid_Code_3" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sleep_Code_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="222,208">
+      <sap2010:ViewStateData Id="QueryAndSleep_Activity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_1" sap:VirtualizedContainerService.HintSize="250,57" />
+      <sap2010:ViewStateData Id="DoWhile_1" sap:VirtualizedContainerService.HintSize="464,227">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="DoWhile_1" sap:VirtualizedContainerService.HintSize="200,53">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_6" sap:VirtualizedContainerService.HintSize="213,63">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_11">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">203.5,548.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">210,463.5</av:Point>
+            <av:Point x:Key="ShapeLocation">190,463.5</av:Point>
             <av:Size x:Key="ShapeSize">200,53</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">310,516.5 310,548.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -191,7 +150,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">193.5,368.5</av:Point>
             <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,431.5 300,461.5 310,461.5 310,463.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,431.5 300,461.5 290,461.5 290,463.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

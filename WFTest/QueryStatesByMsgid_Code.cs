@@ -22,7 +22,7 @@ namespace WFTest
         /// <summary>
         /// 查询之后返回的状态
         /// </summary>
-        public OutArgument<bool> State { get; set; }
+        public OutArgument<int> State_Code { get; set; }
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
@@ -30,9 +30,10 @@ namespace WFTest
         {
             // 获取 Text 输入参数的运行时值
             //string text = context.GetValue(this.Text);
-            
+
             //进行查询传入的msgid的
-            
+
+            context.SetValue(State_Code, 0);
         }
     }
 }
