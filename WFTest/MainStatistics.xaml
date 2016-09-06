@@ -79,42 +79,42 @@
         <FlowStep.Next>
           <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_4">
             <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="取出符合条件的对象" />
-            <FlowStep.Next>
-              <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_3">
-                <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="根据msgid查询" />
-                <FlowStep.Next>
-                  <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_2">
-                    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="向数据库中写入这些状态" />
-                    <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_10">
-                        <DoWhile sap2010:WorkflowViewState.IdRef="DoWhile_1" Condition="[state]">
-                          <Sequence DisplayName="根据msgid查询状态并休眠" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                            <local:QueryStatesByMsgid_Code State="{x:Null}" Text="{x:Null}" query_model="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_3" />
-                            <local:Sleep_Code Sec="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="Sleep_Code_2" />
-                          </Sequence>
-                        </DoWhile>
-                        <FlowStep.Next>
-                          <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_11">
-                            <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="结束" />
-                          </FlowStep>
-                        </FlowStep.Next>
-                      </FlowStep>
-                    </FlowStep.Next>
-                  </FlowStep>
-                </FlowStep.Next>
-              </FlowStep>
-            </FlowStep.Next>
           </FlowStep>
         </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
     <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_3">
+      <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="根据msgid查询" />
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+          <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="向数据库中写入这些状态" />
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+              <DoWhile sap2010:WorkflowViewState.IdRef="DoWhile_1" Condition="[state]">
+                <Sequence DisplayName="根据msgid查询状态并休眠" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <local:QueryStatesByMsgid_Code State="{x:Null}" Text="{x:Null}" query_model="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_3" />
+                  <local:Sleep_Code Sec="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="Sleep_Code_2" />
+                </Sequence>
+              </DoWhile>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_11">
+                  <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="结束" />
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>d0BFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljcy54YW1sEEsDdg8CAQFOCU5VAgEQUQ1RWQIBDlQRVF0CAQxXFVdjAgEKWhlfIwIBBGIdYmICAQJOR05SAgERUUtRVgIBD1RPVFoCAQ1XU1dgAgELWlhaYQIBCFsbXiYCAQViW2JfAgEDXB1csgECAQddHV1/AgEG</sads:DebugSymbol.Symbol>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_12">
+      <local:GetMsgIdFromRedis_Code Text="{x:Null}" list_id="{x:Null}" seconds_add="{x:Null}" sleepTime="{x:Null}" sap2010:WorkflowViewState.IdRef="GetMsgIdFromRedis_Code_1" />
+    </FlowStep>
+    <sads:DebugSymbol.Symbol>d0xEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljcy54YW1sBUsDdg8CAQFOCU5VAgEEUQ1RWQIBAk5HTlICAQVRS1FWAgED</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -129,6 +129,23 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">203.5,208.5</av:Point>
+            <av:Size x:Key="ShapeSize">213,63</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">203.5,118.5</av:Point>
+            <av:Size x:Key="ShapeSize">213,63</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">310,181.5 310,208.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -172,7 +189,7 @@
       <sap2010:ViewStateData Id="FlowStep_11">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">203.5,548.5</av:Point>
+            <av:Point x:Key="ShapeLocation">203.5,608.5</av:Point>
             <av:Size x:Key="ShapeSize">213,63</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -180,45 +197,42 @@
       <sap2010:ViewStateData Id="FlowStep_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">210,463.5</av:Point>
+            <av:Point x:Key="ShapeLocation">210,523.5</av:Point>
             <av:Size x:Key="ShapeSize">200,53</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">310,516.5 310,548.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">310,576.5 310,608.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">193.5,368.5</av:Point>
+            <av:Point x:Key="ShapeLocation">193.5,438.5</av:Point>
             <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,431.5 300,461.5 310,461.5 310,463.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,501.5 300,523.5 310,523.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">203.5,288.5</av:Point>
+            <av:Point x:Key="ShapeLocation">203.5,358.5</av:Point>
             <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">310,351.5 300,351.5 300,368.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">310,421.5 300,421.5 300,438.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_4">
+      <sap2010:ViewStateData Id="GetMsgIdFromRedis_Code_1" sap:VirtualizedContainerService.HintSize="200,22">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">203.5,208.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">310,271.5 310,288.5</av:PointCollection>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_5">
+      <sap2010:ViewStateData Id="FlowStep_12">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">203.5,118.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">310,181.5 310,208.5</av:PointCollection>
+            <av:Point x:Key="ShapeLocation">200,299</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
