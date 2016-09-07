@@ -17,7 +17,7 @@ namespace WFTest
 
         public InArgument<double> Secs_Interval { get; set; }
 
-        public OutArgument<PMS.Model.QueryModel.Redis_SMSContent> List_redis { get; set; }
+        public OutArgument<List<PMS.Model.QueryModel.Redis_SMSContent>> List_redis { get; set; }
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。

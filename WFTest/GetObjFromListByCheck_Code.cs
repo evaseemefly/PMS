@@ -14,6 +14,8 @@ namespace WFTest
 
         public InArgument<List<PMS.Model.QueryModel.Redis_SMSContent>> List_redis { get; set; }
 
+        public InArgument<double> Secs_Interval { get; set; }
+
         public OutArgument<PMS.Model.QueryModel.Redis_SMSContent> First_Obj { get; set; }
 
         // 如果活动返回值，则从 CodeActivity<TResult>
@@ -21,11 +23,17 @@ namespace WFTest
         protected override void Execute(CodeActivityContext context)
         {
             // 获取 Text 输入参数的运行时值
-            string text = context.GetValue(this.Text);
-            
+            //string text = context.GetValue(this.Text);
+            //1 取出传入的集合和时间间隔变量
+            var list = context.GetValue(List_redis);
+            var secs = context.GetValue(Secs_Interval);
+            //2 获取超出时间间隔的第一个对象
+            var first=  CheckTimeOut_RedisList(list, secs);
+            //3 为传出变量赋值
+            context.SetValue(this.First_Obj, first);
         }
 
-        public void CheckTimeOut_RedisList(List<PMS.Model.QueryModel.Redis_SMSContent> list_final, double seconds_add, CodeActivityContext context)
+        public PMS.Model.QueryModel.Redis_SMSContent CheckTimeOut_RedisList(List<PMS.Model.QueryModel.Redis_SMSContent> list_final, double seconds_add)
         {
             //3 判断集合第一个对象的时间是否已经超过规定的时间
             if (list_final.Count > 0)
@@ -34,13 +42,14 @@ namespace WFTest
                 {
                     //7月28日添加若发送人数超过一百人需要连续进行两次查询
                     var model = list_final.First();
-                    context.SetValue(First_Obj, model);
+                    //context.SetValue(First_Obj, model);
+                    return model;
                 }
                 else
                 {
                     //ToShow("现有Redis集合中以没有时间范围内的对象");
                     //ToShow("现Redis集合中共有:" + list_final.Count());
-                    return;
+                    return null;
                 }
             }
             //直到出现集合第一个对象时间已经不再超过规定时间则跳出
@@ -48,7 +57,7 @@ namespace WFTest
             {
                 //ToShow("现有Redis集合中以没有时间范围内的对象");
                 //ToShow("现Redis集合中共有:" + list_final.Count());
-                return;
+                return null;
             }
         }
     }

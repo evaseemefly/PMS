@@ -13,19 +13,22 @@ namespace WFTest
     public sealed class QueryStatesByMsgid_Code : CodeActivity
     {
         // 定义一个字符串类型的活动输入参数E:\03协同开发\短信\PMS\0630\PMS\WFTest\QueryStatesByMsgid_Code.cs
-        //public InArgument<string> Text { get; set; }
+        public InArgument<string> Text { get; set; }
 
-            /// <summary>
-            /// 查询条件对象
-            /// </summary>
-        public InArgument<SMSModel_Query> Query_model { get; set; }
+        /// <summary>
+        /// 查询条件对象
+        /// </summary>
+        public InArgument<PMS.Model.QueryModel.Redis_SMSContent> Query_model { get; set; }
 
         //返回查询状态（先设定为string）类型
         /// <summary>
         /// 查询之后返回的状态
         /// </summary>
-        public OutArgument<bool> State { get; set; }
+        public OutArgument<int> State { get; set; }
 
+        /// <summary>
+        /// 本次查询的回执
+        /// </summary>
         public OutArgument<List<SMSModel_QueryReceive>> List_QueryReceive { get; set; }
 
         // 如果活动返回值，则从 CodeActivity<TResult>
@@ -39,9 +42,9 @@ namespace WFTest
             var list = new List<SMSModel_QueryReceive>();
             int state = -1;
 
-            var model = context.GetValue(query_model);
+            var model = context.GetValue(Query_model);
 
-            ToQuery(model.smsId, out list, out state);
+            ToQuery(model.msgid, out list, out state);
 
             context.SetValue(State, state);
             context.SetValue(List_QueryReceive, list);
@@ -90,7 +93,7 @@ namespace WFTest
 
             if (list.Count() < 1)
             {
-
+                
                 return;
             }
             else

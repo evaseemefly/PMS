@@ -37,6 +37,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -50,6 +57,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="End_Code.cs" />
     <Compile Include="GetListFromRedis_Code.cs" />
     <Compile Include="GetMsgIdFromRedis_Code.cs" />
     <Compile Include="GetObjFromListByCheck_Code.cs" />
@@ -65,12 +73,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <XamlAppDef Include="MainStatistics.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
@@ -82,6 +84,10 @@
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
       <Name>PMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
+      <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
+      <Name>PMS.DALSQLSer</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
       <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>

@@ -5,6 +5,7 @@
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:pmq="clr-namespace:PMS.Model.QueryModel;assembly=PMS.Model"
+ xmlns:pms="clr-namespace:PMS.Model.SMSModel;assembly=PMS.Model"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
@@ -12,7 +13,7 @@
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="query_obj" Type="InArgument(pmq:Redis_SMSContent)" />
+    <x:Property Name="query_obj" Type="OutArgument(pmq:Redis_SMSContent)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap2010:WorkflowViewState.IdRef>WFTest.MainStatistics_Advanced_1</sap2010:WorkflowViewState.IdRef>
@@ -45,6 +46,9 @@
       <AssemblyReference>PMS.IBLL</AssemblyReference>
       <AssemblyReference>PMS.Model</AssemblyReference>
       <AssemblyReference>SMSFactory</AssemblyReference>
+      <AssemblyReference>PMS.DALSQLSer</AssemblyReference>
+      <AssemblyReference>EntityFramework</AssemblyReference>
+      <AssemblyReference>EntityFramework.SqlServer</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>WFTest</AssemblyReference>
     </sco:Collection>
@@ -55,7 +59,23 @@
         <State.Entry>
           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
             <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="读取相关配置" />
-            <local:ReadAppConfig_Code Id_list="{x:Null}" Seconds_Interval="{x:Null}" SleepTime="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="ReadAppConfig_Code_1" />
+            <local:ReadAppConfig_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="ReadAppConfig_Code_1">
+              <local:ReadAppConfig_Code.Id_list>
+                <OutArgument x:TypeArguments="x:String">
+                  <mca:CSharpReference x:TypeArguments="x:String">_id_list</mca:CSharpReference>
+                </OutArgument>
+              </local:ReadAppConfig_Code.Id_list>
+              <local:ReadAppConfig_Code.Seconds_Interval>
+                <OutArgument x:TypeArguments="x:Double">
+                  <mca:CSharpReference x:TypeArguments="x:Double">_secs_interval</mca:CSharpReference>
+                </OutArgument>
+              </local:ReadAppConfig_Code.Seconds_Interval>
+              <local:ReadAppConfig_Code.SleepTime>
+                <OutArgument x:TypeArguments="x:Int32">
+                  <mca:CSharpReference x:TypeArguments="x:Int32">_sleepTime</mca:CSharpReference>
+                </OutArgument>
+              </local:ReadAppConfig_Code.SleepTime>
+            </local:ReadAppConfig_Code>
           </Sequence>
         </State.Entry>
         <State.Transitions>
@@ -64,8 +84,27 @@
               <State x:Name="__ReferenceID2" DisplayName="从Redis中取得存储的对象集合" sap2010:WorkflowViewState.IdRef="State_3">
                 <State.Entry>
                   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="variable1" />
+                    </Sequence.Variables>
                     <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="从Redis中取出指定集合" />
-                    <local:GetListFromRedis_Code Id_List="{x:Null}" List_redis="{x:Null}" Secs_Interval="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="GetListFromRedis_Code_1" />
+                    <local:GetListFromRedis_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="GetListFromRedis_Code_1">
+                      <local:GetListFromRedis_Code.Id_List>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">_id_list</mca:CSharpValue>
+                        </InArgument>
+                      </local:GetListFromRedis_Code.Id_List>
+                      <local:GetListFromRedis_Code.List_redis>
+                        <OutArgument x:TypeArguments="scg:List(pmq:Redis_SMSContent)">
+                          <mca:CSharpReference x:TypeArguments="scg:List(pmq:Redis_SMSContent)">_list_redis</mca:CSharpReference>
+                        </OutArgument>
+                      </local:GetListFromRedis_Code.List_redis>
+                      <local:GetListFromRedis_Code.Secs_Interval>
+                        <InArgument x:TypeArguments="x:Double">
+                          <mca:CSharpValue x:TypeArguments="x:Double">_secs_interval</mca:CSharpValue>
+                        </InArgument>
+                      </local:GetListFromRedis_Code.Secs_Interval>
+                    </local:GetListFromRedis_Code>
                     <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="取出集合成功" />
                   </Sequence>
                 </State.Entry>
@@ -75,8 +114,26 @@
                       <State x:Name="__ReferenceID3" DisplayName="从Redis集合中判断第一个对象，并取出" sap2010:WorkflowViewState.IdRef="State_4">
                         <State.Entry>
                           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
-                            <local:GetObjFromListByCheck_Code First_Obj="{x:Null}" List_redis="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="GetObjFromListByCheck_Code_1" />
-                            <Flowchart DisplayName="从该对象中提起msgid查询并写入" sap2010:WorkflowViewState.IdRef="Flowchart_1" StartNode="{x:Null}" />
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="pmq:Redis_SMSContent" Name="_first_obj" />
+                            </Sequence.Variables>
+                            <local:GetObjFromListByCheck_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="GetObjFromListByCheck_Code_1">
+                              <local:GetObjFromListByCheck_Code.First_Obj>
+                                <OutArgument x:TypeArguments="pmq:Redis_SMSContent">
+                                  <mca:CSharpReference x:TypeArguments="pmq:Redis_SMSContent">query_obj</mca:CSharpReference>
+                                </OutArgument>
+                              </local:GetObjFromListByCheck_Code.First_Obj>
+                              <local:GetObjFromListByCheck_Code.List_redis>
+                                <InArgument x:TypeArguments="scg:List(pmq:Redis_SMSContent)">
+                                  <mca:CSharpValue x:TypeArguments="scg:List(pmq:Redis_SMSContent)">_list_redis</mca:CSharpValue>
+                                </InArgument>
+                              </local:GetObjFromListByCheck_Code.List_redis>
+                              <local:GetObjFromListByCheck_Code.Secs_Interval>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <mca:CSharpValue x:TypeArguments="x:Double">_secs_interval</mca:CSharpValue>
+                                </InArgument>
+                              </local:GetObjFromListByCheck_Code.Secs_Interval>
+                            </local:GetObjFromListByCheck_Code>
                           </Sequence>
                         </State.Entry>
                         <State.Transitions>
@@ -84,24 +141,55 @@
                             <Transition.To>
                               <State x:Name="__ReferenceID4" DisplayName="从该对象中提起msgid查询并写入" sap2010:WorkflowViewState.IdRef="State_5">
                                 <State.Entry>
-                                  <If sap2010:WorkflowViewState.IdRef="If_1">
-                                    <If.Condition>
-                                      <InArgument x:TypeArguments="x:Boolean">
-                                        <mca:CSharpValue x:TypeArguments="x:Boolean">query_obj.msgid== string.Empty || query_obj.PhoneNums== string.Empty</mca:CSharpValue>
-                                      </InArgument>
-                                    </If.Condition>
-                                    <If.Else>
-                                      <local:QueryStatesByMsgid_Code List_QueryReceive="{x:Null}" State="{x:Null}" Text="{x:Null}" query_model="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_1" />
-                                    </If.Else>
-                                  </If>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="判断传入对象是否满足条件" />
+                                    <If sap2010:WorkflowViewState.IdRef="If_1">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">query_obj.msgid== string.Empty || query_obj.PhoneNums== string.Empty</mca:CSharpValue>
+                                        </InArgument>
+                                      </If.Condition>
+                                      <If.Else>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                          <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="满足条件，开始查询" />
+                                          <local:QueryStatesByMsgid_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_1">
+                                            <local:QueryStatesByMsgid_Code.List_QueryReceive>
+                                              <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                                <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryReceive</mca:CSharpReference>
+                                              </OutArgument>
+                                            </local:QueryStatesByMsgid_Code.List_QueryReceive>
+                                            <local:QueryStatesByMsgid_Code.Query_model>
+                                              <InArgument x:TypeArguments="pmq:Redis_SMSContent">
+                                                <mca:CSharpValue x:TypeArguments="pmq:Redis_SMSContent">query_obj</mca:CSharpValue>
+                                              </InArgument>
+                                            </local:QueryStatesByMsgid_Code.Query_model>
+                                            <local:QueryStatesByMsgid_Code.State>
+                                              <OutArgument x:TypeArguments="x:Int32">
+                                                <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
+                                              </OutArgument>
+                                            </local:QueryStatesByMsgid_Code.State>
+                                          </local:QueryStatesByMsgid_Code>
+                                          <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="返回状态及查询集合" />
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
                                 </State.Entry>
                                 <State.Transitions>
                                   <Transition DisplayName="T5" sap2010:WorkflowViewState.IdRef="Transition_6">
                                     <Transition.To>
-                                      <State x:Name="__ReferenceID1" DisplayName="FinalState" sap2010:WorkflowViewState.IdRef="State_2" IsFinal="True" />
+                                      <State x:Name="__ReferenceID1" DisplayName="FinalState" sap2010:WorkflowViewState.IdRef="State_2" IsFinal="True">
+                                        <State.Entry>
+                                          <local:End_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="End_Code_1" />
+                                        </State.Entry>
+                                      </State>
                                     </Transition.To>
                                   </Transition>
                                 </State.Transitions>
+                                <State.Variables>
+                                  <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_queryReceive" />
+                                  <Variable x:TypeArguments="x:Int32" Name="_state" />
+                                </State.Variables>
                               </State>
                             </Transition.To>
                           </Transition>
@@ -128,14 +216,15 @@
       <Variable x:TypeArguments="x:Int32" Name="_sleepTime" />
       <Variable x:TypeArguments="x:String" Name="_id_list" />
       <Variable x:TypeArguments="x:Double" Name="_secs_interval" />
+      <Variable x:TypeArguments="scg:List(pmq:Redis_SMSContent)" Name="_list_redis" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>d1VEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sFjQDhQESAgEBNgd4DwIBHWUnZZoBAgEbQA90FwIBEksXcB8CAQxVH2knAgECOAs7FgIBIEITRh4CARVNG1AmAgEPVyNgKAIBBTkNOVYCASI6DTq0AQIBIUMVQ2UCARlEFUTAAQIBGEUVRV4CARZOHU67AQIBEU8dT40BAgEQWilarAECAQZeJ17ZAQIBCzlLOVMCASNDU0NiAgEaRVNFWwIBFw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1VEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sKjgD3gESAgEBOgfQAQ8CAW21ASe5AS8CAWpUD8wBFwIBTHIXyAEfAgEvjgEfwQEnAgECPAtPFgIBcLcBK7cBegIBbFYTbR4CAU90G4kBJgIBMpABI7ABLgIBBT0NPVYDAYQBPg1OKAIBcVoVWmUCAWhbFWszAgFSbBVsXgIBUHgdiAFAAgEzkQElkQF0AgEtkgElrwEqAgEGPUs9UwMBhQFLE0tiAgF+QRNBYQIBeEYTRmcCAXJaU1piAgFpYxtjggECAWFoG2hnAgFaXhteYQIBU2xTbFsCAVGAASOAAYIBAgFEhQEjhQFvAgE8eyN7fgIBNJEBY5EBcQIBLpUBK5UBrgECAQeZASmtATQCAQ+aASuaAXcCASubASurAUsCARKsASusAXcCARCaAWmaAXQCASyjATGjAYQBAgEjngExngGkAQIBG6gBMagBfAIBE6wBaawBdAIBEQ==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="213,63" />
-      <sap2010:ViewStateData Id="ReadAppConfig_Code_1" sap:VirtualizedContainerService.HintSize="213,22" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="235,249">
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="214.4,62.4" />
+      <sap2010:ViewStateData Id="ReadAppConfig_Code_1" sap:VirtualizedContainerService.HintSize="214.4,22.4" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="236.8,249.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -153,26 +242,37 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="GetObjFromListByCheck_Code_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="200,52.8">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222.4,240">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222.4,147.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="QueryStatesByMsgid_Code_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,211.2" />
-      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="114.4,61.6">
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="464,62.4" />
+      <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="214.4,62.4" />
+      <sap2010:ViewStateData Id="QueryStatesByMsgid_Code_1" sap:VirtualizedContainerService.HintSize="214.4,22.4" />
+      <sap2010:ViewStateData Id="WriteLine_6" sap:VirtualizedContainerService.HintSize="214.4,62.4" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="236.8,352">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">262.8,479.2</av:Point>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,503.2" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="486.4,730.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="End_Code_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="325.6,224">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">382.8,489.2</av:Point>
             <av:Size x:Key="ShapeSize">114.4,61.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
@@ -181,13 +281,13 @@
       <sap2010:ViewStateData Id="Transition_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">446.4,422.8 446.4,452.8 331.44,452.8 331.44,479.2</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">446.4,422.8 446.4,452.8 451.44,452.8 451.44,489.2</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">46</x:Int32>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="489.6,574.4">
+      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="327.2,73.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">282.8,349.2</av:Point>
