@@ -76,6 +76,18 @@ namespace SMSFactory
 
                 }
             }
+            //9月7日
+            //若response/report/status节点中没有元素
+            else
+            {
+                //则说明返回的是ok等状态，对其进行封装
+                SMSModel_QueryReceive r = new SMSModel_QueryReceive()
+                //封装语句
+                {
+                    desc = desc,
+                };
+                list_r.Add(r);
+            }
             return list_r;
         }
         /// <summary>

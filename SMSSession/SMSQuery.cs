@@ -31,6 +31,41 @@ namespace SMSFactory
                 return true;
             }
         }
+
+        /// <summary>
+        /// 根据刚刚查询所返回的回执集合
+        /// 获取本次查询状态——是否已经查询完毕（若是第一个线程，则说明当前查询后，本次线程中所有用户已经查询完毕；
+        /// 若是第二个线程，则还需要做相关操作
+        /// </summary>
+        /// <param name="list">刚刚查询所返回的回执集合</param>
+        /// <returns></returns>
+        public int GetQueryState(List<SMSModel_QueryReceive> list)
+        {
+            if (list.Count == 1)
+            {
+                //判断该集合中的唯一的对象的desc是否为成功
+                if(list.FirstOrDefault().desc=="成功")
+                {
+                    //1:未有未被查询到的用户
+                    return 1;
+                }
+                else
+                {
+                    //99：原因未知
+                    return 99;
+                }
+            }
+            else if(list.Count==0)
+            {
+                return 98;
+            }
+            else
+            {
+                //大于1时
+                return 0;
+            }
+        }
+
         /// <summary>
         /// 根据传入的信息进行短信发送状态的查询
         /// </summary>
