@@ -47,7 +47,8 @@ namespace WFTest
 
             //为三个输出变量赋值
             context.SetValue(SleepTime, int.Parse(ConfigHelper.GetSettingValue("sleepTime")));
-            context.SetValue(Id_list, ConfigHelper.GetSettingValue("list_id"));
+            var key = ConfigHelper.GetSettingValue("list_id");
+            context.SetValue(Id_list, key);
             context.SetValue(Seconds_Interval, double.Parse(ConfigHelper.GetSettingValue("seconds_add")));
 
             //context.SetValue<string>(temp, "123");          

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Activities;
+using Common.Redis;
 
 namespace WFTest
 {
@@ -14,9 +15,12 @@ namespace WFTest
 
         public InArgument<List<PMS.Model.QueryModel.Redis_SMSContent>> List_redis { get; set; }
 
+        public InArgument<string> Key_RedisList { get; set; }
+
         public InArgument<double> Secs_Interval { get; set; }
 
         public OutArgument<PMS.Model.QueryModel.Redis_SMSContent> First_Obj { get; set; }
+                ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper;
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
@@ -27,13 +31,15 @@ namespace WFTest
             //1 取出传入的集合和时间间隔变量
             var list = context.GetValue(List_redis);
             var secs = context.GetValue(Secs_Interval);
+            var key = context.GetValue(Key_RedisList);
+            redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(key);
             //2 获取超出时间间隔的第一个对象
-            var first=  CheckTimeOut_RedisList(list, secs);
+            var first=  CheckTimeOut_RedisList(list, secs,key);
             //3 为传出变量赋值
             context.SetValue(this.First_Obj, first);
         }
 
-        public PMS.Model.QueryModel.Redis_SMSContent CheckTimeOut_RedisList(List<PMS.Model.QueryModel.Redis_SMSContent> list_final, double seconds_add)
+        public PMS.Model.QueryModel.Redis_SMSContent CheckTimeOut_RedisList(List<PMS.Model.QueryModel.Redis_SMSContent> list_final, double seconds_add,string key_redis)
         {
             //3 判断集合第一个对象的时间是否已经超过规定的时间
             if (list_final.Count > 0)
@@ -43,6 +49,8 @@ namespace WFTest
                     //7月28日添加若发送人数超过一百人需要连续进行两次查询
                     var model = list_final.First();
                     //context.SetValue(First_Obj, model);
+                    //3.2 并从redis中删除第一个对象
+                    redisListhelper.Delete(key_redis);
                     return model;
                 }
                 else

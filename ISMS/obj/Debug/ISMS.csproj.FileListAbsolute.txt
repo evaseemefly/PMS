@@ -61,3 +61,16 @@ E:\03协同开发\短信\PMS\0630\PMS\ISMS\bin\Debug\zh-Hans\System.Web.Mvc.reso
 E:\03协同开发\短信\PMS\0630\PMS\ISMS\obj\Debug\ISMS.csprojResolveAssemblyReference.cache
 E:\03协同开发\短信\PMS\0630\PMS\ISMS\obj\Debug\ISMS.dll
 E:\03协同开发\短信\PMS\0630\PMS\ISMS\obj\Debug\ISMS.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\ISMS.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\ISMS.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\PMS.Model.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\EntityFramework.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\System.Web.Mvc.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\PMS.Model.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\EntityFramework.xml
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\System.Web.Mvc.xml
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\obj\Debug\ISMS.csprojResolveAssemblyReference.cache
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\obj\Debug\ISMS.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\obj\Debug\ISMS.pdb
