@@ -24,7 +24,7 @@ namespace WFTest
             // 获取 Text 输入参数的运行时值
             //string text = context.GetValue(this.Text);
             //执行休眠操作
-            Console.WriteLine("线程开始休眠");
+            Console.WriteLine("线程开始休眠Zzzzzzzz......");
             int sleep_time = context.GetValue(Sleep_Interval);
             Thread.Sleep(sleep_time);
             Console.WriteLine("已唤醒！");

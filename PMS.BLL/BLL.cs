@@ -265,4 +265,30 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	WF_Query_InstanceBLL
+    public partial class WF_Query_InstanceBLL : BaseBLL<WF_Query_Instance>, IWF_Query_InstanceBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为WF_Query_InstanceDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.WF_Query_InstanceDAL;
+        }
+    }
+	#endregion
+	   #region	WF_Query_StepInfoBLL
+    public partial class WF_Query_StepInfoBLL : BaseBLL<WF_Query_StepInfo>, IWF_Query_StepInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为WF_Query_StepInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.WF_Query_StepInfoDAL;
+        }
+    }
+	#endregion
 	}

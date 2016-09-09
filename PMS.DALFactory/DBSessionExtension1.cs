@@ -545,5 +545,59 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _WF_Query_InstanceDAL 属性 
+	private IDAL.IWF_Query_InstanceDAL _WF_Query_InstanceDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取WF_Query_InstanceDAL的实例
+        /// </summary>
+        public IWF_Query_InstanceDAL WF_Query_InstanceDAL
+        {
+            get
+            {
+                if(_WF_Query_InstanceDAL==null)
+                {
+                    _WF_Query_InstanceDAL = AbstractFactory.CreateWF_Query_InstanceDAL();
+                }
+                return _WF_Query_InstanceDAL;
+            }
+
+            set
+            {
+                _WF_Query_InstanceDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _WF_Query_StepInfoDAL 属性 
+	private IDAL.IWF_Query_StepInfoDAL _WF_Query_StepInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取WF_Query_StepInfoDAL的实例
+        /// </summary>
+        public IWF_Query_StepInfoDAL WF_Query_StepInfoDAL
+        {
+            get
+            {
+                if(_WF_Query_StepInfoDAL==null)
+                {
+                    _WF_Query_StepInfoDAL = AbstractFactory.CreateWF_Query_StepInfoDAL();
+                }
+                return _WF_Query_StepInfoDAL;
+            }
+
+            set
+            {
+                _WF_Query_StepInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
 		}
 }

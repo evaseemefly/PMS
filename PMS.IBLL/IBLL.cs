@@ -104,4 +104,14 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IWF_Query_InstanceBLL:IBaseBLL<WF_Query_Instance>
+    {
+        
+
+    }
+	    public partial interface IWF_Query_StepInfoBLL:IBaseBLL<WF_Query_StepInfo>
+    {
+        
+
+    }
 	}

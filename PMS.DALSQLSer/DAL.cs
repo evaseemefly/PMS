@@ -144,5 +144,19 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region WF_Query_InstanceDAL   
+	//WF_Query_Instance数据访问层
+	public class WF_Query_InstanceDAL:BaseDAL<WF_Query_Instance>,IWF_Query_InstanceDAL
+    {
+    }
+	#endregion
+
+		#region WF_Query_StepInfoDAL   
+	//WF_Query_StepInfo数据访问层
+	public class WF_Query_StepInfoDAL:BaseDAL<WF_Query_StepInfo>,IWF_Query_StepInfoDAL
+    {
+    }
+	#endregion
+
 	
 }

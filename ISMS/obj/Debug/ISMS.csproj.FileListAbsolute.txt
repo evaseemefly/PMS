@@ -71,5 +71,6 @@ D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\EntityFramework
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\System.Web.Mvc.xml
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\obj\Debug\ISMS.csprojResolveAssemblyReference.cache
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\obj\Debug\ISMS.dll
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\ISMS\obj\Debug\ISMS.pdb

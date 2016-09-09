@@ -69,6 +69,7 @@
     <Compile Include="QueryState_BookMark.cs" />
     <Compile Include="ReadAppConfig_Code.cs" />
     <Compile Include="Sleep_Code.cs" />
+    <Compile Include="Temp_BookMark.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -105,6 +106,12 @@
   </ItemGroup>
   <ItemGroup>
     <XamlAppDef Include="MainStatistics_Advanced.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="Activity_Test.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </XamlAppDef>

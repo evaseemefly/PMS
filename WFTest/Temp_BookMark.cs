@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Activities;
-using PMS.Model;
 
 namespace WFTest
 {
 
-    public sealed class QueryState_BookMark<T> : NativeActivity
+    public sealed class Temp_BookMark<T> : NativeActivity
     {
         // 定义一个字符串类型的活动输入参数
         public InArgument<string> Text { get; set; }
 
-        /// <summary>
-        /// 工作流名称
-        /// </summary>
-        public InOutArgument<string> BookMarkName { get; set; }
-
-        public OutArgument<int> SetpId { get; set; }
-
-        public OutArgument<T> State { get; set; }
+        public InArgument<string> BookName { get; set; }
 
         protected override void Execute(NativeActivityContext context)
         {
-            //1 从当前的上下文对象中获取指定名称的书签
-            string bookMarkName = context.GetValue(BookMarkName);
-            //2 创建书签
-            context.CreateBookmark(bookMarkName, new BookmarkCallback(ContinueExecuteWF));
+
+            context.CreateBookmark("测试书签", new BookmarkCallback(ContinueExecuteWF));
         }
 
         /// <summary>
@@ -49,17 +39,13 @@ namespace WFTest
         /// <param name="value"></param>
         public void ContinueExecuteWF(
     NativeActivityContext context,
-    Bookmark bookmark,object value)
+    Bookmark bookmark, object value)
         {
             //继续执行查询方法
-            var data = (PMS.Model.WFModel.BookMarkObj<T>)value;
-
-            context.SetValue(BookMarkName, data.BookMarkName);
-
-            context.SetValue(SetpId, data.StepId);
-
-            context.SetValue(State, data.State);
+            //var data = (PMS.Model.WFModel.BookMarkObj<T>)value;
+            var data = value.ToString();
         }
+    
 
     }
 }

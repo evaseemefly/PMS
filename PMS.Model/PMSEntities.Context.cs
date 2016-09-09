@@ -45,5 +45,7 @@ namespace PMS.Model
         public DbSet<S_SMSMsgContent> S_SMSMsgContent { get; set; }
         public DbSet<R_UserInfo_News> R_UserInfo_News { get; set; }
         public DbSet<N_News> N_News { get; set; }
+        public DbSet<WF_Query_Instance> WF_Query_Instance { get; set; }
+        public DbSet<WF_Query_StepInfo> WF_Query_StepInfo { get; set; }
     }
 }

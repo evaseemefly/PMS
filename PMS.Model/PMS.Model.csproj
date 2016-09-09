@@ -197,6 +197,13 @@
     <Compile Include="ViewModel\ViewModel_Recycle.cs" />
     <Compile Include="ViewModel\ViewModel_SMSMission.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Base.cs" />
+    <Compile Include="WFModel\BookMarkObj.cs" />
+    <Compile Include="WF_Query_Instance.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WF_Query_StepInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
