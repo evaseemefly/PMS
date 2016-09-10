@@ -37,6 +37,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -50,26 +57,56 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="End_Code.cs" />
+    <Compile Include="GetListFromRedis_Code.cs" />
+    <Compile Include="GetMsgIdFromRedis_Code.cs" />
+    <Compile Include="GetObjFromListByCheck_Code.cs" />
+    <Compile Include="GetObjFromRedis_Code.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStatesByMsgid_Code.cs" />
     <Compile Include="QueryState_BookMark.cs" />
+    <Compile Include="ReadAppConfig_Code.cs" />
     <Compile Include="Sleep_Code.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <XamlAppDef Include="MainStatistics.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISMS\ISMS.csproj">
+      <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
+      <Name>ISMS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
+      <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
+      <Name>PMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
+      <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
+      <Name>PMS.DALSQLSer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
+      <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
+      <Name>PMS.IBLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
+      <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
+      <Name>SMSFactory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="MainStatistics_Advanced.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
   </ItemGroup>
   <ItemGroup>
     <XamlAppDef Include="QueryAndSleep_Activity.xaml">

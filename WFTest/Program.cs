@@ -10,8 +10,10 @@ namespace WFTest
     {
         static void Main(string[] args)
         {
-            //Activity workflow1 = new Workflow1();
-            //WorkflowInvoker.Invoke(workflow1);
+            Activity workflow1 = new MainStatistics_Advanced();
+            WorkflowInvoker.Invoke(workflow1);
+            Console.WriteLine("工作流结束，输入任何键退出");
+            Console.ReadLine();
         }
     }
 }
