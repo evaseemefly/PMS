@@ -269,6 +269,32 @@ namespace PMS.DALFactory
             return CreateInstance(fullClassName) as IUserInfoDAL;
         }
 		#endregion
+	 
+		#region 创建WF_Query_Instance的实例
+        /// <summary>
+        /// 创建WF_Query_Instance的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IWF_Query_InstanceDAL CreateWF_Query_InstanceDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".WF_Query_InstanceDAL";
+            return CreateInstance(fullClassName) as IWF_Query_InstanceDAL;
+        }
+		#endregion
+	 
+		#region 创建WF_Query_StepInfo的实例
+        /// <summary>
+        /// 创建WF_Query_StepInfo的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IWF_Query_StepInfoDAL CreateWF_Query_StepInfoDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".WF_Query_StepInfoDAL";
+            return CreateInstance(fullClassName) as IWF_Query_StepInfoDAL;
+        }
+		#endregion
 	    }
 	
 }

@@ -18,6 +18,7 @@ namespace WFTest
         {
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
+            Console.WriteLine("工作流结束");
             Console.ReadLine();
         }
     }

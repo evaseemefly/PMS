@@ -57,11 +57,14 @@
       <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.ServiceInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.DurableInstancing" />
     <Reference Include="System.Configuration">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -93,6 +96,7 @@
     <Compile Include="Redis\HashRedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />
+    <Compile Include="WorkFlowAppHelper.cs" />
     <Compile Include="Xml2StrHelper.cs" />
   </ItemGroup>
   <ItemGroup>

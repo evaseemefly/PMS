@@ -78,6 +78,5 @@ D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\bin\Debug\EntityFramework.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\bin\Debug\System.Web.Mvc.xml
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\01编程\02协作开发\SMSOA\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
