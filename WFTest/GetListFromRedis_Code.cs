@@ -32,7 +32,8 @@ namespace WFTest
             //1.2根据Redis中保存的 集合 的 key 获取该Redis帮助类（实例化）
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(id_list);
             //2 取得Redis中保存的该 Key 所对应的集合对象
-            var list_final = redisListhelper.GetLast();
+            var list_final = new List<PMS.Model.QueryModel.Redis_SMSContent>();
+            list_final = redisListhelper.GetLast();
             context.SetValue(List_redis, list_final);
         }
     }

@@ -125,6 +125,7 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryModel\Redis_SMSContent.cs" />
+    <Compile Include="QueryModel\Redis_SMSSendState.cs" />
     <Compile Include="RecycleModel\ActionInfo.cs" />
     <Compile Include="RecycleModel\N_News.cs" />
     <Compile Include="RecycleModel\P_DepartmentInfo.cs" />
@@ -197,6 +198,13 @@
     <Compile Include="ViewModel\ViewModel_Recycle.cs" />
     <Compile Include="ViewModel\ViewModel_SMSMission.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Base.cs" />
+    <Compile Include="WFModel\BookMarkObj.cs" />
+    <Compile Include="WF_Query_Instance.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WF_Query_StepInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

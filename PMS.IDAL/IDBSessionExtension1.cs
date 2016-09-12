@@ -104,5 +104,15 @@ namespace PMS.IDAL
       IDAL.IUserInfoDAL UserInfoDAL { get; set; }
 	  #endregion
 
+	  
+	  #region IWF_Query_InstanceDAL
+      IDAL.IWF_Query_InstanceDAL WF_Query_InstanceDAL { get; set; }
+	  #endregion
+
+	  
+	  #region IWF_Query_StepInfoDAL
+      IDAL.IWF_Query_StepInfoDAL WF_Query_StepInfoDAL { get; set; }
+	  #endregion
+
 	  }
 }

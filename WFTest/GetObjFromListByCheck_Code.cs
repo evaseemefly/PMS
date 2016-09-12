@@ -19,6 +19,7 @@ namespace WFTest
 
         public InArgument<double> Secs_Interval { get; set; }
 
+        public OutArgument<string> MsgId { get; set; }
         public OutArgument<PMS.Model.QueryModel.Redis_SMSContent> First_Obj { get; set; }
                 ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper;
 
@@ -34,9 +35,17 @@ namespace WFTest
             var key = context.GetValue(Key_RedisList);
             redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(key);
             //2 获取超出时间间隔的第一个对象
-            var first=  CheckTimeOut_RedisList(list, secs,key);
-            //3 为传出变量赋值
-            context.SetValue(this.First_Obj, first);
+            //var first = new PMS.Model.QueryModel.Redis_SMSContent();
+            var first =  CheckTimeOut_RedisList(list, secs,key);
+            if (first != null)
+            {
+                //3 为传出变量赋值
+                context.SetValue(this.First_Obj, first);
+                context.SetValue(this.MsgId, first.msgid);
+                //first = new PMS.Model.QueryModel.Redis_SMSContent();
+            }
+            
+           
         }
 
         public PMS.Model.QueryModel.Redis_SMSContent CheckTimeOut_RedisList(List<PMS.Model.QueryModel.Redis_SMSContent> list_final, double seconds_add,string key_redis)
@@ -47,10 +56,12 @@ namespace WFTest
                 if (list_final.First().Dt < DateTime.Now.AddSeconds(seconds_add))
                 {
                     //7月28日添加若发送人数超过一百人需要连续进行两次查询
+                    Console.WriteLine("*******首元素满足条件*******");
                     var model = list_final.First();
                     //context.SetValue(First_Obj, model);
                     //3.2 并从redis中删除第一个对象
-                    redisListhelper.Delete(key_redis);
+                   // redisListhelper.Delete(key_redis);
+                    Console.WriteLine("删除首元素！！");
                     return model;
                 }
                 else

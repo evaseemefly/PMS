@@ -264,5 +264,31 @@ namespace PMS.IDAL
     }
 	#endregion
 
+	   #region IWF_Query_InstanceDAL   
+	//WF_Query_Instance数据访问层
+	/// <summary>
+    /// 定义WF_Query_Instance实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IWF_Query_InstanceDAL:IBaseDAL<WF_Query_Instance>
+    {
+    }
+	#endregion
+
+	   #region IWF_Query_StepInfoDAL   
+	//WF_Query_StepInfo数据访问层
+	/// <summary>
+    /// 定义WF_Query_StepInfo实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IWF_Query_StepInfoDAL:IBaseDAL<WF_Query_StepInfo>
+    {
+    }
+	#endregion
+
 	
 }

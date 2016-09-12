@@ -44,6 +44,7 @@ namespace WFTest
 
             var model = context.GetValue(Query_model);
 
+            //此处查询只是将msgid传入即可
             ToQuery(model.msgid, out list, out state);
 
             context.SetValue(State, state);

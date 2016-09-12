@@ -30,6 +30,8 @@ namespace PMS.Model.Dictionary
             dResponseCode.Add(0, "含有联系人信息");
             //返回成功
             dResponseCode.Add(1, "本次查询已结束");
+            //查询结束，可以结束，不需再查询
+            dResponseCode.Add(6, "流程结束");
             dResponseCode.Add(98, "未含返回信息");
             //只返回了一个desc非成功的消息
             dResponseCode.Add(99, "未知原因");

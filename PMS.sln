@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Schemal", "00Schemal", "{0D654FEA-8FB1-47D2-A6FC-ABAD4F460A1B}"
 	ProjectSection(SolutionItems) = preProject
@@ -53,6 +53,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99Demo", "99Demo", "{89326278-7D54-4225-B412-FAB3E8A2F05C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryDemo", "QueryDemo\QueryDemo.csproj", "{D62F435E-60DB-4B26-B198-280E24DEE49D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSbackgroun_QueryHistoryRedis", "SMSbackgroun_QueryHistoryRedis\SMSbackgroun_QueryHistoryRedis.csproj", "{443EBE44-4B7D-47C0-967E-33B402CB6422}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -204,6 +206,14 @@ Global
 		{D62F435E-60DB-4B26-B198-280E24DEE49D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D62F435E-60DB-4B26-B198-280E24DEE49D}.Release|x86.ActiveCfg = Release|Any CPU
 		{D62F435E-60DB-4B26-B198-280E24DEE49D}.Release|x86.Build.0 = Release|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Debug|x86.Build.0 = Debug|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Release|x86.ActiveCfg = Release|Any CPU
+		{443EBE44-4B7D-47C0-967E-33B402CB6422}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,5 +237,6 @@ Global
 		{56EC4F35-5575-471F-AB72-A2F50AD221B4} = {1EF8CA97-5594-441C-9CEE-A731B1BED388}
 		{F984650F-3A2C-466D-B504-229141595FB1} = {89326278-7D54-4225-B412-FAB3E8A2F05C}
 		{D62F435E-60DB-4B26-B198-280E24DEE49D} = {89326278-7D54-4225-B412-FAB3E8A2F05C}
+		{443EBE44-4B7D-47C0-967E-33B402CB6422} = {DCC42609-184A-460D-8778-7A8A0634064E}
 	EndGlobalSection
 EndGlobal

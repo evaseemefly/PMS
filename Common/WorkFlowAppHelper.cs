@@ -65,17 +65,18 @@ namespace Common
             WorkflowApplication app = new WorkflowApplication(activity);
 
             string connect_str = GetConfig();
-
-            SqlWorkflowInstanceStore store = new SqlWorkflowInstanceStore(connect_str);
+SqlWorkflowInstanceStore store = new SqlWorkflowInstanceStore(connect_str);
 
             app.InstanceStore = store;//workflow存储到数据库中。
-
+           
+            
             app.Unloaded += OnUloaded;
             app.Aborted += OnAborted;
             app.Completed += OnCompleted;
             app.Idle += OnIdle;
             app.PersistableIdle += OnPersistableIdle;
             app.OnUnhandledException += OnUnhandledException;
+            
 
             app.Load(guid);
             return app;
