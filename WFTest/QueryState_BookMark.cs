@@ -18,6 +18,11 @@ namespace WFTest
         /// </summary>
         public InOutArgument<string> BookMarkName { get; set; }
 
+        /// <summary>
+        /// 输出的流程结果
+        /// </summary>
+        public OutArgument<int> WF_Result { get; set; }
+
         public OutArgument<int> SetpId { get; set; }
 
         public OutArgument<T> State { get; set; }
@@ -68,6 +73,9 @@ namespace WFTest
             context.SetValue(State, data.State);
 
             context.SetValue(MsgId, data.MsgId);
+
+            //执行回调函数时，传入数据库中记录的该工作流的流程Result，
+            context.SetValue(this.WF_Result, data.WF_Result);
         }
 
     }

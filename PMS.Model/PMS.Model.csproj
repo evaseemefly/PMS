@@ -60,6 +60,7 @@
     <Compile Include="Dictionary\SMSQueryDictionary.cs" />
     <Compile Include="Dictionary\SMSQueryResultDictionary.cs" />
     <Compile Include="Dictionary\SMSUserDictionary.cs" />
+    <Compile Include="Dictionary\SMSWFDictionary.cs" />
     <Compile Include="EasyUIModel\Action_ViewModel.cs" />
     <Compile Include="EasyUIModel\Department_ViewModel.cs" />
     <Compile Include="EasyUIModel\EasyUICombobox.cs" />

@@ -35,7 +35,7 @@ namespace Common
             string connect_str = GetConfig();
 
             SqlWorkflowInstanceStore store = new SqlWorkflowInstanceStore(connect_str);
-
+            store.InstanceCompletionAction = InstanceCompletionAction.DeleteAll;//工作流结束后删除该工作流实例的相关数据
             app.InstanceStore = store;//workflow存储到数据库中。
 
             //4 注册工作流的各类事件

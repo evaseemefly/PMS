@@ -21,5 +21,10 @@ namespace PMS.Model.WFModel
         /// 短信唯一识别码
         /// </summary>
         public string MsgId { get; set; }
+
+        /// <summary>
+        /// 流程结果代码
+        /// </summary>
+        public int WF_Result { get; set; }
     }
 }

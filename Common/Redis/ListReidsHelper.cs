@@ -15,7 +15,7 @@ namespace Common.Redis
         {
             this.list_id = list_id;
         }
-        public bool Add<T>(T t,string id="-999")
+        public bool Add<T> (T t,string id="-999")
         {
             //序列化
             var model = Common.SerializerHelper.SerializerToString(t);

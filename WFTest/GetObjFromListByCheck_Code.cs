@@ -19,7 +19,13 @@ namespace WFTest
 
         public InArgument<double> Secs_Interval { get; set; }
 
+        /// <summary>
+        /// 工作流结果
+        /// </summary>
+        public OutArgument<int> WF_Result { get; set; }
+
         public OutArgument<string> MsgId { get; set; }
+
         public OutArgument<PMS.Model.QueryModel.Redis_SMSContent> First_Obj { get; set; }
                 ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper;
 
@@ -42,7 +48,12 @@ namespace WFTest
                 //3 为传出变量赋值
                 context.SetValue(this.First_Obj, first);
                 context.SetValue(this.MsgId, first.msgid);
+                context.SetValue(this.WF_Result, 1);
                 //first = new PMS.Model.QueryModel.Redis_SMSContent();
+            }
+            else
+            {
+                context.SetValue(this.WF_Result, 3);
             }
             
            

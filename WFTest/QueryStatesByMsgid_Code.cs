@@ -20,6 +20,11 @@ namespace WFTest
         /// </summary>
         public InArgument<PMS.Model.QueryModel.Redis_SMSContent> Query_model { get; set; }
 
+        /// <summary>
+        /// 短信唯一识别码
+        /// </summary>
+        public InArgument<string> MsgId { get; set; }
+
         //返回查询状态（先设定为string）类型
         /// <summary>
         /// 查询之后返回的状态
@@ -42,10 +47,12 @@ namespace WFTest
             var list = new List<SMSModel_QueryReceive>();
             int state = -1;
 
-            var model = context.GetValue(Query_model);
+            //var model = context.GetValue(Query_model);
+
+            var msgid = context.GetValue(this.MsgId);
 
             //此处查询只是将msgid传入即可
-            ToQuery(model.msgid, out list, out state);
+            ToQuery(msgid, out list, out state);
 
             context.SetValue(State, state);
             context.SetValue(List_QueryReceive, list);
