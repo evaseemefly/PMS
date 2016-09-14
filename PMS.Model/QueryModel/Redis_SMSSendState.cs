@@ -27,5 +27,7 @@ namespace PMS.Model.QueryModel
         /// 查询状态（每次执行一次查询工作流后会重新更新其查询状态）
         /// </summary>
         public int State { get; set; }
+
+
     }
 }

@@ -65,12 +65,12 @@ namespace WFTest
         public static void ToQuery(string msgid,out List<SMSModel_QueryReceive> list_queryReceive,out int state)
         {
             //IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
-
+            //以后通过spring .net 实现
             ISMSQuery smsQuery = new SMSFactory.SMSQuery();
 
             IS_SMSContentBLL smsContentBLL = new PMS.BLL.S_SMSContentBLL();
+            IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
 
-           
             string account = "dh74381"; //账号"dh74381";
             string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
             //6 查询发送状态(是否加入等待时间？)
@@ -112,8 +112,8 @@ namespace WFTest
                     //ToShow("当前取出的对象中接收内容有误");
                     return;
                 }
-                
-                //bool isSaveCurrnetMsgOk =smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
+                //向数据库中写入本集合中的对象
+                bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
             }
 
            

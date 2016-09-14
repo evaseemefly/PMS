@@ -8,11 +8,6 @@ D:\VSWorkSpace\nmefc\PMS\PMS\RedisFactory\bin\Debug\RedisFactory.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS\RedisFactory\obj\Debug\RedisFactory.csprojResolveAssemblyReference.cache
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\RedisFactory\bin\Debug\RedisFactory.dll
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\RedisFactory\bin\Debug\RedisFactory.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\RedisFactory\obj\Debug\RedisFactory.csprojResolveAssemblyReference.cache
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\RedisFactory\obj\Debug\RedisFactory.dll
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\RedisFactory\obj\Debug\RedisFactory.pdb
 D:\01编程\02协作开发\SMSOA\PMS\RedisFactory\bin\Debug\RedisFactory.dll
 D:\01编程\02协作开发\SMSOA\PMS\RedisFactory\bin\Debug\RedisFactory.pdb
 D:\01编程\02协作开发\SMSOA\PMS\RedisFactory\obj\Debug\RedisFactory.dll

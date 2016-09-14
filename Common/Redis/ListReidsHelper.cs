@@ -47,7 +47,63 @@ namespace Common.Redis
            
         }
 
+        /// <summary>
+        /// 从右侧向集合中插入对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public bool RPush<T>(string key,T t,TimeSpan timespan)
+        {
+            //序列化
+            var model = Common.SerializerHelper.SerializerToString(t);
+            try
+            {
+                
+                redis_client.EnqueueItemOnList(key, model);
+                //redis_client.ExpireEntryIn(key, timespan);
+                //redis_client.Expire(key, timespan);
+                //redis_client.ExpireEntryAt
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+           
+        }
 
+        /// <summary>
+        /// 获取指定key的list中包含的数据数量
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public long Count(string key)
+        {
+            return redis_client.GetListCount(key);
+        }
+
+        /// <summary>
+        /// 某个主键的队列中拉出最先进队列的数据值，先进先出原则。
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public string DequeueItemFromList(string key)
+        {
+           return redis_client.DequeueItemFromList(key);
+
+        }
+
+        /// <summary>
+        /// 取出集合中的第一个对象并反序列化为指定类型的对象
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public T GetFirstObj(string key)
+        {
+            return Common.SerializerHelper.DeSerializerToObject<T>(redis_client.GetItemFromList(key, 0));
+        }
         /// <summary>
         /// 读取当前Redis中的集合
         /// </summary>

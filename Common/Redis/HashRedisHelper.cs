@@ -12,7 +12,7 @@ namespace Common.Redis
         /// <summary>
         /// 判断某个数据是否已经被缓存
         /// </summary>
-        public bool Exist<T>(string hashId, string key)
+        public bool Exist(string hashId, string key)
         {
             return redis_client.HashContainsEntry(hashId, key);
         }
