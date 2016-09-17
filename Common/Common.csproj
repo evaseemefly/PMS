@@ -89,6 +89,8 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\BaseQuery.cs" />
+    <Compile Include="Query\QueryHelper.cs" />
     <Compile Include="Redis\BaseRedisHelper.cs" />
     <Compile Include="Redis\ListReidsHelper.cs" />
     <Compile Include="Redis\RedisConfig.cs" />

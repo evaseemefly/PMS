@@ -9,6 +9,10 @@ using System.Activities;
 
 namespace WFTest
 {
+    /// <summary>
+    /// 现将此类重新写在BLL层（RedisFactory.MinorQueryRedisBLL）
+    /// 暂时不使用此类
+    /// </summary>
     public class MinorQuery
     {
         private ListReidsHelper<Redis_ListMsgIdObj> redisListhelper;

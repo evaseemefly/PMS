@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SMSbackgroun_QueryHistoryRedis</RootNamespace>
     <AssemblyName>SMSbackgroun_QueryHistoryRedis</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IFactoryBLL\IFactoryBLL.csproj">
+      <Project>{7d911130-3795-46ed-bf86-af06fcb4c1af}</Project>
+      <Name>IFactoryBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
@@ -73,6 +88,10 @@
     <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
       <Name>SMSFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WFFactory\WFFactory.csproj">
+      <Project>{5e967a6a-2aeb-49a1-9046-9ae917659708}</Project>
+      <Name>WFFactory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

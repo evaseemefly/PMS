@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="QueryModel\Redis_HashWFObj.cs" />
     <Compile Include="QueryModel\Redis_ListMsgIdObj.cs" />
+    <Compile Include="QueryModel\Redis_MinorQueryConfigModel.cs" />
     <Compile Include="QueryModel\Redis_SMSContent.cs" />
     <Compile Include="QueryModel\Redis_SMSSendState.cs" />
     <Compile Include="RecycleModel\ActionInfo.cs" />

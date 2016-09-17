@@ -57,8 +57,8 @@ namespace Common
         /// <summary>
         /// 加载持久化的工作流，并返回该工作流宿主
         /// </summary>
-        /// <param name="activity"></param>
-        /// <param name="guid"></param>
+        /// <param name="activity">活动对象实例</param>
+        /// <param name="guid">具体实例的guid</param>
         /// <returns></returns>
         public static WorkflowApplication LoadWorkflowApplication(Activity activity, Guid guid)
         {

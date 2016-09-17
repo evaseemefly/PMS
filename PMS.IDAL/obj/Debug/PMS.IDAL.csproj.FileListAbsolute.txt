@@ -57,16 +57,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS\PMS.IDAL\bin\Debug\zh-Hans\System.Web.Mvc.resources
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.pdb
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\PMS.IDAL.pdb
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\PMS.Model.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\EntityFramework.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\System.Web.Mvc.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\PMS.Model.pdb
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\EntityFramework.xml
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\System.Web.Mvc.xml
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.csprojResolveAssemblyReference.cache
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.dll
-D:\01编程\02协作开发\SMSOA\PMS\PMS.IDAL\obj\Debug\PMS.IDAL.pdb
