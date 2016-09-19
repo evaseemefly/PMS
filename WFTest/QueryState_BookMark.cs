@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using PMS.Model;
+using PMS.Model.QueryModel;
+using Common.Redis;
 
 namespace WFTest
 {
@@ -12,6 +14,8 @@ namespace WFTest
     {
         // 定义一个字符串类型的活动输入参数
         public InArgument<string> Text { get; set; }
+
+        public PMS.IBLL.IWF_Query_InstanceBLL wf_queryBLL { get; set; }
 
         /// <summary>
         /// 工作流名称
@@ -33,8 +37,26 @@ namespace WFTest
         {
             //1 从当前的上下文对象中获取指定名称的书签
             string bookMarkName = context.GetValue(BookMarkName);
+            string msgid = context.GetValue(MsgId);
+            string key_list=null;
             //2 创建书签
             context.CreateBookmark(bookMarkName, new BookmarkCallback(ContinueExecuteWF));
+
+            //3 将传入的参数转为书签对象（自定义）
+            var book_obj= ToBookMarkObj(1, 4, context.WorkflowInstanceId);
+
+            //4.1 写入数据库中的指定表中
+            wf_queryBLL = new PMS.BLL.WF_Query_InstanceBLL();
+            wf_queryBLL.Create(book_obj);
+            //4.2 将发送状态写入Hash表中
+            //4.3 将msgid写入List集合中
+            Redis_ListMsgIdObj obj_listmsgId = new Redis_ListMsgIdObj()
+            {
+                 MsgId= msgid,
+                 Dt=DateTime.Now
+            };
+
+            WriteInList_Redis(key_list, obj_listmsgId);
         }
 
         /// <summary>
@@ -47,6 +69,35 @@ namespace WFTest
                 return true;
             }
         }
+
+        private WF_Query_Instance ToBookMarkObj(int state,int wf_result,Guid wf_guid)
+        {
+            return new WF_Query_Instance()
+            {
+                 SubTime=DateTime.Now,
+                 Status = state,
+                 Result=wf_result,
+                 ApplicationId= wf_guid
+            };
+        }
+
+        /// <summary>
+        /// 将msgid以及当前时间写入Redis的集合中
+        /// </summary>
+        /// <param name="key_list"></param>
+        /// <param name="obj"></param>
+        private void WriteInList_Redis(string key_list, Redis_ListMsgIdObj obj)
+        {
+            ListReidsHelper<Redis_ListMsgIdObj> redisListhelper = new ListReidsHelper<Redis_ListMsgIdObj>(key_list);
+            redisListhelper.Add(obj);
+        }
+
+        private void WriteInHash_Redis(string key_hash, Redis_HashWFObj obj)
+        {
+            HashRedisHelper redisHashhelper = new HashRedisHelper();
+            redisHashhelper.Set<Redis_HashWFObj>(key_hash,obj.MsgId,obj);
+        }
+
 
         /// <summary>
         /// 恢复bookmark后调用的方法
