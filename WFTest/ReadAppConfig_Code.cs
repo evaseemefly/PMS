@@ -25,6 +25,10 @@ namespace WFTest
         /// </summary>
         public OutArgument<string> Id_list { get; set; }
 
+        public OutArgument<string> Id_list_msgid { get; set; }
+
+        public OutArgument<string> Id_hash { get; set; }
+
         /// <summary>
         /// 需要判断的时间间隔
         /// </summary>
@@ -47,8 +51,13 @@ namespace WFTest
 
             //为三个输出变量赋值
             context.SetValue(SleepTime, int.Parse(ConfigHelper.GetSettingValue("sleepTime")));
-            var key = ConfigHelper.GetSettingValue("list_id");
-            context.SetValue(Id_list, key);
+            var key_list = ConfigHelper.GetSettingValue("id_list");
+            var key_hash = ConfigHelper.GetSettingValue("id_hash");
+            var key_list_msgid = ConfigHelper.GetSettingValue("id_list_msgid");
+
+            context.SetValue(Id_list, key_list);
+            context.SetValue(Id_list_msgid, key_list_msgid);
+            context.SetValue(Id_hash, key_hash);
             context.SetValue(Seconds_Interval, double.Parse(ConfigHelper.GetSettingValue("seconds_add")));
 
             //context.SetValue<string>(temp, "123");          

@@ -52,6 +52,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IDBSessionExtension.tt</DependentUpon>
     </Compile>
+    <Compile Include="IRedis_HashDAL.cs" />
+    <Compile Include="IRedis_ListDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

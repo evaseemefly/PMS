@@ -17,10 +17,16 @@ namespace WFTest
 
         public PMS.IBLL.IWF_Query_InstanceBLL wf_queryBLL { get; set; }
 
+
+
         /// <summary>
         /// 工作流名称
         /// </summary>
         public InOutArgument<string> BookMarkName { get; set; }
+
+        public InArgument<string> Id_list_msgid { get; set; }
+
+        public InArgument<string> Id_hash { get; set; }
 
         /// <summary>
         /// 输出的流程结果
@@ -38,7 +44,10 @@ namespace WFTest
             //1 从当前的上下文对象中获取指定名称的书签
             string bookMarkName = context.GetValue(BookMarkName);
             string msgid = context.GetValue(MsgId);
-            string key_list=null;
+            string key_list=context.GetValue(Id_list_msgid);
+            string key_hash = context.GetValue(Id_hash);
+            int state = 1;
+            int wf_result = 1;
             //2 创建书签
             context.CreateBookmark(bookMarkName, new BookmarkCallback(ContinueExecuteWF));
 
@@ -48,14 +57,27 @@ namespace WFTest
             //4.1 写入数据库中的指定表中
             wf_queryBLL = new PMS.BLL.WF_Query_InstanceBLL();
             wf_queryBLL.Create(book_obj);
-            //4.2 将发送状态写入Hash表中
-            //4.3 将msgid写入List集合中
+
+            //4.2 创建要写入redis中的两个对象（hash与list中保存数据的对象）
+            //（1）hash中存储的对象
+            Redis_HashWFObj obj_hashWF = new Redis_HashWFObj()
+            {
+                Dt = DateTime.Now,
+                MsgId = msgid,
+                WF_Result = wf_result,
+                WFId = context.WorkflowInstanceId.ToString("N")
+            };
+            //（2）list中存储的对象
             Redis_ListMsgIdObj obj_listmsgId = new Redis_ListMsgIdObj()
             {
-                 MsgId= msgid,
-                 Dt=DateTime.Now
+                MsgId = msgid,
+                Dt = DateTime.Now
             };
 
+            //4.3
+            //（1）将发送状态写入Hash表中
+            WriteInHash_Redis(key_hash, obj_hashWF);
+            //（2）将msgid写入List集合中
             WriteInList_Redis(key_list, obj_listmsgId);
         }
 
@@ -70,6 +92,13 @@ namespace WFTest
             }
         }
 
+        /// <summary>
+        /// 根据输入的参数返回书签对象
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="wf_result"></param>
+        /// <param name="wf_guid"></param>
+        /// <returns></returns>
         private WF_Query_Instance ToBookMarkObj(int state,int wf_result,Guid wf_guid)
         {
             return new WF_Query_Instance()
@@ -86,16 +115,21 @@ namespace WFTest
         /// </summary>
         /// <param name="key_list"></param>
         /// <param name="obj"></param>
-        private void WriteInList_Redis(string key_list, Redis_ListMsgIdObj obj)
+        private bool WriteInList_Redis(string key_list, Redis_ListMsgIdObj obj)
         {
             ListReidsHelper<Redis_ListMsgIdObj> redisListhelper = new ListReidsHelper<Redis_ListMsgIdObj>(key_list);
-            redisListhelper.Add(obj);
+            return redisListhelper.Add(obj);
         }
 
-        private void WriteInHash_Redis(string key_hash, Redis_HashWFObj obj)
+        /// <summary>
+        /// 向指定key的hash中写入hash中存储的对象
+        /// </summary>
+        /// <param name="key_hash"></param>
+        /// <param name="obj"></param>
+        private bool WriteInHash_Redis(string key_hash, Redis_HashWFObj obj)
         {
             HashRedisHelper redisHashhelper = new HashRedisHelper();
-            redisHashhelper.Set<Redis_HashWFObj>(key_hash,obj.MsgId,obj);
+            return redisHashhelper.Set<Redis_HashWFObj>(key_hash,obj.MsgId,obj);
         }
 
 

@@ -25,7 +25,9 @@ namespace SMSbackgroun_QueryHistoryRedis
         {
             
            IWFBLL bll= WFFactory.AbstractFactory.CreateFirstQuery_WF();
-            bll.Execute();
+           IWFBLL bll_minor = WFFactory.AbstractFactory.CreateMinorQuery_WF();
+            //bll.Execute();
+            bll_minor.Execute();
             Console.ReadLine();
         }
 

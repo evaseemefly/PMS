@@ -65,11 +65,21 @@
             <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
               <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="读取相关配置" />
               <local:ReadAppConfig_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="ReadAppConfig_Code_1">
+                <local:ReadAppConfig_Code.Id_hash>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">_id_hash</mca:CSharpReference>
+                  </OutArgument>
+                </local:ReadAppConfig_Code.Id_hash>
                 <local:ReadAppConfig_Code.Id_list>
                   <OutArgument x:TypeArguments="x:String">
                     <mca:CSharpReference x:TypeArguments="x:String">_id_list</mca:CSharpReference>
                   </OutArgument>
                 </local:ReadAppConfig_Code.Id_list>
+                <local:ReadAppConfig_Code.Id_list_msgid>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String">_id_list_msgid</mca:CSharpReference>
+                  </OutArgument>
+                </local:ReadAppConfig_Code.Id_list_msgid>
                 <local:ReadAppConfig_Code.Seconds_Interval>
                   <OutArgument x:TypeArguments="x:Double">
                     <mca:CSharpReference x:TypeArguments="x:Double">_secs_interval</mca:CSharpReference>
@@ -239,12 +249,22 @@
                                         <State.Entry>
                                           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
                                             <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="进入状态机5：-----检查是否需要重查-----" />
-                                            <local:QueryState_BookMark x:TypeArguments="x:Int32" SetpId="{x:Null}" Text="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark`1_2">
+                                            <local:QueryState_BookMark x:TypeArguments="x:Int32" SetpId="{x:Null}" Text="{x:Null}" wf_queryBLL="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark`1_2">
                                               <local:QueryState_BookMark.BookMarkName>
                                                 <InOutArgument x:TypeArguments="x:String">
                                                   <mca:CSharpReference x:TypeArguments="x:String">TempBookMarkName</mca:CSharpReference>
                                                 </InOutArgument>
                                               </local:QueryState_BookMark.BookMarkName>
+                                              <local:QueryState_BookMark.Id_hash>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">_id_hash</mca:CSharpValue>
+                                                </InArgument>
+                                              </local:QueryState_BookMark.Id_hash>
+                                              <local:QueryState_BookMark.Id_list_msgid>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">_id_list_msgid</mca:CSharpValue>
+                                                </InArgument>
+                                              </local:QueryState_BookMark.Id_list_msgid>
                                               <local:QueryState_BookMark.MsgId>
                                                 <InOutArgument x:TypeArguments="x:String">
                                                   <mca:CSharpReference x:TypeArguments="x:String">_first_msgid</mca:CSharpReference>
@@ -412,7 +432,7 @@
                     </InArgument>
                   </If.Condition>
                   <If.Then>
-                    <local:QueryState_BookMark x:TypeArguments="x:Int32" MsgId="{x:Null}" SetpId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark_1">
+                    <local:QueryState_BookMark x:TypeArguments="x:Int32" Id_hash="{x:Null}" Id_list_msgid="{x:Null}" MsgId="{x:Null}" SetpId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" wf_queryBLL="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark_1">
                       <local:QueryState_BookMark.BookMarkName>
                         <InOutArgument x:TypeArguments="x:String">
                           <mca:CSharpReference x:TypeArguments="x:String">TempBookMarkName</mca:CSharpReference>
@@ -439,8 +459,10 @@
       <Variable x:TypeArguments="x:Int32" Name="_state" />
       <Variable x:TypeArguments="x:String" Name="_first_msgid" />
       <Variable x:TypeArguments="x:Int32" Name="_result" />
+      <Variable x:TypeArguments="x:String" Name="_id_list_msgid" />
+      <Variable x:TypeArguments="x:String" Name="_id_hash" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>d0lFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sXjsDvAMSAgEBPQfMAg8DAc0DlQIvnAI3AwHHA1oPyAIXAwHwAn4XvAIfAwHiAbMBH6oCJwIBXe4BJ6ACLwIBAj8LVRYDAdADlwIzmgI+AwHJA1wTdh4DAZEDexd7bAMBggPEAhfEAmoDAfQCwQIXwQJiAwHyAoABG6gBJgMBiQKrARurAWYDAYcCsAEfsAFxAwGFArACH7ACkgEDAfYBrQIfrQJuAwH0AbUCH7UCaAMB5AG1ASPmAS4CAXLpASPpAWsCAXCmAiemAm8CAWGjAiejAnICAV/wASuIAjYCASGNAi+NAngCARKSAi+SAngCAQRADUBoAwH/A0ENVBgDAdEDmAI1mAKBAQMBywOZAjWZAoQBAwHKA10VXXoDAcUDXhV1IAMBkgPBAlbBAl8DAfMCgQEdgQF7AwHuAoIBHacBKAMBigKrAVqrAWMDAYgCsAFesAFuAwGGAq0CXq0CawMB9QG2ASW2AYIBAwHgAbcBJeUBLwIBc+kBYukBaAIBcaMCZqMCbwIBYPEBLfEBigECAVvyAS2HAkkCASJATEBlAwGABEIPQlgDAf0DQw9TKgMB0gOYAnSYAn4DAcwDXVRddwMBxgNiF2JnAwHDA2MXczUDAZUDdBd0YAMBkwOBAVyBAXgDAe8ChgEfhgF4AwHsAocBH6YBQgMBiwK2AWS2AX8DAeEBuQEpuQFxAwHSAbsBJ+QBMgIBdPEBbPEBhwECAVyEAjOEAn8CAU31ATP1AYkBAgE/+gEz+gGFAQIBMf8BM/8BfgIBI0JNQlUDAf4DUBVQZAMB7wNGFUZjAwHhA0sVS2kDAdMDYlViZAMBxANrHWuEAQMBtANwHXBpAwGlA2YdZmMDAZYDdFV0XQMBlAOGAV6GAXUDAe0ClAEllAGEAQMB3AKjASWjAXEDAcwCngElngFxAwG8Ao8BJY8BawMBrAKZASWZAXcDAZwCigEligGBAQMBjAK8ASneATQDAYQB3wEp4wE1AgF1vQEr3QE2AwGFAeEBLeEBegIBdr4BLb4BeQMB0AG/AS3UAU0DAZcB1QEt1QF5AwGVAdYBLdwBSAMBhgG+AWu+AXYDAdEBzAEzzAGHAQMBwgHHATPHAX0DAbQBwgEzwgGmAQMBpgHRATPRAX4DAZgB1QFr1QF2AwGWAdkBM9kBegMBhwE=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0lFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sYjsD0gMSAgEBPQfgAg8DAaMEqQIvsAI3AwGdBGQP3AIXAwG8A4gBF9ACHwMBngK9AR++AicDAYkB+AEntAIvAgECPwtfFgMBpgSrAjOuAj4DAZ8EZhOAAR4DAeEDhQEXhQFsAwHQA9gCF9gCagMBwAPVAhfVAmIDAb4DigEbsgEmAwHJArUBG7UBZgMBxwK6AR+6AXEDAcUCxAIfxAKSAQMBtALBAh/BAm4DAbICyQIfyQJoAwGgAr8BI/ABLgMBoAHzASPzAWsDAZ4BugInugJvAwGNAbcCJ7cCcgMBiwH6ASucAjYCASWhAi+hAngCARSmAi+mAngCAQRADUBoAwH7BEENXhgDAacErAI1rAKBAQMBoQStAjWtAoQBAwGgBGcVZ3oDAZsEaBV/IAMB4gPVAlbVAl8DAb8DiwEdiwF7AwG6A4wBHbEBKAMBygK1AVq1AWMDAcgCugFeugFuAwHGAsECXsECawMBswLAASXAAYIBAwGcAsEBJe8BLwMBoQHzAWLzAWgDAZ8BtwJmtwJvAwGMAfsBLfsBigEDAYcB/AEtmwJJAgEmQExAZQMB/ARCD0JYAwH5BEMPXSoDAagErAJ0rAJ+AwGiBGdUZ3cDAZwEbBdsZwMBmQRtF301AwHlA34XfmADAeMDiwFciwF4AwG7A5ABH5ABeAMBuAORAR+wAUIDAcsCwAFkwAF/AwGdAsMBKcMBcQMBjALFASfuATIDAaIB+wFs+wGHAQMBiAGEAjOEAnkCAXeYAjOYAn8CAWf/ATP/AYkBAgFXiQIziQJ/AgFHjgIzjgKFAQIBN5MCM5MCfgIBJ0JNQlUDAfoERhVGYwMB6QRQFVBpAwHZBFoVWmQDAckESxVLYwMBuQRVFVVpAwGpBGxVbGQDAZoEdR11hAEDAYgEeh16aQMB9wNwHXBjAwHmA35Vfl0DAeQDkAFekAF1AwG5A54BJZ4BhAEDAaYDrQElrQFxAwGUA6gBJagBcQMBggOZASWZAWsDAfACowElowF3AwHeApQBJZQBgQEDAcwCxgEp6AE0AwG0AekBKe0BNQMBowHHASvnATYDAbUB6wEt6wF6AwGkAcgBLcgBeQMBigLJAS3eAU0DAckB3wEt3wF5AwHHAeABLeYBSAMBtgHIAWvIAXYDAYsC1gEz1gGHAQMB+gHRATPRAX0DAeoBzAEzzAGmAQMB2gHbATPbAX4DAcoB3wFr3wF2AwHIAeMBM+MBegMBtwE=</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -561,7 +583,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="326,364">
+      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">443,839.5</av:Point>
@@ -579,7 +601,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="237,131">
+      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="326,648">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">481.5,574.5</av:Point>
