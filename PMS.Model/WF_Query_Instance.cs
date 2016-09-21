@@ -20,9 +20,9 @@ namespace PMS.Model
         public int StartedBy { get; set; }
         public short Level { get; set; }
         public string SubForm { get; set; }
-        public short Status { get; set; }
-        public short Result { get; set; }
-        public int WF_TempID { get; set; }
+        public int Status { get; set; }
+        public int Result { get; set; }
+        public Nullable<int> WF_TempID { get; set; }
         public System.Guid ApplicationId { get; set; }
     }
 }

@@ -96,6 +96,12 @@ namespace WFTest
             {
                 // return Content("服务器错误");
             }
+            //当查询返回的集合数量为1，且唯一的对象的desc为成功，则直接跳出，不进行下面的操作，并对state复制为1
+            if (list_QueryReceive.Count() == 1 && list_queryReceive.FirstOrDefault().desc == "成功")
+            {
+                state = 1;
+                return;
+            }
             //7 获取改次发送的SMSContent的ID
             var list = smsContentBLL.GetListBy(p => p.msgId.Equals(msgid));
 

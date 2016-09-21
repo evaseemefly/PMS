@@ -254,6 +254,14 @@
           <Property Name="StatusCode" Type="int" Nullable="false" />
           <Property Name="DescContent" Type="nvarchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="S_SMSType">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="isDel" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -267,32 +275,23 @@
           <Property Name="Remark" Type="nvarchar" MaxLength="256" />
           <Property Name="Sort" Type="int" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160425.dbo.WF_Query_Instance”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_Instance">
           <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="SubTime" />
-            <PropertyRef Name="StartedBy" />
-            <PropertyRef Name="Level" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="Result" />
-            <PropertyRef Name="WF_TempID" />
             <PropertyRef Name="ApplicationId" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="SubTime" Type="datetime" Nullable="false" />
           <Property Name="StartedBy" Type="int" Nullable="false" />
           <Property Name="Level" Type="smallint" Nullable="false" />
           <Property Name="SubForm" Type="nvarchar(max)" />
-          <Property Name="Status" Type="smallint" Nullable="false" />
-          <Property Name="Result" Type="smallint" Nullable="false" />
-          <Property Name="WF_TempID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Result" Type="int" Nullable="false" />
+          <Property Name="WF_TempID" Type="int" />
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160425.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“PMS20160406.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -762,21 +761,9 @@
           <EntitySet Name="S_SMSMsgContent" EntityType="Self.S_SMSMsgContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_SMSRecord_Current" EntityType="Self.S_SMSRecord_Current" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_SMSRecord_History" EntityType="Self.S_SMSRecord_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SMSType" EntityType="Self.S_SMSType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WF_Query_Instance" EntityType="Self.WF_Query_Instance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [WF_Query_Instance].[ID] AS [ID], 
-    [WF_Query_Instance].[Name] AS [Name], 
-    [WF_Query_Instance].[SubTime] AS [SubTime], 
-    [WF_Query_Instance].[StartedBy] AS [StartedBy], 
-    [WF_Query_Instance].[Level] AS [Level], 
-    [WF_Query_Instance].[SubForm] AS [SubForm], 
-    [WF_Query_Instance].[Status] AS [Status], 
-    [WF_Query_Instance].[Result] AS [Result], 
-    [WF_Query_Instance].[WF_TempID] AS [WF_TempID], 
-    [WF_Query_Instance].[ApplicationId] AS [ApplicationId]
-    FROM [dbo].[WF_Query_Instance] AS [WF_Query_Instance]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="WF_Query_Instance" EntityType="Self.WF_Query_Instance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WF_Query_StepInfo" EntityType="Self.WF_Query_StepInfo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [WF_Query_StepInfo].[ID] AS [ID], 
@@ -1180,8 +1167,9 @@
             <End Role="N_News" EntitySet="N_News" />
             <End Role="R_UserInfo_News" EntitySet="R_UserInfo_News" />
           </AssociationSet>
-          <EntitySet Name="WF_Query_Instance" EntityType="PMS2016Model.WF_Query_Instance" />
           <EntitySet Name="WF_Query_StepInfo" EntityType="PMS2016Model.WF_Query_StepInfo" />
+          <EntitySet Name="S_SMSType" EntityType="PMS2016Model.S_SMSType" />
+          <EntitySet Name="WF_Query_Instance" EntityType="PMS2016Model.WF_Query_Instance" />
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -1696,28 +1684,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="WF_Query_Instance">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="SubTime" />
-            <PropertyRef Name="StartedBy" />
-            <PropertyRef Name="Level" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="Result" />
-            <PropertyRef Name="WF_TempID" />
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StartedBy" Type="Int32" Nullable="false" />
-          <Property Name="Level" Type="Int16" Nullable="false" />
-          <Property Name="SubForm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Int16" Nullable="false" />
-          <Property Name="Result" Type="Int16" Nullable="false" />
-          <Property Name="WF_TempID" Type="Int32" Nullable="false" />
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-        </EntityType>
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -1750,6 +1716,29 @@
           <Property Name="ParentStepId" Type="Int32" Nullable="false" />
           <Property Name="ChildStepId" Type="Int32" Nullable="false" />
           <Property Name="WF_Query" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_SMSType">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="isDel" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WF_Query_Instance">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartedBy" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int16" Nullable="false" />
+          <Property Name="SubForm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="Int32" Nullable="false" />
+          <Property Name="WF_TempID" Type="Int32" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2039,22 +2028,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WF_Query_Instance">
-            <EntityTypeMapping TypeName="PMS2016Model.WF_Query_Instance">
-              <MappingFragment StoreEntitySet="WF_Query_Instance">
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="WF_TempID" ColumnName="WF_TempID" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SubForm" ColumnName="SubForm" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="StartedBy" ColumnName="StartedBy" />
-                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WF_Query_StepInfo">
             <EntityTypeMapping TypeName="PMS2016Model.WF_Query_StepInfo">
               <MappingFragment StoreEntitySet="WF_Query_StepInfo">
@@ -2072,6 +2045,31 @@
                 <ScalarProperty Name="isEndStep" ColumnName="isEndStep" />
                 <ScalarProperty Name="isStartStep" ColumnName="isStartStep" />
                 <ScalarProperty Name="isProcessed" ColumnName="isProcessed" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SMSType">
+            <EntityTypeMapping TypeName="PMS2016Model.S_SMSType">
+              <MappingFragment StoreEntitySet="S_SMSType">
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TID" ColumnName="TID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WF_Query_Instance">
+            <EntityTypeMapping TypeName="PMS2016Model.WF_Query_Instance">
+              <MappingFragment StoreEntitySet="WF_Query_Instance">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="WF_TempID" ColumnName="WF_TempID" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SubForm" ColumnName="SubForm" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="StartedBy" ColumnName="StartedBy" />
+                <ScalarProperty Name="SubTime" ColumnName="SubTime" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

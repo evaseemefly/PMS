@@ -14,15 +14,8 @@ namespace PMS.Model
     
     public partial class S_SMSType
     {
-        public S_SMSType()
-        {
-            this.P_PersonInfo = new HashSet<P_PersonInfo1>();
-        }
-    
         public int TID { get; set; }
         public string TypeName { get; set; }
         public bool isDel { get; set; }
-    
-        public virtual ICollection<P_PersonInfo1> P_PersonInfo { get; set; }
     }
 }

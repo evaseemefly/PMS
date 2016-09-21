@@ -252,6 +252,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	//   #region	S_SMSTypeBLL
+ //   public partial class S_SMSTypeBLL : BaseBLL<S_SMSType>, IS_SMSTypeBLL
+ //   {	
+
+	//	/// <summary>
+ //       /// 为当前的DAL对象赋值，赋值为S_SMSTypeDAL
+ //       /// </summary>
+ //       public override void SetCurrentDAL()
+ //       {
+ //           base.CurrentDAL = base.CurrentDBSession.S_SMSTypeDAL;
+ //       }
+ //   }
+	//#endregion
 	   #region	UserInfoBLL
     public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL
     {	
