@@ -47,9 +47,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PMS.DALRedis\PMS.DALRedis.csproj">
+      <Project>{5146e1d3-ca38-4744-ab14-e4a6bfff33cc}</Project>
+      <Name>PMS.DALRedis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
       <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
       <Name>PMS.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.IDAL\PMS.IDAL.csproj">
+      <Project>{9581fc4a-361d-48c9-99f7-7826dafd992e}</Project>
+      <Name>PMS.IDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

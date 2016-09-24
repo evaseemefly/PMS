@@ -102,7 +102,18 @@ namespace Common.Redis
         /// <returns></returns>
         public T GetFirstObj(string key)
         {
-            return Common.SerializerHelper.DeSerializerToObject<T>(redis_client.GetItemFromList(key, 0));
+            //9月23日修改
+            //1 判断当前key对应的集合中是否长度不为0
+            if (this.Count(key) == 0)
+            {
+                return default(T);
+            }
+            //若集合中有值采取出该集合中第一个对象，并进行反序列化
+            else
+            {
+                return Common.SerializerHelper.DeSerializerToObject<T>(redis_client.GetItemFromList(key, 0));
+            }
+           
         }
         /// <summary>
         /// 读取当前Redis中的集合

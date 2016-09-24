@@ -36,16 +36,27 @@ namespace WFTest
             #endregion
             //暂时注释掉
             Activity workflow_temp = new MainStatistics_Advanced();
+            //var bookmark = new PMS.Model.WFModel.BookMarkObj<int>()
+            //{
+            //    BookMarkName = "恢复书签",
+            //    State = 1,
+            //    StepId = 1,
+            //    WF_Result = 4,
+            //    MsgId = obj_hashWFObj.MsgId
+            //};
+
             var dic = new Dictionary<string, object>() { { "TempBookMarkName", "书签1" } };
             //var work = Common.WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
+            //{370159d5-24b5-4a54-b3d6-1ac569938a78}
+           
+            var work_reus = Common.WorkFlowAppHelper.LoadWorkflowApplication(workflow_temp, Guid.Parse("370159d5-24b5-4a54-b3d6-1ac569938a78"));
 
-            var work_reus = Common.WorkFlowAppHelper.LoadWorkflowApplication(workflow_temp, Guid.Parse("9c7b78a5-e6f2-496b-9ba9-bc80b48e2aee"));
             var bookmark=new PMS.Model.WFModel.BookMarkObj<int>()
             {
                 BookMarkName = "恢复书签",
                 State = 1,
                 StepId = 1,
-                WF_Result = 6
+                WF_Result = 6 //57403176c40e4368977735c42ab45539
             };
             work_reus.ResumeBookmark("书签1", bookmark);
             

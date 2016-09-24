@@ -14,9 +14,7 @@ namespace SMSbackgroun_QueryHistoryRedis
 {
     class Program
     {
-
-
-
+        
         /// <summary>
         /// 本后台程序定时查询Redis中保存的对象集合
         /// </summary>
@@ -26,9 +24,9 @@ namespace SMSbackgroun_QueryHistoryRedis
             
            IWFBLL bll= WFFactory.AbstractFactory.CreateFirstQuery_WF();
            IWFBLL bll_minor = WFFactory.AbstractFactory.CreateMinorQuery_WF();
-            //bll.Execute();
-            bll_minor.Execute();
-            Console.ReadLine();
+           //bll.Execute();
+           bll_minor.Execute();
+           Console.ReadLine();
         }
 
 

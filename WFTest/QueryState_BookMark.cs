@@ -17,7 +17,9 @@ namespace WFTest
 
         public PMS.IBLL.IWF_Query_InstanceBLL wf_queryBLL { get; set; }
 
+        public PMS.IBLL.IRedis_ListBLL<Redis_ListMsgIdObj> redis_list_bll { get; set; }
 
+        public PMS.IBLL.IRedis_HashBLL<Redis_HashWFObj> redis_hash_bll { get; set; }
 
         /// <summary>
         /// 工作流名称
@@ -46,6 +48,11 @@ namespace WFTest
             string msgid = context.GetValue(MsgId);
             string key_list=context.GetValue(Id_list_msgid);
             string key_hash = context.GetValue(Id_hash);
+
+            //2 
+            redis_list_bll=new PMS.BLLRedis.ListBLL<Redis_ListMsgIdObj>();
+            redis_hash_bll = new PMS.BLLRedis.HashBLL<Redis_HashWFObj>();
+
             int state = 1;
             int wf_result = 1;
             //2 创建书签
@@ -76,6 +83,7 @@ namespace WFTest
 
             //4.3
             //（1）将发送状态写入Hash表中
+            //redis_hash_bll.WriteInHash_Redis(key_hash, obj_hashWF.MsgId,obj_hashWF);
             WriteInHash_Redis(key_hash, obj_hashWF);
             //（2）将msgid写入List集合中
             WriteInList_Redis(key_list, obj_listmsgId);
@@ -117,8 +125,9 @@ namespace WFTest
         /// <param name="obj"></param>
         private bool WriteInList_Redis(string key_list, Redis_ListMsgIdObj obj)
         {
-            ListReidsHelper<Redis_ListMsgIdObj> redisListhelper = new ListReidsHelper<Redis_ListMsgIdObj>(key_list);
-            return redisListhelper.Add(obj);
+            return redis_list_bll.WriteInList_Redis(key_list, obj);
+            //ListReidsHelper<Redis_ListMsgIdObj> redisListhelper = new ListReidsHelper<Redis_ListMsgIdObj>(key_list);
+            //return redisListhelper.Add(obj);
         }
 
         /// <summary>
@@ -128,8 +137,9 @@ namespace WFTest
         /// <param name="obj"></param>
         private bool WriteInHash_Redis(string key_hash, Redis_HashWFObj obj)
         {
-            HashRedisHelper redisHashhelper = new HashRedisHelper();
-            return redisHashhelper.Set<Redis_HashWFObj>(key_hash,obj.MsgId,obj);
+           return this.redis_hash_bll.WriteInHash_Redis(key_hash, obj.MsgId, obj);
+            //HashRedisHelper redisHashhelper = new HashRedisHelper();
+            //return redisHashhelper.Set<Redis_HashWFObj>(key_hash,obj.MsgId,obj);
         }
 
 

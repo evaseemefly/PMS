@@ -71,7 +71,7 @@ namespace WFTest
                     var model = list_final.First();
                     //context.SetValue(First_Obj, model);
                     //3.2 并从redis中删除第一个对象
-                   // redisListhelper.Delete(key_redis);
+                    redisListhelper.Delete(key_redis);
                     Console.WriteLine("删除首元素！！");
                     return model;
                 }
