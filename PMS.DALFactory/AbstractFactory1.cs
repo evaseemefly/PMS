@@ -257,6 +257,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建S_SMSType的实例
+        /// <summary>
+        /// 创建S_SMSType的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IS_SMSTypeDAL CreateS_SMSTypeDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".S_SMSTypeDAL";
+            return CreateInstance(fullClassName) as IS_SMSTypeDAL;
+        }
+		#endregion
+	 
 		#region 创建UserInfo的实例
         /// <summary>
         /// 创建UserInfo的实例

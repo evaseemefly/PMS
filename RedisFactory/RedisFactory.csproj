@@ -54,6 +54,14 @@
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.BLLRedis\PMS.BLLRedis.csproj">
+      <Project>{252338de-0e16-4e59-ac65-01ba7689d9f4}</Project>
+      <Name>PMS.BLLRedis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
+      <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
+      <Name>PMS.IBLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>

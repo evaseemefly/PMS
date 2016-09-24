@@ -47,6 +47,7 @@
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>Common</AssemblyReference>
       <AssemblyReference>ISMS</AssemblyReference>
+      <AssemblyReference>PMS.BLLRedis</AssemblyReference>
       <AssemblyReference>PMS.BLL</AssemblyReference>
       <AssemblyReference>PMS.DALSQLSer</AssemblyReference>
       <AssemblyReference>PMS.IBLL</AssemblyReference>
@@ -198,7 +199,7 @@
                                         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11">
                                           <Sequence DisplayName="查询操作" sap2010:WorkflowViewState.IdRef="Sequence_10">
                                             <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="满足条件，开始查询" />
-                                            <local:QueryStatesByMsgid_Code Text="{x:Null}" DisplayName="查询返回联系人列表及状态" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_2">
+                                            <local:QueryStatesByMsgid_Code Result="{x:Null}" Text="{x:Null}" DisplayName="查询返回联系人列表及状态" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_2">
                                               <local:QueryStatesByMsgid_Code.List_QueryReceive>
                                                 <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                                                   <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryReceive</mca:CSharpReference>
@@ -249,7 +250,7 @@
                                         <State.Entry>
                                           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
                                             <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="进入状态机5：-----检查是否需要重查-----" />
-                                            <local:QueryState_BookMark x:TypeArguments="x:Int32" SetpId="{x:Null}" Text="{x:Null}" wf_queryBLL="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark`1_2">
+                                            <local:QueryState_BookMark x:TypeArguments="x:Int32" SetpId="{x:Null}" Text="{x:Null}" redis_hash_bll="{x:Null}" redis_list_bll="{x:Null}" wf_queryBLL="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark`1_2">
                                               <local:QueryState_BookMark.BookMarkName>
                                                 <InOutArgument x:TypeArguments="x:String">
                                                   <mca:CSharpReference x:TypeArguments="x:String">TempBookMarkName</mca:CSharpReference>
@@ -285,6 +286,9 @@
                                         </State.Entry>
                                         <State.Transitions>
                                           <Transition DisplayName="仍需继续查询" sap2010:WorkflowViewState.IdRef="Transition_8" To="{x:Reference __ReferenceID0}">
+                                            <Transition.Action>
+                                              <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_24" Text="跳回重查" />
+                                            </Transition.Action>
                                             <Transition.Condition>
                                               <mca:CSharpValue x:TypeArguments="x:Boolean">_result==4</mca:CSharpValue>
                                             </Transition.Condition>
@@ -308,10 +312,10 @@
                                       </State>
                                     </Transition.To>
                                     <Transition.Action>
-                                      <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="本次查询已结束" />
+                                      <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="———将执行创建书签操作———" />
                                     </Transition.Action>
                                     <Transition.Condition>
-                                      <mca:CSharpValue x:TypeArguments="x:Boolean">_state==1</mca:CSharpValue>
+                                      <mca:CSharpValue x:TypeArguments="x:Boolean">_state==1&amp;&amp;_result!=4</mca:CSharpValue>
                                     </Transition.Condition>
                                   </Transition>
                                 </State.Transitions>
@@ -397,7 +401,7 @@
                   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <Sequence DisplayName="查询操作" sap2010:WorkflowViewState.IdRef="Sequence_7">
                       <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="满足条件，开始查询" />
-                      <local:QueryStatesByMsgid_Code MsgId="{x:Null}" Text="{x:Null}" DisplayName="查询返回联系人列表及状态" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_1">
+                      <local:QueryStatesByMsgid_Code MsgId="{x:Null}" Result="{x:Null}" Text="{x:Null}" DisplayName="查询返回联系人列表及状态" sap2010:WorkflowViewState.IdRef="QueryStatesByMsgid_Code_1">
                         <local:QueryStatesByMsgid_Code.List_QueryReceive>
                           <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                             <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryReceive</mca:CSharpReference>
@@ -432,7 +436,7 @@
                     </InArgument>
                   </If.Condition>
                   <If.Then>
-                    <local:QueryState_BookMark x:TypeArguments="x:Int32" Id_hash="{x:Null}" Id_list_msgid="{x:Null}" MsgId="{x:Null}" SetpId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" wf_queryBLL="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark_1">
+                    <local:QueryState_BookMark x:TypeArguments="x:Int32" Id_hash="{x:Null}" Id_list_msgid="{x:Null}" MsgId="{x:Null}" SetpId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" redis_hash_bll="{x:Null}" redis_list_bll="{x:Null}" wf_queryBLL="{x:Null}" sap2010:WorkflowViewState.IdRef="QueryState_BookMark_1">
                       <local:QueryState_BookMark.BookMarkName>
                         <InOutArgument x:TypeArguments="x:String">
                           <mca:CSharpReference x:TypeArguments="x:String">TempBookMarkName</mca:CSharpReference>
@@ -462,7 +466,7 @@
       <Variable x:TypeArguments="x:String" Name="_id_list_msgid" />
       <Variable x:TypeArguments="x:String" Name="_id_hash" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>d0lFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sYjsD0gMSAgEBPQfgAg8DAaMEqQIvsAI3AwGdBGQP3AIXAwG8A4gBF9ACHwMBngK9AR++AicDAYkB+AEntAIvAgECPwtfFgMBpgSrAjOuAj4DAZ8EZhOAAR4DAeEDhQEXhQFsAwHQA9gCF9gCagMBwAPVAhfVAmIDAb4DigEbsgEmAwHJArUBG7UBZgMBxwK6AR+6AXEDAcUCxAIfxAKSAQMBtALBAh/BAm4DAbICyQIfyQJoAwGgAr8BI/ABLgMBoAHzASPzAWsDAZ4BugInugJvAwGNAbcCJ7cCcgMBiwH6ASucAjYCASWhAi+hAngCARSmAi+mAngCAQRADUBoAwH7BEENXhgDAacErAI1rAKBAQMBoQStAjWtAoQBAwGgBGcVZ3oDAZsEaBV/IAMB4gPVAlbVAl8DAb8DiwEdiwF7AwG6A4wBHbEBKAMBygK1AVq1AWMDAcgCugFeugFuAwHGAsECXsECawMBswLAASXAAYIBAwGcAsEBJe8BLwMBoQHzAWLzAWgDAZ8BtwJmtwJvAwGMAfsBLfsBigEDAYcB/AEtmwJJAgEmQExAZQMB/ARCD0JYAwH5BEMPXSoDAagErAJ0rAJ+AwGiBGdUZ3cDAZwEbBdsZwMBmQRtF301AwHlA34XfmADAeMDiwFciwF4AwG7A5ABH5ABeAMBuAORAR+wAUIDAcsCwAFkwAF/AwGdAsMBKcMBcQMBjALFASfuATIDAaIB+wFs+wGHAQMBiAGEAjOEAnkCAXeYAjOYAn8CAWf/ATP/AYkBAgFXiQIziQJ/AgFHjgIzjgKFAQIBN5MCM5MCfgIBJ0JNQlUDAfoERhVGYwMB6QRQFVBpAwHZBFoVWmQDAckESxVLYwMBuQRVFVVpAwGpBGxVbGQDAZoEdR11hAEDAYgEeh16aQMB9wNwHXBjAwHmA35Vfl0DAeQDkAFekAF1AwG5A54BJZ4BhAEDAaYDrQElrQFxAwGUA6gBJagBcQMBggOZASWZAWsDAfACowElowF3AwHeApQBJZQBgQEDAcwCxgEp6AE0AwG0AekBKe0BNQMBowHHASvnATYDAbUB6wEt6wF6AwGkAcgBLcgBeQMBigLJAS3eAU0DAckB3wEt3wF5AwHHAeABLeYBSAMBtgHIAWvIAXYDAYsC1gEz1gGHAQMB+gHRATPRAX0DAeoBzAEzzAGmAQMB2gHbATPbAX4DAcoB3wFr3wF2AwHIAeMBM+MBegMBtwE=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1VEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sZDwD1gMSAgEBPgfkAg8DAaUErQIvtAI3AwGfBGUP4AIXAwG+A4kBF9QCHwMBoAK+AR/CAicDAYsB+QEnuAIvAgECQAtgFgMBqASvAjOyAj4DAaEEZxOBAR4DAeMDhgEXhgFsAwHSA9wCF9wCagMBwgPZAhfZAmIDAcADiwEbswEmAwHLArYBG7YBZgMByQK7AR+7AXEDAccCyAIfyAKSAQMBtgLFAh/FAm4DAbQCzQIfzQJoAwGiAsABI/EBLgMBogH0ASP0AWsDAaABvgInvgKDAQMBjwG7Aie7AnoDAY0B+wErnQI2AgEnpQIvpQJ4AgEWogIvogJ3AgEUqgIvqgJ4AgEEQQ1BaAMB/QRCDV8YAwGpBLACNbACgQEDAaMEsQI1sQKEAQMBogRoFWh6AwGdBGkVgAEgAwHkA9kCVtkCXwMBwQOMAR2MAXsDAbwDjQEdsgEoAwHMArYBWrYBYwMBygK7AV67AW4DAcgCxQJexQJrAwG1AsEBJcEBggEDAZ4CwgEl8AEvAwGjAfQBYvQBaAMBoQG7Ama7AncDAY4B/AEt/AGKAQMBiQH9AS2cAkkCASiiAm6iAnQCARVBTEFlAwH+BEMPQ1gDAfsERA9eKgMBqgSwAnSwAn4DAaQEaFRodwMBngRtF21nAwGbBG4XfjUDAecDfxd/YAMB5QOMAVyMAXgDAb0DkQEfkQF4AwG6A5IBH7EBQgMBzQLBAWTBAX8DAZ8CxAEpxAFxAwGOAsYBJ+8BMgMBpAH8AWz8AYcBAwGKAYUCM4UCeQIBeZkCM5kCfwIBaYACM4ACiQECAVmKAjOKAn8CAUmPAjOPAoUBAgE5lAIzlAJ+AgEpQ01DVQMB/ARHFUdjAwHrBFEVUWkDAdsEWxVbZAMBywRMFUxjAwG7BFYVVmkDAasEbVVtZAMBnAR2HXaEAQMBigR7HXtpAwH5A3EdcWMDAegDf1V/XQMB5gORAV6RAXUDAbsDnwElnwGEAQMBqAOuASWuAXEDAZYDqQElqQFxAwGEA5oBJZoBawMB8gKkASWkAXcDAeAClQEllQGBAQMBzgLHASnpATQDAbYB6gEp7gE1AwGlAcgBK+gBNgMBtwHsAS3sAXoDAaYByQEtyQF5AwGMAsoBLd8BTQMBywHgAS3gAXkDAckB4QEt5wFIAwG4AckBa8kBdgMBjQLXATPXAYcBAwH8AdIBM9IBfQMB7AHNATPNAaYBAwHcAdwBM9wBfgMBzAHgAWvgAXYDAcoB5AEz5AF6AwG5AQ==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -565,6 +569,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteLine_24" sap:VirtualizedContainerService.HintSize="213,63" />
       <sap2010:ViewStateData Id="Transition_8" sap:VirtualizedContainerService.HintSize="430,520">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -601,7 +606,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="326,648">
+      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="237,131">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">481.5,574.5</av:Point>
@@ -774,7 +779,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WFTest.MainStatistics_Advanced_1" sap:VirtualizedContainerService.HintSize="1036,1099" />
+      <sap2010:ViewStateData Id="WFTest.MainStatistics_Advanced_1" sap:VirtualizedContainerService.HintSize="1398,1165" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

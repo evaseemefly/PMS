@@ -137,6 +137,13 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region S_SMSTypeDAL   
+	//S_SMSType数据访问层
+	public class S_SMSTypeDAL:BaseDAL<S_SMSType>,IS_SMSTypeDAL
+    {
+    }
+	#endregion
+
 		#region UserInfoDAL   
 	//UserInfo数据访问层
 	public class UserInfoDAL:BaseDAL<UserInfo>,IUserInfoDAL

@@ -14,7 +14,7 @@ namespace PMS.Model
     
     public partial class WF_Query_Instance
     {
-        public int ID { get; set; }
+        public Nullable<int> ID { get; set; }
         public string Name { get; set; }
         public System.DateTime SubTime { get; set; }
         public int StartedBy { get; set; }

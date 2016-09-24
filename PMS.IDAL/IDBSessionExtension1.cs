@@ -100,6 +100,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IS_SMSTypeDAL
+      IDAL.IS_SMSTypeDAL S_SMSTypeDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IUserInfoDAL
       IDAL.IUserInfoDAL UserInfoDAL { get; set; }
 	  #endregion
