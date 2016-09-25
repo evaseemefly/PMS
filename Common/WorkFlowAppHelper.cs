@@ -99,7 +99,7 @@ SqlWorkflowInstanceStore store = new SqlWorkflowInstanceStore(connect_str);
         }
 
         private static PersistableIdleAction OnPersistableIdle(WorkflowApplicationIdleEventArgs arg)
-        {
+         {
             Console.WriteLine("持久化");
             return PersistableIdleAction.Unload;
         }

@@ -137,6 +137,8 @@
     <Compile Include="RecycleModel\RoleInfo.cs" />
     <Compile Include="RecycleModel\S_SMSMission.cs" />
     <Compile Include="RecycleModel\UserInfo.cs" />
+    <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
+    <Compile Include="Dictionary\SMSDictionary.cs" />
     <Compile Include="RoleInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
@@ -149,8 +151,6 @@
     <Compile Include="R_UserInfo_ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
-    <Compile Include="Dictionary\SMSDictionary.cs" />
     <Compile Include="R_UserInfo_DepartmentInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
@@ -186,6 +186,9 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="S_SMSRecord_History.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSType.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs">

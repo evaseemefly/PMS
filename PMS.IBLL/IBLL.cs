@@ -99,6 +99,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IS_SMSTypeBLL:IBaseBLL<S_SMSType>
+    {
+        
+
+    }
 	    public partial interface IUserInfoBLL:IBaseBLL<UserInfo>
     {
         

@@ -518,6 +518,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _S_SMSTypeDAL 属性 
+	private IDAL.IS_SMSTypeDAL _S_SMSTypeDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSTypeDAL的实例
+        /// </summary>
+        public IS_SMSTypeDAL S_SMSTypeDAL
+        {
+            get
+            {
+                if(_S_SMSTypeDAL==null)
+                {
+                    _S_SMSTypeDAL = AbstractFactory.CreateS_SMSTypeDAL();
+                }
+                return _S_SMSTypeDAL;
+            }
+
+            set
+            {
+                _S_SMSTypeDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _UserInfoDAL 属性 
 	private IDAL.IUserInfoDAL _UserInfoDAL;
 	#endregion

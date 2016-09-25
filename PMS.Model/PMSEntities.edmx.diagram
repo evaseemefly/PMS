@@ -55,8 +55,9 @@
         <EntityTypeShape EntityType="PMS2016Model.N_News" Width="1.5" PointX="7.5" PointY="27.25" />
         <AssociationConnector Association="PMS2016Model.FK_N_News_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_News_N_News" />
-        <EntityTypeShape EntityType="PMS2016Model.WF_Query_Instance" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="PMS2016Model.WF_Query_StepInfo" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSType" Width="1.5" PointX="12.375" PointY="13.75" />
+        <EntityTypeShape EntityType="PMS2016Model.WF_Query_Instance" Width="1.5" PointX="0.75" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

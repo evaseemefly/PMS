@@ -16,9 +16,15 @@ namespace Common.Redis
         {
             return redis_client.HashContainsEntry(hashId, key);
         }
+
         /// <summary>
         /// 存储数据到hash表
         /// </summary>
+        /// <typeparam name="T">写入hash表中的对象类型</typeparam>
+        /// <param name="hashId">hash表的id</param>
+        /// <param name="key">hash表中存储每一个对象的key</param>
+        /// <param name="t">每一个对象key对应的对象实体</param>
+        /// <returns></returns>
         public bool Set<T>(string hashId, string key, T t)
         {
             var value = SerializerHelper.SerializerToString(t);

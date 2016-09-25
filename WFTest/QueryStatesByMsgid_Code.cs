@@ -32,6 +32,11 @@ namespace WFTest
         public OutArgument<int> State { get; set; }
 
         /// <summary>
+        /// 输入以及输出的工作流状态
+        /// </summary>
+        public InOutArgument<int> Result { get; set; }
+
+        /// <summary>
         /// 本次查询的回执
         /// </summary>
         public OutArgument<List<SMSModel_QueryReceive>> List_QueryReceive { get; set; }
@@ -95,6 +100,13 @@ namespace WFTest
             if (!isGetReturnMsg)
             {
                 // return Content("服务器错误");
+            }
+            //当查询返回的集合数量为1，且唯一的对象的desc为成功，则直接跳出，不进行下面的操作，并对state复制为1
+            if (list_QueryReceive.Count() == 1 && list_queryReceive.FirstOrDefault().desc == "成功"&&list_queryReceive.FirstOrDefault().phoneNumber==null)
+            {
+
+                state = 1;
+                return;
             }
             //7 获取改次发送的SMSContent的ID
             var list = smsContentBLL.GetListBy(p => p.msgId.Equals(msgid));

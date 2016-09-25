@@ -14,15 +14,15 @@ namespace PMS.Model
     
     public partial class WF_Query_Instance
     {
-        public int ID { get; set; }
+        public Nullable<int> ID { get; set; }
         public string Name { get; set; }
         public System.DateTime SubTime { get; set; }
         public int StartedBy { get; set; }
         public short Level { get; set; }
         public string SubForm { get; set; }
-        public short Status { get; set; }
-        public short Result { get; set; }
-        public int WF_TempID { get; set; }
+        public int Status { get; set; }
+        public int Result { get; set; }
+        public Nullable<int> WF_TempID { get; set; }
         public System.Guid ApplicationId { get; set; }
     }
 }

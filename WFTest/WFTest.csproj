@@ -86,6 +86,10 @@
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
       <Name>ISMS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.BLLRedis\PMS.BLLRedis.csproj">
+      <Project>{252338de-0e16-4e59-ac65-01ba7689d9f4}</Project>
+      <Name>PMS.BLLRedis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
       <Name>PMS.BLL</Name>
