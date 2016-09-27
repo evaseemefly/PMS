@@ -155,6 +155,7 @@ namespace WFTest
             bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
             if (!isGetReturnMsg)
             {
+                return;
                 // return Content("服务器错误");
             }
             //7 获取改次发送的SMSContent的ID

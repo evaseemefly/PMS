@@ -79,14 +79,14 @@ namespace WFTest
             string account = "dh74381"; //账号"dh74381";
             string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
             //6 查询发送状态(是否加入等待时间？)
-            PMS.Model.SMSModel.SMSModel_Query queryMsg = new PMS.Model.SMSModel.SMSModel_Query()
+            SMSModel_Query queryMsg = new SMSModel_Query()
             {
                 account = account,
                 password = passWord,
                 smsId = msgid,
                 //phoneNums=model.PhoneNums
             };
-            List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
+            List<SMSModel_QueryReceive> list_QueryReceive;
 
             //根据传入的信息进行查询，并有一个状态信息集合
             bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
@@ -99,35 +99,30 @@ namespace WFTest
 
             if (!isGetReturnMsg)
             {
+                //查询结果有问题，跳出本次查询
+                state = 2;
+                return;
                 // return Content("服务器错误");
             }
-            //当查询返回的集合数量为1，且唯一的对象的desc为成功，则直接跳出，不进行下面的操作，并对state复制为1
+            //当查询返回的集合数量为1，且唯一的对象的desc为成功，则直接跳出，不进行下面的操作，并对state赋值为1
             if (list_QueryReceive.Count() == 1 && list_queryReceive.FirstOrDefault().desc == "成功"&&list_queryReceive.FirstOrDefault().phoneNumber==null)
             {
-
+                //返回的desc=成功
                 state = 1;
-                return;
+                             
+                //return;
             }
-            //7 获取改次发送的SMSContent的ID
+            //7 获取该次发送的SMSContent的ID
             var list = smsContentBLL.GetListBy(p => p.msgId.Equals(msgid));
-
-            if (list.Count() < 1)
+            int scid = list.FirstOrDefault().ID;
+            //向数据库中写入本集合中的对象   
+            bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
+            if (list_QueryReceive.Count() == 0)
             {
-                
-                return;
-            }
-            else
-            {
-                int scid = list.FirstOrDefault().ID;
-                if (list_QueryReceive.Count() == 0)
-                {
-                    //ToShow("当前取出的对象中接收内容有误");
-                    return;
-                }
-                //向数据库中写入本集合中的对象
-                bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
-            }
-
+                state = 99;
+                //ToShow("当前取出的对象中接收内容有误");
+                //return;
+            }           
            
         }
     }

@@ -9,12 +9,12 @@ namespace PMS.Model.Dictionary
     public class SMSQueryResultDictionary
     {
         /// <summary>
-        /// 短信状态字典
+        /// 短信查询状态字典
         /// </summary>
         private static Dictionary<int, string> dResponseCode;
 
         /// <summary>
-        /// 回去字典
+        /// 取出字典
         /// </summary>
         /// <returns></returns>
         public static Dictionary<int, string> GetResponseCode()

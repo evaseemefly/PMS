@@ -68,6 +68,8 @@ namespace SMSFactory
 
         /// <summary>
         /// 根据传入的信息进行短信发送状态的查询
+        /// 9月26日添加对返回的集合中是否存在指定msgid的对象的判断
+        /// 若存在则返回true，不存在则返回false
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -92,10 +94,34 @@ namespace SMSFactory
                 return false;
             }
             //2.2 将接收到的短信发送回执转换为对象
-            //此处有问题
+            //此处有问题           
             list_receiveModel = ObjTransform.Xml2Model_queryReceiveMsg(returnMsg);
-            return true;
+            if (this.CheckQueryReceiveLegal(smsdata.smsId, list_receiveModel))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+               
 
+        }
+
+        /// <summary>
+        /// 从传入的查询返回集合中判断是否有指定的msgid，若存在则返回true，若不存在则返回false
+        /// </summary>
+        /// <param name="msgid"></param>
+        /// <param name="list_receive"></param>
+        /// <returns></returns>
+        private bool CheckQueryReceiveLegal(string msgid, List<SMSModel_QueryReceive> list_receive)
+        {
+            //根据传入的msgid遍历集合中的全部对象
+            if(list_receive.Where(q=>q.msgId==msgid).Count()==0)
+            {
+                return false;
+            }
+            return true;
         }
 
         //发送程序

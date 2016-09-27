@@ -9,6 +9,10 @@ namespace PMS.Model.SMSModel
     public class SMSModel_QueryReceive
     {
         /// <summary>
+        /// 短信唯一识别码
+        /// </summary>
+        public string msgId { get; set; }
+        /// <summary>
         /// 电话
         /// </summary>
         public string phoneNumber { get; set; }

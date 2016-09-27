@@ -24,6 +24,11 @@ namespace WFTest
         /// </summary>
         public OutArgument<int> WF_Result { get; set; }
 
+        /// <summary>
+        /// 查询状态
+        /// </summary>
+        public OutArgument<int> State { get; set; }
+
         public OutArgument<string> MsgId { get; set; }
 
         public OutArgument<PMS.Model.QueryModel.Redis_SMSContent> First_Obj { get; set; }
@@ -48,7 +53,10 @@ namespace WFTest
                 //3 为传出变量赋值
                 context.SetValue(this.First_Obj, first);
                 context.SetValue(this.MsgId, first.msgid);
+                //首元素符合条件
                 context.SetValue(this.WF_Result, 1);
+                //此处不应为state赋值，state为查询状态码，此时还未进行查询操作，故只对以上的流程结果赋值
+                //context.SetValue(this.State, 0);
                 //first = new PMS.Model.QueryModel.Redis_SMSContent();
             }
             else

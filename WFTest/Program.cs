@@ -46,37 +46,39 @@ namespace WFTest
             //};
 
             #region 9月25日 测试简单的工作流恢复的问题，此处暂时注释掉
-            //var dic = new Dictionary<string, object>() { { "TempBookMarkName", "书签1" } };
-            ////var work = Common.WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
-            ////{370159d5-24b5-4a54-b3d6-1ac569938a78}
+            var dic = new Dictionary<string, object>() { { "TempBookMarkName", "书签1" } };
+            //var work = Common.WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
 
-            //var work_reus = Common.WorkFlowAppHelper.LoadWorkflowApplication(workflow_temp, Guid.Parse("b74a2dea-e669-4a6e-8c7c-74df9602039b"));
+            //{370159d5-24b5-4a54-b3d6-1ac569938a78}
 
-            //var bookmark = new PMS.Model.WFModel.BookMarkObj<int>()
-            //{
-            //    BookMarkName = "恢复书签",
-            //    State = 1,
-            //    StepId = 1,
-            //    WF_Result = 6 //57403176c40e4368977735c42ab45539
-            //};
-            //work_reus.ResumeBookmark("书签1", bookmark);
+            var work_reus = Common.WorkFlowAppHelper.LoadWorkflowApplication(workflow_temp, Guid.Parse("4dcf21f8-747c-4ae4-941a-9266af2405f2"));
+
+            var bookmark = new PMS.Model.WFModel.BookMarkObj<int>()
+            {
+                BookMarkName = "恢复书签",
+                State = 1,
+                StepId = 1,
+                WF_Result = 4 //57403176c40e4368977735c42ab45539
+            };
+            work_reus.ResumeBookmark("书签1", bookmark);
             #endregion
 
             //测试 持久化 已经可以持久化（注意 数据库的 连接字符串）
+            //9月26日 测试工作流 暂时注释掉
             #region 测试持久化问题（已解决）
-            Activity activity = new Activity_Test();
-            //1 创建工作流
-            //1.1 此处为为创建的工作流输入的参数
-            Dictionary<string, object> dic = new Dictionary<string, object>() { { "temp", "测试输入参数" } };
+            //Activity activity = new Activity_Test();
+            ////1 创建工作流
+            ////1.1 此处为为创建的工作流输入的参数
+            //Dictionary<string, object> dic = new Dictionary<string, object>() { { "temp", "测试输入参数" } };
             //var work = Common.WorkFlowAppHelper.CreateWorkflowApplication(activity, dic);
 
-            //2 恢复工作流
-            var work_reus = Common.WorkFlowAppHelper.LoadWorkflowApplication(activity, Guid.Parse("c47b9971-473a-48b9-8535-d5ac09c0e9b1"));
-            //第一个参数为工作流创建时为书签所起的名字，第二个参数为创建书签时，声明的回调方法BookmarkCallback指定的某个方法
-            //BookmarkCallback 要求的 签名 为 
-            //NativeActivityContext context, Bookmark bookmark, object value
-            //此处的dic及为方法签名中的第三个参数value
-            work_reus.ResumeBookmark("测试书签", dic);
+            ////2 恢复工作流
+            //var work_reus = Common.WorkFlowAppHelper.LoadWorkflowApplication(activity, Guid.Parse("a95f8bf4-4004-4ac5-9949-955ce1fabe97"));
+            ////第一个参数为工作流创建时为书签所起的名字，第二个参数为创建书签时，声明的回调方法BookmarkCallback指定的某个方法
+            ////BookmarkCallback 要求的 签名 为 
+            ////NativeActivityContext context, Bookmark bookmark, object value
+            ////此处的dic及为方法签名中的第三个参数value
+            //work_reus.ResumeBookmark("测试书签", dic);
             #endregion
 
 
