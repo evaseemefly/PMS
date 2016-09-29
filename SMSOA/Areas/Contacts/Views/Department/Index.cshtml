@@ -124,6 +124,48 @@
             "12": "崇武",
         }
 
+        //根据输入的条件进行搜索
+        function searchBy(){
+            //获取到输入的查询群组的text框中的值
+            var match_departmentName= $("#contactsName").val();
+
+            var queryData={
+                DepartmentName:match_departmentName
+            };
+
+            loadTreeGridbyCondition('@ViewBag.GetInfo', myColumns,queryData);
+            //loadTreeGrid('@ViewBag.GetInfo', myColumns,queryData);
+        }
+
+        function loadTreeGrid(url, myColumns,queryModel) {
+            loadTreeGridbyCondition(url, myColumns,queryModel);
+            ////2 位treegrid加载数据
+            //$("#contactsdatagrid").treegrid({
+            //    queryParams:queryModel
+            //});
+        }
+
+        function loadTreeGridbyCondition(url, myColumns,queryModel) {
+            //2 位treegrid加载数据
+            $("#contactsdatagrid").treegrid({
+                idField: 'DID',
+                treeField: 'DepartmentName',
+                animate: true,
+                //width: '400px',
+                height: '400px',
+                fitColumns: true,
+                striped: true,//是否显示斑马线
+                nowrap: false,//自动换行
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '数据加载中请稍后……',
+                columns: myColumns,
+                toolbar: '#tb',
+                queryParams:queryModel
+
+            });
+        }
 
         function loadTreeGrid(url, myColumns) {
             //2 位treegrid加载数据
@@ -141,7 +183,7 @@
                 url: url,
                 loadMsg: '数据加载中请稍后……',
                 columns: myColumns,
-                toolbar: toolbar
+                toolbar: '#tb'
 
             });
         }
@@ -223,6 +265,15 @@
             <table class="easyui-treegrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
         </div>        
     </div>
+
+<div id="tb" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_department" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addDepartmentRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_department" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeDepartmentRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_department" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editDepartmentRow()"></a>
+    <br />
+    <input class="easyui-validatebox" type="text" id="contactsName" style="width:'50%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a>
+</div>
 }
 @section showWindow{
     <div class="easyui-window" title="编辑部门" id="editContactWindow" style="width:460px;height:405px;overflow: hidden" data-options="shadow:true,modal:true">

@@ -40,45 +40,63 @@ namespace SMSOA.Areas.Contacts.Controllers
             return View();
         }
 
-
-        
         /// <summary>
-        /// 获取全部群组数据
+        /// 根据匹配条件查询符合条件的群组列表
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetGroupInfo()
+        public ActionResult GetGroupInfo(ViewModel_Group_QueryInfo queryModel)
         {
-            //int pageSize = int.Parse(Request.Form["rows"]);
-            //int pageIndex = int.Parse(Request.Form["page"]);
-            //int rowCount = 0;
-
-            //查询所有的权限
-            //使用ref声明时需要在传入之前为其赋值
-            //var list_person = groupBLL.GetPageList(pageIndex, pageSize, ref rowCount, g => g.isDel == false, g => g.GroupName, true).ToList();
-            //PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
-            //{
-            //    total = rowCount,
-            //    rows = list_person,
-            //    footer = null
-            //};
-
-
-            //将权限转换为对应的
-            //return Content(Common.SerializerHelper.SerializerToString(dgModel));
-
             //不使用分页查询
-             var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList().Select(g=>g.ToMiddleModel()).ToList();
+            var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList().Select(g => g.ToMiddleModel()).ToList();
 
-            //5月2日 解决使用Netjson序列化时会内存溢出的问题
-            //方式（一）
-            //var content = from r in list_group
-            //              select r.ToMiddleModel();
-
-            //return Json(list_group, JsonRequestBehavior.AllowGet);
+            if (queryModel != null)
+            {
+                if(queryModel.GroupName!=null)
+                list_group= list_group.Where(g => g.GroupName.Contains(queryModel.GroupName)).ToList();
+            }
+            
             return Content(Common.SerializerHelper.SerializerToString(list_group));
 
         }
+
+        ///// <summary>
+        ///// 获取全部群组数据
+        ///// json格式
+        ///// </summary>
+        ///// <returns></returns>
+        //public ActionResult GetGroupInfo()
+        //{
+        //    //int pageSize = int.Parse(Request.Form["rows"]);
+        //    //int pageIndex = int.Parse(Request.Form["page"]);
+        //    //int rowCount = 0;
+
+        //    //查询所有的权限
+        //    //使用ref声明时需要在传入之前为其赋值
+        //    //var list_person = groupBLL.GetPageList(pageIndex, pageSize, ref rowCount, g => g.isDel == false, g => g.GroupName, true).ToList();
+        //    //PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+        //    //{
+        //    //    total = rowCount,
+        //    //    rows = list_person,
+        //    //    footer = null
+        //    //};
+
+
+        //    //将权限转换为对应的
+        //    //return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+        //    //不使用分页查询
+        //     var list_group = groupBLL.GetListBy(g => g.isDel == false, g => g.Sort).ToList().Select(g=>g.ToMiddleModel()).ToList();
+
+        //    //5月2日 解决使用Netjson序列化时会内存溢出的问题
+        //    //方式（一）
+        //    //var content = from r in list_group
+        //    //              select r.ToMiddleModel();
+
+        //    //return Json(list_group, JsonRequestBehavior.AllowGet);
+        //    return Content(Common.SerializerHelper.SerializerToString(list_group));
+
+        //}
 
         /// <summary>
         /// 6月13日家添加

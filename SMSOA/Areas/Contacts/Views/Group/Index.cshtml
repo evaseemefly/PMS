@@ -152,6 +152,18 @@
             loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
         }*@
 
+        //根据输入的条件进行搜索
+        function searchBy(obj){
+            //获取到输入的查询群组的text框中的值
+            var match_groupName= $("#contactsName").val();
+
+            var queryData={
+                GroupName:match_groupName
+            };
+
+            loadDataGridByCondition('@ViewBag.GetInfo', myColumns,queryData);
+        }
+
         //获取群组或部门id
         function loadPersonGridByGID(url, myPersonColumns, myPersonToolbar) {
             //1 获取选中的行
@@ -179,6 +191,10 @@
             loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo);
         }
 
+        function searchContacts(){
+            //获取到输入的查询部门的text框中的值
+        }
+
         $(function () {
 
             loadDataGrid('@ViewBag.GetInfo', myColumns);
@@ -197,6 +213,13 @@
             checkShowToolbar("@showGroupToolbar", "@showPerToolbar", "group");
         })
 
+        function loadDataGridByCondition(url,myColumns,queryModel){
+            loadDataGrid(url,myColumns);
+            $("#contactsdatagrid").datagrid({
+                queryParams:queryModel
+            });
+        }
+
         function loadDataGrid(url, myColumns) {
             //2 位datagrid加载数据
             $("#contactsdatagrid").datagrid({
@@ -211,7 +234,7 @@
                 url: url,
                 loadMsg: '加载中……',
                 columns: myColumns,
-                toolbar: toolbar
+                toolbar: '#tb'
 
             });
         }
@@ -225,6 +248,14 @@ style="width:21%">
         <input type="hidden" id="gid_Hidden" />
     <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
     </div>
+    <div id="tb" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_group" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addGroupRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_group" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeGroupRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_group" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editGroupRow()"></a>
+    <br />
+    <input class="easyui-validatebox" type="text" id="contactsName" style="width:'50%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a>
+</div>
     }
 
 @section showWindow{
