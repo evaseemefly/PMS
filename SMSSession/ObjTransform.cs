@@ -49,6 +49,7 @@ namespace SMSFactory
             //如果第一个值有内容则继续，否则说明没有后续内容
             if (_status != null)
             {
+                var _msgid = Xml2StrHelper.xml2strList(returnMsg, "response/report/msgid");
                 var _phone = Xml2StrHelper.xml2strList(returnMsg, "response/report/phone");
                 var _desc = Xml2StrHelper.xml2strList(returnMsg, "response/report/desc");
                 var _wgcode = Xml2StrHelper.xml2strList(returnMsg, "response/report/wgcode");

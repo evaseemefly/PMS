@@ -37,7 +37,7 @@ namespace WFTest
 
         public OutArgument<int> SetpId { get; set; }
 
-        public OutArgument<T> State { get; set; }
+        public InOutArgument<int> State { get; set; }
 
         public InOutArgument<string> MsgId { get; set; }
 
@@ -48,18 +48,21 @@ namespace WFTest
             string msgid = context.GetValue(MsgId);
             string key_list=context.GetValue(Id_list_msgid);
             string key_hash = context.GetValue(Id_hash);
-
+            int state =context.GetValue(State);
             //2 
             redis_list_bll=new PMS.BLLRedis.ListBLL<Redis_ListMsgIdObj>();
             redis_hash_bll = new PMS.BLLRedis.HashBLL<Redis_HashWFObj>();
 
-            int state = 1;
+            //int state = 1;
             int wf_result = 1;
             //2 创建书签
+            //并设置书签为可多次恢复的
+            //context.CreateBookmark(bookMarkName, new BookmarkCallback(ContinueExecuteWF), BookmarkOptions.MultipleResume);
             context.CreateBookmark(bookMarkName, new BookmarkCallback(ContinueExecuteWF));
 
+
             //3 将传入的参数转为书签对象（自定义）
-            var book_obj= ToBookMarkObj(1, 4, context.WorkflowInstanceId);
+            var book_obj= ToBookMarkObj(state, 4, context.WorkflowInstanceId);
 
             //4.1 写入数据库中的指定表中
             wf_queryBLL = new PMS.BLL.WF_Query_InstanceBLL();

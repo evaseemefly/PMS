@@ -23,6 +23,8 @@ namespace WFFactory
         public override void Execute()
         {
             //从redis中查询准备恢复的wf_id
+            //9月25日注释掉
+            //测试暂时注释掉
             var obj_hashWFObj = query_bll.ExecuteQueryGetWFId();
             if (obj_hashWFObj == null)
             {
@@ -30,8 +32,10 @@ namespace WFFactory
             }
             //3.2 恢复工作流
             Activity workflow_temp = new MainStatistics_Advanced();
-
-            var guid= Guid.Parse(obj_hashWFObj.WFId);
+            
+            //测试将此行注释掉
+            var guid = Guid.Parse(obj_hashWFObj.WFId);
+            //var guid = Guid.Parse("68dfde0a-f560-437d-a485-b7663ef51b01");
 
             //恢复工作流
             var work_reus = WorkFlowAppHelper.LoadWorkflowApplication(workflow_temp, guid);
@@ -42,7 +46,8 @@ namespace WFFactory
                 BookMarkName = "恢复书签",
                 State = 1,
                 StepId = 1,
-                WF_Result = 4,
+               // WF_Result = 4,//9月25日测试暂时注释掉
+                WF_Result = 6,
                 MsgId=obj_hashWFObj.MsgId
             };
             work_reus.ResumeBookmark("书签1", bookmark);

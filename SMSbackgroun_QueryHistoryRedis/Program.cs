@@ -26,7 +26,13 @@ namespace SMSbackgroun_QueryHistoryRedis
            IWFBLL bll_minor = WFFactory.AbstractFactory.CreateMinorQuery_WF();
            //bll.Execute();
            bll_minor.Execute();
+
+            //9月26日——由于无法重新加载工作流——进行的测试——加载指定id的Wf
+            //WFFactory.MinorQuery_WF minorquery = new WFFactory.MinorQuery_WF();
+            //minorquery.Execute();
+
            Console.ReadLine();
+
         }
 
 

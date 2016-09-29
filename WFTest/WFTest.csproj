@@ -62,6 +62,7 @@
     <Compile Include="GetMsgIdFromRedis_Code.cs" />
     <Compile Include="GetObjFromListByCheck_Code.cs" />
     <Compile Include="GetObjFromRedis_Code.cs" />
+    <Compile Include="Idle_Code.cs" />
     <Compile Include="MinorQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
