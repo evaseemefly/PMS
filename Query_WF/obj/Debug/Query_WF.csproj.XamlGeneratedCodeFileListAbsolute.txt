@@ -1,0 +1,5 @@
+obj\Debug\_Query_WF.g.cs
+obj\Debug\Activity_Test.g.cs
+obj\Debug\MainStatistics_Advanced.g.cs
+obj\Debug\WFTest_Activity_Test_BeforeInitializeComponentHelper.cs
+obj\Debug\Query_WF_MainStatistics_Advanced_BeforeInitializeComponentHelper.cs

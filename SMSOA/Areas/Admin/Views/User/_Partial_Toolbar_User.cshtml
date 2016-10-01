@@ -1,0 +1,12 @@
+﻿<div id="tb" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_user" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_user" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_user" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="assignRole_user" data-options="iconCls:'icon-search',text: '用户角色设置',plain:true" onclick="AssignRole()"></a>
+    <a href="#" class="easyui-linkbutton" id="assignAction_user" data-options="iconCls:'icon-search',text: '用户权限设置',plain:true" onclick="AssignAction()"></a>
+    <a href="#" class="easyui-linkbutton" id="resetPassword_user" data-options="iconCls:'icon-key-16',text: '重置密码',plain:true" onclick="ResetPassword()"></a>
+    <br />
+    查询用户名<input class="easyui-validatebox" type="text" id="queryByUserName" style="width:'50%'" data-options="">
+    查询备注<input class="easyui-validatebox" type="text" id="queryByRemark" style="width:'50%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a>
+</div>

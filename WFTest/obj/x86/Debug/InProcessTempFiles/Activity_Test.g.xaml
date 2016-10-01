@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:Activity_Test xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:local="clr-namespace:WFTest;assembly=WFTest" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>EntityFramework</AssemblyReference>
+      <AssemblyReference>EntityFramework.SqlServer</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Common</AssemblyReference>
+      <AssemblyReference>ISMS</AssemblyReference>
+      <AssemblyReference>PMS.BLL</AssemblyReference>
+      <AssemblyReference>PMS.DALSQLSer</AssemblyReference>
+      <AssemblyReference>PMS.IBLL</AssemblyReference>
+      <AssemblyReference>PMS.Model</AssemblyReference>
+      <AssemblyReference>SMSFactory</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WFTest</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:Activity_Test.Implementation>
+    <Flowchart>
+      <Flowchart.StartNode>
+        <FlowStep x:Name="__ReferenceID0">
+          <WriteLine Text="测试持久化" />
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID2">
+              <local:Temp_BookMark x:TypeArguments="x:String" Text="{x:Null}">
+                <local:Temp_BookMark.BookName>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">temp</mca:CSharpValue>
+                  </InArgument>
+                </local:Temp_BookMark.BookName>
+              </local:Temp_BookMark>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID1">
+                  <WriteLine Text="测试持久化" />
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+      <sads:DebugSymbol.Symbol>dz5EOlwwMee8lueoi1wwMuWNj+S9nOW8gOWPkVxTTVNPQVxQTVNcV0ZUZXN0XEFjdGl2aXR5X1Rlc3QueGFtbAc1A08PAgEBOAk4UQIBBzsNQSMCAQREEURZAgECOEc4TgIBCD4TPlUCAQVET0RWAgED</sads:DebugSymbol.Symbol>
+    </Flowchart>
+  </local:Activity_Test.Implementation>
+</local:Activity_Test>

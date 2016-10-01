@@ -257,20 +257,19 @@ namespace SMSOA.Areas.Admin.Controllers
         /// 获取权限集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetRoleInfo()
+        public ActionResult GetRoleInfo(ViewModel_RoleInfo_QueryInfo queryModel)
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
 
-            //查询所有的权限
+            //查询的角色
             //使用ref声明时需要在传入之前为其赋值
-            var list_role = roleInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, a => a.DelFlag == false, a => a.Sort, true).ToList();
-            list_role = list_role.Select(r => r.ToMiddleModel()).ToList();
+            var list_record = roleInfoBLL.GetRoleRecordListByQuery(pageIndex, pageSize, ref rowCount, queryModel, true, true);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_role,
+                rows = list_record,
                 footer = null
             };
 
