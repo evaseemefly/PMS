@@ -1,0 +1,2 @@
+Activity_Test.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

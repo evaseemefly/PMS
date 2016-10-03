@@ -1,0 +1,2 @@
+D:\VSWorkSpace\PMS\PMS\PMS.BLLRedis\bin\Debug\Newtonsoft.Json.dll
+D:\VSWorkSpace\PMS\PMS\PMS.BLLRedis\bin\Debug\Newtonsoft.Json.pdb

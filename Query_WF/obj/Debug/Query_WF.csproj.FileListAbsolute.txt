@@ -1,0 +1,12 @@
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Query_WF.csprojResolveAssemblyReference.cache
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Activity_Test.g.xaml
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\MainStatistics_Advanced.g.xaml
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\WFTest_Activity_Test_BeforeInitializeComponentHelper.txt
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Query_WF_MainStatistics_Advanced_BeforeInitializeComponentHelper.txt
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\_Query_WF.g.cs
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Activity_Test.g.cs
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\MainStatistics_Advanced.g.cs
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\WFTest_Activity_Test_BeforeInitializeComponentHelper.cs
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Query_WF_MainStatistics_Advanced_BeforeInitializeComponentHelper.cs
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Query_WF.csproj.XamlGeneratedCodeFileListAbsolute.txt
+D:\01编程\02协作开发\SMSOA\PMS\Query_WF\obj\Debug\Query_WF.csproj.XamlGeneratedXamlFileListAbsolute.txt
