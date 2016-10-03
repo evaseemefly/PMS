@@ -34,7 +34,7 @@
         //保存下拉菜单中的json data
         var data_Options;
 
-
+        var queryModel = { RoleName: "", Remark: "" };
         function addRow() {
 
             //打开编辑窗体
@@ -140,12 +140,7 @@
             });
         }
 
-        $(function () {
-            //1 编辑窗口关闭
-            $("#editWindow").window('close');
-            $("#addWindow").window('close');
-            //SetiframeHeight("iframeBody");
-            //2 位datagrid加载数据
+        function loadDataGrid(url, myColumns, queryModel) {
             $("#datagrid").datagrid({
                 width: 'auto',
                 height: 'auto',
@@ -153,15 +148,26 @@
                 fitColumns: true,
                 striped: true,
                 singleSelect: true,
-                url: '@ViewBag.GetInfo',
+                url: url,
                 loadMsg: '数据加载中请稍后……',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: myColumns,
-                toolbar: toolbar
+                toolbar: '#tb',
+                queryParams: queryModel
+
             });
+        }
+
+        $(function () {
+            //1 编辑窗口关闭
+            $("#editWindow").window('close');
+            $("#addWindow").window('close');
+            //SetiframeHeight("iframeBody");
+            //2 位datagrid加载数据
+            loadDataGrid('@ViewBag.GetInfo', myColumns, queryModel);
 
         })
     </script>
@@ -170,6 +176,7 @@
 <body id="iframeBody">
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
+        @Html.Partial("_Partial_Toolbar_Role")
         @RenderSection("other_div")
     </div>
 </body>

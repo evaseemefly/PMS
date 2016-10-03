@@ -140,5 +140,80 @@ namespace PMS.BLL
         {
            return this.GetListBy(a => a.DelFlag == true).ToList();
         }
+
+        /// <summary>
+        ///  根据条件查询：权限名，方法名，控制器名，区域名, 备注名
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="model"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public List<ActionInfo> GetActionRecordListByQuery(int pageIndex, int pageSize, ref int rowCount, PMS.Model.ViewModel.ViewModel_ActionInfo_QueryInfo model, bool isAsc, bool isMiddle)
+        {
+            //1. 找到所有未被删除的用户对象列表，并转为中间件
+            var query = GetListBy(a => a.DelFlag == false).ToList().Select(u => u.ToMiddleModel()).ToList();
+            //2. 根据用户名查询
+            if (model.ActionInfoName != null)
+            {
+                query = query.Where(c => c.ActionInfoName.Contains(model.ActionInfoName)).ToList();
+            }
+            //3. 根据备注查询
+
+            if (model.Remark != null)
+            {
+                query = query.Where(c => c.Remark != null && c.Remark.Contains(model.Remark)).ToList();
+            }
+            if (model.AreaName != null)
+            {
+                query = query.Where(c => c.AreaName != null && c.AreaName.Contains(model.AreaName)).ToList();
+            }
+            if (model.ActionMethodName != null)
+            {
+                query = query.Where(c => c.ActionMethodName != null && c.ActionMethodName.Contains(model.ActionMethodName)).ToList();
+            }
+            if (model.ControllerName!= null)
+            {
+                query = query.Where(c => c.ControllerName != null && c.ControllerName.Contains(model.ControllerName)).ToList();
+            }
+
+            //4. 获取查询结果条数
+            rowCount = query.Count();
+            return ToListByPage(query, pageIndex, pageSize, ref rowCount, isAsc, false);
+
+
+        }
+        /// <summary>
+        /// 对传入的ActionInfo集合进行分页查询（并排序以及转为中间变量）
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        private List<ActionInfo> ToListByPage(List<ActionInfo> query, int pageIndex, int pageSize, ref int rowCount, bool isAsc, bool isMiddle)
+        {
+            if (isAsc)
+            {
+                query = query.OrderBy(c => c.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                query = query.OrderByDescending(c => c.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            if (isMiddle)
+            {
+                return query.Select(s => s.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return query;
+            }
+
+        }
     }
 }

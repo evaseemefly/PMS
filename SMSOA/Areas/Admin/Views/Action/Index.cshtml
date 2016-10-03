@@ -38,9 +38,27 @@
                 { field: 'Remark', title: '备注', width: '30%' },
                 { field: 'Sort', title: '顺序', width: '5%' }
     ]]
-
+    var queryModel = { ActionInfoName: "", AreaName: "", ControllerName: "", ActionMethodName: "", Remark: "" };
     function provideAction() {
 
+    }
+    //根据条件查询
+    function searchBy(obj) {
+        //获取到输入的查询群组的text框中的值
+        var match_actionName = $("#queryByActionName").val();
+        var match_areaName = $("#queryByAreaName").val();
+        var match_controllerName = $("#queryByControllerName").val();
+        var match_methodName = $("#queryByMethodName").val();
+        var match_remark = $("#queryByRemark").val();
+        var queryData = {
+            ActionInfoName: match_actionName,
+            AreaName: match_areaName,
+            ControllerName: match_controllerName,
+            ActionMethodName: match_methodName,
+            Remark: match_remark
+        };
+
+        loadDataGrid('@ViewBag.GetInfo', myColumns, queryData);
     }
     function CancelSend() {
         $("#editWindow").window('close');

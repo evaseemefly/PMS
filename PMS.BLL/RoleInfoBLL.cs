@@ -155,5 +155,67 @@ namespace PMS.BLL
             var list_model = this.GetListBy(r => r.ID != id && r.DelFlag == false).ToList();
             return list_model.Exists(r => r.RoleName.Equals(name));
         }
+        /// <summary>
+        ///  根据条件查询：角色名，备注
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="model"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public List<RoleInfo> GetRoleRecordListByQuery(int pageIndex, int pageSize, ref int rowCount, PMS.Model.ViewModel.ViewModel_RoleInfo_QueryInfo model, bool isAsc, bool isMiddle)
+        {
+            //1. 找到所有未被删除的用户对象列表，并转为中间件
+            var query = GetListBy(a => a.DelFlag == false).ToList().Select(u => u.ToMiddleModel()).ToList();
+            //2. 根据用户名查询
+            if (model.RoleName != null)
+            {
+                query = query.Where(c =>c.RoleName.Contains(model.RoleName)).ToList();
+            }
+            //3. 根据备注查询
+
+            if (model.Remark != null)
+            {
+                query = query.Where(c => c.Remark != null && c.Remark.Contains(model.Remark)).ToList();
+            }
+
+            //4. 获取查询结果条数
+            rowCount = query.Count();
+            return ToListByPage(query, pageIndex, pageSize, ref rowCount, isAsc, false);
+
+
+        }
+        /// <summary>
+        /// 对传入的RoleInfo集合进行分页查询（并排序以及转为中间变量）
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        private List<RoleInfo> ToListByPage(List<RoleInfo> query, int pageIndex, int pageSize, ref int rowCount, bool isAsc, bool isMiddle)
+        {
+            if (isAsc)
+            {
+                query = query.OrderBy(c => c.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                query = query.OrderByDescending(c => c.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            if (isMiddle)
+            {
+                return query.Select(s => s.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return query;
+            }
+
+        }
     }
 }

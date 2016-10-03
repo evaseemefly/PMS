@@ -298,7 +298,7 @@ namespace SMSOA.Areas.Admin.Controllers
         /// 获取权限集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetActionInfo()
+        public ActionResult GetActionInfo(ViewModel_ActionInfo_QueryInfo queryModel)
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
@@ -306,11 +306,11 @@ namespace SMSOA.Areas.Admin.Controllers
 
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
-            var list_action = actionInfoBLL.GetPageList(pageIndex, pageSize,ref rowCount, a => a.DelFlag == false, a => a.Sort,true).ToList().Select(p=>p.ToMiddleModel()).ToList();
+            var list_record = actionInfoBLL.GetActionRecordListByQuery(pageIndex, pageSize, ref rowCount, queryModel, true, true);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_action,
+                rows = list_record,
                 footer = null
             };
 

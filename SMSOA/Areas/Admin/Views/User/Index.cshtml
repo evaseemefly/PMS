@@ -25,7 +25,27 @@
     <script src="~/Scripts/MyScripts/Common/Overload_ToLocaleDateString.js"></script>
     @Html.Partial("_Partial_BtnAction")
     @Html.Partial("_Partial_SonWindow")
+
     <script type="text/javascript">
+        var queryModel = {UName:"",Remark:""};
+        var myColumns = [[
+                    { field: 'ID', title: 'ID', width: '5%', hidden: true },
+                    { field: 'UName', title: '用户名', width: '20%' },
+                    //{ field: 'UPwd', title: '密码', width: 250 },
+                    {
+                        field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                            return Date.getStrOfDate(value);
+                        }
+                    },
+                    {
+                        field: 'ModifiedOnTime', title: '最后修改时间', width: '15%', formatter: function (value) {
+                            return Date.getStrOfDate(value);
+                        }
+                    },
+                    { field: 'Remark', title: '备注', width: '30%' },
+                    { field: 'Sort', title: '顺序', width: '10%' },
+        ]]
+
         var toolbar = [{
             iconCls: 'icon-add',
             text: "新增",
@@ -322,7 +342,7 @@
                 }
             });
         }
-
+        //
         function show(data) {
             $.messager.show({
                 title: 'data',
@@ -330,9 +350,19 @@
                 showType: 'show'
             });
         }
-
-
+        //根据条件查询
+        function searchBy(obj){
+                        //获取到输入的查询群组的text框中的值
+            var match_userName = $("#queryByUserName").val();
+            var match_remark = $("#queryByRemark").val();
+             var queryData={
+                 UName: match_userName,
+                 Remark: match_remark
+            };
         
+             loadDataGrid('@ViewBag.GetUserInfo', myColumns, queryData);
+           }
+
 
         function provideAction() {
 
@@ -360,6 +390,28 @@
         function CancelActionAssign() {
             $("#showActionWindow").window("close");
         }
+        //加载用户列表
+        function loadDataGrid(url, myColumns,queryModel) {
+
+            //2 位datagrid加载数据
+            $("#datagrid").datagrid({
+                width: 'auto',
+                height: 'auto',
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: url,
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                nowrap: false,
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns,
+                toolbar: '#tb',
+                queryParams: queryModel
+            });
+        }
 
         $(function () {
             //1 编辑窗口关闭
@@ -368,45 +420,16 @@
             $("#showRoleWindow").window('close');
             $("#showActionWindow").window('close');
             $("#showResetPwdWindow").window('close');
-            //2 位datagrid加载数据
-            $("#datagrid").datagrid({
-                width: 'auto',
-                height: 'auto',
-                fitColumns: true,
-                striped: true,
-                singleSelect: true,
-                url: '/Admin/User/GetUserInfo',
-                loadMsg: '数据加载中请稍后……',
-                pagination: true,//启用分页，默认每页10行
-                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
-                pageSize: 10,   //设置 页容量为 5
-                nowrap: false,
-                pageList: [5, 10, 20],//设置 页容量下拉框
-                columns: [[
-                    { field: 'ID', title: 'ID', width: '5%', hidden: true },
-                    { field: 'UName', title: '用户名', width: '20%' },
-                    //{ field: 'UPwd', title: '密码', width: 250 },
-                    {
-                        field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
-                            return Date.getStrOfDate(value);
-                        }
-                    },
-                    {
-                        field: 'ModifiedOnTime', title: '最后修改时间', width: '15%', formatter: function (value) {
-                            return Date.getStrOfDate(value);
-                        }
-                    },
-                    { field: 'Remark', title: '备注', width: '30%' },
-                    { field: 'Sort', title: '顺序', width: '10%' },
-                ]],
-                toolbar: toolbar
-            });
+            loadDataGrid('@ViewBag.GetUserInfo', myColumns, queryModel);
         })
     </script>
 </head>
 <body>
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
+
+        @Html.Partial("_Partial_Toolbar_User")
+
         <div class="easyui-window" title="title" scrolling="no" id="editWindow" style="width:400px;height:440px;overflow: hidden" data-options="shadow:true,modal:true">
             <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" scroll="no" @*不显示滚动条*@></iframe>
         </div>
