@@ -137,6 +137,19 @@
             //loadTreeGrid('@ViewBag.GetInfo', myColumns,queryData);
         }
 
+        function searchPersonByCondition(){
+
+            var name=$("#personName").val();
+            var phone=$("#personPhoneNum").val();
+            var obj={
+                PersonName:name,
+                PhoneNum:phone
+            }
+
+            loadPersonGridByGID('@ViewBag.GetPersonUrlbyCondition', PersonColumns, PersonToolbar,obj);
+        }
+
+
         function loadTreeGrid(url, myColumns,queryModel) {
             loadTreeGridbyCondition(url, myColumns,queryModel);
             ////2 位treegrid加载数据
@@ -161,7 +174,7 @@
                 url: url,
                 loadMsg: '数据加载中请稍后……',
                 columns: myColumns,
-                toolbar: '#tb',
+                toolbar: '#tb_contacts',
                 queryParams:queryModel
 
             });
@@ -183,13 +196,13 @@
                 url: url,
                 loadMsg: '数据加载中请稍后……',
                 columns: myColumns,
-                toolbar: '#tb'
+                toolbar: '#tb_contacts'
 
             });
         }
 
         //获取群组或部门id
-        function loadPersonGridByGID(url, myPersonColumns, myPersonToolbar) {
+        function loadPersonGridByGID(url, myPersonColumns, myPersonToolbar,queryModel) {
             //1 获取选中的行
             var rows = $("#contactsdatagrid").treegrid('getSelections');
             //1.1 若选中的行不为一行
@@ -205,6 +218,9 @@
             //1.2 获取选中行的ID
             strId = rows[0].DID;
             //this.gid = strId;
+            if(queryModel!=null){
+                queryModel.DID=strId;
+            }
             //为隐藏域赋值
             $("#did_Hidden").val(strId);
             url = url + "?did=" + strId;
@@ -213,7 +229,7 @@
             if(@showPerToolbar==1){
                 isloadCombo=true;
             }
-            loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo);
+            loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo,queryModel);
         }
 
         $(function () {
@@ -266,7 +282,7 @@
         </div>        
     </div>
 
-<div id="tb" style="padding:2px 5px;">
+<div id="tb_contacts" style="padding:2px 5px;">
     <a href="#" class="easyui-linkbutton" istb="true" id="add_department" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addDepartmentRow()"></a>
     <a href="#" class="easyui-linkbutton" id="del_department" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeDepartmentRow()"></a>
     <a href="#" class="easyui-linkbutton" id="edit_department" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editDepartmentRow()"></a>

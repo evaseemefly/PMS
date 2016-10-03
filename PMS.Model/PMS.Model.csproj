@@ -204,6 +204,7 @@
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_News.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
+    <Compile Include="ViewModel\ViewModel_Person_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_Recycle.cs" />

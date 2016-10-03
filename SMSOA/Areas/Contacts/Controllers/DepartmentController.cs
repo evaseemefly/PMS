@@ -109,7 +109,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetPersonUrl = "/Contacts/ContactPerson/GetPersonByDepartment";
             ViewBag.ShowEditPerson = "/Contacts/ContactPerson/ShowEditPersonInfo";
             ViewBag.DelPerson_url = "/Contacts/Department/DoDelPersonInfobyDID";
-
+            ViewBag.GetPersonUrlbyCondition = "/Contacts/ContactPerson/GetPersonByCondition";
             //6月15日添加
             ViewBag.DelPersonByAll_url = "/Contacts/ContactPerson/DoDelPersonInfo_All";
 
