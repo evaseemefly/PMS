@@ -26,7 +26,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //ViewBag.GetGroupInfo = "/Contacts/ContactPerson/GetGroupInfo";
             ViewBag.Del_url = "/Contacts/ContactPerson/DoDelPersonInfo";
             ViewBag.ShowEdit = "/Contacts/ContactPerson/ShowEditPersonInfo";
-
+            ViewBag.Url_Search= "/Contacts/ContactPerson/GetPersonByCondition";
             return View();
         }
 
@@ -99,6 +99,51 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
             
         }
+
+        public ActionResult GetPersonByCondition(PMS.Model.ViewModel.ViewModel_Person_QueryInfo queryModel)
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            
+            int rowCount = 0;
+
+            //查询所有的权限
+            //使用ref声明时需要在传入之前为其赋值
+            //判断传入的判断条件
+            IQueryable<P_PersonInfo> list_person = null;
+
+            if (queryModel.DID != 0)
+            {
+                list_person= personInfoBLL.GetListBy(p =>  p.isDel == false && p.P_DepartmentInfo.Where(d => d.DID == queryModel.DID).Count() > 0, p => p.PID);
+            }
+            if (queryModel.GID != 0)
+            {
+                list_person = personInfoBLL.GetListBy(p => p.isDel == false && p.P_Group.Where(g => g.GID== queryModel.GID).Count() > 0, p => p.PID);
+            }
+
+            if (queryModel.PersonName != null)
+            {
+                list_person = list_person.Where(p => p.PName.Contains(queryModel.PersonName));
+            }
+
+            if (queryModel.PhoneNum != null)
+            {
+                list_person = list_person.Where(p => p.PhoneNum.Contains(queryModel.PhoneNum));
+            }
+            list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_person.ToList().Select(p=>p.ToMiddleModel()).ToList() ,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
 
         public ActionResult GetPersonByGroup()
         {

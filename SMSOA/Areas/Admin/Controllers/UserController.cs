@@ -28,7 +28,9 @@ namespace SMSOA.Areas.Admin.Controllers
             ViewBag.DoAssignRoleInfo = "/Admin/User/DoAssignRoleInfo";
             ViewBag.ShowAssignActionInfo = "/Admin/User/ShowAssignActionInfo";
             ViewBag.DoAssignActionInfo = "/Admin/User/DoAssignActionInfo";
+           // ViewBag.LoadSearchRecordData = "/Admin/User/LoadSearchRecordData";
             ViewBag.ResetPwd = "ResetPwd";
+            ViewBag.GetUserInfo = "/Admin/User/GetUserInfo";
             return View();
         }
 
@@ -79,21 +81,21 @@ namespace SMSOA.Areas.Admin.Controllers
 
 
         ///<summary>
-        ///获取用户集合
+        ///根据条件获取用户列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetUserInfo()
+        public ActionResult GetUserInfo(ViewModel_UserInfo_QueryInfo queryModel)
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
 
-            //查询所有用户
-            var list_user = userInfoBLL.GetPageList(pageIndex, pageSize,ref rowCount, a => a.DelFlag == false, a => a.ID, true).ToList().Select(u=>u.ToMiddleModel()).ToList();
+            //查询用户
+            var list_record = userInfoBLL.GetUserRecordListByQuery(pageIndex, pageSize, ref rowCount, queryModel, true, true);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_user,
+                rows = list_record,
                 footer = null
             };
 
@@ -455,5 +457,27 @@ namespace SMSOA.Areas.Admin.Controllers
             };
             return httpModel;
         }
+        /// <summary>
+        /// 信息查询: 按照用户名，备注
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //public ActionResult LoadSearchRecordData(PMS.Model.ViewModel.ViewModel_UserInfo_QueryInfo model)
+        //{
+        //    int pageSize = int.Parse(Request.Form["rows"]);
+        //    int pageIndex = int.Parse(Request.Form["page"]);
+        //    int rowCount =0;
+        //    var list_record = userInfoBLL.GetUserRecordListByQuery(pageIndex, pageSize, ref rowCount, model, true, true);
+        //    //转换为json格式
+        //    PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+        //    {
+        //        total = rowCount,
+        //        rows = list_record,
+        //        footer = null
+        //    };
+        //    //4 序列化
+        //    return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+        //}
     }
 }

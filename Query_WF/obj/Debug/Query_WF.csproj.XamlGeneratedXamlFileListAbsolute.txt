@@ -1,0 +1,4 @@
+obj\Debug\Activity_Test.g.xaml
+obj\Debug\MainStatistics_Advanced.g.xaml
+obj\Debug\WFTest_Activity_Test_BeforeInitializeComponentHelper.txt
+obj\Debug\Query_WF_MainStatistics_Advanced_BeforeInitializeComponentHelper.txt

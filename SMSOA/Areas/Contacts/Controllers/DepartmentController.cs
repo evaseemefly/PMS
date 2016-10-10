@@ -109,7 +109,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetPersonUrl = "/Contacts/ContactPerson/GetPersonByDepartment";
             ViewBag.ShowEditPerson = "/Contacts/ContactPerson/ShowEditPersonInfo";
             ViewBag.DelPerson_url = "/Contacts/Department/DoDelPersonInfobyDID";
-
+            ViewBag.GetPersonUrlbyCondition = "/Contacts/ContactPerson/GetPersonByCondition";
             //6月15日添加
             ViewBag.DelPersonByAll_url = "/Contacts/ContactPerson/DoDelPersonInfo_All";
 
@@ -149,10 +149,19 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDepartmentInfo4ComboTree()
+        public ActionResult GetDepartmentInfo4ComboTree(ViewModel_Department_QueryInfo queryModel)
         {
             //使用ref声明时需要在传入之前为其赋值
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
+
+            if (queryModel != null)
+            {
+                if (queryModel.DepartmentName != null)
+                {
+                    list_department = list_department.Where(d => d.DepartmentName.Contains(queryModel.DepartmentName)).ToList();
+                }
+            }
+
             //将当前分页查询的转为treegrid集合
             List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_comboTree =PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_department);
             //将权限转换为对应的
@@ -195,7 +204,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDepartmentInfo()
+        public ActionResult GetDepartmentInfo(ViewModel_Department_QueryInfo queryModel)
         {
             //注意此处不做分页
             //int pageSize = int.Parse(Request.Form["rows"]);
@@ -205,6 +214,15 @@ namespace SMSOA.Areas.Contacts.Controllers
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
+
+            if (queryModel != null)
+            {
+                if (queryModel.DepartmentName != null)
+                {
+                    list_department = list_department.Where(d => d.DepartmentName.Contains(queryModel.DepartmentName)).ToList();
+                }
+            }
+
             //var list_department = departmentBLL.GetPageList(pageIndex, pageSize, ref rowCount, d => d.isDel == false,d=>d.DepartmentName, true).ToList();
 
 

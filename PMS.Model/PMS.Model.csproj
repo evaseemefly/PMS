@@ -195,16 +195,23 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LoginUser.cs" />
+    <Compile Include="ViewModel\ViewModel_ActionInfo_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_Department_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_Group_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Department.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Group.cs" />
+    <Compile Include="ViewModel\ViewModel_Mission_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_News.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
+    <Compile Include="ViewModel\ViewModel_Person_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_Recycle.cs" />
+    <Compile Include="ViewModel\ViewModel_RoleInfo_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_SMSMission.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Base.cs" />
+    <Compile Include="ViewModel\ViewModel_UserInfo_QueryInfo.cs" />
     <Compile Include="WFModel\BookMarkObj.cs" />
     <Compile Include="WF_Query_Instance.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
@@ -214,7 +221,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="PMSEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

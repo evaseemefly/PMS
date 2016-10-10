@@ -18,7 +18,7 @@
     <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
     <script type="text/javascript">
         //function provideAction(msg) {
-            
+
         //}
 
         //提交
@@ -95,7 +95,7 @@
             }));
 
         }
-        
+
 
         //编辑或创建某个权限后执行的操作
         function afterEdit(msg,type) {
@@ -109,7 +109,7 @@
 
             }
         }
-        
+
         //从远程一次性获取下拉菜单中的json格式对象
         function GetDropDowData() {
             $.ajax({
@@ -131,11 +131,8 @@
                 }
             });
         }
-        
-        $(function () {
-            //1 编辑窗口关闭
-            $("#editWindow").window('close');
-            $("#addWindow").window('close');
+        function loadDataGrid(url, myColumns, queryModel) {
+
             //2 位datagrid加载数据
             $("#datagrid").datagrid({
                 width: 'auto',
@@ -143,15 +140,22 @@
                 fitColumns: true,
                 striped: true,
                 singleSelect: true,
-                url: '@ViewBag.GetInfo',
+                url: url,
                 loadMsg: '数据加载中请稍后……',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: myColumns,
-                toolbar: toolbar
+                toolbar: '#tb',
+                queryParams: queryModel
             });
+        }
+        $(function () {
+            //1 编辑窗口关闭
+            $("#editWindow").window('close');
+            $("#addWindow").window('close');
+            loadDataGrid('@ViewBag.GetInfo', myColumns, queryModel);
 
         })
     </script>
@@ -159,7 +163,7 @@
 <body>
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>        
-
+        @Html.Partial("_Partial_Toolbar_Action")
     </div>
 </body>
 </html>

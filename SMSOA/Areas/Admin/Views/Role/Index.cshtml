@@ -103,7 +103,18 @@
 
     var RoleId="";
 
+    //根据条件查询
+    function searchBy(obj) {
+        //获取到输入的查询群组的text框中的值
+        var match_roleName = $("#queryByRoleName").val();
+        var match_remark = $("#queryByRemark").val();
+        var queryData = {
+            RoleName: match_roleName,
+            Remark: match_remark
+        };
 
+        loadDataGrid('@ViewBag.GetInfo', myColumns, queryData);
+    }
     function provideAction() {
         //弹出新的窗体
         //1 获取选中的行并判断

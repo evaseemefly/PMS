@@ -119,5 +119,18 @@ namespace PMS.IBLL
         bool AddValidation(String name);
 
         bool EditValidation(int id, String name);
+
+        /// <summary>
+        /// 根据用户名，备注多条件查询
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="model"></param>
+        /// <param name="cid"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        List<UserInfo> GetUserRecordListByQuery(int pageIndex, int pageSize, ref int rowCount, PMS.Model.ViewModel.ViewModel_UserInfo_QueryInfo model,  bool isAsc, bool isMiddle);
     }
 }
