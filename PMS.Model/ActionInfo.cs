@@ -38,6 +38,9 @@ namespace PMS.Model
         public int ParentID { get; set; }
         public bool isShow { get; set; }
         public short MethodTypeEnum { get; set; }
+        public string IconCls { get; set; }
+        public string IconClassName { get; set; }
+        public string JsFunctionName { get; set; }
     
         public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
         public virtual ICollection<RoleInfo> RoleInfo { get; set; }

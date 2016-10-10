@@ -72,8 +72,11 @@ namespace SMSOA.Areas.Recycled.Controllers
             string[] strIds = ids.Split(',');
             var list_ids = strIds.Select(p=>int.Parse(p)).ToList();
             //执行删除操作
-            myBLL.PhysicsDel(list_ids);
-            return Content("");
+            if (myBLL.PhysicsDel(list_ids))
+            {
+                return Content("ok");
+            } 
+            return Content("error");
         }
 
         /// <summary>

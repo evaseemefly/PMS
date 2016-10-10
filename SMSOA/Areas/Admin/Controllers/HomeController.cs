@@ -106,6 +106,14 @@ namespace SMSOA.Areas.Admin.Controllers
             return Redirect("/Login/Login/Index");
         }
 
+        public ActionResult GetTopMenuItem(int userId)
+        {
+            //获取该用户的顶部权限集合
+           var list= userInfoBLL.GetActionListByTopBtn(userId).Select(a=>a.ToMiddleModel());
+
+            return PartialView("_Parital_Home_Top_BtnView", list);
+        }
+
         //[LoginValidate]
         public ActionResult GetMenuItem()
         {

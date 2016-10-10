@@ -20,11 +20,14 @@
           <Property Name="AreaName" Type="nvarchar" MaxLength="32" />
           <Property Name="ActionMethodName" Type="nvarchar" MaxLength="32" />
           <Property Name="ControllerName" Type="nvarchar" MaxLength="32" />
+          <Property Name="JsFunctionName" Type="varchar" MaxLength="32" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="ActionTypeEnum" Type="smallint" Nullable="false" />
           <Property Name="MenuIcon" Type="varchar" MaxLength="512" />
           <Property Name="IconWidth" Type="int" Nullable="false" />
           <Property Name="IconHeight" Type="int" Nullable="false" />
+          <Property Name="IconCls" Type="nvarchar" MaxLength="32" />
+          <Property Name="IconClassName" Type="varchar" MaxLength="32" />
           <Property Name="isShow" Type="bit" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="smallint" Nullable="false" />
         </EntityType>
@@ -291,7 +294,7 @@
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160425.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“PMS20160325.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -945,6 +948,9 @@
           <Property Name="ParentID" Type="Int32" Nullable="false" />
           <Property Name="isShow" Type="Boolean" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="Int16" Nullable="false" />
+          <Property Name="IconCls" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="IconClassName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="JsFunctionName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_ActionInfo">
           <Key>
@@ -1749,6 +1755,9 @@
           <EntitySetMapping Name="ActionInfo">
             <EntityTypeMapping TypeName="PMS2016Model.ActionInfo">
               <MappingFragment StoreEntitySet="ActionInfo">
+                <ScalarProperty Name="JsFunctionName" ColumnName="JsFunctionName" />
+                <ScalarProperty Name="IconClassName" ColumnName="IconClassName" />
+                <ScalarProperty Name="IconCls" ColumnName="IconCls" />
                 <ScalarProperty Name="MethodTypeEnum" ColumnName="MethodTypeEnum" />
                 <ScalarProperty Name="isShow" ColumnName="isShow" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />

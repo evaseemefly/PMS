@@ -35,7 +35,10 @@ namespace PMS.Model
                 SubTime = this.SubTime,
                 byRole = this.byRole,
                 isShow = this.isShow,
-                MethodTypeEnum = this.MethodTypeEnum
+                MethodTypeEnum = this.MethodTypeEnum,
+                 IconClassName=this.IconClassName,
+                  IconCls=this.IconCls,
+                   JsFunctionName=this.JsFunctionName
                  
             };
         }

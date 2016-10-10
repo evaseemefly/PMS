@@ -130,19 +130,27 @@
 
         function createTabs(treeNode) {
             var $tabs = $("#tabs"); //获取tabs的容器
+            var url;
+            if (treeNode.attributes==null) {
+                url = treeNode.url;
+            }
+            else {
+                url = treeNode.attributes.url;
+            }
             //判断是否已经存在同名的tab
             if ($tabs.tabs("exists", treeNode.text)) {
 
                 var currentTab = $tabs.tabs('getSelected');//取得当前选中的选项卡
                 //获取本选项卡的标题
                 var currentTabTitle = currentTab.panel('options').title;
+
                 //判断当前的标题与 被点击的节点的标题是否相等，成立则刷新
                 if (currentTabTitle == treeNode.text) {
                     $tabs.tabs('update', {
                         tab: currentTab,
                         fit : true,
                         options: {
-                            content: createNewIframe(treeNode.attributes.url)
+                            content: createNewIframe(url)
                         }
                     });
 
@@ -159,7 +167,7 @@
                     //style:{overflow: hidden},
                     fit: true,
                     //href:treeNode.attributes.url,
-                   content: createNewIframe(treeNode.attributes.url),
+                    content: createNewIframe(url),
                     //style: { overflow: "hidden" }//?
                 });
             }

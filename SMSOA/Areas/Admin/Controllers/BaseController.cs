@@ -76,7 +76,7 @@ namespace SMSOA.Areas.Admin.Controllers
             //获取当前登录用户的权限
             if (LoginUser != null)
             {
-               return userInfoBLL.GetActionListByUID(LoginUser.ID,true, isMiddle);
+               return userInfoBLL.GetAllActionByLgoinUser(LoginUser.ID, isMiddle);
             }
             else
             {
@@ -113,6 +113,8 @@ namespace SMSOA.Areas.Admin.Controllers
                        select a;
             return list.ToList();
         }
+
+       
 
         public bool CheckPersonToolBar()
         {

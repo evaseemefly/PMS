@@ -2,11 +2,12 @@
 function load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList) {
     //2 根据GroupID查询该群组所拥有的人员列表
     $("#" + id).datagrid({
-
+        width: 'auto',
+        height: 'auto',
         fitColumns: true,
         striped: true,
         singleSelect: isSingle,     //单选
-        fit: true,
+        //fit: true,
         url: url,
         showHeader: true,
         autoRowHeight: true,

@@ -2,17 +2,14 @@
 
 using PMS.Model;
 using PMS.IBLL;
-using PMS.Model.ViewModel;
-using System;
-using System.Collections.Generic;
 
 namespace PMS.BLL
 {
    #region	ActionInfoBLL
     public partial class ActionInfoBLL : BaseBLL<ActionInfo>, IActionInfoBLL
-    {
+    {	
 
-        /// <summary>
+		/// <summary>
         /// 为当前的DAL对象赋值，赋值为ActionInfoDAL
         /// </summary>
         public override void SetCurrentDAL()
@@ -179,8 +176,9 @@ namespace PMS.BLL
 	#endregion
 	   #region	RoleInfoBLL
     public partial class RoleInfoBLL : BaseBLL<RoleInfo>, IRoleInfoBLL
-    {
-        /// <summary>
+    {	
+
+		/// <summary>
         /// 为当前的DAL对象赋值，赋值为RoleInfoDAL
         /// </summary>
         public override void SetCurrentDAL()

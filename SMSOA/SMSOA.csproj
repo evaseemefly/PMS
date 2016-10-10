@@ -395,6 +395,8 @@
     <Content Include="Areas\Admin\Views\User\_Partial_Toolbar_User.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_Partial_Toolbar_Role.cshtml" />
     <Content Include="Areas\Admin\Views\Action\_Partial_Toolbar_Action.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top - 10-10-备份.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\_Parital_Home_Top_BtnView.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
