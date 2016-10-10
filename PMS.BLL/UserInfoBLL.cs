@@ -13,20 +13,7 @@ namespace PMS.BLL
     public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL
     {
         IS_SMSContentBLL contentBLL { get; set; }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public UserInfoBLL()
-        //{
-        //    //Console.WriteLine("子类构造函数");
-        //}
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public override void SetCurrentDAL()
-        //{
-        //    base.CurrentDAL = base.CurrentDBSession.UserInfoDAL;
-        //}
+       
         /// <summary>
         /// 根据id集合批量删除action
         /// </summary>
@@ -323,6 +310,57 @@ namespace PMS.BLL
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// 返回指定用户的顶部按钮方法集合
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public List<ActionInfo> GetActionListByTopBtn(int uid)
+        {
+            //4为顶部按钮对应的方法
+           return this.GetActionListByMethodType(uid, 4);
+        }
+
+        /// <summary>
+        /// 获取登录用户的全部权限集合
+        /// </summary>
+        /// <param name="uid">登录id</param>
+        /// <param name="isMiddle">是否转换为中间变量</param>
+        /// <returns></returns>
+        public List<ActionInfo> GetAllActionByLgoinUser(int uid,bool isMiddle)
+        {
+            //获取当前登录用户的权限
+            if (uid != 0)
+            {
+                return GetActionListByUID(uid, true, isMiddle);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 根据指定的用户id以及type种类获取该类型的方法集合
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public List<ActionInfo> GetActionListByMethodType(int uid, int type)
+        {
+            //1 获取该用户拥有的全部权限集合
+            var list_allAction = GetAllActionByLgoinUser(uid,false);
+
+            //2 根据类型获取指定类型的全部集合
+            var list_allActionByType = (from a in list_allAction
+                                        where a.MethodTypeEnum == type
+                                        select a).ToList();
+
+            //3 暂时不转成中间变量
+
+            return list_allActionByType;
         }
 
         /// <summary>

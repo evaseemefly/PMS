@@ -1,0 +1,7 @@
+﻿@using PMS.Model;
+@model IEnumerable<ActionInfo>
+
+@foreach (var item in Model)
+{
+    <div data-options="iconCls:'@item.IconCls'" class="@item.IconClassName" onclick="@item.JsFunctionName">@item.ActionInfoName</div>
+}

@@ -38,6 +38,21 @@ namespace PMS.IBLL
         List<ActionInfo> GetActionListByUID(int uid, bool AllowNotShow, bool isMiddle);
 
         /// <summary>
+        /// 获取登录用户的全部权限集合
+        /// </summary>
+        /// <param name="uid">登录id</param>
+        /// <param name="isMiddle">是否转换为中间变量</param>
+        /// <returns></returns>
+        List<ActionInfo> GetAllActionByLgoinUser(int uid, bool isMiddle);
+
+        /// <summary>
+        /// 返回指定用户的顶部按钮方法集合
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        List<ActionInfo> GetActionListByTopBtn(int uid);
+
+        /// <summary>
         /// 根据用户Id查询该用户所拥有的群组集合
         /// </summary>
         /// <param name="uid">用户Id</param>
