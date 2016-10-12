@@ -15,6 +15,8 @@ namespace SMSOA.Areas.Contacts.Models
 
         public string Remark { get; set; }
 
+        public short isVIP { get; set; }
+
         /// <summary>
         /// 群组id数组
         /// </summary>

@@ -49,7 +49,7 @@ namespace PMS.IBLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        bool DoAddPerson(string PName, string PhoneNum, List<int> list_group_ids, int id_department);
+        bool DoAddPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids, int id_department);
 
         /// <summary>
         /// 对指定联系人执行修改操作
@@ -63,7 +63,7 @@ namespace PMS.IBLL
         /// <param name="list_group_ids">该联系人所拥有的群组id集合</param>
         /// <param name="id_department">该联系人所拥有的部门id</param>
         /// <returns></returns>
-        bool DoEditPerson(int pid, string PName, string PhoneNum, string Remark, bool isVip, bool isDel, List<int> list_group_ids, int id_department);
+        bool DoEditPerson(int pid, string PName, string PhoneNum, string Remark, bool isVIP, bool isDel, List<int> list_group_ids, int id_department);
 
         /// <summary>
         /// 将传入的部门id集合赋给传入的Id对应的联系人对象

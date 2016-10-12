@@ -151,12 +151,12 @@ namespace PMS.BLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        public bool DoAddPerson(string PName,string PhoneNum,List<int> list_group_ids,int id_department)
+        public bool DoAddPerson(string PName,string PhoneNum,bool isVIP ,List<int> list_group_ids,int id_department)
         {
             PMS.Model.P_PersonInfo person_model = new P_PersonInfo();
             person_model.PName = PName;
             person_model.PhoneNum = PhoneNum;
-
+            person_model.isVIP = isVIP;
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
            // person_model.P_DepartmentInfo = department_temp;
 
@@ -196,13 +196,13 @@ namespace PMS.BLL
         /// <param name="list_group_ids">该联系人所拥有的群组id集合</param>
         /// <param name="id_department">该联系人所拥有的部门id</param>
         /// <returns></returns>
-        public bool DoEditPerson(int pid,string PName, string PhoneNum,string Remark,bool isVip,bool isDel, List<int> list_group_ids, int id_department)
+        public bool DoEditPerson(int pid,string PName, string PhoneNum,string Remark,bool isVIP,bool isDel, List<int> list_group_ids, int id_department)
         {
            var person_model= this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p =>p.PID  == pid).FirstOrDefault();
            
             person_model.PName = PName;
             person_model.PhoneNum = PhoneNum;
-            person_model.isVIP = isVip;
+            person_model.isVIP = isVIP;
             person_model.isDel = isDel;
             person_model.Remark = Remark;
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();

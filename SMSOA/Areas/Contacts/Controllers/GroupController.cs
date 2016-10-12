@@ -35,6 +35,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
             ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
             ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
+            ViewBag.Url_Search = "/Contacts/ContactPerson/GetPersonByCondition";
             ViewBag.ShowGroupToolbar = base.CheckContactCommonToolBar() == true ? 1 : 0;
             ViewBag.ShowPersonToolbar = base.CheckPersonToolBar() == true ? 1 : 0;
             return View();

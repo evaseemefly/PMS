@@ -233,6 +233,7 @@
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\SMS\Models\ViewModel_AdvStatistics_Record.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_GroupMission.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_Message.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_StatisticsLast10.cs" />

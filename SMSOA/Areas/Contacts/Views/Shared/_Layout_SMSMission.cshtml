@@ -25,6 +25,12 @@
         <a href="#" class="easyui-linkbutton" id="assign_group" data-options="iconCls:'icon-contacts_setgroup',text: '为当前短信任务分配群组',plain:true" onclick="AssignGroup()"></a>
         <a href="#" class="easyui-linkbutton" id="assign_department" data-options="iconCls:'icon-contacts_setdepartment',text: '为当前短信任务分配部门',plain:true" onclick="AssignDepartment()"></a>
         <a href="#" class="easyui-linkbutton" id="assign_save" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept()"></a>
+        <br/>
+        匹配名称
+        <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
+        匹配电话
+        <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
+        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition()">查询</a>
     </div>
 }
 
@@ -43,7 +49,7 @@
         //{ field: 'PID', title: 'ID', width: 100, checkbox: true },
         { field: 'PName', title: '联系人姓名', width: 150 },
         { field: 'PhoneNum', title: '电话', width: 250 },
-        { field: 'isVIP', title: '是否是VIP', width: 120 },
+        { field: 'isVIP', title: '是否是VIP', width: 200 },
         { field: 'Remark', title: '备注', width: 120 }
             ]]
 
@@ -300,7 +306,7 @@
             }
 
             //加载联系人信息列表
-            function loadPersonGrid(url, myPersonColumns) {
+            function loadPersonGrid(url, myPersonColumns, queryModel) {
                 //1 获取选中的行
                 var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
                 //1.1 若选中的行不为一行
@@ -316,6 +322,10 @@
                 //1.2 获取选中行的ID
                 strId = rows[0].SMID;
                 url = url + "?smid=" + strId;
+                if (queryModel != null) {
+                    queryModel.SMID = strId;
+                }
+                
                 loadDatagrid_Group(strId, GroupColumns);
                 loadTreegrid_Department(strId, DepartmentColumns);
                 //loadTreegrid_Department(strId, DepartmentColums);
@@ -338,7 +348,8 @@
                     pageList: [20, 40, 60],//设置 页容量下拉框
                     columns: myPersonColumns,
                     //toolbar: myToolbar
-                    toolbar: '#tb'
+                    toolbar: '#tb',
+                    queryParams: queryModel==null?null:queryModel
                 });
             }
             function loadTreegrid_Department(smid, myDepartmentColumns) {

@@ -3,10 +3,12 @@
                 { field: 'ContentID', title: 'ID', width: 100, hidden: true },
                 { field: 'PersonName', title: '联系人', width: 80 },
                 { field: 'PhoneNum', title: '电话', width: 120 },
+                { field: 'isVIP', title: '是否是VIP',width:120},
                 {
                     field: 'DescContent', title: '接收状态', width: 180
                     @*formatter: RecvieStatusFormat*@
                 }
+                
     ]]
 
     @*function RecvieStatusFormat(value) {

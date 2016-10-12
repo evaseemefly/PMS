@@ -12,28 +12,6 @@
 { field: 'GroupName', title: '群组名称', width: "100%" }
         ]]
 
-        var toolbar = [{
-            id: 'add_group',
-            iconCls: 'icon-add',
-            text: "新增",
-            //width:"15px",
-            handler: addGroupRow@*addRow("@ViewBag.ShowAdd")*@
-            },
-           {
-               id: 'del_group',
-               iconCls: 'icon-remove',
-               text: "删除",
-               //width: "15px",
-               handler: removeGroupRow@*removeRow("@ViewBag.Del_url")*@
-               },
-           {
-               id: 'edit_group',
-               iconCls: 'icon-edit',
-               text: "编辑",
-               //width: "15px",
-               handler: editGroupRow@*editRow("@ViewBag.ShowEdit")*@
-               }]
-
 
         function addGroupRow() {
             //从指定页面中预读取数据
@@ -195,6 +173,41 @@
             //获取到输入的查询部门的text框中的值
         }
 
+        //根据选中的部门或群组中，根据姓名或电话号码查询联系人信息
+        function searchPersonByCondition(){
+            //1 获取选中的行
+            var rows = $("#contactsdatagrid").datagrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].GID;
+            //this.gid = strId;
+            //为隐藏域赋值
+            $("#gid_Hidden").val(strId);
+           var url = '@ViewBag.Url_Search';
+            var isloadCombo = false;
+            if(@showPerToolbar==1){
+                isloadCombo=true;
+            }
+            var name=$("#personName").val();
+            var phone=$("#personPhoneNum").val();
+            var obj={
+                PersonName:name,
+                PhoneNum:phone,
+                GID:strId
+            }
+
+            loadPersonGridbyCondition(url, PersonColumns, PersonToolbar,isloadCombo,obj);
+        }
+
         $(function () {
 
             loadDataGrid('@ViewBag.GetInfo', myColumns);
@@ -234,7 +247,7 @@
                 url: url,
                 loadMsg: '加载中……',
                 columns: myColumns,
-                toolbar: '#tb'
+                toolbar: '#tb_contacts'
 
             });
         }
@@ -248,7 +261,7 @@ style="width:21%">
         <input type="hidden" id="gid_Hidden" />
     <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
     </div>
-    <div id="tb" style="padding:2px 5px;">
+    <div id="tb_contacts" style="padding:2px 5px;">
     <a href="#" class="easyui-linkbutton" istb="true" id="add_group" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addGroupRow()"></a>
     <a href="#" class="easyui-linkbutton" id="del_group" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeGroupRow()"></a>
     <a href="#" class="easyui-linkbutton" id="edit_group" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editGroupRow()"></a>

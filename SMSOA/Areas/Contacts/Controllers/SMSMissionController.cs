@@ -149,6 +149,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GetDepartment_treegrid = getDepartment_url;
             ViewBag.GetPerson = getPerson_url;
             ViewBag.DoAssignGroup2SMSMission = doAssignGroup2SMSMission_url;
+            //ViewBag.Url_SearchPerson = getPerson_url;
             ViewBag.ShowMissionToolbar = base.CheckContactCommonToolBar() == true ? 1 : 0;
             ViewBag.ShowPersonToolbar = base.CheckPersonToolBar() == true ? 1 : 0;
             return View();
@@ -204,13 +205,18 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetSMSMissionInfo()
+        public ActionResult GetSMSMissionInfo(PMS.Model.ViewModel.ViewModel_Mission_QueryInfo queryModel)
         {
 
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             var list_smsission = smsmissionBLL.GetListBy(p => p.isDel == false, p => p.SMSMissionName).ToList().Select(m=>m.ToMiddleModel()).ToList();
 
+            if (queryModel != null)
+            {
+                if (queryModel.MissionName != null)
+                    list_smsission = list_smsission.Where(s => s.SMSMissionName.Contains(queryModel.MissionName)).ToList();
+            }
 
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(list_smsission));
@@ -269,14 +275,14 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///
         ///</summary>
         ///<returns></returns>
-        public ActionResult GetPersons2Datagrid()
+        public ActionResult GetPersons2Datagrid(ViewModel_Person_QueryInfo queryModel)
         {
             //1.获取所选的短信任务实体
                 int pageSize = int.Parse(Request.Form["rows"]);
                 int pageIndex = int.Parse(Request.Form["page"]);
 
                 int rowCount = 0;
-                int smid = int.Parse(Request["smid"]);
+            //int smid = int.Parse(Request["smid"]);
             //var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
             #region 7月8日注释掉的部分
             //    //2.根据路线2得到isPass为true群组集合
@@ -344,8 +350,23 @@ namespace SMSOA.Areas.Contacts.Controllers
             ////4 将联系人集合去重
             //list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
             #endregion
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            if (queryModel.SMID != null)
+            {
+                list_person= smsmissionBLL.GetPersonByMission(queryModel.SMID, true);
+            }
+            //筛选
+            if (queryModel.PersonName != null)
+            {
+                list_person = list_person.Where(p => p.PName.Contains(queryModel.PersonName)).ToList();
+            }
 
-            var list_person= smsmissionBLL.GetPersonByMission(smid, true);
+            if (queryModel.PhoneNum != null)
+            {
+                list_person = list_person.Where(p => p.PhoneNum.Contains(queryModel.PhoneNum)).ToList();
+            }
+
+
             rowCount = list_person.Count();
             //10 分页
             list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(m => m.ToMiddleModel()).ToList();
