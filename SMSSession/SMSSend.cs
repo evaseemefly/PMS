@@ -31,62 +31,75 @@ namespace SMSFactory
                 return true;
             }
         }
-        
+        #region 10月12日——短信发送方法暂时注释掉——使用调用WCF的方式
+        ///// <summary>
+        ///// 短信发送
+        ///// </summary>
+        ///// <param name="smsdata"></param>
+        ///// <returns></returns>
+        //public bool SendMsg(SMSModel_Send smsdata,out SMSModel_Receive receiveModel)
+        //{
+        //    String _data = null;//XML文本
+        //    String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
+        //    string returnMsg;
+
+        //    //1 判断参数是否足够
+        //    if (!SendBeforeCheck(smsdata))
+        //    {
+        //        receiveModel = new SMSModel_Receive()
+        //        {
+        //            desc = "参数不全",
+        //            msgid = smsdata.msgid,
+        //            failPhones = smsdata.phones,
+        //            result = SMSDictionary.GetResponseCode()[101]
+        //        };
+
+        //        return false;
+        //    }
+        //    _data=ObjTransform.Model2Xml_FormatSend(smsdata);
+        //    //2.1 http方式发送
+        //    returnMsg = httpInvoke(_serverURL, _data);
+        //    //解析服务器反馈信息
+        //    if (returnMsg.Length < 1)
+        //    {
+
+        //        returnMsg = "未收到服务器返回信息";
+        //        receiveModel = new SMSModel_Receive()
+        //        {
+        //            desc = returnMsg,
+        //            msgid = smsdata.msgid,
+        //            failPhones = smsdata.phones,
+        //            result = SMSDictionary.GetResponseCode()[101]
+        //        };
+        //        return false;
+        //    }
+        //    //2.2 将接收到的短信发送回执转换为对象
+        //    receiveModel = ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
+
+
+
+
+        //    //等待信息发送完成后
+        //    //System.Threading.Thread.Sleep(10000);//10秒
+        //    ////自动重发
+        //    //vipResend();
+        //    return true;
+        //}
+        #endregion
+
 
         /// <summary>
         /// 短信发送
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(SMSModel_Send smsdata,out SMSModel_Receive receiveModel)
+        public bool SendMsg(SMSModel_Send smsdata, out SMSModel_Receive receiveModel)
         {
-            String _data = null;//XML文本
-            String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
-            string returnMsg;
-            
-            //1 判断参数是否足够
-            if (!SendBeforeCheck(smsdata))
-            {
-                receiveModel = new SMSModel_Receive()
-                {
-                    desc = "参数不全",
-                    msgid = smsdata.msgid,
-                    failPhones = smsdata.phones,
-                    result = SMSDictionary.GetResponseCode()[101]
-                };
-                
-                return false;
-            }
-            _data=ObjTransform.Model2Xml_FormatSend(smsdata);
-            //2.1 http方式发送
-            returnMsg = httpInvoke(_serverURL, _data);
-            //解析服务器反馈信息
-            if (returnMsg.Length < 1)
-            {
+            ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
+            client.SendMsg(smsdata,out receiveModel);
 
-                returnMsg = "未收到服务器返回信息";
-                receiveModel = new SMSModel_Receive()
-                {
-                    desc = returnMsg,
-                    msgid = smsdata.msgid,
-                    failPhones = smsdata.phones,
-                    result = SMSDictionary.GetResponseCode()[101]
-                };
-                return false;
-            }
-            //2.2 将接收到的短信发送回执转换为对象
-            receiveModel = ObjTransform.Xml2Model_ReceiveMsg(returnMsg);
-
-            
-           
-
-            //等待信息发送完成后
-            //System.Threading.Thread.Sleep(10000);//10秒
-            ////自动重发
-            //vipResend();
             return true;
         }
-
 
         //发送程序
         /// <summary>
