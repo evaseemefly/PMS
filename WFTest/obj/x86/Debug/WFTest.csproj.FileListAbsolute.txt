@@ -64,3 +64,6 @@ D:\01编程\02协作开发\SMSOA\PMS\WFTest\obj\x86\Debug\WFTest.csproj.FileList
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\bin\Debug\WFTest.exe.config
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\obj\x86\Debug\WFTest.exe
 D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\obj\x86\Debug\WFTest.pdb
+E:\03协同开发\短信\PMS\0630\PMS\WFTest\bin\Debug\WFTest.exe.config
+E:\03协同开发\短信\PMS\0630\PMS\WFTest\obj\x86\Debug\WFTest.exe
+E:\03协同开发\短信\PMS\0630\PMS\WFTest\obj\x86\Debug\WFTest.pdb
