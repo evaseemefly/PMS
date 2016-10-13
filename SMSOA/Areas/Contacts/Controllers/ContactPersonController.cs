@@ -130,6 +130,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             {
                 list_person = list_person.Where(p => p.PhoneNum.Contains(queryModel.PhoneNum));
             }
+            list_person = list_person.OrderByDescending(a => a.isVIP);
             list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
@@ -165,6 +166,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             //                  PhoneNum = p.PhoneNum,
 
             //              };
+            //在分页查询时如何排序，需要讨论
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
@@ -189,6 +192,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //使用ref声明时需要在传入之前为其赋值
 
             var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.P_DepartmentInfo.Where(d => d.DID == did).Count() > 0, p => p.PName, true).ToList().Select(p=>p.ToMiddleModel()).ToList();
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
@@ -210,6 +214,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             var list_person = personInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false, p => p.PName, true).ToList().Select(p=>p.ToMiddleModel()).ToList();
+            //排序，VIP联系人放在前面
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
@@ -248,9 +254,12 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///</summary>
         ///<return></return>
         public ActionResult DoEditPersonInfo(Models.ViewModel_Person personModel)
+
         {
+            var isVIP = false;
+            if(personModel.isVIP == 1) { isVIP = true; }
             if (personInfoBLL.EditValidation(personModel.PID, personModel.PhoneNum)) { return Content("validation fails"); }
-                if (personInfoBLL.DoEditPerson(personModel.PID, personModel.PName, personModel.PhoneNum, personModel.Remark, false, false, personModel.GID.ToList(), personModel.DID))
+                if (personInfoBLL.DoEditPerson(personModel.PID, personModel.PName, personModel.PhoneNum, personModel.Remark, isVIP, false, personModel.GID.ToList(), personModel.DID))
                 {
                     return Content("ok");
                 }
@@ -281,11 +290,13 @@ namespace SMSOA.Areas.Contacts.Controllers
             //     P_DepartmentInfo = list_department,
             //     P_Group =list_Group
             // };
+            var isVIP = false;
+            if(personModel.isVIP == 1) { isVIP = true; }
             if (personInfoBLL.AddValidation(personModel.PhoneNum)) { return Content("validation fails"); }
                 try
                 {
                     //6月15日修改方式二 
-                    personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, personModel.GID.ToList(), personModel.DID);
+                    personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, isVIP , personModel.GID.ToList(), personModel.DID);
                     //personInfoBLL.Create(model);
                     return Content("ok");
                 }
@@ -363,6 +374,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             //注意获取群组及部门的下拉框对象（json格式）在各自控制器类中
             ViewBag.GID = gid==null?"":gid;
             ViewBag.DID = did == null ? "" : did;
+            
             ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
             ViewBag.GetAllGroup_combogrid = "/Contacts/Group/GetComboGridAllGroupInfo";
             ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";
@@ -412,6 +424,15 @@ namespace SMSOA.Areas.Contacts.Controllers
             ViewBag.GID = gid == null ? "" : gid;
             ViewBag.DID = did == null ? "" : did;
             ViewBag.Remark = model.Remark;
+            if (model.isVIP)
+            {
+
+                ViewBag.isVIP = 1;
+            }
+            else
+            {
+                ViewBag.isVIP = 0;
+            }
             ViewBag.GetAllGroup_combobox = "/Contacts/Group/GetCombobox4AllGroupInfo";
             ViewBag.GetAllGroup_combogrid = "/Contacts/Group/GetComboGridAllGroupInfo";
             ViewBag.GetGroupByGID_combobox = "/Contacts/Group/GetCombobox4GroupInfoByGid";

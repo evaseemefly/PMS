@@ -58,5 +58,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS\PMS.Model\bin\Debug\zh-Hans\System.Web.Mvc.resource
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
-D:\VSWorkSpace\PMS\PMS\PMS.Model\bin\Debug\PMS.Model.dll
-D:\VSWorkSpace\PMS\PMS\PMS.Model\bin\Debug\PMS.Model.pdb

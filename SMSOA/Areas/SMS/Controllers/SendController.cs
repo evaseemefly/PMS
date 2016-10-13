@@ -152,7 +152,7 @@ namespace SMSOA.Areas.SMS.Controllers
             ////4 将联系人集合去重
             //list_person= list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).Select(p=>p.ToMiddleModel()).ToList();
             #endregion
-
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             return Content(Common.SerializerHelper.SerializerToString(list_person));
         }
 
@@ -185,7 +185,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //3 将联系人集合去重
             list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).ToList();
-
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = list_person.Count,
