@@ -1,66 +1,66 @@
 namespace WFTest {
     
-    #line 25 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 25 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Collections;
     
     #line default
     #line hidden
     
-    #line 26 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 26 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Collections.Generic;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Activities;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Activities.Expressions;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Activities.Statements;
     
     #line default
     #line hidden
     
-    #line 27 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 27 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Data;
     
     #line default
     #line hidden
     
-    #line 28 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 28 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Linq;
     
     #line default
     #line hidden
     
-    #line 29 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 29 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Text;
     
     #line default
     #line hidden
     
-    #line 30 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 30 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using PMS.Model.QueryModel;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\MainStatistics_Advanced.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\MainStatistics_Advanced.xaml"
     using System.Activities.XamlIntegration;
     
     #line default
@@ -93,7 +93,7 @@ namespace WFTest {
                 this.dataContextActivities = MainStatistics_Advanced_TypedDataContext3.GetDataContextActivitiesHelper(this.rootActivity, this.forImplementation);
             }
             if ((expressionId == 0)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[0] == null)) {
                     cachedCompiledDataContext[0] = new MainStatistics_Advanced_TypedDataContext3(locations, activityContext, true);
                 }
@@ -101,7 +101,7 @@ namespace WFTest {
                 return refDataContext0.GetLocation<string>(refDataContext0.ValueType___Expr0Get, refDataContext0.ValueType___Expr0Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 1)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[0] == null)) {
                     cachedCompiledDataContext[0] = new MainStatistics_Advanced_TypedDataContext3(locations, activityContext, true);
                 }
@@ -109,7 +109,7 @@ namespace WFTest {
                 return refDataContext1.GetLocation<string>(refDataContext1.ValueType___Expr1Get, refDataContext1.ValueType___Expr1Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 2)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[0] == null)) {
                     cachedCompiledDataContext[0] = new MainStatistics_Advanced_TypedDataContext3(locations, activityContext, true);
                 }
@@ -117,7 +117,7 @@ namespace WFTest {
                 return refDataContext2.GetLocation<int>(refDataContext2.ValueType___Expr2Get, refDataContext2.ValueType___Expr2Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 3)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[0] == null)) {
                     cachedCompiledDataContext[0] = new MainStatistics_Advanced_TypedDataContext3(locations, activityContext, true);
                 }
@@ -125,7 +125,7 @@ namespace WFTest {
                 return refDataContext3.GetLocation<string>(refDataContext3.ValueType___Expr3Get, refDataContext3.ValueType___Expr3Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 4)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext3.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[0] == null)) {
                     cachedCompiledDataContext[0] = new MainStatistics_Advanced_TypedDataContext3(locations, activityContext, true);
                 }
@@ -133,7 +133,7 @@ namespace WFTest {
                 return refDataContext4.GetLocation<double>(refDataContext4.ValueType___Expr4Get, refDataContext4.ValueType___Expr4Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 5)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext6.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext6.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[1] == null)) {
                     cachedCompiledDataContext[1] = new MainStatistics_Advanced_TypedDataContext6(locations, activityContext, true);
                 }
@@ -141,7 +141,7 @@ namespace WFTest {
                 return refDataContext5.GetLocation<System.Collections.Generic.List<PMS.Model.QueryModel.Redis_SMSContent>>(refDataContext5.ValueType___Expr5Get, refDataContext5.ValueType___Expr5Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 6)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext6_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext6_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[2] == null)) {
                     cachedCompiledDataContext[2] = new MainStatistics_Advanced_TypedDataContext6_ForReadOnly(locations, activityContext, true);
                 }
@@ -149,7 +149,7 @@ namespace WFTest {
                 return valDataContext6.ValueType___Expr6Get();
             }
             if ((expressionId == 7)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext6_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext6_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[2] == null)) {
                     cachedCompiledDataContext[2] = new MainStatistics_Advanced_TypedDataContext6_ForReadOnly(locations, activityContext, true);
                 }
@@ -157,7 +157,7 @@ namespace WFTest {
                 return valDataContext7.ValueType___Expr7Get();
             }
             if ((expressionId == 8)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext5_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext5_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[3] == null)) {
                     cachedCompiledDataContext[3] = new MainStatistics_Advanced_TypedDataContext5_ForReadOnly(locations, activityContext, true);
                 }
@@ -165,7 +165,7 @@ namespace WFTest {
                 return valDataContext8.ValueType___Expr8Get();
             }
             if ((expressionId == 9)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext5_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext5_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[3] == null)) {
                     cachedCompiledDataContext[3] = new MainStatistics_Advanced_TypedDataContext5_ForReadOnly(locations, activityContext, true);
                 }
@@ -173,7 +173,7 @@ namespace WFTest {
                 return valDataContext9.ValueType___Expr9Get();
             }
             if ((expressionId == 10)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[4] == null)) {
                     cachedCompiledDataContext[4] = new MainStatistics_Advanced_TypedDataContext9_ForReadOnly(locations, activityContext, true);
                 }
@@ -181,7 +181,7 @@ namespace WFTest {
                 return valDataContext10.ValueType___Expr10Get();
             }
             if ((expressionId == 11)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[5] == null)) {
                     cachedCompiledDataContext[5] = new MainStatistics_Advanced_TypedDataContext9(locations, activityContext, true);
                 }
@@ -189,7 +189,7 @@ namespace WFTest {
                 return refDataContext11.GetLocation<int>(refDataContext11.ValueType___Expr11Get, refDataContext11.ValueType___Expr11Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 12)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[4] == null)) {
                     cachedCompiledDataContext[4] = new MainStatistics_Advanced_TypedDataContext9_ForReadOnly(locations, activityContext, true);
                 }
@@ -197,7 +197,7 @@ namespace WFTest {
                 return valDataContext12.ValueType___Expr12Get();
             }
             if ((expressionId == 13)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[4] == null)) {
                     cachedCompiledDataContext[4] = new MainStatistics_Advanced_TypedDataContext9_ForReadOnly(locations, activityContext, true);
                 }
@@ -205,7 +205,7 @@ namespace WFTest {
                 return valDataContext13.ValueType___Expr13Get();
             }
             if ((expressionId == 14)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[5] == null)) {
                     cachedCompiledDataContext[5] = new MainStatistics_Advanced_TypedDataContext9(locations, activityContext, true);
                 }
@@ -213,7 +213,7 @@ namespace WFTest {
                 return refDataContext14.GetLocation<string>(refDataContext14.ValueType___Expr14Get, refDataContext14.ValueType___Expr14Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 15)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext9.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[5] == null)) {
                     cachedCompiledDataContext[5] = new MainStatistics_Advanced_TypedDataContext9(locations, activityContext, true);
                 }
@@ -221,7 +221,7 @@ namespace WFTest {
                 return refDataContext15.GetLocation<PMS.Model.QueryModel.Redis_SMSContent>(refDataContext15.ValueType___Expr15Get, refDataContext15.ValueType___Expr15Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 16)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext8_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext8_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[6] == null)) {
                     cachedCompiledDataContext[6] = new MainStatistics_Advanced_TypedDataContext8_ForReadOnly(locations, activityContext, true);
                 }
@@ -229,7 +229,7 @@ namespace WFTest {
                 return valDataContext16.ValueType___Expr16Get();
             }
             if ((expressionId == 17)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext8_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext8_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[6] == null)) {
                     cachedCompiledDataContext[6] = new MainStatistics_Advanced_TypedDataContext8_ForReadOnly(locations, activityContext, true);
                 }
@@ -237,7 +237,7 @@ namespace WFTest {
                 return valDataContext17.ValueType___Expr17Get();
             }
             if ((expressionId == 18)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[7] == null)) {
                     cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
@@ -245,7 +245,7 @@ namespace WFTest {
                 return valDataContext18.ValueType___Expr18Get();
             }
             if ((expressionId == 19)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[7] == null)) {
                     cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
@@ -253,7 +253,7 @@ namespace WFTest {
                 return valDataContext19.ValueType___Expr19Get();
             }
             if ((expressionId == 20)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[7] == null)) {
                     cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
@@ -261,7 +261,7 @@ namespace WFTest {
                 return valDataContext20.ValueType___Expr20Get();
             }
             if ((expressionId == 21)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[8] == null)) {
                     cachedCompiledDataContext[8] = new MainStatistics_Advanced_TypedDataContext10(locations, activityContext, true);
                 }
@@ -269,7 +269,7 @@ namespace WFTest {
                 return refDataContext21.GetLocation<System.Collections.Generic.List<PMS.Model.SMSModel.SMSModel_QueryReceive>>(refDataContext21.ValueType___Expr21Get, refDataContext21.ValueType___Expr21Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 22)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[8] == null)) {
                     cachedCompiledDataContext[8] = new MainStatistics_Advanced_TypedDataContext10(locations, activityContext, true);
                 }
@@ -277,7 +277,7 @@ namespace WFTest {
                 return refDataContext22.GetLocation<int>(refDataContext22.ValueType___Expr22Get, refDataContext22.ValueType___Expr22Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 23)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[7] == null)) {
                     cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
@@ -285,7 +285,7 @@ namespace WFTest {
                 return valDataContext23.ValueType___Expr23Get();
             }
             if ((expressionId == 24)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[7] == null)) {
                     cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
@@ -293,7 +293,7 @@ namespace WFTest {
                 return valDataContext24.ValueType___Expr24Get();
             }
             if ((expressionId == 25)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[7] == null)) {
                     cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
@@ -301,39 +301,39 @@ namespace WFTest {
                 return valDataContext25.ValueType___Expr25Get();
             }
             if ((expressionId == 26)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
-                if ((cachedCompiledDataContext[9] == null)) {
-                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[7] == null)) {
+                    cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext26 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                MainStatistics_Advanced_TypedDataContext10_ForReadOnly valDataContext26 = ((MainStatistics_Advanced_TypedDataContext10_ForReadOnly)(cachedCompiledDataContext[7]));
                 return valDataContext26.ValueType___Expr26Get();
             }
             if ((expressionId == 27)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
-                if ((cachedCompiledDataContext[10] == null)) {
-                    cachedCompiledDataContext[10] = new MainStatistics_Advanced_TypedDataContext11(locations, activityContext, true);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext10_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[7] == null)) {
+                    cachedCompiledDataContext[7] = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, activityContext, true);
                 }
-                MainStatistics_Advanced_TypedDataContext11 refDataContext27 = ((MainStatistics_Advanced_TypedDataContext11)(cachedCompiledDataContext[10]));
-                return refDataContext27.GetLocation<int>(refDataContext27.ValueType___Expr27Get, refDataContext27.ValueType___Expr27Set, expressionId, this.rootActivity, activityContext);
+                MainStatistics_Advanced_TypedDataContext10_ForReadOnly valDataContext27 = ((MainStatistics_Advanced_TypedDataContext10_ForReadOnly)(cachedCompiledDataContext[7]));
+                return valDataContext27.ValueType___Expr27Get();
             }
             if ((expressionId == 28)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
-                if ((cachedCompiledDataContext[10] == null)) {
-                    cachedCompiledDataContext[10] = new MainStatistics_Advanced_TypedDataContext11(locations, activityContext, true);
-                }
-                MainStatistics_Advanced_TypedDataContext11 refDataContext28 = ((MainStatistics_Advanced_TypedDataContext11)(cachedCompiledDataContext[10]));
-                return refDataContext28.GetLocation<string>(refDataContext28.ValueType___Expr28Get, refDataContext28.ValueType___Expr28Set, expressionId, this.rootActivity, activityContext);
-            }
-            if ((expressionId == 29)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[9] == null)) {
                     cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
                 }
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext29 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
-                return valDataContext29.ValueType___Expr29Get();
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext28 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext28.ValueType___Expr28Get();
+            }
+            if ((expressionId == 29)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[10] == null)) {
+                    cachedCompiledDataContext[10] = new MainStatistics_Advanced_TypedDataContext11(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11 refDataContext29 = ((MainStatistics_Advanced_TypedDataContext11)(cachedCompiledDataContext[10]));
+                return refDataContext29.GetLocation<int>(refDataContext29.ValueType___Expr29Get, refDataContext29.ValueType___Expr29Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 30)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[10] == null)) {
                     cachedCompiledDataContext[10] = new MainStatistics_Advanced_TypedDataContext11(locations, activityContext, true);
                 }
@@ -341,28 +341,84 @@ namespace WFTest {
                 return refDataContext30.GetLocation<string>(refDataContext30.ValueType___Expr30Get, refDataContext30.ValueType___Expr30Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 31)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[9] == null)) {
+                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext31 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext31.ValueType___Expr31Get();
+            }
+            if ((expressionId == 32)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[10] == null)) {
                     cachedCompiledDataContext[10] = new MainStatistics_Advanced_TypedDataContext11(locations, activityContext, true);
                 }
-                MainStatistics_Advanced_TypedDataContext11 refDataContext31 = ((MainStatistics_Advanced_TypedDataContext11)(cachedCompiledDataContext[10]));
-                return refDataContext31.GetLocation<int>(refDataContext31.ValueType___Expr31Get, refDataContext31.ValueType___Expr31Set, expressionId, this.rootActivity, activityContext);
-            }
-            if ((expressionId == 32)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
-                if ((cachedCompiledDataContext[9] == null)) {
-                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
-                }
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext32 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
-                return valDataContext32.ValueType___Expr32Get();
+                MainStatistics_Advanced_TypedDataContext11 refDataContext32 = ((MainStatistics_Advanced_TypedDataContext11)(cachedCompiledDataContext[10]));
+                return refDataContext32.GetLocation<string>(refDataContext32.ValueType___Expr32Get, refDataContext32.ValueType___Expr32Set, expressionId, this.rootActivity, activityContext);
             }
             if ((expressionId == 33)) {
-                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 11);
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[10] == null)) {
+                    cachedCompiledDataContext[10] = new MainStatistics_Advanced_TypedDataContext11(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11 refDataContext33 = ((MainStatistics_Advanced_TypedDataContext11)(cachedCompiledDataContext[10]));
+                return refDataContext33.GetLocation<int>(refDataContext33.ValueType___Expr33Get, refDataContext33.ValueType___Expr33Set, expressionId, this.rootActivity, activityContext);
+            }
+            if ((expressionId == 34)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
                 if ((cachedCompiledDataContext[9] == null)) {
                     cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
                 }
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext33 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
-                return valDataContext33.ValueType___Expr33Get();
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext34 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext34.ValueType___Expr34Get();
+            }
+            if ((expressionId == 35)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[9] == null)) {
+                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext35 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext35.ValueType___Expr35Get();
+            }
+            if ((expressionId == 36)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[9] == null)) {
+                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext36 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext36.ValueType___Expr36Get();
+            }
+            if ((expressionId == 37)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[9] == null)) {
+                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext37 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext37.ValueType___Expr37Get();
+            }
+            if ((expressionId == 38)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[9] == null)) {
+                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext38 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext38.ValueType___Expr38Get();
+            }
+            if ((expressionId == 39)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext11_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[9] == null)) {
+                    cachedCompiledDataContext[9] = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext39 = ((MainStatistics_Advanced_TypedDataContext11_ForReadOnly)(cachedCompiledDataContext[9]));
+                return valDataContext39.ValueType___Expr39Get();
+            }
+            if ((expressionId == 40)) {
+                System.Activities.XamlIntegration.CompiledDataContext[] cachedCompiledDataContext = MainStatistics_Advanced_TypedDataContext12_ForReadOnly.GetCompiledDataContextCacheHelper(this.dataContextActivities, activityContext, this.rootActivity, this.forImplementation, 12);
+                if ((cachedCompiledDataContext[11] == null)) {
+                    cachedCompiledDataContext[11] = new MainStatistics_Advanced_TypedDataContext12_ForReadOnly(locations, activityContext, true);
+                }
+                MainStatistics_Advanced_TypedDataContext12_ForReadOnly valDataContext40 = ((MainStatistics_Advanced_TypedDataContext12_ForReadOnly)(cachedCompiledDataContext[11]));
+                return valDataContext40.ValueType___Expr40Get();
             }
             return null;
         }
@@ -479,36 +535,64 @@ namespace WFTest {
                 return valDataContext25.ValueType___Expr25Get();
             }
             if ((expressionId == 26)) {
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext26 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                MainStatistics_Advanced_TypedDataContext10_ForReadOnly valDataContext26 = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, true);
                 return valDataContext26.ValueType___Expr26Get();
             }
             if ((expressionId == 27)) {
-                MainStatistics_Advanced_TypedDataContext11 refDataContext27 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
-                return refDataContext27.GetLocation<int>(refDataContext27.ValueType___Expr27Get, refDataContext27.ValueType___Expr27Set);
+                MainStatistics_Advanced_TypedDataContext10_ForReadOnly valDataContext27 = new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locations, true);
+                return valDataContext27.ValueType___Expr27Get();
             }
             if ((expressionId == 28)) {
-                MainStatistics_Advanced_TypedDataContext11 refDataContext28 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
-                return refDataContext28.GetLocation<string>(refDataContext28.ValueType___Expr28Get, refDataContext28.ValueType___Expr28Set);
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext28 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext28.ValueType___Expr28Get();
             }
             if ((expressionId == 29)) {
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext29 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
-                return valDataContext29.ValueType___Expr29Get();
+                MainStatistics_Advanced_TypedDataContext11 refDataContext29 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
+                return refDataContext29.GetLocation<int>(refDataContext29.ValueType___Expr29Get, refDataContext29.ValueType___Expr29Set);
             }
             if ((expressionId == 30)) {
                 MainStatistics_Advanced_TypedDataContext11 refDataContext30 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
                 return refDataContext30.GetLocation<string>(refDataContext30.ValueType___Expr30Get, refDataContext30.ValueType___Expr30Set);
             }
             if ((expressionId == 31)) {
-                MainStatistics_Advanced_TypedDataContext11 refDataContext31 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
-                return refDataContext31.GetLocation<int>(refDataContext31.ValueType___Expr31Get, refDataContext31.ValueType___Expr31Set);
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext31 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext31.ValueType___Expr31Get();
             }
             if ((expressionId == 32)) {
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext32 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
-                return valDataContext32.ValueType___Expr32Get();
+                MainStatistics_Advanced_TypedDataContext11 refDataContext32 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
+                return refDataContext32.GetLocation<string>(refDataContext32.ValueType___Expr32Get, refDataContext32.ValueType___Expr32Set);
             }
             if ((expressionId == 33)) {
-                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext33 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
-                return valDataContext33.ValueType___Expr33Get();
+                MainStatistics_Advanced_TypedDataContext11 refDataContext33 = new MainStatistics_Advanced_TypedDataContext11(locations, true);
+                return refDataContext33.GetLocation<int>(refDataContext33.ValueType___Expr33Get, refDataContext33.ValueType___Expr33Set);
+            }
+            if ((expressionId == 34)) {
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext34 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext34.ValueType___Expr34Get();
+            }
+            if ((expressionId == 35)) {
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext35 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext35.ValueType___Expr35Get();
+            }
+            if ((expressionId == 36)) {
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext36 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext36.ValueType___Expr36Get();
+            }
+            if ((expressionId == 37)) {
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext37 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext37.ValueType___Expr37Get();
+            }
+            if ((expressionId == 38)) {
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext38 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext38.ValueType___Expr38Get();
+            }
+            if ((expressionId == 39)) {
+                MainStatistics_Advanced_TypedDataContext11_ForReadOnly valDataContext39 = new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locations, true);
+                return valDataContext39.ValueType___Expr39Get();
+            }
+            if ((expressionId == 40)) {
+                MainStatistics_Advanced_TypedDataContext12_ForReadOnly valDataContext40 = new MainStatistics_Advanced_TypedDataContext12_ForReadOnly(locations, true);
+                return valDataContext40.ValueType___Expr40Get();
             }
             return null;
         }
@@ -668,57 +752,99 @@ namespace WFTest {
                 return true;
             }
             if (((isReference == false) 
-                        && ((expressionText == "_state==1&&_result!=4") 
+                        && ((expressionText == "(_state==1||_state==2)&&_result!=4") 
                         && (MainStatistics_Advanced_TypedDataContext10_ForReadOnly.Validate(locations, true, 0) == true)))) {
                 expressionId = 25;
                 return true;
             }
             if (((isReference == false) 
+                        && ((expressionText == "_result==4") 
+                        && (MainStatistics_Advanced_TypedDataContext10_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 26;
+                return true;
+            }
+            if (((isReference == false) 
+                        && ((expressionText == "\"状态码为\"+_result+\"工作流被挂起\"") 
+                        && (MainStatistics_Advanced_TypedDataContext10_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 27;
+                return true;
+            }
+            if (((isReference == false) 
                         && ((expressionText == "_id_hash") 
                         && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
-                expressionId = 26;
+                expressionId = 28;
                 return true;
             }
             if (((isReference == true) 
                         && ((expressionText == "_result") 
                         && (MainStatistics_Advanced_TypedDataContext11.Validate(locations, true, 0) == true)))) {
-                expressionId = 27;
+                expressionId = 29;
                 return true;
             }
             if (((isReference == true) 
                         && ((expressionText == "TempBookMarkName") 
                         && (MainStatistics_Advanced_TypedDataContext11.Validate(locations, true, 0) == true)))) {
-                expressionId = 28;
+                expressionId = 30;
                 return true;
             }
             if (((isReference == false) 
                         && ((expressionText == "_id_list_msgid") 
                         && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
-                expressionId = 29;
+                expressionId = 31;
                 return true;
             }
             if (((isReference == true) 
                         && ((expressionText == "_first_msgid") 
                         && (MainStatistics_Advanced_TypedDataContext11.Validate(locations, true, 0) == true)))) {
-                expressionId = 30;
+                expressionId = 32;
                 return true;
             }
             if (((isReference == true) 
                         && ((expressionText == "_state") 
                         && (MainStatistics_Advanced_TypedDataContext11.Validate(locations, true, 0) == true)))) {
-                expressionId = 31;
+                expressionId = 33;
+                return true;
+            }
+            if (((isReference == false) 
+                        && ((expressionText == "\"书签中的state为\"+_state") 
+                        && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 34;
+                return true;
+            }
+            if (((isReference == false) 
+                        && ((expressionText == "\"书签中的result为\"+_result") 
+                        && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 35;
+                return true;
+            }
+            if (((isReference == false) 
+                        && ((expressionText == "\"该书签恢复的MsgId为\"+_first_msgid") 
+                        && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 36;
                 return true;
             }
             if (((isReference == false) 
                         && ((expressionText == "_result==4") 
                         && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
-                expressionId = 32;
+                expressionId = 37;
                 return true;
             }
             if (((isReference == false) 
                         && ((expressionText == "_result==6") 
                         && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
-                expressionId = 33;
+                expressionId = 38;
+                return true;
+            }
+            if (((isReference == false) 
+                        && ((expressionText == "\"resut为\"+_result") 
+                        && (MainStatistics_Advanced_TypedDataContext11_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 39;
+                return true;
+            }
+            if (((isReference == false) 
+                        && ((expressionText == "_result==6") 
+                        && (MainStatistics_Advanced_TypedDataContext12_ForReadOnly.Validate(locations, true, 0) == true)))) {
+                expressionId = 40;
                 return true;
             }
             expressionId = -1;
@@ -815,28 +941,49 @@ namespace WFTest {
                 return new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locationReferences).@__Expr25GetTree();
             }
             if ((expressionId == 26)) {
-                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr26GetTree();
+                return new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locationReferences).@__Expr26GetTree();
             }
             if ((expressionId == 27)) {
-                return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr27GetTree();
+                return new MainStatistics_Advanced_TypedDataContext10_ForReadOnly(locationReferences).@__Expr27GetTree();
             }
             if ((expressionId == 28)) {
-                return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr28GetTree();
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr28GetTree();
             }
             if ((expressionId == 29)) {
-                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr29GetTree();
+                return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr29GetTree();
             }
             if ((expressionId == 30)) {
                 return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr30GetTree();
             }
             if ((expressionId == 31)) {
-                return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr31GetTree();
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr31GetTree();
             }
             if ((expressionId == 32)) {
-                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr32GetTree();
+                return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr32GetTree();
             }
             if ((expressionId == 33)) {
-                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr33GetTree();
+                return new MainStatistics_Advanced_TypedDataContext11(locationReferences).@__Expr33GetTree();
+            }
+            if ((expressionId == 34)) {
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr34GetTree();
+            }
+            if ((expressionId == 35)) {
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr35GetTree();
+            }
+            if ((expressionId == 36)) {
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr36GetTree();
+            }
+            if ((expressionId == 37)) {
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr37GetTree();
+            }
+            if ((expressionId == 38)) {
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr38GetTree();
+            }
+            if ((expressionId == 39)) {
+                return new MainStatistics_Advanced_TypedDataContext11_ForReadOnly(locationReferences).@__Expr39GetTree();
+            }
+            if ((expressionId == 40)) {
+                return new MainStatistics_Advanced_TypedDataContext12_ForReadOnly(locationReferences).@__Expr40GetTree();
             }
             return null;
         }
@@ -1494,7 +1641,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr0GetTree() {
                 
-                #line 70 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 70 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                     _id_hash;
                 
@@ -1506,7 +1653,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr0Get() {
                 
-                #line 70 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 70 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                     _id_hash;
                 
@@ -1522,7 +1669,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr0Set(string value) {
                 
-                #line 70 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 70 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                     _id_hash = value;
                 
@@ -1538,7 +1685,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr1GetTree() {
                 
-                #line 80 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 80 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                     _id_list_msgid;
                 
@@ -1550,7 +1697,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr1Get() {
                 
-                #line 80 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 80 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                     _id_list_msgid;
                 
@@ -1566,7 +1713,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr1Set(string value) {
                 
-                #line 80 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 80 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                     _id_list_msgid = value;
                 
@@ -1582,7 +1729,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr2GetTree() {
                 
-                #line 90 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 90 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<int>> expression = () => 
                     _sleepTime;
                 
@@ -1594,7 +1741,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public int @__Expr2Get() {
                 
-                #line 90 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 90 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                     _sleepTime;
                 
@@ -1610,7 +1757,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr2Set(int value) {
                 
-                #line 90 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 90 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                     _sleepTime = value;
                 
@@ -1626,7 +1773,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr3GetTree() {
                 
-                #line 75 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 75 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                     _id_list;
                 
@@ -1638,7 +1785,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr3Get() {
                 
-                #line 75 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 75 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                     _id_list;
                 
@@ -1654,7 +1801,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr3Set(string value) {
                 
-                #line 75 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 75 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                     _id_list = value;
                 
@@ -1670,7 +1817,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr4GetTree() {
                 
-                #line 85 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 85 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<double>> expression = () => 
                     _secs_interval;
                 
@@ -1682,7 +1829,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public double @__Expr4Get() {
                 
-                #line 85 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 85 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                     _secs_interval;
                 
@@ -1698,7 +1845,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr4Set(double value) {
                 
-                #line 85 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 85 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                     _secs_interval = value;
                 
@@ -1959,7 +2106,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr8GetTree() {
                 
-                #line 133 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 133 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                       _list_redis.Count>0;
                 
@@ -1971,7 +2118,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public bool @__Expr8Get() {
                 
-                #line 133 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 133 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                       _list_redis.Count>0;
                 
@@ -1986,7 +2133,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr9GetTree() {
                 
-                #line 347 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 398 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                       _list_redis.Count==0;
                 
@@ -1998,7 +2145,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public bool @__Expr9Get() {
                 
-                #line 347 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 398 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                       _list_redis.Count==0;
                 
@@ -2071,7 +2218,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr5GetTree() {
                 
-                #line 117 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 117 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<System.Collections.Generic.List<PMS.Model.QueryModel.Redis_SMSContent>>> expression = () => 
                             _list_redis;
                 
@@ -2083,7 +2230,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public System.Collections.Generic.List<PMS.Model.QueryModel.Redis_SMSContent> @__Expr5Get() {
                 
-                #line 117 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 117 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                             _list_redis;
                 
@@ -2099,7 +2246,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr5Set(System.Collections.Generic.List<PMS.Model.QueryModel.Redis_SMSContent> value) {
                 
-                #line 117 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 117 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                             _list_redis = value;
                 
@@ -2174,7 +2321,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr6GetTree() {
                 
-                #line 122 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 122 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<double>> expression = () => 
                             _secs_interval;
                 
@@ -2186,7 +2333,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public double @__Expr6Get() {
                 
-                #line 122 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 122 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                             _secs_interval;
                 
@@ -2201,7 +2348,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr7GetTree() {
                 
-                #line 112 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 112 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                             _id_list;
                 
@@ -2213,7 +2360,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr7Get() {
                 
-                #line 112 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 112 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                             _id_list;
                 
@@ -2447,7 +2594,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr16GetTree() {
                 
-                #line 327 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 378 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                               _query_obj.msgid != string.Empty&&_result==1;
                 
@@ -2459,7 +2606,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public bool @__Expr16Get() {
                 
-                #line 327 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 378 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                               _query_obj.msgid != string.Empty&&_result==1;
                 
@@ -2474,7 +2621,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr17GetTree() {
                 
-                #line 332 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 383 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                               _result==3;
                 
@@ -2486,7 +2633,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public bool @__Expr17Get() {
                 
-                #line 332 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 383 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                               _result==3;
                 
@@ -2563,7 +2710,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr11GetTree() {
                 
-                #line 173 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 173 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<int>> expression = () => 
                                     _result;
                 
@@ -2575,7 +2722,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public int @__Expr11Get() {
                 
-                #line 173 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 173 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                     _result;
                 
@@ -2591,7 +2738,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr11Set(int value) {
                 
-                #line 173 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 173 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                     _result = value;
                 
@@ -2607,7 +2754,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr14GetTree() {
                 
-                #line 163 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 163 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                                     _first_msgid;
                 
@@ -2619,7 +2766,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr14Get() {
                 
-                #line 163 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 163 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                     _first_msgid;
                 
@@ -2635,7 +2782,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr14Set(string value) {
                 
-                #line 163 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 163 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                     _first_msgid = value;
                 
@@ -2651,7 +2798,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr15GetTree() {
                 
-                #line 148 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 148 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<PMS.Model.QueryModel.Redis_SMSContent>> expression = () => 
                                     _query_obj;
                 
@@ -2663,7 +2810,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public PMS.Model.QueryModel.Redis_SMSContent @__Expr15Get() {
                 
-                #line 148 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 148 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                     _query_obj;
                 
@@ -2679,7 +2826,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr15Set(PMS.Model.QueryModel.Redis_SMSContent value) {
                 
-                #line 148 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 148 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                     _query_obj = value;
                 
@@ -2754,7 +2901,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr10GetTree() {
                 
-                #line 158 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 158 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<System.Collections.Generic.List<PMS.Model.QueryModel.Redis_SMSContent>>> expression = () => 
                                     _list_redis;
                 
@@ -2766,7 +2913,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public System.Collections.Generic.List<PMS.Model.QueryModel.Redis_SMSContent> @__Expr10Get() {
                 
-                #line 158 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 158 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                     _list_redis;
                 
@@ -2781,7 +2928,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr12GetTree() {
                 
-                #line 168 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 168 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<double>> expression = () => 
                                     _secs_interval;
                 
@@ -2793,7 +2940,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public double @__Expr12Get() {
                 
-                #line 168 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 168 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                     _secs_interval;
                 
@@ -2808,7 +2955,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr13GetTree() {
                 
-                #line 153 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 153 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                                     _id_list;
                 
@@ -2820,7 +2967,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr13Get() {
                 
-                #line 153 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 153 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                     _id_list;
                 
@@ -2888,7 +3035,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr21GetTree() {
                 
-                #line 204 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 204 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<System.Collections.Generic.List<PMS.Model.SMSModel.SMSModel_QueryReceive>>> expression = () => 
                                                   _list_queryReceive;
                 
@@ -2900,7 +3047,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public System.Collections.Generic.List<PMS.Model.SMSModel.SMSModel_QueryReceive> @__Expr21Get() {
                 
-                #line 204 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 204 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _list_queryReceive;
                 
@@ -2916,7 +3063,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr21Set(System.Collections.Generic.List<PMS.Model.SMSModel.SMSModel_QueryReceive> value) {
                 
-                #line 204 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 204 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                                   _list_queryReceive = value;
                 
@@ -2932,7 +3079,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr22GetTree() {
                 
-                #line 219 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 219 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<int>> expression = () => 
                                                   _state;
                 
@@ -2944,7 +3091,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public int @__Expr22Get() {
                 
-                #line 219 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 219 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _state;
                 
@@ -2960,7 +3107,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr22Set(int value) {
                 
-                #line 219 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 219 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                                   _state = value;
                 
@@ -3025,7 +3172,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr18GetTree() {
                 
-                #line 195 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 195 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                                         _state==0;
                 
@@ -3037,7 +3184,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public bool @__Expr18Get() {
                 
-                #line 195 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 195 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                         _state==0;
                 
@@ -3052,7 +3199,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr19GetTree() {
                 
-                #line 214 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 214 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<PMS.Model.QueryModel.Redis_SMSContent>> expression = () => 
                                                   _query_obj;
                 
@@ -3064,7 +3211,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public PMS.Model.QueryModel.Redis_SMSContent @__Expr19Get() {
                 
-                #line 214 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 214 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _query_obj;
                 
@@ -3079,7 +3226,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr20GetTree() {
                 
-                #line 209 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 209 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                                                   _first_msgid;
                 
@@ -3091,7 +3238,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr20Get() {
                 
-                #line 209 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 209 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _first_msgid;
                 
@@ -3106,7 +3253,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr23GetTree() {
                 
-                #line 227 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 227 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<int>> expression = () => 
                                                   _sleepTime;
                 
@@ -3118,7 +3265,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public int @__Expr23Get() {
                 
-                #line 227 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 227 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _sleepTime;
                 
@@ -3133,7 +3280,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr24GetTree() {
                 
-                #line 235 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 235 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                                             "此时状态码为"+_state;
                 
@@ -3145,7 +3292,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr24Get() {
                 
-                #line 235 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 235 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                             "此时状态码为"+_state;
                 
@@ -3160,9 +3307,9 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr25GetTree() {
                 
-                #line 317 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 340 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
-                                      _state==1&&_result!=4;
+                                      (_state==1||_state==2)&&_result!=4;
                 
                 #line default
                 #line hidden
@@ -3172,9 +3319,9 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public bool @__Expr25Get() {
                 
-                #line 317 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 340 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
-                                      _state==1&&_result!=4;
+                                      (_state==1||_state==2)&&_result!=4;
                 
                 #line default
                 #line hidden
@@ -3183,6 +3330,60 @@ namespace WFTest {
             public bool ValueType___Expr25Get() {
                 this.GetValueTypeValues();
                 return this.@__Expr25Get();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr26GetTree() {
+                
+                #line 368 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
+                                      _result==4;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public bool @__Expr26Get() {
+                
+                #line 368 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                      _result==4;
+                
+                #line default
+                #line hidden
+            }
+            
+            public bool ValueType___Expr26Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr26Get();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr27GetTree() {
+                
+                #line 363 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
+                                          "状态码为"+_result+"工作流被挂起";
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public string @__Expr27Get() {
+                
+                #line 363 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                          "状态码为"+_result+"工作流被挂起";
+                
+                #line default
+                #line hidden
+            }
+            
+            public string ValueType___Expr27Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr27Get();
             }
             
             public new static bool Validate(System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences, bool validateLocationCount, int offset) {
@@ -3234,9 +3435,9 @@ namespace WFTest {
                 base.SetLocationsOffset(locationsOffset);
             }
             
-            internal System.Linq.Expressions.Expression @__Expr27GetTree() {
+            internal System.Linq.Expressions.Expression @__Expr29GetTree() {
                 
-                #line 280 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 281 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<int>> expression = () => 
                                                   _result;
                 
@@ -3246,9 +3447,9 @@ namespace WFTest {
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public int @__Expr27Get() {
+            public int @__Expr29Get() {
                 
-                #line 280 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 281 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _result;
                 
@@ -3256,15 +3457,15 @@ namespace WFTest {
                 #line hidden
             }
             
-            public int ValueType___Expr27Get() {
+            public int ValueType___Expr29Get() {
                 this.GetValueTypeValues();
-                return this.@__Expr27Get();
+                return this.@__Expr29Get();
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public void @__Expr27Set(int value) {
+            public void @__Expr29Set(int value) {
                 
-                #line 280 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 281 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                                   _result = value;
                 
@@ -3272,61 +3473,17 @@ namespace WFTest {
                 #line hidden
             }
             
-            public void ValueType___Expr27Set(int value) {
+            public void ValueType___Expr29Set(int value) {
                 this.GetValueTypeValues();
-                this.@__Expr27Set(value);
-                this.SetValueTypeValues();
-            }
-            
-            internal System.Linq.Expressions.Expression @__Expr28GetTree() {
-                
-                #line 255 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
-                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
-                                                  TempBookMarkName;
-                
-                #line default
-                #line hidden
-                return base.RewriteExpressionTree(expression);
-            }
-            
-            [System.Diagnostics.DebuggerHiddenAttribute()]
-            public string @__Expr28Get() {
-                
-                #line 255 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
-                return 
-                                                  TempBookMarkName;
-                
-                #line default
-                #line hidden
-            }
-            
-            public string ValueType___Expr28Get() {
-                this.GetValueTypeValues();
-                return this.@__Expr28Get();
-            }
-            
-            [System.Diagnostics.DebuggerHiddenAttribute()]
-            public void @__Expr28Set(string value) {
-                
-                #line 255 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
-                
-                                                  TempBookMarkName = value;
-                
-                #line default
-                #line hidden
-            }
-            
-            public void ValueType___Expr28Set(string value) {
-                this.GetValueTypeValues();
-                this.@__Expr28Set(value);
+                this.@__Expr29Set(value);
                 this.SetValueTypeValues();
             }
             
             internal System.Linq.Expressions.Expression @__Expr30GetTree() {
                 
-                #line 270 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 256 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
-                                                  _first_msgid;
+                                                  TempBookMarkName;
                 
                 #line default
                 #line hidden
@@ -3336,9 +3493,9 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr30Get() {
                 
-                #line 270 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 256 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
-                                                  _first_msgid;
+                                                  TempBookMarkName;
                 
                 #line default
                 #line hidden
@@ -3352,9 +3509,9 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public void @__Expr30Set(string value) {
                 
-                #line 270 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 256 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
-                                                  _first_msgid = value;
+                                                  TempBookMarkName = value;
                 
                 #line default
                 #line hidden
@@ -3366,9 +3523,53 @@ namespace WFTest {
                 this.SetValueTypeValues();
             }
             
-            internal System.Linq.Expressions.Expression @__Expr31GetTree() {
+            internal System.Linq.Expressions.Expression @__Expr32GetTree() {
                 
-                #line 275 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 271 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
+                                                  _first_msgid;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public string @__Expr32Get() {
+                
+                #line 271 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                                  _first_msgid;
+                
+                #line default
+                #line hidden
+            }
+            
+            public string ValueType___Expr32Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr32Get();
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public void @__Expr32Set(string value) {
+                
+                #line 271 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                
+                                                  _first_msgid = value;
+                
+                #line default
+                #line hidden
+            }
+            
+            public void ValueType___Expr32Set(string value) {
+                this.GetValueTypeValues();
+                this.@__Expr32Set(value);
+                this.SetValueTypeValues();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr33GetTree() {
+                
+                #line 276 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<int>> expression = () => 
                                                   _state;
                 
@@ -3378,9 +3579,9 @@ namespace WFTest {
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public int @__Expr31Get() {
+            public int @__Expr33Get() {
                 
-                #line 275 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 276 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _state;
                 
@@ -3388,15 +3589,15 @@ namespace WFTest {
                 #line hidden
             }
             
-            public int ValueType___Expr31Get() {
+            public int ValueType___Expr33Get() {
                 this.GetValueTypeValues();
-                return this.@__Expr31Get();
+                return this.@__Expr33Get();
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public void @__Expr31Set(int value) {
+            public void @__Expr33Set(int value) {
                 
-                #line 275 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 276 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 
                                                   _state = value;
                 
@@ -3404,9 +3605,9 @@ namespace WFTest {
                 #line hidden
             }
             
-            public void ValueType___Expr31Set(int value) {
+            public void ValueType___Expr33Set(int value) {
                 this.GetValueTypeValues();
-                this.@__Expr31Set(value);
+                this.@__Expr33Set(value);
                 this.SetValueTypeValues();
             }
             
@@ -3459,9 +3660,9 @@ namespace WFTest {
                 base.SetLocationsOffset(locationsOffset);
             }
             
-            internal System.Linq.Expressions.Expression @__Expr26GetTree() {
+            internal System.Linq.Expressions.Expression @__Expr28GetTree() {
                 
-                #line 260 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 261 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                                                   _id_hash;
                 
@@ -3471,9 +3672,9 @@ namespace WFTest {
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public string @__Expr26Get() {
+            public string @__Expr28Get() {
                 
-                #line 260 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 261 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _id_hash;
                 
@@ -3481,14 +3682,14 @@ namespace WFTest {
                 #line hidden
             }
             
-            public string ValueType___Expr26Get() {
+            public string ValueType___Expr28Get() {
                 this.GetValueTypeValues();
-                return this.@__Expr26Get();
+                return this.@__Expr28Get();
             }
             
-            internal System.Linq.Expressions.Expression @__Expr29GetTree() {
+            internal System.Linq.Expressions.Expression @__Expr31GetTree() {
                 
-                #line 265 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 266 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                                                   _id_list_msgid;
                 
@@ -3498,9 +3699,9 @@ namespace WFTest {
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public string @__Expr29Get() {
+            public string @__Expr31Get() {
                 
-                #line 265 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 266 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                                   _id_list_msgid;
                 
@@ -3508,14 +3709,95 @@ namespace WFTest {
                 #line hidden
             }
             
-            public string ValueType___Expr29Get() {
+            public string ValueType___Expr31Get() {
                 this.GetValueTypeValues();
-                return this.@__Expr29Get();
+                return this.@__Expr31Get();
             }
             
-            internal System.Linq.Expressions.Expression @__Expr32GetTree() {
+            internal System.Linq.Expressions.Expression @__Expr34GetTree() {
                 
-                #line 292 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 287 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
+                                                "书签中的state为"+_state;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public string @__Expr34Get() {
+                
+                #line 287 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                                "书签中的state为"+_state;
+                
+                #line default
+                #line hidden
+            }
+            
+            public string ValueType___Expr34Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr34Get();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr35GetTree() {
+                
+                #line 292 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
+                                                "书签中的result为"+_result;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public string @__Expr35Get() {
+                
+                #line 292 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                                "书签中的result为"+_result;
+                
+                #line default
+                #line hidden
+            }
+            
+            public string ValueType___Expr35Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr35Get();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr36GetTree() {
+                
+                #line 297 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
+                                                "该书签恢复的MsgId为"+_first_msgid;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public string @__Expr36Get() {
+                
+                #line 297 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                                "该书签恢复的MsgId为"+_first_msgid;
+                
+                #line default
+                #line hidden
+            }
+            
+            public string ValueType___Expr36Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr36Get();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr37GetTree() {
+                
+                #line 308 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                                               _result==4;
                 
@@ -3525,9 +3807,9 @@ namespace WFTest {
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public bool @__Expr32Get() {
+            public bool @__Expr37Get() {
                 
-                #line 292 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 308 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                               _result==4;
                 
@@ -3535,14 +3817,14 @@ namespace WFTest {
                 #line hidden
             }
             
-            public bool ValueType___Expr32Get() {
+            public bool ValueType___Expr37Get() {
                 this.GetValueTypeValues();
-                return this.@__Expr32Get();
+                return this.@__Expr37Get();
             }
             
-            internal System.Linq.Expressions.Expression @__Expr33GetTree() {
+            internal System.Linq.Expressions.Expression @__Expr38GetTree() {
                 
-                #line 297 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 330 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
                                               _result==6;
                 
@@ -3552,9 +3834,9 @@ namespace WFTest {
             }
             
             [System.Diagnostics.DebuggerHiddenAttribute()]
-            public bool @__Expr33Get() {
+            public bool @__Expr38Get() {
                 
-                #line 297 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                #line 330 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
                 return 
                                               _result==6;
                 
@@ -3562,9 +3844,161 @@ namespace WFTest {
                 #line hidden
             }
             
-            public bool ValueType___Expr33Get() {
+            public bool ValueType___Expr38Get() {
                 this.GetValueTypeValues();
-                return this.@__Expr33Get();
+                return this.@__Expr38Get();
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr39GetTree() {
+                
+                #line 325 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
+                                                  "resut为"+_result;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public string @__Expr39Get() {
+                
+                #line 325 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                                  "resut为"+_result;
+                
+                #line default
+                #line hidden
+            }
+            
+            public string ValueType___Expr39Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr39Get();
+            }
+            
+            public new static bool Validate(System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences, bool validateLocationCount, int offset) {
+                if (((validateLocationCount == true) 
+                            && (locationReferences.Count < 15))) {
+                    return false;
+                }
+                if ((validateLocationCount == true)) {
+                    offset = (locationReferences.Count - 15);
+                }
+                expectedLocationsCount = 15;
+                return MainStatistics_Advanced_TypedDataContext2_ForReadOnly.Validate(locationReferences, false, offset);
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Activities", "4.0.0.0")]
+        [System.ComponentModel.BrowsableAttribute(false)]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        private class MainStatistics_Advanced_TypedDataContext12 : MainStatistics_Advanced_TypedDataContext2 {
+            
+            private int locationsOffset;
+            
+            private static int expectedLocationsCount;
+            
+            public MainStatistics_Advanced_TypedDataContext12(System.Collections.Generic.IList<System.Activities.LocationReference> locations, System.Activities.ActivityContext activityContext, bool computelocationsOffset) : 
+                    base(locations, activityContext, false) {
+                if ((computelocationsOffset == true)) {
+                    this.SetLocationsOffset((locations.Count - expectedLocationsCount));
+                }
+            }
+            
+            public MainStatistics_Advanced_TypedDataContext12(System.Collections.Generic.IList<System.Activities.Location> locations, bool computelocationsOffset) : 
+                    base(locations, false) {
+                if ((computelocationsOffset == true)) {
+                    this.SetLocationsOffset((locations.Count - expectedLocationsCount));
+                }
+            }
+            
+            public MainStatistics_Advanced_TypedDataContext12(System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences) : 
+                    base(locationReferences) {
+            }
+            
+            internal new static System.Activities.XamlIntegration.CompiledDataContext[] GetCompiledDataContextCacheHelper(object dataContextActivities, System.Activities.ActivityContext activityContext, System.Activities.Activity compiledRoot, bool forImplementation, int compiledDataContextCount) {
+                return System.Activities.XamlIntegration.CompiledDataContext.GetCompiledDataContextCache(dataContextActivities, activityContext, compiledRoot, forImplementation, compiledDataContextCount);
+            }
+            
+            public new virtual void SetLocationsOffset(int locationsOffsetValue) {
+                locationsOffset = locationsOffsetValue;
+                base.SetLocationsOffset(locationsOffset);
+            }
+            
+            public new static bool Validate(System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences, bool validateLocationCount, int offset) {
+                if (((validateLocationCount == true) 
+                            && (locationReferences.Count < 15))) {
+                    return false;
+                }
+                if ((validateLocationCount == true)) {
+                    offset = (locationReferences.Count - 15);
+                }
+                expectedLocationsCount = 15;
+                return MainStatistics_Advanced_TypedDataContext2.Validate(locationReferences, false, offset);
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Activities", "4.0.0.0")]
+        [System.ComponentModel.BrowsableAttribute(false)]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        private class MainStatistics_Advanced_TypedDataContext12_ForReadOnly : MainStatistics_Advanced_TypedDataContext2_ForReadOnly {
+            
+            private int locationsOffset;
+            
+            private static int expectedLocationsCount;
+            
+            public MainStatistics_Advanced_TypedDataContext12_ForReadOnly(System.Collections.Generic.IList<System.Activities.LocationReference> locations, System.Activities.ActivityContext activityContext, bool computelocationsOffset) : 
+                    base(locations, activityContext, false) {
+                if ((computelocationsOffset == true)) {
+                    this.SetLocationsOffset((locations.Count - expectedLocationsCount));
+                }
+            }
+            
+            public MainStatistics_Advanced_TypedDataContext12_ForReadOnly(System.Collections.Generic.IList<System.Activities.Location> locations, bool computelocationsOffset) : 
+                    base(locations, false) {
+                if ((computelocationsOffset == true)) {
+                    this.SetLocationsOffset((locations.Count - expectedLocationsCount));
+                }
+            }
+            
+            public MainStatistics_Advanced_TypedDataContext12_ForReadOnly(System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences) : 
+                    base(locationReferences) {
+            }
+            
+            internal new static System.Activities.XamlIntegration.CompiledDataContext[] GetCompiledDataContextCacheHelper(object dataContextActivities, System.Activities.ActivityContext activityContext, System.Activities.Activity compiledRoot, bool forImplementation, int compiledDataContextCount) {
+                return System.Activities.XamlIntegration.CompiledDataContext.GetCompiledDataContextCache(dataContextActivities, activityContext, compiledRoot, forImplementation, compiledDataContextCount);
+            }
+            
+            public new virtual void SetLocationsOffset(int locationsOffsetValue) {
+                locationsOffset = locationsOffsetValue;
+                base.SetLocationsOffset(locationsOffset);
+            }
+            
+            internal System.Linq.Expressions.Expression @__Expr40GetTree() {
+                
+                #line 354 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                System.Linq.Expressions.Expression<System.Func<bool>> expression = () => 
+                                              _result==6;
+                
+                #line default
+                #line hidden
+                return base.RewriteExpressionTree(expression);
+            }
+            
+            [System.Diagnostics.DebuggerHiddenAttribute()]
+            public bool @__Expr40Get() {
+                
+                #line 354 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\MAINSTATISTICS_ADVANCED.XAML"
+                return 
+                                              _result==6;
+                
+                #line default
+                #line hidden
+            }
+            
+            public bool ValueType___Expr40Get() {
+                this.GetValueTypeValues();
+                return this.@__Expr40Get();
             }
             
             public new static bool Validate(System.Collections.Generic.IList<System.Activities.LocationReference> locationReferences, bool validateLocationCount, int offset) {

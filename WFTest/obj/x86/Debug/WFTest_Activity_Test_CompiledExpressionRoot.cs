@@ -1,60 +1,60 @@
 namespace WFTest {
     
-    #line 20 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 20 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Collections;
     
     #line default
     #line hidden
     
-    #line 21 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 21 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Collections.Generic;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities.Expressions;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities.Statements;
     
     #line default
     #line hidden
     
-    #line 22 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 22 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Data;
     
     #line default
     #line hidden
     
-    #line 23 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 23 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Linq;
     
     #line default
     #line hidden
     
-    #line 24 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 24 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Text;
     
     #line default
     #line hidden
     
-    #line 1 "D:\01编程\02协作开发\SMSOA\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities.XamlIntegration;
     
     #line default
@@ -346,7 +346,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr0GetTree() {
                 
-                #line 61 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\ACTIVITY_TEST.XAML"
+                #line 61 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\ACTIVITY_TEST.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                   temp;
                 
@@ -358,7 +358,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr0Get() {
                 
-                #line 61 "D:\01编程\02协作开发\SMSOA\PMS\WFTEST\ACTIVITY_TEST.XAML"
+                #line 61 "D:\02编程\2016年\01协同开发\PMS\NEWPMS\PMS\WFTEST\ACTIVITY_TEST.XAML"
                 return 
                   temp;
                 
