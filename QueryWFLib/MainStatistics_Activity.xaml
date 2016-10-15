@@ -37,10 +37,10 @@
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>Common</AssemblyReference>
       <AssemblyReference>ISMS</AssemblyReference>
-      <AssemblyReference>SMSFactory</AssemblyReference>
       <AssemblyReference>PMS.BLL</AssemblyReference>
       <AssemblyReference>PMS.IBLL</AssemblyReference>
       <AssemblyReference>PMS.Model</AssemblyReference>
+      <AssemblyReference>SMSFactory</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>QueryWFLib</AssemblyReference>
     </sco:Collection>
@@ -50,6 +50,8 @@
       <Variable x:TypeArguments="x:String" Name="_id_redis_msgidList" />
       <Variable x:TypeArguments="x:Int32" Name="_state" />
       <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_queryModel" />
+      <Variable x:TypeArguments="pme:QueryState_Enum" Name="_state_enum" />
+      <Variable x:TypeArguments="x:String" Name="variable1" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
@@ -81,65 +83,81 @@
                               </local:QueryState_Code.State>
                             </local:QueryState_Code>
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_5">
-                                <If sap2010:WorkflowViewState.IdRef="If_1">
-                                  <If.Condition>
-                                    <InArgument x:TypeArguments="x:Boolean">
-                                      <mca:CSharpValue x:TypeArguments="x:Boolean">_state==2</mca:CSharpValue>
+                              <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+                                <local:GetStateByQueryList_Code Text="{x:Null}" DisplayName="根据集合获取查询状态" sap2010:WorkflowViewState.IdRef="GetStateByQueryList_Code_1">
+                                  <local:GetStateByQueryList_Code.List_QueryReceive>
+                                    <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                      <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
                                     </InArgument>
-                                  </If.Condition>
-                                  <If.Then>
-                                    <ForEach x:TypeArguments="pms:SMSModel_QueryReceive" DisplayName="ForEach&lt;SMSModel_QueryReceive&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
-                                      <ForEach.Values>
-                                        <InArgument x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">
-                                          <mca:CSharpValue x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
+                                  </local:GetStateByQueryList_Code.List_QueryReceive>
+                                  <local:GetStateByQueryList_Code.State>
+                                    <OutArgument x:TypeArguments="pme:QueryState_Enum">
+                                      <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
+                                    </OutArgument>
+                                  </local:GetStateByQueryList_Code.State>
+                                </local:GetStateByQueryList_Code>
+                                <FlowStep.Next>
+                                  <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                                    <If sap2010:WorkflowViewState.IdRef="If_1">
+                                      <If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">_state_enum!=PMS.Model.Enum.QueryState_Enum.finish</mca:CSharpValue>
                                         </InArgument>
-                                      </ForEach.Values>
-                                      <ActivityAction x:TypeArguments="pms:SMSModel_QueryReceive">
-                                        <ActivityAction.Argument>
-                                          <DelegateInArgument x:TypeArguments="pms:SMSModel_QueryReceive" Name="item" />
-                                        </ActivityAction.Argument>
-                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
-                                          <Sequence.Variables>
-                                            <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
-                                          </Sequence.Variables>
-                                          <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="判断当前item中的msgid是否存在" />
-                                          <local:CheckMsgidExistInRedis Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CheckMsgidExistInRedis_1">
-                                            <local:CheckMsgidExistInRedis.enum_Exist>
-                                              <OutArgument x:TypeArguments="pme:ExistEnum">
-                                                <mca:CSharpReference x:TypeArguments="pme:ExistEnum">_enum_ItemExist</mca:CSharpReference>
-                                              </OutArgument>
-                                            </local:CheckMsgidExistInRedis.enum_Exist>
-                                          </local:CheckMsgidExistInRedis>
-                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
-                                            <If sap2010:WorkflowViewState.IdRef="If_3">
-                                              <If.Condition>
-                                                <InArgument x:TypeArguments="x:Boolean">
-                                                  <mca:CSharpValue x:TypeArguments="x:Boolean">_enum_ItemExist==PMS.Model.Enum.ExistEnum.isExist</mca:CSharpValue>
-                                                </InArgument>
-                                              </If.Condition>
-                                              <If.Then>
-                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
-                                                  <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="将该item写入集合" />
-                                                  <local:InsertReciveModel2List Text="{x:Null}" sap2010:WorkflowViewState.IdRef="InsertReciveModel2List_1">
-                                                    <local:InsertReciveModel2List.List_QueryReceive>
-                                                      <InOutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
-                                                        <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
-                                                      </InOutArgument>
-                                                    </local:InsertReciveModel2List.List_QueryReceive>
-                                                  </local:InsertReciveModel2List>
-                                                </Sequence>
-                                              </If.Then>
-                                              <If.Else>
-                                                <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="跳出本次循环" />
-                                              </If.Else>
-                                            </If>
-                                          </Sequence>
-                                        </Sequence>
-                                      </ActivityAction>
-                                    </ForEach>
-                                  </If.Then>
-                                </If>
+                                      </If.Condition>
+                                      <If.Then>
+                                        <ForEach x:TypeArguments="pms:SMSModel_QueryReceive" DisplayName="ForEach&lt;SMSModel_QueryReceive&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
+                                          <ForEach.Values>
+                                            <InArgument x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">
+                                              <mca:CSharpValue x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
+                                            </InArgument>
+                                          </ForEach.Values>
+                                          <ActivityAction x:TypeArguments="pms:SMSModel_QueryReceive">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="pms:SMSModel_QueryReceive" Name="item" />
+                                            </ActivityAction.Argument>
+                                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+                                              <Sequence.Variables>
+                                                <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
+                                              </Sequence.Variables>
+                                              <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="判断当前item中的msgid是否存在" />
+                                              <local:CheckMsgidExistInRedis Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CheckMsgidExistInRedis_1">
+                                                <local:CheckMsgidExistInRedis.enum_Exist>
+                                                  <OutArgument x:TypeArguments="pme:ExistEnum">
+                                                    <mca:CSharpReference x:TypeArguments="pme:ExistEnum">_enum_ItemExist</mca:CSharpReference>
+                                                  </OutArgument>
+                                                </local:CheckMsgidExistInRedis.enum_Exist>
+                                              </local:CheckMsgidExistInRedis>
+                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                                <If sap2010:WorkflowViewState.IdRef="If_3">
+                                                  <If.Condition>
+                                                    <InArgument x:TypeArguments="x:Boolean">
+                                                      <mca:CSharpValue x:TypeArguments="x:Boolean">_enum_ItemExist==PMS.Model.Enum.ExistEnum.isExist</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </If.Condition>
+                                                  <If.Then>
+                                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                                      <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="将该item写入集合" />
+                                                      <local:InsertReciveModel2List Text="{x:Null}" sap2010:WorkflowViewState.IdRef="InsertReciveModel2List_1">
+                                                        <local:InsertReciveModel2List.List_QueryReceive>
+                                                          <InOutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                                            <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
+                                                          </InOutArgument>
+                                                        </local:InsertReciveModel2List.List_QueryReceive>
+                                                      </local:InsertReciveModel2List>
+                                                    </Sequence>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="跳出本次循环" />
+                                                  </If.Else>
+                                                </If>
+                                              </Sequence>
+                                            </Sequence>
+                                          </ActivityAction>
+                                        </ForEach>
+                                      </If.Then>
+                                    </If>
+                                  </FlowStep>
+                                </FlowStep.Next>
                               </FlowStep>
                             </FlowStep.Next>
                           </FlowStep>
@@ -161,7 +179,8 @@
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
-    <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbCAwA6UBDwIBATgJOFICATo7DTuDAQIBOT4RPlYCATdBFUFiAgE1RBlEZgIBM0cdUjUCASpVIY4BJgIBAjhHOE8CATs+Tz5TAgE4QVNBXwIBNkRXRGMCATRKI0qUAQIBL08jT24CAStYJ1hvAgEDXCWMAS8CAQdfK1+bAQIBJmYpigE0AgEIaitqgQECASRrK3FKAgEdciuJATYCAQlqaWp+AgElbjFuiwECAR5zLYgBMgIBCnYzdqMBAgELejGDATwCAROGATGGAXoCARF7M3uAAQIBG3wzggFSAgEUhgFvhgF3AgESe3F7fQIBHH85f6oBAgEV</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbCMwA7gBDwIBAToJOlICAVU9DT2DAQIBVEARQFYCAVJDFUNiAgFQRhlGZgIBTkkdVDUCAUFXIWJCAgE0ZSWeASoCAQI6RzpPAgFWQE9AUwIBU0NTQ18CAVFGV0ZjAgFPTCNMlAECAUhRI1FuAgFCWidakAECATtfJ1+DAQIBNWgraJwBAgEDbCmcATMCAQlvL2+fAQIBLnYtmgE4AgEKei96hQECASx7L4EBTgIBI4IBL5kBOgIBC3pteoIBAgEtfjV+jwECASSDATGYATYCAQyGATeGAacBAgENigE1kwFAAgEXlgE1lgF+AgEViwE3iwGEAQIBIYwBN5IBVgIBGJYBc5YBewIBFosBdYsBgQECASKPAT2PAa4BAgEZ</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -207,6 +226,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetStateByQueryList_Code_1" sap:VirtualizedContainerService.HintSize="200,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="495,63" />
       <sap2010:ViewStateData Id="CheckMsgidExistInRedis_1" sap:VirtualizedContainerService.HintSize="495,22" />
       <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="213,63" />
@@ -245,8 +271,17 @@
       <sap2010:ViewStateData Id="FlowStep_5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">230,683.5</av:Point>
+            <av:Point x:Key="ShapeLocation">230,753.5</av:Point>
             <av:Size x:Key="ShapeSize">200,53</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">230,679</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">330,701 330,753.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -255,7 +290,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">230,609</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,631 330,683.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">330,631 330,679</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -304,19 +339,19 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="684,866">
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="694,990">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">280,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">310,77.5 310,107.5 320,107.5 320,108.5</av:PointCollection>
-            <x:Double x:Key="Height">830</x:Double>
-            <x:Double x:Key="Width">670</x:Double>
+            <x:Double x:Key="Height">954</x:Double>
+            <x:Double x:Key="Width">680</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="QueryWFLib.Activity1_1" sap:VirtualizedContainerService.HintSize="724,946" />
+      <sap2010:ViewStateData Id="QueryWFLib.Activity1_1" sap:VirtualizedContainerService.HintSize="734,1070" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

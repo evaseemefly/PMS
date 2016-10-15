@@ -57,6 +57,7 @@ namespace QueryWFLib
         {
             //IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
             //以后通过spring .net 实现
+            state = 1;
             ISMSQuery smsQuery = new SMSFactory.SMSQuery();
 
             IS_SMSContentBLL smsContentBLL = new PMS.BLL.S_SMSContentBLL();
@@ -80,7 +81,7 @@ namespace QueryWFLib
 
             //为变量赋值
             list_queryReceive = list_QueryReceive;
-            state = index_state;
+            //state = index_state;
 
             if (!isGetReturnMsg)
             {

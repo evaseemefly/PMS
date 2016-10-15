@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model.SMSModel;
+using PMS.Model.Enum;
 
 namespace ISMS
 {
@@ -26,6 +27,6 @@ namespace ISMS
         /// </summary>
         /// <param name="list">刚刚查询所返回的回执集合</param>
         /// <returns></returns>
-        int GetQueryState(List<SMSModel_QueryReceive> list);
+        QueryState_Enum GetQueryState(List<SMSModel_QueryReceive> list);
     }
 }
