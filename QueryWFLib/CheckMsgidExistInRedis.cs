@@ -22,7 +22,7 @@ namespace QueryWFLib
 
         public OutArgument<PMS.Model.Enum.ExistEnum> enum_Exist { get; set; }
         
-        public InArgument<PMS.Model.SMSModel.SMSModel_QueryReceive> Item_Model {get;set;}
+        //public InArgument<PMS.Model.SMSModel.SMSModel_QueryReceive> Item_Model {get;set;}
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
@@ -32,15 +32,15 @@ namespace QueryWFLib
         {
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
-            var item = context.GetValue(this.Item_Model);
+            //var item = context.GetValue(this.Item_Model);
             ExistEnum enum_exist = ExistEnum.isNotExist;
             //在redis中判断 item.msgId  item.phoneNumber是否已经存在于redis中
-            if (CheckMsgIdExist(item.msgId))
-            {
-                //判断当前msgid是否含有对应的电话号码（从数据库中查取）
-                enum_exist= CheckTargetMsgIdContainsPhone(item.msgId, item.phoneNumber);
+            //if (CheckMsgIdExist(item.msgId))
+            //{
+            //    //判断当前msgid是否含有对应的电话号码（从数据库中查取）
+            //    enum_exist= CheckTargetMsgIdContainsPhone(item.msgId, item.phoneNumber);
 
-            }
+            //}
 
             context.SetValue(enum_Exist, enum_exist);
 

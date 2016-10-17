@@ -54,12 +54,6 @@
     <Compile Include="ReadConfig_Code.cs" />
   </ItemGroup>
   <ItemGroup>
-    <XamlAppDef Include="MainStatistics_Activity.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
@@ -84,6 +78,12 @@
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
       <Name>SMSFactory</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="MainStatistics_Activity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

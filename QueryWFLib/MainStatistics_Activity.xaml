@@ -120,13 +120,13 @@
                                                 <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
                                               </Sequence.Variables>
                                               <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="判断当前item中的msgid是否存在" />
-                                              <local:CheckMsgidExistInRedis Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CheckMsgidExistInRedis_1">
+                                              <!--<local:CheckMsgidExistInRedis Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CheckMsgidExistInRedis_1">
                                                 <local:CheckMsgidExistInRedis.enum_Exist>
                                                   <OutArgument x:TypeArguments="pme:ExistEnum">
                                                     <mca:CSharpReference x:TypeArguments="pme:ExistEnum">_enum_ItemExist</mca:CSharpReference>
                                                   </OutArgument>
                                                 </local:CheckMsgidExistInRedis.enum_Exist>
-                                              </local:CheckMsgidExistInRedis>
+                                              </local:CheckMsgidExistInRedis>-->
                                               <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
                                                 <If sap2010:WorkflowViewState.IdRef="If_3">
                                                   <If.Condition>
@@ -234,7 +234,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="495,63" />
-      <sap2010:ViewStateData Id="CheckMsgidExistInRedis_1" sap:VirtualizedContainerService.HintSize="495,22" />
+      <!--<sap2010:ViewStateData Id="CheckMsgidExistInRedis_1" sap:VirtualizedContainerService.HintSize="495,22" />-->
       <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="213,63" />
       <sap2010:ViewStateData Id="InsertReciveModel2List_1" sap:VirtualizedContainerService.HintSize="213,22" />
       <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="235,249">
