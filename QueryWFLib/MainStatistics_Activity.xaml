@@ -20,6 +20,7 @@
       <x:String>System.Linq</x:String>
       <x:String>System.Text</x:String>
       <x:String>PMS.Model.Enum</x:String>
+      <x:String>PMS.Model.SMSModel</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -52,6 +53,8 @@
       <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_queryModel" />
       <Variable x:TypeArguments="pme:QueryState_Enum" Name="_state_enum" />
       <Variable x:TypeArguments="x:String" Name="variable1" />
+      <Variable x:TypeArguments="pms:SMSModel_QueryReceive" Name="item" />
+      <Variable x:TypeArguments="pms:SMSModel_QueryReceive" Name="ReceviceModel" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
@@ -120,13 +123,6 @@
                                                 <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
                                               </Sequence.Variables>
                                               <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="判断当前item中的msgid是否存在" />
-                                              <local:CheckMsgidExistInRedis Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CheckMsgidExistInRedis_1">
-                                                <local:CheckMsgidExistInRedis.enum_Exist>
-                                                  <OutArgument x:TypeArguments="pme:ExistEnum">
-                                                    <mca:CSharpReference x:TypeArguments="pme:ExistEnum">_enum_ItemExist</mca:CSharpReference>
-                                                  </OutArgument>
-                                                </local:CheckMsgidExistInRedis.enum_Exist>
-                                              </local:CheckMsgidExistInRedis>
                                               <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
                                                 <If sap2010:WorkflowViewState.IdRef="If_3">
                                                   <If.Condition>
@@ -180,7 +176,7 @@
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbCMwA7gBDwIBAToJOlICAVU9DT2DAQIBVEARQFYCAVJDFUNiAgFQRhlGZgIBTkkdVDUCAUFXIWJCAgE0ZSWeASoCAQI6RzpPAgFWQE9AUwIBU0NTQ18CAVFGV0ZjAgFPTCNMlAECAUhRI1FuAgFCWidakAECATtfJ1+DAQIBNWgraJwBAgEDbCmcATMCAQlvL2+fAQIBLnYtmgE4AgEKei96hQECASx7L4EBTgIBI4IBL5kBOgIBC3pteoIBAgEtfjV+jwECASSDATGYATYCAQyGATeGAacBAgENigE1kwFAAgEXlgE1lgF+AgEViwE3iwGEAQIBIYwBN5IBVgIBGJYBc5YBewIBFosBdYsBgQECASKPAT2PAa4BAgEZ</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0BEOlxWU1dvcmtTcGFjZVxubWVmY1xQTVNcUXVlcnlXRkxpYlxNYWluU3RhdGlzdGljc19BY3Rpdml0eS54YW1sITEDtAEPAgEBPQk9UgIBXEANQIMBAgFbQxFDVgIBWUYVRmICAVdJGUlmAgFVTB1XNQIBRFohZUICATNoJZoBKgIBAj1HPU8CAV1DT0NTAgFaRlNGXwIBWElXSWMCAVZPI0+UAQIBTVQjVG4CAUVdJ12QAQIBPGInYoMBAgE0aytrnAECAQNvKZgBMwIBC3Ivcp8BAgEreS2WATgCAQx9L32FAQIBKX4vlQE6AgENfW19ggECASp/MZQBNgIBDoIBN4IBpwECAQ+GATWPAUACARuSATWSAX4CARmHATeHAYQBAgEniAE3jgFWAgEckgFzkgF7AgEahwF1hwGBAQIBKIsBPYsBrgECAR0=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -234,7 +230,6 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="495,63" />
-      <sap2010:ViewStateData Id="CheckMsgidExistInRedis_1" sap:VirtualizedContainerService.HintSize="495,22" />
       <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="213,63" />
       <sap2010:ViewStateData Id="InsertReciveModel2List_1" sap:VirtualizedContainerService.HintSize="213,22" />
       <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="235,249">
@@ -253,15 +248,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="517,815">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="517,753">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="547,966" />
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="672,1119">
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="547,904" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="672,1057">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

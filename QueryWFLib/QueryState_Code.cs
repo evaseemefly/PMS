@@ -90,26 +90,33 @@ namespace QueryWFLib
                 return;
                 // return Content("服务器错误");
             }
-            //当查询返回的集合数量为1，且唯一的对象的desc为成功，则直接跳出，不进行下面的操作，并对state赋值为1
-            if (list_QueryReceive.Count() == 1 && list_queryReceive.FirstOrDefault().desc == "成功" && list_queryReceive.FirstOrDefault().phoneNumber == null)
-            {
-                //返回的desc=成功
-                state = 1;
 
-                //return;
-            }
+
+            #region 判断是否包含report标签留到后面实现
+            ////当查询返回的集合数量为1，且唯一的对象的desc为成功，则直接跳出，不进行下面的操作，并对state赋值为1
+            //if (list_QueryReceive.Count() == 1 && list_queryReceive.FirstOrDefault().desc == "成功" && list_queryReceive.FirstOrDefault().phoneNumber == null)
+            //{
+            //    //返回的desc=成功
+            //    state = 1;
+
+            //    //return;
+            //}
+            #endregion
+
+            #region 写入数据库操作留到后面实现
             //7 获取该次发送的SMSContent的ID
-            var list = smsContentBLL.GetListBy(p => p.msgId.Equals(0));
-            int scid = list.FirstOrDefault().ID;
-            //向数据库中写入本集合中的对象   
-            bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
-            if (list_QueryReceive.Count() == 0)
-            {
-                state = 99;
-                //ToShow("当前取出的对象中接收内容有误");
-                //return;
-            }
+            //var list = smsContentBLL.GetListBy(p => p.msgId.Equals(0));
+            //int scid = list.FirstOrDefault().ID;
 
+            ////向数据库中写入本集合中的对象   
+            //bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive, scid);
+            //if (list_QueryReceive.Count() == 0)
+            //{
+            //    state = 99;
+            //    //ToShow("当前取出的对象中接收内容有误");
+            //    //return;
+            //}
+            #endregion
         }
     }
 }
