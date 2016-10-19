@@ -96,6 +96,7 @@
     <Compile Include="Redis\RedisConfig.cs" />
     <Compile Include="Redis\RedisHelper.cs" />
     <Compile Include="Redis\HashRedisHelper.cs" />
+    <Compile Include="Redis\StringRedisHelper.cs" />
     <Compile Include="Redis\ZSetRedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />

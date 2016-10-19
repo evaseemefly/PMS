@@ -22,7 +22,7 @@ namespace QueryDemo
             List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_out = new List<PMS.Model.SMSModel.SMSModel_QueryReceive>();
             query.QueryMsg(model, out list_out);
 
-            var index = query.GetQueryState(list_out);
+            var index = 0;//此处已修改 query.GetQueryState(list_out);
 
             var dic =PMS.Model.Dictionary.SMSQueryResultDictionary.GetResponseCode();          
             Console.WriteLine(dic[index]); 

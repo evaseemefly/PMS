@@ -36,5 +36,7 @@ namespace PMS.Model.SMSModel
         /// 长短信条数
         /// </summary>
         public int smsCount { get; set; }
+
+        public int smsIndex { get; set; }
     }
 }
