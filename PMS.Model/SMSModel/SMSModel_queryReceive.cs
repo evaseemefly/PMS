@@ -37,6 +37,7 @@ namespace PMS.Model.SMSModel
         /// </summary>
         public int smsCount { get; set; }
 
-        public int smsIndex { get; set; }
+        // 封装进此对象的smsIndex均为1，此属性不需要
+        //public int smsIndex { get; set; }
     }
 }

@@ -70,6 +70,7 @@ namespace SMSFactory
                         SMSModel_QueryReceive r = new SMSModel_QueryReceive()
                         //封装语句
                         {
+                            msgId= _msgid[i],
                             phoneNumber = _phone[i],
                             status = _status[i],
                             desc = _desc[i],

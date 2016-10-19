@@ -23,7 +23,7 @@ namespace SMSFactory
         /// <returns></returns>
         public bool SendBeforeCheck(SMSModel_Query smsdata)
         {
-            if (smsdata.account.Length < 1 & smsdata.smsId.Length < 1 & smsdata.password.Length < 1)
+            if (smsdata.account.Length < 1 &/* smsdata.smsId.Length < 1 & */smsdata.password.Length < 1)
             {
                 return false;
             }

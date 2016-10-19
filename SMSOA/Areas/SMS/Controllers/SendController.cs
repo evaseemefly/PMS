@@ -398,12 +398,17 @@ namespace SMSOA.Areas.SMS.Controllers
             }
 
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
-            redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
-                msgid = receive.msgid,
-                Dt = DateTime.Now,
-                PersonCount=list_phones.Count//7月28日添加：在redis中保存的缓存对象集合中记录该次发送共发送的人数
-               // PhoneNums=phones
-            });
+
+            StringRedisHelper redisStrhelper = new StringRedisHelper();
+            redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));
+
+            //10月19日 注释掉此处，此时发送后将msgid写入Redis中的string类型中，不使用List对象了
+            //redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
+            //    msgid = receive.msgid,
+            //    Dt = DateTime.Now,
+            //    PersonCount=list_phones.Count//7月28日添加：在redis中保存的缓存对象集合中记录该次发送共发送的人数
+            //   // PhoneNums=phones
+            //});
             if (!isSaveMsgOk)
             {
                 return Content("服务器错误");
