@@ -34,8 +34,8 @@ namespace QueryWFLib
 
             //为三个输出变量赋值
             //context.SetValue(SleepTime, int.Parse(ConfigHelper.GetSettingValue("sleepTime")));
-            var key_list = ConfigHelper.GetSettingValue("id_list");
-            var key_hash = ConfigHelper.GetSettingValue("id_hash");
+            //var key_list = ConfigHelper.GetSettingValue("id_list");
+            //var key_hash = ConfigHelper.GetSettingValue("id_hash");
             var key_list_msgid = ConfigHelper.GetSettingValue("id_list_msgid");
 
             context.SetValue(Id_list_msgid, key_list_msgid);

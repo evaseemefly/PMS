@@ -49,6 +49,7 @@
     <Compile Include="CheckMsgIdInRedist_Code.cs" />
     <Compile Include="GetStateByQueryList_Code.cs" />
     <Compile Include="InsertReciveModel2List_Code.cs" />
+    <Compile Include="ListWriteInDb_Code.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryState_Code.cs" />
     <Compile Include="ReadConfig_Code.cs" />
@@ -84,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

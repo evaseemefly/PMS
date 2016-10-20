@@ -54,6 +54,8 @@
       <Variable x:TypeArguments="pme:QueryState_Enum" Name="_state_enum" />
       <Variable x:TypeArguments="pms:SMSModel_QueryReceive" Name="item" />
       <Variable x:TypeArguments="pms:SMSModel_QueryReceive" Name="ReceviceModel" />
+      <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_Exist_queryModel" />
+      <Variable x:TypeArguments="pme:MatchCondition_Enum" Name="_matchCondition_enum" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
@@ -100,18 +102,15 @@
                                 </local:GetStateByQueryList_Code>
                                 <FlowStep.Next>
                                   <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_5">
-                                    <If sap2010:WorkflowViewState.IdRef="If_1">
+                                    <If DisplayName="遍历查询集合写入最终集合" sap2010:WorkflowViewState.IdRef="If_1">
                                       <If.Condition>
                                         <InArgument x:TypeArguments="x:Boolean">
-                                          <mca:CSharpValue x:TypeArguments="x:Boolean">_state_enum!=PMS.Model.Enum.QueryState_Enum.finish</mca:CSharpValue>
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">_state_enum==PMS.Model.Enum.QueryState_Enum.remnant</mca:CSharpValue>
                                         </InArgument>
                                       </If.Condition>
                                       <If.Then>
                                         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
-                                          <Sequence.Variables>
-                                            <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_Exist_queryModel" />
-                                          </Sequence.Variables>
-                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                                          <Assign DisplayName="存在的查询集合（最终要写入数据库中）" sap2010:WorkflowViewState.IdRef="Assign_1">
                                             <Assign.To>
                                               <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                                                 <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpReference>
@@ -120,6 +119,18 @@
                                             <Assign.Value>
                                               <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                                                 <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">new List&lt;SMSModel_QueryReceive&gt;();</mca:CSharpValue>
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="pme:MatchCondition_Enum">
+                                                <mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference>
+                                              </OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="pme:MatchCondition_Enum">
+                                                <mca:CSharpValue x:TypeArguments="pme:MatchCondition_Enum">PMS.Model.Enum.MatchCondition_Enum.unconform;</mca:CSharpValue>
                                               </InArgument>
                                             </Assign.Value>
                                           </Assign>
@@ -139,7 +150,7 @@
                                                 </Sequence.Variables>
                                                 <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="判断当前item中的msgid是否存在" />
                                                 <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
-                                                  <local:CheckMsgIdInRedist_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CheckMsgIdInRedist_Code_1">
+                                                  <local:CheckMsgIdInRedist_Code Text="{x:Null}" DisplayName="判断指定msgid及电话是否存在于缓存及数据库中" sap2010:WorkflowViewState.IdRef="CheckMsgIdInRedist_Code_1">
                                                     <local:CheckMsgIdInRedist_Code.Item_Model>
                                                       <InArgument x:TypeArguments="pms:SMSModel_QueryReceive">
                                                         <mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue>
@@ -170,6 +181,11 @@
                                                               <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpReference>
                                                             </InOutArgument>
                                                           </local:InsertReciveModel2List_Code.List_QueryReceive>
+                                                          <local:InsertReciveModel2List_Code.Match_Enum>
+                                                            <InOutArgument x:TypeArguments="pme:MatchCondition_Enum">
+                                                              <mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference>
+                                                            </InOutArgument>
+                                                          </local:InsertReciveModel2List_Code.Match_Enum>
                                                         </local:InsertReciveModel2List_Code>
                                                       </Sequence>
                                                     </If.Then>
@@ -189,6 +205,29 @@
                                         </Sequence>
                                       </If.Then>
                                     </If>
+                                    <FlowStep.Next>
+                                      <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                                        <If sap2010:WorkflowViewState.IdRef="If_4">
+                                          <If.Condition>
+                                            <InArgument x:TypeArguments="x:Boolean">
+                                              <mca:CSharpValue x:TypeArguments="x:Boolean">_matchCondition_enum== PMS.Model.Enum.MatchCondition_Enum.conform</mca:CSharpValue>
+                                            </InArgument>
+                                          </If.Condition>
+                                          <If.Then>
+                                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                              <local:ListWriteInDb_Code Text="{x:Null}" Write_Enum="{x:Null}" DisplayName="对存在的集合写入数据库" sap2010:WorkflowViewState.IdRef="ListWriteInDb_Code_1">
+                                                <local:ListWriteInDb_Code.List_Final>
+                                                  <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                                    <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:ListWriteInDb_Code.List_Final>
+                                              </local:ListWriteInDb_Code>
+                                              <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="写入完成" />
+                                            </Sequence>
+                                          </If.Then>
+                                        </If>
+                                      </FlowStep>
+                                    </FlowStep.Next>
                                   </FlowStep>
                                 </FlowStep.Next>
                               </FlowStep>
@@ -213,11 +252,12 @@
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>d01FOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbCkxA9kBDwIBATwJPFIDAY8BPw0/gwEDAY4BQhFCVgMBjAFFFUViAwGKAUgZSGYDAYgBSx1WNQIBeVkhZEICAWpnJb8BKgIBAjxHPE8DAZABQk9CUwMBjQFFU0VfAwGLAUhXSGMDAYkBTiNOlAEDAYEBUyNTbgIBelwnXJABAgFyYSdhgwECAWtqK2qcAQIBA24pvQE0AgEKcit9NAIBWX4rtwE1AgEUuAErvAE3AgELejF6sgECAWJ1MXWoAQIBWoEBMYEBoQECAVGIAS+1AToCARW6AS+6AZoBAgEMjAExjAGHAQIBT40BMbQBPAIBFowBb4wBhAECAVCOATOZAVMCATqaATOzATgCAReWATmWAZMBAgFFkQE5kQGMAQIBO50BOZ0BqQECARihATeuAUICASSxATexAYcBAgEiogE5rQFdAgElsQF1sQGEAQIBI6oBP6oBtgECATClAT+lAZIBAgEm</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID8</x:Reference>
+    <sads:DebugSymbol.Symbol>d01FOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbDQxA4ECDwIBAT4JPlIDAdcBQQ1BgwEDAdYBRBFEVgMB1AFHFUdiAwHSAUoZSmYDAdABTR1YNQMBvQFbIWZCAwGqAWklzwEqAgEZ0gEp5AEuAgECPkc+TwMB2AFET0RTAwHVAUdTR18DAdMBSldKYwMB0QFQI1CUAQMBxwFVI1VuAwG+AV4nXpABAwG0AWMnY4MBAwGrAWwrbJ0BAgEacCnNATQCASPVAS/VAa8BAgED2QEt4gE4AgEMcSt8NAMBlwF9K4gBNAMBhAGJASvHATUCAS7IASvMATcCASTaAS/gAUoCAQ/hAS/hAXcCAQ15MXmyAQMBoQF0MXSoAQMBmAGFATGFAasBAwGOAYABMYABmgEDAYUBjAExjAGhAQIBe5MBL8UBOgIBL8oBL8oBmgECASXdATXdAaQBAgEQ4QFu4QF0AgEOlwExlwGHAQIBeZgBMcQBPAIBMJcBb5cBhAECAXqZATOkAVMCAWKlATPDATgCATGhATmhAZMBAgFunAE5nAGMAQIBY6gBOagBqQECATKsATe+AUICAT/BATfBAYcBAgE9rQE5vQFdAgFAwQF1wQGEAQIBProBP7oBqAECAVe1AT+1AbYBAgFMsAE/sAGSAQIBQQ==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="213,63">
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="213,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -231,21 +271,21 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="213,63">
+      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="213,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="213,63">
+      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="213,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="213,63">
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="213,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -267,7 +307,8 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="538,61" />
-      <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="486,63" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="538,61" />
+      <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="486,61" />
       <sap2010:ViewStateData Id="CheckMsgIdInRedist_Code_1" sap:VirtualizedContainerService.HintSize="464,22" />
       <sap2010:ViewStateData Id="InsertReciveModel2List_Code_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,146">
@@ -277,97 +318,122 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_8" sap:VirtualizedContainerService.HintSize="213,63" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,299" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,485">
+      <sap2010:ViewStateData Id="WriteLine_8" sap:VirtualizedContainerService.HintSize="213,61" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,295" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,481">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,712">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,706">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="538,863" />
-      <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="538,63" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="560,1191">
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="538,855" />
+      <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="538,61" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="560,1282">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="685,1344">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ListWriteInDb_Code_1" sap:VirtualizedContainerService.HintSize="213,22" />
+      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="213,61" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="235,247">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,396">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">470,644.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">230,753.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,53</av:Size>
+            <av:Point x:Key="ShapeLocation">220,644.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">420,670 470,670</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">230,679</av:Point>
+            <av:Point x:Key="ShapeLocation">220,589</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,701 330,753.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">320,611 320,644.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">230,609</av:Point>
+            <av:Point x:Key="ShapeLocation">220,539</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,631 330,679</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">320,561 320,589</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">223.5,498.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,561.5 330,609</av:PointCollection>
+            <av:Point x:Key="ShapeLocation">213.5,439.5</av:Point>
+            <av:Size x:Key="ShapeSize">213,61</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">320,500.5 320,539</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">223.5,378.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,441.5 330,498.5</av:PointCollection>
+            <av:Point x:Key="ShapeLocation">213.5,339.5</av:Point>
+            <av:Size x:Key="ShapeSize">213,61</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">320,400.5 320,439.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">223.5,268.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,331.5 330,378.5</av:PointCollection>
+            <av:Point x:Key="ShapeLocation">213.5,249.5</av:Point>
+            <av:Size x:Key="ShapeSize">213,61</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">320,310.5 320,339.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">230,209</av:Point>
+            <av:Point x:Key="ShapeLocation">210,199</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,231 330,268.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">310,221 310,249.5 320,249.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -375,12 +441,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">213.5,108.5</av:Point>
-            <av:Size x:Key="ShapeSize">213,63</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">320,171.5 320,201.5 330,201.5 330,209</av:PointCollection>
+            <av:Size x:Key="ShapeSize">213,61</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">320,169.5 310,169.5 310,199</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="694,990">
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="704,990">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -388,11 +454,11 @@
             <av:Size x:Key="ShapeSize">60,75</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">310,77.5 310,107.5 320,107.5 320,108.5</av:PointCollection>
             <x:Double x:Key="Height">954</x:Double>
-            <x:Double x:Key="Width">680</x:Double>
+            <x:Double x:Key="Width">690</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="QueryWFLib.MainStatistics_Activity_1" sap:VirtualizedContainerService.HintSize="734,1070" />
+      <sap2010:ViewStateData Id="QueryWFLib.MainStatistics_Activity_1" sap:VirtualizedContainerService.HintSize="744,1070" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
