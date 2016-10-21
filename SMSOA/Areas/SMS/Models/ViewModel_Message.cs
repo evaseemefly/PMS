@@ -26,6 +26,25 @@ namespace SMSOA.Areas.SMS.Models
             }
         }
 
+        public string PhoneNums { get; set; }
+
+        public string[] PhoneNum_Str
+        {
+            get
+            {
+                if (PhoneNums.Length > 0)
+                {
+                    //使用新的方法将string字符串改为数组
+                    return PhoneNums.Split(',');
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+
         public string Content { get; set; }
         public string SMSMissionID { get; set; }
     }

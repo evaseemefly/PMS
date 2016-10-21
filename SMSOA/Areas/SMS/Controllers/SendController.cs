@@ -344,15 +344,23 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
 
-            //1 获取联系人id 数组
-
+            //1 获取已有联系人id 数组
             var ids= model.PersonId_Int;
+
+            // 获取临时联系人的电话数组
+            var phoneNums = model.PhoneNum_Str;
+
             //1.1 根据联系人id数组获取指定的联系人
             var list_person= personBLL.GetListByIds(ids.ToList());
+
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
-            
+
+            list_phones.AddRange(phoneNums.ToList());
+
+            //调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
+
             //2 获取短信内容
             var content = model.Content;
 
