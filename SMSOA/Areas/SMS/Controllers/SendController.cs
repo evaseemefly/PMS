@@ -355,11 +355,26 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
-            list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+            //list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
 
             list_phones.AddRange(phoneNums.ToList());
 
-            //调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
+            //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
+            string PName_Temp = "临时联系人";
+            //1.4 目前默认只添加到全部联系人群组中
+            int groupID_AllContacts = groupBLL.GetListBy(a => a.GroupName.Equals("全部联系人")).FirstOrDefault().GID;
+            List<int> groupIds = new List<int>();
+            groupIds.Add(groupID_AllContacts);
+            //1.5 循环写入数据库
+            bool isSaveTempPersonOk = false;
+            foreach (var item in phoneNums)
+            {
+                isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
+            }
+            if (!isSaveTempPersonOk)
+            {
+                return Content("服务器错误");
+            }
 
             //2 获取短信内容
             var content = model.Content;
