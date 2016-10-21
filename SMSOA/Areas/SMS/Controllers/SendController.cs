@@ -336,7 +336,7 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             //1 有效性判断
             //1.1 联系人名单为空，不执行发送操作，返回
-            if (model.PersonIds == null) { return Content("empty contact list"); }
+            if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
