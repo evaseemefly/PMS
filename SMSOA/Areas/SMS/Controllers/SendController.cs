@@ -357,7 +357,6 @@ namespace SMSOA.Areas.SMS.Controllers
             List<string> list_phones = new List<string>(); ;
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
 
-            list_phones.AddRange(phoneNums.ToList());
 
             //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
             string PName_Temp = "临时联系人";
@@ -367,13 +366,26 @@ namespace SMSOA.Areas.SMS.Controllers
             groupIds.Add(groupID_AllContacts);
             //1.5 循环写入数据库
             bool isSaveTempPersonOk = false;
-            foreach (var item in phoneNums)
+            if(phoneNums.Length != 0)
             {
-                isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
-            }
-            if (!isSaveTempPersonOk)
-            {
-                return Content("服务器错误");
+                foreach (var item in phoneNums)
+                {
+                    //1.6 判断输入的联系人在是否存在在数据库中
+
+                    if (!personBLL.AddValidation(item))
+                    {
+                        //1.7 不存在在数据库中，则将临时联系人添加进数据库
+                        isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
+                        if (!isSaveTempPersonOk)
+                        {
+                            return Content("服务器错误");
+                        }
+                    }      
+                        //1.7 存在在数据库中，且已经在发送列表中，这种情况需讨论
+                    
+                }
+
+                list_phones.AddRange(phoneNums.ToList());
             }
 
             //2 获取短信内容

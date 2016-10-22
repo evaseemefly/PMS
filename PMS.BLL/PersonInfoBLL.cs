@@ -157,14 +157,14 @@ namespace PMS.BLL
             person_model.PName = PName;
             person_model.PhoneNum = PhoneNum;
             person_model.isVIP = isVIP;
-            var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
+            var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department &&d.isDel == false).FirstOrDefault();
            // person_model.P_DepartmentInfo = department_temp;
 
             List<P_Group> list_group=new List<P_Group>();
             //遍历添加group ids集合中的群组对象
             foreach (var item in list_group_ids)
             {
-                var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item).FirstOrDefault();
+                var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item && g.isDel == false).FirstOrDefault();
                 //list_group.Add(group_temp);
                 person_model.P_Group.Add(group_temp);
             }
@@ -305,7 +305,7 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 数据验证
+        /// 数据验证，联系人是否在数据库中
         /// </summary>
         /// <returns></returns>
         public bool AddValidation(String phoneNum)
@@ -344,20 +344,20 @@ namespace PMS.BLL
                 isVIP = isVIP
             };
             
-            //当前默认不分配部门
+            //2当前默认不分配部门
             if(id_department!= -1)
             {
-                var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department).FirstOrDefault();
+                var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department && d.isDel == false).FirstOrDefault();
                 person_model.P_DepartmentInfo.Add(department_temp);
             }
-            //当前默认会分配进全部联系人
+            //3当前默认会分配进全部联系人
             if(list_group_ids != null)
             {
                 List<P_Group> list_group = new List<P_Group>();
-                //遍历添加group ids集合中的群组对象
+                //4遍历添加group ids集合中的群组对象
                 foreach (var item in list_group_ids)
                 {
-                    var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item).FirstOrDefault();
+                    var group_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => g.GID == item && g.isDel == false).FirstOrDefault();
                     //list_group.Add(group_temp);
                     person_model.P_Group.Add(group_temp);
                 }
