@@ -185,6 +185,20 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 6月15日发现的添加联系人的bug做如下修改
+        /// 执行新建联系人的操作
+        /// </summary>
+        /// <param name="PName"></param>
+        /// <param name="PhoneNum"></param>
+        /// <param name="list_group_ids"></param>
+        /// <param name="id_department"></param>
+        /// <returns></returns>
+        //public bool DoAddTempPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids = null, int id_department = -1)
+        //{
+        //    return true;
+        //}
+
+        /// <summary>
         /// 对指定联系人执行修改操作
         /// </summary>
         /// <param name="pid">联系人ID</param>
@@ -334,10 +348,11 @@ namespace PMS.BLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        bool DoAddTempPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids = null, int id_department = -1)
-        {
+       public bool DoAddTempPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids = null, int id_department = -1)
+        {            
+
             //1. 创建联系人对象，封装
-            PMS.Model.P_PersonInfo person_model = new P_PersonInfo()
+        PMS.Model.P_PersonInfo person_model = new P_PersonInfo()
             {
                 PName = PName,
                 PhoneNum = PhoneNum,

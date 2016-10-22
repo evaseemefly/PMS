@@ -24,12 +24,24 @@
                  { field: 'PID', title: 'ID', width: 50, checkbox: true },
                  { field: 'PName', title: '用户名称', width: 100 },
                  { field: 'PhoneNum', title: '电话号码', width: 150 },
-                 { field: 'isVIP', title: '是否是VIP', width: 150 }
+                 { field: 'isVIP', title: '是否是VIP', width: 150 },
+                 { field: 'isTemp', title: '是否是临时联系人', width: 50 }
         ]]
 
         function formatItem_combobox(row) {
             var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
             return s;
+        }
+
+        function split4phone(obj, temp) {
+            var phones = "";
+
+            $.each(obj, function (index, data) {
+                if (data["isTemp"] == 2) {
+                    phones = phones + data[temp] + ",";
+                }
+            })
+            return phones = phones.substr(0, phones.length - 1);
         }
 
         function split4id(obj, index) {
@@ -41,6 +53,17 @@
             return ids;
         }
 
+        function append() {
+            //向表格中追加
+            var row_temp = new Object();
+            //获取添加的内容
+            var phone= $("#txt_addPerson").val();
+            row_temp.PName = '临时联系人';
+            row_temp.isVIP = true;
+            row_temp.PhoneNum = phone;
+            row_temp.isTemp = 2;
+            $('#persondatagrid').datagrid('appendRow', row_temp);
+        }
 
         //function OnChecks() {
         //    var ids= $("#group_combogrid").combobox("getChecked");
@@ -48,10 +71,11 @@
 
 
 
-        function AjaxSubmit(pids, content,url,missionId) {
+        function AjaxSubmit(pids,phones, content,url,missionId) {
             //1 创建对象
             var model = new Object();
             model.PersonIds = pids;
+            model.PhoneNums=phones;
             model.Content = content;
             model.SMSMissionID = missionId;
             //2 使用ajax方式提交（此处先不用post）
@@ -100,6 +124,7 @@
                 var checkeds = $("#persondatagrid").datagrid("getChecked");
                 //1.1 获取选中的联系人id用,分隔，并提交
                 var ids_person = split4id(checkeds, "PID");
+                var phones_temp = split4phone(checkeds, "PhoneNum");
                 var url='@ViewBag.DoSend';
                 //2 获取短信内容
                 var content = $("#message").textbox('getValue');
@@ -108,7 +133,7 @@
                 var mission_id = mission_checkeds[0]["SMID"];
                 //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
                 //3 发送（进行校验）
-                AjaxSubmit(ids_person, content, url, mission_id);
+                AjaxSubmit(ids_person,phones_temp, content, url, mission_id);
                 return;
             });
             //if(state==false){
@@ -262,7 +287,9 @@
 
 
 
-
+        function  addPerson_Temp() {
+            alert("添加");
+        }
 
         function loadDataGrid_Person(url) {
             $("#persondatagrid").datagrid({
@@ -276,6 +303,7 @@
                 rownumbers: true, //是否加行号
                 loadMsg: '加载中……',
                 columns: PersonColumns,
+                toolbar: '#tb',
                 onLoadSuccess: function () {
                     var data = $("#persondatagrid").datagrid("getData");
                     var rowData = data.rows;

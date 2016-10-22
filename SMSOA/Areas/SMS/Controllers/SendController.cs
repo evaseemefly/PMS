@@ -336,7 +336,7 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             //1 有效性判断
             //1.1 联系人名单为空，不执行发送操作，返回
-            if (model.PersonIds == null) { return Content("empty contact list"); }
+            if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
@@ -355,7 +355,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
-            list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+            //list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
 
 
             //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
