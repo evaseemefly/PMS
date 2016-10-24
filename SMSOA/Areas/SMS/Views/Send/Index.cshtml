@@ -193,9 +193,9 @@
                     loadComboTree_Department(rowData.SMID);
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
-                    //loadDataGrid_Person("person_temp_datagrid",null,null,"tb")
-                    ////loadDataGrid_Person("person_temp_datagrid","");
-                    //loadDataGrid_Person("persondatagrid",url,"200",null);
+                    loadDataGrid_Person("person_temp_datagrid",null,null,"tb")
+                    //loadDataGrid_Person("person_temp_datagrid","");
+                    loadDataGrid_Person("persondatagrid",url,"200",null);
                     //根据所选的短信任务类型加载模板
                     loadtextbox_Template(rowData.SMID,userId);
                 }
