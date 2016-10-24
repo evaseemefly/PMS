@@ -47,7 +47,9 @@
         function split4id(obj, index) {
             var ids = "";
             for (var i = 0; i < obj.length; i++) {
-                ids = ids + obj[i][index] + ",";
+                if(obj[i][index]!=null){
+                    ids = ids + obj[i][index] + ",";
+                }
             }
             ids = ids.substr(0, ids.length - 1);
             return ids;
@@ -62,7 +64,7 @@
             row_temp.isVIP = true;
             row_temp.PhoneNum = phone;
             row_temp.isTemp = 2;
-            $('#persondatagrid').datagrid('appendRow', row_temp);
+            $('#person_temp_datagrid').datagrid('appendRow', row_temp);
         }
 
         //function OnChecks() {
@@ -191,7 +193,9 @@
                     loadComboTree_Department(rowData.SMID);
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
-                    loadDataGrid_Person(url);
+                    //loadDataGrid_Person("person_temp_datagrid",null,null,"tb")
+                    ////loadDataGrid_Person("person_temp_datagrid","");
+                    //loadDataGrid_Person("persondatagrid",url,"200",null);
                     //根据所选的短信任务类型加载模板
                     loadtextbox_Template(rowData.SMID,userId);
                 }
@@ -291,32 +295,44 @@
             alert("添加");
         }
 
-        function loadDataGrid_Person(url) {
-            $("#persondatagrid").datagrid({
+        function loadDataGrid_Person(datagrid_id,url,isPagination,tb_id) {
+            $("#"+datagrid_id).datagrid({
                 fitColumns: true,
                 striped: true,
                 multiple: true,     //单选
-                fit: true,
+                //fit: true,
                 url: url,
                 showHeader: true,
                 // pagination:true,//在数据表格控件底部显示分页工具栏
                 rownumbers: true, //是否加行号
                 loadMsg: '加载中……',
                 columns: PersonColumns,
-                toolbar: '#tb',
                 onLoadSuccess: function () {
                     var data = $("#persondatagrid").datagrid("getData");
                     var rowData = data.rows;
                     $.each(rowData, function (rowIndex, rowData) {
-                        $("#persondatagrid").datagrid("selectRow", rowIndex);
+                        $("#"+datagrid_id).datagrid("selectRow", rowIndex);
                     });
                 }
             });
 
-            var p=$("#persondatagrid").datagrid('getPager');
+            var p=$("#"+datagrid_id).datagrid('getPager');
             p.pagination({
                 displayMsg: '共{total}条数据'
             });
+            
+            if(tb_id!=null){
+                $("#"+datagrid_id).datagrid({			
+                    toolbar: '#'+tb_id
+                })
+            }
+            
+            	
+            if(isPagination!=null){
+                $("#"+datagrid_id).datagrid({			
+                    pagination:true
+                })
+            }
         }
 
 
