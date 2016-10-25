@@ -25,7 +25,7 @@
                  { field: 'PName', title: '用户名称', width: 100 },
                  { field: 'PhoneNum', title: '电话号码', width: 150 },
                  { field: 'isVIP', title: '是否是VIP', width: 150 },
-                 { field: 'isTemp', title: '是否是临时联系人', width: 50 }
+                 //{ field: 'isTemp', title: '是否是临时联系人', width: 50 }
         ]]
 
         function formatItem_combobox(row) {
@@ -193,9 +193,7 @@
                     loadComboTree_Department(rowData.SMID);
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
-                    //loadDataGrid_Person("person_temp_datagrid",null,null,"tb")
-                    ////loadDataGrid_Person("person_temp_datagrid","");
-                    //loadDataGrid_Person("persondatagrid",url,"200",null);
+                   
                     //根据所选的短信任务类型加载模板
                     loadtextbox_Template(rowData.SMID,userId);
                 }
@@ -219,11 +217,11 @@
                 columns: groupColumns,
                 onSelect:function(rowIndex, rowData){
                     //alert("选中了一行");
-                    loadDataGridByGroupDepartment_Personss();
+                    loadDataGridByGroupDepartment_Persons();
                 },
                 onUnselect:function(rowIndex, rowData){
                     //alert("去掉已经选中的一行");
-                    loadDataGridByGroupDepartment_Personss();
+                    loadDataGridByGroupDepartment_Persons();
                 },
                // formatter: formatItem_combobox,
                 //获取数据成功后启动事件
@@ -255,7 +253,7 @@
                     //alert("选中" + node);
                     //var nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
                     //alert("选中了" + nodes.length+"个节点");
-                    loadDataGridByGroupDepartment_Personss();
+                    loadDataGridByGroupDepartment_Persons();
                 }
             });
             //选中子节点不会选中父节点
@@ -263,7 +261,7 @@
 
         }
 
-        function loadDataGridByGroupDepartment_Personss() {
+        function loadDataGridByGroupDepartment_Persons() {
             //1 获取当前选中的group以及department下拉框所选中的ids
             //1.1 获取当前选中的群组下拉框
             var grid = $("#group_combogrid").combogrid("grid");
@@ -286,7 +284,9 @@
             //2 请求url加载至Person_DataGrid
             var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
 
-            loadDataGrid_Person(url);
+            //loadDataGrid_Person(url);
+            loadDataGrid_Person("person_temp_datagrid",null,null,"tb");
+            loadDataGrid_Person("persondatagrid",url,"200",null);
         }
 
 
@@ -294,6 +294,8 @@
         function  addPerson_Temp() {
             alert("添加");
         }
+
+        var arr_UnSelectPersonIds=[];
 
         function loadDataGrid_Person(datagrid_id,url,isPagination,tb_id) {
             $("#"+datagrid_id).datagrid({
@@ -313,13 +315,19 @@
                     $.each(rowData, function (rowIndex, rowData) {
                         $("#"+datagrid_id).datagrid("selectRow", rowIndex);
                     });
+                },
+                onUnselect:function(rowIndex, rowData){
+                    //alert("去掉已经选中的一行");
+                    arr_UnSelectPersonIds.push(rowData["PID"]);
+
+                    alert(arr_UnSelectPersonIds.length);
                 }
             });
 
-            var p=$("#"+datagrid_id).datagrid('getPager');
-            p.pagination({
-                displayMsg: '共{total}条数据'
-            });
+            //var p=$("#"+datagrid_id).datagrid('getPager');
+            //p.pagination({
+            //    displayMsg: '共{total}条数据'
+            //});
             
             if(tb_id!=null){
                 $("#"+datagrid_id).datagrid({			

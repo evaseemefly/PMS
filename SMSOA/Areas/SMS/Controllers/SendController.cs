@@ -162,6 +162,11 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <returns></returns>
         public ActionResult GetPersonByGroupDepartment()
         {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+
+            int rowCount = 0;
+
             string dids= Request.QueryString["dids"];
             string gids = Request.QueryString["gids"];
             List<int> list_dids = new List<int>();
@@ -186,9 +191,14 @@ namespace SMSOA.Areas.SMS.Controllers
             //3 将联系人集合去重
             list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).ToList();
             list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
+            rowCount = list_person.Count();
+
+            //分页
+            list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(); 
+
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
-                total = list_person.Count,
+                total = rowCount,
                 rows = list_person,
                 footer = null
             };
