@@ -7,6 +7,10 @@ namespace SMSOA.Areas.SMS.Models
 {
     public class ViewModel_Message
     {
+        /// <summary>
+        /// 此处修改
+        /// 此处的id是不发送的人员id
+        /// </summary>
         public string PersonIds { get; set; }
 
         public int[] PersonId_Int

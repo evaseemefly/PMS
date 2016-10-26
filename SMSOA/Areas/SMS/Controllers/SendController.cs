@@ -164,37 +164,14 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
-
-            int rowCount = 0;
+            
 
             string dids= Request.QueryString["dids"];
             string gids = Request.QueryString["gids"];
-            List<int> list_dids = new List<int>();
-            List<int> list_gids = new List<int>();
-            if(dids!="")
-            {
-                dids.Split(',').ToList().ForEach(d => list_dids.Add(int.Parse(d)));
-            }
-            if(gids!="")
-            {
-                gids.Split(',').ToList().ForEach(g => list_gids.Add(int.Parse(g)));
-            }
-           
 
-            //2 根据department以及group的id查询其对应的Person对象集合
-            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
-            var list_department= departmentBLL.GetListByIds(list_dids);
-            list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
-            var list_group = groupBLL.GetListByIds(list_gids);
-            list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
+            int rowCount = 0;
 
-            //3 将联系人集合去重
-            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).ToList();
-            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
-            rowCount = list_person.Count();
-
-            //分页
-            list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(); 
+           var list_person= GetPersonListByGroupDepartment(dids, gids, pageSize, pageIndex, out rowCount);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
@@ -205,6 +182,49 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //4 序列化后返回
             return Content(Common.SerializerHelper.SerializerToString(dgModel));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dids"></param>
+        /// <param name="gids"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, int pageSize=-1,int pageIndex=-1,out int rowCount)
+        {
+            List<int> list_dids = new List<int>();
+            List<int> list_gids = new List<int>();
+            if (dids != "")
+            {
+                dids.Split(',').ToList().ForEach(d => list_dids.Add(int.Parse(d)));
+            }
+            if (gids != "")
+            {
+                gids.Split(',').ToList().ForEach(g => list_gids.Add(int.Parse(g)));
+            }
+
+
+            //2 根据department以及group的id查询其对应的Person对象集合
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            var list_department = departmentBLL.GetListByIds(list_dids);
+            list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
+            var list_group = groupBLL.GetListByIds(list_gids);
+            list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
+
+            //3 将联系人集合去重
+            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).ToList();
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
+            rowCount = list_person.Count();
+
+            if (pageIndex != -1 && pageSize != -1)
+            {
+                //分页
+                list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            return list_person;
         }
 
         protected string GetGroupByUser(int userId,bool isChecked)
@@ -346,7 +366,7 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             //1 有效性判断
             //1.1 联系人名单为空，不执行发送操作，返回
-            if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
+            //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
@@ -354,7 +374,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
 
-            //1 获取已有联系人id 数组
+            //1 获取要去除的 联系人id 数组
             var ids= model.PersonId_Int;
 
             // 获取临时联系人的电话数组

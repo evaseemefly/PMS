@@ -124,9 +124,12 @@
             //1 获取右侧联系人datagrid列表中选中的联系人id
             var state= messagerConfirm("请确认","是否要执行发送短信操作?",function(){
                 var checkeds = $("#persondatagrid").datagrid("getChecked");
+                var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
                 //1.1 获取选中的联系人id用,分隔，并提交
-                var ids_person = split4id(checkeds, "PID");
-                var phones_temp = split4phone(checkeds, "PhoneNum");
+                //var ids_person = split4id(checkeds, "PID");
+                //注意此处为[1,...2]这种数组，需要将其拼接为1,...2字符串
+                var ids_person = arr_UnSelectPersonIds.join(",");
+                var phones_temp = split4phone(temp_checkeds, "PhoneNum");
                 var url='@ViewBag.DoSend';
                 //2 获取短信内容
                 var content = $("#message").textbox('getValue');
@@ -318,11 +321,17 @@
                 },
                 onUnselect:function(rowIndex, rowData){
                     //alert("去掉已经选中的一行");
-                    arr_UnSelectPersonIds.push(rowData["PID"]);
-
+                    my_pushInArr(arr_UnSelectPersonIds,rowData["PID"]);   
                     alert(arr_UnSelectPersonIds.length);
                 }
             });
+
+            //向数组中插入不重复的值
+            function my_pushInArr(arr,value){
+                if(arr.indexOf(value)==-1){   
+                    arr.push(value);
+                }
+            }
 
             //var p=$("#"+datagrid_id).datagrid('getPager');
             //p.pagination({
