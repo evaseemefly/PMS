@@ -37,9 +37,9 @@
             var phones = "";
 
             $.each(obj, function (index, data) {
-                if (data["isTemp"] == 2) {
+                //if (data["isTemp"] == 2) {
                     phones = phones + data[temp] + ",";
-                }
+                //}
             })
             return phones = phones.substr(0, phones.length - 1);
         }
@@ -56,15 +56,29 @@
         }
 
         function append() {
-            //向表格中追加
-            var row_temp = new Object();
+           
             //获取添加的内容
             var phone= $("#txt_addPerson").val();
-            row_temp.PName = '临时联系人';
-            row_temp.isVIP = true;
-            row_temp.PhoneNum = phone;
-            row_temp.isTemp = 2;
-            $('#person_temp_datagrid').datagrid('appendRow', row_temp);
+            //向表格中追加
+            var row_temp= {
+                PName: '临时联系人',
+                isVIP: true,
+                PhoneNum: phone
+            };
+
+            //使用以下方式只能使用appenRow方法insertRow会有错
+            //var row_temp = new Object();            
+            //row_temp.PID=-1;
+            //row_temp.PName = '临时联系人';
+            //row_temp.isVIP = true;
+            //row_temp.PhoneNum = phone;
+            //row_temp.isTemp = 2;
+            //$('#person_temp_datagrid').datagrid('appendRow', row_temp); 
+
+            $('#person_temp_datagrid').datagrid('insertRow', {
+                index: 0,	// 索引从0开始
+                row: row_temp});      
+            $('#person_temp_datagrid').datagrid('checkRow', 0); 
         }
 
         //function OnChecks() {
@@ -73,13 +87,15 @@
 
 
 
-        function AjaxSubmit(pids,phones, content,url,missionId) {
+        function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds) {
             //1 创建对象
             var model = new Object();
             model.PersonIds = pids;
             model.PhoneNums=phones;
             model.Content = content;
             model.SMSMissionID = missionId;
+            model.GroupIds=groupIds;
+            model.DepartmentIds=departmentIds;
             //2 使用ajax方式提交（此处先不用post）
             $.ajax({
                 url: url,
@@ -123,7 +139,13 @@
             //alert("要发送短信了");
             //1 获取右侧联系人datagrid列表中选中的联系人id
             var state= messagerConfirm("请确认","是否要执行发送短信操作?",function(){
-                var checkeds = $("#persondatagrid").datagrid("getChecked");
+
+                //1 获取选中的群组及部门
+                //var group_checkeds = $("#group_combogrid").combogrid("getChecked");
+                var group_checkeds =  $("#group_combogrid").combobox('getValues');
+                //var department_checkeds = $("#DepartmentName_combotree").combotree("getChecked");
+                var department_checkeds =  $("#DepartmentName_combotree").combobox('getValues');
+                //var checkeds = $("#persondatagrid").datagrid("getChecked");
                 var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
                 //1.1 获取选中的联系人id用,分隔，并提交
                 //var ids_person = split4id(checkeds, "PID");
@@ -138,7 +160,7 @@
                 var mission_id = mission_checkeds[0]["SMID"];
                 //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
                 //3 发送（进行校验）
-                AjaxSubmit(ids_person,phones_temp, content, url, mission_id);
+                AjaxSubmit(ids_person,phones_temp, content, url, mission_id,group_checkeds,department_checkeds);
                 return;
             });
             //if(state==false){
@@ -288,8 +310,8 @@
             var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
 
             //loadDataGrid_Person(url);
-            loadDataGrid_Person("person_temp_datagrid",null,null,"tb");
-            loadDataGrid_Person("persondatagrid",url,"200",null);
+            loadDataGrid_Person("person_temp_datagrid",null,null,"tb",true);
+            loadDataGrid_Person("persondatagrid",url,"200",null,false);
         }
 
 
@@ -300,7 +322,7 @@
 
         var arr_UnSelectPersonIds=[];
 
-        function loadDataGrid_Person(datagrid_id,url,isPagination,tb_id) {
+        function loadDataGrid_Person(datagrid_id,url,isPagination,tb_id,isTempPerson) {
             $("#"+datagrid_id).datagrid({
                 fitColumns: true,
                 striped: true,
@@ -319,10 +341,18 @@
                         $("#"+datagrid_id).datagrid("selectRow", rowIndex);
                     });
                 },
+                onSelect:function(rowIndex,rowData){
+                    if(!isTempPerson){
+                        my_popFromArr(arr_UnSelectPersonIds,rowData["PID"]);
+                    }
+                },
                 onUnselect:function(rowIndex, rowData){
-                    //alert("去掉已经选中的一行");
-                    my_pushInArr(arr_UnSelectPersonIds,rowData["PID"]);   
-                    alert(arr_UnSelectPersonIds.length);
+                    if(!isTempPerson){
+                        //alert("去掉已经选中的一行");
+                        my_pushInArr(arr_UnSelectPersonIds,rowData["PID"]); 
+                        alert(arr_UnSelectPersonIds.length);
+                    }
+                   
                 }
             });
 
@@ -330,6 +360,13 @@
             function my_pushInArr(arr,value){
                 if(arr.indexOf(value)==-1){   
                     arr.push(value);
+                }
+            }
+
+            //向数组中插入数据
+            function my_popFromArr(arr,value){
+                if(arr.indexOf(value)!=-1){   
+                    arr.splice(arr.indexOf(value),1);
                 }
             }
 

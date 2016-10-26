@@ -166,12 +166,14 @@ namespace SMSOA.Areas.SMS.Controllers
             int pageIndex = int.Parse(Request.Form["page"]);
             
 
-            string dids= Request.QueryString["dids"];
-            string gids = Request.QueryString["gids"];
+            string dids_str= Request.QueryString["dids"];
+            string gids_str = Request.QueryString["gids"];
+
+            //int[] dids= Array.ConvertAll<string, int>(strArray, s => int.Parse(s));
 
             int rowCount = 0;
 
-           var list_person= GetPersonListByGroupDepartment(dids, gids, pageSize, pageIndex, out rowCount);
+           var list_person= GetPersonListByGroupDepartment(dids_str, gids_str, out rowCount, pageSize, pageIndex);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
@@ -193,17 +195,23 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <param name="pageIndex"></param>
         /// <param name="rowCount"></param>
         /// <returns></returns>
-        protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, int pageSize=-1,int pageIndex=-1,out int rowCount)
+        protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids,out int rowCount, int pageSize=-1,int pageIndex=-1)
         {
             List<int> list_dids = new List<int>();
             List<int> list_gids = new List<int>();
             if (dids != "")
-            {
-                dids.Split(',').ToList().ForEach(d => list_dids.Add(int.Parse(d)));
+            {                
+                var list_dids_temp = (from g in dids.Split(',')
+                                      where g != ""
+                                      select g).ToList();
+                list_dids_temp.ForEach(g => list_gids.Add(int.Parse(g)));
             }
             if (gids != "")
             {
-                gids.Split(',').ToList().ForEach(g => list_gids.Add(int.Parse(g)));
+                var list_gids_temp = (from g in gids.Split(',')
+                                 where g != ""
+                                 select g).ToList();
+                list_gids_temp.ForEach(g => list_gids.Add(int.Parse(g)));
             }
 
 
@@ -291,8 +299,8 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //8月31日
             //之前的备份
-            //var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
-            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, false);
+            var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, true);
+            //var list = ToEasyUICombogrid_Group.ToEasyUIDataGrid(list_owned_group, false);
             //2 从所有的群组中删除该任务所拥有的群组集合
             //2.1 获取当前用户所拥有的常用群组(通过User查询对应的Group）
             var list_excludeOwned_group = userBLL.GetRestGroupListByIds(list_owned_Ids, userId, true);
@@ -368,30 +376,71 @@ namespace SMSOA.Areas.SMS.Controllers
             //1.1 联系人名单为空，不执行发送操作，返回
             //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
-            if (model.Content == null) { return Content("empty content"); }
+             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
             if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
 
 
 
-            //1 获取要去除的 联系人id 数组
+            //1.1 获取要去除的 联系人id 数组
             var ids= model.PersonId_Int;
 
-            // 获取临时联系人的电话数组
+            //1.2 获取临时联系人的电话数组
             var phoneNums = model.PhoneNum_Str;
 
-            //1.1 根据联系人id数组获取指定的联系人
-            var list_person= personBLL.GetListByIds(ids.ToList());
+            int count = 0;
+            string dids_str = null;
+            string gids_str = null;
+            if (model.GroupIds == null)
+            {
+                gids_str = "";
+            }
 
-            //1.2 获取
-            List<string> list_phones = new List<string>(); 
+            if (model.DepartmentIds == null)
+            {
+                dids_str = "";
+            }
+            
+            if(model.GroupIds != null)
+            {
+                foreach (var item in model.GroupIds)
+                {
+                    gids_str += item.ToString() + ",";
+                }
+            }
+
+            if (model.DepartmentIds != null)
+            {
+                foreach (var item in model.DepartmentIds)
+                {
+                    dids_str += item.ToString() + ",";
+                }
+            }
+
+            //1.3 根据传入的群组及部门id获取对应的联系人
+            var list_person= GetPersonListByGroupDepartment(dids_str, gids_str, out count);
+
+            //2.1 去除不需要的联系人，获得最终联系人集合
+            list_person = (from p in list_person
+                               where !ids.Contains(p.PID)
+                               select p).ToList();
+
+
+
+            //1.1 根据联系人id数组获取指定的联系人
+            //var list_person= personBLL.GetListByIds(ids.ToList());
+
+            //2.2 获取联系人集合中的电话生成电话集合
+            List < string > list_phones = new List<string>(); 
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
 
 
             //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
             string PName_Temp = "临时联系人";
+
             //1.4 目前默认只添加到全部联系人群组中
             int groupID_AllContacts = groupBLL.GetListBy(a => a.GroupName.Equals("全部联系人")).FirstOrDefault().GID;
+
             List<int> groupIds = new List<int>();
             groupIds.Add(groupID_AllContacts);
             //1.5 循环写入数据库

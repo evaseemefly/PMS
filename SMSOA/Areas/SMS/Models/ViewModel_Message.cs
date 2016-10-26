@@ -30,6 +30,16 @@ namespace SMSOA.Areas.SMS.Models
             }
         }
 
+        public int[] GroupIds
+        {
+            get;set;
+        }
+
+        public int[] DepartmentIds
+        {
+            get; set;
+        }
+
         public string PhoneNums { get; set; }
 
         public string[] PhoneNum_Str
