@@ -9,6 +9,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IJ_JobInfoBLL:IBaseBLL<J_JobInfo>
+    {
+        
+
+    }
 	    public partial interface IN_NewsBLL:IBaseBLL<N_News>
     {
         

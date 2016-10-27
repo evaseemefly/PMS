@@ -31,6 +31,36 @@
           <Property Name="isShow" Type="bit" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="smallint" Nullable="false" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“PMS20160406.dbo.J_JobInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="J_JobInfo">
+          <Key>
+            <PropertyRef Name="JID" />
+            <PropertyRef Name="JobClassName" />
+            <PropertyRef Name="JobState" />
+            <PropertyRef Name="StartRunTime" />
+            <PropertyRef Name="EndRunTime" />
+            <PropertyRef Name="NextRunTime" />
+            <PropertyRef Name="InfoState" />
+            <PropertyRef Name="CreateTime" />
+            <PropertyRef Name="JobName" />
+          </Key>
+          <Property Name="JID" Type="int" Nullable="false" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="JobClassName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="JobState" Type="int" Nullable="false" />
+          <Property Name="CronStr" Type="varchar" MaxLength="40" />
+          <Property Name="StartRunTime" Type="datetime" Nullable="false" />
+          <Property Name="EndRunTime" Type="datetime" Nullable="false" />
+          <Property Name="NextRunTime" Type="datetime" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="40" />
+          <Property Name="AppID" Type="varchar" MaxLength="40" />
+          <Property Name="MissionDescription" Type="nvarchar" MaxLength="200" />
+          <Property Name="InfoState" Type="int" Nullable="false" />
+          <Property Name="CreateUser" Type="nvarchar" MaxLength="30" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="N_News">
           <Key>
             <PropertyRef Name="SNID" />
@@ -294,7 +324,7 @@
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160325.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“PMS20160406.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -767,6 +797,25 @@
           <EntitySet Name="S_SMSType" EntityType="Self.S_SMSType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WF_Query_Instance" EntityType="Self.WF_Query_Instance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="J_JobInfo" EntityType="Self.J_JobInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [J_JobInfo].[JID] AS [JID], 
+    [J_JobInfo].[JobName] AS [JobName], 
+    [J_JobInfo].[JobGroup] AS [JobGroup], 
+    [J_JobInfo].[JobClassName] AS [JobClassName], 
+    [J_JobInfo].[JobState] AS [JobState], 
+    [J_JobInfo].[CronStr] AS [CronStr], 
+    [J_JobInfo].[StartRunTime] AS [StartRunTime], 
+    [J_JobInfo].[EndRunTime] AS [EndRunTime], 
+    [J_JobInfo].[NextRunTime] AS [NextRunTime], 
+    [J_JobInfo].[Token] AS [Token], 
+    [J_JobInfo].[AppID] AS [AppID], 
+    [J_JobInfo].[MissionDescription] AS [MissionDescription], 
+    [J_JobInfo].[InfoState] AS [InfoState], 
+    [J_JobInfo].[CreateUser] AS [CreateUser], 
+    [J_JobInfo].[CreateTime] AS [CreateTime]
+    FROM [dbo].[J_JobInfo] AS [J_JobInfo]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="WF_Query_StepInfo" EntityType="Self.WF_Query_StepInfo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [WF_Query_StepInfo].[ID] AS [ID], 
@@ -1176,6 +1225,7 @@
           <EntitySet Name="WF_Query_StepInfo" EntityType="PMS2016Model.WF_Query_StepInfo" />
           <EntitySet Name="S_SMSType" EntityType="PMS2016Model.S_SMSType" />
           <EntitySet Name="WF_Query_Instance" EntityType="PMS2016Model.WF_Query_Instance" />
+          <EntitySet Name="J_JobInfo" EntityType="PMS2016Model.J_JobInfo" />
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -1746,6 +1796,34 @@
           <Property Name="WF_TempID" Type="Int32" />
           <Property Name="ApplicationId" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="J_JobInfo">
+          <Key>
+            <PropertyRef Name="JID" />
+            <PropertyRef Name="JobName" />
+            <PropertyRef Name="JobState" />
+            <PropertyRef Name="StartRunTime" />
+            <PropertyRef Name="EndRunTime" />
+            <PropertyRef Name="NextRunTime" />
+            <PropertyRef Name="InfoState" />
+            <PropertyRef Name="CreateTime" />
+            <PropertyRef Name="JobClassName" />
+          </Key>
+          <Property Name="JID" Type="Int32" Nullable="false" />
+          <Property Name="JobName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobState" Type="Int32" Nullable="false" />
+          <Property Name="CronStr" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="StartRunTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndRunTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NextRunTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="AppID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="MissionDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="InfoState" Type="Int32" Nullable="false" />
+          <Property Name="CreateUser" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JobClassName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2081,6 +2159,27 @@
                 <ScalarProperty Name="SubTime" ColumnName="SubTime" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="J_JobInfo">
+            <EntityTypeMapping TypeName="PMS2016Model.J_JobInfo">
+              <MappingFragment StoreEntitySet="J_JobInfo">
+                <ScalarProperty Name="JobClassName" ColumnName="JobClassName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="InfoState" ColumnName="InfoState" />
+                <ScalarProperty Name="MissionDescription" ColumnName="MissionDescription" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="NextRunTime" ColumnName="NextRunTime" />
+                <ScalarProperty Name="EndRunTime" ColumnName="EndRunTime" />
+                <ScalarProperty Name="StartRunTime" ColumnName="StartRunTime" />
+                <ScalarProperty Name="CronStr" ColumnName="CronStr" />
+                <ScalarProperty Name="JobState" ColumnName="JobState" />
+                <ScalarProperty Name="JobGroup" ColumnName="JobGroup" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="JID" ColumnName="JID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
