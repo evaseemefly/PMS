@@ -74,15 +74,20 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
+    <Compile Include="Enum\MatchCondition_Enum.cs" />
+    <Compile Include="Enum\QueryState_Enum.cs" />
+    <Compile Include="Enum\WriteInDb_Enum.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
     <Compile Include="EqualCompare\P_DepartmentEqualCompare.cs" />
     <Compile Include="EqualCompare\P_GroupEqualCompare.cs" />
     <Compile Include="EqualCompare\P_PersonEqualCompare.cs" />
+    <Compile Include="EqualCompare\SMSModel_QueryReceive_Compare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
     <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />
+    <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
@@ -123,6 +128,9 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="P_PersonInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quartz_Job.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryModel\Redis_HashWFObj.cs" />

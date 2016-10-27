@@ -8,6 +8,7 @@ using ISMS;
 using PMS.Model.SMSModel;
 using PMS.Model.Dictionary;
 using System.Collections.Specialized;
+using PMS.Model.Enum;
 
 namespace SMSFactory
 {
@@ -22,7 +23,7 @@ namespace SMSFactory
         /// <returns></returns>
         public bool SendBeforeCheck(SMSModel_Query smsdata)
         {
-            if (smsdata.account.Length < 1 & smsdata.smsId.Length < 1 & smsdata.password.Length < 1)
+            if (smsdata.account.Length < 1 &/* smsdata.smsId.Length < 1 & */smsdata.password.Length < 1)
             {
                 return false;
             }
@@ -39,30 +40,30 @@ namespace SMSFactory
         /// </summary>
         /// <param name="list">刚刚查询所返回的回执集合</param>
         /// <returns></returns>
-        public int GetQueryState(List<SMSModel_QueryReceive> list)
+        public QueryState_Enum GetQueryState(List<SMSModel_QueryReceive> list)
         {
             if (list.Count == 1)
             {
                 //判断该集合中的唯一的对象的desc是否为成功
-                if(list.FirstOrDefault().desc=="成功")
-                {
+                if(list.Count()==1&& list.FirstOrDefault().desc=="成功"&&list.FirstOrDefault().phoneNumber==null)
+                {                   
                     //1:未有未被查询到的用户
-                    return 1;
+                    return QueryState_Enum.finish;
                 }
                 else
                 {
                     //99：原因未知
-                    return 99;
+                    return QueryState_Enum.unknown;
                 }
             }
             else if(list.Count==0)
             {
-                return 98;
+                return QueryState_Enum.error;
             }
             else
             {
                 //大于1时
-                return 0;
+                return QueryState_Enum.remnant;
             }
         }
 

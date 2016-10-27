@@ -29,6 +29,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IQuartz_JobBLL:IBaseBLL<Quartz_Job>
+    {
+        
+
+    }
 	    public partial interface IR_Department_MissionBLL:IBaseBLL<R_Department_Mission>
     {
         

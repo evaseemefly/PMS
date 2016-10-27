@@ -39,6 +39,13 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region Quartz_JobDAL   
+	//Quartz_Job数据访问层
+	public class Quartz_JobDAL:BaseDAL<Quartz_Job>,IQuartz_JobDAL
+    {
+    }
+	#endregion
+
 		#region R_Department_MissionDAL   
 	//R_Department_Mission数据访问层
 	public class R_Department_MissionDAL:BaseDAL<R_Department_Mission>,IR_Department_MissionDAL

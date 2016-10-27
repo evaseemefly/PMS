@@ -91,7 +91,7 @@ namespace WFTest
             //根据传入的信息进行查询，并有一个状态信息集合
             bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
             //根据传入的状态集合进行判断当前的状态
-            var index_state= smsQuery.GetQueryState(list_QueryReceive);
+            var index_state = 0;//smsQuery.GetQueryState(list_QueryReceive);此处已修改
 
             //为变量赋值
             list_queryReceive = list_QueryReceive;

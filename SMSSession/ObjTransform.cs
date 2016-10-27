@@ -34,6 +34,12 @@ namespace SMSFactory
             };
             return model_receive;
         }
+
+        /// <summary>
+        /// 10-13：此方法需要重写
+        /// </summary>
+        /// <param name="returnMsg"></param>
+        /// <returns></returns>
         public static List<SMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg)
         {
             List<SMSModel_QueryReceive> list_r = new List<SMSModel_QueryReceive>();
@@ -64,6 +70,7 @@ namespace SMSFactory
                         SMSModel_QueryReceive r = new SMSModel_QueryReceive()
                         //封装语句
                         {
+                            msgId= _msgid[i],
                             phoneNumber = _phone[i],
                             status = _status[i],
                             desc = _desc[i],
@@ -92,6 +99,7 @@ namespace SMSFactory
             return list_r;
         }
         /// <summary>
+        /// 
         /// 将短信发送对象转成xml格式
         /// </summary>
         /// <param name="smsdata"></param>

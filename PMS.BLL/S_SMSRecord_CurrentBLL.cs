@@ -116,6 +116,60 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据指定的短信，将该短信的查询状态写回数据库
+        /// （更新S_SMSRecord_Current表）
+        /// </summary>
+        /// <param name="list_QueryReceive">写会的结果集合</param>
+        /// <param name="msgid">短信标识符</param>
+        /// <returns></returns>
+        public bool SaveReceieveMsg(List<SMSModel_QueryReceive> list_QueryReceive,string msgid)
+        {
+            //1.取得长短信条数-------------------已经在S_SMSContentBLL的saveMsg方法中实现，不需要在这里实现了
+            if (list_QueryReceive != null)
+            {
+                //创建回执Desc的字典
+                var dictionary = SMSQueryDictionary.GetResponseCode();
+                
+                //将长短信条数存入S_SMSContent
+                // s_smsContent.smsCount = list_QueryReceive.FirstOrDefault().smsCount;
+                List<S_SMSRecord_Current> list_current = new List<S_SMSRecord_Current>();
+                //1. 得到该次短信的所有的Record_Current列表
+                var smsContent_temp = this.CurrentDBSession.S_SMSContentDAL.GetListBy(p => p.msgId == msgid).FirstOrDefault();
+                //2. 遍历查询返回的集合
+                foreach (var item in list_QueryReceive)
+                {
+                    
+                    //3.得到该条记录的电话号码对应的联系人
+                    var person = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(r => r.PhoneNum.Equals(item.phoneNumber)).FirstOrDefault();
+                    //3.在数据库中写入数据，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
+                    //思路：连接一次执行批量修改
+                    string desc = "";
+                    //得到回执的desc内容,判断是否为纯数字，如果是数字，就按照字典对应内容存入数据库；否则，直接存入数据库
+                    if (Regex.IsMatch(item.desc, @"^\d+$"))
+                    {
+                        //是数字
+                        desc = dictionary[int.Parse(item.desc)];
+                    }
+                    else
+                    {
+                        //不是数字
+                        desc = item.desc;
+                    }
+
+                    var record = this.CurrentDBSession.S_SMSRecord_CurrentDAL.GetListBy(r => r.PID == person.PID && r.SCID == smsContent_temp.ID).FirstOrDefault();
+                    record.StatusCode = int.Parse(item.status);
+                    record.DescContent = desc;
+                    list_current.Add(record);
+                }
+                //批量更新
+                this.CurrentDBSession.S_SMSRecord_CurrentDAL.UpdateByList(list_current);
+                return this.CurrentDBSession.SaveChanges();
+            }
+            return false;
+        }
+
+
+        /// <summary>
         /// 在数据库中写入数据，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
         /// </summary>
         /// <param name="msgid"></param>

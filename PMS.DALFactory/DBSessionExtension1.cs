@@ -140,6 +140,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _Quartz_JobDAL 属性 
+	private IDAL.IQuartz_JobDAL _Quartz_JobDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取Quartz_JobDAL的实例
+        /// </summary>
+        public IQuartz_JobDAL Quartz_JobDAL
+        {
+            get
+            {
+                if(_Quartz_JobDAL==null)
+                {
+                    _Quartz_JobDAL = AbstractFactory.CreateQuartz_JobDAL();
+                }
+                return _Quartz_JobDAL;
+            }
+
+            set
+            {
+                _Quartz_JobDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _R_Department_MissionDAL 属性 
 	private IDAL.IR_Department_MissionDAL _R_Department_MissionDAL;
 	#endregion

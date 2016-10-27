@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SMSFactory
 {
-    class CTCWebClient: WebClient
+    public class CTCWebClient: WebClient
     {
         private int _timeout;
         /// <summary>

@@ -78,6 +78,32 @@
           <Property Name="isVIP" Type="bit" Nullable="false" />
           <Property Name="isDel" Type="bit" Nullable="false" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“PMS20160325.dbo.Quartz_Job”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Quartz_Job">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="StartDateTime" />
+            <PropertyRef Name="EndDateTime" />
+            <PropertyRef Name="NextExecuteDate" />
+            <PropertyRef Name="CreateDateTime" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="JobValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="int" />
+          <Property Name="CronExpression" Type="varchar" MaxLength="40" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" Nullable="false" />
+          <Property Name="NextExecuteDate" Type="datetime" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="40" />
+          <Property Name="AppID" Type="varchar" MaxLength="40" />
+          <Property Name="ServiceCode" Type="varchar" MaxLength="40" />
+          <Property Name="InterfaceCode" Type="varchar" MaxLength="40" />
+          <Property Name="JobDecision" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateState" Type="int" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="R_Department_Mission">
           <Key>
             <PropertyRef Name="ID" />
@@ -767,6 +793,25 @@
           <EntitySet Name="S_SMSType" EntityType="Self.S_SMSType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WF_Query_Instance" EntityType="Self.WF_Query_Instance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quartz_Job" EntityType="Self.Quartz_Job" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Quartz_Job].[ID] AS [ID], 
+    [Quartz_Job].[JobValue] AS [JobValue], 
+    [Quartz_Job].[JobName] AS [JobName], 
+    [Quartz_Job].[State] AS [State], 
+    [Quartz_Job].[CronExpression] AS [CronExpression], 
+    [Quartz_Job].[StartDateTime] AS [StartDateTime], 
+    [Quartz_Job].[EndDateTime] AS [EndDateTime], 
+    [Quartz_Job].[NextExecuteDate] AS [NextExecuteDate], 
+    [Quartz_Job].[Token] AS [Token], 
+    [Quartz_Job].[AppID] AS [AppID], 
+    [Quartz_Job].[ServiceCode] AS [ServiceCode], 
+    [Quartz_Job].[InterfaceCode] AS [InterfaceCode], 
+    [Quartz_Job].[JobDecision] AS [JobDecision], 
+    [Quartz_Job].[DateState] AS [DateState], 
+    [Quartz_Job].[CreateDateTime] AS [CreateDateTime]
+    FROM [dbo].[Quartz_Job] AS [Quartz_Job]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="WF_Query_StepInfo" EntityType="Self.WF_Query_StepInfo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [WF_Query_StepInfo].[ID] AS [ID], 
@@ -1176,6 +1221,7 @@
           <EntitySet Name="WF_Query_StepInfo" EntityType="PMS2016Model.WF_Query_StepInfo" />
           <EntitySet Name="S_SMSType" EntityType="PMS2016Model.S_SMSType" />
           <EntitySet Name="WF_Query_Instance" EntityType="PMS2016Model.WF_Query_Instance" />
+          <EntitySet Name="Quartz_Job" EntityType="PMS2016Model.Quartz_Job" />
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -1746,6 +1792,30 @@
           <Property Name="WF_TempID" Type="Int32" />
           <Property Name="ApplicationId" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="Quartz_Job">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="StartDateTime" />
+            <PropertyRef Name="EndDateTime" />
+            <PropertyRef Name="NextExecuteDate" />
+            <PropertyRef Name="CreateDateTime" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="JobValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="CronExpression" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NextExecuteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="AppID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="InterfaceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="JobDecision" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateState" Type="Int32" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2080,6 +2150,27 @@
                 <ScalarProperty Name="StartedBy" ColumnName="StartedBy" />
                 <ScalarProperty Name="SubTime" ColumnName="SubTime" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quartz_Job">
+            <EntityTypeMapping TypeName="PMS2016Model.Quartz_Job">
+              <MappingFragment StoreEntitySet="Quartz_Job">
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="DateState" ColumnName="DateState" />
+                <ScalarProperty Name="JobDecision" ColumnName="JobDecision" />
+                <ScalarProperty Name="InterfaceCode" ColumnName="InterfaceCode" />
+                <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="NextExecuteDate" ColumnName="NextExecuteDate" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="CronExpression" ColumnName="CronExpression" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="JobValue" ColumnName="JobValue" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -58,8 +58,8 @@ namespace SMSOA.Areas.SMS.Controllers
             var smsContent= smsContentBLL.GetListBy(c => c.ID == cid).FirstOrDefault();
             //2 找到其的发送记录
             var list_record = smsContent.S_SMSRecord_Current.ToList().Select(r => r.ToMiddleModel());
-            //2.0 排序，将未成功的记录放在列表前面
-            list_record=list_record.OrderByDescending(p => p.StatusCode);
+            //2.0 排序，将VIP,未成功的记录放在列表前面
+            list_record=list_record.OrderByDescending(p=>p.StatusCode).ThenByDescending(p => p.isVIP);
             //2.1 获取当总行数
             rowCount = list_record.Count();
             //2.2 分页返回记录

@@ -12,6 +12,8 @@ namespace PMS.Model
 
         public string PhoneNum { get; set; }
 
+        public bool isVIP { get; set; }
+
         /// <summary>
         /// 返回去掉导航属性的中间实体
         /// </summary>
@@ -24,6 +26,7 @@ namespace PMS.Model
                 SCID = this.SCID,
                 PersonName = this.P_PersonInfo.PName,
                 PhoneNum = this.P_PersonInfo.PhoneNum,
+                isVIP = this.P_PersonInfo.isVIP,
                 StatusCode = this.StatusCode,
                 DescContent=this.DescContent
             };

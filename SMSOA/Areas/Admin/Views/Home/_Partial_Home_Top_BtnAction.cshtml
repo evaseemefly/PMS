@@ -7,6 +7,14 @@
         //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
     }
 
+    //显示回收站
+    function ShowRecycled(){
+        var obj=new Object();
+        obj.text="回收站";
+        obj.url="/Recycled/Home/Index";
+        createTabs(obj);
+    }
+
     function DoResetPwd() {
         //接收ViewBag.UserId
         var uid=@ViewBag.UserId;

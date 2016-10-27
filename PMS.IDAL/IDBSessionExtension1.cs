@@ -30,6 +30,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IQuartz_JobDAL
+      IDAL.IQuartz_JobDAL Quartz_JobDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IR_Department_MissionDAL
       IDAL.IR_Department_MissionDAL R_Department_MissionDAL { get; set; }
 	  #endregion

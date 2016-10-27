@@ -70,6 +70,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	Quartz_JobBLL
+    public partial class Quartz_JobBLL : BaseBLL<Quartz_Job>, IQuartz_JobBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为Quartz_JobDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.Quartz_JobDAL;
+        }
+    }
+	#endregion
 	   #region	R_Department_MissionBLL
     public partial class R_Department_MissionBLL : BaseBLL<R_Department_Mission>, IR_Department_MissionBLL
     {	

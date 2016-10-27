@@ -36,5 +36,8 @@ namespace PMS.Model.SMSModel
         /// 长短信条数
         /// </summary>
         public int smsCount { get; set; }
+
+        // 封装进此对象的smsIndex均为1，此属性不需要
+        //public int smsIndex { get; set; }
     }
 }

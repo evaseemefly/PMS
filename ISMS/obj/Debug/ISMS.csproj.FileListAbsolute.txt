@@ -1,14 +1,3 @@
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\ISMS.dll
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\ISMS.pdb
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\PMS.Model.dll
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\EntityFramework.dll
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\System.Web.Mvc.dll
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\PMS.Model.pdb
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\EntityFramework.xml
-D:\VSWorkSpace\nmefc\PMS\ISMS\bin\Debug\System.Web.Mvc.xml
-D:\VSWorkSpace\nmefc\PMS\ISMS\obj\Debug\ISMS.csprojResolveAssemblyReference.cache
-D:\VSWorkSpace\nmefc\PMS\ISMS\obj\Debug\ISMS.dll
-D:\VSWorkSpace\nmefc\PMS\ISMS\obj\Debug\ISMS.pdb
 E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\ISMS.dll
 E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\ISMS.pdb
 E:\03协同开发\短信\PMS\PMS\ISMS\bin\Debug\PMS.Model.dll

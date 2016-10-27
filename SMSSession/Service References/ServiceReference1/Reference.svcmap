@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="84d78396-9ec4-4355-b894-ecfd35657f95" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/SMSFactoryServiceLib/Service1/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="253e9930-86f7-4700-95d2-a15b487e3cb7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SMSFactoryServiceLib/Service1/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="848aace0-3bf0-460c-9537-021e9f539dae" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SMSFactoryServiceLib/Service1/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3bc224cc-4049-414b-8dc2-e7a2af40c00e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SMSFactoryServiceLib/Service1/mex" />
+    <MetadataFile FileName="PMS.Model.SMSModel.xsd" MetadataType="Schema" ID="34111b25-57c4-4aa1-94e9-029c59f6bde6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SMSFactoryServiceLib/Service1/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="543267af-8e96-4158-9ca7-938e8b4cbe0d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SMSFactoryServiceLib/Service1/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

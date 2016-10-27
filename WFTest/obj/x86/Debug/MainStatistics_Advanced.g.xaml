@@ -124,7 +124,7 @@
                                   <Variable x:TypeArguments="pmq:Redis_SMSContent" Name="_first_obj" />
                                 </Sequence.Variables>
                                 <WriteLine Text="判断Redis集合中首元素是否满足时间要求" />
-                                <local:GetObjFromListByCheck_Code Text="{x:Null}">
+                                <local:GetObjFromListByCheck_Code State="{x:Null}" Text="{x:Null}">
                                   <local:GetObjFromListByCheck_Code.First_Obj>
                                     <OutArgument x:TypeArguments="pmq:Redis_SMSContent">
                                       <mca:CSharpReference x:TypeArguments="pmq:Redis_SMSContent">_query_obj</mca:CSharpReference>
@@ -231,6 +231,7 @@
                                           <State.Entry>
                                             <Sequence>
                                               <WriteLine Text="进入状态机5：-----检查是否需要重查-----" />
+                                              <WriteLine Text="进行创建书签操作" />
                                               <local:QueryState_BookMark x:TypeArguments="x:Int32" SetpId="{x:Null}" Text="{x:Null}" redis_hash_bll="{x:Null}" redis_list_bll="{x:Null}" wf_queryBLL="{x:Null}">
                                                 <local:QueryState_BookMark.BookMarkName>
                                                   <InOutArgument x:TypeArguments="x:String">
@@ -253,9 +254,9 @@
                                                   </InOutArgument>
                                                 </local:QueryState_BookMark.MsgId>
                                                 <local:QueryState_BookMark.State>
-                                                  <OutArgument x:TypeArguments="x:Int32">
+                                                  <InOutArgument x:TypeArguments="x:Int32">
                                                     <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
-                                                  </OutArgument>
+                                                  </InOutArgument>
                                                 </local:QueryState_BookMark.State>
                                                 <local:QueryState_BookMark.WF_Result>
                                                   <OutArgument x:TypeArguments="x:Int32">
@@ -263,6 +264,21 @@
                                                   </OutArgument>
                                                 </local:QueryState_BookMark.WF_Result>
                                               </local:QueryState_BookMark>
+                                              <WriteLine>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">"书签中的state为"+_state</mca:CSharpValue>
+                                                </InArgument>
+                                              </WriteLine>
+                                              <WriteLine>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">"书签中的result为"+_result</mca:CSharpValue>
+                                                </InArgument>
+                                              </WriteLine>
+                                              <WriteLine>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">"该书签恢复的MsgId为"+_first_msgid</mca:CSharpValue>
+                                                </InArgument>
+                                              </WriteLine>
                                             </Sequence>
                                           </State.Entry>
                                           <State.Transitions>
@@ -275,9 +291,6 @@
                                               </Transition.Condition>
                                             </Transition>
                                             <Transition DisplayName="流程结束">
-                                              <Transition.Condition>
-                                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==6</mca:CSharpValue>
-                                              </Transition.Condition>
                                               <Transition.To>
                                                 <State x:Name="__ReferenceID1" DisplayName="FinalState" IsFinal="True">
                                                   <State.Entry>
@@ -288,6 +301,16 @@
                                                   </State.Entry>
                                                 </State>
                                               </Transition.To>
+                                              <Transition.Action>
+                                                <WriteLine>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpValue x:TypeArguments="x:String">"resut为"+_result</mca:CSharpValue>
+                                                  </InArgument>
+                                                </WriteLine>
+                                              </Transition.Action>
+                                              <Transition.Condition>
+                                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==6</mca:CSharpValue>
+                                              </Transition.Condition>
                                             </Transition>
                                           </State.Transitions>
                                         </State>
@@ -296,7 +319,35 @@
                                         <WriteLine Text="———将执行创建书签操作———" />
                                       </Transition.Action>
                                       <Transition.Condition>
-                                        <mca:CSharpValue x:TypeArguments="x:Boolean">_state==1&amp;&amp;_result!=4</mca:CSharpValue>
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">(_state==1||_state==2)&amp;&amp;_result!=4</mca:CSharpValue>
+                                      </Transition.Condition>
+                                    </Transition>
+                                    <Transition DisplayName="流程挂起">
+                                      <Transition.To>
+                                        <State x:Name="__ReferenceID6" DisplayName="暂停工作流">
+                                          <State.Entry>
+                                            <Sequence>
+                                              <WriteLine Text="工作流挂起" />
+                                            </Sequence>
+                                          </State.Entry>
+                                          <State.Transitions>
+                                            <Transition DisplayName="流程结束" To="{x:Reference __ReferenceID1}">
+                                              <Transition.Condition>
+                                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==6</mca:CSharpValue>
+                                              </Transition.Condition>
+                                            </Transition>
+                                          </State.Transitions>
+                                        </State>
+                                      </Transition.To>
+                                      <Transition.Action>
+                                        <WriteLine>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String">"状态码为"+_result+"工作流被挂起"</mca:CSharpValue>
+                                          </InArgument>
+                                        </WriteLine>
+                                      </Transition.Action>
+                                      <Transition.Condition>
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">_result==4</mca:CSharpValue>
                                       </Transition.Condition>
                                     </Transition>
                                   </State.Transitions>
@@ -343,7 +394,7 @@
       <State DisplayName="从该对象中提起msgid查询并写入">
         <State.Entry>
           <Sequence>
-            <local:GetObjFromListByCheck_Code MsgId="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" DisplayName="从Redis集合中取出首元素">
+            <local:GetObjFromListByCheck_Code MsgId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" DisplayName="从Redis集合中取出首元素">
               <local:GetObjFromListByCheck_Code.First_Obj>
                 <OutArgument x:TypeArguments="pmq:Redis_SMSContent">
                   <mca:CSharpReference x:TypeArguments="pmq:Redis_SMSContent">_query_obj</mca:CSharpReference>
@@ -434,6 +485,7 @@
       </State>
       <x:Reference>__ReferenceID0</x:Reference>
       <x:Reference>__ReferenceID5</x:Reference>
+      <x:Reference>__ReferenceID6</x:Reference>
       <StateMachine.Variables>
         <Variable x:TypeArguments="x:Int32" Name="_sleepTime" />
         <Variable x:TypeArguments="x:String" Name="_id_list" />
@@ -447,7 +499,7 @@
         <Variable x:TypeArguments="x:String" Name="_id_list_msgid" />
         <Variable x:TypeArguments="x:String" Name="_id_hash" />
       </StateMachine.Variables>
-      <sads:DebugSymbol.Symbol>9xBwmeVdLPjyjtziumywc+DASEQ6XDAx57yW56iLXDAy5Y2P5L2c5byA5Y+RXFNNU09BXFBNU1xXRlRlc3RcTWFpblN0YXRpc3RpY3NfQWR2YW5jZWQueGFtbGQ8A9YDEgIBAT4H5AIPAwGlBK0CL7QCNwMBnwRlD+ACFwMBvgOJARfUAh8DAaACvgEfwgInAwGLAfkBJ7gCLwIBAkALYBYDAagErwIzsgI+AwGhBGcTgQEeAwHjA4YBF4YBbAMB0gPcAhfcAmoDAcID2QIX2QJiAwHAA4sBG7MBJgMBywK2ARu2AWYDAckCuwEfuwFxAwHHAsgCH8gCkgEDAbYCxQIfxQJuAwG0As0CH80CaAMBogLAASPxAS4DAaIB9AEj9AFrAwGgAb4CJ74CgwEDAY8BuwInuwJ6AwGNAfsBK50CNgIBJ6UCL6UCeAIBFqICL6ICdwIBFKoCL6oCeAIBBEENQWgDAf0EQg1fGAMBqQSwAjWwAoEBAwGjBLECNbEChAEDAaIEaBVoegMBnQRpFYABIAMB5APZAlbZAl8DAcEDjAEdjAF7AwG8A40BHbIBKAMBzAK2AVq2AWMDAcoCuwFeuwFuAwHIAsUCXsUCawMBtQLBASXBAYIBAwGeAsIBJfABLwMBowH0AWL0AWgDAaEBuwJmuwJ3AwGOAfwBLfwBigEDAYkB/QEtnAJJAgEoogJuogJ0AgEVQUxBZQMB/gRDD0NYAwH7BEQPXioDAaoEsAJ0sAJ+AwGkBGhUaHcDAZ4EbRdtZwMBmwRuF341AwHnA38Xf2ADAeUDjAFcjAF4AwG9A5EBH5EBeAMBugOSAR+xAUIDAc0CwQFkwQF/AwGfAsQBKcQBcQMBjgLGASfvATIDAaQB/AFs/AGHAQMBigGFAjOFAnkCAXmZAjOZAn8CAWmAAjOAAokBAgFZigIzigJ/AgFJjwIzjwKFAQIBOZQCM5QCfgIBKUNNQ1UDAfwERxVHYwMB6wRRFVFpAwHbBFsVW2QDAcsETBVMYwMBuwRWFVZpAwGrBG1VbWQDAZwEdh12hAEDAYoEex17aQMB+QNxHXFjAwHoA39Vf10DAeYDkQFekQF1AwG7A58BJZ8BhAEDAagDrgElrgFxAwGWA6kBJakBcQMBhAOaASWaAWsDAfICpAElpAF3AwHgApUBJZUBgQEDAc4CxwEp6QE0AwG2AeoBKe4BNQMBpQHIASvoATYDAbcB7AEt7AF6AwGmAckBLckBeQMBjALKAS3fAU0DAcsB4AEt4AF5AwHJAeEBLecBSAMBuAHJAWvJAXYDAY0C1wEz1wGHAQMB/AHSATPSAX0DAewBzQEzzQGmAQMB3AHcATPcAX4DAcwB4AFr4AF2AwHKAeQBM+QBegMBuQE=</sads:DebugSymbol.Symbol>
+      <sads:DebugSymbol.Symbol>9xD648etSOAx0y9MqtfyFJd+SUU6XDAz5Y2P5ZCM5byA5Y+RXOefreS/oVxQTVNcMDYzMFxQTVNcV0ZUZXN0XE1haW5TdGF0aXN0aWNzX0FkdmFuY2VkLnhhbWx2PAOKBBICAQE+B5cDDwMBogW6Ai/BAjcDAZwFZQ+TAxcDAbsEiQEXhwMfAwGdA74BH/UCJwMB5wH5ASfPAi8CARjaAifnAi8CAQJAC2AWAwGlBbwCM78CPgMBngVnE4EBHgMB4ASGAReGAWwDAc8EjwMXjwNqAwG/BIwDF4wDYgMBvQSLARuzASYDAcgDtgEbtgFmAwHGA7sBH7sBcQMBxAP7Ah/7ApIBAwGzA/gCH/gCbgMBsQOAAx+AA2gDAZ8DwAEj8QEuAwGfAvQBI/QBawMBnQLVAifVApABAwGMAtICJ9ICegMBigLxAifxAnADAfoB6gIn7gIzAwHpAfsBK60CNgIBTrUCL7UCeAIBPbICL7ICdwIBO8sCL8sCeAIBK8QCL8gCOwIBGtwCK94CNgIBFeMCL+MCeAIBBEENQWgDAfoFQg1fGAMBpgW9AjW9AoEBAwGgBb4CNb4ChAEDAZ8FaBVoegMBmgVpFYABIAMB4QSMA1aMA18DAb4EjAEdjAF7AwG5BI0BHbIBKAMByQO2AVq2AWMDAccDuwFeuwFuAwHFA/gCXvgCawMBsgPBASXBAYIBAwGbA8IBJfABLwMBoAL0AWL0AWgDAZ4C0gJm0gJ3AwGLAuwCK+wCgAEDAeoB/AEt/AGKAQMB5QH9AS39AXkDAeMB/gEtnQJJAwGCAZ4CLaICOQIBcaMCLacCOQIBYKgCLawCOQIBT7ICbrICdAIBPMYCM8YCgQECARvdAi3dAnYCARZBTEFlAwH7BUMPQ1gDAfgFRA9eKgMBpwW9AnS9An4DAaEFaFRodwMBmwVtF21nAwGYBW4XfjUDAeQEfxd/YAMB4gSMAVyMAXgDAboEkQEfkQF4AwG3BJIBH7EBQgMBygPBAWTBAX8DAZwDxAEpxAFxAwGLA8YBJ+8BMgMBoQL8AWz8AYcBAwHmAf0BbP0BdgMB5AGGAjOGAnkDAdMBmgIzmgJ/AwHDAYECM4ECiQEDAbMBiwIziwJ/AwGjAZACM5AChQEDAZMBlQIzlQJ+AwGDAaACMaACggECAXKlAjGlAoQBAgFhqgIxqgKKAQIBUN0CbN0CcwIBF0NNQ1UDAfkFRxVHYwMB6AVRFVFpAwHYBVsVW2QDAcgFTBVMYwMBuAVWFVZpAwGoBW1VbWQDAZkFdh12hAEDAYcFex17aQMB9gRxHXFjAwHlBH9Vf10DAeMEkQFekQF1AwG4BJ8BJZ8BhAEDAaUErgElrgFxAwGTBKkBJakBcQMBgQSaASWaAWsDAe8DpAElpAF3AwHdA5UBJZUBgQEDAcsDxwEp6QE0AwGzAuoBKe4BNQMBogLIASvoATYDAbQC7AEt7AF6AwGjAskBLckBeQMBiQPKAS3fAU0DAcgC4AEt4AF5AwHGAuEBLecBSAMBtQLJAWvJAXYDAYoD1wEz1wGHAQMB+QLSATPSAX0DAekCzQEzzQGmAQMB2QLcATPcAX4DAckC4AFr4AF2AwHHAuQBM+QBegMBtgI=</sads:DebugSymbol.Symbol>
     </StateMachine>
   </local:MainStatistics_Advanced.Implementation>
 </local:MainStatistics_Advanced>

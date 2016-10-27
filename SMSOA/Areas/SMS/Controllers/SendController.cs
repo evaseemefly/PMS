@@ -152,7 +152,7 @@ namespace SMSOA.Areas.SMS.Controllers
             ////4 将联系人集合去重
             //list_person= list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).Select(p=>p.ToMiddleModel()).ToList();
             #endregion
-
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             return Content(Common.SerializerHelper.SerializerToString(list_person));
         }
 
@@ -185,7 +185,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //3 将联系人集合去重
             list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p=>p.ToMiddleModel()).ToList();
-
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = list_person.Count,
@@ -336,7 +336,7 @@ namespace SMSOA.Areas.SMS.Controllers
         {
             //1 有效性判断
             //1.1 联系人名单为空，不执行发送操作，返回
-            if (model.PersonIds == null) { return Content("empty contact list"); }
+            if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
@@ -344,15 +344,38 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
 
-            //1 获取联系人id 数组
-
+            //1 获取已有联系人id 数组
             var ids= model.PersonId_Int;
+
+            // 获取临时联系人的电话数组
+            var phoneNums = model.PhoneNum_Str;
+
             //1.1 根据联系人id数组获取指定的联系人
             var list_person= personBLL.GetListByIds(ids.ToList());
+
             //1.2 获取
             List<string> list_phones = new List<string>(); ;
-            list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
-            
+            //list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+
+            list_phones.AddRange(phoneNums.ToList());
+
+            //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
+            string PName_Temp = "临时联系人";
+            //1.4 目前默认只添加到全部联系人群组中
+            int groupID_AllContacts = groupBLL.GetListBy(a => a.GroupName.Equals("全部联系人")).FirstOrDefault().GID;
+            List<int> groupIds = new List<int>();
+            groupIds.Add(groupID_AllContacts);
+            //1.5 循环写入数据库
+            bool isSaveTempPersonOk = false;
+            foreach (var item in phoneNums)
+            {
+                isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
+            }
+            if (!isSaveTempPersonOk)
+            {
+                return Content("服务器错误");
+            }
+
             //2 获取短信内容
             var content = model.Content;
 
@@ -398,12 +421,17 @@ namespace SMSOA.Areas.SMS.Controllers
             }
 
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
-            redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
-                msgid = receive.msgid,
-                Dt = DateTime.Now,
-                PersonCount=list_phones.Count//7月28日添加：在redis中保存的缓存对象集合中记录该次发送共发送的人数
-               // PhoneNums=phones
-            });
+
+            StringRedisHelper redisStrhelper = new StringRedisHelper();
+            redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));
+
+            //10月19日 注释掉此处，此时发送后将msgid写入Redis中的string类型中，不使用List对象了
+            //redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
+            //    msgid = receive.msgid,
+            //    Dt = DateTime.Now,
+            //    PersonCount=list_phones.Count//7月28日添加：在redis中保存的缓存对象集合中记录该次发送共发送的人数
+            //   // PhoneNums=phones
+            //});
             if (!isSaveMsgOk)
             {
                 return Content("服务器错误");

@@ -33,6 +33,8 @@
          //{ field: 'Operate', title: '是否禁用', width: 150 }
         ]]
 
+        var isVIPColumns = [{"id":0,"text":"false"},{"id":1,"text":"true"}]
+
         //--------------1 加载页面中的下拉框中的数据-----------
         //1.1 加载全部部门下拉框
         function loadComboTree_Department1(did) {//2 加载上级部门下拉框
@@ -62,6 +64,16 @@
             //var func_loadSucess_group=my_loadSuccess_Group("Group_combogrid", false,gid);
             my_loadCombobox_Group("Group_combogrid", url, groupColumns, loadSuccess_Group);
         }
+        @*function loadCombobox_isVIP(pid) {
+            $("#isVIP_combobox").combobox({
+                url:'@ViewBag.isVIP',
+                panelHeight: auto,
+                valueField: 'id',
+                textField:'text',
+                width: 100
+
+            });
+        }*@
 
         function loadComboTree_Department() {
             var url = '@ViewBag.GetDepartment_combotree';
@@ -121,7 +133,9 @@
             //加载全部群组下拉框后根据选中的gid选中指定内容（单选）
             //SetGroupCombogridValue(gid);
             //加载全部部门下拉框后根据选中的did
-           // SetDepartmentCombotreeValue(did);
+            // SetDepartmentCombotreeValue(did);
+            //loadCombobox_isVIP();
+            SetVIPComboboxValue();
 
         })
         //加载全部部门下拉框后根据选中的did选中指定的部门
@@ -133,6 +147,10 @@
         function SetGroupCombogridValue(data) {
             //1 找到部门下拉框
             $("#Group_combogrid").combogrid('setValue', data);
+        }
+        //加载是否为VIP的选项
+        function SetVIPComboboxValue() {
+            $('#isVIP_combobox').combobox('setValue', '@ViewBag.isVIP');
         }
 
         function loadSuccess_Group() {
@@ -196,6 +214,19 @@
                     <td class="comment">
                         <input class="easyui-textbox" type="text" name="PhoneNum" value="@ViewBag.PhoneNum" @*data-options="required:true"*@ data-options="required:true, validType:'Mobile'"></input><br />
                         输入手机号码（不要输入固定电话）
+                    </td>
+                </tr>
+                <tr>
+                    <td style="">是否为VIP联系人：</td>
+                    <td class="comment">
+                        <select class="easyui-combobox" name="isVIP" id="isVIP_combobox" style="width:100px" data-options="panelHeight:'auto', editable: false" required="required">
+                        <option value="0">false</option>
+                            <option value="1">true</option>
+                        
+                             </select>
+                        <br/>
+
+                        设置VIP联系人
                     </td>
                 </tr>
                 <tr>

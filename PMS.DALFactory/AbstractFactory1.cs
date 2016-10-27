@@ -75,6 +75,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建Quartz_Job的实例
+        /// <summary>
+        /// 创建Quartz_Job的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IQuartz_JobDAL CreateQuartz_JobDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".Quartz_JobDAL";
+            return CreateInstance(fullClassName) as IQuartz_JobDAL;
+        }
+		#endregion
+	 
 		#region 创建R_Department_Mission的实例
         /// <summary>
         /// 创建R_Department_Mission的实例
