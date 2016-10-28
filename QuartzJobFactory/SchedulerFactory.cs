@@ -15,24 +15,30 @@ namespace QuartzJobFactory
 
         public SchedulerFactory()
         {
-            if (schedFact == null)
-            {
-                // 创建调度工厂
-                schedFact = new StdSchedulerFactory();
-                
-            }
-            if (sched == null&&schedFact!=null)
+            if (sched == null )
             {
                 //实例化调度实例
-                sched = schedFact.GetScheduler();
+                //调度池在配置文件中配置
+                sched = StdSchedulerFactory.GetDefaultScheduler();
             }
+            //if (schedFact == null)
+            //{
+            //    // 创建调度工厂
+            //    schedFact = new StdSchedulerFactory();
+
+            //}
+            //if (sched == null&&schedFact!=null)
+            //{
+            //    //实例化调度实例
+            //    sched = schedFact.GetScheduler();
+            //}
         }
 
         /// <summary>
         /// 获取调度实例
         /// </summary>
         /// <returns></returns>
-        public static IScheduler CreateScheduler()
+        public IScheduler CreateScheduler()
         {
             return sched;
         }

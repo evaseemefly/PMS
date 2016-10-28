@@ -15,10 +15,10 @@ namespace QuartzJobFactory
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static IJobDetail CreateJobInstance(string name)
+        public static IJobDetail CreateJobInstance(J_JobInfo jobInfo )
         {
             //1 通过反射的方式创建Job实例
-            IJob job_temp= JobAbstractFactory.CreateJob(name);
+            IJob job_temp= JobAbstractFactory.CreateJob(jobInfo.JobClassName);
 
             //2 获取创建的Job实例的Type
             Type type = job_temp.GetType();
@@ -31,7 +31,7 @@ namespace QuartzJobFactory
 
             //3 创建Job
             IJobDetail job = JobBuilder.Create(type)
-                                    .WithIdentity("myJob", "group1")
+                                    .WithIdentity(jobInfo.JobName, jobInfo.JobGroup)
                                     .Build();
 
             return job;
@@ -57,8 +57,7 @@ namespace QuartzJobFactory
             }
 
             //创建最终的计时器并返回
-            trigger.Build();
-            return trigger as ITrigger;
+           return trigger.Build();
         }
     }
 }

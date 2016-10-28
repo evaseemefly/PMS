@@ -15,5 +15,7 @@ namespace QuartzJobFactory
         /// <param name="jobInfo"></param>
         /// <returns></returns>
         bool AddScheduleJob(J_JobInfo jobInfo);
+
+        void ResumeAllJob();
     }
 }
