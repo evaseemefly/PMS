@@ -60,6 +60,10 @@
         <EntityTypeShape EntityType="PMS2016Model.WF_Query_Instance" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="PMS2016Model.J_JobTemplate" Width="1.5" PointX="14.375" PointY="13.75" />
         <EntityTypeShape EntityType="PMS2016Model.J_JobInfo" Width="1.5" PointX="3.375" PointY="14.75" />
+        <AssociationConnector Association="PMS2016Model.R_UserInfo_JobInfo" />
+        <AssociationConnector Association="PMS2016Model.R_UserInfo_JobTemplate" />
+        <AssociationConnector Association="PMS2016Model.R_JobInfo_JobTemplate" />
+        <AssociationConnector Association="PMS2016Model.R_JobTemplate_RoleInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

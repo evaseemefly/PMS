@@ -18,6 +18,7 @@ namespace PMS.Model
         {
             this.ActionInfo = new HashSet<ActionInfo>();
             this.UserInfo = new HashSet<UserInfo>();
+            this.J_JobTemplate = new HashSet<J_JobTemplate>();
         }
     
         public int ID { get; set; }
@@ -30,5 +31,6 @@ namespace PMS.Model
     
         public virtual ICollection<ActionInfo> ActionInfo { get; set; }
         public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<J_JobTemplate> J_JobTemplate { get; set; }
     }
 }

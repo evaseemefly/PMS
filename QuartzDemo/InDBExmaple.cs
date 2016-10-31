@@ -57,6 +57,7 @@ namespace QuartzDemo
             var scheduler_temp = GetScheduler();
             IJobDetail job = JobBuilder.Create<HelloJob>()
                                        .WithIdentity("testname", "testgroup")
+                                       .UsingJobData("UID","123")
                                        .Build();
 
             DateTime dt_now = DateTime.Now;
