@@ -60,7 +60,8 @@
     <Compile Include="IS_SMSMissionBLL.cs" />
     <Compile Include="IS_SMSMsgContentBLL.cs" />
     <Compile Include="IS_SMSRecord_CurrentBLL.cs" />
-    <Compile Include="IUserInfoBLL.cs" />
+    <Compile Include="IUserInfo\IUserInfoBLL.cs" />
+    <Compile Include="IUserInfo\IUserInfoBLL_Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

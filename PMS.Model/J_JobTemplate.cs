@@ -14,11 +14,22 @@ namespace PMS.Model
     
     public partial class J_JobTemplate
     {
+        public J_JobTemplate()
+        {
+            this.UserInfoes = new HashSet<UserInfo>();
+            this.J_JobInfo = new HashSet<J_JobInfo>();
+            this.RoleInfo = new HashSet<RoleInfo>();
+        }
+    
         public int JTID { get; set; }
         public string JobClassName { get; set; }
         public string CronStr { get; set; }
         public int JobType { get; set; }
         public string Remark { get; set; }
         public bool isDel { get; set; }
+    
+        public virtual ICollection<UserInfo> UserInfoes { get; set; }
+        public virtual ICollection<J_JobInfo> J_JobInfo { get; set; }
+        public virtual ICollection<RoleInfo> RoleInfo { get; set; }
     }
 }

@@ -129,6 +129,22 @@
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="R_JobInfo_JobTemplate">
+          <Key>
+            <PropertyRef Name="JID" />
+            <PropertyRef Name="JTID" />
+          </Key>
+          <Property Name="JID" Type="int" Nullable="false" />
+          <Property Name="JTID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_JobTemplate_RoleInfo">
+          <Key>
+            <PropertyRef Name="JTID" />
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="JTID" Type="int" Nullable="false" />
+          <Property Name="RID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="R_Person_Department">
           <Key>
             <PropertyRef Name="PersonID" />
@@ -179,6 +195,22 @@
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="GID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_JobInfo">
+          <Key>
+            <PropertyRef Name="JID" />
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="JID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_JobTemplate">
+          <Key>
+            <PropertyRef Name="UID" />
+            <PropertyRef Name="JTID" />
+          </Key>
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="JTID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_News">
           <Key>
@@ -420,6 +452,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_R_JobInfo_JobTemplate_J_JobInfo">
+          <End Role="J_JobInfo" Type="Self.J_JobInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_JobInfo_JobTemplate" Type="Self.R_JobInfo_JobTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="J_JobInfo">
+              <PropertyRef Name="JID" />
+            </Principal>
+            <Dependent Role="R_JobInfo_JobTemplate">
+              <PropertyRef Name="JID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_JobInfo_JobTemplate_J_JobTemplate">
+          <End Role="J_JobTemplate" Type="Self.J_JobTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_JobInfo_JobTemplate" Type="Self.R_JobInfo_JobTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="J_JobTemplate">
+              <PropertyRef Name="JTID" />
+            </Principal>
+            <Dependent Role="R_JobInfo_JobTemplate">
+              <PropertyRef Name="JTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_JobTemplate_RoleInfo_J_JobTemplate">
+          <End Role="J_JobTemplate" Type="Self.J_JobTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_JobTemplate_RoleInfo" Type="Self.R_JobTemplate_RoleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="J_JobTemplate">
+              <PropertyRef Name="JTID" />
+            </Principal>
+            <Dependent Role="R_JobTemplate_RoleInfo">
+              <PropertyRef Name="JTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_JobTemplate_RoleInfo_RoleInfo">
+          <End Role="RoleInfo" Type="Self.RoleInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_JobTemplate_RoleInfo" Type="Self.R_JobTemplate_RoleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_JobTemplate_RoleInfo">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_R_Person_Department_P_DepartmentInfo">
           <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
           <End Role="R_Person_Department" Type="Self.R_Person_Department" Multiplicity="*" />
@@ -566,6 +654,62 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="R_UserInfo_Group">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_JobInfo_J_JobInfo">
+          <End Role="J_JobInfo" Type="Self.J_JobInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_UserInfo_JobInfo" Type="Self.R_UserInfo_JobInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="J_JobInfo">
+              <PropertyRef Name="JID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_JobInfo">
+              <PropertyRef Name="JID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_JobInfo_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_UserInfo_JobInfo" Type="Self.R_UserInfo_JobInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_JobInfo">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_JobTemplate_J_JobTemplate">
+          <End Role="J_JobTemplate" Type="Self.J_JobTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_UserInfo_JobTemplate" Type="Self.R_UserInfo_JobTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="J_JobTemplate">
+              <PropertyRef Name="JTID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_JobTemplate">
+              <PropertyRef Name="JTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_UserInfo_JobTemplate_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="R_UserInfo_JobTemplate" Type="Self.R_UserInfo_JobTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_JobTemplate">
               <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
@@ -782,12 +926,16 @@
           <EntitySet Name="P_PersonInfo" EntityType="Self.P_PersonInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Department_Mission" EntityType="Self.R_Department_Mission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Group_Mission" EntityType="Self.R_Group_Mission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_JobInfo_JobTemplate" EntityType="Self.R_JobInfo_JobTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_JobTemplate_RoleInfo" EntityType="Self.R_JobTemplate_RoleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Person_Department" EntityType="Self.R_Person_Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Person_Group" EntityType="Self.R_Person_Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_RoleInfo_ActionInfo" EntityType="Self.R_RoleInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_DepartmentInfo" EntityType="Self.R_UserInfo_DepartmentInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_Group" EntityType="Self.R_UserInfo_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_JobInfo" EntityType="Self.R_UserInfo_JobInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_UserInfo_JobTemplate" EntityType="Self.R_UserInfo_JobTemplate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_News" EntityType="Self.R_UserInfo_News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_PersonInfo" EntityType="Self.R_UserInfo_PersonInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_RoleInfo" EntityType="Self.R_UserInfo_RoleInfo" Schema="dbo" store:Type="Tables" />
@@ -841,6 +989,22 @@
             <End Role="S_SMSMission" EntitySet="S_SMSMission" />
             <End Role="R_Group_Mission" EntitySet="R_Group_Mission" />
           </AssociationSet>
+          <AssociationSet Name="FK_R_JobInfo_JobTemplate_J_JobInfo" Association="Self.FK_R_JobInfo_JobTemplate_J_JobInfo">
+            <End Role="J_JobInfo" EntitySet="J_JobInfo" />
+            <End Role="R_JobInfo_JobTemplate" EntitySet="R_JobInfo_JobTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_JobInfo_JobTemplate_J_JobTemplate" Association="Self.FK_R_JobInfo_JobTemplate_J_JobTemplate">
+            <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
+            <End Role="R_JobInfo_JobTemplate" EntitySet="R_JobInfo_JobTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_JobTemplate_RoleInfo_J_JobTemplate" Association="Self.FK_R_JobTemplate_RoleInfo_J_JobTemplate">
+            <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
+            <End Role="R_JobTemplate_RoleInfo" EntitySet="R_JobTemplate_RoleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_JobTemplate_RoleInfo_RoleInfo" Association="Self.FK_R_JobTemplate_RoleInfo_RoleInfo">
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+            <End Role="R_JobTemplate_RoleInfo" EntitySet="R_JobTemplate_RoleInfo" />
+          </AssociationSet>
           <AssociationSet Name="FK_R_Person_Department_P_DepartmentInfo" Association="Self.FK_R_Person_Department_P_DepartmentInfo">
             <End Role="P_DepartmentInfo" EntitySet="P_DepartmentInfo" />
             <End Role="R_Person_Department" EntitySet="R_Person_Department" />
@@ -888,6 +1052,22 @@
           <AssociationSet Name="FK_R_UserInfo_Group_UserInfo" Association="Self.FK_R_UserInfo_Group_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="R_UserInfo_Group" EntitySet="R_UserInfo_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_JobInfo_J_JobInfo" Association="Self.FK_R_UserInfo_JobInfo_J_JobInfo">
+            <End Role="J_JobInfo" EntitySet="J_JobInfo" />
+            <End Role="R_UserInfo_JobInfo" EntitySet="R_UserInfo_JobInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_JobInfo_UserInfo" Association="Self.FK_R_UserInfo_JobInfo_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_JobInfo" EntitySet="R_UserInfo_JobInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_JobTemplate_J_JobTemplate" Association="Self.FK_R_UserInfo_JobTemplate_J_JobTemplate">
+            <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
+            <End Role="R_UserInfo_JobTemplate" EntitySet="R_UserInfo_JobTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_UserInfo_JobTemplate_UserInfo" Association="Self.FK_R_UserInfo_JobTemplate_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_JobTemplate" EntitySet="R_UserInfo_JobTemplate" />
           </AssociationSet>
           <AssociationSet Name="FK_R_UserInfo_News_N_News" Association="Self.FK_R_UserInfo_News_N_News">
             <End Role="N_News" EntitySet="N_News" />
@@ -1010,6 +1190,7 @@
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ActionInfo" Relationship="Self.R_RoleInfo_ActionInfo" FromRole="RoleInfo" ToRole="ActionInfo" />
           <NavigationProperty Name="UserInfo" Relationship="Self.R_UserInfo_RoleInfo" FromRole="RoleInfo" ToRole="UserInfo" />
+          <NavigationProperty Name="J_JobTemplate" Relationship="PMS2016Model.R_JobTemplate_RoleInfo" FromRole="RoleInfo" ToRole="J_JobTemplate" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -1033,6 +1214,8 @@
           <NavigationProperty Name="S_SMSMsgContent" Relationship="PMS2016Model.FK_S_SMSMsgContent_UserInfo" FromRole="UserInfo" ToRole="S_SMSMsgContent" />
           <NavigationProperty Name="R_UserInfo_News" Relationship="PMS2016Model.FK_R_UserInfo_News_UserInfo" FromRole="UserInfo" ToRole="R_UserInfo_News" />
           <NavigationProperty Name="N_News" Relationship="PMS2016Model.FK_N_News_UserInfo" FromRole="UserInfo" ToRole="N_News" />
+          <NavigationProperty Name="J_JobInfo" Relationship="PMS2016Model.R_UserInfo_JobInfo" FromRole="UserInfo" ToRole="J_JobInfo" />
+          <NavigationProperty Name="J_JobTemplate" Relationship="PMS2016Model.R_UserInfo_JobTemplate" FromRole="UserInfo" ToRole="J_JobTemplate" />
         </EntityType>
         <Association Name="FK_R_UserInfo_ActionInfo_ActionInfo">
           <End Role="ActionInfo" Type="Self.ActionInfo" Multiplicity="1" />
@@ -1212,6 +1395,22 @@
           <EntitySet Name="WF_Query_Instance" EntityType="PMS2016Model.WF_Query_Instance" />
           <EntitySet Name="J_JobTemplate" EntityType="PMS2016Model.J_JobTemplate" />
           <EntitySet Name="J_JobInfo" EntityType="PMS2016Model.J_JobInfo" />
+          <AssociationSet Name="R_UserInfo_JobInfo" Association="PMS2016Model.R_UserInfo_JobInfo">
+            <End Role="J_JobInfo" EntitySet="J_JobInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="R_UserInfo_JobTemplate" Association="PMS2016Model.R_UserInfo_JobTemplate">
+            <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="R_JobInfo_JobTemplate" Association="PMS2016Model.R_JobInfo_JobTemplate">
+            <End Role="J_JobInfo" EntitySet="J_JobInfo" />
+            <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="R_JobTemplate_RoleInfo" Association="PMS2016Model.R_JobTemplate_RoleInfo">
+            <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -1792,6 +1991,9 @@
           <Property Name="JobType" Type="Int32" Nullable="false" />
           <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserInfoes" Relationship="PMS2016Model.R_UserInfo_JobTemplate" FromRole="J_JobTemplate" ToRole="UserInfo" />
+          <NavigationProperty Name="J_JobInfo" Relationship="PMS2016Model.R_JobInfo_JobTemplate" FromRole="J_JobTemplate" ToRole="J_JobInfo" />
+          <NavigationProperty Name="RoleInfo" Relationship="PMS2016Model.R_JobTemplate_RoleInfo" FromRole="J_JobTemplate" ToRole="RoleInfo" />
         </EntityType>
         <EntityType Name="J_JobInfo">
           <Key>
@@ -1813,7 +2015,25 @@
           <Property Name="CreateUser" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="isDel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserInfoes" Relationship="PMS2016Model.R_UserInfo_JobInfo" FromRole="J_JobInfo" ToRole="UserInfo" />
+          <NavigationProperty Name="J_JobTemplate" Relationship="PMS2016Model.R_JobInfo_JobTemplate" FromRole="J_JobInfo" ToRole="J_JobTemplate" />
         </EntityType>
+        <Association Name="R_UserInfo_JobInfo">
+          <End Type="PMS2016Model.J_JobInfo" Role="J_JobInfo" Multiplicity="*" />
+          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="R_UserInfo_JobTemplate">
+          <End Type="PMS2016Model.J_JobTemplate" Role="J_JobTemplate" Multiplicity="*" />
+          <End Type="PMS2016Model.UserInfo" Role="UserInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="R_JobInfo_JobTemplate">
+          <End Type="PMS2016Model.J_JobInfo" Role="J_JobInfo" Multiplicity="*" />
+          <End Type="PMS2016Model.J_JobTemplate" Role="J_JobTemplate" Multiplicity="*" />
+        </Association>
+        <Association Name="R_JobTemplate_RoleInfo">
+          <End Type="PMS2016Model.J_JobTemplate" Role="J_JobTemplate" Multiplicity="*" />
+          <End Type="PMS2016Model.RoleInfo" Role="RoleInfo" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2186,6 +2406,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="R_UserInfo_JobInfo" TypeName="PMS2016Model.R_UserInfo_JobInfo" StoreEntitySet="R_UserInfo_JobInfo">
+            <EndProperty Name="UserInfo">
+              <ScalarProperty Name="ID" ColumnName="UID" />
+            </EndProperty>
+            <EndProperty Name="J_JobInfo">
+              <ScalarProperty Name="JID" ColumnName="JID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="R_UserInfo_JobTemplate" TypeName="PMS2016Model.R_UserInfo_JobTemplate" StoreEntitySet="R_UserInfo_JobTemplate">
+            <EndProperty Name="UserInfo">
+              <ScalarProperty Name="ID" ColumnName="UID" />
+            </EndProperty>
+            <EndProperty Name="J_JobTemplate">
+              <ScalarProperty Name="JTID" ColumnName="JTID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="R_JobInfo_JobTemplate" TypeName="PMS2016Model.R_JobInfo_JobTemplate" StoreEntitySet="R_JobInfo_JobTemplate">
+            <EndProperty Name="J_JobTemplate">
+              <ScalarProperty Name="JTID" ColumnName="JTID" />
+            </EndProperty>
+            <EndProperty Name="J_JobInfo">
+              <ScalarProperty Name="JID" ColumnName="JID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="R_JobTemplate_RoleInfo" TypeName="PMS2016Model.R_JobTemplate_RoleInfo" StoreEntitySet="R_JobTemplate_RoleInfo">
+            <EndProperty Name="RoleInfo">
+              <ScalarProperty Name="ID" ColumnName="RID" />
+            </EndProperty>
+            <EndProperty Name="J_JobTemplate">
+              <ScalarProperty Name="JTID" ColumnName="JTID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2200,7 +2452,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />

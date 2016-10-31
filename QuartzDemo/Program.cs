@@ -16,16 +16,19 @@ namespace QuartzDemo
             //InDBExmaple example = new InDBExmaple();
             //example.Run();
             IJobService jobSer = new JobService();
+            var job_id = "test1" + Guid.NewGuid().ToString();
+            var job_group = "group1";
             J_JobInfo job = new J_JobInfo() {
-                 JobName="test1"+Guid.NewGuid().ToString(),
-                 JobGroup="group1",
+                 JobName= job_id,
+                 JobGroup= job_group,
                  JobClassName="HelloJob",
-                 StartRunTime=DateTime.Now.AddSeconds(120),
-                 EndRunTime=DateTime.Now.AddSeconds(121)
+                 StartRunTime=DateTime.Now.AddSeconds(2),
+                 EndRunTime=DateTime.Now.AddSeconds(3)
             };
-            //jobSer.AddScheduleJob(job);
-
-            jobSer.ResumeAllJob();
+            jobSer.AddScheduleJob(job);
+            MyJobListener listener = new MyJobListener();
+            jobSer.AddListener(listener, job_id, job_group);
+            //jobSer.ResumeAllJob();
             Console.ReadLine();
         }
     }

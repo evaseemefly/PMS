@@ -7,9 +7,8 @@ using PMS.Model;
 using System.Collections.Specialized;
 using Quartz.Impl;
 using Quartz;
-using Quartz.Impl.Matchers;
 
-namespace QuartzJobFactory
+namespace QuartzServiceLib
 {
     public class JobService:IJobService
     {
@@ -19,11 +18,7 @@ namespace QuartzJobFactory
         {
             if (sche != null)
             {
-                
-            }
-            else
-            {                
-                sche = StdSchedulerFactory.GetDefaultScheduler(); 
+                sche= new SchedulerFactory().GetScheduler();
             }
         }
 
@@ -41,8 +36,8 @@ namespace QuartzJobFactory
             var trigger = JobFactory.CreateTrigger(jobInfo);
 
             //3 将定时器加入job中
-
-            var sche=new SchedulerFactory().CreateScheduler();
+            //放在构造函数中
+            //var sche=new SchedulerFactory().GetScheduler();
             sche.ScheduleJob(job, trigger);
 
             //4 启动工作
@@ -50,18 +45,22 @@ namespace QuartzJobFactory
             return true;
         }
 
-        public void AddListener(IJobListener jobListener,string JobName,string GroupName)
-        {
-            sche.ListenerManager.AddJobListener(jobListener, KeyMatcher<JobKey>.KeyEquals(new JobKey(JobName, GroupName)));
-            
-        }
-
         public void ResumeAllJob()
         {
-            var scheduler_temp = new SchedulerFactory().CreateScheduler();
+            //var scheduler_temp = new SchedulerFactory().GetScheduler();
 
-            if (!scheduler_temp.IsStarted) { scheduler_temp.Start(); }            
-            scheduler_temp.ResumeAll();
+            if (!sche.IsStarted) { sche.Start(); }
+            sche.ResumeAll();
+        }
+
+        /// <summary>
+        /// 根据作业名及群组名暂停指定作业
+        /// </summary>
+        /// <param name="jobName"></param>
+        /// <param name="jobGroup"></param>
+        public void PauseJob(string jobName,string jobGroup)
+        {
+            sche.PauseJob(JobKey.Create(jobName, jobGroup));
         }
 
         public void SaveScheduleInDB()

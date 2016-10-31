@@ -1,4 +1,5 @@
 ﻿using PMS.Model;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace QuartzJobFactory
         bool AddScheduleJob(J_JobInfo jobInfo);
 
         void ResumeAllJob();
+
+        void AddListener(IJobListener jobListener, string JobName, string GroupName);
     }
 }

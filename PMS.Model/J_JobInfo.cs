@@ -14,6 +14,12 @@ namespace PMS.Model
     
     public partial class J_JobInfo
     {
+        public J_JobInfo()
+        {
+            this.UserInfoes = new HashSet<UserInfo>();
+            this.J_JobTemplate = new HashSet<J_JobTemplate>();
+        }
+    
         public int JID { get; set; }
         public string JobName { get; set; }
         public string JobGroup { get; set; }
@@ -30,5 +36,8 @@ namespace PMS.Model
         public string CreateUser { get; set; }
         public System.DateTime CreateTime { get; set; }
         public bool isDel { get; set; }
+    
+        public virtual ICollection<UserInfo> UserInfoes { get; set; }
+        public virtual ICollection<J_JobTemplate> J_JobTemplate { get; set; }
     }
 }
