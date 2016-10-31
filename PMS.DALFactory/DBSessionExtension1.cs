@@ -59,6 +59,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _J_JobTemplateDAL 属性 
+	private IDAL.IJ_JobTemplateDAL _J_JobTemplateDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取J_JobTemplateDAL的实例
+        /// </summary>
+        public IJ_JobTemplateDAL J_JobTemplateDAL
+        {
+            get
+            {
+                if(_J_JobTemplateDAL==null)
+                {
+                    _J_JobTemplateDAL = AbstractFactory.CreateJ_JobTemplateDAL();
+                }
+                return _J_JobTemplateDAL;
+            }
+
+            set
+            {
+                _J_JobTemplateDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _N_NewsDAL 属性 
 	private IDAL.IN_NewsDAL _N_NewsDAL;
 	#endregion

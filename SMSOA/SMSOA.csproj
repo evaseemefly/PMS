@@ -224,6 +224,9 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
+    <Compile Include="Areas\Job\Controllers\InstanceController.cs" />
+    <Compile Include="Areas\Job\Controllers\TemplateController.cs" />
+    <Compile Include="Areas\Job\JobAreaRegistration.cs" />
     <Compile Include="Areas\Login\Controllers\LoginController.cs" />
     <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
     <Compile Include="Areas\News\Controllers\HomeController.cs" />
@@ -398,6 +401,9 @@
     <Content Include="Areas\Admin\Views\Action\_Partial_Toolbar_Action.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top - 10-10-备份.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_Parital_Home_Top_BtnView.cshtml" />
+    <Content Include="Areas\Job\Views\web.config" />
+    <Content Include="Areas\Job\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Job\Views\Template\Index.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -491,6 +497,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
+    <Folder Include="Areas\Job\Models\" />
+    <Folder Include="Areas\Job\Views\Instance\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Areas\News\Models\" />

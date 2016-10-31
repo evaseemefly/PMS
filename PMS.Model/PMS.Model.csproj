@@ -93,6 +93,9 @@
     <Compile Include="J_JobInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="J_JobTemplate.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
@@ -207,6 +210,7 @@
     <Compile Include="ViewModel\ViewModel_Group_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Department.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Group.cs" />
+    <Compile Include="ViewModel\ViewModel_JobTemplate.cs" />
     <Compile Include="ViewModel\ViewModel_Mission_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_News.cs" />

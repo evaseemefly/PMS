@@ -14,6 +14,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IJ_JobTemplateBLL:IBaseBLL<J_JobTemplate>
+    {
+        
+
+    }
 	    public partial interface IN_NewsBLL:IBaseBLL<N_News>
     {
         

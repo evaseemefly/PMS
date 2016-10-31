@@ -49,6 +49,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="J_JobTemplateBLL.cs" />
     <Compile Include="N_NewsBaseBLL.cs" />
     <Compile Include="N_NewsPartialBLL.cs" />
     <Compile Include="S_SMSContentBLL.cs" />

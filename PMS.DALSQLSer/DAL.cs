@@ -18,6 +18,13 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region J_JobTemplateDAL   
+	//J_JobTemplate数据访问层
+	public class J_JobTemplateDAL:BaseDAL<J_JobTemplate>,IJ_JobTemplateDAL
+    {
+    }
+	#endregion
+
 		#region N_NewsDAL   
 	//N_News数据访问层
 	public class N_NewsDAL:BaseDAL<N_News>,IN_NewsDAL

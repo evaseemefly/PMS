@@ -15,6 +15,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IJ_JobTemplateDAL
+      IDAL.IJ_JobTemplateDAL J_JobTemplateDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IN_NewsDAL
       IDAL.IN_NewsDAL N_NewsDAL { get; set; }
 	  #endregion
