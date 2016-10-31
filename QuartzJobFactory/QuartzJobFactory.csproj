@@ -48,7 +48,6 @@
     <Compile Include="JobAbstractFactory.cs" />
     <Compile Include="JobFactory.cs" />
     <Compile Include="JobService.cs" />
-    <Compile Include="Job_Test.cs" />
     <Compile Include="SchedulerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

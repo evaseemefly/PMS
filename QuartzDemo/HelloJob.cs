@@ -23,14 +23,28 @@ namespace QuartzDemo
             //1 需要传入一个用户id
             if (base.userInfoBLL != null)
             {
-                var uid = data.GetString("UID");
+                var uid = data.GetInt("UID");
                 if (uid != null)
                 {
-                   var user_temp= userInfoBLL.GetListBy(u => u.ID == int.Parse(uid)).FirstOrDefault();
+                    //var uid_int = int.Parse(uid);
+                   var user_temp= userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault();
                     //2 根据用户id查询查询该用户所拥有的作业
                     //userInfoBLL
                    var list= userInfoBLL.GetJobListByUser(user_temp.ID);
-                    //3 若存在则更新作业状态
+
+                    
+                    //3 取出对应的作业
+                    var targetJob = (from j in list
+                                     where j.JobName == context.JobDetail.Key.Name && j.JobGroup == context.JobDetail.Key.Group
+                                     select j).FirstOrDefault();
+
+                    //4 若存在则更新作业状态
+                    if (targetJob != null)
+                    {
+                       var job_temp= base.jobInfoBLL.GetListBy(j => j.JobName == targetJob.JobName && j.JobGroup == targetJob.JobGroup).FirstOrDefault();
+                        //job_temp.JobState=
+                        //base.jobInfoBLL.Update()
+                    }
                     //4 若不存在则创建新的作业
                 }
 

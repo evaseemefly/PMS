@@ -85,6 +85,7 @@
     <Compile Include="EqualCompare\SMSModel_QueryReceive_Compare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
+    <Compile Include="ExtensionModel\J_JobInfo.cs" />
     <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />

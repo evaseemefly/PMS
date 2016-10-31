@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using Quartz;
 
 namespace QuartzServiceLib
 {
@@ -32,5 +33,7 @@ namespace QuartzServiceLib
         /// <param name="jobGroup"></param>
         [OperationContract]
         void PauseJob(string jobName, string jobGroup);
+
+        void AddListener(IJobListener jobListener, string JobName, string GroupName);
     }
 }

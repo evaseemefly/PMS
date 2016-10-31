@@ -12,7 +12,9 @@ namespace PMS.BLL
     {
 
         //使用WCF中的方法
-        ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
+        //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
+        QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
+
 
         /// <summary>
         /// 获取全部的模板
@@ -71,7 +73,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                ijobService.PauseJob(job_temp.JobName, job_temp.JobGroup);
+                //ijobService.PauseJob(job_temp.JobName, job_temp.JobGroup);
                 return true;
             }            
             return false;

@@ -15,6 +15,8 @@ namespace QuartzDemo
             Console.WriteLine(DateTime.Now.ToString());
             //InDBExmaple example = new InDBExmaple();
             //example.Run();
+            //无法通过WCF的方式使用反射的对象
+            //ServiceReference_Job.IJobService jobSer = new ServiceReference_Job.JobServiceClient();
             IJobService jobSer = new JobService();
             var job_id = "test1" + Guid.NewGuid().ToString();
             var job_group = "group1";
@@ -23,11 +25,12 @@ namespace QuartzDemo
                  JobGroup= job_group,
                  JobClassName="HelloJob",
                  StartRunTime=DateTime.Now.AddSeconds(2),
-                 EndRunTime=DateTime.Now.AddSeconds(3)
+                 EndRunTime=DateTime.Now.AddSeconds(3),
+                 UID=3
             };
             jobSer.AddScheduleJob(job);
-            MyJobListener listener = new MyJobListener();
-            jobSer.AddListener(listener, job_id, job_group);
+            //MyJobListener listener = new MyJobListener();
+            //jobSer.AddListener(listener, job_id, job_group);
             //jobSer.ResumeAllJob();
             Console.ReadLine();
         }

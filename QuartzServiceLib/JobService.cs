@@ -7,6 +7,7 @@ using PMS.Model;
 using System.Collections.Specialized;
 using Quartz.Impl;
 using Quartz;
+using Quartz.Impl.Matchers;
 
 namespace QuartzServiceLib
 {
@@ -18,7 +19,11 @@ namespace QuartzServiceLib
         {
             if (sche != null)
             {
-                sche= new SchedulerFactory().GetScheduler();
+
+            }
+            else
+            {
+                sche = StdSchedulerFactory.GetDefaultScheduler();
             }
         }
 
@@ -30,14 +35,13 @@ namespace QuartzServiceLib
         public bool AddScheduleJob(J_JobInfo jobInfo)
         {
             //1 根据Job的类名通过反射的方式创建IJobDetial
-            var job= JobFactory.CreateJobInstance(jobInfo);
+            var job = JobFactory.CreateJobInstance(jobInfo);
 
             //2 创建定时器
             var trigger = JobFactory.CreateTrigger(jobInfo);
 
             //3 将定时器加入job中
-            //放在构造函数中
-            //var sche=new SchedulerFactory().GetScheduler();
+            var sche = new SchedulerFactory().CreateScheduler();
             sche.ScheduleJob(job, trigger);
 
             //4 启动工作
@@ -45,22 +49,18 @@ namespace QuartzServiceLib
             return true;
         }
 
-        public void ResumeAllJob()
+        public void AddListener(IJobListener jobListener, string JobName, string GroupName)
         {
-            //var scheduler_temp = new SchedulerFactory().GetScheduler();
+            sche.ListenerManager.AddJobListener(jobListener, KeyMatcher<JobKey>.KeyEquals(new JobKey(JobName, GroupName)));
 
-            if (!sche.IsStarted) { sche.Start(); }
-            sche.ResumeAll();
         }
 
-        /// <summary>
-        /// 根据作业名及群组名暂停指定作业
-        /// </summary>
-        /// <param name="jobName"></param>
-        /// <param name="jobGroup"></param>
-        public void PauseJob(string jobName,string jobGroup)
+        public void ResumeAllJob()
         {
-            sche.PauseJob(JobKey.Create(jobName, jobGroup));
+            var scheduler_temp = new SchedulerFactory().CreateScheduler();
+
+            if (!scheduler_temp.IsStarted) { scheduler_temp.Start(); }
+            scheduler_temp.ResumeAll();
         }
 
         public void SaveScheduleInDB()
@@ -84,8 +84,13 @@ namespace QuartzServiceLib
             #endregion
             //ISchedulerFactory sf = new StdSchedulerFactory(properties);
             //IScheduler sched = sf.GetScheduler();
-            
+
             IScheduler sched = StdSchedulerFactory.GetDefaultScheduler();
+        }
+
+        public void PauseJob(string jobName, string jobGroup)
+        {
+            throw new NotImplementedException();
         }
     }
 }

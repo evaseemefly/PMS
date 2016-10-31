@@ -13,9 +13,12 @@ namespace QuartzDemo
     {
        protected IUserInfoBLL userInfoBLL { get; set; }
 
+        protected IJ_JobInfoBLL jobInfoBLL { get; set; }
+
         public JobAbstract()
         {
             userInfoBLL = new UserInfoBLL();
+            jobInfoBLL = new J_JobInfoBLL();
         }
 
         public void Execute(IJobExecutionContext context)

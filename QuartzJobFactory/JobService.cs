@@ -41,8 +41,7 @@ namespace QuartzJobFactory
             var trigger = JobFactory.CreateTrigger(jobInfo);
 
             //3 将定时器加入job中
-
-            var sche=new SchedulerFactory().CreateScheduler();
+            var sche=new SchedulerFactory().GetScheduler();
             sche.ScheduleJob(job, trigger);
 
             //4 启动工作
@@ -58,7 +57,7 @@ namespace QuartzJobFactory
 
         public void ResumeAllJob()
         {
-            var scheduler_temp = new SchedulerFactory().CreateScheduler();
+            var scheduler_temp = new SchedulerFactory().GetScheduler();
 
             if (!scheduler_temp.IsStarted) { scheduler_temp.Start(); }            
             scheduler_temp.ResumeAll();

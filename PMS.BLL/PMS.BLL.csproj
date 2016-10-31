@@ -93,6 +93,10 @@
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QuartzJobFactory\QuartzJobFactory.csproj">
+      <Project>{0f928469-5038-4471-a6d4-5a2bab75253e}</Project>
+      <Name>QuartzJobFactory</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BLL.tt">
