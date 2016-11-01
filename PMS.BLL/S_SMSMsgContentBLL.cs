@@ -94,6 +94,7 @@ namespace PMS.BLL
         public bool PhysicsDel(List<int> list_ids)
         {
             var list_model = this.GetListByIds(list_ids);
+            if(list_model == null) { return false; }
             this.CurrentDAL.DelByList(list_model);
             this.CurrentDAL.SaveChange();
             return true;

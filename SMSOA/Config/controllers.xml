@@ -67,4 +67,7 @@
   <object type="PMS.BLL.UserInfoBLL, PMS.BLL" singleton="false" >
     <property name="contentBLL" ref="smsContentService" />
   </object>
+  <object type="SMSOA.Areas.Job.Controllers.TemplateController, SMSOA" singleton="false" >
+    <property name="jobTemplateBLL" ref="jobTemplateService" />
+  </object>
 </objects>
