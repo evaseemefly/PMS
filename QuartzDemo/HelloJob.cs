@@ -42,14 +42,27 @@ namespace QuartzDemo
                     if (targetJob != null)
                     {
                        var job_temp= base.jobInfoBLL.GetListBy(j => j.JobName == targetJob.JobName && j.JobGroup == targetJob.JobGroup).FirstOrDefault();
+                        var isShutDown = context.Scheduler.IsShutdown;
+
+                        UpdateJobState(job_temp);
                         //job_temp.JobState=
                         //base.jobInfoBLL.Update()
+
                     }
                     //4 若不存在则创建新的作业
                 }
 
             }
             
+        }
+
+        /// <summary>
+        /// 更新作业状态
+        /// </summary>
+        /// <param name="job"></param>
+        private void UpdateJobState(PMS.Model.J_JobInfo job)
+        {
+
         }
     }
 }

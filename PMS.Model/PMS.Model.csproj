@@ -97,6 +97,8 @@
     <Compile Include="J_JobTemplate.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Message\BaseResponse.cs" />
+    <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />

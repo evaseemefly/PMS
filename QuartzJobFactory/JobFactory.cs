@@ -8,7 +8,7 @@ using PMS.Model;
 
 namespace QuartzJobFactory
 {
-    public static class JobFactory
+    static class JobFactory
     {
         /// <summary>
         /// 根据Class名称通过反射的方式创建IJobDetial
@@ -16,12 +16,13 @@ namespace QuartzJobFactory
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static IJobDetail CreateJobInstance(J_JobInfo jobInfo)
+       public static IJobDetail CreateJobInstance(J_JobInfo jobInfo)
         {
             //1 通过反射的方式创建Job实例
             IJob job_temp= JobAbstractFactory.CreateJob(jobInfo.JobClassName);
             //2 获取创建的Job实例的Type
             Type type = job_temp.GetType();
+            IJobDetail job = null;
             #region 注释掉用以下方式替代
             //var obj= Activator.CreateInstance(type);
 
@@ -32,10 +33,18 @@ namespace QuartzJobFactory
             #endregion
             //3 创建Job
             //获取传递过来的UID
-            IJobDetail job = JobBuilder.Create(type)
+            try
+            {
+                job = JobBuilder.Create(type)
                                     .WithIdentity(jobInfo.JobName, jobInfo.JobGroup)
-                                    .UsingJobData("UID",jobInfo.UID)
+                                    .UsingJobData("UID", jobInfo.UID)
                                     .Build();
+            }
+            catch (Exception)
+            {
+                
+            }
+            
             return job;
         }
 
@@ -44,7 +53,7 @@ namespace QuartzJobFactory
         /// </summary>
         /// <param name="jobInfo"></param>
         /// <returns></returns>
-        public static ITrigger CreateTrigger(J_JobInfo jobInfo)
+       public static ITrigger CreateTrigger(J_JobInfo jobInfo)
         {
             //
             var trigger = TriggerBuilder.Create()

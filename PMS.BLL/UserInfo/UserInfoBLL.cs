@@ -14,7 +14,6 @@ namespace PMS.BLL
     {
         IS_SMSContentBLL contentBLL { get; set; }
        
-        public void Test() { }
 
         ///// <summary>
         ///// 根据用户id查询对应的作业
