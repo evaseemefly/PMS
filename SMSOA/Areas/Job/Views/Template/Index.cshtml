@@ -3,10 +3,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
 }
+
+@section My_Scripts{
+    
+    }
+
 @section Body{
 <div>
     <table class="easyui-datagrid" id="datagrid"></table>
+    <div id="tb">
+
+    </div>
     @*@Html.Partial("_Partial_Toolbar_Action")*@
 </div>
     }
+
 

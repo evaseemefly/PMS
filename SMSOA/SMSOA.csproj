@@ -404,6 +404,8 @@
     <Content Include="Areas\Job\Views\web.config" />
     <Content Include="Areas\Job\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Job\Views\Template\Index.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\Index.cshtml" />
+    <Content Include="Areas\Job\Views\Template\ShowEditTemplate.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -498,7 +500,6 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
     <Folder Include="Areas\Job\Models\" />
-    <Folder Include="Areas\Job\Views\Instance\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Areas\News\Models\" />

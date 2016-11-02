@@ -10,9 +10,7 @@ namespace PMS.IBLL
 {
     public partial interface IUserInfoBLL
     {
-        void Test();
-
-        
+     
         /// <summary>
         /// 根据UserID查找该用户对应的短信任务
         /// </summary>
