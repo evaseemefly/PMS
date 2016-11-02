@@ -13,7 +13,7 @@ namespace PMS.BLL
 
         //使用WCF中的方法
         //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
-        QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
+        //QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
 
 
         /// <summary>
@@ -22,8 +22,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<J_JobInfo> GetAllNullDelJobInfo()
         {
-            base.GetListBy(j => j.isDel == false).ToList();
-            return null;
+           return base.GetListBy(j => j.isDel == false).ToList();
         }
 
         /// <summary>
@@ -45,12 +44,12 @@ namespace PMS.BLL
         public bool AddJobInfo(J_JobInfo model)
         {
             //1 添加作业至调度池中
-           var response= ijobService.AddScheduleJob(model);
-            //2 根据传入的JobInfo创建指定的作业
-            if (response.Success == true)
-            {
-                base.Create(model);
-            }
+           //var response= ijobService.AddScheduleJob(model);
+           // //2 根据传入的JobInfo创建指定的作业
+           // if (response.Success == true)
+           // {
+           //     base.Create(model);
+           // }
             return false;
         }
 
@@ -77,8 +76,8 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-               var response= ijobService.PauseJob(job_temp);
-                return response.Success;
+               //var response= ijobService.PauseJob(job_temp);
+               // return response.Success;
             }            
             return false;
         }
@@ -136,12 +135,12 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 删除该作业
-                var response = ijobService.RemovceJob(job_temp);
-                if (response.Success == true)
-                {
-                    DelSoftJobInfos(new int[]{ JID});
-                }
-                return response.Success;
+                //var response = ijobService.RemovceJob(job_temp);
+                //if (response.Success == true)
+                //{
+                //    DelSoftJobInfos(new int[]{ JID});
+                //}
+                //return response.Success;
             }
             return false;
         }

@@ -51,7 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>
-    <Compile Include="J_JobInfo.cs" />
+    <Compile Include="J_JobInfoBLL.cs" />
     <Compile Include="J_JobTemplateBLL.cs" />
     <Compile Include="N_NewsBaseBLL.cs" />
     <Compile Include="N_NewsPartialBLL.cs" />

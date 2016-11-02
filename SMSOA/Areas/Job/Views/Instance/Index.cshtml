@@ -4,5 +4,19 @@
     Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section My_Scripts{
+
+}
+
+@section Body{
+    <div>
+        <table class="easyui-datagrid" id="datagrid"></table>
+        <div id="tb_contacts" style="padding:2px 5px;">
+            <a href="#" class="easyui-linkbutton" istb="true" id="add_job" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()"></a>
+        </div>
+        @*@Html.Partial("_Partial_Toolbar_Action")*@
+    </div>
+}
 
