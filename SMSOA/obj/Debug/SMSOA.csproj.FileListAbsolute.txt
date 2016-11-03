@@ -430,3 +430,5 @@ D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\controllers.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\service.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.pdb
+D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\Microsoft.Owin.Host.SystemWeb.dll

@@ -1,4 +1,8 @@
-﻿//扩展easyui表单的验证
+﻿/*
+*   Target: 扩展easyui表单的验证
+*   Author: QuYuan
+*   LastModifyTime: 2016.11.03
+*/
 $.extend($.fn.validatebox.defaults.rules, {
     //验证是否是汉字
     CHS: {
@@ -29,6 +33,12 @@ $.extend($.fn.validatebox.defaults.rules, {
             return value == $(param[0]).val();
         },
         message: '两次密码输入不一致'
+    },
+    //验证是否为整数
+    Integer: {
+        validator: function (value) {
+            return /^([0-9]+)$/.test(value);
+        },
+        message:'请输入整数'
     }
-
 })

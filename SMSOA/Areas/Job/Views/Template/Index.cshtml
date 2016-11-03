@@ -1,11 +1,102 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
+﻿@{
+    Layout = null;
 }
+@Html.Partial("_MyPartial_Index")
 
 @section My_Scripts{
-    
+        <script type="text/javascript">
+            //工具栏
+            var toolbar = [{
+                iconCls: 'icon-add',
+                text: "新增",
+                handler: addTemplateRow
+            }, '-',
+            {
+                iconCls: 'icon-remove',
+                text: "删除",
+                handler: removeTemplateRow
+            },'-',
+            {
+                iconCls: 'icon-edit',
+                text: "编辑",
+                handler: editTemplateRow
+            }]
+
+            //模板列表的列属性
+            var myColumns = [[
+                         { field: 'JTID', title: 'ID', width: 100, hidden: true },
+                         { field: 'JobClassName', title: '模板名称', width: '20%' },
+                         { field: 'JobType', title: '模板类型', width: '10%' },
+                         { field: 'CronStr', title: 'CronStr', width: '20%' },
+                         { field: 'Remark', title: '备注', width: '50%' }
+            ]]
+
+
+
+            //添加操作
+            function addTemplateRow() {
+                addRow("新建作业模板");
+            }
+
+            //编辑操作
+            function editTemplateRow() {
+                var rows = $("#datagrid").datagrid('getSelections');
+                //若选中的行不为一行
+                if (rows.length != 1) {
+                    //提示
+                    $.messager.show({
+                        title: '提示',
+                        msg: '请选择一行数据',
+                        showType: 'show'
+                    });
+                    return;
+                }
+                //若选中了一行数据则执行修改操作
+                //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+                $("#setActionRoleFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].TID);//会出现重定向的错误
+                $("#editWindow").panel({ title: "编辑作业模板" });
+                $("#editWindow").window('open');
+
+            }
+
+            //删除操作
+            function removeTemplateRow() {
+                var rows = $("#datagrid").datagrid('getSelections');
+                //若选中的行不为一行
+                if (rows.length < 1) {
+                    //提示
+                    $.messager.show({
+                        title: '提示',
+                        msg: '请至少选中一行数据',
+                        showType: 'show'
+                    });
+                    return;
+                }
+                //post请求至软删除方法
+                if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                    if (r) {
+                        var strId = "";
+                    for (var i = 0; i < rows.length; i++) {
+                            strId = strId + rows[i].TID + ",";
+                }
+                    //去掉最后一个逗号
+                    strId = strId.substr(0, strId.length - 1);
+                    $.post("@ViewBag.Del_url?ids=" + strId, function (data) {
+                    //请求成功后的回调函数
+                    if (data == "ok") {
+                    //重新加载datagrid
+                       $("#datagrid").datagrid('reload');
+                    //清楚所选中的行
+                    $("#datagrid").datagrid('clearSelections');
+                    $.messager.alert("提示", "删除成功");
+                }
+                });
+                }
+                }));
+
+            }
+
+        </script>
     }
 
 @section Body{
@@ -14,6 +105,7 @@
     <div id="tb">
 
     </div>
+
     @*@Html.Partial("_Partial_Toolbar_Action")*@
 </div>
     }
