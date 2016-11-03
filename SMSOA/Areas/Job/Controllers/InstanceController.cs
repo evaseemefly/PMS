@@ -15,6 +15,9 @@ namespace SMSOA.Areas.Job.Controllers
 
         public ActionResult Index()
         {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
             var list= jobBLL.GetAllNullDelJobInfo();
             return Content(Common.SerializerHelper.SerializerToString(list));
         }

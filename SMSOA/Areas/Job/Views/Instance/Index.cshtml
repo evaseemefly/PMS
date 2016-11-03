@@ -5,7 +5,46 @@
 }
 
 @section My_Scripts{
+<script type="text/javascript">
+        var JobColumns = [[
+                 { field: 'JID', title: 'ID', width: 50, checkbox: true },
+                 { field: 'JobName', title: '用户名称', width: 100 },
+                 { field: 'JobGroup', title: '电话号码', width: 150 },
 
+        ]]
+
+        function loadDataGrid_Job(id, url) {
+            $("#" + id).datagrid({
+                fitColumns: true,
+                striped: true,
+                multiple: true,     //单选
+                //fit: true,
+                url: url,
+                showHeader: true,
+                // pagination:true,//在数据表格控件底部显示分页工具栏
+                rownumbers: true, //是否加行号
+                loadMsg: '加载中……',
+                columns: JobColumns,
+                fitColumns: true,
+                toolbar: '#tb_contacts',
+                onLoadSuccess: function () {
+                    var data = $("#persondatagrid").datagrid("getData");
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
+                        $("#persondatagrid").datagrid("selectRow", rowIndex);
+                    });
+                },
+                onUnselect: function (rowIndex, rowData) {
+                    //alert("去掉已经选中的一行");
+
+                }
+            });
+        }
+
+        $(function () {
+            loadDataGrid_Job("datagrid", "datagrid_data_job.json");
+        })
+</script>
 }
 
 @section Body{
@@ -15,6 +54,9 @@
             <a href="#" class="easyui-linkbutton" istb="true" id="add_job" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addJobRow()"></a>
             <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()"></a>
             <a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="pause_Job" data-options="iconCls:'icon-undo',text: '暂停',plain:true" onclick="pauseJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="end_Job" data-options="iconCls:'icon-no',text: '终止',plain:true" onclick="endJobRow()"></a>
         </div>
         @*@Html.Partial("_Partial_Toolbar_Action")*@
     </div>

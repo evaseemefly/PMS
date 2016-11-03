@@ -100,6 +100,7 @@
     <Compile Include="Message\BaseResponse.cs" />
     <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
+    <Compile Include="MiddlewareModel\J_JobInfo.cs" />
     <Compile Include="MiddlewareModel\J_JopTemplate.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />

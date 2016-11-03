@@ -25,6 +25,35 @@ namespace PMS.BLL
            return base.GetListBy(j => j.isDel == false).ToList();
         }
 
+        public List<J_JobInfo> GetJobInfoByPage(int pageIndex,int pageSize,ref int rowCount,bool isAsc,bool isMiddle)
+        {
+            var query = this.GetAllNullDelJobInfo();
+            int uid = 0;
+            query = query.Where(j => j.UID == uid).ToList();
+           return this.ToListByPage(query, pageIndex, pageSize, ref rowCount, true, true);
+        }
+
+        private List<J_JobInfo> ToListByPage(List<J_JobInfo> query, int pageIndex, int pageSize, ref int rowCount, bool isAsc, bool isMiddle)
+        {
+            if (isAsc)
+            {
+                query = query.OrderBy(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                query = query.OrderByDescending(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            if (isMiddle)
+            {
+                return query.Select(s => s.ToMiddleModel()).ToList();
+            }
+            else
+            {
+                return query;
+            }
+
+        }
+
         /// <summary>
         /// 根据角色查询该角色拥有的模板（暂未实现）
         /// </summary>
