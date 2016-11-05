@@ -91,6 +91,9 @@
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
+    <Compile Include="J_JobInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />

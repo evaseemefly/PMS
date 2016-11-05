@@ -58,7 +58,7 @@
         <EntityTypeShape EntityType="PMS2016Model.WF_Query_StepInfo" Width="1.5" PointX="2.75" PointY="9.75" />
         <EntityTypeShape EntityType="PMS2016Model.S_SMSType" Width="1.5" PointX="12.375" PointY="13.75" />
         <EntityTypeShape EntityType="PMS2016Model.WF_Query_Instance" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="PMS2016Model.Quartz_Job" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="PMS2016Model.J_JobInfo" Width="1.5" PointX="3.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

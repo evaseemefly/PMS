@@ -1,12 +1,16 @@
 ﻿<div class="easyui-layout" id="body_layout" style="width:100%;height:91%;" >
-    <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@ style="width:400px;">
-        <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
-        <div id="tb">
-            <input class="easyui-textbox" id="txt_addPerson"data-options="buttonText:'添加',buttonIcon:'icon-add',prompt:'添加临时联系人...',onClickButton:function(){append()}" }  style="width:90%;">
-        </div>
+    <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@ style="width:43%;">
+        <table class="easyui-datagrid" id="person_temp_datagrid"title="添加临时联系人"  data-options="" style="width:98%;height:30%">
+
+        </table>
+        <table class="easyui-datagrid"title="联系人列表" id="persondatagrid" data-options="" style="width:98%;height:69%"></table>
+        
+</div>
+    <div id="tb">
+        <input class="easyui-textbox" id="txt_addPerson" data-options="buttonText:'添加',buttonIcon:'icon-add',prompt:'添加临时联系人...',onClickButton:function(){append()},validType:'Mobile'" } style="width:60%;">
     </div>
     <div data-options="region:'center'" title="短信编辑" style="width:70%">
-            <div style="padding:10px 30px 20px 30px">
+            <div style="padding:10px 30px 20px 10px">
                 <form id="ff" method="post">
                     <table cellspacing="10" style="font-size:15px;">
                         <tr>

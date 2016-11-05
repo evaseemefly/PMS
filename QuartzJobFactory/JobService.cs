@@ -1,21 +1,43 @@
-﻿
-using Quartz;
-using Quartz.Impl;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PMS.Model;
+using System.Collections.Specialized;
+using Quartz.Impl;
+using Quartz;
 
-namespace QuartzDemo
+namespace QuartzJobFactory
 {
-    class Program
+    public class JobService
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// 根据工作对象 添加任务计划
+        /// </summary>
+        /// <param name="jobInfo"></param>
+        /// <returns></returns>
+        public bool AddScheduleJob(J_JobInfo jobInfo)
         {
+            //1 根据Job的类名通过反射的方式创建IJobDetial
+            var job= JobFactory.CreateJobInstance(jobInfo.JobClassName);
 
+            //2 创建定时器
+            var trigger = JobFactory.CreateTrigger(jobInfo);
+
+            //3 将定时器加入job中
+            var sche= SchedulerFactory.CreateScheduler();
+            sche.ScheduleJob(job, trigger);
+
+            //4 启动工作
+            sche.Start();
+            return true;
+        }
+
+        public void SaveScheduleInDB()
+        {
             //1.首先创建一个作业调度池
-            var properties = new System.Collections.Specialized.NameValueCollection();
+            var properties = new NameValueCollection();
             //存储类型
             properties["quartz.jobStore.type"] = "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz";
             //表明前缀
@@ -24,7 +46,7 @@ namespace QuartzDemo
             properties["quartz.jobStore.driverDelegateType"] = "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz";                //数据源名称
             properties["quartz.jobStore.dataSource"] = "myDS";
             //连接字符串
-            properties["quartz.dataSource.myDS.connectionString"] = "metadata=res://*/PMSEntities.csdl|res://*/PMSEntities.ssdl|res://*/PMSEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ADMIN-PC;initial catalog=PMS20160325;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;";
+            properties["quartz.dataSource.myDS.connectionString"] = Config.QuartzConnStr;
             //sqlserver版本
             properties["quartz.dataSource.myDS.provider"] = "SqlServer-20";
             //最大链接数
@@ -32,7 +54,6 @@ namespace QuartzDemo
             // First we must get a reference to a scheduler
             ISchedulerFactory sf = new StdSchedulerFactory(properties);
             IScheduler sched = sf.GetScheduler();
-
         }
     }
 }

@@ -70,7 +70,7 @@ namespace ConsoleApplication2
                 }
                 catch (Exception ex)
                 {
-                    #region 加入执行明细
+                    //#region 加入执行明细
                     //WJ_ScheduleDetailsEntity dm = new WJ_ScheduleDetailsEntity();
                     //dm.ActionDescribe = "执行任务计划中，执行计划过程出错：" + ex.Message + "/r/n" + ex.StackTrace;
                     //dm.ActionStep = (int)ADJ.Job.Entity.EnumType.JobStep.执行任务计划中;
