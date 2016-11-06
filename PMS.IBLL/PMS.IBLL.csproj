@@ -49,6 +49,8 @@
       <DependentUpon>IBLL.tt</DependentUpon>
     </Compile>
     <Compile Include="IDelListBLL.cs" />
+    <Compile Include="IJ_JobInfoBLL.cs" />
+    <Compile Include="IJ_JobTemplateBLL.cs" />
     <Compile Include="IRedis_HashBLL.cs" />
     <Compile Include="IRedis_ListBLL.cs" />
     <Compile Include="IN_NewsBLL.cs" />
@@ -60,7 +62,8 @@
     <Compile Include="IS_SMSMissionBLL.cs" />
     <Compile Include="IS_SMSMsgContentBLL.cs" />
     <Compile Include="IS_SMSRecord_CurrentBLL.cs" />
-    <Compile Include="IUserInfoBLL.cs" />
+    <Compile Include="IUserInfo\IUserInfoBLL.cs" />
+    <Compile Include="IUserInfo\IUserInfoBLL_Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -59,6 +59,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _J_JobTemplateDAL 属性 
+	private IDAL.IJ_JobTemplateDAL _J_JobTemplateDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取J_JobTemplateDAL的实例
+        /// </summary>
+        public IJ_JobTemplateDAL J_JobTemplateDAL
+        {
+            get
+            {
+                if(_J_JobTemplateDAL==null)
+                {
+                    _J_JobTemplateDAL = AbstractFactory.CreateJ_JobTemplateDAL();
+                }
+                return _J_JobTemplateDAL;
+            }
+
+            set
+            {
+                _J_JobTemplateDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _N_NewsDAL 属性 
 	private IDAL.IN_NewsDAL _N_NewsDAL;
 	#endregion
@@ -162,33 +189,6 @@ public partial class DBSession
             set
             {
                 _P_PersonInfoDAL = value;
-            }
-        }
-	#endregion
-	
-
-		#region _Quartz_JobDAL 属性 
-	private IDAL.IQuartz_JobDAL _Quartz_JobDAL;
-	#endregion
-
-	#region
-        /// <summary>
-        /// 获取Quartz_JobDAL的实例
-        /// </summary>
-        public IQuartz_JobDAL Quartz_JobDAL
-        {
-            get
-            {
-                if(_Quartz_JobDAL==null)
-                {
-                    _Quartz_JobDAL = AbstractFactory.CreateQuartz_JobDAL();
-                }
-                return _Quartz_JobDAL;
-            }
-
-            set
-            {
-                _Quartz_JobDAL = value;
             }
         }
 	#endregion

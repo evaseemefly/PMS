@@ -17,18 +17,18 @@ namespace ConsoleApplication2
         {
             ThreadPool.QueueUserWorkItem(delegate (Object o)
             {
-                IQuartz_JobBLL jobBLL = new Quartz_JobBLL();
+                IJ_JobInfoBLL jobBLL = new J_JobInfoBLL();
                 try
                 {
                     //DoApplication.WriteLogFile(context.JobDetail.Key.Group + "---" + context.JobDetail.Key.Name + "---" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "---" + context.NextFireTimeUtc.Value.DateTime.AddHours(8).ToString("yyyy-MM-dd HH:mm:ss"));
                     //jobBLL.GetListBy
                     //var sm = new WJ_ScheduleManage().GetScheduleModel(new WJ_ScheduleEntity() { JobGroup = context.JobDetail.Key.Group, JobName = context.JobDetail.Key.Name });
                     //
-                    Quartz_Job jobModel = new Quartz_Job()
+                    J_JobInfo jobModel = new J_JobInfo()
                     {
                         JobName = context.JobDetail.Key.Name,
-                        JobValue=context.JobDetail.Key.Group,
-                        State=1,//执行中
+                        //JobValue=context.JobDetail.Key.Group,
+                        //State=1,//执行中
 
                     };
 

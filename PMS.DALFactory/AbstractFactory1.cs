@@ -36,6 +36,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建J_JobTemplate的实例
+        /// <summary>
+        /// 创建J_JobTemplate的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IJ_JobTemplateDAL CreateJ_JobTemplateDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".J_JobTemplateDAL";
+            return CreateInstance(fullClassName) as IJ_JobTemplateDAL;
+        }
+		#endregion
+	 
 		#region 创建N_News的实例
         /// <summary>
         /// 创建N_News的实例
@@ -85,19 +98,6 @@ namespace PMS.DALFactory
             //获取类的全名称：命名空间+类名
             string fullClassName = NameSpace + ".P_PersonInfoDAL";
             return CreateInstance(fullClassName) as IP_PersonInfoDAL;
-        }
-		#endregion
-	 
-		#region 创建Quartz_Job的实例
-        /// <summary>
-        /// 创建Quartz_Job的实例
-        /// </summary>
-        /// <returns></returns>
-        public static IQuartz_JobDAL CreateQuartz_JobDAL()
-        {
-            //获取类的全名称：命名空间+类名
-            string fullClassName = NameSpace + ".Quartz_JobDAL";
-            return CreateInstance(fullClassName) as IQuartz_JobDAL;
         }
 		#endregion
 	 

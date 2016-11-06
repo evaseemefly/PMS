@@ -46,7 +46,11 @@
   <ItemGroup>
     <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\Common.Logging.dll</HintPath>
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,6 +68,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Quartz, Version=2.4.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Core, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Spring.Core.dll</HintPath>
@@ -224,6 +232,9 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
+    <Compile Include="Areas\Job\Controllers\InstanceController.cs" />
+    <Compile Include="Areas\Job\Controllers\TemplateController.cs" />
+    <Compile Include="Areas\Job\JobAreaRegistration.cs" />
     <Compile Include="Areas\Login\Controllers\LoginController.cs" />
     <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
     <Compile Include="Areas\News\Controllers\HomeController.cs" />
@@ -398,6 +409,16 @@
     <Content Include="Areas\Admin\Views\Action\_Partial_Toolbar_Action.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_Partial_Home_Top - 10-10-备份.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_Parital_Home_Top_BtnView.cshtml" />
+    <Content Include="Areas\Job\Views\web.config" />
+    <Content Include="Areas\Job\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Job\Views\Template\Index.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\Index.cshtml" />
+    <Content Include="Areas\Job\Views\Template\ShowEditTemplate.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_LoadDataGrid_JS.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_tbFunc_JS.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_Common_JS.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\ShowEditInstance.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_EditJobIns_Submit_JS.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -491,6 +512,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
+    <Folder Include="Areas\Job\Models\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
     <Folder Include="Areas\News\Models\" />
@@ -548,6 +570,9 @@
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
       <Name>SMSFactory</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

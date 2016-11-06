@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QuartzJobFactory
 {
-    public class JobAbstractFactory
+    class JobAbstractFactory
     {
         private static readonly string JobAssemblyPath= ConfigurationManager.AppSettings["JobAssemblyPath"];
 

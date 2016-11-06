@@ -48,7 +48,6 @@
     <Compile Include="JobAbstractFactory.cs" />
     <Compile Include="JobFactory.cs" />
     <Compile Include="JobService.cs" />
-    <Compile Include="Job_Test.cs" />
     <Compile Include="SchedulerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,6 +56,9 @@
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="JobInstance\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

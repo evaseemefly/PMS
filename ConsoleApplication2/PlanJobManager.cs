@@ -32,31 +32,31 @@ namespace ConsoleApplication2
         /// 添加任务计划
         /// </summary>
         /// <returns></returns>
-        public bool AddScheduleJob(Quartz_Job m)
+        public bool AddScheduleJob(J_JobInfo m)
         {
             try
             {
                 if (m != null)
                 {
-                    if (m.StartDateTime == null)
+                    if (m.StartRunTime == null)
                     {
-                        m.StartDateTime = DateTime.Now;
+                        m.StartRunTime = DateTime.Now;
                     }
-                    DateTimeOffset starRunTime = DateBuilder.NextGivenSecondDate(m.StartDateTime, 1);
-                    if (m.EndDateTime == null)
+                    DateTimeOffset starRunTime = DateBuilder.NextGivenSecondDate(m.StartRunTime, 1);
+                    if (m.EndRunTime == null)
                     {
-                        m.EndDateTime = DateTime.MaxValue.AddDays(-1);
+                        m.EndRunTime = DateTime.MaxValue.AddDays(-1);
                     }
-                    DateTimeOffset endRunTime = DateBuilder.NextGivenSecondDate(m.EndDateTime, 1);
+                    DateTimeOffset endRunTime = DateBuilder.NextGivenSecondDate(m.EndRunTime, 1);
                     scheduler = GetScheduler();
                     IJobDetail job = JobBuilder.Create<HttpJob>()
-                      .WithIdentity(m.JobName, m.JobValue)
+                      .WithIdentity(m.JobName, m.JobGroup)
                       .Build();
                     ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
                                                  .StartAt(starRunTime)
                                                  .EndAt(endRunTime)
-                                                 .WithIdentity(m.JobName, m.JobValue)
-                                                 .WithCronSchedule(m.CronExpression)
+                                                 .WithIdentity(m.JobName, m.JobGroup)
+                                                 .WithCronSchedule(m.CronStr)
                                                  .Build();
                     scheduler.ScheduleJob(job, trigger);
                     scheduler.Start();

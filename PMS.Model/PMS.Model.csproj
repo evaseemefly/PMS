@@ -74,6 +74,7 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
+    <Compile Include="Enum\JobState_Enum.cs" />
     <Compile Include="Enum\MatchCondition_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="EqualCompare\SMSModel_QueryReceive_Compare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
+    <Compile Include="ExtensionModel\J_JobInfo.cs" />
     <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />
     <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
@@ -94,7 +96,14 @@
     <Compile Include="J_JobInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="J_JobTemplate.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message\BaseResponse.cs" />
+    <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
+    <Compile Include="MiddlewareModel\J_JobInfo.cs" />
+    <Compile Include="MiddlewareModel\J_JopTemplate.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
     <Compile Include="MiddlewareModel\P_Group.cs" />
@@ -131,9 +140,6 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="P_PersonInfo.cs">
-      <DependentUpon>PMSEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Quartz_Job.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryModel\Redis_HashWFObj.cs" />
@@ -211,6 +217,7 @@
     <Compile Include="ViewModel\ViewModel_Group_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Department.cs" />
     <Compile Include="ViewModel\ViewModel_isPass_Group.cs" />
+    <Compile Include="ViewModel\ViewModel_JobTemplate.cs" />
     <Compile Include="ViewModel\ViewModel_Mission_QueryInfo.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_News.cs" />

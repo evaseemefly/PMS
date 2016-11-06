@@ -31,6 +31,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	J_JobTemplateBLL
+    public partial class J_JobTemplateBLL : BaseBLL<J_JobTemplate>, IJ_JobTemplateBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为J_JobTemplateDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.J_JobTemplateDAL;
+        }
+    }
+	#endregion
 	   #region	N_NewsBLL
     public partial class N_NewsBLL : BaseBLL<N_News>, IN_NewsBLL
     {	
@@ -80,19 +93,6 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.P_PersonInfoDAL;
-        }
-    }
-	#endregion
-	   #region	Quartz_JobBLL
-    public partial class Quartz_JobBLL : BaseBLL<Quartz_Job>, IQuartz_JobBLL
-    {	
-
-		/// <summary>
-        /// 为当前的DAL对象赋值，赋值为Quartz_JobDAL
-        /// </summary>
-        public override void SetCurrentDAL()
-        {
-            base.CurrentDAL = base.CurrentDBSession.Quartz_JobDAL;
         }
     }
 	#endregion

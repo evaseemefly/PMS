@@ -1,0 +1,29 @@
+﻿<script type="text/javascript">
+    function loadDataGrid_Job(id, url,columns,id_tb) {
+        $("#" + id).datagrid({
+            fitColumns: true,
+            striped: true,
+            multiple: true,     //单选
+            //fit: true,
+            url: url,
+            showHeader: true,
+            // pagination:true,//在数据表格控件底部显示分页工具栏
+            rownumbers: true, //是否加行号
+            loadMsg: '加载中……',
+            columns: columns,
+            fitColumns: true,
+            toolbar: '#'+id_tb,
+            onLoadSuccess: function () {
+                //var data = $("#persondatagrid").datagrid("getData");
+                //var rowData = data.rows;
+                //$.each(rowData, function (rowIndex, rowData) {
+                //    $("#persondatagrid").datagrid("selectRow", rowIndex);
+                //});
+            },
+            onUnselect: function (rowIndex, rowData) {
+                //alert("去掉已经选中的一行");
+
+            }
+        });
+    }
+</script>

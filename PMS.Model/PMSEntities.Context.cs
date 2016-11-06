@@ -48,6 +48,7 @@ namespace PMS.Model
         public DbSet<WF_Query_StepInfo> WF_Query_StepInfo { get; set; }
         public DbSet<S_SMSType> S_SMSType { get; set; }
         public DbSet<WF_Query_Instance> WF_Query_Instance { get; set; }
+        public DbSet<J_JobTemplate> J_JobTemplate { get; set; }
         public DbSet<J_JobInfo> J_JobInfo { get; set; }
     }
 }

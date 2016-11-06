@@ -15,6 +15,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IJ_JobTemplateDAL
+      IDAL.IJ_JobTemplateDAL J_JobTemplateDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IN_NewsDAL
       IDAL.IN_NewsDAL N_NewsDAL { get; set; }
 	  #endregion
@@ -32,11 +37,6 @@ namespace PMS.IDAL
 	  
 	  #region IP_PersonInfoDAL
       IDAL.IP_PersonInfoDAL P_PersonInfoDAL { get; set; }
-	  #endregion
-
-	  
-	  #region IQuartz_JobDAL
-      IDAL.IQuartz_JobDAL Quartz_JobDAL { get; set; }
 	  #endregion
 
 	  
