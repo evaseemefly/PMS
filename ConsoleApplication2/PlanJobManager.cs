@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
 
-namespace ConsoleApplication2
+namespace QuartzDemo
 {
     public class PlanJobManager
     {

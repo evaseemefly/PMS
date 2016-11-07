@@ -9,7 +9,7 @@ using PMS.IBLL;
 using PMS.BLL;
 using PMS.Model;
 
-namespace ConsoleApplication2
+namespace QuartzDemo
 {
     public class HttpJob : IJob
     {

@@ -7,6 +7,7 @@ using PMS.IBLL;
 using PMS.BLL;
 using PMS.Model.EasyUIModel;
 using PMS.Model.ViewModel;
+using QuartzJobFactory;
 
 namespace SMSOA.Areas.Job.Controllers
 {
@@ -15,16 +16,18 @@ namespace SMSOA.Areas.Job.Controllers
         IJ_JobInfoBLL jobInfoBLL { get; set; }
         IJ_JobTemplateBLL jobTemplateBLL { get; set; }
 
+        IJobService jobService { get; set; }
+
         //IJ_JobInfoBLL jobBLL = new J_JobInfoBLL();
         //IJ_JobTemplateBLL jobTemplateBLL = new J_JobTemplateBLL();
         // GET: Job/Instance
 
         public ViewResult Index()
         {
-
+            ViewBag.LoginUserID = GetUserId();
             ViewBag.GetJobInfoByUser = "GetJobInfoByUser";
-
-           
+            ViewBag.ShowCreateWin = "ShowAddInstance";
+            ViewBag.ShowEditWin = "ShowEditInstance";
             return View();
         }
 
@@ -35,17 +38,27 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ViewResult ShowAddInstance(int uid)
         {
-            ViewBag.LoginUserID = -999;
-            //若父控制器中的登录用户不为空
-            if (base.LoginUser != null)
-            {
-                //获取登录用户的id
-                ViewBag.LoginUserID = base.LoginUser.ID;
-            }
+            
             ViewBag.backAction = "DoAddJobInfo";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
             ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
             return View("ShowEditInstance");
+        }
+
+        /// <summary>
+        /// 获取当前的登录用户
+        /// </summary>
+        /// <returns></returns>
+        private int GetUserId()
+        {
+           int LoginUserID = -999;
+            //若父控制器中的登录用户不为空
+            if (base.LoginUser != null)
+            {
+                //获取登录用户的id
+                LoginUserID = base.LoginUser.ID;
+            }
+            return LoginUserID;
         }
 
         /// <summary>
@@ -55,13 +68,17 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ViewResult ShowEditInstance(int uid)
         {
-            ViewBag.LoginUserID = -999;
-            //若父控制器中的登录用户不为空
-            if (base.LoginUser != null)
-            {
-                //获取登录用户的id
-                ViewBag.LoginUserID = base.LoginUser.ID;
-            }
+            #region 获取当前的登录用户——封装为一个方法——以下注释掉
+            //ViewBag.LoginUserID = -999;
+            ////若父控制器中的登录用户不为空
+            //if (base.LoginUser != null)
+            //{
+            //    //获取登录用户的id
+            //    ViewBag.LoginUserID = base.LoginUser.ID;
+            //}
+            #endregion
+
+            ViewBag.LoginUserID= GetUserId();
             ViewBag.backAction = "DoEditJobInfo";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
             ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
@@ -75,19 +92,26 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ActionResult DoAddJobInfo(PMS.Model.J_JobInfo model)
         {
-            if (jobInfoBLL.EditValidation(model.JID, model.JobName)) { return Content("validation fails"); }
+            //if (jobInfoBLL.EditValidation(model.JID, model.JobName)) { return Content("validation fails"); }
             //1 将状态写入数据库
-            model.StartRunTime = DateTime.Now;
-            model.EndRunTime = DateTime.Now;
+            if (model.NextRunTime <= DateTime.MinValue)
+            {
+                model.NextRunTime = DateTime.Now;
+            }
+            
+            model.EndRunTime = model.StartRunTime.AddMinutes(1);
             model.CreateTime = DateTime.Now;
             model.JobState = Convert.ToInt32(PMS.Model.Enum.JobState_Enum.running);
 
             if (jobInfoBLL.Create(model))
             {
+                //注意：
+                //在创建之后此model中的JID已经有值了，可以直接获取该JID的值
+                //2 操作Quartz操作类
+                jobService.AddScheduleJob(model);
                 return Content("ok");
             }
-            //2 操作Quartz操作类
-
+            
             else
             {
                 return Content("error");

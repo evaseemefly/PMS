@@ -44,13 +44,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -419,6 +419,7 @@
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_Common_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\ShowEditInstance.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_EditJobIns_Submit_JS.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_ShowEditWin.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -561,6 +562,14 @@
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuartzDemo\QuartzDemo.csproj">
+      <Project>{0f127b3b-9e9f-458b-a36f-5d4e693136aa}</Project>
+      <Name>QuartzDemo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuartzJobFactory\QuartzJobFactory.csproj">
+      <Project>{0f928469-5038-4471-a6d4-5a2bab75253e}</Project>
+      <Name>QuartzJobFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\RecycledFactory\RecycledFactory.csproj">
       <Project>{56ec4f35-5575-471f-ab72-a2f50ad221b4}</Project>
