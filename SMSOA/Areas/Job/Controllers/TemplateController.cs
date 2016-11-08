@@ -25,8 +25,8 @@ namespace SMSOA.Areas.Job.Controllers
             //return View();
             ViewBag.ShowAdd = "ShowAddJobTemplate";
             ViewBag.ShowEdit = "ShowEditJobTemplate";
-           
-            ViewBag.ShowALL = "GetAllJobTemplate";
+            ViewBag.Del_url = "DelJobTemplate";
+            ViewBag.GetInfo = "GetAllJobTemplate";
             ViewBag.ShowByUser = "GetJobTemplateByUser";
             ViewBag.ShowByRole = "GetJobTemplateByRole";
             return View();

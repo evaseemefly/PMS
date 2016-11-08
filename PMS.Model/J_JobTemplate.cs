@@ -27,6 +27,7 @@ namespace PMS.Model
         public int JobType { get; set; }
         public string Remark { get; set; }
         public bool isDel { get; set; }
+        public string JTName { get; set; }
     
         public virtual ICollection<UserInfo> UserInfoes { get; set; }
         public virtual ICollection<J_JobInfo> J_JobInfo { get; set; }

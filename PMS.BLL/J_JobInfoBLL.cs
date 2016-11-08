@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.IBLL;
+using PMS.BLL;
 
 
 namespace PMS.BLL
@@ -14,7 +16,7 @@ namespace PMS.BLL
         //使用WCF中的方法
         //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
         //QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
-
+        IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
         /// <summary>
         /// 获取全部的作业
@@ -25,11 +27,30 @@ namespace PMS.BLL
            return base.GetListBy(j => j.isDel == false).ToList();
         }
 
-        public List<J_JobInfo> GetJobInfoByPage(int pageIndex,int pageSize,ref int rowCount,bool isAsc,bool isMiddle)
+        /// <summary>
+        /// 分页查询指定用户或全部用户的
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <param name="rowCount">返回的总页数</param>
+        /// <param name="isAsc">是否降序</param>
+        /// <param name="isMiddle">是否转成中间变量</param>
+        /// <param name="uid">若不填则默认为-1，查询所有的用户</param>
+        /// <returns></returns>
+        public List<J_JobInfo> GetJobInfoByPage(int pageIndex,int pageSize,ref int rowCount,bool isAsc,bool isMiddle,int uid=-1)
         {
-            var query = this.GetAllNullDelJobInfo();
-            int uid = 0;
-            query = query.Where(j => j.UID == uid).ToList();
+            List<J_JobInfo> query = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault().J_JobInfo.ToList();
+            //List<J_JobInfo> query = base.GetListBy(j => j.UID == uid).ToList();
+            if (uid != -1)
+            {
+                query = NullDelJob(query).ToList();
+            }
+            else
+            {
+                //获取所有用户的全部作业集合
+                query = this.GetAllNullDelJobInfo();
+            }
+            
            return this.ToListByPage(query, pageIndex, pageSize, ref rowCount, true, true);
         }
 
@@ -61,7 +82,11 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<J_JobInfo> GetJobInfoByUser(int uid)
         {
-           // base.GetListBy(j=>j)
+            // var user= userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault();
+            // //获取用户所拥有的作业模板
+            //var list_jobTemplate= userInfoBLL.GetJobTemplateByUser(user).ToList();
+            // base.GetListBy(j=>j)
+            //return list_jobTemplate.Select(t=>t.ToMiddleModel()).ToList();
             return null;
         }
 
@@ -90,6 +115,12 @@ namespace PMS.BLL
         public bool EditJobInfo()
         {
             return false;
+        }
+
+        public bool EditValidation(int id, String name)
+        {
+            var list_model = this.GetListBy(r => r.JID != id && r.isDel == false).ToList();
+            return list_model.Exists(r => r.JobName==name);
         }
 
         /// <summary>
@@ -201,7 +232,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        private IEnumerable<J_JobInfo> NullDelJob(ICollection<J_JobInfo> array)
+        private IEnumerable<J_JobInfo> NullDelJob(IEnumerable<J_JobInfo> array)
         {
             return array.Where(j => j.isDel == false);
         }

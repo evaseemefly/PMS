@@ -25,7 +25,7 @@ namespace PMS.BLL
             list_jobInfo.AddRange(GetJobByUser(user));
 
             //2 根据用户查找对应的模板集合
-            var list = GetTemplateByUser(user);
+            var list = GetJobTemplateByUser(user);
             foreach (var item in list)
             {
                 list_jobInfo.AddRange(GetJobByTemplate(item));
@@ -39,7 +39,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        protected IEnumerable<J_JobTemplate> GetTemplateByUser(UserInfo user)
+        public IEnumerable<J_JobTemplate> GetJobTemplateByUser(UserInfo user)
         {
             return NullDelTemplate(user.J_JobTemplate);
         }

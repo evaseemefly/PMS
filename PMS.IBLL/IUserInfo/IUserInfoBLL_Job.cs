@@ -15,5 +15,12 @@ namespace PMS.IBLL
         /// <param name="uid"></param>
         /// <returns></returns>
         List<J_JobInfo> GetJobListByUser(int uid);
+
+        /// <summary>
+        /// 获取用户所拥有的作业模板集合
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        IEnumerable<J_JobTemplate> GetJobTemplateByUser(UserInfo user);
     }
 }

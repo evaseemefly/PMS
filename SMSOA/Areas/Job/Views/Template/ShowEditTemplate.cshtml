@@ -1,19 +1,90 @@
 ﻿
 @{
     ViewBag.Title = "ShowEditTemplate";
-    Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_MsgTemplate_Edit.cshtml";
 }
 @section My_Scripts{
+    <script type="text/javascript">
+        //提交方法
+        function DoSubmit() {
+            var myform = $("#ff");
+            var options = {
+                url: '@ViewBag.backAction_jqSub',
+                type: 'post',
+                success: function (data) {
+                    afterEdit(data, "作业模板名称")
+                }
+            };
+            myform('submit', options);
+        }
 
+        //取消方法
+        function CancelSend() {
+            window.parentCancelSend();
+        }
+
+        function afterEdit(data, name) {
+
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //提交表单成功后关闭本页面
+            //无法关闭此窗口
+            //window.close();
+            if (data == "ok") {
+                window.parent.afterEdit("修改成功", 0);
+            } else if (data == "validation fails") {
+                window.parent.afterEdit(name + "已经存在，请重新输入", 1)
+            }
+            else {
+                window.parent.afterEdit("修改失败", 0);
+            }
+            //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
+        }
+
+
+
+    </script>
 }
 
 @section Body{
-    <div>
-        <table class="easyui-datagrid" id="datagrid"></table>
-        <div id="tb">
+    <div style="height:30px;width:100%;background-color:#000000"></div>
+<input type="hidden" id="TID" name="TID" value="@ViewBag.JTID" />
 
-        </div>
-        @*@Html.Partial("_Partial_Toolbar_Action")*@
+    @*窗口显示的表格项*@
+    <table cellpadding="3" style="margin-left:40px;width:95%">
+        <tr>
+            <td>模板名称：</td>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" name="JobClassName" value="@ViewBag.JobClassName" data-options="required:true,validType:['String','length[1,50]']" /><br/>请填写模板名称
+            </td>
+        </tr>
+        <tr>
+            <td>CronStr</td>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" name="CronStr" value="@ViewBag.CronStr" data-options="required:true,validType:'length[1,100]'" /><br/>请填写CronStr
+
+            </td>
+        </tr>
+        <tr>
+            <td>模板类型</td>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" name="JobType" value="@ViewBag.JobType" data-options="required:true,validType:'Integer'" /><br/>请输入模板类型（整数）
+            </td>
+        </tr>
+        <tr>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" name="Remark" value="@ViewBag.Remark" style="height:90px;width:50%" data-options="mutiline:true,prompt:'输入备注...',validType:'length[0,100]'"/><br/>请输入备注
+
+            </td>
+        </tr>
+
+
+    </table>
+
+    @*窗口下方按钮*@
+    <div style="text-align:center;padding:5px">
+        <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()">提交</a>
+        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a>
     </div>
 }
 

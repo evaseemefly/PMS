@@ -36,7 +36,7 @@ namespace QuartzJobFactory
             try
             {
                 job = JobBuilder.Create(type)
-                                    .WithIdentity(jobInfo.JobName, jobInfo.JobGroup)
+                                    .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)
                                     .UsingJobData("UID", jobInfo.UID)
                                     .Build();
             }
@@ -57,7 +57,7 @@ namespace QuartzJobFactory
         {
             //
             var trigger = TriggerBuilder.Create()
-                          .WithIdentity(jobInfo.JobName, jobInfo.JobGroup)      //添加Job名与群组名
+                          .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)      //添加Job名（现使用的是JID——防止重名）与群组名
                           .StartAt(jobInfo.StartRunTime) //任务起始时间
                           .EndAt(jobInfo.EndRunTime);   //终止时间
 

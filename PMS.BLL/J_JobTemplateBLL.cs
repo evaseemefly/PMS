@@ -56,7 +56,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool AddJobTemplate(PMS.Model.ViewModel.ViewModel_JobTemplate model)
+        public bool AddJobTemplate(ViewModel_JobTemplate model)
         {
             if (model != null)
             {

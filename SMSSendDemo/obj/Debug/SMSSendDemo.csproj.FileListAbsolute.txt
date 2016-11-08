@@ -66,4 +66,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csprojResolveAsse
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.csproj.SMSSendDemo.exe.config
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.exe
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSSendDemo\obj\Debug\SMSSendDemo.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SMSSendDemo\bin\Debug\ServiceStack.Common.dll
