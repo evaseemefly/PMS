@@ -11,8 +11,10 @@
         var userId=@userId;
         var JobColumns = [[
                  { field: 'JID', title: 'ID', width: 50, checkbox: true },
-                 { field: 'JobName', title: '用户名称', width: 100 },
-                 { field: 'JobGroup', title: '电话号码', width: 150 },
+                 { field: 'JobName', title: '作业名称', width: 100 },
+                 { field: 'JobGroup', title: '群组', width: 150 },
+                 { field: 'StartRunTime', title: '首次执行', width: 150 },
+                 { field: 'NextRunTime', title: '下次执行', width: 150 }
 
         ]]
 
@@ -51,20 +53,22 @@
             }
             }));
         }
-        //toolbar中定义的方法代码的分部视图
-        @Html.Partial("_Partial_JobIns_tbFunc_JS");
+      
 
-       //loadDataGrid的代码分部视图
-       @Html.Partial("_Partial_JobIns_LoadDataGrid_JS");
-
-        $(function () {
-            var url_loadJob = "@ViewBag.GetJobInfoByUser";
+    $(function () {
+        $("#editWindow").window('close');
+            var url_loadJob = "@ViewBag.GetJobInfoByUser"+"?uid="+userId;
             //分页加载
             loadDataGrid_Job("datagrid", url_loadJob, JobColumns, "tb_contacts");
             })
 
 
 </script>
+@*toolbar中定义的方法代码的分部视图*@
+@Html.Partial("_Partial_JobIns_tbFunc_JS")
+
+@*//loadDataGrid的代码分部视图*@
+@Html.Partial("_Partial_JobIns_LoadDataGrid_JS")
 }
 
 @section Body{
@@ -80,6 +84,6 @@
         </div>
         @*@Html.Partial("_Partial_Toolbar_Action")*@
     </div>
-    @Html.Partial("_Partial_JobIns_ShowEditWin");
+    @Html.Partial("_Partial_JobIns_ShowEditWin")
 }
 

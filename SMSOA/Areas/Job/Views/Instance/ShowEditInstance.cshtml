@@ -1,8 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "ShowEditInstance";
-    Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Job/Views/Shared/_Layout_ShowEdit.cshtml";
 }
+@section My_Css{
+    <link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
+    }
 @section My_Scripts{
     <script type="text/javascript">
 
@@ -60,7 +63,7 @@
             // 1 加载下拉框
             var url = '@ViewBag.GetJobTemplate4Combo';
             //2 获取作业模板下拉框的请求地址（含userId）
-            url_JobTemplateCombo = url + "?uid=" +my_GetUserId();
+            url_JobTemplateCombo = url + "?uid=" + my_GetUserId();
             //3 加载下拉框
             loadCombo_JobTemplate("combo_jobTemplate", url_JobTemplateCombo);
 
@@ -69,9 +72,8 @@
         })
 
     </script>
-    @Html.Partial("_Partial_EditJobIns_Submit_JS");
+    @Html.Partial("_Partial_EditJobIns_Submit_JS")
     }
-
 @section Body{
     <div>
         <form id="ff" class="easyui-form" method="post" style="margin:0px;">
@@ -79,7 +81,7 @@
             <input type="hidden" name="ID" value="" />
             <input type="hidden" name="SubTime" value="" />
             <input type="hidden" id="hidden_isShow" value="" />
-            <table style="margin-left:40px;width:95%" cellpadding="3">
+            <table style="margin-left:10px;width:95%" cellpadding="4">
                 <tr>
                     <td style="">作业名称:</td>
                     <td class="comment">
@@ -88,8 +90,8 @@
                     </td>
                     <td style="">所属作业模板:</td>
                     <td class="comment">
-                        <select id="combo_jobTemplate" name="JTID" class="easyui-combobox" style="width:80%;height:25px;" /><br />
-                        选择该作业所属的作业模板（作业种类）
+                        <select id="combo_jobTemplate" name="JTID" class="easyui-combobox" style="width:80%;height:25px;"></select><br />
+                        选择该作业所属的作业模板<br/>（作业种类）
                     </td>
                 </tr>
                 <tr>
@@ -125,9 +127,8 @@
                     </td>
                 </tr>
                 <tr>
-
-                    <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Submit()">提交</a></td>
-                    <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a></td>
+                    <td colspan="2"><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Submit()">提交</a></td>
+                    <td colspan="2"><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a></td>
                 </tr>
             </table>
         </form>

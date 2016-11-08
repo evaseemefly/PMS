@@ -38,7 +38,7 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ViewResult ShowAddInstance(int uid)
         {
-            
+            ViewBag.LoginUserID = uid;
             ViewBag.backAction = "DoAddJobInfo";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
             ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
@@ -141,16 +141,17 @@ namespace SMSOA.Areas.Job.Controllers
         /// 根据传入的uid获取作业集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetJobInfoByUser()
+        public ActionResult GetJobInfoByUser(int uid)
         {
-            string uid_str = Request.Form["uid"];
-
+            //string uid_str = Request.Form["uid"];
+            //string uid_str = uid;
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
             //分页查询全部用户
             //使用三元运算符判断当前请求中是否包含了uid
-            var list = jobInfoBLL.GetJobInfoByPage(pageIndex, pageSize,ref rowCount, true, true,uid_str!=null?int.Parse(uid_str):-1);
+            //var list = jobInfoBLL.GetJobInfoByPage(pageIndex, pageSize,ref rowCount, true, true,uid_str!=null?int.Parse(uid_str):-1);
+            var list = jobInfoBLL.GetJobInfoByPage(pageIndex, pageSize, ref rowCount, true, true, uid);
 
             EasyUIDataGrid dgModel = new EasyUIDataGrid()
             {

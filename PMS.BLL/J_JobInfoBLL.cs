@@ -39,11 +39,11 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<J_JobInfo> GetJobInfoByPage(int pageIndex,int pageSize,ref int rowCount,bool isAsc,bool isMiddle,int uid=-1)
         {
-            List<J_JobInfo> query = new List<J_JobInfo>();
-
+            List<J_JobInfo> query = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault().J_JobInfo.ToList();
+            //List<J_JobInfo> query = base.GetListBy(j => j.UID == uid).ToList();
             if (uid != -1)
             {
-                query = NullDelJob(query.Where(j => j.UID == uid)).ToList();
+                query = NullDelJob(query).ToList();
             }
             else
             {

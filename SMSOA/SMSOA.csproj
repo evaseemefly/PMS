@@ -420,6 +420,7 @@
     <Content Include="Areas\Job\Views\Instance\ShowEditInstance.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_EditJobIns_Submit_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_ShowEditWin.cshtml" />
+    <Content Include="Areas\Job\Views\Shared\_Layout_ShowEdit.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
