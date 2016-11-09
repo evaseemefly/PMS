@@ -64,6 +64,7 @@
             var url = '@ViewBag.GetJobTemplate4Combo';
             //2 获取作业模板下拉框的请求地址（含userId）
             url_JobTemplateCombo = url + "?uid=" + my_GetUserId();
+            $("#UID").val(my_GetUserId());
             //3 加载下拉框
             loadCombo_JobTemplate("combo_jobTemplate", url_JobTemplateCombo);
 
@@ -78,7 +79,7 @@
     <div>
         <form id="ff" class="easyui-form" method="post" style="margin:0px;">
             <div style="height:30px;width:100%;background-color:#000000"></div>
-            <input type="hidden" name="ID" value="" />
+            <input type="hidden" name="UID" id="UID" value="" />
             <input type="hidden" name="SubTime" value="" />
             <input type="hidden" id="hidden_isShow" value="" />
             <table style="margin-left:10px;width:95%" cellpadding="4">

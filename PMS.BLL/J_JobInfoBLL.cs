@@ -97,14 +97,24 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool AddJobInfo(J_JobInfo model)
         {
-            //1 添加作业至调度池中
-           //var response= ijobService.AddScheduleJob(model);
-           // //2 根据传入的JobInfo创建指定的作业
-           // if (response.Success == true)
-           // {
-           //     base.Create(model);
-           // }
+            
+            //1 创建与UserInfo的关系
+           var user= this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == model.UID).FirstOrDefault();
+            model.UserInfoes.Add(user);
+            //2 创建J_JobInfo对象
+            if (base.Create(model))
+            {
+                return true;
+            }
             return false;
+            //1 添加作业至调度池中
+            //var response= ijobService.AddScheduleJob(model);
+            // //2 根据传入的JobInfo创建指定的作业
+            // if (response.Success == true)
+            // {
+            //     base.Create(model);
+            // }
+
         }
 
         /// <summary>

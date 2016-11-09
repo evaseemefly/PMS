@@ -194,6 +194,33 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _QRTZ_TRIGGERSDAL 属性 
+	private IDAL.IQRTZ_TRIGGERSDAL _QRTZ_TRIGGERSDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取QRTZ_TRIGGERSDAL的实例
+        /// </summary>
+        public IQRTZ_TRIGGERSDAL QRTZ_TRIGGERSDAL
+        {
+            get
+            {
+                if(_QRTZ_TRIGGERSDAL==null)
+                {
+                    _QRTZ_TRIGGERSDAL = AbstractFactory.CreateQRTZ_TRIGGERSDAL();
+                }
+                return _QRTZ_TRIGGERSDAL;
+            }
+
+            set
+            {
+                _QRTZ_TRIGGERSDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _R_Department_MissionDAL 属性 
 	private IDAL.IR_Department_MissionDAL _R_Department_MissionDAL;
 	#endregion

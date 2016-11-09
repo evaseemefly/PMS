@@ -29,6 +29,7 @@ namespace PMS.Model.Dictionary
         static SMSDictionary()
         {
             dResponseCode = new Dictionary<int, string>();
+            //dResponseCode[0] = "123";
             dResponseCode.Add(0, "提交成功");
             dResponseCode.Add(1, "账号无效");
             dResponseCode.Add(2, "密码错误");

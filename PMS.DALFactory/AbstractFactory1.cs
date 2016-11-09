@@ -101,6 +101,19 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建QRTZ_TRIGGERS的实例
+        /// <summary>
+        /// 创建QRTZ_TRIGGERS的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IQRTZ_TRIGGERSDAL CreateQRTZ_TRIGGERSDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".QRTZ_TRIGGERSDAL";
+            return CreateInstance(fullClassName) as IQRTZ_TRIGGERSDAL;
+        }
+		#endregion
+	 
 		#region 创建R_Department_Mission的实例
         /// <summary>
         /// 创建R_Department_Mission的实例

@@ -111,6 +111,29 @@
           <Property Name="isVIP" Type="bit" Nullable="false" />
           <Property Name="isDel" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="QRTZ_TRIGGERS">
+          <Key>
+            <PropertyRef Name="SCHED_NAME" />
+            <PropertyRef Name="TRIGGER_NAME" />
+            <PropertyRef Name="TRIGGER_GROUP" />
+          </Key>
+          <Property Name="SCHED_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TRIGGER_NAME" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TRIGGER_GROUP" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="JOB_NAME" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="JOB_GROUP" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
+          <Property Name="NEXT_FIRE_TIME" Type="bigint" />
+          <Property Name="PREV_FIRE_TIME" Type="bigint" />
+          <Property Name="PRIORITY" Type="int" />
+          <Property Name="TRIGGER_STATE" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="TRIGGER_TYPE" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="START_TIME" Type="bigint" Nullable="false" />
+          <Property Name="END_TIME" Type="bigint" />
+          <Property Name="CALENDAR_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="MISFIRE_INSTR" Type="int" />
+          <Property Name="JOB_DATA" Type="image" />
+        </EntityType>
         <EntityType Name="R_Department_Mission">
           <Key>
             <PropertyRef Name="ID" />
@@ -359,7 +382,7 @@
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160325.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“PMS20160425.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -925,6 +948,7 @@
           <EntitySet Name="P_DepartmentInfo" EntityType="Self.P_DepartmentInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="P_Group" EntityType="Self.P_Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="P_PersonInfo" EntityType="Self.P_PersonInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QRTZ_TRIGGERS" EntityType="Self.QRTZ_TRIGGERS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Department_Mission" EntityType="Self.R_Department_Mission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Group_Mission" EntityType="Self.R_Group_Mission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_JobInfo_JobTemplate" EntityType="Self.R_JobInfo_JobTemplate" Schema="dbo" store:Type="Tables" />
@@ -1412,6 +1436,7 @@
             <End Role="J_JobTemplate" EntitySet="J_JobTemplate" />
             <End Role="RoleInfo" EntitySet="RoleInfo" />
           </AssociationSet>
+          <EntitySet Name="QRTZ_TRIGGERS" EntityType="PMS2016Model.QRTZ_TRIGGERS" />
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -2036,6 +2061,29 @@
           <End Type="PMS2016Model.J_JobTemplate" Role="J_JobTemplate" Multiplicity="*" />
           <End Type="PMS2016Model.RoleInfo" Role="RoleInfo" Multiplicity="*" />
         </Association>
+        <EntityType Name="QRTZ_TRIGGERS">
+          <Key>
+            <PropertyRef Name="SCHED_NAME" />
+            <PropertyRef Name="TRIGGER_NAME" />
+            <PropertyRef Name="TRIGGER_GROUP" />
+          </Key>
+          <Property Name="SCHED_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TRIGGER_NAME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TRIGGER_GROUP" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="JOB_NAME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="JOB_GROUP" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NEXT_FIRE_TIME" Type="Int64" />
+          <Property Name="PREV_FIRE_TIME" Type="Int64" />
+          <Property Name="PRIORITY" Type="Int32" />
+          <Property Name="TRIGGER_STATE" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="TRIGGER_TYPE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="START_TIME" Type="Int64" Nullable="false" />
+          <Property Name="END_TIME" Type="Int64" />
+          <Property Name="CALENDAR_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MISFIRE_INSTR" Type="Int32" />
+          <Property Name="JOB_DATA" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2441,6 +2489,28 @@
               <ScalarProperty Name="JTID" ColumnName="JTID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="QRTZ_TRIGGERS">
+            <EntityTypeMapping TypeName="PMS2016Model.QRTZ_TRIGGERS">
+              <MappingFragment StoreEntitySet="QRTZ_TRIGGERS">
+                <ScalarProperty Name="JOB_DATA" ColumnName="JOB_DATA" />
+                <ScalarProperty Name="MISFIRE_INSTR" ColumnName="MISFIRE_INSTR" />
+                <ScalarProperty Name="CALENDAR_NAME" ColumnName="CALENDAR_NAME" />
+                <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+                <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+                <ScalarProperty Name="TRIGGER_TYPE" ColumnName="TRIGGER_TYPE" />
+                <ScalarProperty Name="TRIGGER_STATE" ColumnName="TRIGGER_STATE" />
+                <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+                <ScalarProperty Name="PREV_FIRE_TIME" ColumnName="PREV_FIRE_TIME" />
+                <ScalarProperty Name="NEXT_FIRE_TIME" ColumnName="NEXT_FIRE_TIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="JOB_GROUP" ColumnName="JOB_GROUP" />
+                <ScalarProperty Name="JOB_NAME" ColumnName="JOB_NAME" />
+                <ScalarProperty Name="TRIGGER_GROUP" ColumnName="TRIGGER_GROUP" />
+                <ScalarProperty Name="TRIGGER_NAME" ColumnName="TRIGGER_NAME" />
+                <ScalarProperty Name="SCHED_NAME" ColumnName="SCHED_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

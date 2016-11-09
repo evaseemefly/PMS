@@ -39,6 +39,11 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IQRTZ_TRIGGERSBLL:IBaseBLL<QRTZ_TRIGGERS>
+    {
+        
+
+    }
 	    public partial interface IR_Department_MissionBLL:IBaseBLL<R_Department_Mission>
     {
         

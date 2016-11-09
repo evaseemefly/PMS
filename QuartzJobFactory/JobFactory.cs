@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.IModel;
 
 namespace QuartzJobFactory
 {
@@ -13,10 +14,11 @@ namespace QuartzJobFactory
         /// <summary>
         /// 根据Class名称通过反射的方式创建IJobDetial
         /// 注意需要向J_JobInfo中拓展的UID赋值
+        /// 修改传入的对象为IJ_JobInfo的实现类
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-       public static IJobDetail CreateJobInstance(J_JobInfo jobInfo)
+        public static IJobDetail CreateJobInstance(IJ_JobInfo jobInfo)
         {
             //1 通过反射的方式创建Job实例
             IJob job_temp= JobAbstractFactory.CreateJob(jobInfo.JobClassName);
@@ -50,10 +52,11 @@ namespace QuartzJobFactory
 
         /// <summary>
         /// 创建计时器
+        /// 修改传入的对象为IJ_JobInfo的实现类
         /// </summary>
         /// <param name="jobInfo"></param>
         /// <returns></returns>
-       public static ITrigger CreateTrigger(J_JobInfo jobInfo)
+       public static ITrigger CreateTrigger(IJ_JobInfo jobInfo)
         {
             //
             var trigger = TriggerBuilder.Create()

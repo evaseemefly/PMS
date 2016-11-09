@@ -95,6 +95,19 @@ namespace PMS.IDAL
     }
 	#endregion
 
+	   #region IQRTZ_TRIGGERSDAL   
+	//QRTZ_TRIGGERS数据访问层
+	/// <summary>
+    /// 定义QRTZ_TRIGGERS实现类的接口
+    /// 注意：
+    /// 1 接口必须是是公开的，因为需要由实现类去继承（实现）
+    /// 2 接口中的方法不需要添加访问修饰符（public），且没有方法体，只有方法签名
+    /// </summary>
+	public interface IQRTZ_TRIGGERSDAL:IBaseDAL<QRTZ_TRIGGERS>
+    {
+    }
+	#endregion
+
 	   #region IR_Department_MissionDAL   
 	//R_Department_Mission数据访问层
 	/// <summary>

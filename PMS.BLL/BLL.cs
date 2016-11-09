@@ -96,6 +96,19 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	QRTZ_TRIGGERSBLL
+    public partial class QRTZ_TRIGGERSBLL : BaseBLL<QRTZ_TRIGGERS>, IQRTZ_TRIGGERSBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为QRTZ_TRIGGERSDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.QRTZ_TRIGGERSDAL;
+        }
+    }
+	#endregion
 	   #region	R_Department_MissionBLL
     public partial class R_Department_MissionBLL : BaseBLL<R_Department_Mission>, IR_Department_MissionBLL
     {	

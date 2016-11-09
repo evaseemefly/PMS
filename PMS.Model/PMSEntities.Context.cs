@@ -50,5 +50,6 @@ namespace PMS.Model
         public DbSet<WF_Query_Instance> WF_Query_Instance { get; set; }
         public DbSet<J_JobTemplate> J_JobTemplate { get; set; }
         public DbSet<J_JobInfo> J_JobInfo { get; set; }
+        public DbSet<QRTZ_TRIGGERS> QRTZ_TRIGGERS { get; set; }
     }
 }

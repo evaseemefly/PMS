@@ -40,6 +40,11 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IQRTZ_TRIGGERSDAL
+      IDAL.IQRTZ_TRIGGERSDAL QRTZ_TRIGGERSDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IR_Department_MissionDAL
       IDAL.IR_Department_MissionDAL R_Department_MissionDAL { get; set; }
 	  #endregion

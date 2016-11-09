@@ -64,6 +64,7 @@
         <AssociationConnector Association="PMS2016Model.R_UserInfo_JobTemplate" />
         <AssociationConnector Association="PMS2016Model.R_JobInfo_JobTemplate" />
         <AssociationConnector Association="PMS2016Model.R_JobTemplate_RoleInfo" />
+        <EntityTypeShape EntityType="PMS2016Model.QRTZ_TRIGGERS" Width="2.375" PointX="15.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

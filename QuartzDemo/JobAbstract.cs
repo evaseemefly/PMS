@@ -11,14 +11,17 @@ namespace QuartzDemo
 {
     public abstract class JobAbstract : IJob
     {
-       protected IUserInfoBLL userInfoBLL { get; set; }
+       //protected IUserInfoBLL userInfoBLL { get; set; }
 
-        protected IJ_JobInfoBLL jobInfoBLL { get; set; }
+       // protected IJ_JobInfoBLL jobInfoBLL { get; set; }
+
+       // protected IQRTZ_TRIGGERSBLL qrtz_triggerBLL { get; set; }
 
         public JobAbstract()
         {
-            userInfoBLL = new UserInfoBLL();
-            jobInfoBLL = new J_JobInfoBLL();
+            //userInfoBLL = new UserInfoBLL();
+            //jobInfoBLL = new J_JobInfoBLL();
+            //qrtz_triggerBLL = new QRTZ_TRIGGERSBLL();
         }
 
         public void Execute(IJobExecutionContext context)

@@ -21,6 +21,7 @@ namespace PMS.Model.Dictionary
             methodType.Add(1, "普通权限");
             methodType.Add(2, "编辑当前toolbar权限");
             methodType.Add(3, "编辑联系人toolbar权限");
+            
         }
     }
 }

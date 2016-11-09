@@ -31,6 +31,18 @@ namespace SMSOA.Areas.Job.Controllers
             return View();
         }
 
+        public ViewResult DoEditTest()
+        {
+            var targetJob = jobInfoBLL.GetListBy(j => j.JID == 36).FirstOrDefault();
+            if (targetJob != null)
+            {
+                targetJob.JobState = 2;
+
+            }
+            jobInfoBLL.Update(targetJob);
+            return null;
+        }
+
         /// <summary>
         /// 显示添加界面
         /// </summary>
@@ -87,13 +99,14 @@ namespace SMSOA.Areas.Job.Controllers
 
         /// <summary>
         /// 执行添加作业方法
+        /// 1 先向数据库中的JobInfo表中写入相应数据（手动赋予JobState属性为running）
+        /// 2 执行Quartz的新添作业方法
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public ActionResult DoAddJobInfo(PMS.Model.J_JobInfo model)
         {
-            //if (jobInfoBLL.EditValidation(model.JID, model.JobName)) { return Content("validation fails"); }
-            //1 将状态写入数据库
+            //此时传入的model中已经包含了uid的值了
             if (model.NextRunTime <= DateTime.MinValue)
             {
                 model.NextRunTime = DateTime.Now;
@@ -101,9 +114,13 @@ namespace SMSOA.Areas.Job.Controllers
             
             model.EndRunTime = model.StartRunTime.AddMinutes(1);
             model.CreateTime = DateTime.Now;
+            //创建时手动添加该作业的状态
             model.JobState = Convert.ToInt32(PMS.Model.Enum.JobState_Enum.running);
 
-            if (jobInfoBLL.Create(model))
+            //注意需要修改此bll中实现的方法，不仅创建J_JobInfo还要创建与UserInfo的关联关系
+            //***注意此时的顺序是先向数据库中的JobInfo表写入再执行Quartz操作（向数据库中写入后model中会有JID）——但应该先执行Quartz的添加作业操作****
+            //1 将状态写入数据库
+            if (jobInfoBLL.AddJobInfo(model))
             {
                 //注意：
                 //在创建之后此model中的JID已经有值了，可以直接获取该JID的值

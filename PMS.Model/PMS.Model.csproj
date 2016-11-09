@@ -56,6 +56,7 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
+    <Compile Include="Dictionary\Quartz_TriggerStateDictionary.cs" />
     <Compile Include="Dictionary\RecycledTypeDictonary.cs" />
     <Compile Include="Dictionary\SMSQueryDictionary.cs" />
     <Compile Include="Dictionary\SMSQueryResultDictionary.cs" />
@@ -140,6 +141,9 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="P_PersonInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QRTZ_TRIGGERS.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryModel\Redis_HashWFObj.cs" />
@@ -265,6 +269,12 @@
       <DependentUpon>PMSEntities.edmx</DependentUpon>
       <LastGenOutput>PMSEntities.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
+      <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
+      <Name>PMS.IModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
