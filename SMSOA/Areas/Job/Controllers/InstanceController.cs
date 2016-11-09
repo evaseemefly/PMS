@@ -101,6 +101,8 @@ namespace SMSOA.Areas.Job.Controllers
         /// 执行添加作业方法
         /// 1 先向数据库中的JobInfo表中写入相应数据（手动赋予JobState属性为running）
         /// 2 执行Quartz的新添作业方法
+        /// 3 之前未注意到：
+        /// 需要获取发送信息的内容，以及查询时保存的一些参数（先实现发送信息的内容）
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -125,7 +127,9 @@ namespace SMSOA.Areas.Job.Controllers
                 //注意：
                 //在创建之后此model中的JID已经有值了，可以直接获取该JID的值
                 //2 操作Quartz操作类
-                jobService.AddScheduleJob(model);
+                PMS.Model.SMSModel.SMSModel_Send data_temp = new PMS.Model.SMSModel.SMSModel_Send();
+                
+                jobService.AddScheduleJob(model, data_temp);
                 return Content("ok");
             }
             

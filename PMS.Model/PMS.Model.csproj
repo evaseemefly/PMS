@@ -94,6 +94,8 @@
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
+    <Compile Include="JobDataModel\BaseJobDataModel.cs" />
+    <Compile Include="JobDataModel\SendJobDataModel.cs" />
     <Compile Include="J_JobInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.IModel;
 using System.Collections.Specialized;
 using Quartz.Impl;
 using Quartz;
@@ -35,13 +36,14 @@ namespace QuartzJobFactory
         /// <summary>
         /// 根据工作对象 添加任务计划
         /// </summary>
-        /// <param name="jobInfo"></param>
+        /// <param name="jobInfo">作业</param>
+        /// <param name="data_temp">向作业调度中传的临时数据</param>
         /// <returns></returns>
-        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo)
+        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo,IJobData data_temp)
         {
             
             //1 根据Job的类名通过反射的方式创建IJobDetial
-            var job = JobFactory.CreateJobInstance(jobInfo);
+            var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
             IBaseResponse response = new BaseResponse() { Success = false };
             if (job == null)
             {

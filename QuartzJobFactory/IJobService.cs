@@ -19,7 +19,7 @@ namespace QuartzJobFactory
         /// </summary>
         /// <param name="jobInfo"></param>
         /// <returns></returns>
-        IBaseResponse AddScheduleJob(J_JobInfo jobInfo);
+        IBaseResponse AddScheduleJob(J_JobInfo jobInfo, Object data_temp);
         #endregion
 
         #region 2 添加监听器——可用此种方式实现作业执行后更新数据库中状态——未使用此种方式

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
 using PMS.IModel;
+using Common;
 
 namespace QuartzJobFactory
 {
@@ -18,7 +19,7 @@ namespace QuartzJobFactory
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static IJobDetail CreateJobInstance(IJ_JobInfo jobInfo)
+        public static IJobDetail CreateJobInstance(IJ_JobInfo jobInfo,IJobData jobdatamap)
         {
             //1 通过反射的方式创建Job实例
             IJob job_temp= JobAbstractFactory.CreateJob(jobInfo.JobClassName);
@@ -40,6 +41,7 @@ namespace QuartzJobFactory
                 job = JobBuilder.Create(type)
                                     .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)
                                     .UsingJobData("UID", jobInfo.UID)
+                                    .UsingJobData(jobdatamap.JobDataKey,SerializerHelper.SerializerToString(jobdatamap))        //添加一个需要传向作业调度中的对象（发送对象——含一些必要的信息）
                                     .Build();
             }
             catch (Exception)

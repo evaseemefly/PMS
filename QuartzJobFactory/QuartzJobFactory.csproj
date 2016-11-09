@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
       <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
       <Name>PMS.IModel</Name>
@@ -72,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="类图.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
