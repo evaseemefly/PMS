@@ -1,0 +1,37 @@
+﻿<script type="text/javascript">
+    //判断是否至少选中一行数据
+    function CheckSelectRows(dg_id,showMsg, callback,url) {
+        var rows = $("#" + dg_id).datagrid('getSelections');
+        //若选中的行不为一行
+        if (rows.length < 1) {
+            //提示
+            $.messager.show({
+                title: '提示',
+                msg: '请至少选中一行数据',
+                showType: 'show'
+            });
+            return;
+        }
+        //post请求至软删除方法
+        var row_Id = "";
+        if ($.messager.confirm("提示", showMsg, function (r) {
+            if (r) {
+            var strId = callback(rows);
+            //去掉最后一个逗号
+            strId = strId.substr(0, strId.length - 1);
+            $.post(url + "?ids=" + strId + "&&type=" + type, function (data) {
+        //请求成功后的回调函数
+            if (data == "ok") {
+        //重新加载treegrid
+                $("#" + dg_id).datagrid('reload');
+        //清楚所选中的行
+            $("#" + dg_id).datagrid('clearSelections');
+            $.messager.alert("提示", "成功");
+        }
+        });
+        }         
+
+        }));
+
+    }
+</script>

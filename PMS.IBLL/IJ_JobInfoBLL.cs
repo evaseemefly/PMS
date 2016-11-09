@@ -24,6 +24,18 @@ namespace PMS.IBLL
         List<J_JobInfo> GetJobInfoByUser(int uid);
 
         /// <summary>
+        /// 分页查询指定用户或全部用户的
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <param name="rowCount">返回的总页数</param>
+        /// <param name="isAsc">是否降序</param>
+        /// <param name="isMiddle">是否转成中间变量</param>
+        /// <param name="uid">若不填则默认为-1，查询所有的用户</param>
+        /// <returns></returns>
+        List<J_JobInfo> GetJobInfoByPage(int pageIndex, int pageSize, ref int rowCount, bool isAsc, bool isMiddle, int uid = -1);
+
+        /// <summary>
         /// 创建作业实例
         /// </summary>
         /// <param name="model"></param>
@@ -72,5 +84,7 @@ namespace PMS.IBLL
         /// <param name="list_id"></param>
         /// <returns></returns>
         bool Recovery(List<int> list_id);
+
+        bool EditValidation(int id, String name);
     }
 }

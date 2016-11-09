@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "ShowEditInstance";
+    Layout = "~/Areas/Job/Views/Shared/_Layout_ShowEdit.cshtml";
+}
+@section My_Css{
+    <link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
+    }
+@section My_Scripts{
+    <script type="text/javascript">
+
+        //加载作业模板下拉框
+        function loadCombo_JobTemplate(id, url) {
+            var div_id = "#" + id;
+            $(div_id).combobox({
+                valueField: 'id',
+                textField: 'text',
+                url: url,
+                editable: false,//不可向输入框内写入数据
+                onSelect: function (rowdata) {
+                    //选中某个下拉框后加载该下拉框中的作业模板中包含的一些数据
+                    loaddata_JobTemplate(rowdata.id, 3);
+                    //alert(rowdata.text);
+                },
+                panelHeight: 'auto'//自适应下拉框长度
+            })
+        }
+
+        //根据短信任务以及用户id加载该任务所拥有的短信
+        function loaddata_JobTemplate(jtid, userid) {
+            $.ajax({
+                url: "@ViewBag.GetJobTemplateData" + "?userId=" + userid + "&JTID=" + jtid,
+
+                contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
+                async: false,
+                dataType:"json",
+                type: 'POST',
+                success: function (data) {
+                    //alert(data);
+                    var JobClassName=data.JobClassName;
+                    var CronStr=data.CronStr;
+                    
+                    $("#cron_text").textbox('setValue', CronStr);
+                    $("#jobClass_text").textbox('setValue', JobClassName);
+                   
+                    //$("#cron_text").val(CronStr);
+                    //$("#jobClass_text").val(JobClassName);
+                }
+            })
+        }
+
+        //返回登录用户的id
+        function my_GetUserId(){
+            var userId=-1;
+            if (@ViewBag.LoginUserID != -999)
+            {
+                userId='@ViewBag.LoginUserID'
+            }
+            return userId;
+        }
+
+        $(function () {
+            // 1 加载下拉框
+            var url = '@ViewBag.GetJobTemplate4Combo';
+            //2 获取作业模板下拉框的请求地址（含userId）
+            url_JobTemplateCombo = url + "?uid=" + my_GetUserId();
+            //3 加载下拉框
+            loadCombo_JobTemplate("combo_jobTemplate", url_JobTemplateCombo);
+
+            // 2 为下拉框赋值
+            @*$("#combo_MethodTypeEnum").combobox('setValue', '@ViewBag.MethodType');*@
+        })
+
+    </script>
+    @Html.Partial("_Partial_EditJobIns_Submit_JS")
+    }
+@section Body{
+    <div>
+        <form id="ff" class="easyui-form" method="post" style="margin:0px;">
+            <div style="height:30px;width:100%;background-color:#000000"></div>
+            <input type="hidden" name="ID" value="" />
+            <input type="hidden" name="SubTime" value="" />
+            <input type="hidden" id="hidden_isShow" value="" />
+            <table style="margin-left:10px;width:95%" cellpadding="4">
+                <tr>
+                    <td style="">作业名称:</td>
+                    <td class="comment">
+                        <input class="easyui-validatebox" type="text" style="width:80%;height:25px" id="jobName_valbox" name="JobName" value="" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />
+                        请填写作业名称
+                    </td>
+                    <td style="">所属作业模板:</td>
+                    <td class="comment">
+                        <select id="combo_jobTemplate" name="JTID" class="easyui-combobox" style="width:80%;height:25px;"></select><br />
+                        选择该作业所属的作业模板<br/>（作业种类）
+                    </td>
+                </tr>
+                <tr>
+                    <td style="">作业群组:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" type="text" style="width:80%;height:25px" id="jobGroup_text" name="JobGroup" value=""></input><br />
+                        请填写作业所属于的群组
+                    </td>
+                    <td style="">执行时间:</td>
+                    <td class="comment">
+                        <input class="easyui-datetimebox" name="StartRunTime"id="nextRunTime_date" value="10/11/2012 2:3:56" style="width:80%"><br />
+                        作业执行的时间
+                    </td>
+                </tr>
+                <tr>
+                    <td style="">作业类名:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" id="jobClass_text" type="text" style="width:80%;height:25px" name="JobClassName" value=""></input><br />
+                        请填写作业对应的类名称
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Cron表达式:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" name="CronStr" id="cron_text" data-options="multiline:true" style="height:40px;width:80%;" value=""><br />
+                        可选，Cron表达式
+                    </td>
+                    <td>备注:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:40px;width:80%;" value=""><br />
+                        可选
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Submit()">提交</a></td>
+                    <td colspan="2"><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a></td>
+                </tr>
+            </table>
+        </form>
+</div>
+    }
+

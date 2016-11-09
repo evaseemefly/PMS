@@ -8,18 +8,15 @@
     @Scripts.Render("~/Scripts/myJquery")
     @*@Scripts.Render("~/Scripts/easyUIJS")*@
     <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
-    @*数据约束扩展类*@
     <script src="~/Scripts/MyScripts/Common/ValidateExtend.js"></script>
-   
+    <script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
+    <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
     @RenderSection("My_Scripts")
+    @RenderSection("My_Css",false)
 </head>
 <body>
     @RenderSection("Body")

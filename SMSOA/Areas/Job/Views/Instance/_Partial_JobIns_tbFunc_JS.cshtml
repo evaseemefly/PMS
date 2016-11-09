@@ -1,0 +1,28 @@
+﻿<script type="text/javascript">
+    function callback(rows) {
+        var strId = "";
+        for (var i = 0; i < rows.length; i++) {
+            strId = strId + rows[i].JID + ",";
+        }
+        return strId;
+    }
+    function addJobRow() {
+        showEditWindow("@ViewBag.ShowCreateWin" + "?uid=" + userId);
+    }
+
+    function removeJobRow() {
+        CheckSelectRows("datagrid", "准备删除？", callback, "@ViewBag.DoAdd");
+    }
+    function editJobRow() {
+
+    }
+    function pauseJobRow() {
+        CheckSelectRows("datagrid", "准备暂停？", callback, "@ViewBag.DoPause");
+    }
+    function recoveryJobRow() {
+        CheckSelectRows("datagrid", "准备恢复？", callback, "@ViewBag.DoRecovery");
+    }
+    function endJobRow() {
+        CheckSelectRows("datagrid", "准备终止？", callback, "@ViewBag.DoEnd");
+    }
+</script>

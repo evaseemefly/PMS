@@ -23,8 +23,8 @@ namespace SMSOA.Areas.Job.Controllers
             //jobTemplateBLL = new J_JobTemplateBLL();
             //var list= jobTemplateBLL.GetListBy(j => j.isDel==false).ToList();
             //return View();
-            ViewBag.ShowAdd = "ShowAddJobTemplate";
-            ViewBag.ShowEdit = "ShowEditJobTemplate";
+            ViewBag.ShowAdd = "ShowAddTemplate";
+            ViewBag.ShowEdit = "ShowEditTemplate";
             ViewBag.Del_url = "DelJobTemplate";
             ViewBag.GetInfo = "GetAllJobTemplate";
             ViewBag.ShowByUser = "GetJobTemplateByUser";
@@ -39,14 +39,17 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ContentResult GetAllJobTemplate()
         {
+
             //1.得到所有模板
             var list_jobTemplate = jobTemplateBLL.GetAllJobTemplate();
             //此处注释掉，因为如果BLL返回的模板为null，这个语句会出现空指针异常错误
             //var list_jobTemplate = jobTemplateBLL.GetAllJobTemplate().Select(j => j.ToMiddleModel()).ToList(); ;
             if (list_jobTemplate == null) { return Content("error"); }
             //2.转为中间件
-            list_jobTemplate.Select(j => j.ToMiddleModel()).ToList();
-            return Content(Common.SerializerHelper.SerializerToString(list_jobTemplate));
+            var list_Middle_model = list_jobTemplate.Select(j => j.ToMiddleModel()).ToList();
+
+            //3.序列化
+            return Content(Common.SerializerHelper.SerializerToString(list_Middle_model));
         }
 
         /// <summary>
@@ -79,21 +82,28 @@ namespace SMSOA.Areas.Job.Controllers
         /// 添加模板的前台展示
         /// </summary>
         /// <returns></returns>
-        public ActionResult ShowAddJobTemplate()
+        public ActionResult ShowAddTemplate()
         {
-            ViewBag.backAction = "AddJobTemplate";
+            ViewBag.backAction_jqSub = "AddJobTemplate";
             //此处需要添加返回的视图！
-            return View("");
+            return View("ShowEditTemplate");
         }
         /// <summary>
         /// 编辑模板的前台展示
         /// </summary>
         /// <returns></returns>
-        public ActionResult ShowEditJobTemplate()
+        public ActionResult ShowEditTemplate(int id)
         {
-            ViewBag.backAction = "EditJobTemplate";
+            var model = jobTemplateBLL.GetListBy(j => j.JTID.Equals(id)).FirstOrDefault();
+            ViewBag.JTID = model.JTID;
+            ViewBag.JobClassName = model.JobClassName;
+            ViewBag.CronStr = model.CronStr;
+            ViewBag.JobType = model.JobType;
+            ViewBag.Remark = model.Remark;
+            ViewBag.backAction_jqSub = "EditJobTemplate";
+
             //此处需要添加返回的视图！
-            return View("");
+            return View();
         }
         #endregion
 
@@ -150,30 +160,18 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ActionResult DelJobTemplate(string JTIDs)
         {
-            if (JTIDs.Length == 0)
+            string ids = Request.QueryString["ids"];
+            var list_JTID = ids.Split(',').Select(t => int.Parse(t)).ToList();
+            try
             {
+                jobTemplateBLL.DelJobTemplate(list_JTID);
                 return Content("ok");
             }
-            else
+            catch
             {
-
-
-                string[] ids = JTIDs.Split(',');
-                List<int> list_JTID = new List<int>();
-                foreach (var item in ids)
-                {
-                    list_JTID.Add(int.Parse(item));
-                }
-                try
-                {
-                    jobTemplateBLL.DelJobTemplate(list_JTID);
-                    return Content("ok");
-                }
-                catch
-                {
-                    return Content("error");
-                }
+                return Content("error");
             }
+            
         }
 
 #endregion

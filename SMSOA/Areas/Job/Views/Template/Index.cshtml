@@ -1,9 +1,10 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 @Html.Partial("_MyPartial_Index")
 
-@section My_Scripts{
+
         <script type="text/javascript">
             //工具栏
             var toolbar = [{
@@ -53,7 +54,7 @@
                 }
                 //若选中了一行数据则执行修改操作
                 //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
-                $("#setActionRoleFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].TID);//会出现重定向的错误
+                $("#setActionRoleFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].JTID);//会出现重定向的错误
                 $("#editWindow").panel({ title: "编辑作业模板" });
                 $("#editWindow").window('open');
 
@@ -77,7 +78,7 @@
                     if (r) {
                         var strId = "";
                     for (var i = 0; i < rows.length; i++) {
-                            strId = strId + rows[i].TID + ",";
+                            strId = strId + rows[i].JTID + ",";
                 }
                     //去掉最后一个逗号
                     strId = strId.substr(0, strId.length - 1);
@@ -97,17 +98,14 @@
             }
 
         </script>
-    }
+    
 
-@section Body{
+
 <div>
     <table class="easyui-datagrid" id="datagrid"></table>
-    <div id="tb">
-
-    </div>
 
     @*@Html.Partial("_Partial_Toolbar_Action")*@
 </div>
-    }
+    
 
 

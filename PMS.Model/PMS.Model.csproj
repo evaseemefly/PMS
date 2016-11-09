@@ -74,6 +74,7 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
+    <Compile Include="Enum\JobState_Enum.cs" />
     <Compile Include="Enum\MatchCondition_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="ExtensionModel\J_JobInfo.cs" />
     <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
     <Compile Include="ExtensionModel\P_Group.cs" />
+    <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Message\BaseResponse.cs" />
     <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
+    <Compile Include="MiddlewareModel\J_JobInfo.cs" />
     <Compile Include="MiddlewareModel\J_JopTemplate.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
