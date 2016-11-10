@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PMS.Model;
 
 namespace SMSOA.Areas.SMS.Models
 {
-    public class ViewModel_Message
+    public partial class ViewModel_Message:PMS.Model.ViewModel.ViewModel_BaseJob
     {
         /// <summary>
         /// 此处修改

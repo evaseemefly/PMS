@@ -127,5 +127,16 @@ namespace SendJob
             else
                 return false;
         }
+
+        public class ServiceReference1
+        {
+            public class SendMsgRequest
+            {
+            }
+
+            public class SendMsgResponse
+            {
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ using ISMS;
 using SMSOA.Areas.SMS.Models;
 using Common.Redis;
 using PMS.Model.ViewModel;
+using PMS.Model.SMSModel;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -323,7 +324,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DoSave(Models.ViewModel_GroupMission model)
+        public ActionResult DoSave(Models.ViewModel_GroupMission model,ref SMSModel_Receive receive)
         {
             //获取提交的群组id以及任务id数组
             //可能为提交群组
@@ -365,25 +366,12 @@ namespace SMSOA.Areas.SMS.Controllers
             }
         }
 
-        /// <summary>
-        /// 根据传入的 联系人id数组 以及 短信内容进行短信发送
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public ActionResult DoSend(ViewModel_Message model)
+        delegate bool SendMessage(ViewModel_Message msg);
+
+        public bool DoSendNow(ViewModel_Message model,ref PMS.Model.SMSModel.SMSModel_Receive receive)
         {
-            //1 有效性判断
-            //1.1 联系人名单为空，不执行发送操作，返回
-            //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
-            //1.2 短信内容为空，不执行发送操作，返回
-             if (model.Content == null) { return Content("empty content"); }
-            //1.3 超出300字，不执行发送操作，返回
-            if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
-
-
-
             //1.1 获取要去除的 联系人id 数组
-            var ids= model.PersonId_Int;
+            var ids = model.PersonId_Int;
 
             //1.2 获取临时联系人的电话数组
             var phoneNums = model.PhoneNum_Str;
@@ -400,8 +388,8 @@ namespace SMSOA.Areas.SMS.Controllers
             {
                 dids_str = "";
             }
-            
-            if(model.GroupIds != null)
+
+            if (model.GroupIds != null)
             {
                 foreach (var item in model.GroupIds)
                 {
@@ -418,12 +406,12 @@ namespace SMSOA.Areas.SMS.Controllers
             }
 
             //1.3 根据传入的群组及部门id获取对应的联系人
-            var list_person= GetPersonListByGroupDepartment(dids_str, gids_str, out count);
+            var list_person = GetPersonListByGroupDepartment(dids_str, gids_str, out count);
 
             //2.1 去除不需要的联系人，获得最终联系人集合
             list_person = (from p in list_person
-                               where !ids.Contains(p.PID)
-                               select p).ToList();
+                           where !ids.Contains(p.PID)
+                           select p).ToList();
 
 
 
@@ -431,7 +419,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //var list_person= personBLL.GetListByIds(ids.ToList());
 
             //2.2 获取联系人集合中的电话生成电话集合
-            List < string > list_phones = new List<string>(); 
+            List<string> list_phones = new List<string>();
             list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
 
 
@@ -445,7 +433,7 @@ namespace SMSOA.Areas.SMS.Controllers
             groupIds.Add(groupID_AllContacts);
             //1.5 循环写入数据库
             bool isSaveTempPersonOk = false;
-            if(phoneNums!=null&&phoneNums.Length != 0)
+            if (phoneNums != null && phoneNums.Length != 0)
             {
                 foreach (var item in phoneNums)
                 {
@@ -457,11 +445,11 @@ namespace SMSOA.Areas.SMS.Controllers
                         isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
                         if (!isSaveTempPersonOk)
                         {
-                            return Content("服务器错误");
+                            return false;
                         }
-                    }      
-                        //1.7 存在在数据库中，且已经在发送列表中，这种情况需讨论
-                    
+                    }
+                    //1.7 存在在数据库中，且已经在发送列表中，这种情况需讨论
+
                 }
 
                 list_phones.AddRange(phoneNums.ToList());
@@ -472,57 +460,70 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
             //2.1 设置发送对象相关参数
-            string account= "dh74381"; //账号"dh74381";
-            string passWord= "uAvb3Qey";//密码 = "uAvb3Qey";
-            string subCode="";//短信子码"74431"，接收回馈信息用
-            string sign= "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
-                         //短信发送与查询所需参数
-            string phones="";//电话号码
-            string smsContent= content;//短信内容
+            string account = "dh74381"; //账号"dh74381";
+            string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
+            string subCode = "";//短信子码"74431"，接收回馈信息用
+            string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
+                                       //短信发送与查询所需参数
+            string phones = "";//电话号码
+            string smsContent = content;//短信内容
             string sendTime;//计划发送时间，为空则立即发送
                             //3 对短信内容进行校验——先暂时不做
 
             //6月27日新增将List电话集合转成用,拼接的字符串
             //查询时不需要联系人电话
-           // phones = string.Join(",", list_person.Select(p => p.PhoneNum));
-           // phones = phones.Substring(0, phones.Length);
+            // phones = string.Join(",", list_person.Select(p => p.PhoneNum));
+            // phones = phones.Substring(0, phones.Length);
             PMS.Model.SMSModel.SMSModel_Send sendMsg = new PMS.Model.SMSModel.SMSModel_Send()
             {
                 account = account,
                 password = passWord,
                 content = smsContent,
-                phones= list_phones.ToArray(),
-                 sendtime=DateTime.Now
+                phones = list_phones.ToArray(),
+                sendtime = DateTime.Now
             };
             //4 短信发送
-            PMS.Model.SMSModel.SMSModel_Receive receive;
+           // PMS.Model.SMSModel.SMSModel_Receive receive_temp;
             //注意：desc:定时时间格式错误;
             //      result:定时时间格式错误
             smsSendBLL.SendMsg(sendMsg, out receive);
             //5 将发送的短信以及提交响应存入SMSContent
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
-            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,smsContent, mid, uid);
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive, smsContent, mid, uid);
 
             //6 在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
             //7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
             if (!smsRecord_CurrentBLL.CreateReceieveMsg(receive.msgid, list_phones))
             {
-                return Content("服务器错误");
+                return false;
             }
 
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
 
             StringRedisHelper redisStrhelper = new StringRedisHelper();
             redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));
+            return true;
+            
+        }
 
-            //10月19日 注释掉此处，此时发送后将msgid写入Redis中的string类型中，不使用List对象了
-            //redisListhelper.Add<PMS.Model.QueryModel.Redis_SMSContent>(new PMS.Model.QueryModel.Redis_SMSContent() {
-            //    msgid = receive.msgid,
-            //    Dt = DateTime.Now,
-            //    PersonCount=list_phones.Count//7月28日添加：在redis中保存的缓存对象集合中记录该次发送共发送的人数
-            //   // PhoneNums=phones
-            //});
+        /// <summary>
+        /// 根据传入的 联系人id数组 以及 短信内容进行短信发送
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public ActionResult DoSend(ViewModel_Message model)
+        {
+            //1 有效性判断
+            //1.1 联系人名单为空，不执行发送操作，返回
+            //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
+            //1.2 短信内容为空，不执行发送操作，返回
+             if (model.Content == null) { return Content("empty content"); }
+            //1.3 超出300字，不执行发送操作，返回
+            if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
+            SMSModel_Receive receive = new SMSModel_Receive();
+            var isSaveMsgOk = DoSendNow(model,ref receive);
+
             if (!isSaveMsgOk)
             {
                 return Content("服务器错误");
@@ -532,33 +533,7 @@ namespace SMSOA.Areas.SMS.Controllers
             {
                 //6 查询发送状态(是否加入等待时间？)
                 return Content("ok");
-                //PMS.Model.SMSModel.SMSModel_Query queryMsg = new PMS.Model.SMSModel.SMSModel_Query()
-                //{
-                //    account = account,
-                //    password = passWord,
-                //    smsId = receive.msgid
-                //};
-                //List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
-                //bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg,out list_QueryReceive);
-                //if (!isGetReturnMsg)
-                //{
-                //    return Content("服务器错误");
-                //}
-                ////7 获取改次发送的SMSContent的ID
-                //int scid = smsContentBLL.GetListBy(p => p.msgId.Equals(receive.msgid)).FirstOrDefault().ID;
-                //bool isSaveCurrnetMsgOk = smsRecord_CurrentBLL.SaveReceieveMsg(list_QueryReceive,scid);
-                //if (!isSaveCurrnetMsgOk)
-                //{
-                //    return Content("服务器错误");
-                //}
-
-                //PMS.Model.SMSModel.SMSModel_MsgResult msgResult = new PMS.Model.SMSModel.SMSModel_MsgResult();
-                ////7 返回blacklist中的电话号码
-                //smsContentBLL.getResult(receive, msgResult);
-                ////8 返回查询结果中的失败的电话号码
-                //smsRecord_CurrentBLL.getResult(list_QueryReceive,msgResult);
-                //var result = Common.SerializerHelper.SerializerToString(msgResult);
-                //return Content(result);
+                
             }
             else
             {

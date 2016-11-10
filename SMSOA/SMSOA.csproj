@@ -247,6 +247,7 @@
     <Compile Include="Areas\SMS\Models\ViewModel_AdvStatistics_Record.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_GroupMission.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_Message.cs" />
+    <Compile Include="Areas\SMS\Models\ViewModel_Message_Ext.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_StatisticsLast10.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_Statistics_Chart.cs" />
     <Compile Include="Areas\SMS\SMSAreaRegistration.cs" />

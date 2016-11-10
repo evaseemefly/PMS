@@ -129,7 +129,7 @@ namespace SMSOA.Areas.Job.Controllers
                 //2 操作Quartz操作类
                 PMS.Model.SMSModel.SMSModel_Send data_temp = new PMS.Model.SMSModel.SMSModel_Send();
                 
-                jobService.AddScheduleJob(model, data_temp);
+                //jobService.AddScheduleJob(model, data_temp);
                 return Content("ok");
             }
             

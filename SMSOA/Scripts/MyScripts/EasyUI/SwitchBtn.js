@@ -14,8 +14,6 @@
     var id_str = "#" + id;
     //1 判断传入的temp是否为True，若为true则为isShow赋true
     temp == 'True' ? isShow = true : isShow = false;
-
-
     //2.1 若展示标记为true则为switch按钮的checked赋为选中
     if (isShow == true) {
         $(id_str).switchbutton({

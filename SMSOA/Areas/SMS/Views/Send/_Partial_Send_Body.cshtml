@@ -1,4 +1,21 @@
-﻿<div class="easyui-layout" id="body_layout" style="width:100%;height:91%;" >
+﻿<script type="text/javascript">
+    $(function () {
+        $('#isTiming').switchbutton({
+            checked: false,
+            onChange: function (checked) {
+                if (checked == true) {
+                    $("#nextRunTime_date").datetimebox('enable');
+                    return;
+                }
+                if (checked == false) {
+                    $("#nextRunTime_date").datetimebox('disable');
+                }
+            }
+        })
+    })
+</script>
+
+<div class="easyui-layout" id="body_layout" style="width:100%;height:91%;" >
     <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@ style="width:43%;">
         <table class="easyui-datagrid" id="person_temp_datagrid"title="添加临时联系人"  data-options="" style="width:98%;height:30%">
 
@@ -35,12 +52,22 @@
                                 选择指定部门中的全部联系人
                                 @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
                             </td>
+                            <td>开启定时发送</td>
+                            <td class="comment">
+                                <input id="isTiming" name="isTiming"style="width:50px" class="easyui-switchbutton"><br />
+                                是否开启定时发送
+                            </td>
                         </tr>
                         <tr>
                             <td>设置常用任务及群组:</td>
                             <td class="comment">
                                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="showEditWindow()">设置</a><br />
-                                设置你常用的短信任务及常用的群组
+                                设置你常用的<br/>短信任务及常用的群组
+                            </td>
+                            <td>设置发送时间:</td>
+                            <td class="comment">
+                                <input class="easyui-datetimebox" name="StartRunTime" id="nextRunTime_date" value="" style="width:100%"><br />
+                                作业执行的时间
                             </td>
                         </tr>
                         <tr>

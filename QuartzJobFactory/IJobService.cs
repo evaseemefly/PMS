@@ -6,20 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model.Message;
-
+using PMS.IModel;
 
 namespace QuartzJobFactory
 {
     public interface IJobService
     {
-        
+
         #region 1 添加任务计划
         /// <summary>
         /// 根据工作对象 添加任务计划
         /// </summary>
         /// <param name="jobInfo"></param>
         /// <returns></returns>
-        IBaseResponse AddScheduleJob(J_JobInfo jobInfo, Object data_temp);
+        IBaseResponse AddScheduleJob(J_JobInfo jobInfo, IJobData data_temp);
         #endregion
 
         #region 2 添加监听器——可用此种方式实现作业执行后更新数据库中状态——未使用此种方式
