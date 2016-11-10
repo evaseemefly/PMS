@@ -56,5 +56,13 @@ namespace PMS.IBLL
         /// <param name="rid"></param>
         /// <returns></returns>
         List<J_JobTemplate> GetJobTemplateByUser(int rid);
+
+        /// <summary>
+        /// 执行为用户分配模板
+        /// </summary>
+        /// <param name="JTID"></param>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        bool SetTemplate4UserInfo(int JTID, List<int> ids);
     }
 }

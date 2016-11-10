@@ -302,7 +302,9 @@
     <Content Include="Libs\Spring.Web.Mvc4.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Login\Views\web.config" />
     <Content Include="Areas\Login\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -421,6 +423,7 @@
     <Content Include="Areas\Job\Views\Instance\_Partial_EditJobIns_Submit_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_ShowEditWin.cshtml" />
     <Content Include="Areas\Job\Views\Shared\_Layout_ShowEdit.cshtml" />
+    <Content Include="Areas\Job\Views\Template\_Partial_Job_setTemplate.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

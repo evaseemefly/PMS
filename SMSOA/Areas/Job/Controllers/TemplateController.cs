@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.IBLL;
 using PMS.BLL;
+using PMS.Model;
 using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Job.Controllers
@@ -12,6 +13,7 @@ namespace SMSOA.Areas.Job.Controllers
     public class TemplateController : Controller
     {
         IJ_JobTemplateBLL jobTemplateBLL;
+        IUserInfoBLL userInfoBLL;
         /// <summary>
         /// 
         /// </summary>
@@ -29,6 +31,8 @@ namespace SMSOA.Areas.Job.Controllers
             ViewBag.GetInfo = "GetAllJobTemplate";
             ViewBag.ShowByUser = "GetJobTemplateByUser";
             ViewBag.ShowByRole = "GetJobTemplateByRole";
+            ViewBag.ShowSetTemplate = "ShowSetTemplate4User";
+            ViewBag.DoSetTemplate = "DoSetTemplate";
             return View();
 
         }
@@ -174,6 +178,78 @@ namespace SMSOA.Areas.Job.Controllers
             
         }
 
-#endregion
+        #endregion
+
+
+        #region 分配模板
+        /// <summary>
+        /// 为用户分配模板-------加载时显示
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowSetTemplate4User()
+        {
+            int JTID = int.Parse(Request.QueryString["id"]);
+            int rowCount = 0;
+
+            if(JTID > 0)
+            {
+                //1. 查出指定id的作业模板
+                var jobTemplate = jobTemplateBLL.GetListBy(j => j.isDel == false && j.JTID.Equals(JTID)).FirstOrDefault();
+                //2. 得到该模板已经分配的用户列表
+                var list_UserInfo = jobTemplate.UserInfoes.ToList();
+                //3. 得到所有用户列表
+                var list_All_UserInfo = userInfoBLL.GetListBy(u => u.DelFlag == false);
+                //4. 获取总条数
+                rowCount = list_All_UserInfo.Count();
+                List<UserInfo> list = new List<UserInfo>();
+                foreach(var item in list_UserInfo)
+                {
+                    item.Checked = true;
+                    //5. 剔除该模板已有的用户
+                    list_All_UserInfo = list_All_UserInfo.Where(u => u.ID != item.ID);
+                    list.Add(item);
+                }
+
+                list.AddRange(list_All_UserInfo);
+                //6. 转为中间件
+                list = list.Select(u => u.ToMiddleModel()).ToList();
+                string temp = Common.SerializerHelper.SerializerToString(list);
+                temp = temp.Replace("Checked", "checked");
+                return Content(temp);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 执行分配模板操作
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoSetTemplate()
+        {
+            //1. 得到传回的作业模板ID
+            int JTID = int.Parse(Request.QueryString["UserId"]);
+            //2. 得到选中的用户ID
+            string aIds = Request.QueryString["ids"];
+            //3. 变为ID列表
+            string[] user_Ids = aIds.Split(',');
+            List<int> list_userIds = new List<int>();
+            foreach (var item in user_Ids)
+            {
+                if (item != "")
+                {
+                    list_userIds.Add(int.Parse(item));
+                }
+            }
+            //4 调用分配模板的方法
+            if (jobTemplateBLL.SetTemplate4UserInfo(JTID, list_userIds))
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("error");
+            }
+        }
+        #endregion
     }
 }
