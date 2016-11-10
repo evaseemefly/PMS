@@ -366,9 +366,9 @@ namespace SMSOA.Areas.SMS.Controllers
             }
         }
 
-        delegate bool SendMessage(ViewModel_Message msg);
+        delegate bool SendMessage(PMS.Model.ViewModel.ViewModel_Message msg);
 
-        public bool DoSendNow(ViewModel_Message model,ref PMS.Model.SMSModel.SMSModel_Receive receive)
+        public bool DoSendNow(PMS.Model.ViewModel.ViewModel_Message model,ref PMS.Model.SMSModel.SMSModel_Receive receive)
         {
             //1.1 获取要去除的 联系人id 数组
             var ids = model.PersonId_Int;
@@ -512,7 +512,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DoSend(ViewModel_Message model)
+        public ActionResult DoSend(PMS.Model.ViewModel.ViewModel_Message model)
         {
             //1 有效性判断
             //1.1 联系人名单为空，不执行发送操作，返回
@@ -522,6 +522,16 @@ namespace SMSOA.Areas.SMS.Controllers
             //1.3 超出300字，不执行发送操作，返回
             if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
             SMSModel_Receive receive = new SMSModel_Receive();
+
+            if (model.isTiming)
+            {
+                //延时发送
+            }
+            else
+            {
+                //立刻发送
+            }
+
             var isSaveMsgOk = DoSendNow(model,ref receive);
 
             if (!isSaveMsgOk)

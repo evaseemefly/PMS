@@ -101,6 +101,11 @@ namespace SMSFactory
             return true;
         }
 
+        public bool SendMsgbyDelayed()
+        {
+            return true;
+        }
+
         //发送程序
         /// <summary>
         /// 大汉三通提供的发送程序
