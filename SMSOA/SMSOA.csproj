@@ -545,6 +545,10 @@
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DelegateSMS\DelegateSMS.csproj">
+      <Project>{feedb0cf-1934-4f23-aabd-e69f0500642b}</Project>
+      <Name>DelegateSMS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
       <Name>ISMS</Name>

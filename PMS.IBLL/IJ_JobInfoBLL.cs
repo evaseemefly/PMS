@@ -37,6 +37,7 @@ namespace PMS.IBLL
 
         /// <summary>
         /// 创建作业实例
+        /// (写入数据库及添加至作业调度池中)
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

@@ -4,13 +4,27 @@ using System.Collections.Specialized;
 using PMS.Model.SMSModel;
 using ISMS;
 using PMS.Model.Dictionary;
-
-
-
-
+using JobManagement;
+using System.Collections.Generic;
+using PMS.Model;
+using System.Linq;
+using PMS.IBLL;
 
 namespace SMSFactory
 {
+    /// <summary>
+    /// 1 获取传入的群组及部门获取对应联系人
+    /// 2 获取要删除的联系人id
+    /// 3 从联系人集合中去除要删除的联系人获得最终要发送的联系人
+    /// </summary>
+    /// <param name="dids"></param>
+    /// <param name="gids"></param>
+    /// <param name="rowCount"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="pageIndex"></param>
+    /// <returns></returns>
+    public delegate List<P_PersonInfo> delegate_GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1);
+
     public class SMSSend: ISMSSend
     {
         /// <summary>
@@ -88,21 +102,214 @@ namespace SMSFactory
         #endregion
 
 
+
+        /// <summary>
+        /// 步骤一 获取传入的群组及部门获取对应联系人
+        ///获取要删除的联系人id
+        ///从联系人集合中去除要删除的联系人获得最终要发送的联系人
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="delegateGetPersonList"></param>
+        /// <returns></returns>
+        public List<string> GetFinalPersonPhoneList(PMS.Model.ViewModel.ViewModel_Message model,DelegateSMS.delegate_GetPersonListByGroupDepartment delegateGetPersonList)
+        {
+            //List<P_PersonInfo> delegate_GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1);
+            //Func<string,string,int,int,int,List<P_PersonInfo>>
+            //Func<string,string,>
+            //Action<string,string>
+            Action<int, int, string> act = (a, b, c) =>
+              {
+
+              };
+            //重新梳理并做抽象
+            /*步骤一：
+                获取传入的群组及部门获取对应联系人
+                获取要删除的联系人id
+                从联系人集合中去除要删除的联系人获得最终要发送的联系人
+            */
+            //1 获取要去除的 联系人id 数组
+            var ids = model.PersonId_Int;
+            int count = 0;
+            string dids_str = null;
+            string gids_str = null;
+            if (model.GroupIds == null)
+            {
+                gids_str = "";
+            }
+
+            if (model.DepartmentIds == null)
+            {
+                dids_str = "";
+            }
+
+            if (model.GroupIds != null)
+            {
+                foreach (var item in model.GroupIds)
+                {
+                    gids_str += item.ToString() + ",";
+                }
+            }
+
+            if (model.DepartmentIds != null)
+            {
+                foreach (var item in model.DepartmentIds)
+                {
+                    dids_str += item.ToString() + ",";
+                }
+            }
+
+            //2 根据传入的群组及部门id获取对应的联系人
+            List<P_PersonInfo> list_person = delegateGetPersonList(dids_str, gids_str, out count);
+
+            //3 去除不需要的联系人，获得最终联系人集合
+            list_person = (from p in list_person
+                           where !ids.Contains(p.PID)
+                           select p).ToList();
+
+            //4 获取联系人集合中的电话生成电话集合
+            List<string> list_phones = new List<string>();
+            list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+
+            return list_phones;
+        }
+
+        /// <summary>
+        /// 步骤二 获取添加的临时联系人
+        /// 向数据库中写入这些临时联系人
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="personBLL"></param>
+        /// <param name="groupBLL"></param>
+        /// <returns></returns>
+        public List<string> AddAndGetTempPersons(PMS.Model.ViewModel.ViewModel_Message model,IP_PersonInfoBLL personBLL,IP_GroupBLL groupBLL)
+        {
+            /*步骤二：
+                    获取添加的临时联系人
+                    向数据库中写入这些临时联系人
+            */
+            //1.2 获取临时联系人的电话数组
+            var phoneNums = model.PhoneNum_Str;
+            //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
+            string PName_Temp = "临时联系人";
+
+            //1.4 目前默认只添加到全部联系人群组中
+            int groupID_AllContacts = groupBLL.GetListBy(a => a.GroupName.Equals("全部联系人")).FirstOrDefault().GID;
+
+            List<int> groupIds = new List<int>();
+            groupIds.Add(groupID_AllContacts);
+            //1.5 循环写入数据库
+            bool isSaveTempPersonOk = false;
+            if (phoneNums != null && phoneNums.Length != 0)
+            {
+                foreach (var item in phoneNums)
+                {
+                    //1.6 判断输入的联系人在是否存在在数据库中
+
+                    if (!personBLL.AddValidation(item))
+                    {
+                        //1.7 不存在在数据库中，则将临时联系人添加进数据库
+                        isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
+                        if (!isSaveTempPersonOk)
+                        {
+                           // return false;
+                        }
+                    }
+                    //1.7 存在在数据库中，且已经在发送列表中，这种情况需讨论
+
+                }
+               
+            }
+            return phoneNums.ToList();
+        }
+
+        /// <summary>
+        /// 步骤三 获取短信内容
+        /// 封装要提交至联通接口的发送对象（含联系人电话号码）
+        /// </summary>
+        /// <param name="model">短信对象</param>
+        /// <param name="list_phones"></param>
+        /// <returns></returns>
+        public SMSModel_Send ToSendModel(PMS.Model.ViewModel.ViewModel_Message model,List<string> list_phones)
+        {
+            /*步骤三                    
+                    获取短信内容
+                    封装要提交至联通接口的发送对象
+                    （含联系人电话号码）
+            */
+            //2 获取短信内容
+            var content = model.Content;
+
+
+            //2.1 设置发送对象相关参数
+            string subCode = "";//短信子码"74431"，接收回馈信息用
+            string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
+                                       //短信发送与查询所需参数
+            string smsContent = content;//短信内容
+            string sendTime;//计划发送时间，为空则立即发送
+                            //3 对短信内容进行校验——先暂时不做
+
+            //6月27日新增将List电话集合转成用,拼接的字符串
+            //查询时不需要联系人电话
+            SMSModel_Send sendMsg = new SMSModel_Send()
+            {
+                account = "dh74381",
+                password = "uAvb3Qey",
+                content = content,
+                phones = list_phones.ToArray(),
+                sendtime = DateTime.Now
+            };
+            return sendMsg;
+        }
+
         /// <summary>
         /// 短信发送
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(SMSModel_Send smsdata, out SMSModel_Receive receiveModel)
+        public bool SendMsg(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
         {
-            ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
-            client.SendMsg(smsdata,out receiveModel);
+            SendJobManagement jobManagement = new SendJobManagement();
+            //判断是否开启定时发送功能
+            if (model.Model_Message.isTiming)
+            {
+                //绑定定时发送功能
+                jobManagement.DoSendJobs += SendMsgbyDelayed;
+            }
+            else
+            {
+                //绑定立刻发送功能
+                jobManagement.DoSendJobs += SendMsgbyNow;
+            }
+            //不管具体绑定的是哪个方法，调用该发送方法
+            jobManagement.JobsRun(model,out response);
+            return false;
+        }
 
+        
+
+        /// <summary>
+        /// 延时发送
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
+        {
+            response = new PMS.Model.Message.BaseResponse();
             return true;
         }
 
-        public bool SendMsgbyDelayed()
+        /// <summary>
+        /// 立刻发送
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
         {
+            SMSModel_Receive receiveModel = new SMSModel_Receive();
+            ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
+            //调用服务的发送接口
+            client.SendMsg(model.Model_Send, out receiveModel);
+            response = new PMS.Model.Message.BaseResponse();
             return true;
         }
 

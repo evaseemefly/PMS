@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PMS.Model.ViewModel
 {
+    /// <summary>
+    /// 作业对象相关信息
+    /// </summary>
     public partial class ViewModel_BaseJob
     {
         public int JID { get; set; }

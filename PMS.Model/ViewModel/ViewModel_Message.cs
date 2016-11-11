@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace PMS.Model.ViewModel
 {
+    /// <summary>
+    /// 1 提交的短信的相关信息[
+    /// 1）联系人id
+    /// 2）群组id
+    /// 3）电话号码
+    /// 4）内务id
+    /// 5）短息内容]
+    /// 2 作业相关信息
+    /// </summary>
    public class ViewModel_Message : ViewModel_BaseJob
     {
         /// <summary>

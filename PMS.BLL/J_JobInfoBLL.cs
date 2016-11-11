@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PMS.Model;
 using PMS.IBLL;
 using PMS.BLL;
+using PMS.IModel;
 
 
 namespace PMS.BLL
@@ -15,7 +16,7 @@ namespace PMS.BLL
 
         //使用WCF中的方法
         //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
-        //QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
+        QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
         IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
         /// <summary>
@@ -92,6 +93,7 @@ namespace PMS.BLL
 
         /// <summary>
         /// 创建作业实例
+        /// (写入数据库及添加至作业调度池中)
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -107,13 +109,15 @@ namespace PMS.BLL
                 return true;
             }
             return false;
-            //1 添加作业至调度池中
-            //var response= ijobService.AddScheduleJob(model);
-            // //2 根据传入的JobInfo创建指定的作业
-            // if (response.Success == true)
-            // {
-            //     base.Create(model);
-            // }
+            // 1 添加作业至调度池中
+            IJobData jobData = new PMS.Model.JobDataModel.SendJobDataModel();
+
+            var response = ijobService.AddScheduleJob(model, jobData);
+            //2 根据传入的JobInfo创建指定的作业
+            if (response.Success == true)
+            {
+                base.Create(model);
+            }
 
         }
 

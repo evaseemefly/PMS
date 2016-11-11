@@ -127,8 +127,8 @@ namespace SMSOA.Areas.Job.Controllers
                 //注意：
                 //在创建之后此model中的JID已经有值了，可以直接获取该JID的值
                 //2 操作Quartz操作类
-                PMS.Model.SMSModel.SMSModel_Send data_temp = new PMS.Model.SMSModel.SMSModel_Send();
-                
+                //PMS.Model.SMSModel.SMSModel_Send data_temp = new PMS.Model.SMSModel.SMSModel_Send();
+
                 //jobService.AddScheduleJob(model, data_temp);
                 return Content("ok");
             }

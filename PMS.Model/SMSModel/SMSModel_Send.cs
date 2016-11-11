@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace PMS.Model.SMSModel
 {
+    /// <summary>
+    /// 发送对象的相关信息
+    /// [1)用户账号
+    /// 2）账号密码
+    /// 3）短信编码（可填）
+    /// 4）电话（数组）
+    /// 5）短信内容
+    /// 6）定时时间]
+    /// </summary>
     public class SMSModel_Send
     {
         /// <summary>

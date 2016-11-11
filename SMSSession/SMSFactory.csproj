@@ -62,13 +62,25 @@
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DelegateSMS\DelegateSMS.csproj">
+      <Project>{feedb0cf-1934-4f23-aabd-e69f0500642b}</Project>
+      <Name>DelegateSMS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
       <Name>ISMS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JobManagement\JobManagement.csproj">
+      <Project>{fb516b04-5ae1-4f82-81e9-b7aaeb13ae58}</Project>
+      <Name>JobManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
       <Name>PMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
+      <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
+      <Name>PMS.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>

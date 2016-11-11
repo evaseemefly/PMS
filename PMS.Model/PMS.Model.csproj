@@ -55,6 +55,7 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CombineModel\SendAndMessage_Model.cs" />
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
     <Compile Include="Dictionary\Quartz_TriggerStateDictionary.cs" />
     <Compile Include="Dictionary\RecycledTypeDictonary.cs" />

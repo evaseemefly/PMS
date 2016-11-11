@@ -366,139 +366,170 @@ namespace SMSOA.Areas.SMS.Controllers
             }
         }
 
-        delegate bool SendMessage(PMS.Model.ViewModel.ViewModel_Message msg);
+        
 
-        public bool DoSendNow(PMS.Model.ViewModel.ViewModel_Message model,ref PMS.Model.SMSModel.SMSModel_Receive receive)
+        public bool DoSendNow(PMS.Model.ViewModel.ViewModel_Message model,ref SMSModel_Receive receive)
         {
-            //1.1 获取要去除的 联系人id 数组
-            var ids = model.PersonId_Int;
+            //重新梳理并做抽象
+            #region 暂时注释掉
+            ///*步骤一：
+            //    获取传入的群组及部门获取对应联系人
+            //    获取要删除的联系人id
+            //    从联系人集合中去除要删除的联系人获得最终要发送的联系人
+            //*/
+            ////1.1 获取要去除的 联系人id 数组
+            //var ids = model.PersonId_Int;    
+            //int count = 0;
+            //string dids_str = null;
+            //string gids_str = null;
+            //if (model.GroupIds == null)
+            //{
+            //    gids_str = "";
+            //}
 
-            //1.2 获取临时联系人的电话数组
-            var phoneNums = model.PhoneNum_Str;
+            //if (model.DepartmentIds == null)
+            //{
+            //    dids_str = "";
+            //}
 
-            int count = 0;
-            string dids_str = null;
-            string gids_str = null;
-            if (model.GroupIds == null)
-            {
-                gids_str = "";
-            }
+            //if (model.GroupIds != null)
+            //{
+            //    foreach (var item in model.GroupIds)
+            //    {
+            //        gids_str += item.ToString() + ",";
+            //    }
+            //}
 
-            if (model.DepartmentIds == null)
-            {
-                dids_str = "";
-            }
+            //if (model.DepartmentIds != null)
+            //{
+            //    foreach (var item in model.DepartmentIds)
+            //    {
+            //        dids_str += item.ToString() + ",";
+            //    }
+            //}
 
-            if (model.GroupIds != null)
-            {
-                foreach (var item in model.GroupIds)
-                {
-                    gids_str += item.ToString() + ",";
-                }
-            }
+            ////1.3 根据传入的群组及部门id获取对应的联系人
+            //var list_person = GetPersonListByGroupDepartment(dids_str, gids_str, out count);
 
-            if (model.DepartmentIds != null)
-            {
-                foreach (var item in model.DepartmentIds)
-                {
-                    dids_str += item.ToString() + ",";
-                }
-            }
+            ////2.1 去除不需要的联系人，获得最终联系人集合
+            //list_person = (from p in list_person
+            //               where !ids.Contains(p.PID)
+            //               select p).ToList();
 
-            //1.3 根据传入的群组及部门id获取对应的联系人
-            var list_person = GetPersonListByGroupDepartment(dids_str, gids_str, out count);
+            ////2.2 获取联系人集合中的电话生成电话集合
+            //List<string> list_phones = new List<string>();
+            //list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
 
-            //2.1 去除不需要的联系人，获得最终联系人集合
-            list_person = (from p in list_person
-                           where !ids.Contains(p.PID)
-                           select p).ToList();
+            ///*步骤二：
+            //        获取添加的临时联系人
+            //        向数据库中写入这些临时联系人
+            //*/
+            ////1.2 获取临时联系人的电话数组
+            //var phoneNums = model.PhoneNum_Str;
+            ////1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
+            //string PName_Temp = "临时联系人";
 
+            ////1.4 目前默认只添加到全部联系人群组中
+            //int groupID_AllContacts = groupBLL.GetListBy(a => a.GroupName.Equals("全部联系人")).FirstOrDefault().GID;
 
+            //List<int> groupIds = new List<int>();
+            //groupIds.Add(groupID_AllContacts);
+            ////1.5 循环写入数据库
+            //bool isSaveTempPersonOk = false;
+            //if (phoneNums != null && phoneNums.Length != 0)
+            //{
+            //    foreach (var item in phoneNums)
+            //    {
+            //        //1.6 判断输入的联系人在是否存在在数据库中
 
-            //1.1 根据联系人id数组获取指定的联系人
-            //var list_person= personBLL.GetListByIds(ids.ToList());
+            //        if (!personBLL.AddValidation(item))
+            //        {
+            //            //1.7 不存在在数据库中，则将临时联系人添加进数据库
+            //            isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
+            //            if (!isSaveTempPersonOk)
+            //            {
+            //                return false;
+            //            }
+            //        }
+            //        //1.7 存在在数据库中，且已经在发送列表中，这种情况需讨论
 
-            //2.2 获取联系人集合中的电话生成电话集合
-            List<string> list_phones = new List<string>();
-            list_person.ForEach(p => list_phones.Add(p.PhoneNum.ToString()));
+            //    }
 
+            //    list_phones.AddRange(phoneNums.ToList());
+            //}
 
-            //1.3 调用personBLL中的添加联系人方法，将临时联系人写入数据库（qu）
-            string PName_Temp = "临时联系人";
-
-            //1.4 目前默认只添加到全部联系人群组中
-            int groupID_AllContacts = groupBLL.GetListBy(a => a.GroupName.Equals("全部联系人")).FirstOrDefault().GID;
-
-            List<int> groupIds = new List<int>();
-            groupIds.Add(groupID_AllContacts);
-            //1.5 循环写入数据库
-            bool isSaveTempPersonOk = false;
-            if (phoneNums != null && phoneNums.Length != 0)
-            {
-                foreach (var item in phoneNums)
-                {
-                    //1.6 判断输入的联系人在是否存在在数据库中
-
-                    if (!personBLL.AddValidation(item))
-                    {
-                        //1.7 不存在在数据库中，则将临时联系人添加进数据库
-                        isSaveTempPersonOk = personBLL.DoAddTempPerson(PName_Temp, item, true, groupIds);
-                        if (!isSaveTempPersonOk)
-                        {
-                            return false;
-                        }
-                    }
-                    //1.7 存在在数据库中，且已经在发送列表中，这种情况需讨论
-
-                }
-
-                list_phones.AddRange(phoneNums.ToList());
-            }
-
-            //2 获取短信内容
-            var content = model.Content;
+            ///*步骤三                    
+            //        获取短信内容
+            //        封装要提交至联通接口的发送对象
+            //        （含联系人电话号码）
+            //*/
+            ////2 获取短信内容
+            //var content = model.Content;
 
 
-            //2.1 设置发送对象相关参数
-            string account = "dh74381"; //账号"dh74381";
-            string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
-            string subCode = "";//短信子码"74431"，接收回馈信息用
-            string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
-                                       //短信发送与查询所需参数
-            string phones = "";//电话号码
-            string smsContent = content;//短信内容
-            string sendTime;//计划发送时间，为空则立即发送
-                            //3 对短信内容进行校验——先暂时不做
+            ////2.1 设置发送对象相关参数
+            //string subCode = "";//短信子码"74431"，接收回馈信息用
+            //string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
+            //                           //短信发送与查询所需参数
+            //string smsContent = content;//短信内容
+            //string sendTime;//计划发送时间，为空则立即发送
+            //                //3 对短信内容进行校验——先暂时不做
 
-            //6月27日新增将List电话集合转成用,拼接的字符串
-            //查询时不需要联系人电话
-            // phones = string.Join(",", list_person.Select(p => p.PhoneNum));
-            // phones = phones.Substring(0, phones.Length);
-            PMS.Model.SMSModel.SMSModel_Send sendMsg = new PMS.Model.SMSModel.SMSModel_Send()
-            {
-                account = account,
-                password = passWord,
-                content = smsContent,
-                phones = list_phones.ToArray(),
-                sendtime = DateTime.Now
-            };
+            ////6月27日新增将List电话集合转成用,拼接的字符串
+            ////查询时不需要联系人电话
+            //SMSModel_Send sendMsg = new SMSModel_Send()
+            //{
+            //    account = "dh74381",
+            //    password = "uAvb3Qey",
+            //    content = content,
+            //    phones = list_phones.ToArray(),
+            //    sendtime = DateTime.Now,
+
+            //};
+            #endregion
+            //1 根据选定的群组及部门获取相应的联系人
+           var list_PersonPhonesByGroupAndDepartment= smsSendBLL.GetFinalPersonPhoneList(model, GetPersonListByGroupDepartment);
+
+            //2 获取临时联系人电话集合
+            var list_tempPersonPhones= smsSendBLL.AddAndGetTempPersons(model, personBLL, groupBLL);
+            list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
+            var list_phones = list_PersonPhonesByGroupAndDepartment;
+
+            //3
+           var sendMsg= smsSendBLL.ToSendModel(model, list_phones);
+
+            /*步骤四
+                    生成提交对象及短信及作业对象
+                    由SMSFactory进行短信提交操作（并选择延时/立刻发送）
+            */
             //4 短信发送
-           // PMS.Model.SMSModel.SMSModel_Receive receive_temp;
             //注意：desc:定时时间格式错误;
             //      result:定时时间格式错误
-            smsSendBLL.SendMsg(sendMsg, out receive);
+            PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+            smsSendBLL.SendMsg(sendandMsgModel, out response);
+
+            /*步骤五：
+                    创建短信内容至数据库
+                    创建发送记录至数据库
+                    （此处应放在SMSFactory.SendMsg或写在JobInstance中的SendJob.Exceuted）
+             */
             //5 将发送的短信以及提交响应存入SMSContent
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
-            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive, smsContent, mid, uid);
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,model.Content, mid, uid);
 
-            //6 在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
+            //在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
             //7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
             if (!smsRecord_CurrentBLL.CreateReceieveMsg(receive.msgid, list_phones))
             {
                 return false;
             }
 
+            /*步骤六：
+                    写入redis缓存中
+                    （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
+            */
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
 
             StringRedisHelper redisStrhelper = new StringRedisHelper();
@@ -530,6 +561,7 @@ namespace SMSOA.Areas.SMS.Controllers
             else
             {
                 //立刻发送
+                //smsSendBLL.SendMsg()
             }
 
             var isSaveMsgOk = DoSendNow(model,ref receive);

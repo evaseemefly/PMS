@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EA8B8C2F-3235-41DC-ABA4-17CFDF0575C7}</ProjectGuid>
+    <ProjectGuid>{FB516B04-5AE1-4F82-81E9-B7AAEB13AE58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISMS</RootNamespace>
-    <AssemblyName>ISMS</AssemblyName>
+    <RootNamespace>JobManagement</RootNamespace>
+    <AssemblyName>JobManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,19 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISMSQuery.cs" />
-    <Compile Include="ISMSSend.cs" />
+    <Compile Include="SendJobManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DelegateSMS\DelegateSMS.csproj">
-      <Project>{feedb0cf-1934-4f23-aabd-e69f0500642b}</Project>
-      <Name>DelegateSMS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PMS.IBLL\PMS.IBLL.csproj">
-      <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
-      <Name>PMS.IBLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>

@@ -34,8 +34,12 @@ namespace SendJob
             var dataMap = context.JobDetail.JobDataMap;
             var send_model = dataMap["sendModel"] as PMS.Model.SMSModel.SMSModel_Send;
             ISMS.ISMSSend send = new SMSFactory.SMSSend();
+
             PMS.Model.SMSModel.SMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();
-            send.SendMsg(send_model, out receive_model);
+
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+
+            send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send= send_model } , out response);
         }
 
         protected override void Exceuted(IJobExecutionContext context)
