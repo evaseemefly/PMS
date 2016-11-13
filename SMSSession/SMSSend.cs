@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using PMS.Model;
 using System.Linq;
 using PMS.IBLL;
+using PMS.BLL;
+using PMS.Model.EqualCompare;
 
 namespace SMSFactory
 {
@@ -27,6 +29,16 @@ namespace SMSFactory
 
     public class SMSSend: ISMSSend
     {
+        IP_DepartmentInfoBLL departmentBLL { get; set; }
+        IP_GroupBLL groupBLL { get; set; }
+        IP_PersonInfoBLL personBLL { get; set; } 
+        public SMSSend()
+        {
+            departmentBLL = new P_DepartmentInfoBLL();
+            groupBLL = new P_GroupBLL();
+            personBLL = new P_PersonInfoBLL();
+        }
+
         /// <summary>
         /// 根据短信实体判断短信实体是否符合标准
         /// 符合返回true，
@@ -114,13 +126,13 @@ namespace SMSFactory
         public List<string> GetFinalPersonPhoneList(PMS.Model.ViewModel.ViewModel_Message model,DelegateSMS.delegate_GetPersonListByGroupDepartment delegateGetPersonList)
         {
             //List<P_PersonInfo> delegate_GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1);
-            //Func<string,string,int,int,int,List<P_PersonInfo>>
+           // Func<string,string,int,int,int,List<P_PersonInfo>>
             //Func<string,string,>
             //Action<string,string>
-            Action<int, int, string> act = (a, b, c) =>
-              {
+            //Action<int, int, string> act = (a, b, c) =>
+            //  {
 
-              };
+            //  };
             //重新梳理并做抽象
             /*步骤一：
                 获取传入的群组及部门获取对应联系人
@@ -261,6 +273,8 @@ namespace SMSFactory
             return sendMsg;
         }
 
+
+
         /// <summary>
         /// 短信发送
         /// </summary>
@@ -273,6 +287,7 @@ namespace SMSFactory
             if (model.Model_Message.isTiming)
             {
                 //绑定定时发送功能
+                //使用作业调度
                 jobManagement.DoSendJobs += SendMsgbyDelayed;
             }
             else
@@ -281,7 +296,9 @@ namespace SMSFactory
                 jobManagement.DoSendJobs += SendMsgbyNow;
             }
             //不管具体绑定的是哪个方法，调用该发送方法
-            jobManagement.JobsRun(model,out response);
+            SMSModel_Receive receive = new SMSModel_Receive();
+            jobManagement.JobsRun(model, receive);
+            response = new PMS.Model.Message.BaseResponse() { Success = true };
             return false;
         }
 
@@ -292,10 +309,52 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
+        public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive response)
         {
-            response = new PMS.Model.Message.BaseResponse();
+            //response = new PMS.Model.Message.BaseResponse();
             return true;
+        }
+
+        protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)
+        {
+            List<int> list_dids = new List<int>();
+            List<int> list_gids = new List<int>();
+            if (dids != "")
+            {
+                var list_dids_temp = (from g in dids.Split(',')
+                                      where g != ""
+                                      select g).ToList();
+                list_dids_temp.ForEach(g => list_gids.Add(int.Parse(g)));
+            }
+            if (gids != "")
+            {
+                var list_gids_temp = (from g in gids.Split(',')
+                                      where g != ""
+                                      select g).ToList();
+                list_gids_temp.ForEach(g => list_gids.Add(int.Parse(g)));
+            }
+
+
+            //2 根据department以及group的id查询其对应的Person对象集合
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            
+
+            var list_department = departmentBLL.GetListByIds(list_dids);
+            list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
+            var list_group = groupBLL.GetListByIds(list_gids);
+            list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
+
+            //3 将联系人集合去重
+            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).ToList();
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
+            rowCount = list_person.Count();
+
+            if (pageIndex != -1 && pageSize != -1)
+            {
+                //分页
+                list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            return list_person;
         }
 
         /// <summary>
@@ -303,13 +362,37 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
+        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive receiveModel)
         {
-            SMSModel_Receive receiveModel = new SMSModel_Receive();
+            //SMSModel_Receive receiveModel = new SMSModel_Receive();
             ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
-            //调用服务的发送接口
-            client.SendMsg(model.Model_Send, out receiveModel);
-            response = new PMS.Model.Message.BaseResponse();
+
+            //重新梳理并做抽象
+            //1 根据选定的群组及部门获取相应的联系人
+            var list_PersonPhonesByGroupAndDepartment = GetFinalPersonPhoneList(model.Model_Message, GetPersonListByGroupDepartment);
+
+            //2 获取临时联系人电话集合
+           
+            var list_tempPersonPhones = AddAndGetTempPersons(model.Model_Message, personBLL, groupBLL);
+
+            //2.2 获取最终的联系人电话集合
+            list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
+            var list_phones = list_PersonPhonesByGroupAndDepartment;
+
+            //3 转成发送对象
+            var sendMsg = ToSendModel(model.Model_Message, list_phones);
+
+            /*步骤四
+                    生成提交对象及短信及作业对象
+                    由SMSFactory进行短信提交操作（并选择延时/立刻发送）
+            */
+            //4 短信发送
+            //注意：desc:定时时间格式错误;
+            //      result:定时时间格式错误
+            //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
+            model.Model_Send = sendMsg;
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+            SendMsg(model, out response);
             return true;
         }
 

@@ -34,6 +34,6 @@ namespace QuartzServiceLib
         [OperationContract]
         void PauseJob(string jobName, string jobGroup);
 
-        void AddListener(IJobListener jobListener, string JobName, string GroupName);
+        //void AddListener(IJobListener jobListener, string JobName, string GroupName);
     }
 }

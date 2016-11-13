@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model;
+using PMS.Model.SMSModel;
 
 namespace JobManagement
 {
@@ -13,7 +14,7 @@ namespace JobManagement
     /// <param name="model"></param>
     /// <param name="response"></param>
     /// <returns></returns>
-    public delegate bool DoSendJobDelegate(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response);
+    public delegate bool DoSendJobDelegate(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive response);
 
     /// <summary>
     /// 
@@ -32,15 +33,15 @@ namespace JobManagement
         /// </summary>
         /// <param name="model">发送对象</param>
         /// <param name="response">响应</param>
-        public void JobsRun(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
+        public void JobsRun(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive response)
         {
             if (DoSendJobs != null)
             {
-                DoSendJobs(model,out response);
+                DoSendJobs(model,response);
             }
             else
             {
-                response = new PMS.Model.Message.BaseResponse() { Message = "未绑定方法", Success = false };
+                //response = new PMS.Model.Message.BaseResponse() { Message = "未绑定方法", Success = false };
             }
         }
     }

@@ -13,6 +13,7 @@ using SMSOA.Areas.SMS.Models;
 using Common.Redis;
 using PMS.Model.ViewModel;
 using PMS.Model.SMSModel;
+using JobManagement;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -198,6 +199,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <returns></returns>
         protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids,out int rowCount, int pageSize=-1,int pageIndex=-1)
         {
+
             List<int> list_dids = new List<int>();
             List<int> list_gids = new List<int>();
             if (dids != "")
@@ -366,9 +368,14 @@ namespace SMSOA.Areas.SMS.Controllers
             }
         }
 
-        
+        public bool DoSendTiming(PMS.Model.ViewModel.ViewModel_Message model, ref SMSModel_Receive receive)
+        {
+            return true;
+        }
 
-        public bool DoSendNow(PMS.Model.ViewModel.ViewModel_Message model,ref SMSModel_Receive receive)
+
+
+        public bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,SMSModel_Receive receive)
         {
             //重新梳理并做抽象
             #region 暂时注释掉
@@ -488,15 +495,17 @@ namespace SMSOA.Areas.SMS.Controllers
             //};
             #endregion
             //1 根据选定的群组及部门获取相应的联系人
-           var list_PersonPhonesByGroupAndDepartment= smsSendBLL.GetFinalPersonPhoneList(model, GetPersonListByGroupDepartment);
+           var list_PersonPhonesByGroupAndDepartment= smsSendBLL.GetFinalPersonPhoneList(model.Model_Message, GetPersonListByGroupDepartment);
 
             //2 获取临时联系人电话集合
-            var list_tempPersonPhones= smsSendBLL.AddAndGetTempPersons(model, personBLL, groupBLL);
+            var list_tempPersonPhones= smsSendBLL.AddAndGetTempPersons(model.Model_Message, personBLL, groupBLL);
+
+            //2.2 获取最终的联系人电话集合
             list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
             var list_phones = list_PersonPhonesByGroupAndDepartment;
 
-            //3
-           var sendMsg= smsSendBLL.ToSendModel(model, list_phones);
+            //3 转成发送对象
+           var sendMsg= smsSendBLL.ToSendModel(model.Model_Message, list_phones);
 
             /*步骤四
                     生成提交对象及短信及作业对象
@@ -505,10 +514,22 @@ namespace SMSOA.Areas.SMS.Controllers
             //4 短信发送
             //注意：desc:定时时间格式错误;
             //      result:定时时间格式错误
-            PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
+            //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
+            model.Model_Send = sendMsg;
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            smsSendBLL.SendMsg(sendandMsgModel, out response);
+            smsSendBLL.SendMsg(model, out response);
+            return true;
+        }
 
+        /// <summary>
+        /// 在发送短信之后执行
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="receive"></param>
+        /// <param name="list_phones"></param>
+        /// <returns></returns>
+        public bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model,SMSModel_Receive receive,List<string> list_phones)
+        {
             /*步骤五：
                     创建短信内容至数据库
                     创建发送记录至数据库
@@ -517,7 +538,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //5 将发送的短信以及提交响应存入SMSContent
             var mid = model.SMSMissionID;
             var uid = base.LoginUser.ID;
-            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive,model.Content, mid, uid);
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive, model.Content, mid, uid);
 
             //在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
             //7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
@@ -535,7 +556,6 @@ namespace SMSOA.Areas.SMS.Controllers
             StringRedisHelper redisStrhelper = new StringRedisHelper();
             redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));
             return true;
-            
         }
 
         /// <summary>
@@ -554,22 +574,31 @@ namespace SMSOA.Areas.SMS.Controllers
             if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
             SMSModel_Receive receive = new SMSModel_Receive();
 
+            SendJobManagement sendjobManagement = new SendJobManagement();
+
             if (model.isTiming)
             {
                 //延时发送
+                
             }
             else
             {
                 //立刻发送
+                sendjobManagement.DoSendJobs += DoSendNow;
                 //smsSendBLL.SendMsg()
             }
 
-            var isSaveMsgOk = DoSendNow(model,ref receive);
+            // var isSaveMsgOk = DoSendNow(model,ref receive);
+            PMS.Model.CombineModel.SendAndMessage_Model Combine_model = new PMS.Model.CombineModel.SendAndMessage_Model();
+            Combine_model.Model_Message = model;
+            //var isSaveMsgOk = DoSendNow(Combine_model, receive);
+            sendjobManagement.JobsRun(Combine_model, receive);
 
-            if (!isSaveMsgOk)
-            {
-                return Content("服务器错误");
-            }
+
+            //if (!isSaveMsgOk)
+            //{
+            //    return Content("服务器错误");
+            //}
 
             if ("0".Equals(receive.result))
             {
