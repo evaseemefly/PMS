@@ -28,7 +28,7 @@ namespace PMS.DALSQLSer
          增删改查
          */
 
-        #region 1 根据实体为数据库中添加新的对象+public bool Create(T model)
+        #region 1-1 根据实体为数据库中添加新的对象+public bool Create(T model)
         /// <summary>
         /// 1 根据实体为数据库中添加新的对象
         /// </summary>
@@ -43,6 +43,28 @@ namespace PMS.DALSQLSer
             ////2 设置该对象为修改过的状态
             //entry.State = System.Data.EntityState.Added;
             return true;
+        }
+        #endregion
+
+        #region 1-2 根据实体集合为数据库中批量添加新的对象+public bool CreateByList(List<T> list)
+        /// <summary>
+        /// 1 根据实体为数据库中添加新的对象
+        /// </summary>
+        /// <param name="model">T实体对象</param>
+        /// <returns></returns>
+        public bool CreateByList(List<T> list)
+        {
+            foreach (var item in list)
+            {
+                this.Create(item);
+                //DbEntityEntry<T> entry = Db.Entry<T>(item);
+                //entry.State = System.Data.Entity.EntityState.Added;
+            }
+            return true;
+            //根据传入的T实体对象，向数据库中插入
+            //DbEntityEntry<T> entry = Db.Entry<T>(model);
+            ////2 设置该对象为修改过的状态
+            //entry.State = System.Data.EntityState.Added;
         }
         #endregion
 

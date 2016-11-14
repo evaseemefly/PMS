@@ -11,7 +11,7 @@ namespace PMS.Model.ViewModel
     /// 1）联系人id
     /// 2）群组id
     /// 3）电话号码
-    /// 4）内务id
+    /// 4）任务id
     /// 5）短息内容]
     /// 2 作业相关信息
     /// </summary>
@@ -27,6 +27,10 @@ namespace PMS.Model.ViewModel
         {
             get
             {
+                if (PersonIds == null)
+                {
+                    return new int[] { };
+                }
                 if (PersonIds.Length > 0 && PersonIds != "undefined")
                 {
                     //使用新的方法将string数组转成int数组
@@ -34,7 +38,7 @@ namespace PMS.Model.ViewModel
                 }
                 else
                 {
-                    return null;
+                    return new int[] { };
                 }
 
             }
@@ -58,7 +62,7 @@ namespace PMS.Model.ViewModel
             {
                 if (PhoneNums == null)
                 {
-                    return null;
+                    return new string[] { };
                 }
 
                 if (PhoneNums.Length > 0)
@@ -68,7 +72,7 @@ namespace PMS.Model.ViewModel
                 }
                 else
                 {
-                    return null;
+                    return new string[] { };
                 }
 
             }

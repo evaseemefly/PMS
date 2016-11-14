@@ -220,6 +220,7 @@ namespace PersonImporting
                 //数据验证：文件内容验证
                 if (!Utils.ImportExportUtils.ContactsValidation(textLine))
                 {
+                    Console.WriteLine(textLine+"出现错误，请检查！");
                     list_model.Clear();
                     break;
                 }

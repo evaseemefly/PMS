@@ -11,7 +11,7 @@ namespace QuartzProxy
     /// <summary>
     /// 作业调度服务代理类
     /// </summary>
-    class QuartzServiceClientProxy:ClientBase<IJobService>,IJobService
+   public class QuartzServiceClientProxy:ClientBase<IJobService>,IJobService
     {       
         public bool AddScheduleJob(PMS.Model.J_JobInfo jobInfo)
         {

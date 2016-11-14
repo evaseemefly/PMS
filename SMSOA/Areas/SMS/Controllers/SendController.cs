@@ -326,7 +326,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DoSave(Models.ViewModel_GroupMission model,ref SMSModel_Receive receive)
+        public ActionResult DoSave(Models.ViewModel_GroupMission model)
         {
             //获取提交的群组id以及任务id数组
             //可能为提交群组
@@ -375,7 +375,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
 
-        public bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,SMSModel_Receive receive)
+        public bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive receive)
         {
             //重新梳理并做抽象
             #region 暂时注释掉
@@ -502,6 +502,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //2.2 获取最终的联系人电话集合
             list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
+
             var list_phones = list_PersonPhonesByGroupAndDepartment;
 
             //3 转成发送对象
@@ -516,8 +517,10 @@ namespace SMSOA.Areas.SMS.Controllers
             //      result:定时时间格式错误
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             model.Model_Send = sendMsg;
-            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            smsSendBLL.SendMsg(model, out response);
+            //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+            //11月14日 暂时注释掉——以后需恢复！！！！
+             smsSendBLL.SendMsg(model, out /*response*/receive);
+            //receive = new SMSModel_Receive();
             return true;
         }
 
@@ -569,32 +572,48 @@ namespace SMSOA.Areas.SMS.Controllers
             //1.1 联系人名单为空，不执行发送操作，返回
             //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
-             if (model.Content == null) { return Content("empty content"); }
+            if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
             if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
             SMSModel_Receive receive = new SMSModel_Receive();
+            #region 11月14日已做修改，判断是定时还是实时发送在SMSFactory中的SMSSend中判断，此处暂时注释掉
+            //SendJobManagement sendjobManagement = new SendJobManagement();
+            //if (model.isTiming)
+            //{
+            //    //延时发送
 
-            SendJobManagement sendjobManagement = new SendJobManagement();
+            //}
+            //else
+            //{
+            //    //立刻发送
+            //    sendjobManagement.DoSendJobs += DoSendNow;
+            //    //smsSendBLL.SendMsg()
+            //}
 
-            if (model.isTiming)
-            {
-                //延时发送
-                
-            }
-            else
-            {
-                //立刻发送
-                sendjobManagement.DoSendJobs += DoSendNow;
-                //smsSendBLL.SendMsg()
-            }
+            //// var isSaveMsgOk = DoSendNow(model,ref receive);
 
-            // var isSaveMsgOk = DoSendNow(model,ref receive);
+
+            ////var isSaveMsgOk = DoSendNow(Combine_model, receive);
+            //sendjobManagement.JobsRun(Combine_model, receive);
+            #endregion
+
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
             PMS.Model.CombineModel.SendAndMessage_Model Combine_model = new PMS.Model.CombineModel.SendAndMessage_Model();
             Combine_model.Model_Message = model;
-            //var isSaveMsgOk = DoSendNow(Combine_model, receive);
-            sendjobManagement.JobsRun(Combine_model, receive);
+            //smsSendBLL.SendMsg(Combine_model, out response);
+
+            DoSendNow(Combine_model, out receive);
+
+            SMSModel_Receive testModel = new SMSModel_Receive()
+            {
+                desc = "提交成功",
+                failPhones = new string[] { },
+                msgid = "b14deff1f6ef45bb8e357e961f5c17ab",
+                result = "0"
+            };
 
 
+            AfterSend(Combine_model.Model_Message, /*receive*/testModel, Combine_model.Model_Send.phones.ToList());
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");

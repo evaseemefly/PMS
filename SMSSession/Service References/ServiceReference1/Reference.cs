@@ -92,9 +92,9 @@ namespace SMSFactory.ServiceReference1 {
         }
         
         public bool SendMsg(PMS.Model.SMSModel.SMSModel_Send smsdata, out PMS.Model.SMSModel.SMSModel_Receive receiveModel) {
-            SendMsgRequest inValue = new SendMsgRequest();
+            SMSFactory.ServiceReference1.SendMsgRequest inValue = new SMSFactory.ServiceReference1.SendMsgRequest();
             inValue.smsdata = smsdata;
-            SendMsgResponse retVal = ((ISMSService)(this)).SendMsg(inValue);
+            SMSFactory.ServiceReference1.SendMsgResponse retVal = ((SMSFactory.ServiceReference1.ISMSService)(this)).SendMsg(inValue);
             receiveModel = retVal.receiveModel;
             return retVal.SendMsgResult;
         }

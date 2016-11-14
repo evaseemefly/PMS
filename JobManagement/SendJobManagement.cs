@@ -14,7 +14,7 @@ namespace JobManagement
     /// <param name="model"></param>
     /// <param name="response"></param>
     /// <returns></returns>
-    public delegate bool DoSendJobDelegate(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive response);
+    public delegate bool DoSendJobDelegate(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive response);
 
     /// <summary>
     /// 
@@ -33,11 +33,12 @@ namespace JobManagement
         /// </summary>
         /// <param name="model">发送对象</param>
         /// <param name="response">响应</param>
-        public void JobsRun(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive response)
+        public void JobsRun(PMS.Model.CombineModel.SendAndMessage_Model model, out SMSModel_Receive receive)
         {
+            receive = new SMSModel_Receive();
             if (DoSendJobs != null)
             {
-                DoSendJobs(model,response);
+                DoSendJobs(model,out receive);
             }
             else
             {

@@ -73,6 +73,22 @@ namespace PMS.BLL
         }
         #endregion
 
+        #region 1-2 批量新增实体+public void Create(UserInfo model)
+        /// <summary>
+        /// 1- 新增实体
+        /// </summary>
+        /// <param name="model"></param>
+        public bool CreateByList(List<T> list)
+        {
+            //1.1 执行添加操作只是将要修改的对象标记为添加标记
+            //UserInfoDAL.Create(model);
+            CurrentDAL.CreateByList(list);
+            //1.2 执行保存操作
+            return CurrentDBSession.SaveChanges();
+
+        }
+        #endregion
+
         #region 2- 根据用户id删除数据库中记录 +public bool Del(UserInfo model)
         /// <summary>
         /// 2- 根据用户id删除数据库中记录 

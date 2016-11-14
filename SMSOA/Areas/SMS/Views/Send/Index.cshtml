@@ -101,7 +101,7 @@
                 url: url,
                 data: JSON.stringify(model),
                 contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
-                async: false,
+                async: true,
                 type: 'POST',
                 success: function (data) {
                     if("ok" == data){
@@ -350,7 +350,7 @@
                     if(!isTempPerson){
                         //alert("去掉已经选中的一行");
                         my_pushInArr(arr_UnSelectPersonIds,rowData["PID"]); 
-                        alert(arr_UnSelectPersonIds.length);
+                       //alert(arr_UnSelectPersonIds.length);
                     }
                    
                 }

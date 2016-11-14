@@ -280,7 +280,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(PMS.Model.CombineModel.SendAndMessage_Model model, out PMS.Model.Message.BaseResponse response)
+        public bool SendMsg(PMS.Model.CombineModel.SendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*/SMSModel_Receive receive)
         {
             SendJobManagement jobManagement = new SendJobManagement();
             //判断是否开启定时发送功能
@@ -296,9 +296,9 @@ namespace SMSFactory
                 jobManagement.DoSendJobs += SendMsgbyNow;
             }
             //不管具体绑定的是哪个方法，调用该发送方法
-            SMSModel_Receive receive = new SMSModel_Receive();
-            jobManagement.JobsRun(model, receive);
-            response = new PMS.Model.Message.BaseResponse() { Success = true };
+            //SMSModel_Receive receive = new SMSModel_Receive();
+            jobManagement.JobsRun(model,out receive);
+            //response = new PMS.Model.Message.BaseResponse() { Success = true };
             return false;
         }
 
@@ -309,9 +309,10 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive response)
+        public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model,out  SMSModel_Receive response)
         {
             //response = new PMS.Model.Message.BaseResponse();
+            response = new SMSModel_Receive();
             return true;
         }
 
@@ -362,25 +363,26 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, SMSModel_Receive receiveModel)
+        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive receiveModel)
         {
             //SMSModel_Receive receiveModel = new SMSModel_Receive();
             ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
 
             //重新梳理并做抽象
-            //1 根据选定的群组及部门获取相应的联系人
-            var list_PersonPhonesByGroupAndDepartment = GetFinalPersonPhoneList(model.Model_Message, GetPersonListByGroupDepartment);
+            #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
+            ////1 根据选定的群组及部门获取相应的联系人
+            //var list_PersonPhonesByGroupAndDepartment = GetFinalPersonPhoneList(model.Model_Message, GetPersonListByGroupDepartment);
 
-            //2 获取临时联系人电话集合
-           
-            var list_tempPersonPhones = AddAndGetTempPersons(model.Model_Message, personBLL, groupBLL);
+            ////2 获取临时联系人电话集合
 
-            //2.2 获取最终的联系人电话集合
-            list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
-            var list_phones = list_PersonPhonesByGroupAndDepartment;
+            //var list_tempPersonPhones = AddAndGetTempPersons(model.Model_Message, personBLL, groupBLL);
 
-            //3 转成发送对象
-            var sendMsg = ToSendModel(model.Model_Message, list_phones);
+            ////2.2 获取最终的联系人电话集合
+            //list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
+            //var list_phones = list_PersonPhonesByGroupAndDepartment;
+
+            ////3 转成发送对象
+            //var sendMsg = ToSendModel(model.Model_Message, list_phones);
 
             /*步骤四
                     生成提交对象及短信及作业对象
@@ -390,9 +392,12 @@ namespace SMSFactory
             //注意：desc:定时时间格式错误;
             //      result:定时时间格式错误
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
-            model.Model_Send = sendMsg;
+            //model.Model_Send = sendMsg;
+            #endregion
+           // SMSModel_Receive receive = new SMSModel_Receive();
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            SendMsg(model, out response);
+            client.SendMsg(model.Model_Send, out receiveModel);
+            //SendMsg(model, out response);
             return true;
         }
 

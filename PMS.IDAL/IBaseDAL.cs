@@ -9,13 +9,22 @@ namespace PMS.IDAL
 {
     public interface IBaseDAL<T>
     {
-        #region 1 根据实体为数据库中添加新的对象+bool Create(T model);
+        #region 1-1 根据实体为数据库中添加新的对象+bool Create(T model);
         /// <summary>
-        /// 1 根据实体为数据库中添加新的对象
+        /// 1-2 根据实体为数据库中添加新的对象
         /// </summary>
         /// <param name="model">T实体对象</param>
         /// <returns></returns>
         bool Create(T model);
+        #endregion
+
+        #region 1-2 根据实体集合为数据库中批量添加新的对象+public bool CreateByList(List<T> list)
+        /// <summary>
+        /// 1-2 根据实体为数据库中添加新的对象
+        /// </summary>
+        /// <param name="model">T实体对象</param>
+        /// <returns></returns>
+        bool CreateByList(List<T> list);
         #endregion
 
         #region 2 从数据库中删除某个实体 +bool Del(T model);

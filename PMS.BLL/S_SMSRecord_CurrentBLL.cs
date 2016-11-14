@@ -177,30 +177,35 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool CreateReceieveMsg(string msgid, List<string> list_phones)
         {
+            List<S_SMSRecord_Current> list_smsRecord_Current = new List<S_SMSRecord_Current>();
             if (list_phones != null && !msgid.Equals(""))
             {
                 //!!!注意不要按照如下注释掉的方式写！！                
                 //S_SMSContentBLL smscontentBLL = new S_SMSContentBLL();
                 //1.获取对应的smscontent表的ID
                 var scid = this.CurrentDBSession.S_SMSContentDAL.GetListBy(p => p.msgId.Equals(msgid)).FirstOrDefault().ID;
-
+                
                 foreach (var item in list_phones)
                 {
                     //2.获取每一个发出电话号码对应的联系人ID
                     var personID = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(r => r.PhoneNum.Equals(item)).FirstOrDefault().PID;
                     //3.在数据库中写入数据，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
                     //屈远的
-                    S_SMSRecord_Current smsRecord_Current = new S_SMSRecord_Current()
+                    S_SMSRecord_Current Temp_smsRecord_Current = new S_SMSRecord_Current()
                     {
                         SCID = scid,
                         PID = personID,
                         StatusCode = 98,
                         DescContent = "暂时未收到查询回执"
                     };
-                    this.CurrentDBSession.S_SMSRecord_CurrentDAL.Create(smsRecord_Current);
+                    list_smsRecord_Current.Add(Temp_smsRecord_Current);
+                    //this.CurrentDBSession.S_SMSRecord_CurrentDAL.Create(smsRecord_Current);
                 }
+                //this.CurrentDBSession.S_SMSRecord_CurrentDAL.c
             }
-            return this.CurrentDBSession.SaveChanges();
+
+            return base.CreateByList(list_smsRecord_Current);
+            //return this.CurrentDBSession.SaveChanges();
         }
 
         /// <summary>
