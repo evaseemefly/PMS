@@ -11,7 +11,7 @@ using System.Linq;
 using PMS.IBLL;
 using PMS.BLL;
 using PMS.Model.EqualCompare;
-
+using PMS.IModel;
 namespace SMSFactory
 {
     /// <summary>
@@ -32,11 +32,17 @@ namespace SMSFactory
         IP_DepartmentInfoBLL departmentBLL { get; set; }
         IP_GroupBLL groupBLL { get; set; }
         IP_PersonInfoBLL personBLL { get; set; } 
+        IJ_JobTemplateBLL jobTemplateBLL { get; set; }
+
+        IJ_JobInfoBLL jobInfoBLL { get; set; }
+
         public SMSSend()
         {
             departmentBLL = new P_DepartmentInfoBLL();
             groupBLL = new P_GroupBLL();
             personBLL = new P_PersonInfoBLL();
+            //jobTemplateBLL = new J_JobTemplateBLL();
+            jobInfoBLL = new J_JobInfoBLL();
         }
 
         /// <summary>
@@ -302,7 +308,7 @@ namespace SMSFactory
             return false;
         }
 
-        
+
 
         /// <summary>
         /// 延时发送
@@ -312,9 +318,80 @@ namespace SMSFactory
         public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model,out  SMSModel_Receive response)
         {
             //response = new PMS.Model.Message.BaseResponse();
+            //1 创建quartz父类客户端
+            //Quartz_Service.JobServiceClient client = new Quartz_Service.JobServiceClient();
+            QuartzJobFactory.IJobService client = new QuartzJobFactory.JobService();
+            //2 创建发送作业实例（非模板）
+            //var jobTemplateInstance= jobTemplateBLL.GetListBy(t => t.JTID == 3);
+            //jobInfoBLL.Create(new J_JobInfo() { JobName = "发送作业", JobClassName = "SendJob", NextRunTime=model.Model_Message.NextRunTime });
+            var jobInstance = jobInfoBLL.GetListBy(j => j.JID == 27).FirstOrDefault();
+            jobInstance.StartRunTime = model.Model_Message.StartRunTime;
+            jobInstance.EndRunTime = model.Model_Message.StartRunTime.AddMinutes(1);
+            //3 创建JobData
+            var jobData = new PMS.Model.JobDataModel.SendJobDataModel()
+            {
+                //4 将前台传入的model值赋给JobData中的JobValue
+                JobDataValue = new PMS.Model.SMSModel.SMSModel_Send()
+                {
+                    account = model.Model_Send.account,
+                    content = model.Model_Send.content,
+                    msgid = model.Model_Send.msgid,
+                    password = model.Model_Send.password,
+                    phones = model.Model_Send.phones,
+                    sendtime = model.Model_Send.sendtime,
+                    subcode = model.Model_Send.subcode
+                }
+            };
+            //5 将发送作业实例添加至计划任务中
+            client.AddScheduleJob(jobInstance, jobData);
+            
             response = new SMSModel_Receive();
             return true;
         }
+
+        /// <summary>
+        /// 立刻发送
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, out SMSModel_Receive receiveModel)
+        {
+            //SMSModel_Receive receiveModel = new SMSModel_Receive();
+            ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
+
+            //重新梳理并做抽象
+            #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
+            ////1 根据选定的群组及部门获取相应的联系人
+            //var list_PersonPhonesByGroupAndDepartment = GetFinalPersonPhoneList(model.Model_Message, GetPersonListByGroupDepartment);
+
+            ////2 获取临时联系人电话集合
+
+            //var list_tempPersonPhones = AddAndGetTempPersons(model.Model_Message, personBLL, groupBLL);
+
+            ////2.2 获取最终的联系人电话集合
+            //list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
+            //var list_phones = list_PersonPhonesByGroupAndDepartment;
+
+            ////3 转成发送对象
+            //var sendMsg = ToSendModel(model.Model_Message, list_phones);
+
+            /*步骤四
+                    生成提交对象及短信及作业对象
+                    由SMSFactory进行短信提交操作（并选择延时/立刻发送）
+            */
+            //4 短信发送
+            //注意：desc:定时时间格式错误;
+            //      result:定时时间格式错误
+            //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
+            //model.Model_Send = sendMsg;
+            #endregion
+            // SMSModel_Receive receive = new SMSModel_Receive();
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+            client.SendMsg(model.Model_Send, out receiveModel);
+            //SendMsg(model, out response);
+            return true;
+        }
+
 
         protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)
         {
@@ -358,48 +435,7 @@ namespace SMSFactory
             return list_person;
         }
 
-        /// <summary>
-        /// 立刻发送
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <returns></returns>
-        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive receiveModel)
-        {
-            //SMSModel_Receive receiveModel = new SMSModel_Receive();
-            ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
-
-            //重新梳理并做抽象
-            #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
-            ////1 根据选定的群组及部门获取相应的联系人
-            //var list_PersonPhonesByGroupAndDepartment = GetFinalPersonPhoneList(model.Model_Message, GetPersonListByGroupDepartment);
-
-            ////2 获取临时联系人电话集合
-
-            //var list_tempPersonPhones = AddAndGetTempPersons(model.Model_Message, personBLL, groupBLL);
-
-            ////2.2 获取最终的联系人电话集合
-            //list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
-            //var list_phones = list_PersonPhonesByGroupAndDepartment;
-
-            ////3 转成发送对象
-            //var sendMsg = ToSendModel(model.Model_Message, list_phones);
-
-            /*步骤四
-                    生成提交对象及短信及作业对象
-                    由SMSFactory进行短信提交操作（并选择延时/立刻发送）
-            */
-            //4 短信发送
-            //注意：desc:定时时间格式错误;
-            //      result:定时时间格式错误
-            //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
-            //model.Model_Send = sendMsg;
-            #endregion
-           // SMSModel_Receive receive = new SMSModel_Receive();
-            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            client.SendMsg(model.Model_Send, out receiveModel);
-            //SendMsg(model, out response);
-            return true;
-        }
+        
 
         //发送程序
         /// <summary>

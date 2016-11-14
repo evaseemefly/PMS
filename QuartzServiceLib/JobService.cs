@@ -32,10 +32,10 @@ namespace QuartzServiceLib
         /// </summary>
         /// <param name="jobInfo"></param>
         /// <returns></returns>
-        public bool AddScheduleJob(J_JobInfo jobInfo)
+        public bool AddScheduleJob(J_JobInfo jobInfo,PMS.IModel.IJobData jobData=null)
         {
             //1 根据Job的类名通过反射的方式创建IJobDetial
-            var job = JobFactory.CreateJobInstance(jobInfo);
+            var job = JobFactory.CreateJobInstance(jobInfo,jobData);
 
             //2 创建定时器
             var trigger = JobFactory.CreateTrigger(jobInfo);

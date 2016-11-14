@@ -303,7 +303,9 @@
     <Content Include="Libs\Spring.Web.Mvc4.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Login\Views\web.config" />
     <Content Include="Areas\Login\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -422,6 +424,7 @@
     <Content Include="Areas\Job\Views\Instance\_Partial_EditJobIns_Submit_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_ShowEditWin.cshtml" />
     <Content Include="Areas\Job\Views\Shared\_Layout_ShowEdit.cshtml" />
+    <Content Include="Areas\Job\Views\Template\_Partial_Job_setTemplate.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -584,6 +587,10 @@
     <ProjectReference Include="..\RecycledFactory\RecycledFactory.csproj">
       <Project>{56ec4f35-5575-471f-ab72-a2f50ad221b4}</Project>
       <Name>RecycledFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SendJob\JobInstances.csproj">
+      <Project>{de4ccb95-5614-4e54-b11b-4b1ba260df59}</Project>
+      <Name>JobInstances</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
       <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>

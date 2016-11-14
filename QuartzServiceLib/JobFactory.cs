@@ -15,7 +15,7 @@ namespace QuartzServiceLib
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static IJobDetail CreateJobInstance(J_JobInfo jobInfo )
+        public static IJobDetail CreateJobInstance(J_JobInfo jobInfo,PMS.IModel.IJobData jobData=null)
         {
             //1 通过反射的方式创建Job实例
             IJob job_temp= JobAbstractFactory.CreateJob(jobInfo.JobClassName);
@@ -34,6 +34,12 @@ namespace QuartzServiceLib
                                     .WithIdentity(jobInfo.JobName, jobInfo.JobGroup)
                                     .Build();
 
+            //4 判断是否有传进来的DataMap
+            if (jobData != null)
+            {
+                job.JobDataMap.Add(jobData.JobDataKey, jobData.JobDataValue);
+            }
+           
             return job;
         }
 

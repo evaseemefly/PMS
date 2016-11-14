@@ -191,6 +191,7 @@ namespace PMS.BLL
             return null;
         }
 
+        
         /// <summary>
         /// 数据验证
         /// </summary>
@@ -210,6 +211,33 @@ namespace PMS.BLL
             return list_model.Exists(r => r.JobClassName.Equals(name));
 
 
+        }
+        /// <summary>
+        /// 执行分配模板给用户的操作
+        /// </summary>
+        /// <param name="JTID">选中的作业模板</param>
+        /// <param name="ids">选中的用户ID集合</param>
+        /// <returns></returns>
+        public bool SetTemplate4UserInfo(int JTID, List<int> ids)
+        {
+            if(JTID != 0)
+            {
+                //1. 获取选中的作业模板
+                var jobTemplate = this.GetListBy(j => j.isDel == false && j.JTID == JTID).FirstOrDefault();
+                //2.清空所有关系
+                jobTemplate.UserInfoes.Clear();
+                foreach(var item in ids)
+                {
+                    //3.得到用户对象
+                    var userInfo = this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.DelFlag == false && u.ID == item).FirstOrDefault();
+                    //4. 加入关系表
+                    jobTemplate.UserInfoes.Add(userInfo);
+                }
+                return this.CurrentDBSession.SaveChanges();
+            }
+
+            
+            return false;
         }
     }
 }

@@ -47,6 +47,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ObjTransform.cs" />
+    <Compile Include="Service References\Quartz_Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,9 +87,17 @@
       <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
       <Name>PMS.IBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
+      <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
+      <Name>PMS.IModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuartzJobFactory\QuartzJobFactory.csproj">
+      <Project>{0f928469-5038-4471-a6d4-5a2bab75253e}</Project>
+      <Name>QuartzJobFactory</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +106,16 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\PMS.Model.SMSModel.SMSModel_Receive.datasource" />
+    <None Include="Service References\Quartz_Service\PMS.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Quartz_Service\service.wsdl" />
+    <None Include="Service References\Quartz_Service\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Quartz_Service\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference1\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -111,6 +134,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Quartz_Service\" />
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +145,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Quartz_Service\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Quartz_Service\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Quartz_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

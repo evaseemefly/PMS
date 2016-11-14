@@ -18,7 +18,7 @@ namespace QuartzServiceLib
         /// <param name="jobInfo"></param>
         /// <returns></returns>
         [OperationContract]
-        bool AddScheduleJob(J_JobInfo jobInfo);
+        bool AddScheduleJob(J_JobInfo jobInfo, PMS.IModel.IJobData jobData = null);
 
         /// <summary>
         /// 恢复全部作业

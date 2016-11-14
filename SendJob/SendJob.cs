@@ -32,14 +32,22 @@ namespace SendJob
         protected override void ExceuteBody(IJobExecutionContext context)
         {
             var dataMap = context.JobDetail.JobDataMap;
-            var send_model = dataMap["sendModel"] as PMS.Model.SMSModel.SMSModel_Send;
+
+            //反序列化
+            //var send_model =Common.SerializerHelper.DeSerializerToObject<PMS.Model.SMSModel.SMSModel_Send>(dataMap["SendModel"].ToString());
+            var sendjob_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.JobDataModel.SendJobDataModel>(dataMap["SendModel"].ToString());
+           var obj= sendjob_model.JobDataValue;
+            var send_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.SMSModel.SMSModel_Send>(obj.ToString());
+
+            //var send_model = dataMap["SendModel"] as PMS.Model.JobDataModel.SendJobDataModel;
+
             ISMS.ISMSSend send = new SMSFactory.SMSSend();
 
             PMS.Model.SMSModel.SMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();
 
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
-            send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send= send_model } , out response);
+            send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = send_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
         }
 
         protected override void Exceuted(IJobExecutionContext context)

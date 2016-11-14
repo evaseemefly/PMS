@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Schemal", "00Schemal", "{0D654FEA-8FB1-47D2-A6FC-ABAD4F460A1B}"
 	ProjectSection(SolutionItems) = preProject
@@ -33,6 +33,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{648B0371-B409-44CF-AF78-E07E617D8828}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSFactory", "SMSSession\SMSFactory.csproj", "{ACE327D0-A08B-431E-A422-ABAA4BA73AC7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5FDEF270-7864-4A6A-BC86-6F92ED2B1000} = {5FDEF270-7864-4A6A-BC86-6F92ED2B1000}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSSendDemo", "SMSSendDemo\SMSSendDemo.csproj", "{814D29AF-A6CA-4BBD-87CE-4EF3F8EA3484}"
 EndProject

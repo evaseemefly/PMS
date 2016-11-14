@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.IBLL;
 using PMS.BLL;
+using PMS.Model;
 using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Job.Controllers
@@ -12,6 +13,7 @@ namespace SMSOA.Areas.Job.Controllers
     public class TemplateController : Controller
     {
         IJ_JobTemplateBLL jobTemplateBLL;
+        IUserInfoBLL userInfoBLL;
         /// <summary>
         /// 
         /// </summary>
@@ -23,12 +25,14 @@ namespace SMSOA.Areas.Job.Controllers
             //jobTemplateBLL = new J_JobTemplateBLL();
             //var list= jobTemplateBLL.GetListBy(j => j.isDel==false).ToList();
             //return View();
-            ViewBag.ShowAdd = "ShowAddJobTemplate";
-            ViewBag.ShowEdit = "ShowEditJobTemplate";
+            ViewBag.ShowAdd = "ShowAddTemplate";
+            ViewBag.ShowEdit = "ShowEditTemplate";
             ViewBag.Del_url = "DelJobTemplate";
             ViewBag.GetInfo = "GetAllJobTemplate";
             ViewBag.ShowByUser = "GetJobTemplateByUser";
             ViewBag.ShowByRole = "GetJobTemplateByRole";
+            ViewBag.ShowSetTemplate = "ShowSetTemplate4User";
+            ViewBag.DoSetTemplate = "DoSetTemplate";
             return View();
 
         }
@@ -39,14 +43,17 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ContentResult GetAllJobTemplate()
         {
+
             //1.得到所有模板
             var list_jobTemplate = jobTemplateBLL.GetAllJobTemplate();
             //此处注释掉，因为如果BLL返回的模板为null，这个语句会出现空指针异常错误
             //var list_jobTemplate = jobTemplateBLL.GetAllJobTemplate().Select(j => j.ToMiddleModel()).ToList(); ;
             if (list_jobTemplate == null) { return Content("error"); }
             //2.转为中间件
-            list_jobTemplate.Select(j => j.ToMiddleModel()).ToList();
-            return Content(Common.SerializerHelper.SerializerToString(list_jobTemplate));
+            var list_Middle_model = list_jobTemplate.Select(j => j.ToMiddleModel()).ToList();
+
+            //3.序列化
+            return Content(Common.SerializerHelper.SerializerToString(list_Middle_model));
         }
 
         /// <summary>
@@ -79,21 +86,28 @@ namespace SMSOA.Areas.Job.Controllers
         /// 添加模板的前台展示
         /// </summary>
         /// <returns></returns>
-        public ActionResult ShowAddJobTemplate()
+        public ActionResult ShowAddTemplate()
         {
-            ViewBag.backAction = "AddJobTemplate";
+            ViewBag.backAction_jqSub = "AddJobTemplate";
             //此处需要添加返回的视图！
-            return View("");
+            return View("ShowEditTemplate");
         }
         /// <summary>
         /// 编辑模板的前台展示
         /// </summary>
         /// <returns></returns>
-        public ActionResult ShowEditJobTemplate()
+        public ActionResult ShowEditTemplate(int id)
         {
-            ViewBag.backAction = "EditJobTemplate";
+            var model = jobTemplateBLL.GetListBy(j => j.JTID.Equals(id)).FirstOrDefault();
+            ViewBag.JTID = model.JTID;
+            ViewBag.JobClassName = model.JobClassName;
+            ViewBag.CronStr = model.CronStr;
+            ViewBag.JobType = model.JobType;
+            ViewBag.Remark = model.Remark;
+            ViewBag.backAction_jqSub = "EditJobTemplate";
+
             //此处需要添加返回的视图！
-            return View("");
+            return View();
         }
         #endregion
 
@@ -150,32 +164,92 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ActionResult DelJobTemplate(string JTIDs)
         {
-            if (JTIDs.Length == 0)
+            string ids = Request.QueryString["ids"];
+            var list_JTID = ids.Split(',').Select(t => int.Parse(t)).ToList();
+            try
+            {
+                jobTemplateBLL.DelJobTemplate(list_JTID);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("error");
+            }
+            
+        }
+
+        #endregion
+
+
+        #region 分配模板
+        /// <summary>
+        /// 为用户分配模板-------加载时显示
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowSetTemplate4User()
+        {
+            int JTID = int.Parse(Request.QueryString["id"]);
+            int rowCount = 0;
+
+            if(JTID > 0)
+            {
+                //1. 查出指定id的作业模板
+                var jobTemplate = jobTemplateBLL.GetListBy(j => j.isDel == false && j.JTID.Equals(JTID)).FirstOrDefault();
+                //2. 得到该模板已经分配的用户列表
+                var list_UserInfo = jobTemplate.UserInfoes.ToList();
+                //3. 得到所有用户列表
+                var list_All_UserInfo = userInfoBLL.GetListBy(u => u.DelFlag == false);
+                //4. 获取总条数
+                rowCount = list_All_UserInfo.Count();
+                List<UserInfo> list = new List<UserInfo>();
+                foreach(var item in list_UserInfo)
+                {
+                    item.Checked = true;
+                    //5. 剔除该模板已有的用户
+                    list_All_UserInfo = list_All_UserInfo.Where(u => u.ID != item.ID);
+                    list.Add(item);
+                }
+
+                list.AddRange(list_All_UserInfo);
+                //6. 转为中间件
+                list = list.Select(u => u.ToMiddleModel()).ToList();
+                string temp = Common.SerializerHelper.SerializerToString(list);
+                temp = temp.Replace("Checked", "checked");
+                return Content(temp);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 执行分配模板操作
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoSetTemplate()
+        {
+            //1. 得到传回的作业模板ID
+            int JTID = int.Parse(Request.QueryString["UserId"]);
+            //2. 得到选中的用户ID
+            string aIds = Request.QueryString["ids"];
+            //3. 变为ID列表
+            string[] user_Ids = aIds.Split(',');
+            List<int> list_userIds = new List<int>();
+            foreach (var item in user_Ids)
+            {
+                if (item != "")
+                {
+                    list_userIds.Add(int.Parse(item));
+                }
+            }
+            //4 调用分配模板的方法
+            if (jobTemplateBLL.SetTemplate4UserInfo(JTID, list_userIds))
             {
                 return Content("ok");
             }
             else
             {
-
-
-                string[] ids = JTIDs.Split(',');
-                List<int> list_JTID = new List<int>();
-                foreach (var item in ids)
-                {
-                    list_JTID.Add(int.Parse(item));
-                }
-                try
-                {
-                    jobTemplateBLL.DelJobTemplate(list_JTID);
-                    return Content("ok");
-                }
-                catch
-                {
-                    return Content("error");
-                }
+                return Content("error");
             }
         }
-
-#endregion
+        #endregion
     }
 }

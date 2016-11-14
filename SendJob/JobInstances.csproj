@@ -59,6 +59,10 @@
       <Project>{3e9d02b6-c6c0-4484-bdff-a3194adc6fbb}</Project>
       <Name>BaseJob</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
       <Name>ISMS</Name>

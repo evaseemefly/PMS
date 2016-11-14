@@ -134,7 +134,7 @@ namespace PMS.BLL
             //(2)根据AId查询对应的ActionInfo
             foreach (var item in list_actionIds)
             {
-                var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+                var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item && a.DelFlag == false).FirstOrDefault();
                 role.ActionInfo.Add(actionInfo);
             }
             //this.Update(role);

@@ -519,6 +519,7 @@ namespace SMSOA.Areas.SMS.Controllers
             model.Model_Send = sendMsg;
             //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
             //11月14日 暂时注释掉——以后需恢复！！！！
+            
              smsSendBLL.SendMsg(model, out /*response*/receive);
             //receive = new SMSModel_Receive();
             return true;

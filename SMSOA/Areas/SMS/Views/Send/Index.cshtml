@@ -87,7 +87,7 @@
 
 
 
-        function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds) {
+        function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds,isTiming,startRunTime) {
             //1 创建对象
             var model = new Object();
             model.PersonIds = pids;
@@ -96,6 +96,8 @@
             model.SMSMissionID = missionId;
             model.GroupIds=groupIds;
             model.DepartmentIds=departmentIds;
+            model.StartRunTime=startRunTime;
+            model.isTiming=isTiming;
             //2 使用ajax方式提交（此处先不用post）
             $.ajax({
                 url: url,
@@ -146,7 +148,7 @@
                 //var department_checkeds = $("#DepartmentName_combotree").combotree("getChecked");
                 var department_checkeds =  $("#DepartmentName_combotree").combobox('getValues');
                 //var checkeds = $("#persondatagrid").datagrid("getChecked");
-                var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
+                var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");               
                 //1.1 获取选中的联系人id用,分隔，并提交
                 //var ids_person = split4id(checkeds, "PID");
                 //注意此处为[1,...2]这种数组，需要将其拼接为1,...2字符串
@@ -158,9 +160,17 @@
                 var grid_mission= $("#smsMission_combogrid").combogrid("grid");
                 var mission_checkeds = grid_mission.datagrid("getChecked");
                 var mission_id = mission_checkeds[0]["SMID"];
+
+                var istiming=$("#isTiming").val();
+                if(istiming=="on"){
+                    istiming=true;
+                }else{
+                    istiming=false;
+                }
+                var startRunTime=$("#nextRunTime_date").datetimebox('getValue');
                 //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
                 //3 发送（进行校验）
-                AjaxSubmit(ids_person,phones_temp, content, url, mission_id,group_checkeds,department_checkeds);
+                AjaxSubmit(ids_person,phones_temp, content, url, mission_id,group_checkeds,department_checkeds,istiming,startRunTime);
                 return;
             });
             //if(state==false){

@@ -3,7 +3,7 @@
     ViewBag.Title = "ShowEditTemplate";
     Layout = "~/Areas/SMS/Views/Shared/_Layout_MsgTemplate_Edit.cshtml";
 }
-@section My_Scripts{
+@section Scripts{
     <script type="text/javascript">
         //提交方法
         function DoSubmit() {
@@ -15,13 +15,19 @@
                     afterEdit(data, "作业模板名称")
                 }
             };
-            myform('submit', options);
+            myform.form('submit', options);
         }
 
         //取消方法
         function CancelSend() {
-            window.parentCancelSend();
+            window.parent.CancelSend();
         }
+
+
+
+
+
+
 
         function afterEdit(data, name) {
 
@@ -48,7 +54,7 @@
 
 @section Body{
     <div style="height:30px;width:100%;background-color:#000000"></div>
-<input type="hidden" id="TID" name="TID" value="@ViewBag.JTID" />
+<input type="hidden" id="JTID" name="JTID" value="@ViewBag.JTID" />
 
     @*窗口显示的表格项*@
     <table cellpadding="3" style="margin-left:40px;width:95%">
@@ -59,21 +65,22 @@
             </td>
         </tr>
         <tr>
-            <td>CronStr</td>
+            <td>CronStr:</td>
             <td class="comment">
                 <input class="easyui-validatebox" type="text" name="CronStr" value="@ViewBag.CronStr" data-options="required:true,validType:'length[1,100]'" /><br/>请填写CronStr
 
             </td>
         </tr>
         <tr>
-            <td>模板类型</td>
+            <td>模板类型:</td>
             <td class="comment">
                 <input class="easyui-validatebox" type="text" name="JobType" value="@ViewBag.JobType" data-options="required:true,validType:'Integer'" /><br/>请输入模板类型（整数）
             </td>
         </tr>
         <tr>
+            <td>备注:</td>
             <td class="comment">
-                <input class="easyui-validatebox" type="text" name="Remark" value="@ViewBag.Remark" style="height:90px;width:50%" data-options="mutiline:true,prompt:'输入备注...',validType:'length[0,100]'"/><br/>请输入备注
+                <input class="easyui-validatebox" type="text" name="Remark" value="@ViewBag.Remark" style="height:90px;width:80%" data-options="multiline:true,prompt:'输入备注...',validType:'length[0,100]'"/><br/>请输入备注
 
             </td>
         </tr>

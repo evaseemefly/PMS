@@ -66,5 +66,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS\SMSSession\bin\Debug\zh-Hans\System.Web.Mvc.resourc
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSSession\obj\Debug\SMSFactory.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSSession\obj\Debug\SMSFactory.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSSession\obj\Debug\SMSFactory.pdb
-D:\VSWorkSpace\nmefc\PMS\SMSSession\bin\Debug\Common.Logging.Core.dll
-D:\VSWorkSpace\nmefc\PMS\SMSSession\bin\Debug\PMS.DALFactory.pdb

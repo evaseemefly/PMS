@@ -93,6 +93,7 @@
     <Compile Include="ExtensionModel\P_Group.cs" />
     <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
+    <Compile Include="ExtensionModel\UserInfo.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
     <Compile Include="JobDataModel\BaseJobDataModel.cs" />

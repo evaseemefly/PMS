@@ -23,8 +23,8 @@ namespace PMS.Model
                 Remark = this.Remark,
                 Sort = this.Sort,
                 SubTime = this.SubTime,
-                UPwd = this.UPwd
-
+                UPwd = this.UPwd,
+                Checked = this.Checked
 
             };
         }

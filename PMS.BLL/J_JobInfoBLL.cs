@@ -104,11 +104,6 @@ namespace PMS.BLL
            var user= this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == model.UID).FirstOrDefault();
             model.UserInfoes.Add(user);
             //2 创建J_JobInfo对象
-            if (base.Create(model))
-            {
-                return true;
-            }
-            return false;
             // 1 添加作业至调度池中
             IJobData jobData = new PMS.Model.JobDataModel.SendJobDataModel();
 
@@ -118,6 +113,12 @@ namespace PMS.BLL
             {
                 base.Create(model);
             }
+            //if (base.Create(model))
+            //{
+            //    return true;
+            //}
+            return false;
+           
 
         }
 
