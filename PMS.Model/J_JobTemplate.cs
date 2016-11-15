@@ -28,6 +28,7 @@ namespace PMS.Model
         public string Remark { get; set; }
         public bool isDel { get; set; }
         public string JTName { get; set; }
+        public string JobGroup { get; set; }
     
         public virtual ICollection<UserInfo> UserInfoes { get; set; }
         public virtual ICollection<J_JobInfo> J_JobInfo { get; set; }
