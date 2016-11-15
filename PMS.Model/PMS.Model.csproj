@@ -77,6 +77,7 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
     <Compile Include="Enum\JobState_Enum.cs" />
+    <Compile Include="Enum\JobType_Enum.cs" />
     <Compile Include="Enum\MatchCondition_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />

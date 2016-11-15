@@ -17,6 +17,9 @@ namespace PMS.Model.ViewModel
     /// </summary>
    public class ViewModel_Message : ViewModel_BaseJob
     {
+
+
+
         /// <summary>
         /// 此处修改
         /// 此处的id是不发送的人员id

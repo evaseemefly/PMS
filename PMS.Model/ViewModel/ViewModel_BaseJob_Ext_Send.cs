@@ -12,5 +12,7 @@ namespace PMS.Model.ViewModel
         /// 是否需要开启定时作业功能
         /// </summary>
         public bool isTiming { get; set; }
+
+        public bool UID { get; set; }
     }
 }

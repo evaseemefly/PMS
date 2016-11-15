@@ -108,7 +108,8 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ActionResult DoAddJobInfo(PMS.Model.J_JobInfo model)
         {
-            //此时传入的model中已经包含了uid的值了
+            
+            //***此时传入的model中已经包含了uid的值了
             if (model.NextRunTime <= DateTime.MinValue)
             {
                 model.NextRunTime = DateTime.Now;

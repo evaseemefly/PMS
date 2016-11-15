@@ -35,8 +35,9 @@ namespace QuartzJobFactory
         #region 1 添加任务计划
         /// <summary>
         /// 根据工作对象 添加任务计划
+        /// 作业需要含UID
         /// </summary>
-        /// <param name="jobInfo">作业</param>
+        /// <param name="jobInfo">作业（含UID）</param>
         /// <param name="data_temp">向作业调度中传的临时数据</param>
         /// <returns></returns>
         public IBaseResponse AddScheduleJob(J_JobInfo jobInfo,IJobData data_temp)

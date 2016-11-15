@@ -1,4 +1,5 @@
-﻿using PMS.Model;
+﻿using PMS.IModel;
+using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        bool AddJobInfo(J_JobInfo model);
+        bool AddJobInfo(J_JobInfo model, IJobData jobData = null);
 
         /// <summary>
         /// 编辑（暂未实现）

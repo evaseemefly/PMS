@@ -375,7 +375,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
 
-        public bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive receive)
+        private bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive receive)
         {
             //重新梳理并做抽象
             #region 暂时注释掉
@@ -598,12 +598,14 @@ namespace SMSOA.Areas.SMS.Controllers
             //sendjobManagement.JobsRun(Combine_model, receive);
             #endregion
 
-            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            PMS.Model.CombineModel.SendAndMessage_Model Combine_model = new PMS.Model.CombineModel.SendAndMessage_Model();
-            Combine_model.Model_Message = model;
+            //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+            PMS.Model.CombineModel.SendAndMessage_Model combine_model = new PMS.Model.CombineModel.SendAndMessage_Model();
+            combine_model.Model_Message = model;
             //smsSendBLL.SendMsg(Combine_model, out response);
 
-            DoSendNow(Combine_model, out receive);
+
+            //****注意此处还未实现向前台向后台传递对象时应加上uid，并向combin_model中加入uid（以包含此属性）
+            DoSendNow(combine_model, out receive);
 
             SMSModel_Receive testModel = new SMSModel_Receive()
             {
@@ -614,7 +616,7 @@ namespace SMSOA.Areas.SMS.Controllers
             };
 
 
-            AfterSend(Combine_model.Model_Message, /*receive*/testModel, Combine_model.Model_Send.phones.ToList());
+            AfterSend(combine_model.Model_Message, /*receive*/testModel, combine_model.Model_Send.phones.ToList());
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");

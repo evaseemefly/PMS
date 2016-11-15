@@ -97,7 +97,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool AddJobInfo(J_JobInfo model)
+        public bool AddJobInfo(J_JobInfo model, IJobData jobData=null)
         {
             
             //1 创建与UserInfo的关系
@@ -105,7 +105,7 @@ namespace PMS.BLL
             model.UserInfoes.Add(user);
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
-            IJobData jobData = new PMS.Model.JobDataModel.SendJobDataModel();
+            if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
 
             var response = ijobService.AddScheduleJob(model, jobData);
             //2 根据传入的JobInfo创建指定的作业

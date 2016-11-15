@@ -33,7 +33,7 @@ namespace SMSFactory
         IP_GroupBLL groupBLL { get; set; }
         IP_PersonInfoBLL personBLL { get; set; } 
         IJ_JobTemplateBLL jobTemplateBLL { get; set; }
-
+        IUserInfoBLL userInfoBLL { get; set; }
         IJ_JobInfoBLL jobInfoBLL { get; set; }
 
         public SMSSend()
@@ -41,8 +41,9 @@ namespace SMSFactory
             departmentBLL = new P_DepartmentInfoBLL();
             groupBLL = new P_GroupBLL();
             personBLL = new P_PersonInfoBLL();
-            //jobTemplateBLL = new J_JobTemplateBLL();
+            jobTemplateBLL = new J_JobTemplateBLL();
             jobInfoBLL = new J_JobInfoBLL();
+            userInfoBLL = new UserInfoBLL();
         }
 
         /// <summary>
@@ -319,14 +320,35 @@ namespace SMSFactory
         {
             //response = new PMS.Model.Message.BaseResponse();
             //1 创建quartz父类客户端
+            // 不使用服务因为此处需要通过反射的方式创建作业实例
             //Quartz_Service.JobServiceClient client = new Quartz_Service.JobServiceClient();
             QuartzJobFactory.IJobService client = new QuartzJobFactory.JobService();
             //2 创建发送作业实例（非模板）
+            /*此处需要实现：
+                           1）向数据库写入创建的新的作业实例
+                           2）创建该作业实例的关联表
+            */
             //var jobTemplateInstance= jobTemplateBLL.GetListBy(t => t.JTID == 3);
             //jobInfoBLL.Create(new J_JobInfo() { JobName = "发送作业", JobClassName = "SendJob", NextRunTime=model.Model_Message.NextRunTime });
-            var jobInstance = jobInfoBLL.GetListBy(j => j.JID == 27).FirstOrDefault();
-            jobInstance.StartRunTime = model.Model_Message.StartRunTime;
-            jobInstance.EndRunTime = model.Model_Message.StartRunTime.AddMinutes(1);
+            //找到对应的作业模板（发送作业模板）
+            //2.1 查找当前用户
+            var user_current= userInfoBLL.GetListBy(u => model.Model_Message.UID).FirstOrDefault();
+            //2.2 根据当前用户找到指定类型（jobType）的作业模板
+            var jobTemplate_target = from t in user_current.J_JobTemplate
+                                     where t.JobType == Convert.ToInt32(PMS.Model.Enum.JobType_Enum.sendJob)
+                                     select t;
+            //2.3 根据作业模板创建作业实例
+            //    调用J_JobInfoBLL中的AddJobInfo方法创建作业实例
+            J_JobInfo jobInstance = new J_JobInfo()
+            {
+                CreateTime = DateTime.Now,
+                EndRunTime = model.Model_Message.EndRunTime,
+                StartRunTime = model.Model_Message.StartRunTime,
+                JobClassName = model.Model_Message.JobClassName,
+                JobName = model.Model_Message.JobName
+            };
+            //执行以下操作
+            //var jobInstance = jobInfoBLL.GetListBy(j => j.JID == 27).FirstOrDefault();
             //3 创建JobData
             var jobData = new PMS.Model.JobDataModel.SendJobDataModel()
             {
@@ -342,9 +364,12 @@ namespace SMSFactory
                     subcode = model.Model_Send.subcode
                 }
             };
+
             //5 将发送作业实例添加至计划任务中
-            client.AddScheduleJob(jobInstance, jobData);
-            
+            //注意此作业实例中需要含UID
+            jobInfoBLL.AddJobInfo(jobInstance, jobData);
+            //在job的bll层中创建作业（同时写入数据库，并添加至调度池中）
+            //client.AddScheduleJob(jobInstance, jobData);
             response = new SMSModel_Receive();
             return true;
         }

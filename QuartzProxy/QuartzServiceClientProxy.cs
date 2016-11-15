@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using QuartzServiceLib;
+using PMS.IModel;
+using PMS.Model;
 
 namespace QuartzProxy
 {
@@ -13,7 +15,8 @@ namespace QuartzProxy
     /// </summary>
    public class QuartzServiceClientProxy:ClientBase<IJobService>,IJobService
     {       
-        public bool AddScheduleJob(PMS.Model.J_JobInfo jobInfo)
+
+        public bool AddScheduleJob(J_JobInfo jobInfo, IJobData jobData = null)
         {
             return base.Channel.AddScheduleJob(jobInfo);
         }
