@@ -74,7 +74,6 @@ namespace XamlStaticHelperNamespace {
                         "c561934e089"));
             assemblyList.Add(Load("ISMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
-            assemblyList.Add(Load("PMS.BLLRedis, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.DALSQLSer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.IBLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
