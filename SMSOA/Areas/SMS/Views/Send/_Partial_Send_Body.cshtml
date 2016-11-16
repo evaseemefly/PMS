@@ -1,14 +1,17 @@
 ﻿<script type="text/javascript">
+    var istiming = false;
     $(function () {
         $('#isTiming').switchbutton({
             checked: false,
             onChange: function (checked) {
                 if (checked == true) {
                     $("#nextRunTime_date").datetimebox('enable');
+                    istiming = true;
                     return;
                 }
                 if (checked == false) {
                     $("#nextRunTime_date").datetimebox('disable');
+                    istiming = false;   
                 }
             }
         })

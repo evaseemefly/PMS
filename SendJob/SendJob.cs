@@ -7,8 +7,10 @@ using BaseJob;
 using Quartz;
 using PMS.IBLL;
 using PMS.BLL;
+using ISMS;
+using SMSFactory;
 
-namespace SendJob
+namespace JobInstances
 {
     public class SendJob : JobAbstract
     {
@@ -17,6 +19,8 @@ namespace SendJob
         protected IJ_JobInfoBLL jobInfoBLL { get; set; }
 
         protected IQRTZ_TRIGGERSBLL qrtz_triggerBLL { get; set; }
+
+        protected ISMS.ISMSSend smsSendBLL { get; set; }
 
         public SendJob():base()
         {
@@ -48,6 +52,23 @@ namespace SendJob
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
             send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = send_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
+            PMS.Model.ViewModel.ViewModel_Message model = new PMS.Model.ViewModel.ViewModel_Message()
+            {
+                UID =0,
+                SMSMissionID="",
+                Content=""
+            };
+          
+            smsSendBLL.AfterSend(model, receive_model,)
+        }
+
+        protected void AfterSend()
+        {
+            if (this.smsSendBLL == null)
+            {
+                smsSendBLL = new SMSFactory.SMSSend();
+            }
+            
         }
 
         protected override void Exceuted(IJobExecutionContext context)
