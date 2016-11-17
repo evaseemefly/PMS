@@ -332,20 +332,22 @@ namespace SMSFactory
             //jobInfoBLL.Create(new J_JobInfo() { JobName = "发送作业", JobClassName = "SendJob", NextRunTime=model.Model_Message.NextRunTime });
             //找到对应的作业模板（发送作业模板）
             //2.1 查找当前用户
-            var user_current= userInfoBLL.GetListBy(u => model.Model_Message.UID).FirstOrDefault();
+            var user_current= userInfoBLL.GetListBy(u =>u.ID==  model.Model_Message.UID).FirstOrDefault();
             //2.2 根据当前用户找到指定类型（jobType）的作业模板
-            var jobTemplate_target = from t in user_current.J_JobTemplate
+            var jobTemplate_target = (from t in user_current.J_JobTemplate
                                      where t.JobType == Convert.ToInt32(PMS.Model.Enum.JobType_Enum.sendJob)
-                                     select t;
+                                     select t).FirstOrDefault();
             //2.3 根据作业模板创建作业实例
             //    调用J_JobInfoBLL中的AddJobInfo方法创建作业实例
             J_JobInfo jobInstance = new J_JobInfo()
             {
                 CreateTime = DateTime.Now,
-                EndRunTime = model.Model_Message.EndRunTime,
+                EndRunTime = model.Model_Message.EndRunTime == DateTime.MinValue ? model.Model_Message.StartRunTime : model.Model_Message.EndRunTime,//此处加入判断，若EndRunTime时间为1/1/1/1这种情况先将起始时间赋给他
+                NextRunTime = model.Model_Message.NextRunTime == DateTime.MinValue ? model.Model_Message.StartRunTime : model.Model_Message.NextRunTime,
                 StartRunTime = model.Model_Message.StartRunTime,
-                JobClassName = model.Model_Message.JobClassName,
-                JobName = model.Model_Message.JobName
+                JobClassName = jobTemplate_target.JobClassName,
+                JobName = jobTemplate_target.JTName,
+                JobGroup = jobTemplate_target.JobGroup
             };
             //执行以下操作
             //var jobInstance = jobInfoBLL.GetListBy(j => j.JID == 27).FirstOrDefault();

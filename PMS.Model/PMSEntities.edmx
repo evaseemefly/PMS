@@ -59,6 +59,7 @@
           <Property Name="JTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JTName" Type="nvarchar" MaxLength="20" />
           <Property Name="JobClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobGroup" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CronStr" Type="varchar" MaxLength="100" />
           <Property Name="JobType" Type="int" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="100" />
@@ -382,7 +383,7 @@
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160425.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“PMS20160325.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -2021,6 +2022,7 @@
           <NavigationProperty Name="J_JobInfo" Relationship="PMS2016Model.R_JobInfo_JobTemplate" FromRole="J_JobTemplate" ToRole="J_JobInfo" />
           <NavigationProperty Name="RoleInfo" Relationship="PMS2016Model.R_JobTemplate_RoleInfo" FromRole="J_JobTemplate" ToRole="RoleInfo" />
           <Property Name="JTName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="JobGroup" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="J_JobInfo">
           <Key>
@@ -2425,6 +2427,7 @@
           <EntitySetMapping Name="J_JobTemplate">
             <EntityTypeMapping TypeName="PMS2016Model.J_JobTemplate">
               <MappingFragment StoreEntitySet="J_JobTemplate">
+                <ScalarProperty Name="JobGroup" ColumnName="JobGroup" />
                 <ScalarProperty Name="JTName" ColumnName="JTName" />
                 <ScalarProperty Name="isDel" ColumnName="isDel" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />

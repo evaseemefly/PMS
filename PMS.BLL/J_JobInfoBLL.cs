@@ -106,13 +106,13 @@ namespace PMS.BLL
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
             if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
-
+            base.Create(model);
             var response = ijobService.AddScheduleJob(model, jobData);
             //2 根据传入的JobInfo创建指定的作业
-            if (response.Success == true)
-            {
-                base.Create(model);
-            }
+            //if (response.Success == true)
+            //{
+            //    base.Create(model);
+            //}
             //if (base.Create(model))
             //{
             //    return true;

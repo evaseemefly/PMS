@@ -86,8 +86,8 @@
         //}
 
 
-
-        function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds,isTiming,startRunTime) {
+        //异步提交
+        function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds,isTiming,startRunTime,uid) {
             //1 创建对象
             var model = new Object();
             model.PersonIds = pids;
@@ -98,6 +98,7 @@
             model.DepartmentIds=departmentIds;
             model.StartRunTime=startRunTime;
             model.isTiming=isTiming;
+            model.UID=uid;
             //2 使用ajax方式提交（此处先不用post）
             $.ajax({
                 url: url,
@@ -170,7 +171,7 @@
                 var startRunTime=$("#nextRunTime_date").datetimebox('getValue');
                 //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
                 //3 发送（进行校验）
-                AjaxSubmit(ids_person,phones_temp, content, url, mission_id,group_checkeds,department_checkeds,istiming,startRunTime);
+                AjaxSubmit(ids_person,phones_temp, content, url, mission_id,group_checkeds,department_checkeds,istiming,startRunTime,userId);
                 return;
             });
             //if(state==false){
@@ -195,13 +196,13 @@
             $("#editWindow").window('close');
            
         }
-
+        var userId=-999;
         //----------------------------加载几个下拉框-----------------------------
         //根据登录的用户加载其选中的常用 短信任务
         //加载短信任务combogrid
         function loadCombogrid_byUser() {
             var myurl = '@ViewBag.GetMissionByUID';
-            var userId=-999;
+            
             //拼接
             if (@ViewBag.LoginUserID != -999)
             {

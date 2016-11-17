@@ -13,6 +13,9 @@ namespace PMS.Model.ViewModel
         /// </summary>
         public bool isTiming { get; set; }
 
-        public bool UID { get; set; }
+        /// <summary>
+        /// 保存当前作业的发起用户id
+        /// </summary>
+        public int UID { get; set; }
     }
 }
