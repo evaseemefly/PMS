@@ -41,18 +41,10 @@ namespace SMSOA.Areas.Job.Controllers
                 //1. 得到当前用户拥有的模板
                 var list_jobTemplate = jobTemplateBLL.GetJobTemplateByUser(uid);
                 //2. 去掉其中设置为不显示的模板
-                list_jobTemplate = list_jobTemplate.Where(j => j.isBtn == true).ToList();
-                //3. 封装进EasyUI模型
-                List < EasyUIMeunButton > list = new List<EasyUIMeunButton>();
-                list = (from j in list_jobTemplate
-                                         select new EasyUIMeunButton()
-                                         {
-                                             jobType = j.JobType,
-                                             text = j.JTName
-                                         }
-                                         ).ToList();
-
-                return Content(Common.SerializerHelper.SerializerToString(list));
+                var list_jobTemplate4MenuButton = list_jobTemplate.Where(j => j.isBtn == true).Select(j=>j.ToMiddleModel());
+                
+                
+                return PartialView("_Partial_JobIns_MenuButtonView", list_jobTemplate4MenuButton);
         }
 
 
@@ -73,12 +65,18 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public ViewResult ShowAddInstance(int uid)
+        public ViewResult ShowAddInstance()
         {
+            int uid = GetUserId();
+            //1.获取类型
+            var jopType = int.Parse(Request.QueryString["jopType"]);
+            //var jopType = Int32.Parse(Request.QueryString["jopType"]);
             ViewBag.LoginUserID = uid;
+            ViewBag.jobType = jopType;
             ViewBag.backAction = "DoAddJobInfo";
+
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
-            ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
+           // ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
             return View("ShowEditInstance");
         }
 
@@ -103,7 +101,7 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public ViewResult ShowEditInstance(int uid)
+        public ViewResult ShowEditInstance()
         {
             #region 获取当前的登录用户——封装为一个方法——以下注释掉
             //ViewBag.LoginUserID = -999;
@@ -114,12 +112,13 @@ namespace SMSOA.Areas.Job.Controllers
             //    ViewBag.LoginUserID = base.LoginUser.ID;
             //}
             #endregion
-
-            ViewBag.LoginUserID= GetUserId();
+            int uid = GetUserId();
+            //1.获取类型
+            var jopType = int.Parse(Request.QueryString["jopType"]);
             ViewBag.backAction = "DoEditJobInfo";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
-            ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
-            return View();
+            //ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
+            return View("ShowEditInstance");
         }
 
         /// <summary>
@@ -215,10 +214,10 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="JTID"></param>
         /// <returns></returns>
-        public ActionResult GetJobTemplateDataByTemplate(int JTID)
+        public ActionResult GetJobTemplateDataByTemplate(int JobType)
         {
             //获取对应的作业模板
-            var data = jobTemplateBLL.GetListBy(t => t.JTID == JTID).FirstOrDefault();
+            var data = jobTemplateBLL.GetListBy(t => t.JobType == JobType).FirstOrDefault();
            // var data_midlle= data.ToMiddleModel();
            //此处不转为中间变量转为ViewModel中间对象
            ViewModel_JobTemplate data_vm = new ViewModel_JobTemplate()

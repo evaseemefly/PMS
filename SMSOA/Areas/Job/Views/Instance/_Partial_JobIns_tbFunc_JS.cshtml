@@ -6,8 +6,8 @@
         }
         return strId;
     }
-    function addJobRow() {
-        showEditWindow("@ViewBag.ShowCreateWin" + "?uid=" + userId);
+    function addJobRow(jobType) {
+        showEditWindow("@ViewBag.ShowCreateWin" + "?jopType=" + jobType);
     }
 
     function removeJobRow() {

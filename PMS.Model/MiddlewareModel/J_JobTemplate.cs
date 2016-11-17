@@ -23,6 +23,7 @@ namespace PMS.Model
                 CronStr = this.CronStr,
                 JobType = this.JobType,
                 Remark = this.Remark
+                
             };
         }
     }

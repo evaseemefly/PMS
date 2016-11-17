@@ -19,9 +19,17 @@
 
         ]]
 
+    //加载显示菜单按钮
+        function load_MenuButton_Job(){
+            $('#add_job').menubutton({
+                iconCls:'icon-add',
+                menu:'#mm_add'
+            });
+        }
+
         function doDel() {
             var rows = $("#datagrid").datagrid('getSelections');
-            var type = $("#area_combotree").combogrid('getValue');
+            //var type = $("#area_combotree").combogrid('getValue');
             //若选中的行不为一行
             if (rows.length < 1) {
                 //提示
@@ -61,9 +69,9 @@
         
         $("#editWindow").window('close');
         //获取菜单按钮列表
-        var url_loadMenuButton = "@ViewBag.ShowMenuButton_Add"+"?uid="+userId;
+        @*var url_loadMenuButton = "@ViewBag.ShowMenuButton_Add"+"?uid="+userId;*@
         //在启动时加载，这样只加载一次即可
-        load_MenuButton_Job(url_loadMenuButton);
+        load_MenuButton_Job();
        var url_loadJob = "@ViewBag.GetJobInfoByUser"+"?uid="+userId;
        //分页加载
        loadDataGrid_Job("datagrid", url_loadJob, JobColumns, "tb_contacts");
@@ -76,14 +84,14 @@
 
 @*//loadDataGrid的代码分部视图*@
 @Html.Partial("_Partial_JobIns_LoadDataGrid_JS")
-@Html.Partial("_Partial_JobIns_LoadMenuButton_JS")
+@*@Html.Partial("_Partial_JobIns_LoadMenuButton_JS")*@
 }
 
 @section Body{
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
         <div id="tb_contacts" style="padding:2px 5px;">
-            <a href="#" class="easyui-menubutton" istb="true" id="add_job" data-options="menu:'#menu_add', iconCls:'icon-add',text: '新增',plain:true"></a>
+            <a href="#" istb="true" id="add_job" data-options="text: '新增',plain:true"></a>
             <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()"></a>
             <a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()"></a>
             <a href="#" class="easyui-linkbutton" id="pause_Job" data-options="iconCls:'icon-undo',text: '暂停',plain:true" onclick="pauseJobRow()"></a>

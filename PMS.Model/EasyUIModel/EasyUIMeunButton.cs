@@ -15,6 +15,6 @@ namespace PMS.Model.EasyUIModel
         /// <summary>
         /// 下拉列表中显示的模板类型
         /// </summary>
-        public int jobType { get; set; }
+        public int Type { get; set; }
     }
 }

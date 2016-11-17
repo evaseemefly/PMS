@@ -1,15 +1,15 @@
-﻿<script type="text/javascript">
+﻿@*<script type="text/javascript">
     function load_MenuButton_Job(data) {
         //使用Json.parse是因为这是格式安全的（另一种方法为eval）
         //var obj = JSON.parse(data)
         //在JQuery中可以用下面的方式解析
         $.getJSON(data, function (obj) {
             $.each(obj, function (i, item) {
-                $("#menu_add").html("<div>" + item.text + "</div>");
+                $("#menu_add").append("<div>" + item.text + "</div>");
             });
             
         });
 
     }
 
-</script>
+</script>*@
