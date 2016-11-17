@@ -425,6 +425,8 @@
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_ShowEditWin.cshtml" />
     <Content Include="Areas\Job\Views\Shared\_Layout_ShowEdit.cshtml" />
     <Content Include="Areas\Job\Views\Template\_Partial_Job_setTemplate.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_MenuButton.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_LoadMenuButton_JS.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

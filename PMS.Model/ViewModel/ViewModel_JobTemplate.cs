@@ -8,6 +8,8 @@ namespace PMS.Model.ViewModel
 {
     public class ViewModel_JobTemplate
     {
+        public string JobGroup { get; set; }
+        public string JTName { get; set; }
         public int JTID { get; set; }
         public string JobClassName { get; set; }
         public string CronStr { get; set; }

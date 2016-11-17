@@ -28,8 +28,33 @@ namespace SMSOA.Areas.Job.Controllers
             ViewBag.GetJobInfoByUser = "GetJobInfoByUser";
             ViewBag.ShowCreateWin = "ShowAddInstance";
             ViewBag.ShowEditWin = "ShowEditInstance";
+            ViewBag.ShowMenuButton_Add = "GetJobTemplate4MenuButton";
             return View();
         }
+
+        /// <summary>
+        /// 根据用户ID获取该用户拥有的模板
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetJobTemplate4MenuButton(int uid)
+        {
+                //1. 得到当前用户拥有的模板
+                var list_jobTemplate = jobTemplateBLL.GetJobTemplateByUser(uid);
+                //2. 去掉其中设置为不显示的模板
+                list_jobTemplate = list_jobTemplate.Where(j => j.isBtn == true).ToList();
+                //3. 封装进EasyUI模型
+                List < EasyUIMeunButton > list = new List<EasyUIMeunButton>();
+                list = (from j in list_jobTemplate
+                                         select new EasyUIMeunButton()
+                                         {
+                                             jobType = j.JobType,
+                                             text = j.JTName
+                                         }
+                                         ).ToList();
+
+                return Content(Common.SerializerHelper.SerializerToString(list));
+        }
+
 
         public ViewResult DoEditTest()
         {
@@ -217,7 +242,7 @@ namespace SMSOA.Areas.Job.Controllers
            
             List<EasyUICombobox> list_combox = new List<EasyUICombobox>();
             //2 转成combox集合
-            list_combox = (from d in list_jobTemplateByUser
+            list_combox = (from d in list_jobTemplateByUser 
                            select new EasyUICombobox()
                            {
                                id = d.JTID,

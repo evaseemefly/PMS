@@ -61,13 +61,25 @@
         <tr>
             <td>模板名称：</td>
             <td class="comment">
-                <input class="easyui-validatebox" type="text" name="JobClassName" value="@ViewBag.JobClassName" data-options="required:true,validType:['String','length[1,50]']" /><br/>请填写模板名称
+                <input class="easyui-validatebox" type="text" name="JTName" value="@ViewBag.JTName" data-options="required:true,validType:['String','length[1,50]']" /><br />请填写模板名称
+            </td>
+        </tr>
+        <tr>
+            <td>模板类名：</td>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" name="JobClassName" value="@ViewBag.JobClassName" data-options="required:true,validType:['String','length[1,50]']" /><br />请填写模板类名
+            </td>
+        </tr>
+        <tr>
+            <td>模板群组名称：</td>
+            <td class="comment">
+                <input class="easyui-validatebox" type="text" name="JobGroup" value="@ViewBag.JobGroup" data-options="validType:['String','length[1,50]']" /><br />请填写模板群组名
             </td>
         </tr>
         <tr>
             <td>CronStr:</td>
             <td class="comment">
-                <input class="easyui-validatebox" type="text" name="CronStr" value="@ViewBag.CronStr" data-options="required:true,validType:'length[1,100]'" /><br/>请填写CronStr
+                <input class="easyui-validatebox" type="text" name="CronStr" value="@ViewBag.CronStr" data-options="required:true,validType:'length[1,100]'" /><br />请填写CronStr
 
             </td>
         </tr>
@@ -76,11 +88,11 @@
             <td class="comment">
                 <input class="easyui-validatebox" type="text" name="JobType" value="@ViewBag.JobType" data-options="required:true,validType:'Integer'" /><br/>请输入模板类型（整数）
             </td>
-        </tr>
+            </tr>
         <tr>
             <td>备注:</td>
             <td class="comment">
-                <input class="easyui-validatebox" type="text" name="Remark" value="@ViewBag.Remark" style="height:90px;width:80%" data-options="multiline:true,prompt:'输入备注...',validType:'length[0,100]'"/><br/>请输入备注
+                <input class="easyui-validatebox" type="text" name="Remark" value="@ViewBag.Remark" style="height:40px;width:80%" data-options="multiline:true,prompt:'输入备注...',validType:'length[0,100]'"/><br/>请输入备注
 
             </td>
         </tr>

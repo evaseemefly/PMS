@@ -72,6 +72,7 @@
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Mission.cs" />
+    <Compile Include="EasyUIModel\EasyUIMeunButton.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />

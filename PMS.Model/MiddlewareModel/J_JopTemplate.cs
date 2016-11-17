@@ -16,7 +16,9 @@ namespace PMS.Model
         {
             return new J_JobTemplate()
             {
+                JobGroup = this.JobGroup,
                 JTID = this.JTID,
+                JTName = this.JTName,
                 JobClassName = this.JobClassName,
                 CronStr = this.CronStr,
                 JobType = this.JobType,

@@ -13,6 +13,7 @@ using PMS.BLL;
 using PMS.Model.EqualCompare;
 using PMS.IModel;
 using Common.Redis;
+using Common.Config;
 
 namespace SMSFactory
 {
@@ -62,7 +63,15 @@ namespace SMSFactory
             userInfoBLL = new UserInfoBLL();
             smsContentBLL = new S_SMSContentBLL();
             smsRecord_CurrentBLL = new S_SMSRecord_CurrentBLL();
-            Common.Config.RedisConfigHelper configHelper = new Common.Config.RedisConfigHelper();
+            SetRedisProperties();
+        }
+
+        /// <summary>
+        /// 为当前类中的redis的属性赋值
+        /// </summary>
+        public void SetRedisProperties()
+        {
+            RedisConfigHelper configHelper = new RedisConfigHelper();
             this.redis_list_id = configHelper.redis_list_id;
             this.Interval_OverTime = configHelper.Interval_OverTime;
         }
@@ -376,17 +385,36 @@ namespace SMSFactory
             //3 创建JobData
             var jobData = new PMS.Model.JobDataModel.SendJobDataModel()
             {
+                
                 //4 将前台传入的model值赋给JobData中的JobValue
-                JobDataValue = new PMS.Model.SMSModel.SMSModel_Send()
+                JobDataValue=new PMS.Model.CombineModel.SendAndMessage_Model()
                 {
-                    account = model.Model_Send.account,
-                    content = model.Model_Send.content,
-                    msgid = model.Model_Send.msgid,
-                    password = model.Model_Send.password,
-                    phones = model.Model_Send.phones,
-                    sendtime = model.Model_Send.sendtime,
-                    subcode = model.Model_Send.subcode
+                     Model_Send=new SMSModel_Send()
+                     {
+                         account = model.Model_Send.account,
+                         content = model.Model_Send.content,
+                         msgid = model.Model_Send.msgid,
+                         password = model.Model_Send.password,
+                         phones = model.Model_Send.phones,
+                         sendtime = model.Model_Send.sendtime,
+                         subcode = model.Model_Send.subcode
+                     },
+
+                    Model_Message =new PMS.Model.ViewModel.ViewModel_Message()
+                    {
+
+                    }
                 }
+                //JobDataValue = new PMS.Model.SMSModel.SMSModel_Send()
+                //{
+                //    account = model.Model_Send.account,
+                //    content = model.Model_Send.content,
+                //    msgid = model.Model_Send.msgid,
+                //    password = model.Model_Send.password,
+                //    phones = model.Model_Send.phones,
+                //    sendtime = model.Model_Send.sendtime,
+                //    subcode = model.Model_Send.subcode
+                //}
             };
 
             //5 将发送作业实例添加至计划任务中
