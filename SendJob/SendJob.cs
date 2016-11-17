@@ -59,7 +59,7 @@ namespace JobInstances
                 Content=""
             };
           
-            smsSendBLL.AfterSend(model, receive_model,)
+            //smsSendBLL.AfterSend(model, receive_model,)
         }
 
         protected void AfterSend()
@@ -67,6 +67,7 @@ namespace JobInstances
             if (this.smsSendBLL == null)
             {
                 smsSendBLL = new SMSFactory.SMSSend();
+                
             }
             
         }
