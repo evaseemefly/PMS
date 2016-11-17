@@ -607,16 +607,17 @@ namespace SMSOA.Areas.SMS.Controllers
             //****注意此处还未实现向前台向后台传递对象时应加上uid，并向combin_model中加入uid（以包含此属性）
             DoSendNow(combine_model, out receive);
 
-            SMSModel_Receive testModel = new SMSModel_Receive()
-            {
-                desc = "提交成功",
-                failPhones = new string[] { },
-                msgid = "b14deff1f6ef45bb8e357e961f5c17ab",
-                result = "0"
-            };
+            //测试批量写入时间时的测试返回对象——现注释掉
+            //SMSModel_Receive testModel = new SMSModel_Receive()
+            //{
+            //    desc = "提交成功",
+            //    failPhones = new string[] { },
+            //    msgid = "b14deff1f6ef45bb8e357e961f5c17ab",
+            //    result = "0"
+            //};
 
 
-            AfterSend(combine_model.Model_Message, /*receive*/testModel, combine_model.Model_Send.phones.ToList());
+            AfterSend(combine_model.Model_Message, receive/*testModel*/, combine_model.Model_Send.phones.ToList());
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");

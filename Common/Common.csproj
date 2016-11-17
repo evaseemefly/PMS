@@ -93,6 +93,7 @@
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="Config\RedisConfigHelper.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Common.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />

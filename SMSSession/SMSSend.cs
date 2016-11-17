@@ -12,6 +12,8 @@ using PMS.IBLL;
 using PMS.BLL;
 using PMS.Model.EqualCompare;
 using PMS.IModel;
+using Common.Redis;
+
 namespace SMSFactory
 {
     /// <summary>
@@ -36,6 +38,20 @@ namespace SMSFactory
         IUserInfoBLL userInfoBLL { get; set; }
         IJ_JobInfoBLL jobInfoBLL { get; set; }
 
+        IS_SMSContentBLL smsContentBLL { get; set; }
+
+        IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
+
+        /// <summary>
+        /// 保存在redis中的msgid的key
+        /// </summary>
+        private string redis_list_id { get; set; }
+
+        /// <summary>
+        /// msgid在缓存中保存的过期时间
+        /// </summary>
+        private int Interval_OverTime { get; set; }
+
         public SMSSend()
         {
             departmentBLL = new P_DepartmentInfoBLL();
@@ -44,6 +60,11 @@ namespace SMSFactory
             jobTemplateBLL = new J_JobTemplateBLL();
             jobInfoBLL = new J_JobInfoBLL();
             userInfoBLL = new UserInfoBLL();
+            smsContentBLL = new S_SMSContentBLL();
+            smsRecord_CurrentBLL = new S_SMSRecord_CurrentBLL();
+            Common.Config.RedisConfigHelper configHelper = new Common.Config.RedisConfigHelper();
+            this.redis_list_id = configHelper.redis_list_id;
+            this.Interval_OverTime = configHelper.Interval_OverTime;
         }
 
         /// <summary>
@@ -341,6 +362,7 @@ namespace SMSFactory
             //    调用J_JobInfoBLL中的AddJobInfo方法创建作业实例
             J_JobInfo jobInstance = new J_JobInfo()
             {
+                UID = model.Model_Message.UID,
                 CreateTime = DateTime.Now,
                 EndRunTime = model.Model_Message.EndRunTime == DateTime.MinValue ? model.Model_Message.StartRunTime : model.Model_Message.EndRunTime,//此处加入判断，若EndRunTime时间为1/1/1/1这种情况先将起始时间赋给他
                 NextRunTime = model.Model_Message.NextRunTime == DateTime.MinValue ? model.Model_Message.StartRunTime : model.Model_Message.NextRunTime,
@@ -370,6 +392,10 @@ namespace SMSFactory
             //5 将发送作业实例添加至计划任务中
             //注意此作业实例中需要含UID
             jobInfoBLL.AddJobInfo(jobInstance, jobData);
+
+            //**** 11-16 创建jobInfo与其他的关联（以便在作业管理页面中显示）
+
+
             //在job的bll层中创建作业（同时写入数据库，并添加至调度池中）
             //client.AddScheduleJob(jobInstance, jobData);
             response = new SMSModel_Receive();
@@ -415,10 +441,51 @@ namespace SMSFactory
             // SMSModel_Receive receive = new SMSModel_Receive();
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
             client.SendMsg(model.Model_Send, out receiveModel);
+            //发送之后执行将发送记录写会数据库的操作
+            this.AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
             //SendMsg(model, out response);
             return true;
         }
 
+
+        /// <summary>
+        /// 在发送短信之后执行
+        ///  步骤五：
+        ///  创建短信内容至数据库 
+        ///  创建发送记录至数据库
+        /// （此处应放在SMSFactory.SendMsg或写在JobInstance中的SendJob.Exceuted）
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="receive"></param>
+        /// <param name="list_phones"></param>
+        /// <param name="redis_list_id">redis中保存的list的key</param>
+        /// <param name="redis_expirationDate">redis中保存集合的过期时间（默认72小时）</param>
+        /// <returns></returns>
+        public bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model, SMSModel_Receive receive, List<string> list_phones,string redis_list_id,int redis_expirationDate=72)
+        {
+           
+            //5 将发送的短信以及提交响应存入SMSContent
+            var mid = model.SMSMissionID;
+            var uid = model.UID;
+            bool isSaveMsgOk = smsContentBLL.SaveMsg(receive, model.Content, mid, uid);
+
+            //在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
+            //7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
+            if (!smsRecord_CurrentBLL.CreateReceieveMsg(receive.msgid, list_phones))
+            {
+                return false;
+            }
+
+            /*步骤六：
+                    写入redis缓存中
+                    （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
+            */
+            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
+
+            StringRedisHelper redisStrhelper = new StringRedisHelper();
+            redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
+            return true;
+        }
 
         protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)
         {

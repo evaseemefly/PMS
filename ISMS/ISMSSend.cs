@@ -37,6 +37,21 @@ namespace ISMS
         List<string> AddAndGetTempPersons(PMS.Model.ViewModel.ViewModel_Message model, IP_PersonInfoBLL personBLL, IP_GroupBLL groupBLL);
 
         /// <summary>
+        /// 在发送短信之后执行
+        ///  步骤五：
+        ///  创建短信内容至数据库 
+        ///  创建发送记录至数据库
+        /// （此处应放在SMSFactory.SendMsg或写在JobInstance中的SendJob.Exceuted）
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="receive"></param>
+        /// <param name="list_phones"></param>
+        /// <param name="redis_list_id">redis中保存的list的key</param>
+        /// <param name="redis_expirationDate">redis中保存集合的过期时间（默认72小时）</param>
+        /// <returns></returns>
+        bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model, SMSModel_Receive receive, List<string> list_phones, string redis_list_id, int redis_expirationDate = 72);
+
+        /// <summary>
         /// 获取短信内容
         /// 封装要提交至联通接口的发送对象（含联系人电话号码）
         /// </summary>

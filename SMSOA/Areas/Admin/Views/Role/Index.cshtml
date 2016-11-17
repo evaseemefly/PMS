@@ -73,7 +73,7 @@
         //alert("开始获取id");
         //获取选中的datagrid中的对象
         //使用此方法无法获取到checked的行？？？？？？？？
-        var rows = $("#actiondatagrid").datagrid("getChecked");
+        var rows = $("#actionDatagrid").datagrid("getChecked");
         var strIds = "";
         for (var i = 0; i < rows.length; i++) {
             strIds = strIds + rows[i].ID + ",";
@@ -137,7 +137,7 @@
             $("#showActionWindow").window('open');
 
             //2 位datagrid加载数据
-            $("#actiondatagrid").datagrid({
+            $("#actionDatagrid").datagrid({
                 width: 'auto',
                 height: 'auto',
                 fitColumns: true,
@@ -163,7 +163,7 @@
                         $.each(data.rows, function (index, item) {
                             if (item.checked) {
 
-                                $('#actiondatagrid').datagrid('checkRow', index);
+                                $('#actionDatagrid').datagrid('checkRow', index);
 
                             }
                         })
