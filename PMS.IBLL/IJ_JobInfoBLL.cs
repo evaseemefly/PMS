@@ -42,7 +42,21 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        bool AddJobInfo(J_JobInfo model, IJobData jobData = null);
+        PMS.Model.Message.IBaseResponse AddJobInfo(J_JobInfo model, IJobData jobData = null);
+
+        /// <summary>
+        /// 根据指定id暂停某作业
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        PMS.Model.Message.IBaseResponse PauseJob(int id);
+
+        /// <summary>
+        /// 恢复指定作业
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        PMS.Model.Message.IBaseResponse ResumeJob(int id);
 
         /// <summary>
         /// 编辑（暂未实现）
@@ -51,12 +65,7 @@ namespace PMS.IBLL
         /// <returns></returns>
         bool EditJobInfo();
 
-        /// <summary>
-        /// 根据指定id暂停某作业
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        bool PauseJob(int id);
+        
 
         /// <summary>
         /// 根据id集合批量获取作业集合

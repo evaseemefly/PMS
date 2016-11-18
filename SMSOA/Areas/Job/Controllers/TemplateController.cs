@@ -100,10 +100,12 @@ namespace SMSOA.Areas.Job.Controllers
         {
             var model = jobTemplateBLL.GetListBy(j => j.JTID.Equals(id)).FirstOrDefault();
             ViewBag.JTID = model.JTID;
+            ViewBag.JTName = model.JTName;
             ViewBag.JobClassName = model.JobClassName;
             ViewBag.CronStr = model.CronStr;
             ViewBag.JobType = model.JobType;
             ViewBag.Remark = model.Remark;
+            ViewBag.JobGroup = model.JobGroup;
             ViewBag.backAction_jqSub = "EditJobTemplate";
 
             //此处需要添加返回的视图！
@@ -121,8 +123,10 @@ namespace SMSOA.Areas.Job.Controllers
         {
             //1. 数据验证
             if (jobTemplateBLL.AddValidation(model.JobClassName)) { return Content("validation fails"); }
-            //2. 添加模板
+            //2. 默认为default
+            if(model.JobGroup == null) { model.JobGroup = "defalut"; }
 
+            //3. 添加模板
             try
             {
                 jobTemplateBLL.AddJobTemplate(model);

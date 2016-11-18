@@ -7,6 +7,8 @@ using Quartz;
 using System.Activities;
 using Common;
 
+
+
 namespace JobInstances
 {
     public class QueryJob : BaseJob.JobAbstract

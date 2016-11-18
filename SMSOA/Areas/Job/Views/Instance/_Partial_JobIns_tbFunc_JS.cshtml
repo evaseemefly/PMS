@@ -6,8 +6,8 @@
         }
         return strId;
     }
-    function addJobRow() {
-        showEditWindow("@ViewBag.ShowCreateWin" + "?uid=" + userId);
+    function addJobRow(jobType) {
+        showEditWindow("@ViewBag.ShowCreateWin" + "?jopType=" + jobType);
     }
 
     function removeJobRow() {
@@ -17,7 +17,8 @@
 
     }
     function pauseJobRow() {
-        CheckSelectRows("datagrid", "准备暂停？", callback, "@ViewBag.DoPause");
+        CheckOnlySelectionAndDo("datagrid", "要暂停选中的作业？", "指定作业已暂停", "JID", "@ViewBag.DoPause", "jid");
+        
     }
     function recoveryJobRow() {
         CheckSelectRows("datagrid", "准备恢复？", callback, "@ViewBag.DoRecovery");

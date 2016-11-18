@@ -1,41 +1,24 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_MyPartial_Index")
+
+@section My_Scripts{
 @Html.Partial("_Partial_Job_setTemplate")
-
-        <script type="text/javascript">
+@Html.Partial("_Partial_JobIns_LoadDataGrid_JS")
+<script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
+    <script type="text/javascript">
             var id = "";
-
-            //工具栏
-            var toolbar = [{
-                iconCls: 'icon-add',
-                text: "新增",
-                handler: addTemplateRow
-            }, '-',
-            {
-                iconCls: 'icon-remove',
-                text: "删除",
-                handler: removeTemplateRow
-            }, '-',
-            {
-                iconCls: 'icon-edit',
-                text: "编辑",
-                handler: editTemplateRow
-            }, '-', {
-                iconCls: 'icon-search',
-                text: "分配作业模板",
-                handler: setTemplate
-            }]
-
             //模板列表的列属性
             var myColumns = [[
-                         { field: 'JTID', title: 'ID', width: 100, hidden: true },
-                         { field: 'JobClassName', title: '模板名称', width: '20%' },
+                         { field: 'JTID', title: 'ID', width: '1%', hidden: true },
+                         { field: 'JTName', title: '模板名称', width: '15%' },
+                         { field: 'JobGroup', title: '模板类名称', width: '10%' },
+                         { field: 'JobClassName', title: '模板类名', width: '15%' },
                          { field: 'JobType', title: '模板类型', width: '10%' },
                          { field: 'CronStr', title: 'CronStr', width: '20%' },
-                         { field: 'Remark', title: '备注', width: '50%' }
+                         { field: 'Remark', title: '备注', width: '25%' }
             ]]
 
             //分配模板列表的列属性（分配给用户）
@@ -51,7 +34,7 @@
 
             //添加操作
             function addTemplateRow() {
-                addRow("新建作业模板");
+                addRow("ShowAddTemplate");
             }
 
             //编辑操作
@@ -139,10 +122,9 @@
                     width: 'auto',
                     height: 'auto',
                     fitColumns: true,
-                    singleSelect: false,
+                    singleSelect: true,
                     checkOnSelect: true,
                     selectOnCheck: true,
-
                     //隔行变色
                     striped: true,
                     url: url + "?id=" + id,
@@ -189,21 +171,27 @@
             $(function () {
                 //1 关闭窗口
                 CancelSet();
+                //关闭新建窗口
+                closeWindow("editWindow");
+                //2 加载页面
+                loadDataGrid_Job("datagrid", "@ViewBag.GetInfo", myColumns, "tb_template");
             })
+    </script>
 
+}
 
-
-        </script>
-    
-
-
-
-
-<div>
-    <table class="easyui-datagrid" id="datagrid"></table>
-
-    @*@Html.Partial("_Partial_Toolbar_Action")*@
-</div>
-    
-
+@section Body{
+    <div>
+        <table class="easyui-datagrid" id="datagrid"> </table>
+        <div class="easyui-window" id="editWindow" style="width:462px;height:448px;overflow: hidden" data-options="shadow:true,modal:true">
+            <iframe id="setActionRoleFrame" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+        <div id="tb_template" style="padding:2px 5px;">
+            <a href="#" class="easyui-linkbutton" id="add_job" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addTemplateRow()"></a>            
+            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeTemplateRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editTemplateRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="end_Job" data-options="iconCls:'icon-search',text: '分配作业模板',plain:true" onclick="setTemplate()"></a>
+        </div> 
+    </div>
+}
 

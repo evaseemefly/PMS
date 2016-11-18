@@ -21,5 +21,10 @@ namespace PMS.IModel
         DateTime EndRunTime { get; set; }
 
         string CronStr { get; set; }
+
+        /// <summary>
+        /// 重复执行间隔（单位—秒）
+        /// </summary>
+        int Interval_quartz { get; set; }
     }
 }

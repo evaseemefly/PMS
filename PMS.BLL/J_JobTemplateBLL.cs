@@ -62,10 +62,13 @@ namespace PMS.BLL
             {
                 J_JobTemplate jobTemplate = new J_JobTemplate()
                 {
+                
+                    JTName = model.JTName,
                     JobClassName = model.JobClassName,
                     JobType = model.JobType,
                     CronStr = model.CronStr,
-                    Remark =model.Remark
+                    Remark =model.Remark,
+                    JobGroup = model.JobGroup
                 };
                 try
                 {
@@ -95,6 +98,7 @@ namespace PMS.BLL
                 jobTemplate.JobType = model.JobType;
                 jobTemplate.CronStr = model.CronStr;
                 jobTemplate.Remark = model.Remark;
+                jobTemplate.JobGroup = model.JobGroup;
                
                 try
                 {

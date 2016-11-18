@@ -4,7 +4,7 @@ function addRow(urlAdd) {
     $("#setActionRoleFrame").attr("src", urlAdd);
     //$("#editWindow").panel({ title: "创建任务模板" });
     //打开编辑窗体
-    $("#editWindow").window('open');    
+    $("#editWindow").window('open');   
 
 }
 
@@ -86,6 +86,10 @@ function GetDropDowData(urlGetOption) {
             }
         }
     });
+}
+
+function closeWindow(id) {
+    $("#" + id).window('close');
 }
 
 //编辑或创建某个权限后执行的操作

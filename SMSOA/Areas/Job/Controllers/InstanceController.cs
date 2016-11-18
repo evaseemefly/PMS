@@ -28,8 +28,26 @@ namespace SMSOA.Areas.Job.Controllers
             ViewBag.GetJobInfoByUser = "GetJobInfoByUser";
             ViewBag.ShowCreateWin = "ShowAddInstance";
             ViewBag.ShowEditWin = "ShowEditInstance";
+            ViewBag.ShowMenuButton_Add = "GetJobTemplate4MenuButton";
+            ViewBag.DoPause = "DoPauseJob";
             return View();
         }
+
+        /// <summary>
+        /// 根据用户ID获取该用户拥有的模板
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetJobTemplate4MenuButton(int uid)
+        {
+                //1. 得到当前用户拥有的模板
+                var list_jobTemplate = jobTemplateBLL.GetJobTemplateByUser(uid);
+                //2. 去掉其中设置为不显示的模板
+                var list_jobTemplate4MenuButton = list_jobTemplate.Where(j => j.isBtn == true).Select(j=>j.ToMiddleModel());
+                
+                
+                return PartialView("_Partial_JobIns_MenuButtonView", list_jobTemplate4MenuButton);
+        }
+
 
         public ViewResult DoEditTest()
         {
@@ -48,12 +66,18 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public ViewResult ShowAddInstance(int uid)
+        public ViewResult ShowAddInstance()
         {
+            int uid = GetUserId();
+            //1.获取类型
+            var jopType = int.Parse(Request.QueryString["jopType"]);
+            //var jopType = Int32.Parse(Request.QueryString["jopType"]);
             ViewBag.LoginUserID = uid;
+            ViewBag.jobType = jopType;
             ViewBag.backAction = "DoAddJobInfo";
+
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
-            ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
+           // ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
             return View("ShowEditInstance");
         }
 
@@ -78,7 +102,7 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public ViewResult ShowEditInstance(int uid)
+        public ViewResult ShowEditInstance()
         {
             #region 获取当前的登录用户——封装为一个方法——以下注释掉
             //ViewBag.LoginUserID = -999;
@@ -89,12 +113,13 @@ namespace SMSOA.Areas.Job.Controllers
             //    ViewBag.LoginUserID = base.LoginUser.ID;
             //}
             #endregion
-
-            ViewBag.LoginUserID= GetUserId();
+            int uid = GetUserId();
+            //1.获取类型
+            var jopType = int.Parse(Request.QueryString["jopType"]);
             ViewBag.backAction = "DoEditJobInfo";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
-            ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
-            return View();
+            //ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
+            return View("ShowEditInstance");
         }
 
         /// <summary>
@@ -114,16 +139,20 @@ namespace SMSOA.Areas.Job.Controllers
             {
                 model.NextRunTime = DateTime.Now;
             }
-            
-            model.EndRunTime = model.StartRunTime.AddMinutes(1);
+            if (model.EndRunTime <= DateTime.MinValue)
+            {
+                model.EndRunTime = DateTime.MaxValue;
+            }
+
+           // model.EndRunTime = model.StartRunTime.AddMinutes(1);
             model.CreateTime = DateTime.Now;
             //创建时手动添加该作业的状态
             model.JobState = Convert.ToInt32(PMS.Model.Enum.JobState_Enum.running);
-
+            model.Interval_quartz = Common.Config.QueryQuartzConfigHelper.GetIntervalQueryAgain();
             //注意需要修改此bll中实现的方法，不仅创建J_JobInfo还要创建与UserInfo的关联关系
             //***注意此时的顺序是先向数据库中的JobInfo表写入再执行Quartz操作（向数据库中写入后model中会有JID）——但应该先执行Quartz的添加作业操作****
             //1 将状态写入数据库
-            if (jobInfoBLL.AddJobInfo(model))
+            if (jobInfoBLL.AddJobInfo(model).Success)
             {
                 //注意：
                 //在创建之后此model中的JID已经有值了，可以直接获取该JID的值
@@ -138,6 +167,45 @@ namespace SMSOA.Areas.Job.Controllers
             {
                 return Content("error");
             }
+        }
+
+        /// <summary>
+        /// 暂停作业
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoPauseJob(int jid)
+        {
+            //1 执行暂停作业操作
+           var response= jobInfoBLL.PauseJob(jid);
+            if (response.Success)
+            {
+                return Content("ok");
+            }
+            return Content("error"); 
+        }
+
+        /// <summary>
+        /// 恢复指定作业
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoRecoveryJob(int id)
+        {
+            //1 执行恢复指定作业的操作
+            var response= jobInfoBLL.ResumeJob(id);
+            if (response.Success)
+            {
+                return Content("ok");
+            }
+            return Content("error");
+        }
+
+        /// <summary>
+        /// 结束作业
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DoEndJob()
+        {
+            return null;
         }
 
         /// <summary>
@@ -190,17 +258,18 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="JTID"></param>
         /// <returns></returns>
-        public ActionResult GetJobTemplateDataByTemplate(int JTID)
+        public ActionResult GetJobTemplateDataByTemplate(int JobType)
         {
             //获取对应的作业模板
-            var data = jobTemplateBLL.GetListBy(t => t.JTID == JTID).FirstOrDefault();
-           // var data_midlle= data.ToMiddleModel();
-           //此处不转为中间变量转为ViewModel中间对象
-           ViewModel_JobTemplate data_vm = new ViewModel_JobTemplate()
+            var data = jobTemplateBLL.GetListBy(t => t.JobType == JobType).FirstOrDefault();
+            // var data_midlle= data.ToMiddleModel();
+            //此处不转为中间变量转为ViewModel中间对象
+            ViewModel_JobTemplate data_vm = new ViewModel_JobTemplate()
             {
                 CronStr = data.CronStr,
                 JobClassName = data.JobClassName,
-                JobType = data.JobType
+                JobType = data.JobType,
+                JobGroup = data.JobGroup
             };
             return Content(Common.SerializerHelper.SerializerToString(data_vm)); 
         }
@@ -217,7 +286,7 @@ namespace SMSOA.Areas.Job.Controllers
            
             List<EasyUICombobox> list_combox = new List<EasyUICombobox>();
             //2 转成combox集合
-            list_combox = (from d in list_jobTemplateByUser
+            list_combox = (from d in list_jobTemplateByUser 
                            select new EasyUICombobox()
                            {
                                id = d.JTID,

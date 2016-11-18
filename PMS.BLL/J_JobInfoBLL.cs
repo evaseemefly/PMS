@@ -97,7 +97,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool AddJobInfo(J_JobInfo model, IJobData jobData=null)
+        public PMS.Model.Message.IBaseResponse AddJobInfo(J_JobInfo model, IJobData jobData=null)
         {
             
             //1 创建与UserInfo的关系
@@ -117,9 +117,50 @@ namespace PMS.BLL
             //{
             //    return true;
             //}
-            return false;
+            return response;
            
 
+        }
+
+        /// <summary>
+        /// 根据指定id暂停某作业
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PMS.Model.Message.IBaseResponse PauseJob(int id)
+        {
+            //1 根据id查询实体
+            var job_temp = this.GetListBy(j => j.JID == id).FirstOrDefault();
+            //
+            if (job_temp != null)
+            {
+                //2 暂停
+                var response = ijobService.PauseJob(job_temp);
+                return response;
+                // return response.Success;
+            }
+            return new PMS.Model.Message.BaseResponse() { Success = false, Message = "执行暂停作业操作失败" };
+        }
+
+        /// <summary>
+        /// 恢复指定作业
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PMS.Model.Message.IBaseResponse ResumeJob(int id)
+        {
+            //1 根据id查询实体
+            var job_temp = this.GetListBy(j => j.JID == id).FirstOrDefault();
+            //
+            if (job_temp != null)
+            {
+                //2 暂停
+                var response = ijobService.ResumeTargetJob(job_temp);
+                return response;
+                // return response.Success;
+            }
+
+            return new PMS.Model.Message.BaseResponse() { Success = false, Message = "执行恢复作业操作失败" };
         }
 
         /// <summary>
@@ -138,24 +179,7 @@ namespace PMS.BLL
             return list_model.Exists(r => r.JobName==name);
         }
 
-        /// <summary>
-        /// 根据指定id暂停某作业
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool PauseJob(int id)
-        {
-            //1 根据id查询实体
-            var job_temp= this.GetListBy(j => j.JID == id).FirstOrDefault();
-            //
-            if (job_temp != null)
-            {
-                //2 暂停
-               //var response= ijobService.PauseJob(job_temp);
-               // return response.Success;
-            }            
-            return false;
-        }
+        
 
         /// <summary>
         /// 根据id集合批量获取作业集合

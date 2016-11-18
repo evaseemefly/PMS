@@ -60,16 +60,21 @@ namespace QuartzJobFactory
         /// <returns></returns>
        public static ITrigger CreateTrigger(IJ_JobInfo jobInfo)
         {
-            //
             var trigger = TriggerBuilder.Create()
-                          .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)      //添加Job名（现使用的是JID——防止重名）与群组名
-                          .StartAt(jobInfo.StartRunTime) //任务起始时间
-                          .EndAt(jobInfo.EndRunTime);   //终止时间
-
+                         .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)      //添加Job名（现使用的是JID——防止重名）与群组名
+                         .StartAt(jobInfo.StartRunTime) //任务起始时间
+                         .EndAt(jobInfo.EndRunTime);//终止时间
+            if (jobInfo.Interval_quartz != 0)
+            {
+                //配置触发器中重复执行的时间间隔
+               //trigger= trigger.WithSimpleSchedule(a => a.WithIntervalInSeconds(jobInfo.Interval_quartz)); 
+                
+            }         
             //根据条件添加Cron表达式
             if (jobInfo.CronStr != null)
             {
                 trigger.WithCronSchedule(jobInfo.CronStr);
+                //trigger= trigger.WithCronSchedule("0/10 * * * * ?");
             }
 
             //创建最终的计时器并返回

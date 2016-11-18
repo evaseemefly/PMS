@@ -13,5 +13,10 @@ namespace PMS.Model
         /// 用户id
         /// </summary>
         public int UID { get; set; }
+
+        /// <summary>
+        /// 重复执行间隔（单位）
+        /// </summary>
+        public int Interval_quartz { get; set; }
     }
 }

@@ -1,0 +1,7 @@
+﻿@using PMS.Model;
+@model IEnumerable<J_JobTemplate>
+
+@foreach(var item in Model)
+{
+    <div onclick="addJobRow(@item.JobType)">@item.JTName</div>
+}

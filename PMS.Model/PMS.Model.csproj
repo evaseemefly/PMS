@@ -72,6 +72,7 @@
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid_Mission.cs" />
+    <Compile Include="EasyUIModel\EasyUIMeunButton.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
@@ -109,7 +110,7 @@
     <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
     <Compile Include="MiddlewareModel\J_JobInfo.cs" />
-    <Compile Include="MiddlewareModel\J_JopTemplate.cs" />
+    <Compile Include="MiddlewareModel\J_JobTemplate.cs" />
     <Compile Include="MiddlewareModel\N_News.cs" />
     <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
     <Compile Include="MiddlewareModel\P_Group.cs" />
