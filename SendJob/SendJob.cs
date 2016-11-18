@@ -36,22 +36,23 @@ namespace JobInstances
         protected override void ExceuteBody(IJobExecutionContext context)
         {
             var dataMap = context.JobDetail.JobDataMap;
-
+            
             //反序列化
             //var send_model =Common.SerializerHelper.DeSerializerToObject<PMS.Model.SMSModel.SMSModel_Send>(dataMap["SendModel"].ToString());
             var sendjob_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.JobDataModel.SendJobDataModel>(dataMap["SendModel"].ToString());
            var obj= sendjob_model.JobDataValue;
-            var send_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.SMSModel.SMSModel_Send>(obj.ToString());
-
+            var combine_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.CombineModel.SendAndMessage_Model>(obj.ToString());
+            combine_model.Model_Message.isTiming = false;
             //var send_model = dataMap["SendModel"] as PMS.Model.JobDataModel.SendJobDataModel;
 
-            ISMS.ISMSSend send = new SMSFactory.SMSSend();
+            ISMSSend send = new SMSFactory.SMSSend();
 
             PMS.Model.SMSModel.SMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();
 
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
-            send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = send_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
+            //send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = combine_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
+            send.SendMsg(combine_model, out receive_model);
             PMS.Model.ViewModel.ViewModel_Message model = new PMS.Model.ViewModel.ViewModel_Message()
             {
                 UID =0,

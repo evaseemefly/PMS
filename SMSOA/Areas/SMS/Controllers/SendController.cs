@@ -518,8 +518,6 @@ namespace SMSOA.Areas.SMS.Controllers
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             model.Model_Send = sendMsg;
             //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            //11月14日 暂时注释掉——以后需恢复！！！！
-            
              smsSendBLL.SendMsg(model, out /*response*/receive);
             //receive = new SMSModel_Receive();
             return true;
@@ -597,8 +595,6 @@ namespace SMSOA.Areas.SMS.Controllers
             ////var isSaveMsgOk = DoSendNow(Combine_model, receive);
             //sendjobManagement.JobsRun(Combine_model, receive);
             #endregion
-
-            //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
             PMS.Model.CombineModel.SendAndMessage_Model combine_model = new PMS.Model.CombineModel.SendAndMessage_Model();
             combine_model.Model_Message = model;
             //smsSendBLL.SendMsg(Combine_model, out response);
@@ -607,6 +603,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //****注意此处还未实现向前台向后台传递对象时应加上uid，并向combin_model中加入uid（以包含此属性）
             DoSendNow(combine_model, out receive);
 
+            #region 测试批量写入时间时的测试返回对象
             //测试批量写入时间时的测试返回对象——现注释掉
             //SMSModel_Receive testModel = new SMSModel_Receive()
             //{
@@ -615,9 +612,9 @@ namespace SMSOA.Areas.SMS.Controllers
             //    msgid = "b14deff1f6ef45bb8e357e961f5c17ab",
             //    result = "0"
             //};
+            #endregion
 
-
-            AfterSend(combine_model.Model_Message, receive/*testModel*/, combine_model.Model_Send.phones.ToList());
+            //AfterSend(combine_model.Model_Message, receive/*testModel*/, combine_model.Model_Send.phones.ToList());
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");
