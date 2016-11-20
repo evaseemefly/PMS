@@ -15,7 +15,7 @@ namespace PMS.IBLL
         /// 获取全部的作业
         /// </summary>
         /// <returns></returns>
-        List<J_JobInfo> GetAllNullDelJobInfo();
+        IEnumerable<J_JobInfo> GetAllNullDelJobInfo();
 
         /// <summary>
         /// 根据角色查询该角色拥有的模板（暂未实现）
@@ -57,6 +57,13 @@ namespace PMS.IBLL
         /// <param name="id"></param>
         /// <returns></returns>
         PMS.Model.Message.IBaseResponse ResumeJob(int id);
+
+        /// <summary>
+        /// 终止指定作业
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        PMS.Model.Message.IBaseResponse RemoveJob(int id);
 
         /// <summary>
         /// 编辑（暂未实现）

@@ -430,6 +430,7 @@
     <Content Include="Areas\Job\Views\Instance\ShowEditInstance - 11月17备份.cshtml" />
     <Content Include="Areas\Job\Views\Template\Index - 11月18日备份.cshtml" />
     <Content Include="Areas\Job\Views\Template\Index.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_Formatter_JobState.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />

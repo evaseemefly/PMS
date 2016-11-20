@@ -29,6 +29,7 @@ namespace SMSOA.Areas.Job.Controllers
             ViewBag.ShowCreateWin = "ShowAddInstance";
             ViewBag.ShowEditWin = "ShowEditInstance";
             ViewBag.ShowMenuButton_Add = "GetJobTemplate4MenuButton";
+            ViewBag.DoRecovery = "DoRecoveryJob";
             ViewBag.DoPause = "DoPauseJob";
             return View();
         }
@@ -131,7 +132,7 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DoAddJobInfo(PMS.Model.J_JobInfo model)
+        public ContentResult DoAddJobInfo(PMS.Model.J_JobInfo model)
         {
             
             //***此时传入的model中已经包含了uid的值了
@@ -152,60 +153,63 @@ namespace SMSOA.Areas.Job.Controllers
             //注意需要修改此bll中实现的方法，不仅创建J_JobInfo还要创建与UserInfo的关联关系
             //***注意此时的顺序是先向数据库中的JobInfo表写入再执行Quartz操作（向数据库中写入后model中会有JID）——但应该先执行Quartz的添加作业操作****
             //1 将状态写入数据库
-            if (jobInfoBLL.AddJobInfo(model).Success)
-            {
-                //注意：
-                //在创建之后此model中的JID已经有值了，可以直接获取该JID的值
-                //2 操作Quartz操作类
-                //PMS.Model.SMSModel.SMSModel_Send data_temp = new PMS.Model.SMSModel.SMSModel_Send();
+            var response = jobInfoBLL.AddJobInfo(model);
+            return this.ToResponse(response);
 
-                //jobService.AddScheduleJob(model, data_temp);
-                return Content("ok");
-            }
-            
-            else
-            {
-                return Content("error");
-            }
+            //11月20日 备注掉
+            #region 
+            //if (jobInfoBLL.AddJobInfo(model).Success)
+            //{
+            //    //注意：
+            //    //在创建之后此model中的JID已经有值了，可以直接获取该JID的值
+            //    //2 操作Quartz操作类
+            //    //PMS.Model.SMSModel.SMSModel_Send data_temp = new PMS.Model.SMSModel.SMSModel_Send();
+
+            //    //jobService.AddScheduleJob(model, data_temp);
+            //    return Content("ok");
+            //}
+
+            //else
+            //{
+            //    return Content("error");
+            //}
+            #endregion
+
         }
 
         /// <summary>
         /// 暂停作业
         /// </summary>
         /// <returns></returns>
-        public ActionResult DoPauseJob(int jid)
+        public ContentResult DoPauseJob(int jid)
         {
             //1 执行暂停作业操作
            var response= jobInfoBLL.PauseJob(jid);
-            if (response.Success)
-            {
-                return Content("ok");
-            }
-            return Content("error"); 
+            return this.ToResponse(response);
         }
 
         /// <summary>
         /// 恢复指定作业
         /// </summary>
         /// <returns></returns>
-        public ActionResult DoRecoveryJob(int id)
+        public ContentResult DoRecoveryJob(int jid)
         {
             //1 执行恢复指定作业的操作
-            var response= jobInfoBLL.ResumeJob(id);
-            if (response.Success)
-            {
-                return Content("ok");
-            }
-            return Content("error");
+            var response= jobInfoBLL.ResumeJob(jid);
+            return this.ToResponse(response);
         }
+
+        
 
         /// <summary>
         /// 结束作业
         /// </summary>
         /// <returns></returns>
-        public ActionResult DoEndJob()
+        public ContentResult DoEndJob(int jid)
         {
-            return null;
+            //jobInfoBLL
+            var response= jobInfoBLL.RemoveJob(jid);
+            return this.ToResponse(response);          
         }
 
         /// <summary>
@@ -213,7 +217,7 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult DoEditJobInfo(PMS.Model.J_JobInfo model)
+        public ContentResult DoEditJobInfo(PMS.Model.J_JobInfo model)
         {
             if (jobInfoBLL.EditValidation(model.JID, model.JobName)) { return Content("validation fails"); }
             
@@ -231,7 +235,7 @@ namespace SMSOA.Areas.Job.Controllers
         /// 根据传入的uid获取作业集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetJobInfoByUser(int uid)
+        public ContentResult GetJobInfoByUser(int uid)
         {
             //string uid_str = Request.Form["uid"];
             //string uid_str = uid;
@@ -295,6 +299,20 @@ namespace SMSOA.Areas.Job.Controllers
             //3 序列化返回
             return Content(Common.SerializerHelper.SerializerToString(list_combox));
             
+        }
+
+        /// <summary>
+        /// 转成Content最终的返回结果
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        protected ContentResult ToResponse(PMS.Model.Message.IBaseResponse response)
+        {
+            if (response.Success)
+            {
+                return Content("ok");
+            }
+            return Content("error");
         }
 
         public override ViewModel_MyHttpContext GetHttpContext()

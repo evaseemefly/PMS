@@ -20,12 +20,14 @@ namespace PMS.BLL
         IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
         /// <summary>
-        /// 获取全部的作业
+        /// 获取全部的正在运行的作业
         /// </summary>
         /// <returns></returns>
-        public List<J_JobInfo> GetAllNullDelJobInfo()
+        public IEnumerable<J_JobInfo> GetAllNullDelJobInfo()
         {
-           return base.GetListBy(j => j.isDel == false).ToList();
+           return from j in base.GetListBy(j => j.isDel == false)
+                  where j.JobState!=(int)Model.Enum.JobState_Enum.stop
+                  select j;
         }
 
         /// <summary>
@@ -40,11 +42,15 @@ namespace PMS.BLL
         /// <returns></returns>
         public List<J_JobInfo> GetJobInfoByPage(int pageIndex,int pageSize,ref int rowCount,bool isAsc,bool isMiddle,int uid=-1)
         {
-            List<J_JobInfo> query = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault().J_JobInfo.ToList();
+            
+            IEnumerable<J_JobInfo> query;
             //List<J_JobInfo> query = base.GetListBy(j => j.UID == uid).ToList();
             if (uid != -1)
             {
-                query = NullDelJob(query).ToList();
+                //获取指定uid的所有非终止作业
+                query = GetNullFinishJobInfo(uid);
+                //过滤掉软删除的作业
+                query = NullDelJob(query);
             }
             else
             {
@@ -55,15 +61,41 @@ namespace PMS.BLL
            return this.ToListByPage(query, pageIndex, pageSize, ref rowCount, true, true);
         }
 
-        private List<J_JobInfo> ToListByPage(List<J_JobInfo> query, int pageIndex, int pageSize, ref int rowCount, bool isAsc, bool isMiddle)
+        /// <summary>
+        /// 根据指定的用户id
+        /// 获取该用户id的非终止作业
+        /// </summary>
+        /// <param name="uid">用户id</param>
+        /// <returns></returns>
+        protected IEnumerable<J_JobInfo> GetNullFinishJobInfo(int uid)
         {
+            int jobState = (int)Model.Enum.JobState_Enum.stop;
+            var array = from j in userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault().J_JobInfo
+                              where j.JobState != jobState
+                              select j;
+            return array;
+        }
+
+        /// <summary>
+        /// 分页返回
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        private List<J_JobInfo> ToListByPage(IEnumerable<J_JobInfo> query, int pageIndex, int pageSize, ref int rowCount, bool isAsc, bool isMiddle)
+        {
+            rowCount = query.ToList().Count();
             if (isAsc)
             {
-                query = query.OrderBy(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                query = query.OrderBy(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             }
             else
             {
-                query = query.OrderByDescending(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                query = query.OrderByDescending(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             }
             if (isMiddle)
             {
@@ -71,7 +103,7 @@ namespace PMS.BLL
             }
             else
             {
-                return query;
+                return query.ToList();
             }
 
         }
@@ -164,6 +196,27 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 终止指定作业
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PMS.Model.Message.IBaseResponse RemoveJob(int id)
+        {
+            //1 根据id查询实体
+            var job_temp = this.GetListBy(j => j.JID == id).FirstOrDefault();
+            //
+            if (job_temp != null)
+            {
+                //2 暂停
+                var response = ijobService.RemovceJob(job_temp);
+                //软删除
+                this.DelJobInfo(id);
+                return response;
+            }
+            return new PMS.Model.Message.BaseResponse() { Success = false, Message = "不存在指定作业" };
+        }
+
+        /// <summary>
         /// 编辑（暂未实现）
         /// </summary>
         /// <param name="model"></param>
@@ -235,11 +288,7 @@ namespace PMS.BLL
             {
                 //2 删除该作业
                 //var response = ijobService.RemovceJob(job_temp);
-                //if (response.Success == true)
-                //{
-                //    DelSoftJobInfos(new int[]{ JID});
-                //}
-                //return response.Success;
+               return DelSoftJobInfos(new int[] { JID });
             }
             return false;
         }

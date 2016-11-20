@@ -171,7 +171,40 @@ namespace QuartzJobFactory
             
             return response;
         }
+        #endregion 
+
+        #region 7 终止指定作业
+        /// <summary>
+        /// 终止指定作业
+        /// </summary>
+        /// <param name="job"></param>
+        /// <returns></returns>
+        public IBaseResponse RemoveJob(J_JobInfo job)
+        {
+            IBaseResponse response = new BaseResponse() { Success = false };
+            try
+            {
+
+                sche.PauseJob(new JobKey(job.JobName, job.JobGroup));
+                //1 取出指定的触发器
+                var trigger = new TriggerKey(job.JobName, job.JobGroup);
+                //2 先暂停触发器（试一下若不暂停触发器可否？——11月20日）
+                sche.PauseTrigger(trigger);
+                //3 调度中的该方法只能传入触发器
+                sche.UnscheduleJob(trigger);
+
+                response.Success = true;
+                response.Message = string.Format("job:{0},group{1}已终止工作", job.JobName, job.JobGroup);
+            }
+            catch (Exception)
+            {
+                response.Message = string.Format("job:{0},group{1}终止工作时出错", job.JobName, job.JobGroup);
+            }
+
+            return response;
+        }
         #endregion
+
 
         #region 暂时不用的
         public void SaveScheduleInDB()

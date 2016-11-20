@@ -32,7 +32,7 @@ namespace QuartzJobFactory
         /// <param name="JobName"></param>
         /// <param name="GroupName"></param>
         void AddListener(IJobListener jobListener, string JobName, string GroupName);
-        
+
         #endregion
 
         #region 3 恢复全部作业
@@ -68,5 +68,15 @@ namespace QuartzJobFactory
         /// <returns></returns>
         IBaseResponse PauseJob(J_JobInfo job);
         #endregion
+
+        #region 7 终止指定作业
+        /// <summary>
+        /// 终止指定作业
+        /// </summary>
+        /// <param name="job"></param>
+        /// <returns></returns>
+        IBaseResponse RemoveJob(J_JobInfo job);
+        #endregion
+
     }
 }
