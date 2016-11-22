@@ -115,6 +115,27 @@ namespace SMSOA.Areas.Job.Controllers
             int uid = GetUserId();
             //1.获取类型
             var jopType = int.Parse(Request.QueryString["jopType"]);
+            switch(jopType)
+            {
+                case 0:
+                    ViewBag.backAction = "DoEditJobInfo";
+                    ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
+                    break;
+                case 1:
+                ViewBag.backAction = "DoEditJobInfo";
+                ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
+                    break;
+                case 2:
+                ViewBag.backAction = "DoEditJobInfo";
+                ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
+                    break;
+                case 99:
+                    ViewBag.backAction = "DoEditJobInfo";
+                    ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
+                    break;
+            }
+
+            
             ViewBag.backAction = "DoEditJobInfo";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
             //ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
