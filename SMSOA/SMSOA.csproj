@@ -47,6 +47,7 @@
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
@@ -414,10 +415,9 @@
     <Content Include="Areas\Admin\Views\Home\_Parital_Home_Top_BtnView.cshtml" />
     <Content Include="Areas\Job\Views\web.config" />
     <Content Include="Areas\Job\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Job\Views\Template\Index.cshtml" />
     <Content Include="Areas\Job\Views\Instance\Index.cshtml" />
     <Content Include="Areas\Job\Views\Template\ShowEditTemplate.cshtml" />
-    <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_LoadDataGrid_JS.cshtml" />
+    <Content Include="Areas\Job\Views\Shared\_Partial_JobIns_LoadDataGrid_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_tbFunc_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_Common_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\ShowEditInstance.cshtml" />
@@ -428,7 +428,10 @@
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_MenuButtonView.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_JobIns_LoadMenuButton_JS.cshtml" />
     <Content Include="Areas\Job\Views\Instance\_Partial_Jobins_MenuButton.cshtml" />
-    <Content Include="Areas\Job\Views\Instance\ShowEditInstance - 复制.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\ShowEditInstance - 11月17备份.cshtml" />
+    <Content Include="Areas\Job\Views\Template\Index - 11月18日备份.cshtml" />
+    <Content Include="Areas\Job\Views\Template\Index.cshtml" />
+    <Content Include="Areas\Job\Views\Instance\_Partial_Formatter_JobState.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -463,6 +466,7 @@
     <Content Include="Scripts\MyCSS\MyIcon.css" />
     <Content Include="Scripts\MyScripts\Admin\IndexOperation.js" />
     <Content Include="Scripts\MyScripts\Common\my_FormatDate.js" />
+    <Content Include="Scripts\MyScripts\Common\my_getDgSelectionFunc.js" />
     <Content Include="Scripts\MyScripts\Common\my_loadDataGrid.js" />
     <Content Include="Scripts\MyScripts\Common\my_SetiframeBody.js" />
     <Content Include="Scripts\MyScripts\Common\Overload_ToLocaleDateString.js" />

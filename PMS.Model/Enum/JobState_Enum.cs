@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PMS.Model.Enum
 {
-    public enum JobState_Enum
+    public enum JobState_Enum:int
     {
         /// <summary>
         /// 正在运行

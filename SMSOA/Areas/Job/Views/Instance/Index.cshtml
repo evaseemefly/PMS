@@ -13,10 +13,27 @@
         var JobColumns = [[
                  { field: 'JID', title: 'ID', width: 50, checkbox: true },
                  { field: 'JobName', title: '作业名称', width: 100 },
-                 { field: 'JobGroup', title: '群组', width: 150 },
-                 { field: 'StartRunTime', title: '首次执行', width: 150 },
-                 { field: 'NextRunTime', title: '下次执行', width: 150 }
-
+                 { field: 'JobGroup', title: '群组', width: 50 },
+                 { field: 'CreateTime', title: '创建时间', width: 120 },
+                 { field: 'EndRunTime', title: '结束时间', width: 120 },
+                 { field: 'NextRunTime', title: '下次执行', width: 120 },
+                 { field: 'JobState', title: '作业状态', width: 50,formatter:function(value,row,index){
+                     var str;
+                     if(value==0){
+                         return '<span style="color:aqua;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==1){
+                         return '<span style="color:yellow;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==2){
+                         return '<span style="color:orange;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==3){
+                         return '<span style="color:red;">'+hashMap[value]+'</span>';
+                     }
+                     
+                 } },
+                 { field: 'Remark', title: '描述', width: 140 },
         ]]
 
     //加载显示菜单按钮
@@ -81,7 +98,7 @@
 </script>
 @*toolbar中定义的方法代码的分部视图*@
 @Html.Partial("_Partial_JobIns_tbFunc_JS")
-
+@Html.Partial("_Partial_Formatter_JobState")
 @*//loadDataGrid的代码分部视图*@
 @Html.Partial("_Partial_JobIns_LoadDataGrid_JS")
 @*@Html.Partial("_Partial_JobIns_LoadMenuButton_JS")*@
@@ -92,10 +109,10 @@
         <table class="easyui-datagrid" id="datagrid"></table>
         <div id="tb_contacts" style="padding:2px 5px;">
             <a href="#" istb="true" id="add_job" data-options="text: '新增',plain:true"></a>
-            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()"></a>
-            <a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()" ></a>
+            <a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()" ></a>
             <a href="#" class="easyui-linkbutton" id="pause_Job" data-options="iconCls:'icon-undo',text: '暂停',plain:true" onclick="pauseJobRow()"></a>
-            <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()" ></a>
             <a href="#" class="easyui-linkbutton" id="end_Job" data-options="iconCls:'icon-no',text: '终止',plain:true" onclick="endJobRow()"></a>
         </div>
         @*@Html.Partial("_Partial_Toolbar_Action")*@

@@ -11,18 +11,20 @@
     }
 
     function removeJobRow() {
-        CheckSelectRows("datagrid", "准备删除？", callback, "@ViewBag.DoAdd");
+        //CheckSelectRows("datagrid", "准备删除并终止？", callback, "@ViewBag.DoEndJob");
+        CheckOnlySelectionAndDo("datagrid", "要终止并删除选中的作业？", "指定作业已删除", "JID", "@ViewBag.DoEndJob", "jid");
     }
     function editJobRow() {
 
     }
     function pauseJobRow() {
-        CheckSelectRows("datagrid", "准备暂停？", callback, "@ViewBag.DoPause");
+        CheckOnlySelectionAndDo("datagrid", "要暂停选中的作业？", "指定作业已暂停", "JID", "@ViewBag.DoPause", "jid");
+
     }
     function recoveryJobRow() {
-        CheckSelectRows("datagrid", "准备恢复？", callback, "@ViewBag.DoRecovery");
+        CheckOnlySelectionAndDo("datagrid", "要恢复选中的作业？", "指定作业已恢复", "JID", "@ViewBag.DoRecovery", "jid");
     }
     function endJobRow() {
-        CheckSelectRows("datagrid", "准备终止？", callback, "@ViewBag.DoEnd");
+        CheckOnlySelectionAndDo("datagrid", "要终止并删除选中的作业？", "指定作业已删除", "JID", "@ViewBag.DoEndJob", "jid");
     }
 </script>

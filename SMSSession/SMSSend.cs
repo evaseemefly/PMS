@@ -398,11 +398,16 @@ namespace SMSFactory
                          phones = model.Model_Send.phones,
                          sendtime = model.Model_Send.sendtime,
                          subcode = model.Model_Send.subcode
+                        
                      },
 
                     Model_Message =new PMS.Model.ViewModel.ViewModel_Message()
                     {
-
+                        UID = model.Model_Message.UID,
+                        Content=model.Model_Send.content,
+                        SMSMissionID=model.Model_Message.SMSMissionID
+                         
+                        
                     }
                 }
                 //JobDataValue = new PMS.Model.SMSModel.SMSModel_Send()
@@ -426,7 +431,7 @@ namespace SMSFactory
 
             //在job的bll层中创建作业（同时写入数据库，并添加至调度池中）
             //client.AddScheduleJob(jobInstance, jobData);
-            response = new SMSModel_Receive();
+            response = new SMSModel_Receive() { result="0"};
             return true;
         }
 
