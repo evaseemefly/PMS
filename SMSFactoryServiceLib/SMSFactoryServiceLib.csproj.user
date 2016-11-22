@@ -4,10 +4,9 @@
     <VisualStudio>
       <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
         <WcfProjectProperties>
-          <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>
-          </PublishTargetLocation>
-          <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
+          <PublishCopyOption>AllFiles</PublishCopyOption>
+          <PublishTargetLocation>E:\03协同开发\999发布版\WCF\</PublishTargetLocation>
+          <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
         </WcfProjectProperties>
       </FlavorProperties>
     </VisualStudio>
