@@ -106,6 +106,9 @@
                 contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
                 async: true,
                 type: 'POST',
+                beforeSend: function () {
+                    messagerShowOnCenter("提交","已经提交");
+                },
                 success: function (data) {
                     if("ok" == data){
                         messagerShowOnCenter("提示","提交成功");
