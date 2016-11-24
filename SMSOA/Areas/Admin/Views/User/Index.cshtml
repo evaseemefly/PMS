@@ -375,13 +375,18 @@
         function afterEdit(msg,type) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+           // $.messager.alart('', 'aaaa');
             if (type == 0) {
+          
                 $("#editWindow").window('close');
                 //2 刷新当前页面
                 $("#datagrid").datagrid('reload');
+            } else if (type == 2) {
+               // alart("进来了");
+                // $("#editWindow").window('refresh');
+                editRow();
             }
-          
+            $.messager.alert('提示', msg);
         }
 
         function CancelRoleAssign() {

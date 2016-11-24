@@ -35,6 +35,7 @@ namespace PMS.DALSQLSer
                 //2.2 将已经获取到的EF上下文对象存储到当前线程槽中
                 CallContext.SetData(typeof(DBContextFactory).Name, dbContext);
             }
+            //dbContext.Configuration.AutoDetectChangesEnabled = false;
             //3 返回数据上下文对象
             return dbContext;
         }        

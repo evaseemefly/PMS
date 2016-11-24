@@ -430,7 +430,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\controllers.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\service.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.pdb
-D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\roslyn\System.Reflection.Metadata.dll
-D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\roslyn\VBCSCompiler.exe

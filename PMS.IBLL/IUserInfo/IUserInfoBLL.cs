@@ -10,7 +10,9 @@ namespace PMS.IBLL
 {
     public partial interface IUserInfoBLL
     {
-     
+
+        void TestUpdate(PMS.Model.UserInfo model);
+
         /// <summary>
         /// 根据UserID查找该用户对应的短信任务
         /// </summary>
@@ -18,6 +20,8 @@ namespace PMS.IBLL
         /// <param name="isMiddle">是否转成中间变量（转成中间变量为true）</param>
         /// <returns></returns>
         List<S_SMSMission> GetMissionListByUID(int uid, bool isMiddle, bool showDel);
+
+
 
         /// <summary>
         /// 根据传入的用户id获取该用户的常用群组，并从常用群组中删除传入的群组id集合
@@ -135,7 +139,13 @@ namespace PMS.IBLL
         bool AddValidation(String name);
 
         bool EditValidation(int id, String name);
-
+        /// <summary>
+        /// 在编辑页面不可修改密码
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        bool IsPwdChangedValidation(int id, string pwd);
         /// <summary>
         /// 根据用户名，备注多条件查询
         /// </summary>

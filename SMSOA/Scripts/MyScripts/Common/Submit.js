@@ -34,6 +34,9 @@ function afterEdit(data,name) {
     else if(data=="validation fails"){
         window.parent.afterEdit(name + "已存在，请重新输入", 1);
     }
+    else if (data == "validation fails : PwdChanged") {
+        window.parent.afterEdit("此页面禁止修改密码，请重新编辑", 2);
+    }
     else {
         window.parent.afterEdit("修改失败",0);
     }

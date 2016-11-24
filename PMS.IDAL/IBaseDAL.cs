@@ -59,8 +59,9 @@ namespace PMS.IDAL
         /// 4 查询用户信息
         /// </summary>
         /// <param name="whereLambda">查询条件（lambda）</param>
+        /// <param name="isNotTrack">是否被EF Context 追踪</param>
         /// <returns></returns>
-        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda);
+        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTrack = false);
         #endregion
 
         #region 4 根据条件 排序并查询+IQueryable<T> GetListBy<Tkey>

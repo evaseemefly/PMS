@@ -157,10 +157,16 @@ namespace PMS.DALSQLSer
         /// </summary>
         /// <param name="whereLambda">查询条件（lambda）</param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda)
+        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTrack = false)
         {
             //Db.Set<int>().Where()
-            return Db.Set<T>().Where(whereLambda);
+            var item = Db.Set<T>().Where(whereLambda);
+            if (isNotTrack)
+            {
+                return item.AsNoTracking();
+
+            }
+            return item;
         }
         #endregion
 

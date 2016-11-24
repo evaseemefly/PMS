@@ -890,6 +890,30 @@ namespace PMS.BLL
             var list_model = this.GetListBy(r => r.ID != id && r.DelFlag == false).ToList();
             return list_model.Exists(r => r.UName.Equals(name));
         }
+
+        public void TestUpdate(PMS.Model.UserInfo model)
+        {
+            #region 测试用，要删除！！！
+            //测试用
+            CurrentDAL.Update(model);
+            //return idal.SaveChange();
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 判断用户是否修改了密码
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public bool IsPwdChangedValidation(int id, string pwd)
+        {
+            var list = this.CurrentDAL.GetListBy(p => p.DelFlag == false && p.ID.Equals(id),true).FirstOrDefault();
+            return !list.UPwd.Equals(pwd);
+        }
+
+      
         /// <summary>
         /// 根据用户名称，备注查询
         /// </summary>
