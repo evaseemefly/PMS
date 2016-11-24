@@ -25,7 +25,8 @@
         //2 点选下拉框中之后调用加载的方法
         var actionType_Columns = [[
         { field: 'id', title: 'id', width: 60, hidden: true},
-        { field: 'text', title: '删除类型', width: '90%'}
+        { field: 'text', title: '删除/恢复的类型', width: '90%' }
+
         ]];
 
         var recycle_Columns = [[
@@ -36,6 +37,41 @@
         ,
         { field: 'SubDateTime', title: '创建时间', width: '30%' }
         ]];
+
+
+        //还原方法
+        function doRecover() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            var type = $("#area_combotree").combogrid('getValue');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            if ($.messager.confirm("提示", "确定要恢复选中项吗？", function (r) {
+                if (r) {
+                var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                strId = strId + rows[i].Id + ',';
+            }
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.DoRec" + "?ids=" + strId + "&&type=" + type, function (data) {
+                if (data == "ok") {
+                $("#datagrid").datagrid('reload');
+                $("#datagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "恢复成功");
+            }
+            });
+            }
+            }));
+                //去掉逗号
+        }
+
 
         function doDel() {
             var rows = $("#datagrid").datagrid('getSelections');
@@ -72,8 +108,8 @@
             }
             }));
         }
-           
-                
+
+
         //3 屈远完成
         //3.1 定义加载的columns
 
@@ -136,6 +172,7 @@
 @section tb_person{
     <div id="tb" style="padding:2px 5px;">
         <a href="#" class="easyui-linkbutton" id="del_person" data-options="iconCls:'icon-del_person',text: '删除',plain:true" onclick="doDel()"></a>
+        <a href="#" class="easyui-linkbutton" id="rec_data" data-options="iconCls:'icon-reload',text: '恢复',plain:true" onclick="doRecover()"></a> 
         选择
         <select class="easyui-combotree" name="PDID" id="area_combotree" panelHeight="auto" style="width:200px" data-options=""></select>
     </div>

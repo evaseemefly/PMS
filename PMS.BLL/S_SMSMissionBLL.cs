@@ -446,7 +446,8 @@ namespace PMS.BLL
 
         public List<ViewModel_Recycle_Common> GetIsDelList()
         {
-            return null;
+            var array = this.GetListBy(a => a.isDel == true).ToList();
+            return array.Select(a => a.ToRecycleModel()).ToList();
         }
     }
 }
