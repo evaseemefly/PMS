@@ -15,7 +15,12 @@ namespace PMS.Model.EqualCompare
 
         public int GetHashCode(P_PersonInfo obj)
         {
-            return obj.GetHashCode();
+            //11月25日重写此处
+            if (obj == null)
+                return 0;
+            else
+                return obj.PID.ToString().GetHashCode();
+            //return obj.GetHashCode();
         }
     }
 }

@@ -24,7 +24,12 @@ namespace PMS.Model.EqualCompare
 
         public int GetHashCode(EasyUICombobox obj)
         {
-            return obj.GetHashCode();
+            //11月25日重写此处
+            if (obj == null)
+                return 0;
+            else
+                return obj.id.ToString().GetHashCode();
+            //return obj.GetHashCode();
         }
     }
 }

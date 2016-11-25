@@ -15,7 +15,11 @@ namespace PMS.Model.EqualCompare
 
         public int GetHashCode(ActionInfo obj)
         {
-            return obj.GetHashCode();
+            if (obj == null)
+                return 0;
+            else
+                return obj.ID.ToString().GetHashCode();
+            //return obj.GetHashCode();
         }
     }
 }
