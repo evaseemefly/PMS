@@ -139,16 +139,24 @@ namespace SMSOA.Areas.Login.Controllers
                 string userPwd = Request.Cookies["sms_UserPwd"].Value;
 
                 //3 从数据库中查询指定用户名的对象
-                var userInfo = userInfoBLL.GetListBy(u => u.UName == userName).FirstOrDefault();
-                if (userInfo != null)
+                if(userInfoBLL.CheckPwdByUser(userName, userPwd))
                 {
-                    //判断当前cookie中传入的密码与数据库中的密码是否相同
-                    if (userInfo.UPwd == userPwd)
-                    {
-                        Response.Redirect("/Admin/Home/Index");
-                    }
-
+                    Response.Redirect("/Admin/Home/Index");
                 }
+
+                #region 已封装至UserBLL层中的CheckPwdByUser方法
+                //var userInfo = userInfoBLL.GetListBy(u => u.UName == userName).FirstOrDefault();
+                //if (userInfo != null)
+                //{
+                //    //判断当前cookie中传入的密码与数据库中的密码是否相同
+                //    if (userInfo.UPwd == userPwd)
+                //    {
+                //        Response.Redirect("/Admin/Home/Index");
+                //    }
+
+                //}
+                #endregion
+
             }
         }
 

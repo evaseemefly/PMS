@@ -8,10 +8,10 @@
 </style>
 <link href="~/Scripts/MyCSS/MyEditWin.css" rel="stylesheet" />
 <script type="text/javascript">
-    //$(function () {
-    //    //关闭当前窗体
-    //    $("#resetPwdDiv").window('close');
-    //})
+    
+    function CancelResetPwd() {
+        $("#showResetPwdWindow").window('close');
+    }
 </script>
 
 @*！！！注意此分部视图会在Home/Index以及User/Index中共用*@
@@ -39,7 +39,7 @@
             <div style="text-align:center;padding:5px">
                 @*<input type="submit" value="提交" />*@
                 <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoResetPwd()" style="width:80px">提交</a>
-                <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%;width:80px" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelResetPwd()" >取消</a>
             </div>
         </div>
     </div>

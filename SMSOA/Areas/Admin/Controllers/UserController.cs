@@ -110,11 +110,13 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult DoEditUserInfo(UserInfo model)
         {
             //数据验证
-            if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
+            //if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
 
                 model.ModifiedOnTime = DateTime.Now;
 
-                if (userInfoBLL.Update(model))
+            var usertemp = userInfoBLL.GetListBy(u => u.ID == model.ID).FirstOrDefault();
+            //usertemp.UName = model.UName;
+            if (userInfoBLL.Update(model))
                 {
                     return Content("ok");
                 }

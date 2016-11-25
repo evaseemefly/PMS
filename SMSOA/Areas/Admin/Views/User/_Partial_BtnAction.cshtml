@@ -5,17 +5,31 @@
         var uid = rows[0].ID;
         if ($.messager.confirm("提示", "准备提交？", function (r) {
                 if (r) {
+            //11月24日 修改之前的备份（使用数据验证）——暂时备份掉
             //获取修改的密码
             var newPwd = $("#UPwd").val();
+            var newRPwd = $("#RUPwd").val();
+            if (newPwd!=newRPwd) {
+                messagerAlertByAlert("错误", "两次输入的密码不一致，请重新输入");
+                return;
+            }
                $.post("@ViewBag.ResetPwd?uid=" + uid + "&&pwd=" + newPwd, function (data) {
             //请求成功后的回调函数
             //执行afterEdit
             afterEdit("修改成功");
              $("#showResetPwdWindow").window('close');
         });
+
+            //修改如下：
+            @*DoSubmitByFunc("showResetPwdWindow","@ViewBag.ResetPwd",function(){
+             afterEdit("修改成功");
+             $("#showResetPwdWindow").window('close');
+        });*@
         }
         }));
     }
+
+
 
     function ResetPassword() {
         //判断是否有选中的行

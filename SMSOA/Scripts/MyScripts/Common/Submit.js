@@ -21,6 +21,26 @@
     myform.form('submit', options);
 }
 
+function DoSubmitByFunc(id,url,func) {
+    ///	<summary>
+    ///	执行带回调函数提交操作
+    ///
+    ///	</summary>
+    ///	<param name="id" type="string">
+    ///		id选择器要选择的id
+    ///	</param>
+    ///	<param name="url" type="string">
+    ///		要提交到的url地址
+    ///	</param>
+    var myform = $("#" + id);
+    var options = {
+        url: url,
+        type: 'post',
+        success: func()
+    };
+    myform.form('submit', options);
+}
+
 function afterEdit(data,name) {
 
     //$.messager.alert('提醒', '提交成功!');

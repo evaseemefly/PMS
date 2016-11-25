@@ -10,7 +10,15 @@ namespace PMS.IBLL
 {
     public partial interface IUserInfoBLL
     {
-     
+
+        /// <summary>
+        /// 根据用户名及密码判断指定用户是否存在
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPwd"></param>
+        /// <returns></returns>
+        bool CheckPwdByUser(string userName, string userPwd);
+
         /// <summary>
         /// 根据UserID查找该用户对应的短信任务
         /// </summary>

@@ -119,15 +119,10 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool Update(T model)
         {
-            //Dg_Test dg_test = new Dg_Test(Test);
-            ////dg_test("我是通过委托传递的参数");
-
-            //Delete(dg_test);
             //1 将T对象 加入 EF 容器中，并获取实体对象的管理状态
             DbEntityEntry<T> entry = Db.Entry<T>(model);
             //2 设置该对象为修改过的状态
             entry.State = System.Data.Entity.EntityState.Modified;  //EF5.0与EF 6.0有区别
-
             return true;
 
         }

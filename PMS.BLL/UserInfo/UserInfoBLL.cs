@@ -88,6 +88,25 @@ namespace PMS.BLL
         //    return array.Where(j => j.isDel == false);
         //}
 
+            /// <summary>
+            /// 根据用户名及密码判断指定用户是否存在
+            /// </summary>
+            /// <param name="userName"></param>
+            /// <param name="userPwd"></param>
+            /// <returns></returns>
+        public bool CheckPwdByUser(string userName,string userPwd)
+        {
+            var user_temp= this.GetListBy(u => u.UName == userName && u.DelFlag == false).FirstOrDefault();
+            if (user_temp != null)
+            {
+                if (user_temp.UPwd == userPwd)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 根据id集合批量删除action
         /// </summary>
