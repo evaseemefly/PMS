@@ -14,9 +14,15 @@
                  { field: 'JID', title: 'ID', width: 50, checkbox: true },
                  { field: 'JobName', title: '作业名称', width: 100 },
                  { field: 'JobGroup', title: '群组', width: 50 },
-                 { field: 'CreateTime', title: '创建时间', width: 120 },
-                 { field: 'EndRunTime', title: '结束时间', width: 120 },
-                 { field: 'NextRunTime', title: '下次执行', width: 120 },
+                 { field: 'CreateTime', title: '创建时间', width: 120,formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                 }  },
+                 { field: 'EndRunTime', title: '结束时间', width: 120,formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                 }  },
+                 { field: 'NextRunTime', title: '下次执行', width: 120,formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                 }  },
                  { field: 'JobState', title: '作业状态', width: 50,formatter:function(value,row,index){
                      var str;
                      if(value==0){
