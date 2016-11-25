@@ -110,7 +110,7 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult DoEditUserInfo(UserInfo model)
         {
             //数据验证
-            //if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
+            if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
             if(userInfoBLL.IsPwdChangedValidation(model.ID,model.UPwd)) { return Content("validation fails : PwdChanged"); }
             
             model.ModifiedOnTime = DateTime.Now;

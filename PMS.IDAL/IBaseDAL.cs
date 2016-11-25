@@ -61,7 +61,7 @@ namespace PMS.IDAL
         /// <param name="whereLambda">查询条件（lambda）</param>
         /// <param name="isNotTrack">是否被EF Context 追踪（注意此处默认不应为false，否则之前的查询获取的对象全部不加载至数据上下文对象中——原默认值为false，现改为true——此处仍为fasle，默认值不为true）</param>
         /// <returns></returns>
-        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTrack = true);
+        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTrack = false);
         #endregion
 
         #region 4 根据条件 排序并查询+IQueryable<T> GetListBy<Tkey>
