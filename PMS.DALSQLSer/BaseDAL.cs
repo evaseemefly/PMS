@@ -119,15 +119,10 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool Update(T model)
         {
-            //Dg_Test dg_test = new Dg_Test(Test);
-            ////dg_test("我是通过委托传递的参数");
-
-            //Delete(dg_test);
             //1 将T对象 加入 EF 容器中，并获取实体对象的管理状态
             DbEntityEntry<T> entry = Db.Entry<T>(model);
             //2 设置该对象为修改过的状态
             entry.State = System.Data.Entity.EntityState.Modified;  //EF5.0与EF 6.0有区别
-
             return true;
 
         }
@@ -154,15 +149,31 @@ namespace PMS.DALSQLSer
         #region 4 查询用户信息+ public IQueryable<T> GetListBy
         /// <summary>
         /// 4 查询用户信息
+	    /// isNotTrack默认值为false，只有为true时才进行AsNoTracking操作，查询对象不加载至DBContext中
         /// </summary>
         /// <param name="whereLambda">查询条件（lambda）</param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda)
+        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda, bool isNotTrack = false)
         {
             //Db.Set<int>().Where()
-            return Db.Set<T>().Where(whereLambda);
+            var item = Db.Set<T>().Where(whereLambda);
+            ToNoTracking(ref item, isNotTrack);
+            //if (isNotTrack)
+            //{
+            //    return item.AsNoTracking();
+
+            //}
+            return item;
         }
         #endregion
+
+        protected void ToNoTracking(ref IQueryable<T> query,bool isNotTrack = true)
+        {
+            if (isNotTrack)
+            {
+              query= query.AsNoTracking();
+            }
+        }
 
         #region 4 根据条件 排序并查询+IQueryable<T> GetListBy<Tkey>
         /// <summary>
@@ -174,7 +185,12 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda)
         {
-            return Db.Set<T>().Where(whereLambda).OrderBy(orderLambda);
+            //11月25日 修改
+            //return Db.Set<T>().Where(whereLambda).OrderBy(orderLambda);
+            //新增
+            var query = Db.Set<T>().Where(whereLambda).OrderBy(orderLambda).AsQueryable();
+            ToNoTracking(ref query, true);
+            return query;
         }
         #endregion
 

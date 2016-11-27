@@ -473,7 +473,8 @@ namespace SMSFactory
             #endregion
             // SMSModel_Receive receive = new SMSModel_Receive();
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            client.SendMsg(model.Model_Send, out receiveModel);
+            //client.SendMsg(model.Model_Send, out receiveModel);
+            receiveModel = new SMSModel_Receive() { msgid = "210cb72fe038484fb2952d0db96e0ae7", desc = "提交成功", result = "0", failPhones = new string[] { "" } };
             //发送之后执行将发送记录写会数据库的操作
             this.AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
             //SendMsg(model, out response);

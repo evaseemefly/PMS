@@ -111,10 +111,18 @@ namespace SMSOA.Areas.Admin.Controllers
         {
             //数据验证
             if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
+            if(userInfoBLL.IsPwdChangedValidation(model.ID,model.UPwd)) { return Content("validation fails : PwdChanged"); }
+            
+            model.ModifiedOnTime = DateTime.Now;
+            
+            #region 测试用，删掉！！
+ //           var a = userInfoBLL.GetListBy(p => p.DelFlag == false && p.ID == model.ID).FirstOrDefault();
+//            userInfoBLL.TestUpdate(a);
+            #endregion
 
-                model.ModifiedOnTime = DateTime.Now;
-
-                if (userInfoBLL.Update(model))
+            //var usertemp = userInfoBLL.GetListBy(u => u.ID == model.ID).FirstOrDefault();
+            //usertemp.UName = model.UName;
+            if (userInfoBLL.Update(model))
                 {
                     return Content("ok");
                 }
@@ -132,7 +140,7 @@ namespace SMSOA.Areas.Admin.Controllers
         {
 
                 //1 找到指定id的action对象
-                var model = userInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
+                var model = userInfoBLL.GetListBy(a=>a.DelFlag ==false &&a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
 
                 //提供显示页面提交时跳转到的用户名称
                 ViewData.Model = model;

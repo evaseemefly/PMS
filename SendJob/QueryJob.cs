@@ -20,9 +20,9 @@ namespace JobInstances
             var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
         }
 
-        protected override void Exceuted(IJobExecutionContext context)
-        {
-            //throw new NotImplementedException();
-        }
+        //protected override void Exceuted(IJobExecutionContext context)
+        //{
+        //    //throw new NotImplementedException();
+        //}
     }
 }

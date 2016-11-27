@@ -20,6 +20,7 @@ namespace SMSOA.Areas.Recycled.Controllers
             ViewBag.LoadActionType_ComboGrid = "GetAllRecycled_ComboGrid";
             ViewBag.LoadAllDelInfo_DataGrid = "GetAllDelInfoByType";
             ViewBag.DoDel = "DoDel";
+            ViewBag.DoRec = "DoRecover";
             return View();
         }
 
@@ -105,7 +106,32 @@ namespace SMSOA.Areas.Recycled.Controllers
             //temp = temp.Replace("Checked", "checked");
             return Content(temp);
         }
+        /// <summary>
+        /// 执行还原方法
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult DoRecover()
+        {
+            //1.得到传回的选定的id
+            var ids = Request.QueryString["ids"];
+            var typeId = int.Parse(Request["type"]);
+            var myBLL = SimpleRecFactory.CreateBLL(typeId);
+            //2.调用还原方法
+            string[] Ids = ids.Split(',');
+            List<int> list_ids = new List<int>();
+            list_ids = Ids.Select(p => int.Parse(p)).ToList();
+            try
+            {
+                myBLL.Recovery(list_ids);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("error");
+            }
 
+        }
        
        
     }

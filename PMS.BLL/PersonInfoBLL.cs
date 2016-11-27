@@ -256,10 +256,10 @@ namespace PMS.BLL
        /// <returns></returns>
         public bool UpdatePerson(string phone, int[] id_group, int[] id_department)
         {
-            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PhoneNum == phone).FirstOrDefault();
+            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PhoneNum == phone,false).FirstOrDefault();
             
-            var departments_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d =>id_department.Contains(d.DID)).ToList();           
-            var groups_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g =>id_group.Contains(g.GID )).ToList();
+            var departments_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d =>id_department.Contains(d.DID),false).ToList();           
+            var groups_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g =>id_group.Contains(g.GID ),false).ToList();
             var group_exists = person_model.P_Group.Select(g => g.GID).ToArray();
             //为联系人分配群组
             foreach (var item_group in groups_temp)

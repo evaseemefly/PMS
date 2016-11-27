@@ -88,6 +88,25 @@ namespace PMS.BLL
         //    return array.Where(j => j.isDel == false);
         //}
 
+            /// <summary>
+            /// 根据用户名及密码判断指定用户是否存在
+            /// </summary>
+            /// <param name="userName"></param>
+            /// <param name="userPwd"></param>
+            /// <returns></returns>
+        public bool CheckPwdByUser(string userName,string userPwd)
+        {
+            var user_temp= this.GetListBy(u => u.UName == userName && u.DelFlag == false).FirstOrDefault();
+            if (user_temp != null)
+            {
+                if (user_temp.UPwd == userPwd)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 根据id集合批量删除action
         /// </summary>
@@ -890,6 +909,31 @@ namespace PMS.BLL
             var list_model = this.GetListBy(r => r.ID != id && r.DelFlag == false).ToList();
             return list_model.Exists(r => r.UName.Equals(name));
         }
+
+        public void TestUpdate(PMS.Model.UserInfo model)
+        {
+            #region 测试用，要删除！！！
+            //测试用
+            CurrentDAL.Update(model);
+            //return idal.SaveChange();
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 判断用户是否修改了密码
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public bool IsPwdChangedValidation(int id, string pwd)
+        {
+			//***以后将CurrentDAL.GetListBy统一修改为调用bll层的GetListBy方法（再商议）***
+            var list = this.CurrentDAL.GetListBy(p => p.DelFlag == false && p.ID.Equals(id),true).FirstOrDefault();
+            return !list.UPwd.Equals(pwd);
+        }
+
+      
         /// <summary>
         /// 根据用户名称，备注查询
         /// </summary>

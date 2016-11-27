@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a0c82db7-38f6-42ae-8c54-b2cf8d627b4c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SMSFactoryServiceLib.disco" MetadataType="Disco" ID="b77f55b5-ae73-491e-bc85-9e49c0625657" SourceId="1" SourceUrl="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc?disco" />
+    <MetadataFile FileName="SMSFactoryServiceLib.xsd" MetadataType="Schema" ID="01f0e763-92d5-42a8-b444-e7e11e79556b" SourceId="1" SourceUrl="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SMSFactoryServiceLib1.xsd" MetadataType="Schema" ID="ef6bdf89-033d-4a1c-8d2a-1804b4c517b3" SourceId="1" SourceUrl="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SMSFactoryServiceLib2.xsd" MetadataType="Schema" ID="7fa236f9-ada2-4fea-b857-448e7e5dbbb2" SourceId="1" SourceUrl="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SMSFactoryServiceLib3.xsd" MetadataType="Schema" ID="1475c1ad-1aa5-41a5-bb14-001a0914b913" SourceId="1" SourceUrl="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SMSService.wsdl" MetadataType="Wsdl" ID="41fe40ca-43ab-4ee8-9b26-328c8068bd61" SourceId="1" SourceUrl="http://172.20.1.48:8090/SMSFactoryServiceLib.SMSService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
