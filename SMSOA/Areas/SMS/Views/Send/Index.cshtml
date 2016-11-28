@@ -201,6 +201,9 @@
            
         }
         var userId=-999;
+        //思路如下：
+        // 页面加载之前将isLoadSuccess设置为false，页面加载过程中会触发onSelect及onCheck事件，此时不执行写在onSelect中的方法，只有在页面加载后才会执行onSelect中的方法
+        var isLoadSuccess = false;
         //----------------------------加载几个下拉框-----------------------------
         //根据登录的用户加载其选中的常用 短信任务
         //加载短信任务combogrid
@@ -349,16 +352,27 @@
                 rownumbers: true, //是否加行号
                 loadMsg: '加载中……',
                 columns: PersonColumns,
+                onBeforeLoad:function(){
+                    //alert("页面加载之前");
+                    isLoadSuccess = false;
+                },
                 onLoadSuccess: function () {
                     var data = $("#persondatagrid").datagrid("getData");
                     var rowData = data.rows;
                     $.each(rowData, function (rowIndex, rowData) {
-                        $("#"+datagrid_id).datagrid("selectRow", rowIndex);
+                        if ($.inArray(rowData["PID"], arr_UnSelectPersonIds) == -1) {
+                            $("#persondatagrid").datagrid("selectRow", rowIndex);
+                        }
                     });
+                    isLoadSuccess = true;
                 },
+                selectOnCheck:true,
+                checkOnSelect:true,
                 onSelect:function(rowIndex,rowData){
                     if(!isTempPerson){
-                        my_popFromArr(arr_UnSelectPersonIds,rowData["PID"]);
+                        if (isLoadSuccess) {
+                            my_popFromArr(arr_UnSelectPersonIds, rowData["PID"]);
+                        }
                     }
                 },
                 onUnselect:function(rowIndex, rowData){
