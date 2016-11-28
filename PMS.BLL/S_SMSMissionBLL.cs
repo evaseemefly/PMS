@@ -429,7 +429,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool AddValidation(String name)
         {
-            var list_model = this.GetListBy(p => p.isDel == false).ToList();
+            var list_model = this.GetListBy(p => true,true).ToList();
             return list_model.Exists(p => p.SMSMissionName.Equals(name));
         }
         /// <summary>
@@ -440,7 +440,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool EditValidation(int id,String name)
         {
-            var list_model = this.GetListBy(p => p.SMID != id && p.isDel == false).ToList();
+            var list_model = this.GetListBy(p => p.SMID != id,true).ToList();
             return list_model.Exists(p => p.SMSMissionName.Equals(name));
         }
 

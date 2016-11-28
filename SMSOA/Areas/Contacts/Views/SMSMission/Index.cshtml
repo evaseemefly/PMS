@@ -40,7 +40,9 @@
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
 
         }
-
+        function Refresh() {
+            $("#SMSMissiondatagrid").datagrid('reload');
+        }
         function removeSMSMissionRow() {
             var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
             //若选中的行不为一行
@@ -66,7 +68,7 @@
                 //请求成功后的回调函数
                 if (data == "ok") {
                 //重新加载datagrid
-                   $("#SMSMissiondatagrid").datagrid('reload');
+                   Refresh();
                 //清楚所选中的行
                 $("#SMSMissiondatagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");

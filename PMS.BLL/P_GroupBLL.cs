@@ -149,7 +149,7 @@ namespace PMS.BLL
             foreach (var item in this.GetListByIds(list_ids))
             {
                 //清空与该群组有关联的人员外键
-                item.P_PersonInfo.Clear();
+                //item.P_PersonInfo.Clear();  清除关系留到硬删除的时候
                 ///修改其中的删除标记
                 item.isDel = true;
                 //并添加至新创建的集合中
@@ -172,7 +172,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool AddValidation(String name)
         {
-            var list_model = this.GetListBy(r => r.isDel == false).ToList();
+            var list_model = this.GetListBy(p=>true, true).ToList();
             return list_model.Exists(r => r.GroupName.Equals(name));
         }
         /// <summary>
@@ -181,7 +181,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool EditValidation(int id, String name)
         {
-            var list_model = this.GetListBy(r => r.GID != id && r.isDel == false).ToList();
+            var list_model = this.GetListBy(r => r.GID != id,true).ToList();
             return list_model.Exists(r => r.GroupName.Equals(name));
 
             

@@ -183,13 +183,13 @@ namespace PMS.DALSQLSer
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda)
+        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda, bool isNotTracking = false)
         {
             //11月25日 修改
             //return Db.Set<T>().Where(whereLambda).OrderBy(orderLambda);
             //新增
             var query = Db.Set<T>().Where(whereLambda).OrderBy(orderLambda).AsQueryable();
-            ToNoTracking(ref query, true);
+            ToNoTracking(ref query, true);           
             return query;
         }
         #endregion

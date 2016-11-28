@@ -133,7 +133,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool AddValidation(String name)
         {
-            var list_model = this.GetListBy(r => r.isDel == false).ToList();
+            var list_model = this.GetListBy(r => true,true).ToList();
             return list_model.Exists(r => r.DepartmentName.Equals(name));
         }
         /// <summary>
@@ -142,7 +142,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool EditValidation(int id, String name)
         {
-            var list_model = this.GetListBy(r => r.DID != id && r.isDel == false).ToList();
+            var list_model = this.GetListBy(r => r.DID != id,true).ToList();
             return list_model.Exists(r => r.DepartmentName.Equals(name));
 
 
