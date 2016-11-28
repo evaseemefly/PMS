@@ -91,11 +91,13 @@ namespace PMS.BLL
             rowCount = query.ToList().Count();
             if (isAsc)
             {
-                query = query.OrderBy(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                //query = query.OrderBy(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                query = query.OrderByDescending(j => j.CreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             }
             else
             {
-                query = query.OrderByDescending(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                //query = query.OrderByDescending(j => j.JID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                query = query.OrderByDescending(j => j.CreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             }
             if (isMiddle)
             {
@@ -103,10 +105,12 @@ namespace PMS.BLL
             }
             else
             {
+                //按照时间倒叙
                 return query.ToList();
             }
 
         }
+
 
         /// <summary>
         /// 根据角色查询该角色拥有的模板（暂未实现）
