@@ -277,7 +277,8 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool SaveChange()
         {
-            return Db.SaveChanges() > 0;
+            var i =Db.SaveChanges() ;
+            return i > 0;
         }
         #endregion
 

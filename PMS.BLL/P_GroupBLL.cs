@@ -84,19 +84,19 @@ namespace PMS.BLL
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if(list_model == null) { return false; }
-            foreach (var item in list_model)
-            {
-                //2. 得到群组和联系人的关联表数据并删除
-                item.P_PersonInfo.Clear();
-                //2. 得到群组和任务的关联表数据并删除
-                item.R_Group_Mission.Clear();
-                //2. 得到群组和用户的关联表数据并删除
-                item.R_UserInfo_Group.Clear();
-            }
+            //foreach (var item in list_model)
+            //{
+            //    //2. 得到群组和联系人的关联表数据并删除
+            //    item.P_PersonInfo.Clear();
+            //    //2. 得到群组和任务的关联表数据并删除
+            //    item.R_Group_Mission.Clear();
+            //    //2. 得到群组和用户的关联表数据并删除
+            //    item.R_UserInfo_Group.Clear();
+            //}
             try
             {
                 //3. 从数据库中删除这些实体对象
-                this.CurrentDAL.UpdateByList(list_model);
+                //this.CurrentDAL.UpdateByList(list_model);
                 this.CurrentDAL.DelByList(list_model);
                 this.CurrentDAL.SaveChange();
                 return true;
