@@ -27,7 +27,9 @@ namespace PMS.Model.Dictionary
         {
             dResponseCode = new Dictionary<string, int>();
             dResponseCode.Add("WAITING",2 );
-            dResponseCode.Add("COMPLETE", 1); 
+            dResponseCode.Add("COMPLETE", 1);
+            dResponseCode.Add("PAUSED", 5);
+            dResponseCode.Add("STOP", 4);
             dResponseCode.Add("null", 99);
         }
     }

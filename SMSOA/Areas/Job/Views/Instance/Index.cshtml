@@ -34,10 +34,12 @@
                      if(value==2){
                          return '<span style="color:orange;">'+hashMap[value]+'</span>';
                      }
-                     if(value==3){
+                     if(value==4){
                          return '<span style="color:red;">'+hashMap[value]+'</span>';
                      }
-                     
+                     if(value==5){
+                         return '<span style="color:orchid;">'+hashMap[value]+'</span>';
+                     }
                  } },
                  { field: 'Remark', title: '描述', width: 140 },
         ]]
@@ -110,15 +112,15 @@
 @*@Html.Partial("_Partial_JobIns_LoadMenuButton_JS")*@
 }
 
-@section Body{
+@section Body{    
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
         <div id="tb_contacts" style="padding:2px 5px;">
             <a href="#" istb="true" id="add_job" data-options="text: '新增',plain:true"></a>
-            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()" ></a>
+            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()"></a>
             @*<a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()" ></a>*@
             <a href="#" class="easyui-linkbutton" id="pause_Job" data-options="iconCls:'icon-undo',text: '暂停',plain:true" onclick="pauseJobRow()"></a>
-            <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()" ></a>
+            <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()"></a>
             <a href="#" class="easyui-linkbutton" id="end_Job" data-options="iconCls:'icon-no',text: '终止',plain:true" onclick="endJobRow()"></a>
         </div>
         @*@Html.Partial("_Partial_Toolbar_Action")*@

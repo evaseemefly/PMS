@@ -19,9 +19,14 @@ namespace PMS.Model.Enum
         COMPLETE=1,
 
         /// <summary>
-        /// 暂停
+        /// 等待
         /// </summary>
         WAITING = 2,
+
+        /// <summary>
+        /// 暂停
+        /// </summary>
+        PAUSED=5,
 
         /// <summary>
         /// 休眠
@@ -31,7 +36,7 @@ namespace PMS.Model.Enum
         ///<summary>
         /// 终止
         /// </summary>
-        stop=4,
+        STOP=4,
 
         
     }

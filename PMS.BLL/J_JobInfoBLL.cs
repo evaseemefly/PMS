@@ -26,7 +26,7 @@ namespace PMS.BLL
         public IEnumerable<J_JobInfo> GetAllNullDelJobInfo()
         {
            return from j in base.GetListBy(j => j.isDel == false)
-                  where j.JobState!=(int)Model.Enum.JobState_Enum.stop
+                  where j.JobState!=(int)Model.Enum.JobState_Enum.STOP
                   select j;
         }
 
@@ -69,7 +69,7 @@ namespace PMS.BLL
         /// <returns></returns>
         protected IEnumerable<J_JobInfo> GetNullFinishJobInfo(int uid)
         {
-            int jobState = (int)Model.Enum.JobState_Enum.stop;
+            int jobState = (int)Model.Enum.JobState_Enum.STOP;
             var array = from j in userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault().J_JobInfo
                               where j.JobState != jobState
                               select j;
@@ -143,12 +143,14 @@ namespace PMS.BLL
             // 1 添加作业至调度池中
             if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
+            base.Create(model);
             var response = ijobService.AddScheduleJob(model, jobData);
+
             //2 写入jobInfo表作业的状态
             if (response.Success)
             {
-                model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING)
-                base.Create(model);
+                model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
+                base.Update(model);
             }
             //2 根据传入的JobInfo创建指定的作业
             //if (response.Success == true)
@@ -174,12 +176,18 @@ namespace PMS.BLL
             //1 根据id查询实体
             var job_temp = this.GetListBy(j => j.JID == id).FirstOrDefault();
             //
+            Model.Message.IBaseResponse response = new Model.Message.BaseResponse(); 
             if (job_temp != null)
             {
                 //2 暂停
-                var response = ijobService.PauseJob(job_temp);
-                return response;
+                response = ijobService.PauseJob(job_temp);
                 // return response.Success;
+            }
+            if (response.Success)
+            {
+                job_temp.JobState = (int)(PMS.Model.Enum.JobState_Enum.PAUSED);
+                base.Update(job_temp);
+                return response;
             }
             return new PMS.Model.Message.BaseResponse() { Success = false, Message = "执行暂停作业操作失败" };
         }
@@ -194,14 +202,20 @@ namespace PMS.BLL
             //1 根据id查询实体
             var job_temp = this.GetListBy(j => j.JID == id).FirstOrDefault();
             //
+            Model.Message.IBaseResponse response = new Model.Message.BaseResponse();
             if (job_temp != null)
             {
                 //2 暂停
-                var response = ijobService.ResumeTargetJob(job_temp);
-                return response;
+                response = ijobService.ResumeTargetJob(job_temp);
+                //return response;
                 // return response.Success;
             }
-
+            if (response.Success)
+            {
+                job_temp.JobState = (int)(PMS.Model.Enum.JobState_Enum.running);
+                base.Update(job_temp);
+                return response;
+            }
             return new PMS.Model.Message.BaseResponse() { Success = false, Message = "执行恢复作业操作失败" };
         }
 
@@ -215,12 +229,19 @@ namespace PMS.BLL
             //1 根据id查询实体
             var job_temp = this.GetListBy(j => j.JID == id).FirstOrDefault();
             //
+            Model.Message.IBaseResponse response = new Model.Message.BaseResponse();
             if (job_temp != null)
             {
                 //2 暂停
-                var response = ijobService.RemovceJob(job_temp);
+                response = ijobService.RemovceJob(job_temp);
                 //软删除
                 this.DelJobInfo(id);
+                //return response;
+            }
+            if (response.Success)
+            {
+                job_temp.JobState = (int)(PMS.Model.Enum.JobState_Enum.STOP);
+                base.Update(job_temp);
                 return response;
             }
             return new PMS.Model.Message.BaseResponse() { Success = false, Message = "不存在指定作业" };
