@@ -12,17 +12,27 @@ namespace PMS.Model.Enum
         /// 正在运行
         /// </summary>
         running=0,
+
         /// <summary>
-        /// 休眠
+        /// 作业完成
         /// </summary>
-        sleepping=1,
+        COMPLETE=1,
+
         /// <summary>
         /// 暂停
         /// </summary>
-        suspend=2,
+        WAITING = 2,
+
+        /// <summary>
+        /// 休眠
+        /// </summary>
+        sleepping =3,
+        
         ///<summary>
         /// 终止
         /// </summary>
-        stop=3
+        stop=4,
+
+        
     }
 }

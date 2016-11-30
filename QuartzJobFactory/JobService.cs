@@ -105,7 +105,7 @@ namespace QuartzJobFactory
             {
                 if (!sche.IsStarted) { sche.Start(); }
                
-                sche.ResumeJob(new JobKey(job.JobName, job.JobGroup));
+                sche.ResumeJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 response.Success = true;
                 response.Message = string.Format("job:{0}，group:{1}已恢复", job.JobName, job.JobGroup);
             }
@@ -132,10 +132,10 @@ namespace QuartzJobFactory
             IBaseResponse response = new BaseResponse() { Success = false };
             try
             {
-                var trigger = new TriggerKey(job.JobName, job.JobGroup);
-                sche.PauseJob(new JobKey(job.JobName, job.JobGroup));
+                var trigger = new TriggerKey(job.JID.ToString(), job.JobGroup);
+                sche.PauseJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 sche.UnscheduleJob(trigger);
-                sche.DeleteJob(new JobKey(job.JobName, job.JobGroup));
+                sche.DeleteJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 response.Success = true;
                 response.Message = string.Format("job:{0},group{1}已删除工作", job.JobName, job.JobGroup);
             }
@@ -160,7 +160,7 @@ namespace QuartzJobFactory
             try
             {
 
-                sche.PauseJob(new JobKey(job.JobName, job.JobGroup));
+                sche.PauseJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 response.Success = true;
                 response.Message = string.Format("job:{0},group{1}已暂停工作", job.JobName, job.JobGroup);
             }
@@ -185,9 +185,9 @@ namespace QuartzJobFactory
             try
             {
 
-                sche.PauseJob(new JobKey(job.JobName, job.JobGroup));
+                sche.PauseJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 //1 取出指定的触发器
-                var trigger = new TriggerKey(job.JobName, job.JobGroup);
+                var trigger = new TriggerKey(job.JID.ToString(), job.JobGroup);
                 //2 先暂停触发器（试一下若不暂停触发器可否？——11月20日）
                 sche.PauseTrigger(trigger);
                 //3 调度中的该方法只能传入触发器
