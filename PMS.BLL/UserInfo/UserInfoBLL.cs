@@ -159,6 +159,20 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            var query = base.GetPageList<DateTime>(pageIndex, pageSize, a => a.DelFlag == true, a => a.ModifiedOnTime, true);
+            rowCount = query.Count();
+            return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        /// <summary>
         /// 还原
         /// </summary>
         /// <returns></returns>
@@ -671,21 +685,29 @@ namespace PMS.BLL
             //1 找到对应的用户
             var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
             List<S_SMSMission> list_mission = new List<S_SMSMission>();
-            //2 根据用户查找该用户所用的Mission
-            userModel.R_UserInfo_SMSMission.Where(r=>r.isPass==true).ToList().ForEach(r => list_mission.Add(r.S_SMSMission));
-            //3 将对应的任务集合转成中间实体
-            //4 8月31日
-            // 判断若显示删除标记为false，则说明不显示已经删除（软删除）的任务
-            if (!showDel)
-                list_mission = list_mission.Where(m => m.isDel == false).ToList();
-            if (isMiddle)
+            if (userModel!=null)
             {
-                return list_mission.Select(m => m.ToMiddleModel()).ToList();
+                //2 根据用户查找该用户所用的Mission
+               //var r_userInfo_SMSMission= from r in userModel.R_UserInfo_SMSMission
+               // where r.isPass == true
+               // select r;
+
+               // from m in r_userInfo_SMSMission
+               // where m.S_SMSMission.isDel == false
+               // select list_mission.Add(m.S_SMSMission);
+
+                userModel.R_UserInfo_SMSMission.Where(r => r.isPass == true).ToList().ForEach(r => list_mission.Add(r.S_SMSMission));
+                //3 将对应的任务集合转成中间实体
+                //4 8月31日
+                // 判断若显示删除标记为false，则说明不显示已经删除（软删除）的任务
+                if (!showDel)
+                    list_mission = list_mission.Where(m => m.isDel == false).ToList();
+                if (isMiddle)
+                {
+                    list_mission=  list_mission.Select(m => m.ToMiddleModel()).ToList();
+                }
             }
-            else
-            {
-                return list_mission;
-            }
+             return list_mission;
             
         }
 

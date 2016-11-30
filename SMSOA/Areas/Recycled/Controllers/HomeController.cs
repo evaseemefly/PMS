@@ -84,21 +84,24 @@ namespace SMSOA.Areas.Recycled.Controllers
         /// 传入type的id，根据回收站类型返回该类型的isDel为true全部集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetAllDelInfoByType()
+        public ActionResult GetAllDelInfoByType(int type)
         {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int rowCount = 0;
             //使用工厂模式实现：
             //1 根据传入的type id获取对应的bll层对象
-            var typeId = int.Parse(Request["type"]);
-
+            // var typeId = int.Parse(Request["type"]);
+            var typeId = type;
             var myBLL= SimpleRecFactory.CreateBLL(typeId);
             this.delBLL = myBLL;
             //2 需要向BaseDel父类中添加一个公用的获取全部已删除的集合的方法
-           var list= myBLL.GetIsDelList();
-
+            //var list= myBLL.GetIsDelList();
+            var list = myBLL.GetIsDelbyPageList(pageIndex,pageSize,ref rowCount); 
             //3 将combogrid集合序列化并返回
             PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
-                total = 0,
+                total = rowCount,
                 rows = list,
                 footer = null
             };

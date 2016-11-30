@@ -50,13 +50,15 @@ namespace PMS.BLL
             //1 根据mid获取指定任务对象
             var mission = GetListBy(s => s.SMID == smid).FirstOrDefault();
             //2 根据短信任务查找对应的群组
+            //10月29日
+            //以下有修改：注意：筛选时需要剔除已经删除的（软删除的）各类对象!
             //2.1 启用的群组
             var groups_allow = from r in mission.R_Group_Mission
-                        where r.isPass == true
+                        where r.isPass == true&&r.P_Group.isDel==false
                         select r.P_Group;
             //2.2 禁用的群组
             var groups_forbid= from r in mission.R_Group_Mission
-                              where r.isPass == false
+                              where r.isPass == false&&r.P_Group.isDel==false
                               select r.P_Group;
             ////2.1 创建该任务所拥有的群组对象集合
             //List < P_Group > list_group = new List<P_Group>();
@@ -73,21 +75,21 @@ namespace PMS.BLL
 
             //3 根据短信任务查找对应的部门
             var departments_allow = from r in mission.R_Department_Mission
-                                    where r.isPass == true
+                                    where r.isPass == true&&r.P_DepartmentInfo.isDel==false
                                     select r.P_DepartmentInfo;
 
             var departments_forbid = from r in mission.R_Department_Mission
-                                    where r.isPass == false
-                                    select r.P_DepartmentInfo;
+                                    where r.isPass == false && r.P_DepartmentInfo.isDel == false
+                                     select r.P_DepartmentInfo;
 
             ////3.1 创建该任务所拥有的部门对象集合
             //List < P_DepartmentInfo > list_department = new List<P_DepartmentInfo>();
             ////3.2 添加至部门对象集合中
             //department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
             //3.3 根据部门对象集合获取该群组集合中所共有的联系人
-            departments_allow.ToList().ForEach(d => list_person_allow.AddRange(d.P_PersonInfo));
+            departments_allow.ToList().ForEach(d => list_person_allow.AddRange(d.P_PersonInfo.Where(p=>p.isDel==false)));
 
-            departments_forbid.ToList().ForEach(d => list_person_forbid.AddRange(d.P_PersonInfo));
+            departments_forbid.ToList().ForEach(d => list_person_forbid.AddRange(d.P_PersonInfo.Where(p=>p.isDel==false)));
             var list_person_forbid_ids = from p in list_person_forbid
                                      select p.PID;
             //4 将联系人集合去重
@@ -448,6 +450,20 @@ namespace PMS.BLL
         {
             var array = this.GetListBy(a => a.isDel == true).ToList();
             return array.Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            var query = base.GetPageList<DateTime>(pageIndex, pageSize, a => a.isDel == true, a => a.ModifiedOnTime, true);
+            rowCount = query.Count();
+            return query.ToList().Select(a => a.ToRecycleModel()).ToList();
         }
     }
 }

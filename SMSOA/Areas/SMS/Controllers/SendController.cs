@@ -207,7 +207,7 @@ namespace SMSOA.Areas.SMS.Controllers
                 var list_dids_temp = (from g in dids.Split(',')
                                       where g != ""
                                       select g).ToList();
-                list_dids_temp.ForEach(g => list_gids.Add(int.Parse(g)));
+                list_dids_temp.ForEach(g => list_dids.Add(int.Parse(g)));
             }
             if (gids != "")
             {
@@ -632,7 +632,21 @@ namespace SMSOA.Areas.SMS.Controllers
             }
         }
 
+        protected List<P_DepartmentInfo> GetSelectedDepartmentInfo2List(int mid)
+        {
+            //根据短信任务找到与该任务对应的所属部门
+            var mission = smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault();
+            List<int> list_id = new List<int>();
 
+            List<P_DepartmentInfo> list_department = new List<P_DepartmentInfo>();
+            //from d in mission.R_Department_Mission
+            //where 1==1
+            //list_department.Add(d.P_DepartmentInfo.ToMiddleModel());
+
+            //mission.R_Department_Mission.ToList().ForEach(r => list_department.Add(r.P_DepartmentInfo.ToMiddleModel()));
+            
+            return list_department;
+        }
         
         /// <summary>
         /// 根据 短信任务id 查询对应的部门实体，并转成ComboTree对象
@@ -644,12 +658,15 @@ namespace SMSOA.Areas.SMS.Controllers
             //根据短信任务找到与该任务对应的所属部门
            var mission= smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault();
             List<int> list_id = new List<int>();
+            
             mission.R_Department_Mission.ToList().ForEach(r => list_id.Add(r.DepartmentID));
            var list_alldepartment= departmentBLL.GetListBy(d => d.isDel == false).ToList().Select(d=>d.ToMiddleModel()).ToList();
             //8月31日
             //备份如下
-            //List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, list_id.ToArray());
-            List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, null);
+            List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, list_id.ToArray());
+
+            //11月29日 备注以下，使用以上此种方式
+            //List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_combotree = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_alldepartment, null);
 
             var temp= Common.SerializerHelper.SerializerToString(list_combotree);
             temp = temp.Replace("Checked", "checked");

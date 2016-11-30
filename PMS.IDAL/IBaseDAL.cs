@@ -72,7 +72,7 @@ namespace PMS.IDAL
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda);
+        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda, bool isNotTrack = false);
         #endregion
 
         #region 5 分页查询+IQueryable<T> GetPageList<TKey>

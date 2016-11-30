@@ -29,5 +29,11 @@ namespace PMS.IBLL
         /// </summary>
         /// <returns></returns>
         List<ViewModel_Recycle_Common> GetIsDelList();
+
+        /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <returns></returns>
+        List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex,int pageSize,ref int rowCount);
     }
 }

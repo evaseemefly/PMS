@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace PMS.BLL
 {
-    public partial class S_SMSRecord_CurrentBLL:BaseBLL<S_SMSRecord_Current>,IS_SMSRecord_CurrentBLL, IBaseDelBLL
+    public partial class S_SMSRecord_CurrentBLL:BaseBLL<S_SMSRecord_Current>,IS_SMSRecord_CurrentBLL
     {
         #region 8月19日 备份之前的
         ///// <summary>
@@ -295,9 +295,6 @@ namespace PMS.BLL
             }
         }
 
-        public List<ViewModel_Recycle_Common> GetIsDelList()
-        {
-            return null;
-        }
+        
     }
 }

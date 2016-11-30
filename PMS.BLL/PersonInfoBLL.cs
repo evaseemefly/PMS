@@ -340,6 +340,20 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            var query = base.GetPageList<int>(pageIndex, pageSize, a => a.isDel == true, a => a.PID, true);
+            rowCount = query.Count();
+            return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        /// <summary>
         /// 将临时联系人写入数据库
         /// </summary>
         /// <param name="PName"></param>
@@ -348,7 +362,7 @@ namespace PMS.BLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-       public bool DoAddTempPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids = null, int id_department = -1)
+        public bool DoAddTempPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids = null, int id_department = -1)
         {            
 
             //1. 创建联系人对象，封装

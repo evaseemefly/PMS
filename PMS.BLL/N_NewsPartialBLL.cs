@@ -56,6 +56,20 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            var query = base.GetPageList<int>(pageIndex, pageSize, a => a.isDel == true, a => a.SNID, true);
+            rowCount = query.Count();
+            return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        /// <summary>
         /// 根据登录用户查询该用户所拥有的全部消息（未查看、查看了的都算）——分页查询
         /// </summary>
         /// <param name="uid">用户id</param>

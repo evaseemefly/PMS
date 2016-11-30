@@ -22,3 +22,8 @@ function load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, p
         //toolbar: myPersonToolbar,
     });
 }
+
+//手动清除指定datagird中的全部行数据
+function clearDataGrid(id) {
+    $("#" + id).datagrid('loadData', { total: 0, rows: [] });
+}

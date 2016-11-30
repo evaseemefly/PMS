@@ -145,7 +145,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         }
 
         /// <summary>
-        /// 获取全部群组数据
+        /// 获取全部部门数据
         /// json格式
         /// </summary>
         /// <returns></returns>

@@ -55,6 +55,8 @@
             return ids;
         }
 
+        
+
         function append() {
            
             //获取添加的内容
@@ -202,8 +204,10 @@
         }
         var userId=-999;
         //思路如下：
-        // 页面加载之前将isLoadSuccess设置为false，页面加载过程中会触发onSelect及onCheck事件，此时不执行写在onSelect中的方法，只有在页面加载后才会执行onSelect中的方法
-        var isLoadSuccess = false;
+        // 页面加载之前将isLoadSuccess_Person设置为false，页面加载过程中会触发onSelect及onCheck事件，此时不执行写在onSelect中的方法，只有在页面加载后才会执行onSelect中的方法
+        var isLoadSuccess_Person = false;
+        var isLoadSuccess_Group=false;
+        var isLoadSuccess_Department=false;
         //----------------------------加载几个下拉框-----------------------------
         //根据登录的用户加载其选中的常用 短信任务
         //加载短信任务combogrid
@@ -232,8 +236,10 @@
                 onSelect:function(rowIndex, rowData){
                     //点击任务后显示该任务所拥有的群组以及部门
                     //alert("被点击了");
-                    loadComboGrid_Group(rowData.SMID,userId);
+                    //每次选中短信任务时都要手动清空该临时联系人的表格
+                    clearDataGrid("person_temp_datagrid");
                     loadComboTree_Department(rowData.SMID);
+                    loadComboGrid_Group(rowData.SMID,userId);
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
                    
@@ -258,17 +264,23 @@
                 panelHeight: 300,
                 multiple: true,
                 columns: groupColumns,
+                onBeforeLoad:function(){isLoadSuccess_Group=false},
                 onSelect:function(rowIndex, rowData){
                     //alert("选中了一行");
-                    loadDataGridByGroupDepartment_Persons();
+                    if (isLoadSuccess_Group) {
+                        loadDataGridByGroupDepartment_Persons();
+                    }
                 },
                 onUnselect:function(rowIndex, rowData){
                     //alert("去掉已经选中的一行");
-                    loadDataGridByGroupDepartment_Persons();
+                    if (isLoadSuccess_Group) {
+                        loadDataGridByGroupDepartment_Persons();
+                    }
                 },
                // formatter: formatItem_combobox,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
+                    
                     var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
                     var rowData = data.rows;
                     $.each(rowData, function (rowIndex, rowData) {
@@ -276,6 +288,11 @@
                             $("#group_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
                         }
                     });
+
+                    //由于群组是放在第二个顺序加载，所以在群组下拉框全部加载完毕后执行一遍查询联系人的操作（获取选中的群组及部门）
+                    loadDataGridByGroupDepartment_Persons();
+                    //并设置加载成功标记为true，以后再点击下拉框（群组）才会加载联系人
+                    isLoadSuccess_Group=true;
                 }
             })
         }
@@ -292,12 +309,24 @@
                 //width: 210,
                 cascadeCheck: $(this).is(':checked'),//选中子节点不会选中父节点
                 //formatter: formatItem_combobox
-                onCheck: function (node) {
-                    //alert("选中" + node);
-                    //var nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
-                    //alert("选中了" + nodes.length+"个节点");
-                    loadDataGridByGroupDepartment_Persons();
+                //使用onCheck
+                //onSelect: function (node) {
+                //    //alert("选中了当前行" + node);
+                //    //var nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
+                //    //alert("选中了" + nodes.length+"个节点");
+                //    loadDataGridByGroupDepartment_Persons();
+                //},
+                onBeforeLoad:function(){isLoadSuccess_Department=false},
+                onLoadSuccess:function(){isLoadSuccess_Department=true},
+                onCheck:function(node){
+                    if(isLoadSuccess_Department){
+                        loadDataGridByGroupDepartment_Persons();
+                    }                   
                 }
+                //onUnselect:function(node){
+                //    alert("去掉已经选中的一行");
+                //    //loadDataGridByGroupDepartment_Persons();
+                //}
             });
             //选中子节点不会选中父节点
             //$('#DepartmentName_combotree').combotree({ cascadeCheck: $(this).is(':checked') })
@@ -310,20 +339,10 @@
             var grid = $("#group_combogrid").combogrid("grid");
             var group_checkeds = grid.datagrid("getChecked");
             var group_ids = split4id(group_checkeds, "GID");
-            //获取选中行的id
-            //alert(split4id(checkeds, "GID"));
-            //var ids_group = "";
-            //for (var i = 0; i < checkeds.length; i++) {
-            //    ids_group = ids_group + checkeds[i].GID + ",";
-            //}
             //1.2 获取当前选中的部门下拉tree
             var department_nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
+            //var department_nodes_select = $('#DepartmentName_combotree').combotree("tree").tree('getSelections');
             var department_ids = split4id(department_nodes, "id");
-            //var ids_department = "";
-            //for (var i = 0; i < nodes.length; i++) {
-            //    ids_department = ids_department + nodes[i].id + ",";
-            //}
-            //alert(split4id(nodes, "id"));
             //2 请求url加载至Person_DataGrid
             var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
 
@@ -348,13 +367,14 @@
                 //fit: true,
                 url: url,
                 showHeader: true,
-                pagination:true,//在数据表格控件底部显示分页工具栏
+                pagination:isPagination,//在数据表格控件底部显示分页工具栏
                 rownumbers: true, //是否加行号
                 loadMsg: '加载中……',
                 columns: PersonColumns,
+                toolbar: '#'+tb_id,
                 onBeforeLoad:function(){
                     //alert("页面加载之前");
-                    isLoadSuccess = false;
+                    isLoadSuccess_Person = false;
                 },
                 onLoadSuccess: function () {
                     var data = $("#persondatagrid").datagrid("getData");
@@ -364,13 +384,13 @@
                             $("#persondatagrid").datagrid("selectRow", rowIndex);
                         }
                     });
-                    isLoadSuccess = true;
+                    isLoadSuccess_Person = true;
                 },
                 selectOnCheck:true,
                 checkOnSelect:true,
                 onSelect:function(rowIndex,rowData){
                     if(!isTempPerson){
-                        if (isLoadSuccess) {
+                        if (isLoadSuccess_Person) {
                             my_popFromArr(arr_UnSelectPersonIds, rowData["PID"]);
                         }
                     }
@@ -384,41 +404,38 @@
                    
                 }
             });
-
-            //向数组中插入不重复的值
-            function my_pushInArr(arr,value){
-                if(arr.indexOf(value)==-1){   
-                    arr.push(value);
-                }
-            }
-
-            //向数组中插入数据
-            function my_popFromArr(arr,value){
-                if(arr.indexOf(value)!=-1){   
-                    arr.splice(arr.indexOf(value),1);
-                }
-            }
-
             //var p=$("#"+datagrid_id).datagrid('getPager');
             //p.pagination({
             //    displayMsg: '共{total}条数据'
             //});
             
-            if(tb_id!=null){
-                $("#"+datagrid_id).datagrid({			
-                    toolbar: '#'+tb_id
-                })
-            }
+            //if(tb_id!=null){
+            //    $("#"+datagrid_id).datagrid({			
+            //        toolbar: '#'+tb_id
+            //    })
+            //}
             
             	
-            if(isPagination!=null){
-                $("#"+datagrid_id).datagrid({			
-                    pagination:true
-                })
+            //if(isPagination!=null){
+            //    $("#"+datagrid_id).datagrid({			
+            //        pagination:true
+            //    })
+            //}
+        }
+
+        //向数组中插入不重复的值
+        function my_pushInArr(arr,value){
+            if(arr.indexOf(value)==-1){   
+                arr.push(value);
             }
         }
 
-
+        //向数组中插入数据
+        function my_popFromArr(arr,value){
+            if(arr.indexOf(value)!=-1){   
+                arr.splice(arr.indexOf(value),1);
+            }
+        }
 
         //根据短信任务以及用户id加载该任务所拥有的短信
         function loadtextbox_Template(smid,userid){
@@ -453,11 +470,11 @@
             $("#editWindow").window('close');
             loadCombogrid_byUser();
             //OnSelected_Group();
-            $("#DepartmentName_combotree").combotree({
-                onCheck: function () {
-                    alert("此部门被选中了");
-                }
-            });
+            //$("#DepartmentName_combotree").combotree({
+            //    onCheck: function () {
+            //        alert("此部门被选中了");
+            //    }
+            //});
 
         })
 </script>

@@ -116,5 +116,19 @@ namespace PMS.BLL
         {
             return null;
         }
+
+        /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            var query = base.GetPageList<DateTime>(pageIndex, pageSize, a => a.isDel == true, a => a.SubTime, true);
+            rowCount = query.Count();
+            return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+        }
     }
 }

@@ -130,6 +130,8 @@ namespace SMSOA.Areas.Contacts.Controllers
             {
                 list_person = list_person.Where(p => p.PhoneNum.Contains(queryModel.PhoneNum));
             }
+            //获取筛选后的联系人集合的总数
+            rowCount = list_person.Count();
             list_person = list_person.OrderByDescending(a => a.isVIP);
             list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 

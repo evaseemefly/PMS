@@ -71,7 +71,7 @@ namespace SMSOA.Areas.Login.Controllers
 
 
                 //2.2.3 取出当前的用户名所对应的用户对象
-                UserInfo userInfo = userInfoBLL.GetListBy(u => u.UName == userName).FirstOrDefault();
+                UserInfo userInfo = userInfoBLL.GetListBy(u => u.UName == userName&&u.DelFlag==false).FirstOrDefault();
                 //userInfoBLL.GetListBy(u => true).First();
                 //对输入的密码进行md5加密，判断其是否与当前userInfo对象的密码相同
                 //2.2.4 若存在当前用户

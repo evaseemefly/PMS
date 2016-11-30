@@ -48,6 +48,27 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 分页获取已经软删除的集合
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="rowCount"></param>
+        /// <returns></returns>
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            var query = base.GetPageList<DateTime>(pageIndex, pageSize, a => a.DelFlag == true, a => a.ModifiedOnTime, true);
+            rowCount = query.Count();
+            if (rowCount != 0)
+            {
+                return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+            }
+            else
+            {
+                return new List<ViewModel_Recycle_Common>();
+            }
+        }
+
+        /// <summary>
         /// 修改指定的RoleId 的对象集合的删除标记为删除
         /// </summary>
         /// <param name="list_ids"></param>
