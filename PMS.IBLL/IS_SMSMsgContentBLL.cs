@@ -31,13 +31,13 @@ namespace PMS.IBLL
         ///数据验证
         ///</summary>
         ///<param name="name"></param>
-        bool AddValidation(string name);
+        bool AddValidation(int userID,int SMID);
 
         ///<summary>
         ///数据验证
         ///</summary>
         ///<param name="name"></param>
         ///<returns></returns>
-        bool EditValidation(int id, string name);
+        bool EditValidation(int userID, int SMID);
     }
 }

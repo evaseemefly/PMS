@@ -139,9 +139,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="whereLambda"></param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda)
+        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda, bool isNotTracking = false)
         {
-            return CurrentDAL.GetListBy(whereLambda);
+            return CurrentDAL.GetListBy(whereLambda, isNotTracking);
         }
         #endregion
 
@@ -153,9 +153,9 @@ namespace PMS.BLL
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda)
+        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda, bool isNotTracking = false)
         {
-            return CurrentDAL.GetListBy<Tkey>(whereLambda, orderLambda);
+            return CurrentDAL.GetListBy<Tkey>(whereLambda, orderLambda, isNotTracking);
         }
         #endregion
 

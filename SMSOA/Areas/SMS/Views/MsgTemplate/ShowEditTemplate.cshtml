@@ -13,7 +13,7 @@
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data,"短信模板名称");
+                    afterEdit(data);
                 }
             };
 
@@ -24,7 +24,7 @@
             window.parent.CancelSend();
         }
 
-        function afterEdit(data,name) {
+        function afterEdit(data) {
 
             //$.messager.alert('提醒', '提交成功!');
             //——经测试提交表单成功后可以执行OnSucess的回调函数
@@ -34,7 +34,7 @@
             if (data == "ok") {
                 window.parent.afterEdit("修改成功",0);
             } else if (data == "validation fails") {
-                window.parent.afterEdit(name + "已经存在，请重新输入",1)
+                window.parent.afterEdit("创建失败，选定任务已经存在唯一模板",1)
             }
             else {
                 window.parent.afterEdit("修改失败",0);

@@ -189,6 +189,7 @@ namespace PMS.DALSQLSer
             //return Db.Set<T>().Where(whereLambda).OrderBy(orderLambda);
             //新增
             var query = Db.Set<T>().Where(whereLambda).OrderBy(orderLambda).AsQueryable();
+            //ToNoTracking(ref query, true);
             ToNoTracking(ref query, isNotTrack);
             return query;
         }
@@ -277,7 +278,8 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool SaveChange()
         {
-            return Db.SaveChanges() > 0;
+            var i =Db.SaveChanges() ;
+            return i > 0;
         }
         #endregion
 

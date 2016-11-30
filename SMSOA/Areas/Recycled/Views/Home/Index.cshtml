@@ -104,7 +104,7 @@
                 //清楚所选中的行
                 $("#datagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");
-            }
+            } 
             });
             }
             }));
@@ -136,7 +136,7 @@
                     var url = url_loaddatagrid + "?type=" + rowData.id;
                     //屈远：注意需要填写第三个及第四个参数为datagrid的columns对象以及toolbar的id
                     //方法签名：load_datagrid(id, url, myColumns, myToolbar_id, isSingle, pagination, pageSize, pageList)
-                    load_datagrid("datagrid", url, recycle_Columns, '', false, true, 20, [20, 40, 60]);
+                    load_datagrid("datagrid", url, recycle_Columns, '', true, false, 20, [20, 40, 60]);
                 }
             })
         }

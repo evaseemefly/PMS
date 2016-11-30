@@ -54,7 +54,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="whereLambda"></param>
         /// <returns></returns>
-        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda);
+        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTracking = false);
         #endregion
 
         #region 4- 根据条件查询，并排序
@@ -65,7 +65,7 @@ namespace PMS.IBLL
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda);
+        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda,bool isNotTracking=false);
         #endregion
 
         #region 5- 分页查询

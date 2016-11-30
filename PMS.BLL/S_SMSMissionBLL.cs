@@ -160,21 +160,22 @@ namespace PMS.BLL
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if (list_model == null) { return false; }
-            foreach (var item in list_model)
-            {
-                item.R_Department_Mission.Clear();
-                item.R_Group_Mission.Clear();
-                item.R_UserInfo_SMSMission.Clear();
-                item.S_SMSMsgContent.Clear();
-                item.S_SMSContent.Clear();
-                item.S_SMSRecord_History.Clear();
+            //foreach (var item in list_model)
+            //{
+            //    item.R_Department_Mission.Clear();
+            //    item.R_Group_Mission.Clear();
+            //    item.R_UserInfo_SMSMission.Clear();
+            //    item.S_SMSMsgContent.Clear();
+            //    item.S_SMSContent.Clear();
+            //    item.S_SMSRecord_History.Clear();
 
-            }
+            //}
             try
             {
                 //3. 从数据库中删除这些实体对象
-                this.CurrentDAL.UpdateByList(list_model);
+                //this.CurrentDAL.UpdateByList(list_model);
                 this.CurrentDAL.DelByList(list_model);
+                this.CurrentDAL.SaveChange();
                 return true;
             }
             catch (Exception)
@@ -431,7 +432,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool AddValidation(String name)
         {
-            var list_model = this.GetListBy(p => p.isDel == false).ToList();
+            var list_model = this.GetListBy(p => true,true).ToList();
             return list_model.Exists(p => p.SMSMissionName.Equals(name));
         }
         /// <summary>
@@ -442,7 +443,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool EditValidation(int id,String name)
         {
-            var list_model = this.GetListBy(p => p.SMID != id && p.isDel == false).ToList();
+            var list_model = this.GetListBy(p => p.SMID != id,true).ToList();
             return list_model.Exists(p => p.SMSMissionName.Equals(name));
         }
 

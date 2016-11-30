@@ -33,23 +33,31 @@ namespace PMS.BLL
         }
 
         ///<summary>
-        ///数据约束
+        ///数据约束:判断当前用户选定任务下是否已经存在模板
         ///</summary>
         ///<param name="name"></param>
-        public bool AddValidation(string name)
+        public bool AddValidation(int userID, int SMID)
         {
-            var list_model = this.GetListBy(p => p.isDel == false).ToList();
-            return list_model.Exists(p => p.MsgName.Equals(name));
+            //1.获取当前用户
+            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == userID, true).FirstOrDefault();
+            //2.查看当前用户选定任务下是否已经存在模板
+            return user.S_SMSMsgContent.ToList().Exists(u => u.SMID == SMID);
+            //不验证是否重名
+            //var list_model = this.GetListBy(p => p.isDel == false).ToList();
+            //return list_model.Exists(p => p.MsgName.Equals(name));
         }
 
         ///<summary>
         ///数据约束
         ///</summary>
         ///<param name="name"></param>
-        public bool EditValidation(int id, string name)
+        public bool EditValidation(int userID, int SMID)
         {
-            var list_model = this.GetListBy(p => p.isDel == false && p.TID != id).ToList();
-            return list_model.Exists(p => p.MsgName.Equals(name));
+            //暂时和添加时的约束相同
+            return this.AddValidation(userID, SMID);
+
+        //    var list_model = this.GetListBy(p => p.isDel == false && p.TID != id).ToList();
+        //    return list_model.Exists(p => p.MsgName.Equals(name));
         }
 
         /// <summary>

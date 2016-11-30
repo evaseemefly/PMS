@@ -72,18 +72,23 @@ namespace PMS.BLL
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if (list_model == null) { return false; }
+            var department_Not_assigned = this.GetListBy(p => p.DepartmentName.Equals("无归属部门")).FirstOrDefault();
             foreach (var item in list_model)
             {
                 //2. 得到群组和联系人的关联表数据并删除
-                item.P_PersonInfo.Clear();
+                var list_person = item.P_PersonInfo.ToList();
+                //添加到无归属部门
+                list_person.ForEach(p => department_Not_assigned.P_PersonInfo.Add(p));
                 //2. 得到群组和任务的关联表数据并删除
-                item.R_Department_Mission.Clear();
-                //2. 得到群组和用户的关联表数据并删除
-                item.R_UserInfo_DepartmentInfo.Clear();
+                //item.R_Department_Mission.Clear();
+                ////2. 得到群组和用户的关联表数据并删除
+                //item.R_UserInfo_DepartmentInfo.Clear();
             }
+           
             try
             {
                 //3. 从数据库中删除这些实体对象
+                this.CurrentDAL.Update(department_Not_assigned);
                 this.CurrentDAL.UpdateByList(list_model);
                 this.CurrentDAL.DelByList(list_model);
                 this.CurrentDAL.SaveChange();
@@ -123,7 +128,8 @@ namespace PMS.BLL
             //遍历需要查找的Action集合
             foreach (var item in this.GetListByIds(list_ids))
             {
-                item.P_PersonInfo.Clear();
+                //改为不清空关系表
+                //item.P_PersonInfo.Clear();
                 //修改其中的删除标记
                 item.isDel = true;
                 //并添加至新创建的集合中
@@ -147,7 +153,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool AddValidation(String name)
         {
-            var list_model = this.GetListBy(r => r.isDel == false).ToList();
+            var list_model = this.GetListBy(r => true,true).ToList();
             return list_model.Exists(r => r.DepartmentName.Equals(name));
         }
         /// <summary>
@@ -156,7 +162,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool EditValidation(int id, String name)
         {
-            var list_model = this.GetListBy(r => r.DID != id && r.isDel == false).ToList();
+            var list_model = this.GetListBy(r => r.DID != id,true).ToList();
             return list_model.Exists(r => r.DepartmentName.Equals(name));
 
 

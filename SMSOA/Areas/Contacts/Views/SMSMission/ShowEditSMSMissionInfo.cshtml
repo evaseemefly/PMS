@@ -34,10 +34,11 @@
                 //无法关闭此窗口
                 //window.close();
                 if (data == "ok") {
-                    window.parent.afterContact_Common("修改成功");
+                    window.parent.afterContact_Common("修改成功", 0);
+                    window.parent.Refresh();
                 }
                 else {
-                    window.parent.afterContact_Common("修改失败");
+                    window.parent.afterContact_Common("修改失败",1);
                 }
                 //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
             }
