@@ -30,6 +30,7 @@ namespace PMS.Model.Dictionary
             dResponseCode.Add("COMPLETE", 1);
             dResponseCode.Add("PAUSED", 5);
             dResponseCode.Add("STOP", 4);
+            dResponseCode.Add("ACQUIRED", 6);
             dResponseCode.Add("null", 99);
         }
     }

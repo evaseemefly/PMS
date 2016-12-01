@@ -31,6 +31,7 @@ namespace SMSOA.Areas.Job.Controllers
             ViewBag.ShowMenuButton_Add = "GetJobTemplate4MenuButton";
             ViewBag.DoRecovery = "DoRecoveryJob";
             ViewBag.DoPause = "DoPauseJob";
+            ViewBag.DoEndJob = "DoEndJob";
             return View();
         }
 

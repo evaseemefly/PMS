@@ -342,7 +342,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool Recovery(List<int> list_id)
         {
-            //
+
             return false;
         }
 
