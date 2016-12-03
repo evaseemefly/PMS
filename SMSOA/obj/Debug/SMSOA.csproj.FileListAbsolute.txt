@@ -430,7 +430,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\controllers.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\Config\service.xml
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.dll
 D:\VSWorkSpace\nmefc\PMS\PMS\SMSOA\bin\RecycledFactory.pdb
-E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\roslyn\Microsoft.CodeAnalysis.dll
-E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\roslyn\System.Reflection.Metadata.dll
-E:\03协同开发\短信\PMS\0630\PMS\SMSOA\bin\roslyn\VBCSCompiler.exe

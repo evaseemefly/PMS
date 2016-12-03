@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="859b30d6-f199-4ff5-9f4b-2febec999554" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.20.1.48:8080/SMSFactoryServiceLib.SMSService.svc/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5a85eb40-8641-49bb-a129-8b6548cfeca2" SourceId="1" SourceUrl="http://172.20.1.48:8080/SMSFactoryServiceLib.SMSService.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4a3fbf7b-37fc-436e-8269-42330f5ae8a8" SourceId="1" SourceUrl="http://172.20.1.48:8080/SMSFactoryServiceLib.SMSService.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c9530ea2-dafd-47b8-b14d-081066951e7e" SourceId="1" SourceUrl="http://172.20.1.48:8080/SMSFactoryServiceLib.SMSService.svc/mex" />
+    <MetadataFile FileName="PMS.Model.SMSModel.xsd" MetadataType="Schema" ID="7d115f1a-f8f4-4c1b-99d3-de2482936b5c" SourceId="1" SourceUrl="http://172.20.1.48:8080/SMSFactoryServiceLib.SMSService.svc/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="e5b5dc93-fe13-481d-b34d-4623836b79dc" SourceId="1" SourceUrl="http://172.20.1.48:8080/SMSFactoryServiceLib.SMSService.svc/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

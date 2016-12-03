@@ -15,7 +15,10 @@ namespace PMS.BLL
     {
 
         //使用WCF中的方法
-        //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
+        //ServiceReference_Quartz.IJobService ijobService = new ServiceReference_Quartz.JobServiceClient();
+        //ServiceReference_QuartzService.IJobService iobService = new ServiceReference_QuartzService.JobServiceClient();
+        //ServiceReference_Quartz.JobServiceClient jobServiceClient = new ServiceReference_Quartz.JobServiceClient();
+        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
         QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
         IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
@@ -138,14 +141,16 @@ namespace PMS.BLL
             
             //1 创建与UserInfo的关系
            var user= this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == model.UID).FirstOrDefault();
-            model.UserInfoes.Add(user);
+            model.UserInfoes.Add(user.ToMiddleModel());
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
             if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
             base.Create(model);
-            var response = ijobService.AddScheduleJob(model, jobData);
-
+            // var response = ijobService.AddScheduleJob(model, jobData);
+            //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);
+            //var response= response_wcf as Model.Message.IBaseResponse;
+            //client.AddScheduleJob(model.ToMiddleModel(), jobData);
             //2 写入jobInfo表作业的状态
             if (response.Success)
             {
