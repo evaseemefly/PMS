@@ -10,7 +10,6 @@ namespace QuartzServiceLib
 {
     public class SchedulerFactory
     {
-        //private ISchedulerFactory schedFact;
         private static IScheduler sched;
 
         /// <summary>
@@ -44,7 +43,7 @@ namespace QuartzServiceLib
         /// 获取调度实例
         /// </summary>
         /// <returns></returns>
-        public IScheduler CreateScheduler()
+        public IScheduler GetScheduler()
         {
             return sched;
         }

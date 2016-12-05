@@ -292,7 +292,7 @@ namespace SMSFactory
             //2.1 设置发送对象相关参数
             string subCode = "";//短信子码"74431"，接收回馈信息用
             string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
-                                       //短信发送与查询所需参数
+            //短信发送与查询所需参数
             string smsContent = content;//短信内容
             string sendTime;//计划发送时间，为空则立即发送
                             //3 对短信内容进行校验——先暂时不做
@@ -352,7 +352,8 @@ namespace SMSFactory
             //1 创建quartz父类客户端
             // 不使用服务因为此处需要通过反射的方式创建作业实例
             //Quartz_Service.JobServiceClient client = new Quartz_Service.JobServiceClient();
-            QuartzJobFactory.IJobService client = new QuartzJobFactory.JobService();
+            ServiceReference_QuartzService.JobServiceClient client = new ServiceReference_QuartzService.JobServiceClient();
+            //QuartzJobFactory.IJobService client = new QuartzJobFactory.JobService();
             //2 创建发送作业实例（非模板）
             /*此处需要实现：
                            1）向数据库写入创建的新的作业实例
@@ -427,9 +428,10 @@ namespace SMSFactory
             jobInfoBLL.AddJobInfo(jobInstance, jobData);
 
             //**** 11-16 创建jobInfo与其他的关联（以便在作业管理页面中显示）
-
-
             //在job的bll层中创建作业（同时写入数据库，并添加至调度池中）
+            /*var response=*/
+            QuartzProxy.QuartzServiceFacade quartzService = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
+            var response_base= quartzService.AddScheduleJob(jobInstance, jobData);
             //client.AddScheduleJob(jobInstance, jobData);
             response = new SMSModel_Receive() { result="0"};
             return true;
@@ -443,7 +445,7 @@ namespace SMSFactory
         public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, out SMSModel_Receive receiveModel)
         {
             //SMSModel_Receive receiveModel = new SMSModel_Receive();
-            ServiceReference1.SMSServiceClient client = new ServiceReference1.SMSServiceClient();
+            ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
 
             //重新梳理并做抽象
             #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉

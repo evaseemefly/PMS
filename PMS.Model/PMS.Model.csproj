@@ -261,6 +261,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="SendJobDataModel.cd" />
     <None Include="packages.config" />
     <EntityDeploy Include="PMSEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

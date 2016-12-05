@@ -47,7 +47,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ObjTransform.cs" />
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
+    <Compile Include="Service References\ServiceReference_QuartzService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReference_SMSService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -94,6 +99,10 @@
       <Project>{0f928469-5038-4471-a6d4-5a2bab75253e}</Project>
       <Name>QuartzJobFactory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QuartzProxy\QuartzProxy.csproj">
+      <Project>{af3d71fa-3112-4474-978e-96a55f47a1ce}</Project>
+      <Name>QuartzProxy</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -101,34 +110,60 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\PMS.Model.SMSModel.SMSModel_Receive.datasource" />
-    <None Include="Service References\ServiceReference1\Arrays.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\PMS.Model.SMSModel.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\service.wsdl" />
-    <None Include="Service References\ServiceReference1\service.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\service.wsdl" />
+    <None Include="Service References\ServiceReference_QuartzService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\service1.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\SMSFactory.ServiceReference1.SendMsgResponse.datasource">
+    <None Include="Service References\ServiceReference_SMSService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_SMSService\PMS.Model.SMSModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_SMSService\service.wsdl" />
+    <None Include="Service References\ServiceReference_SMSService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_SMSService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_SMSService\SMSFactory.ServiceReference_SMSService.SendMsgResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference_QuartzService\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference_SMSService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference_SMSService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference_SMSService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
+    <None Include="Service References\ServiceReference_SMSService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference_QuartzService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference_QuartzService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference_QuartzService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

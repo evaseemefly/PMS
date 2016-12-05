@@ -15,8 +15,9 @@ namespace PMS.BLL
     {
 
         //使用WCF中的方法
-        //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
-        QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
+        //ServiceReference_QuartzService.JobServiceClient client = new ServiceReference_QuartzService.JobServiceClient();
+        QuartzProxy.QuartzServiceFacade client_quartzProxy = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
+        //QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
         IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
         /// <summary>
@@ -138,14 +139,17 @@ namespace PMS.BLL
             
             //1 创建与UserInfo的关系
            var user= this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == model.UID).FirstOrDefault();
-            model.UserInfoes.Add(user);
+            model.UserInfoes.Add(user.ToMiddleModel());
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
             if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
             base.Create(model);
-            var response = ijobService.AddScheduleJob(model, jobData);
-
+            //var response = ijobService.AddScheduleJob(model, jobData);
+            var response = client_quartzProxy.AddScheduleJob(model.ToMiddleModel(), jobData as PMS.Model.JobDataModel.SendJobDataModel);
+            //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);
+            //var response= response_wcf as Model.Message.IBaseResponse;
+            //client.AddScheduleJob(model.ToMiddleModel(), jobData);
             //2 写入jobInfo表作业的状态
             if (response.Success)
             {
@@ -180,7 +184,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                response = ijobService.PauseJob(job_temp);
+                response = client_quartzProxy.PauseJob(job_temp);
                 // return response.Success;
             }
             if (response.Success)
@@ -206,7 +210,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                response = ijobService.ResumeTargetJob(job_temp);
+                response = client_quartzProxy.ResumeTargetJob(job_temp);
                 //return response;
                 // return response.Success;
             }
@@ -233,7 +237,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                response = ijobService.RemovceJob(job_temp);
+                response = client_quartzProxy.RemovceJob(job_temp);
                 //软删除
                 this.DelJobInfo(id);
                 //return response;
@@ -342,7 +346,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool Recovery(List<int> list_id)
         {
-            //
+
             return false;
         }
 

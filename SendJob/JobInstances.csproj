@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelloJob.cs" />
     <Compile Include="QueryJob.cs" />
     <Compile Include="SendJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,10 +92,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\DataSources\PMS.Model.SMSModel.SMSModel_Receive.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
