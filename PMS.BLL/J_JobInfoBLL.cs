@@ -16,8 +16,8 @@ namespace PMS.BLL
 
         //使用WCF中的方法
         //ServiceReference_QuartzService.JobServiceClient client = new ServiceReference_QuartzService.JobServiceClient();
-        QuartzProxy.QuartzServiceFacade client_quartzProxy = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
-        //QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
+        //QuartzProxy.QuartzServiceFacade client_quartzProxy = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
+        QuartzJobFactory.IJobService client_quartzProxy = new QuartzJobFactory.JobService();
         IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
         /// <summary>

@@ -352,8 +352,8 @@ namespace SMSFactory
             //1 创建quartz父类客户端
             // 不使用服务因为此处需要通过反射的方式创建作业实例
             //Quartz_Service.JobServiceClient client = new Quartz_Service.JobServiceClient();
-            ServiceReference_QuartzService.JobServiceClient client = new ServiceReference_QuartzService.JobServiceClient();
-            //QuartzJobFactory.IJobService client = new QuartzJobFactory.JobService();
+            //ServiceReference_QuartzService.JobServiceClient client = new ServiceReference_QuartzService.JobServiceClient();
+            QuartzJobFactory.IJobService client = new QuartzJobFactory.JobService();
             //2 创建发送作业实例（非模板）
             /*此处需要实现：
                            1）向数据库写入创建的新的作业实例
@@ -430,8 +430,10 @@ namespace SMSFactory
             //**** 11-16 创建jobInfo与其他的关联（以便在作业管理页面中显示）
             //在job的bll层中创建作业（同时写入数据库，并添加至调度池中）
             /*var response=*/
-            QuartzProxy.QuartzServiceFacade quartzService = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
-            var response_base= quartzService.AddScheduleJob(jobInstance, jobData);
+            //12-6
+            //统一写在JobInfoBLL层中的AddJobInfo方法中
+            //QuartzProxy.QuartzServiceFacade quartzService = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
+            //var response_base= quartzService.AddScheduleJob(jobInstance, jobData);
             //client.AddScheduleJob(jobInstance, jobData);
             response = new SMSModel_Receive() { result="0"};
             return true;

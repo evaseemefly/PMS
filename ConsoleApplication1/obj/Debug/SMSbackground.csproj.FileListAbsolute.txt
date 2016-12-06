@@ -82,3 +82,6 @@ D:\VSWorkSpace\nmefc\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe.man
 D:\VSWorkSpace\nmefc\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.application
 D:\VSWorkSpace\nmefc\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
 D:\VSWorkSpace\nmefc\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
+E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\Quartz.dll
+E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\bin\Debug\Quartz.pdb
+E:\03协同开发\短信\PMS\0630\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
