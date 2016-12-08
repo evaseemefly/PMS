@@ -12,9 +12,11 @@ namespace Common
     /// </summary>
     public class LogHelper
     {
-        private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("logInfo");
+        private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
 
-        private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("logoError");
+        
+
+        private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("logerror");
 
         /// <summary>
         /// 写入日志
@@ -22,7 +24,8 @@ namespace Common
         /// <param name="info"></param>
         public static void WriteLog(string info)
         {
-            if(logInfo.IsInfoEnabled)   //IsInfoEnabled？
+            logInfo.Info(info);
+            if (logInfo.IsInfoEnabled)   //IsInfoEnabled？
             {
                 logInfo.Info(info);
             }

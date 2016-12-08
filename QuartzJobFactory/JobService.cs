@@ -10,12 +10,86 @@ using Quartz.Impl;
 using Quartz;
 using Quartz.Impl.Matchers;
 using PMS.Model.Message;
+using Common;
 
 namespace QuartzJobFactory
 {
     public class JobService:IJobService
     {
-        IScheduler sche { get; set; }
+        //*****12月7日添加：锁
+        private static object obj = new object();
+
+        //*****12月7日将线程池改成静态的，此处暂时注释掉
+        //IScheduler sche { get; set; }
+
+        private static IScheduler sche = null;
+
+
+        /// <summary>
+        /// 初始化任务调度对象
+        /// </summary>
+        public static void InitScheduler()
+        {
+            try
+            {
+                lock (obj)
+                {
+                    if (sche == null)
+                    {
+                        //使用配置文件的方式配置quartz实例
+                        sche = StdSchedulerFactory.GetDefaultScheduler();
+                        LogHelper.WriteLog("任务调度初始化成功");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError("任务调度初始化失败！", ex);
+            }
+        }
+
+
+        /// <summary>
+        /// *****12月7日添加
+        /// 启动调度池
+        /// </summary>
+        public static void StartScheduler()
+        {
+            try
+            {
+                if (!sche.IsStarted)
+                {
+                    sche.Start();
+                    LogHelper.WriteLog("调度池启动成功");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.WriteError("调度池启动失败", ex);
+            }
+        }
+
+        /// <summary>
+        /// *****12月7日添加
+        /// 终止调度池
+        /// </summary>
+        public static void StopScheduler()
+        {
+            try
+            {
+                if (!sche.IsShutdown)
+                {
+                    sche.Shutdown(true);
+                    LogHelper.WriteLog("调度池停止");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.WriteError("调度池停止失败", ex);
+            }
+        }
 
         #region 无参构造函数实例化调度池
         public JobService()
@@ -25,8 +99,10 @@ namespace QuartzJobFactory
                 
             }
             else
-            {                
-                sche = StdSchedulerFactory.GetDefaultScheduler(); 
+            {
+                InitScheduler();
+                //*****12月7日暂时注释掉此部分
+                //sche = StdSchedulerFactory.GetDefaultScheduler(); 
             }
         }
 
