@@ -5,10 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using log4net;
 using System.Threading;
 using PMS.Model;
 using Spring.Web.Mvc;
+using System.IO;
 
 namespace SMSOA
 {
@@ -17,8 +17,11 @@ namespace SMSOA
         protected void Application_Start()
         {
             //读取log4net的配置信息
-            log4net.Config.XmlConfigurator.Configure();
-            
+            //12月8日暂时注释掉
+            //log4net.Config.XmlConfigurator.Configure();
+            //将配置文件写在log4net.config文件中
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

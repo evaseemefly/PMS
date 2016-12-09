@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuartzJobFactory;
+using QuartzServiceLib;
 
 namespace JobManager.Service
 {
@@ -11,16 +12,20 @@ namespace JobManager.Service
     {
         public void Start()
         {
-            JobService.InitScheduler();
-            JobService.StartScheduler();
-            //QuartzHelper.InitScheduler();
-            //QuartzHelper.StartScheduler();
+            //12月8日可用的，现尝试再次使用wcf方式的方式，此处暂时注释掉
+            //JobService.InitScheduler();
+            //JobService.StartScheduler();
+            //启动调度池
+            QuartzServiceLib.JobService.StartScheduler();
+            
+
         }
 
         public void Stop()
         {
-            JobService.StopScheduler();
-            //QuartzHelper.StopScheduler();
+            //12月8日可用的，现尝试再次使用wcf方式的方式，此处暂时注释掉
+            //JobService.StopScheduler();
+            QuartzServiceLib.JobService.StopScheduler();
             System.Environment.Exit(0);
         }
     }

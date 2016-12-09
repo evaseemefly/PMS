@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2fc5cd63-fe1b-4cde-958a-1b3360e0d73e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8d789156-4303-42fb-b6f5-d438ffe69885" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="145c4f1b-bc09-48aa-806f-0a5719bbaa8e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.CombineModel.xsd" MetadataType="Schema" ID="e85de266-2ed3-40a2-89d6-1d3e328a9af2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.ViewModel.xsd" MetadataType="Schema" ID="4c911bb5-9ee4-41e8-af98-71294ed684e6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="204dc250-6cb9-47e1-ad24-cf196e39e07f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.SMSModel.xsd" MetadataType="Schema" ID="6fa99afc-49c4-4831-a939-9c32b8d4ce84" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.Message.xsd" MetadataType="Schema" ID="58fe3797-e15e-49a5-9e51-44a9331b0ad3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d5bcddca-82b4-4057-9834-599b28bf9797" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.xsd" MetadataType="Schema" ID="acc40cff-51f7-4eb5-91b5-d33b2239a845" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.JobDataModel.xsd" MetadataType="Schema" ID="43334a38-7e4a-43d8-98fa-4d3ecda84c8d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
