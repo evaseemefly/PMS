@@ -1,2 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="QuartzServiceLib.JobAbstractFactory">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACABAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAA=</HashCode>
+      <FileName>JobAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuartzServiceLib.JobFactory">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JobFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuartzServiceLib.JobService" BaseTypeListCollapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAMFAAAYEAAAAAAACAAAAAAIAAAACAAAE=</HashCode>
+      <FileName>JobService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="QuartzServiceLib.SchedulerFactory">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>SchedulerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="QuartzServiceLib.IJobService">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAFAAAIEAAAAAAACAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>IJobService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

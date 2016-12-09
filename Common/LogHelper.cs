@@ -24,7 +24,7 @@ namespace Common
         /// <param name="info"></param>
         public static void WriteLog(string info)
         {
-            logInfo.Info(info);
+            //logInfo.Info(info);
             if (logInfo.IsInfoEnabled)   //IsInfoEnabled？
             {
                 logInfo.Info(info);

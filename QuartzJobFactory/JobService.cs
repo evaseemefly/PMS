@@ -132,9 +132,18 @@ namespace QuartzJobFactory
             //3 将定时器加入job中
             //var sche = new SchedulerFactory().GetScheduler();
             sche.ScheduleJob(job, trigger);
-
-            //4 启动工作
-            sche.Start();
+            try
+            {
+                //4 启动工作
+                sche.Start();
+                LogHelper.WriteLog(string.Format("{0}创建的作业{1}-{2}(所属{3})已添加至调度池中", jobInfo.CreateUser, jobInfo.JID, jobInfo.JobName, jobInfo.JobGroup));
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError("作业添加错误",ex);
+                throw;
+            }
+           
             response.Success = true;
             response.Message = string.Format("作业已添加至调度池中");
             return response;
@@ -233,18 +242,25 @@ namespace QuartzJobFactory
         public IBaseResponse PauseJob(J_JobInfo job)
         {
             IBaseResponse response = new BaseResponse() { Success = false };
+
             try
             {
-
                 sche.PauseJob(new JobKey(job.JID.ToString(), job.JobGroup));
+                LogHelper.WriteLog(string.Format("{0}已恢复作业{1}-{2}(所属{3})", job.CreateUser, job.JID, job.JobName, job.JobGroup));
                 response.Success = true;
                 response.Message = string.Format("job:{0},group{1}已暂停工作", job.JobName, job.JobGroup);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.WriteError("作业恢复错误", ex);
+
                 response.Message = string.Format("job:{0},group{1}暂停工作时出错", job.JobName, job.JobGroup);
             }
-            
+
+
+
+
+
             return response;
         }
         #endregion 

@@ -1,4 +1,4 @@
-﻿using Memcached.ClientLibrary;
+﻿using Memcached.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,12 +10,15 @@ namespace Common
 {
     public class MemcacheHelper
     {
-        
+
 
         /// <summary>
         /// memcache 客户端实例
         /// </summary>
-        private static readonly Memcached.ClientLibrary.MemcachedClient mc = null;
+        //private static readonly Memcached.ClientLibrary.MemcachedClient mc = null;
+
+        private static readonly Memcached.Client.MemcachedClient mc = null;
+        
 
         /// <summary>
         /// 静态构造函数——不需要使用public
@@ -44,7 +47,7 @@ namespace Common
             pool.Initialize();
 
             // 获得客户端实例
-            mc = new MemcachedClient();
+            mc = new Memcached.Client.MemcachedClient();
             mc.EnableCompression = false;
         }
 
