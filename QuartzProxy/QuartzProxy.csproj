@@ -71,6 +71,9 @@
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model.SMSModel.xsd">
       <SubType>Designer</SubType>
     </None>

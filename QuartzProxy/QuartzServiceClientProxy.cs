@@ -9,6 +9,7 @@ using PMS.IModel;
 using PMS.Model;
 using PMS.Model.JobDataModel;
 
+
 namespace QuartzProxy
 {
     /// <summary>
@@ -28,7 +29,9 @@ namespace QuartzProxy
 
         public object AddScheduleJob(J_JobInfo jobInfo, SendJobDataModel data_temp)
         {
-           return base.Channel.AddScheduleJob(jobInfo, data_temp);
+            var response= base.Channel.AddScheduleJob(jobInfo, data_temp) as PMS.Model.Message.BaseResponse;
+
+            return response;
         }
         
 

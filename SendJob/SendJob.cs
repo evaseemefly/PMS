@@ -45,6 +45,7 @@ namespace JobInstances
             combine_model.Model_Message.isTiming = false;
             //var send_model = dataMap["SendModel"] as PMS.Model.JobDataModel.SendJobDataModel;
 
+            //其他信息: 在 ServiceModel 客户端配置部分中，找不到引用协定“ServiceReference_QuartzService.IJobService”的默认终结点元素。这可能是因为未找到应用程序的配置文件，或者是因为客户端元素中找不到与此协定匹配的终结点元素。
             ISMSSend send = new SMSFactory.SMSSend();
 
             PMS.Model.SMSModel.SMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();

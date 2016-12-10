@@ -28,6 +28,7 @@
     <MetadataFile FileName="PMS.Model.ViewModel.xsd" MetadataType="Schema" ID="d4660119-2fd7-4b96-85cd-b89583ccf35d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="e9122afe-b07c-4745-9a8d-7d1a06369299" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
     <MetadataFile FileName="PMS.Model.SMSModel.xsd" MetadataType="Schema" ID="0abba178-ee75-4a47-9873-4f4f195ed44c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
+    <MetadataFile FileName="PMS.Model.Message.xsd" MetadataType="Schema" ID="559d9457-bfaf-4d8f-b7a4-07359ea9ca08" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="49e424d9-45c0-4864-a05c-c35243d325cd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
     <MetadataFile FileName="PMS.Model.xsd" MetadataType="Schema" ID="71b9e71c-5231-4985-9038-05cfed072d6a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
     <MetadataFile FileName="PMS.Model.JobDataModel.xsd" MetadataType="Schema" ID="d664daf4-afe6-4fe5-8354-eabe2e35f4d7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/mex" />
