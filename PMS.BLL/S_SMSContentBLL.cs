@@ -40,7 +40,7 @@ namespace PMS.BLL
                 this.Create(s_smsContent);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

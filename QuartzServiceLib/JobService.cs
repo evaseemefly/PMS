@@ -10,60 +10,107 @@ using Quartz;
 using Quartz.Impl.Matchers;
 using PMS.Model.Message;
 using PMS.IModel;
+using Common;
 
 namespace QuartzServiceLib
 {
     public class JobService:IJobService
     {
-        IScheduler sche { get; set; }
+        /// <summary>
+        /// 定义为静态的属性（只能被赋值一遍）
+        /// </summary>
+       static IScheduler sche { get; set; }
+
+        //*****12月7日添加：锁
+        private static object obj = new object();
 
         #region 无参构造函数实例化调度池
         public JobService()
         {
-            if (sche != null)
-            {
+            //if (sche != null)
+            //{
 
-            }
-            else
-            {
-                sche = StdSchedulerFactory.GetDefaultScheduler();
-            }
+            //}
+            //else
+            //{
+            //    sche = StdSchedulerFactory.GetDefaultScheduler();
+            //}
+            InitScheduler();
         }
 
         #endregion
 
-        #region 1 添加任务计划
-        ///// <summary>
-        ///// 根据工作对象 添加任务计划
-        ///// 作业需要含UID
-        ///// </summary>
-        ///// <param name="jobInfo">作业（含UID）</param>
-        ///// <param name="data_temp">向作业调度中传的临时数据</param>
-        ///// <returns></returns>
-        //public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, IJobData data_temp)
-        //{
+        static void InitScheduler()
+        {
+            try
+            {
+                lock (obj)
+                {
+                    if (sche == null)
+                    {
+                        //使用配置文件的方式配置quartz实例
+                        sche = StdSchedulerFactory.GetDefaultScheduler();
+                        LogHelper.WriteLog("任务调度初始化成功");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError("任务调度初始化失败！", ex);
+            }
+        }
 
-        //    //1 根据Job的类名通过反射的方式创建IJobDetial
-        //    var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
-        //    IBaseResponse response = new BaseResponse() { Success = false };
-        //    if (job == null)
-        //    {
-        //        response.Message = string.Format("创建作业实例时出错");
-        //    }
-        //    //2 创建定时器
-        //    var trigger = JobFactory.CreateTrigger(jobInfo);
+        /// <summary>
+        /// *****12月7日添加
+        /// 启动调度池
+        /// </summary>
+        public static void StartScheduler()
+        {
+            try
+            {
+                //若作业调度池为空，则需要初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
+                if (!sche.IsStarted)
+                {
+                    sche.Start();
+                    LogHelper.WriteLog("调度池启动成功");
+                }
+            }
+            catch (Exception ex)
+            {
 
-        //    //3 将定时器加入job中
-        //    //var sche = new SchedulerFactory().GetScheduler();
-        //    sche.ScheduleJob(job, trigger);
+                LogHelper.WriteError("调度池启动失败", ex);
+            }
+        }
 
-        //    //4 启动工作
-        //    sche.Start();
-        //    response.Success = true;
-        //    response.Message = string.Format("作业已添加至调度池中");
-        //    return response;
-        //}
-        #endregion
+        /// <summary>
+        /// *****12月7日添加
+        /// 终止调度池
+        /// </summary>
+        public static void StopScheduler()
+        {
+            try
+            {
+                //若作业调度池为空，则需要初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
+                if (!sche.IsShutdown)
+                {
+                    sche.Shutdown(true);
+                    LogHelper.WriteLog("调度池停止");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.WriteError("调度池停止失败", ex);
+            }
+        }
 
         #region 2 添加监听器——可用此种方式实现作业执行后更新数据库中状态——未使用此种方式
         /// <summary>
@@ -164,7 +211,7 @@ namespace QuartzServiceLib
                 response.Success = true;
                 response.Message = string.Format("job:{0},group{1}已暂停工作", job.JobName, job.JobGroup);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 response.Message = string.Format("job:{0},group{1}暂停工作时出错", job.JobName, job.JobGroup);
             }
@@ -254,12 +301,20 @@ namespace QuartzServiceLib
 
             //3 将定时器加入job中
             //var sche = new SchedulerFactory().GetScheduler();
-            sche.ScheduleJob(job, trigger);
-
-            //4 启动工作
-            sche.Start();
-            response.Success = true;
-            response.Message = string.Format("作业已添加至调度池中");
+            try
+            {
+                sche.ScheduleJob(job, trigger);
+                //4 启动工作
+                sche.Start();
+                response.Success = true;
+                response.Message = string.Format("作业已添加至调度池中");
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = string.Format("作业添加至调度池时出错");
+            }
+            
             return response;
         }
         #endregion

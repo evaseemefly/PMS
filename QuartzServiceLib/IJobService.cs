@@ -44,6 +44,7 @@ namespace QuartzServiceLib
         #endregion
 
         [OperationContract]
+        [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
         #region 3 恢复全部作业
         /// <summary>
         /// 恢复全部作业
@@ -52,6 +53,7 @@ namespace QuartzServiceLib
         #endregion
 
         [OperationContract]
+        [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
         #region 4 恢复指定作业
         /// <summary>
         /// 恢复指定的作业
@@ -62,6 +64,7 @@ namespace QuartzServiceLib
         #endregion
 
         [OperationContract]
+        [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
         #region 5 删除指定作业
         /// <summary>
         /// 删除某个作业
@@ -72,6 +75,7 @@ namespace QuartzServiceLib
         #endregion
 
         [OperationContract]
+        [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
         #region 6 暂停指定作业
         /// <summary>
         /// 暂停某个作业
@@ -82,6 +86,7 @@ namespace QuartzServiceLib
         #endregion
 
         [OperationContract]
+        [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
         #region 7 终止指定作业
         /// <summary>
         /// 终止指定作业
