@@ -563,15 +563,6 @@
     <Content Include="Views\Shared\_Admin_AddUser_Layout.cshtml" />
     <Content Include="Views\Shared\_Contact_AddEdit_Layout.cshtml" />
     <Content Include="Views\Shared\_Partial_loadDataGrid.cshtml" />
-    <Content Include="Web - 复制.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web - 复制.Debug.config">
-      <DependentUpon>Web - 复制.config</DependentUpon>
-    </Content>
-    <Content Include="Web - 复制.Release.config">
-      <DependentUpon>Web - 复制.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

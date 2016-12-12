@@ -99,6 +99,7 @@ namespace JobInstances
                         }
                     }
                     UpdateJobState(targetJob);
+                   
                 }
                 //4 若不存在则创建新的作业
             }

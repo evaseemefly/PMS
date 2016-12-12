@@ -9,6 +9,7 @@ using PMS.IBLL;
 using PMS.BLL;
 using ISMS;
 using SMSFactory;
+using Common;
 
 namespace JobInstances
 {
@@ -53,7 +54,16 @@ namespace JobInstances
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
             //send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = combine_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
-            send.SendMsg(combine_model, out receive_model);
+            try
+            {
+                send.SendMsg(combine_model, out receive_model);
+                LogHelper.WriteLog(string.Format("msgid:{0}已发送", combine_model.Model_Send.msgid));
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(string.Format("msgid:{0}发送失败,错误原因{1}",combine_model.Model_Send.msgid),ex); 
+            }
+            
             PMS.Model.ViewModel.ViewModel_Message model = new PMS.Model.ViewModel.ViewModel_Message()
             {
                 UID =0,
