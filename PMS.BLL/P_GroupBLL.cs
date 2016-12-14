@@ -10,7 +10,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-   public partial class P_GroupBLL : IBaseDelBLL
+   public partial class P_GroupBLL : IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 查询指定联系人id的所属群组集合
@@ -93,7 +93,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
@@ -107,19 +107,22 @@ namespace PMS.BLL
             //    //2. 得到群组和用户的关联表数据并删除
             //    item.R_UserInfo_Group.Clear();
             //}
-            try
+            if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
-                //3. 从数据库中删除这些实体对象
-                //this.CurrentDAL.UpdateByList(list_model);
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDAL.SaveChange();
-                return true;
+                try
+                {
+                    //3. 从数据库中删除这些实体对象
+                    //this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
+            return false;
         }
 
         /// <summary>
@@ -199,6 +202,27 @@ namespace PMS.BLL
             return list_model.Exists(r => r.GroupName.Equals(name));
 
             
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query = base.GetListBy(a => list_ids.Contains(a.GID));
+            foreach (var item in query)
+            {
+                if (item.P_PersonInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_Group_Mission.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_Group.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

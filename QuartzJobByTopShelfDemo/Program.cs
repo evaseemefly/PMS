@@ -13,7 +13,7 @@ namespace QuartzJobByTopShelfDemo
         {
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
 
-            JobManagerService jobSer = new JobManagerService();
+            JobManagerService jobSer = new JobManagerService(); 
             jobSer.Start();
 
             Console.ReadLine();

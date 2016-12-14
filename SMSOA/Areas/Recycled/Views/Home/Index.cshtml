@@ -73,6 +73,13 @@
                 //去掉逗号
         }
 
+        function del_reload() {
+            //重新加载treegrid
+            $("#datagrid").datagrid('reload');
+            //清楚所选中的行
+            $("#datagrid").datagrid('clearSelections');
+            $.messager.alert("提示", "删除成功");
+        }
 
         function doDel() {
             var rows = $("#datagrid").datagrid('getSelections');
@@ -99,12 +106,17 @@
                 $.post("@ViewBag.DoDel" + "?ids=" + strId + "&&type=" + type, function (data) {
                 //请求成功后的回调函数
                 if (data == "ok") {
-                //重新加载treegrid
-                   $("#datagrid").datagrid('reload');
-                //清楚所选中的行
-                $("#datagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
-            } 
+                del_reload();
+            }
+                if (data == "confirm") {
+                    if ($.messager.confirm("提示", "删除对象有关联内容，是否删除？", function (r) {
+                $.post("@ViewBag.ConfirmDoDel" + "?ids=" + strId + "&&type=" + type, function (data) {
+                  if (data == "ok") {
+                del_reload();
+            }
+            })
+            }));
+                }
             });
             }
             }));

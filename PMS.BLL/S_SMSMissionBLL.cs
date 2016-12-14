@@ -11,7 +11,7 @@ using PMS.Model.EqualCompare;
 
 namespace PMS.BLL
 {
-    public partial class S_SMSMissionBLL: BaseBLL<S_SMSMission>, IS_SMSMissionBLL,IBaseDelBLL
+    public partial class S_SMSMissionBLL: BaseBLL<S_SMSMission>, IS_SMSMissionBLL,IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 查询全部的短信任务
@@ -155,33 +155,37 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if (list_model == null) { return false; }
-            //foreach (var item in list_model)
-            //{
-            //    item.R_Department_Mission.Clear();
-            //    item.R_Group_Mission.Clear();
-            //    item.R_UserInfo_SMSMission.Clear();
-            //    item.S_SMSMsgContent.Clear();
-            //    item.S_SMSContent.Clear();
-            //    item.S_SMSRecord_History.Clear();
+            foreach (var item in list_model)
+            {
+                item.R_Department_Mission.Clear();
+                item.R_Group_Mission.Clear();
+                item.R_UserInfo_SMSMission.Clear();
+                item.S_SMSMsgContent.Clear();
+                item.S_SMSContent.Clear();
+                item.S_SMSRecord_History.Clear();
 
-            //}
-            try
-            {
-                //3. 从数据库中删除这些实体对象
-                //this.CurrentDAL.UpdateByList(list_model);
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDAL.SaveChange();
-                return true;
             }
-            catch (Exception)
+            if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
-                return false;
+                try
+                {
+                    //3. 从数据库中删除这些实体对象
+                    //this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
+            return false;   
         }
 
         /// <summary>
@@ -465,6 +469,35 @@ namespace PMS.BLL
             var query = base.GetPageList<DateTime>(pageIndex, pageSize, a => a.isDel == true, a => a.ModifiedOnTime, true);
             rowCount = query.Count();
             return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query = base.GetListBy(a => list_ids.Contains(a.SMID));
+            foreach (var item in query)
+            {
+                if (item.R_Department_Mission.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_Group_Mission.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_SMSMission.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.S_SMSContent.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.S_SMSMsgContent.Count() > 0)
+                {
+                    return false;
+                }               
+            }
+            return true;
         }
     }
 }

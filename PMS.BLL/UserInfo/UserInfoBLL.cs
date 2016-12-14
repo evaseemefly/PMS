@@ -10,7 +10,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL
+    public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL, IBaseDelBLL,ICanBeDel
     {
         IS_SMSContentBLL contentBLL { get; set; }
        
@@ -117,10 +117,11 @@ namespace PMS.BLL
             var userInfoList = this.CurrentDBSession.UserInfoDAL.GetListBy(u => list.Contains(u.ID));
             if (userInfoList != null)
             {
+               
                 foreach (var user in userInfoList)
                 {
                     this.CurrentDBSession.UserInfoDAL.Del(user);
-                }
+                }                
             }
             return this.CurrentDBSession.SaveChanges();
         }
@@ -196,7 +197,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids,bool isCheckCanBeDel=false)
         {
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
@@ -287,13 +288,17 @@ namespace PMS.BLL
             {
                 //3. 从数据库中删除这些实体对象
                 //this.CurrentDAL.DelByList(list_model);
-               // this.CurrentDAL.SaveChange();
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDAL.SaveChange();
-                /*
-                		Message	"操作失败: 无法更改关系，因为一个或多个外键属性不可以为 null。对关系作出更改后，会将相关的外键属性设置为 null 值。如果外键不支持 null 值，则必须定义新的关系，必须向外键属性分配另一个非 null 值，或必须删除无关的对象。"	string
-                */
-                return true;
+                // this.CurrentDAL.SaveChange();                
+                if (CanBeDel(list_ids)||!isCheckCanBeDel)
+                {
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    /*
+                            Message	"操作失败: 无法更改关系，因为一个或多个外键属性不可以为 null。对关系作出更改后，会将相关的外键属性设置为 null 值。如果外键不支持 null 值，则必须定义新的关系，必须向外键属性分配另一个非 null 值，或必须删除无关的对象。"	string
+                    */
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -1017,6 +1022,65 @@ namespace PMS.BLL
                 return query;
             }
 
+        }
+
+        /// <summary>
+        /// 判断是否有其他的关联表
+        /// 由于UserInfo中与其有关联的表较多，现采用的方式不知对效率有没有影响
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query = base.GetListBy(u => list_ids.Contains(u.ID));
+            foreach (var item in query)
+            {
+                if (item.RoleInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.J_JobInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.J_JobTemplate.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.N_News.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.RoleInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_ActionInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_DepartmentInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_Group.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_News.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_PersonInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_SMSMission.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

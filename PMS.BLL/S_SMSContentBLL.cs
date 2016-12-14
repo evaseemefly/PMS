@@ -11,7 +11,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class S_SMSContentBLL : BaseBLL<S_SMSContent>, IS_SMSContentBLL, IBaseDelBLL
+    public partial class S_SMSContentBLL : BaseBLL<S_SMSContent>, IS_SMSContentBLL, IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 将短信存入SMSMsgContent
@@ -93,7 +93,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             return true;
         }
@@ -168,5 +168,9 @@ namespace PMS.BLL
             return query.ToList().Select(a => a.ToRecycleModel()).ToList();
         }
 
+        public bool CanBeDel(List<int> list_ids)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

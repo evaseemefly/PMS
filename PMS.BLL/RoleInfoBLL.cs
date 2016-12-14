@@ -9,7 +9,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class RoleInfoBLL : IBaseDelBLL
+    public partial class RoleInfoBLL : IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 根据id集合批量删除RoleInfo
@@ -119,29 +119,33 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if (list_model == null) { return false; }
-            foreach (var item in list_model)
+            if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
-                //2.清除关系表中的数据
-                item.ActionInfo.Clear();
-                item.UserInfo.Clear();
+                foreach (var item in list_model)
+                {
+                    //2.清除关系表中的数据
+                    item.ActionInfo.Clear();
+                    item.UserInfo.Clear();
+                }
+                try
+                {
+                    //3. 从数据库中删除这些实体对象
+                    this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            try
-            {
-                //3. 从数据库中删除这些实体对象
-                 this.CurrentDAL.UpdateByList(list_model);
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDAL.SaveChange();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
 
         public bool SetRole4Action(int roleId, List<int> list_actionIds)
@@ -237,6 +241,11 @@ namespace PMS.BLL
                 return query;
             }
 
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            throw new NotImplementedException();
         }
     }
 }

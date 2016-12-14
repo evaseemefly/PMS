@@ -94,7 +94,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        bool PhysicsDel(List<int> list_ids);
+        bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false);
 
         /// <summary>
         /// 还原（不使用此功能）
