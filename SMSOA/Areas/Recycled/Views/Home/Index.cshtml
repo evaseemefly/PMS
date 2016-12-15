@@ -35,7 +35,12 @@
         ,
         { field: 'Sort', title: '排序', width: '30%' }
         ,
-        { field: 'SubDateTime', title: '创建时间', width: '30%' }
+        {
+            field: 'SubDateTime', title: '创建时间', width: '30%',
+            formatter: function (value) {
+                return Date.getStrOfDate(value);
+            }
+        }
         ]];
 
 

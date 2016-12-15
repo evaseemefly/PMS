@@ -49,7 +49,7 @@ namespace PMS.IBLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        bool DoAddPerson(string PName, string PhoneNum, bool isVIP, List<int> list_group_ids, int id_department);
+        bool DoAddPerson(string PName, string PhoneNum, string Remark, bool isVIP, List<int> list_group_ids, int id_department);
 
         /// <summary>
         /// 6月15日发现的添加联系人的bug做如下修改

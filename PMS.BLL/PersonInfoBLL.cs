@@ -151,12 +151,17 @@ namespace PMS.BLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        public bool DoAddPerson(string PName,string PhoneNum,bool isVIP ,List<int> list_group_ids,int id_department)
+        public bool DoAddPerson(string PName,string PhoneNum, string Remark,bool isVIP ,List<int> list_group_ids,int id_department)
         {
-            PMS.Model.P_PersonInfo person_model = new P_PersonInfo();
-            person_model.PName = PName;
-            person_model.PhoneNum = PhoneNum;
-            person_model.isVIP = isVIP;
+            //使用初始化器创建对象
+            PMS.Model.P_PersonInfo person_model = new P_PersonInfo() {
+
+                PName = PName,
+                PhoneNum = PhoneNum,
+               isVIP = isVIP,
+               Remark = Remark
+            };
+            
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department &&d.isDel == false).FirstOrDefault();
            // person_model.P_DepartmentInfo = department_temp;
 
