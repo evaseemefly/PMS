@@ -432,6 +432,13 @@
                 }
             }
 
+            //清空右侧联系人列表中的全部联系人
+            function ClearPersonGrid() {
+                //2 根据GroupID查询该群组所拥有的人员列表
+                $('#persondatagrid').datagrid('loadData', { total: 0, rows: [] });
+
+            }
+
             //-------------------6 页面加载首先运行-----------------
             //根据smid加载对应的群组并添加至combogrid中
             function loadDatagrid_Group(smid, myGroupColumns) {
