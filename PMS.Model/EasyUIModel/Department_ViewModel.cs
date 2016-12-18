@@ -22,11 +22,17 @@ namespace PMS.Model.EasyUIModel
             return list_treeGrid;
         }
 
+        /// <summary>
+        /// 转成EasyUI能的下拉数视图
+        /// </summary>
+        /// <param name="list_department"></param>
+        /// <param name="checkedIds"></param>
+        /// <returns></returns>
         public static List<EasyUIComboTree_Department> ToEasyUIComboTree(List<P_DepartmentInfo> list_department, params int[] checkedIds)
         {
             List<EasyUIComboTree_Department> list_comboTree = new List<EasyUIComboTree_Department>();
-
-            LoadComboTree(list_department, list_comboTree, 0, checkedIds);
+            //12月18日修改 顶级父节点的父节点为-1
+            LoadComboTree(list_department, list_comboTree, -1, checkedIds);
             return list_comboTree;
         }
 

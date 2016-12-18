@@ -7,16 +7,17 @@ using PMS.Model;
 using PMS.IBLL;
 using PMS.BLL;
 using PMS.IModel;
-
+using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class J_JobInfoBLL
+    public partial class J_JobInfoBLL:IBaseDelBLL,ICanBeDel
     {
 
         //使用WCF中的方法
-        //ServiceReference_Quartz.IJobService ijobService= new ServiceReference_Quartz.JobServiceClient();
-        QuartzJobFactory.IJobService ijobService = new QuartzJobFactory.JobService();
+        //ServiceReference_QuartzService.JobServiceClient client = new ServiceReference_QuartzService.JobServiceClient();
+        QuartzProxy.QuartzServiceFacade client_quartzProxy = new QuartzProxy.QuartzServiceFacade(new QuartzProxy.QuartzServiceClientProxy());
+        //QuartzJobFactory.IJobService client_quartzProxy = new QuartzJobFactory.JobService();
         IUserInfoBLL userInfoBLL = new UserInfoBLL();
 
         /// <summary>
@@ -138,14 +139,20 @@ namespace PMS.BLL
             
             //1 创建与UserInfo的关系
            var user= this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == model.UID).FirstOrDefault();
+            //12月9日
+            //注意此处不要将user转成中间变量,否则会创建一个新的user对象该userInfo表中
+            //model.UserInfoes.Add(user.ToMiddleModel());
             model.UserInfoes.Add(user);
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
             if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
             base.Create(model);
-            var response = ijobService.AddScheduleJob(model, jobData);
-
+            //var response = ijobService.AddScheduleJob(model, jobData);
+            var response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.SendJobDataModel);
+            //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);
+            //var response= response_wcf as Model.Message.IBaseResponse;
+            //client.AddScheduleJob(model.ToMiddleModel(), jobData);
             //2 写入jobInfo表作业的状态
             if (response.Success)
             {
@@ -180,7 +187,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                response = ijobService.PauseJob(job_temp);
+                response = client_quartzProxy.PauseJob(job_temp);
                 // return response.Success;
             }
             if (response.Success)
@@ -206,7 +213,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                response = ijobService.ResumeTargetJob(job_temp);
+                response = client_quartzProxy.ResumeTargetJob(job_temp);
                 //return response;
                 // return response.Success;
             }
@@ -233,7 +240,7 @@ namespace PMS.BLL
             if (job_temp != null)
             {
                 //2 暂停
-                response = ijobService.RemovceJob(job_temp);
+                response = client_quartzProxy.RemovceJob(job_temp);
                 //软删除
                 this.DelJobInfo(id);
                 //return response;
@@ -329,10 +336,19 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //只需要清除数据库中JobInfo表中的对应记录即可
-            return false;
+            if (CanBeDel(list_ids)||!isCheckCanBeDel)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         /// <summary>
@@ -342,7 +358,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public bool Recovery(List<int> list_id)
         {
-            //
+
             return false;
         }
 
@@ -354,6 +370,29 @@ namespace PMS.BLL
         private IEnumerable<J_JobInfo> NullDelJob(IEnumerable<J_JobInfo> array)
         {
             return array.Where(j => j.isDel == false);
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query = base.GetListBy(j => list_ids.Contains(j.JID));
+            foreach (var item in query)
+            {
+                if (item.UserInfoes.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

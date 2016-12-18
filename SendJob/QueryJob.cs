@@ -31,14 +31,14 @@ namespace JobInstances
 
         public void ExceutedTest(IJobExecutionContext context)
         {
-            if (jobInfoBLL == null)
-            {
-                jobInfoBLL = new J_JobInfoBLL();
-            }
-            if (userInfoBLL == null)
-            {
-                userInfoBLL = new UserInfoBLL();
-            }
+            //if (jobInfoBLL == null)
+            //{
+            //    jobInfoBLL = new J_JobInfoBLL();
+            //}
+            //if (userInfoBLL == null)
+            //{
+            //    userInfoBLL = new UserInfoBLL();
+            //}
             if (qrtz_triggerBLL == null)
             {
                 qrtz_triggerBLL = new QRTZ_TRIGGERSBLL();
@@ -99,6 +99,7 @@ namespace JobInstances
                         }
                     }
                     UpdateJobState(targetJob);
+                   
                 }
                 //4 若不存在则创建新的作业
             }

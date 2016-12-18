@@ -38,6 +38,6 @@ namespace PMS.IBLL
         ///</summary>
         ///<param name="name"></param>
         ///<returns></returns>
-        bool EditValidation(int userID, int SMID);
+        bool EditValidation(int userID, int SMID,int TID);
     }
 }

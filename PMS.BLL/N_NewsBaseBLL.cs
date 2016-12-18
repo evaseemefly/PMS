@@ -9,7 +9,7 @@ using PMS.IBLL;
 
 namespace PMS.BLL
 {
-    public partial class N_NewsBLL: IBaseDelBLL
+    public partial class N_NewsBLL: IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 查询该id登录的用户所拥有的全部消息列表
@@ -47,7 +47,7 @@ namespace PMS.BLL
 
         }
 
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             return true;
         }
@@ -81,6 +81,11 @@ namespace PMS.BLL
         }
 
         public bool Recovery(List<int> list_ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanBeDel(List<int> list_ids)
         {
             throw new NotImplementedException();
         }

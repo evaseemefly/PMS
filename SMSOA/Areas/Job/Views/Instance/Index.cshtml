@@ -40,6 +40,9 @@
                      if(value==5){
                          return '<span style="color:orchid;">'+hashMap[value]+'</span>';
                      }
+                     if(value==6){
+                         return '<span style="color:seagreen;">'+hashMap[value]+'</span>';
+                     }
                  } },
                  { field: 'Remark', title: '描述', width: 140 },
         ]]
@@ -123,8 +126,8 @@
             <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()"></a>
             <a href="#" class="easyui-linkbutton" id="end_Job" data-options="iconCls:'icon-no',text: '终止',plain:true" onclick="endJobRow()"></a>
         </div>
-        @*@Html.Partial("_Partial_Toolbar_Action")*@
-    </div>
+            @*@Html.Partial("_Partial_Toolbar_Action")*@
+</div>
     @Html.Partial("_Partial_JobIns_ShowEditWin")
     @Html.Partial("_Partial_JobIns_MenuButton")
 }

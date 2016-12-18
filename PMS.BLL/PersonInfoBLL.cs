@@ -10,7 +10,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class P_PersonInfoBLL : BaseBLL<P_PersonInfo>, IP_PersonInfoBLL, IBaseDelBLL
+    public partial class P_PersonInfoBLL : BaseBLL<P_PersonInfo>, IP_PersonInfoBLL, IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 逻辑删除（物理删除）
@@ -68,7 +68,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             return true;
         }
@@ -151,12 +151,17 @@ namespace PMS.BLL
         /// <param name="list_group_ids"></param>
         /// <param name="id_department"></param>
         /// <returns></returns>
-        public bool DoAddPerson(string PName,string PhoneNum,bool isVIP ,List<int> list_group_ids,int id_department)
+        public bool DoAddPerson(string PName,string PhoneNum, string Remark,bool isVIP ,List<int> list_group_ids,int id_department)
         {
-            PMS.Model.P_PersonInfo person_model = new P_PersonInfo();
-            person_model.PName = PName;
-            person_model.PhoneNum = PhoneNum;
-            person_model.isVIP = isVIP;
+            //使用初始化器创建对象
+            PMS.Model.P_PersonInfo person_model = new P_PersonInfo() {
+
+                PName = PName,
+                PhoneNum = PhoneNum,
+               isVIP = isVIP,
+               Remark = Remark
+            };
+            
             var department_temp = this.CurrentDBSession.P_DepartmentInfoDAL.GetListBy(d => d.DID == id_department &&d.isDel == false).FirstOrDefault();
            // person_model.P_DepartmentInfo = department_temp;
 
@@ -392,6 +397,11 @@ namespace PMS.BLL
                 }
             }
             return Create(person_model);
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            throw new NotImplementedException();
         }
     }
 }

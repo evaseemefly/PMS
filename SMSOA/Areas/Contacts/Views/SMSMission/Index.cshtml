@@ -69,6 +69,8 @@
                 if (data == "ok") {
                 //重新加载datagrid
                    Refresh();
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
                 //清楚所选中的行
                 $("#SMSMissiondatagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");

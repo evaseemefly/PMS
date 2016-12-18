@@ -78,10 +78,11 @@ namespace PMS.DALSQLSer
         {
             //1 将实体对象添加到上下文中
             Db.Set<T>().Attach(model);
-            //2 将该实体对象标记为删除
+            //2 将该实体对象标记为删除            
+            //Db.Entry<T>(model).State = System.Data.EntityState.Deleted;
             Db.Set<T>().Remove(model);
-            
-            return true;
+            return Db.SaveChanges()>0;
+            //return true;
         }
 
         //public bool PhysicsDel(T model)
@@ -167,6 +168,12 @@ namespace PMS.DALSQLSer
         }
         #endregion
 
+        /// <summary>
+        /// 是否将查询对象放入数据上下文中（默认为不放置在缓存中）；
+        /// true不放在数据上下文中，false放在数据上下文中。
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="isNotTrack">true不放在数据上下文中，false放在数据上下文中</param>
         protected void ToNoTracking(ref IQueryable<T> query,bool isNotTrack = true)
         {
             if (isNotTrack)
@@ -278,8 +285,17 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool SaveChange()
         {
-            var i =Db.SaveChanges() ;
-            return i > 0;
+            try
+            {
+                var i = Db.SaveChanges();
+                return i > 0;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+            
         }
         #endregion
 
@@ -295,12 +311,15 @@ namespace PMS.DALSQLSer
             //遍历传入的要修改的集合，将每个对象的状态均设置为修改状态
             foreach (var item in list)
             {
+                //if (!Db.Set<T>().Find(item))
                 //1 将实体对象添加到上下文中
                 Db.Set<T>().Attach(item);
                 //2 将该实体对象标记为删除
                 Db.Set<T>().Remove(item);
             }
-            return true;
+
+            return Db.SaveChanges()>0;
+            //return true;
         }
         #endregion
     }

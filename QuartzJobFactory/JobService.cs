@@ -10,12 +10,86 @@ using Quartz.Impl;
 using Quartz;
 using Quartz.Impl.Matchers;
 using PMS.Model.Message;
+using Common;
 
 namespace QuartzJobFactory
 {
     public class JobService:IJobService
     {
-        IScheduler sche { get; set; }
+        //*****12月7日添加：锁
+        private static object obj = new object();
+
+        //*****12月7日将线程池改成静态的，此处暂时注释掉
+        //IScheduler sche { get; set; }
+
+        private static IScheduler sche = null;
+
+
+        /// <summary>
+        /// 初始化任务调度对象
+        /// </summary>
+        public static void InitScheduler()
+        {
+            try
+            {
+                lock (obj)
+                {
+                    if (sche == null)
+                    {
+                        //使用配置文件的方式配置quartz实例
+                        sche = StdSchedulerFactory.GetDefaultScheduler();
+                        LogHelper.WriteLog("任务调度初始化成功");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError("任务调度初始化失败！", ex);
+            }
+        }
+
+
+        /// <summary>
+        /// *****12月7日添加
+        /// 启动调度池
+        /// </summary>
+        public static void StartScheduler()
+        {
+            try
+            {
+                if (!sche.IsStarted)
+                {
+                    sche.Start();
+                    LogHelper.WriteLog("调度池启动成功");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.WriteError("调度池启动失败", ex);
+            }
+        }
+
+        /// <summary>
+        /// *****12月7日添加
+        /// 终止调度池
+        /// </summary>
+        public static void StopScheduler()
+        {
+            try
+            {
+                if (!sche.IsShutdown)
+                {
+                    sche.Shutdown(true);
+                    LogHelper.WriteLog("调度池停止");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.WriteError("调度池停止失败", ex);
+            }
+        }
 
         #region 无参构造函数实例化调度池
         public JobService()
@@ -25,8 +99,10 @@ namespace QuartzJobFactory
                 
             }
             else
-            {                
-                sche = StdSchedulerFactory.GetDefaultScheduler(); 
+            {
+                InitScheduler();
+                //*****12月7日暂时注释掉此部分
+                //sche = StdSchedulerFactory.GetDefaultScheduler(); 
             }
         }
 
@@ -56,9 +132,18 @@ namespace QuartzJobFactory
             //3 将定时器加入job中
             //var sche = new SchedulerFactory().GetScheduler();
             sche.ScheduleJob(job, trigger);
-
-            //4 启动工作
-            sche.Start();
+            try
+            {
+                //4 启动工作
+                sche.Start();
+                LogHelper.WriteLog(string.Format("{0}创建的作业{1}-{2}(所属{3})已添加至调度池中", jobInfo.CreateUser, jobInfo.JID, jobInfo.JobName, jobInfo.JobGroup));
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError("作业添加错误",ex);
+                throw;
+            }
+           
             response.Success = true;
             response.Message = string.Format("作业已添加至调度池中");
             return response;
@@ -157,18 +242,25 @@ namespace QuartzJobFactory
         public IBaseResponse PauseJob(J_JobInfo job)
         {
             IBaseResponse response = new BaseResponse() { Success = false };
+
             try
             {
-
                 sche.PauseJob(new JobKey(job.JID.ToString(), job.JobGroup));
+                LogHelper.WriteLog(string.Format("{0}已恢复作业{1}-{2}(所属{3})", job.CreateUser, job.JID, job.JobName, job.JobGroup));
                 response.Success = true;
                 response.Message = string.Format("job:{0},group{1}已暂停工作", job.JobName, job.JobGroup);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.WriteError("作业恢复错误", ex);
+
                 response.Message = string.Format("job:{0},group{1}暂停工作时出错", job.JobName, job.JobGroup);
             }
-            
+
+
+
+
+
             return response;
         }
         #endregion 

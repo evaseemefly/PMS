@@ -38,6 +38,9 @@ namespace PMS.Model.Enum
         /// </summary>
         STOP=4,
 
-        
+        ///<summary>
+        /// 已捕获
+        /// </summary>
+        ACQUIRED = 6,
     }
 }

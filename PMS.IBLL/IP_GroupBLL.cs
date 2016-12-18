@@ -14,7 +14,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        List<P_Group> GetListByIds(List<int> list_ids);
+        List<P_Group> GetListByIds(List<int> list_ids, bool isNotTrack = false);
 
         /// <summary>
         /// 查询指定联系人id的所属群组集合
