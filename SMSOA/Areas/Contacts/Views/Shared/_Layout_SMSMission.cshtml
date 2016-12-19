@@ -148,15 +148,21 @@
             //-----------------3 增删改操作--------------------
             //分配部门按钮的方法
             function AssignGroup() {
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
                 $("#showGroupWindow").window('open');
 
             }
             function AssignDepartment() {
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
                 $("#showDepartmentWindow").window('open');
 
             }
             //保存方法
             function Accept() {
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
                 //获取选中的部门
                 var d_rows = $("#department").treegrid('getSelections');
                 //结束部门编辑
@@ -309,16 +315,7 @@
             function loadPersonGrid(url, myPersonColumns, queryModel) {
                 //1 获取选中的行
                 var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
-                //1.1 若选中的行不为一行
-                if (rows.length != 1) {
-                    //提示
-                    $.messager.show({
-                        title: '提示',
-                        msg: '请选中一行数据',
-                        showType: 'show'
-                    });
-                    return;
-                }
+                if (!isSelectedRow(rows)) { return; }
                 //1.2 获取选中行的ID
                 strId = rows[0].SMID;
                 url = url + "?smid=" + strId;
