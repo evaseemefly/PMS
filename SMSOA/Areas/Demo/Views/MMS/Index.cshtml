@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Recycled/Views/Shared/_Layout_Common.cshtml";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        function upload() {
+            $("#fm").form('submit', {
+                url: 'FileUp'
+            })
+        }
+    </script>
+    }
+
+@section div_Body{
+    <h2>Basic FileBox</h2>
+<p>The filebox component represents a file field of the forms.</p>
+<div style="margin:20px 0;"></div>
+<div class="easyui-panel" title="Upload File" style="width:400px;padding:30px 70px 50px 70px" action="FileUp">
+    <form id="fm"  method="post" enctype="multipart/form-data">
+        <div style="margin-bottom:20px">
+            <div>File1:</div>
+            <input id="filebox_image" class="easyui-filebox" name="file1" data-options="prompt:'请选择一个文件...'" style="width:100%">
+        </div>
+        <div>
+            <a href="#" class="easyui-linkbutton" type="submit" style="width:100%" onclick="upload()">上传</a>
+        </div>
+    </form>
+</div>
+    }
