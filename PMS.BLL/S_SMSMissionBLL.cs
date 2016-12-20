@@ -162,13 +162,31 @@ namespace PMS.BLL
             if (list_model == null) { return false; }
             foreach (var item in list_model)
             {
-                item.R_Department_Mission.Clear();
-                item.R_Group_Mission.Clear();
-                item.R_UserInfo_SMSMission.Clear();
-                item.S_SMSMsgContent.Clear();
-                item.S_SMSContent.Clear();
-                item.S_SMSRecord_History.Clear();
+                
+                //item.S_SMSMsgContent.Clear();
+                //item.S_SMSContent.Clear();
+                //item.S_SMSRecord_History.Clear();
+                //this.CurrentDAL.SaveChange();
 
+                #region 采用以下方式——可行
+                var list_r_Department_Mission = item.R_Department_Mission.Select(r => r).ToList();
+                R_Department_MissionBLL rdmBLL = new R_Department_MissionBLL();
+                rdmBLL.DelByList(list_r_Department_Mission);
+
+                var list_r_Group_Mission = item.R_Group_Mission.Select(r => r).ToList();
+                R_Group_MissionBLL rgmBLL = new R_Group_MissionBLL();
+                rgmBLL.DelByList(list_r_Group_Mission);
+
+                var list_r_UserInfo_SMSMission = item.R_UserInfo_SMSMission.Select(r => r).ToList();
+                R_UserInfo_SMSMissionBLL rusBLL = new R_UserInfo_SMSMissionBLL();
+                rusBLL.DelByList(list_r_UserInfo_SMSMission);
+                #endregion
+
+                #region 暂时不用
+                //item.R_Department_Mission.Clear();
+                //item.R_Group_Mission.Clear();
+                //item.R_UserInfo_SMSMission.Clear();
+                #endregion
             }
             if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
@@ -176,6 +194,7 @@ namespace PMS.BLL
                 {
                     //3. 从数据库中删除这些实体对象
                     //this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.SaveChange();
                     this.CurrentDAL.DelByList(list_model);
                     this.CurrentDAL.SaveChange();
                     return true;

@@ -81,22 +81,32 @@ namespace PMS.BLL
                     var list_person = item.P_PersonInfo.ToList();
                     //添加到无归属部门
                     list_person.ForEach(p => department_Not_assigned.P_PersonInfo.Add(p));
-                    //2. 得到群组和任务的关联表数据并删除
+                    item.P_PersonInfo.Clear();
+                    this.CurrentDAL.SaveChange();
+                    var list_r_Department_Mission = item.R_Department_Mission.Select(r => r).ToList();
+                    R_Department_MissionBLL rdmBLL = new R_Department_MissionBLL();
+                    rdmBLL.DelByList(list_r_Department_Mission);
+                    var list_r_UserInfo_DepartmentInfo = item.R_UserInfo_DepartmentInfo.Select(r => r).ToList();
+                    R_UserInfo_DepartmentInfoBLL rudBLL = new R_UserInfo_DepartmentInfoBLL();
+                    rudBLL.DelByList(list_r_UserInfo_DepartmentInfo);
+                    ////2. 得到群组和任务的关联表数据并删除
                     //item.R_Department_Mission.Clear();
                     ////2. 得到群组和用户的关联表数据并删除
                     //item.R_UserInfo_DepartmentInfo.Clear();
+                    //item.P_PersonInfo.Clear();
                 }
 
                 try
                 {
                     //3. 从数据库中删除这些实体对象
                     this.CurrentDAL.Update(department_Not_assigned);
-                    this.CurrentDAL.UpdateByList(list_model);
+                    //this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.SaveChange();
                     this.CurrentDAL.DelByList(list_model);
                     this.CurrentDAL.SaveChange();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     return false;
                 }
