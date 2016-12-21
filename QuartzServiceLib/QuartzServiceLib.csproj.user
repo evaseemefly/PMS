@@ -4,9 +4,8 @@
     <VisualStudio>
       <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
         <WcfProjectProperties>
-          <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>
-          </PublishTargetLocation>
+          <PublishCopyOption>AllFiles</PublishCopyOption>
+          <PublishTargetLocation>E:\03协同开发\999发布版\WCF\预报中心\2.0\Quartz\</PublishTargetLocation>
           <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
         </WcfProjectProperties>
       </FlavorProperties>
