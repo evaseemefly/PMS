@@ -36,6 +36,7 @@ namespace JobInstances
 
         protected override void ExceuteBody(IJobExecutionContext context)
         {
+            LogHelper.WriteLog("执行发送作业");
             var dataMap = context.JobDetail.JobDataMap;
             
             //反序列化

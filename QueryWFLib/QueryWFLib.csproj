@@ -50,6 +50,7 @@
     <Compile Include="GetStateByQueryList_Code.cs" />
     <Compile Include="InsertReciveModel2List_Code.cs" />
     <Compile Include="ListWriteInDb_Code.cs" />
+    <Compile Include="LogIn_Code.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryState_Code.cs" />
     <Compile Include="ReadConfig_Code.cs" />

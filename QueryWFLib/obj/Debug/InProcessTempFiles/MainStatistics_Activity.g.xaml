@@ -47,50 +47,62 @@
         <Variable x:TypeArguments="pme:MatchCondition_Enum" Name="_matchCondition_enum" />
       </Flowchart.Variables>
       <Flowchart.StartNode>
-        <FlowStep x:Name="__ReferenceID0">
-          <WriteLine Text="读取配置文件" />
+        <FlowStep x:Name="__ReferenceID5">
+          <local:LogIn_Code Text="{x:Null}" LogIn="启动查询" />
           <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID5">
+            <FlowStep x:Name="__ReferenceID1">
               <local:ReadConfig_Code Id_list_msgid="{x:Null}" Text="{x:Null}" />
               <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID1">
-                  <WriteLine Text="查询" />
+                <FlowStep x:Name="__ReferenceID8">
+                  <local:LogIn_Code Text="{x:Null}" LogIn="读取配置文件成功" />
                   <FlowStep.Next>
                     <FlowStep x:Name="__ReferenceID2">
-                      <WriteLine Text="获得xml格式的结果" />
+                      <local:QueryState_Code Text="{x:Null}">
+                        <local:QueryState_Code.List_QueryReceive>
+                          <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                            <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
+                          </OutArgument>
+                        </local:QueryState_Code.List_QueryReceive>
+                        <local:QueryState_Code.State>
+                          <OutArgument x:TypeArguments="x:Int32">
+                            <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
+                          </OutArgument>
+                        </local:QueryState_Code.State>
+                      </local:QueryState_Code>
                       <FlowStep.Next>
-                        <FlowStep x:Name="__ReferenceID3">
-                          <WriteLine Text="将xml转成对象集合" />
+                        <FlowStep x:Name="__ReferenceID6">
+                          <local:LogIn_Code Text="{x:Null}">
+                            <local:LogIn_Code.LogIn>
+                              <InArgument x:TypeArguments="x:String">
+                                <mca:CSharpValue x:TypeArguments="x:String">"查询状态为"+_state</mca:CSharpValue>
+                              </InArgument>
+                            </local:LogIn_Code.LogIn>
+                          </local:LogIn_Code>
                           <FlowStep.Next>
-                            <FlowStep x:Name="__ReferenceID6">
-                              <local:QueryState_Code Text="{x:Null}">
-                                <local:QueryState_Code.List_QueryReceive>
-                                  <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
-                                    <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
+                            <FlowStep x:Name="__ReferenceID3">
+                              <local:GetStateByQueryList_Code Text="{x:Null}" DisplayName="根据集合获取查询状态">
+                                <local:GetStateByQueryList_Code.List_QueryReceive>
+                                  <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                    <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
+                                  </InArgument>
+                                </local:GetStateByQueryList_Code.List_QueryReceive>
+                                <local:GetStateByQueryList_Code.State>
+                                  <OutArgument x:TypeArguments="pme:QueryState_Enum">
+                                    <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
                                   </OutArgument>
-                                </local:QueryState_Code.List_QueryReceive>
-                                <local:QueryState_Code.State>
-                                  <OutArgument x:TypeArguments="x:Int32">
-                                    <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
-                                  </OutArgument>
-                                </local:QueryState_Code.State>
-                              </local:QueryState_Code>
+                                </local:GetStateByQueryList_Code.State>
+                              </local:GetStateByQueryList_Code>
                               <FlowStep.Next>
                                 <FlowStep x:Name="__ReferenceID7">
-                                  <local:GetStateByQueryList_Code Text="{x:Null}" DisplayName="根据集合获取查询状态">
-                                    <local:GetStateByQueryList_Code.List_QueryReceive>
-                                      <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
-                                        <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
+                                  <local:LogIn_Code Text="{x:Null}">
+                                    <local:LogIn_Code.LogIn>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <mca:CSharpValue x:TypeArguments="x:String">"状态码为"+_state</mca:CSharpValue>
                                       </InArgument>
-                                    </local:GetStateByQueryList_Code.List_QueryReceive>
-                                    <local:GetStateByQueryList_Code.State>
-                                      <OutArgument x:TypeArguments="pme:QueryState_Enum">
-                                        <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
-                                      </OutArgument>
-                                    </local:GetStateByQueryList_Code.State>
-                                  </local:GetStateByQueryList_Code>
+                                    </local:LogIn_Code.LogIn>
+                                  </local:LogIn_Code>
                                   <FlowStep.Next>
-                                    <FlowStep x:Name="__ReferenceID4">
+                                    <FlowStep x:Name="__ReferenceID0">
                                       <If DisplayName="遍历查询集合写入最终集合">
                                         <If.Condition>
                                           <InArgument x:TypeArguments="x:Boolean">
@@ -137,7 +149,6 @@
                                                   <Sequence.Variables>
                                                     <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
                                                   </Sequence.Variables>
-                                                  <WriteLine Text="判断当前item中的msgid是否存在" />
                                                   <Sequence>
                                                     <local:CheckMsgIdInRedist_Code Text="{x:Null}" DisplayName="判断指定msgid及电话是否存在于缓存及数据库中">
                                                       <local:CheckMsgIdInRedist_Code.Item_Model>
@@ -159,6 +170,13 @@
                                                       </If.Condition>
                                                       <If.Then>
                                                         <Sequence>
+                                                          <local:LogIn_Code Text="{x:Null}">
+                                                            <local:LogIn_Code.LogIn>
+                                                              <InArgument x:TypeArguments="x:String">
+                                                                <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在"</mca:CSharpValue>
+                                                              </InArgument>
+                                                            </local:LogIn_Code.LogIn>
+                                                          </local:LogIn_Code>
                                                           <local:InsertReciveModel2List_Code State="{x:Null}" Text="{x:Null}">
                                                             <local:InsertReciveModel2List_Code.Item>
                                                               <InArgument x:TypeArguments="pms:SMSModel_QueryReceive">
@@ -179,7 +197,13 @@
                                                         </Sequence>
                                                       </If.Then>
                                                       <If.Else>
-                                                        <WriteLine Text="指定msgid不存在缓存中" />
+                                                        <local:LogIn_Code Text="{x:Null}">
+                                                          <local:LogIn_Code.LogIn>
+                                                            <InArgument x:TypeArguments="x:String">
+                                                              <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存中"</mca:CSharpValue>
+                                                            </InArgument>
+                                                          </local:LogIn_Code.LogIn>
+                                                        </local:LogIn_Code>
                                                       </If.Else>
                                                     </If>
                                                   </Sequence>
@@ -195,7 +219,7 @@
                                         </If.Then>
                                       </If>
                                       <FlowStep.Next>
-                                        <FlowStep x:Name="__ReferenceID8">
+                                        <FlowStep x:Name="__ReferenceID4">
                                           <If>
                                             <If.Condition>
                                               <InArgument x:TypeArguments="x:Boolean">
@@ -211,7 +235,7 @@
                                                     </InArgument>
                                                   </local:ListWriteInDb_Code.List_Final>
                                                 </local:ListWriteInDb_Code>
-                                                <WriteLine Text="写入完成" />
+                                                <local:LogIn_Code Text="{x:Null}" LogIn="写入成功" />
                                               </Sequence>
                                             </If.Then>
                                           </If>
@@ -242,7 +266,7 @@
       <x:Reference>__ReferenceID6</x:Reference>
       <x:Reference>__ReferenceID7</x:Reference>
       <x:Reference>__ReferenceID8</x:Reference>
-      <sads:DebugSymbol.Symbol>d01FOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXDA2MzBcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbDQxA4ECDwIBAT4JPlIDAdcBQQ1BgwEDAdYBRBFEVgMB1AFHFUdiAwHSAUoZSmYDAdABTR1YNQMBvQFbIWZCAwGqAWklzwEqAgEZ0gEp5AEuAgECPkc+TwMB2AFET0RTAwHVAUdTR18DAdMBSldKYwMB0QFQI1CUAQMBxwFVI1VuAwG+AV4nXpABAwG0AWMnY4MBAwGrAWwrbJ0BAgEacCnNATQCASPVAS/VAa8BAgED2QEt4gE4AgEMcSt8NAMBlwF9K4gBNAMBhAGJASvHATUCAS7IASvMATcCASTaAS/gAUoCAQ/hAS/hAXcCAQ15MXmyAQMBoQF0MXSoAQMBmAGFATGFAasBAwGOAYABMYABmgEDAYUBjAExjAGhAQIBe5MBL8UBOgIBL8oBL8oBmgECASXdATXdAaQBAgEQ4QFu4QF0AgEOlwExlwGHAQIBeZgBMcQBPAIBMJcBb5cBhAECAXqZATOkAVMCAWKlATPDATgCATGhATmhAZMBAgFunAE5nAGMAQIBY6gBOagBqQECATKsATe+AUICAT/BATfBAYcBAgE9rQE5vQFdAgFAwQF1wQGEAQIBProBP7oBqAECAVe1AT+1AbYBAgFMsAE/sAGSAQIBQQ==</sads:DebugSymbol.Symbol>
+      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw0MQOZAg8CAQE+CT5pAwH7AUENQa4BAwH6AUQRRHUDAfgBRxVSLQMB5QFVGVssAwHbAV4daT4DAcgBbCFyNAMBvgF1JecBKgIBGeoBKfwBLgIBAj5gPmYDAfwBRGhEcgMB+QFKG0qMAQMB7wFPG09mAwHmAVgfWGsDAdwBYSNhjAEDAdIBZiNmfwMByQFvJ29yAwG/AXgreJ0BAgEafCnlATQCASPtAS/tAa8BAgED8QEt+gE4AgEMfSuIATQDAasBiQErlAE0AwGYAZUBK98BNQIBLuABK+QBNwIBJPIBL/gBSgIBD/kBL/kBjwECAQ2FATGFAbIBAwG1AYABMYABqAEDAawBkQExkQGrAQMBogGMATGMAZoBAwGZAZgBMZgBoQEDAY8BnwEv3QE6AgEv4gEv4gGaAQIBJfUBNfUBpAECARD5AYYB+QGMAQIBDqMBMdwBPAIBMKQBM68BUwIBeLABM9sBOAIBMawBOawBkwEDAYQBpwE5pwGMAQIBebMBObMBqQECATK3ATfQAUICAUnTATfZAUoCAT24ATm+AUwCAWy/ATnPAV0CAUrWAT3WAY8BAgE+uwE/uwGMAQIBbcwBP8wBqAECAWHHAT/HAbYBAgFWwgE/wgGSAQIBSw==</sads:DebugSymbol.Symbol>
     </Flowchart>
   </local:Activity1.Implementation>
 </local:Activity1>
