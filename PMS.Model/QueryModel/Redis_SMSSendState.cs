@@ -29,5 +29,6 @@ namespace PMS.Model.QueryModel
         public int State { get; set; }
 
 
+
     }
 }

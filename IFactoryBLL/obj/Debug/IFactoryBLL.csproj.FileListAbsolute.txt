@@ -1,0 +1,5 @@
+D:\VSWorkSpace\nmefc\PMS\IFactoryBLL\bin\Debug\IFactoryBLL.dll
+D:\VSWorkSpace\nmefc\PMS\IFactoryBLL\bin\Debug\IFactoryBLL.pdb
+D:\VSWorkSpace\nmefc\PMS\IFactoryBLL\obj\Debug\IFactoryBLL.dll
+D:\VSWorkSpace\nmefc\PMS\IFactoryBLL\obj\Debug\IFactoryBLL.pdb
+D:\VSWorkSpace\nmefc\PMS\IFactoryBLL\obj\Debug\IFactoryBLL.csprojResolveAssemblyReference.cache
