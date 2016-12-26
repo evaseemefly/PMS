@@ -299,6 +299,7 @@ namespace SMSFactory
 
             //6月27日新增将List电话集合转成用,拼接的字符串
             //查询时不需要联系人电话
+            //12月26日 预报中心备份
             SMSModel_Send sendMsg = new SMSModel_Send()
             {
                 account = "dh74381",
@@ -307,6 +308,16 @@ namespace SMSFactory
                 phones = list_phones.ToArray(),
                 sendtime = DateTime.Now
             };
+
+            //12月26日 辽宁省台使用
+            //SMSModel_Send sendMsg = new SMSModel_Send()
+            //{
+            //    account = "dh10751",
+            //    password = "7suJv21Q",
+            //    content = content,
+            //    phones = list_phones.ToArray(),
+            //    sendtime = DateTime.Now
+            //};
             return sendMsg;
         }
 

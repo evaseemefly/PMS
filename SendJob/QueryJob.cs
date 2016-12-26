@@ -29,6 +29,10 @@ namespace JobInstances
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public void ExceutedTest(IJobExecutionContext context)
         {
             if (jobInfoBLL == null)

@@ -68,7 +68,7 @@ namespace JobInstances
                 }
                 else
                 {
-                    LogHelper.WriteError(string.Format("出现错误:Msg:{0}", ex.Message));
+                    LogHelper.WriteError(string.Format("出现错误:Msg:{0}", ex.ToString()));
                 }
             }
             
