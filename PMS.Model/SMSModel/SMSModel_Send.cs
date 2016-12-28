@@ -50,7 +50,7 @@ namespace PMS.Model.SMSModel
         /// <summary>
         /// 短信签名，该签名需要提前报备，生效后方可使用，不可修改，必填，示例如：【新华社】；
         /// </summary>
-        public string sign { get { return "【国家海洋预报台】"; } }
+        public string sign { get; set; }
 
         /// <summary>
         /// 短信签名对应子码(供应商提供)+自定义扩展子码(选填)，必须是数字，选填，未填使用签名对应子码；

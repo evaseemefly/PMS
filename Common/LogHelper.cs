@@ -12,11 +12,17 @@ namespace Common
     /// </summary>
     public class LogHelper
     {
-        private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
+        //private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
 
-        private static readonly ILog logWarn = LogManager.GetLogger("logWarn");
+        //private static readonly ILog logWarn = LogManager.GetLogger("logWarn");
 
-        private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("logerror");
+        //private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("logerror");
+
+        private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("Info");
+
+        private static readonly ILog logWarn = LogManager.GetLogger("WARN");
+
+        private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("ERROR");
 
         /// <summary>
         /// 写入日志
