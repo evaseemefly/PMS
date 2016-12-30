@@ -319,7 +319,8 @@ namespace QuartzServiceLib
             catch (Exception ex)
             {
                 response.Success = false;
-                response.Message = string.Format("作业添加至调度池时出错");
+                response.Message = ex.Source;
+                //response.Message = string.Format("作业添加至调度池时出错");
             }
             
             return response;

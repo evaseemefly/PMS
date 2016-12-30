@@ -8,18 +8,22 @@ using PMS.Model.SMSModel;
 using PMS.Model.Dictionary;
 using SMSFactory;
 using System.Collections.Specialized;
+using System.IO;
 
 namespace SMSFactoryServiceLib
 {
     // 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码和配置文件中的类名“Service1”。
     public class SMSService : ISMSService
-    {        
+    {
+        
 
         public bool SendMsg(SMSModel_Send smsdata, out SMSModel_Receive receiveModel)
         {
             String _data = null;//XML文本
             String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
             string returnMsg;
+
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
 
             //1 判断参数是否足够
             if (!SendBeforeCheck(smsdata))
@@ -35,6 +39,7 @@ namespace SMSFactoryServiceLib
                 return false;
             }
             _data = ObjTransform.Model2Xml_FormatSend(smsdata);
+            Common.LogHelper.WriteLog(_data);
             //2.1 http方式发送
             returnMsg = httpInvoke(_serverURL, _data);
             //解析服务器反馈信息

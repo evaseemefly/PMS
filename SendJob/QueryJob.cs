@@ -19,16 +19,23 @@ namespace JobInstances
         {
             Activity workflow_temp = new QueryWFLib.Activity1();
             var dic = new Dictionary<string, object>() { };
+            LogHelper.WriteLog("启动查询wf");
             var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
+            LogHelper.WriteLog("跳出wf");
         }
 
         protected override void Exceuted(IJobExecutionContext context)
         {
+            LogHelper.WriteLog("开始写入作业状态");
             ExceutedTest(context);
 
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public void ExceutedTest(IJobExecutionContext context)
         {
             if (jobInfoBLL == null)
@@ -58,8 +65,13 @@ namespace JobInstances
             //获取JobDataMap
             var data = context.JobDetail.JobDataMap;
             //1 需要传入一个用户id
-
+            if (data == null)
+            {
+                LogHelper.WriteError("JobDataMap中未保存对象");
+                return;
+            }
             var uid = data.GetInt("UID");
+            
             if (uid != 0)
             {
                 //var uid_int = int.Parse(uid);
@@ -78,6 +90,10 @@ namespace JobInstances
                 //UpdateJobState(targetJob);
                 //4 若存在则更新作业状态
                 //**查错，暂时注释**
+                if (targetJob == null)
+                {
+                    LogHelper.WriteWarn(string.Format("未找到\"{0}\"作业", context.JobDetail.Key.Name));
+                }
                 if (targetJob != null)
                 {
                     //4 更新作业状态的思路
@@ -98,12 +114,12 @@ namespace JobInstances
                             targetJob.NextRunTime = context.Trigger.GetNextFireTimeUtc().GetValueOrDefault().DateTime.AddHours(8);
                         }
                     }
-                    UpdateJobState(targetJob);
+                    if (UpdateJobState(targetJob))
+                        LogHelper.WriteLog("更新作业状态成功！");
                    
                 }
                 //4 若不存在则创建新的作业
             }
-
 
         }
     }
