@@ -39,13 +39,14 @@ namespace QuartzDemo
             //IJobService jobSer = new JobService();
             //var job_id = "test1" + Guid.NewGuid().ToString();
             //var job_group = "group1";
-            //J_JobInfo job = new J_JobInfo() {
-            //     JobName= job_id,
-            //     JobGroup= job_group,
-            //     JobClassName="HelloJob",
-            //     StartRunTime=DateTime.Now.AddSeconds(2),
-            //     EndRunTime=DateTime.Now.AddSeconds(3),
-            //     UID=3
+            //J_JobInfo job = new J_JobInfo()
+            //{
+            //    JobName = job_id,
+            //    JobGroup = job_group,
+            //    JobClassName = "HelloJob",
+            //    StartRunTime = DateTime.Now.AddSeconds(2),
+            //    EndRunTime = DateTime.Now.AddSeconds(3),
+            //    UID = 3
             //};
             //jobSer.AddScheduleJob(job);
 

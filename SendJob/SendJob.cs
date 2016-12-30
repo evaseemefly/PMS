@@ -36,6 +36,7 @@ namespace JobInstances
 
         protected override void ExceuteBody(IJobExecutionContext context)
         {
+            LogHelper.WriteLog("执行发送作业");
             var dataMap = context.JobDetail.JobDataMap;
             
             //反序列化
@@ -61,7 +62,14 @@ namespace JobInstances
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(string.Format("msgid:{0}发送失败,错误原因{1}",combine_model.Model_Send.msgid),ex); 
+                if (combine_model.Model_Send.msgid != null)
+                {
+                    LogHelper.WriteError(string.Format("msgid:{0}发送失败,错误原因{1}", combine_model.Model_Send.msgid), ex);
+                }
+                else
+                {
+                    LogHelper.WriteError(string.Format("出现错误:Msg:{0}", ex.Message));
+                }
             }
             
             PMS.Model.ViewModel.ViewModel_Message model = new PMS.Model.ViewModel.ViewModel_Message()

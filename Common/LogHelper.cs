@@ -14,7 +14,7 @@ namespace Common
     {
         private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
 
-        
+        private static readonly ILog logWarn = LogManager.GetLogger("logWarn");
 
         private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("logerror");
 
@@ -32,15 +32,30 @@ namespace Common
         }
 
         /// <summary>
+        /// 写入警告
+        /// </summary>
+        /// <param name="warn"></param>
+        public static void WriteWarn(string warn)
+        {
+            if (logWarn.IsWarnEnabled)
+            {
+                logWarn.Warn(warn);               
+            }
+        }
+
+        /// <summary>
         /// 写入错误日志
         /// </summary>
         /// <param name="info"></param>
         /// <param name="ex"></param>
-        public static void WriteError(string info,Exception ex)
+        public static void WriteError(string info,Exception ex=null)
         {
             if(logError.IsErrorEnabled)  //IsErrorEnabled?
             {
-                logError.Error(info, ex);
+                if (ex != null)
+                    logError.Error(info, ex);
+                else
+                    logError.Error(info);
             }
         }
     }

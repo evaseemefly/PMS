@@ -150,7 +150,7 @@ namespace QuartzServiceLib
             IBaseResponse response = new BaseResponse() { Success = false };
             try
             {
-                if (!sche.IsStarted) { sche.Start(); }
+                //if (!sche.IsStarted) { sche.Start(); }
 
                 sche.ResumeJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 response.Success = true;
@@ -303,9 +303,16 @@ namespace QuartzServiceLib
             //var sche = new SchedulerFactory().GetScheduler();
             try
             {
+                //若调度池为空，则初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
                 sche.ScheduleJob(job, trigger);
                 //4 启动工作
-                sche.Start();
+                //不启动该调度池
+                //sche.Start();
+
                 response.Success = true;
                 response.Message = string.Format("作业已添加至调度池中");
             }
