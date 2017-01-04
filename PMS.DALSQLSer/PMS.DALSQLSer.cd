@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PMS.DALSQLSer.BaseDAL&lt;T&gt;">
+    <Position X="25.25" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>EAQAgIAAAgAACACAEAAAAAAAAAAAAEAAAAAAEAAAAAA=</HashCode>
+      <FileName>BaseDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PMS.DALSQLSer.P_GroupDAL" Collapsed="true">
+    <Position X="25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PMS.DALSQLSer.S_SMSMsgContentDAL" Collapsed="true">
+    <Position X="27.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PMS.DALSQLSer.DBContextFactory">
+    <Position X="30.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>DBContextFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
