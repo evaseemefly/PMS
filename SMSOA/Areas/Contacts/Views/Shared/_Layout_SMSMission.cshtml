@@ -128,13 +128,13 @@
                {
                    id:'assign_group',
                    iconCls: 'icon-contacts_setgroup',
-                   text: "为当前短信任务分配群组",
+                   text: "为当前任务分配短信群组",
                    handler: AssignGroup
                },
                 {
                     id: 'assign_department',
                     iconCls: 'icon-contacts_setdepartment',
-                    text: "为当前短信任务分配部门",
+                    text: "为当前任务分配部门",
                     handler: AssignDepartment
                 },
                 {
@@ -582,6 +582,26 @@
 @section westdiv{
     @RenderSection("westdiv")
     }
+
+@*QuYuan新修改彩信联系人列表*@
+@section eastdiv{
+    <div data-options="region:'east'" title="彩信联系人列表" style="width:40%">
+
+        <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:40%;"></table>
+        <div id="tb" style="padding:2px 5px;">
+
+            <a href="#" class="easyui-linkbutton" id="assign_group" data-options="iconCls:'icon-contacts_setgroup',text: '为当前任务分配彩信群组',plain:true" onclick="AssignGroup()"></a>
+            <a href="#" class="easyui-linkbutton" id="assign_department" data-options="iconCls:'icon-contacts_setdepartment',text: '为当前任务分配彩信部门',plain:true" onclick="AssignDepartment()"></a>
+            <a href="#" class="easyui-linkbutton" id="assign_save" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept()"></a>
+            <br />
+            匹配名称
+            <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
+            匹配电话
+            <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
+            <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition()">查询</a>
+        </div>
+    </div>
+}
 
 @section showWindow{
     @RenderSection("showWindow")

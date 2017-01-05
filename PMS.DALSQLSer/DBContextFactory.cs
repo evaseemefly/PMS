@@ -23,8 +23,7 @@ namespace PMS.DALSQLSer
             //1 获取当前线程中的EF上下文对象
             //注意：
             //.Name=DBContextFactory，即当前类的名字
-            //根据名称读取线程槽中的对象
-            
+            //根据名称读取线程槽中的对象            
             DbContext dbContext = CallContext.GetData(typeof(DBContextFactory).Name) as DbContext;
 
             //判断当前线程中 是否包含EF上下文对象，若不存在则创建
