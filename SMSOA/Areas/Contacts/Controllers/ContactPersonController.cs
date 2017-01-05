@@ -298,7 +298,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                 try
                 {
                     //6月15日修改方式二 
-                    personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, isVIP , personModel.GID.ToList(), personModel.DID);
+                    personInfoBLL.DoAddPerson(personModel.PName, personModel.PhoneNum, personModel.Remark, isVIP, personModel.GID.ToList(), personModel.DID);
                     //personInfoBLL.Create(model);
                     return Content("ok");
                 }

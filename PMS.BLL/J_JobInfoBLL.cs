@@ -7,11 +7,11 @@ using PMS.Model;
 using PMS.IBLL;
 using PMS.BLL;
 using PMS.IModel;
-
+using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class J_JobInfoBLL
+    public partial class J_JobInfoBLL:IBaseDelBLL,ICanBeDel
     {
 
         //使用WCF中的方法
@@ -139,14 +139,17 @@ namespace PMS.BLL
             
             //1 创建与UserInfo的关系
            var user= this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == model.UID).FirstOrDefault();
-            model.UserInfoes.Add(user.ToMiddleModel());
+            //12月9日
+            //注意此处不要将user转成中间变量,否则会创建一个新的user对象该userInfo表中
+            //model.UserInfoes.Add(user.ToMiddleModel());
+            model.UserInfoes.Add(user);
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
             if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
             base.Create(model);
             //var response = ijobService.AddScheduleJob(model, jobData);
-            var response = client_quartzProxy.AddScheduleJob(model.ToMiddleModel(), jobData as PMS.Model.JobDataModel.SendJobDataModel);
+            var response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.SendJobDataModel);
             //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);
             //var response= response_wcf as Model.Message.IBaseResponse;
             //client.AddScheduleJob(model.ToMiddleModel(), jobData);
@@ -333,10 +336,19 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //只需要清除数据库中JobInfo表中的对应记录即可
-            return false;
+            if (CanBeDel(list_ids)||!isCheckCanBeDel)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         /// <summary>
@@ -358,6 +370,29 @@ namespace PMS.BLL
         private IEnumerable<J_JobInfo> NullDelJob(IEnumerable<J_JobInfo> array)
         {
             return array.Where(j => j.isDel == false);
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ViewModel_Recycle_Common> GetIsDelbyPageList(int pageIndex, int pageSize, ref int rowCount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query = base.GetListBy(j => list_ids.Contains(j.JID));
+            foreach (var item in query)
+            {
+                if (item.UserInfoes.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

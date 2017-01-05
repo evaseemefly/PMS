@@ -68,6 +68,11 @@ namespace QuartzServiceLib
         {
             try
             {
+                //若作业调度池为空，则需要初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
                 if (!sche.IsStarted)
                 {
                     sche.Start();
@@ -89,6 +94,11 @@ namespace QuartzServiceLib
         {
             try
             {
+                //若作业调度池为空，则需要初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
                 if (!sche.IsShutdown)
                 {
                     sche.Shutdown(true);
@@ -140,7 +150,7 @@ namespace QuartzServiceLib
             IBaseResponse response = new BaseResponse() { Success = false };
             try
             {
-                if (!sche.IsStarted) { sche.Start(); }
+                //if (!sche.IsStarted) { sche.Start(); }
 
                 sche.ResumeJob(new JobKey(job.JID.ToString(), job.JobGroup));
                 response.Success = true;
@@ -201,7 +211,7 @@ namespace QuartzServiceLib
                 response.Success = true;
                 response.Message = string.Format("job:{0},group{1}已暂停工作", job.JobName, job.JobGroup);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 response.Message = string.Format("job:{0},group{1}暂停工作时出错", job.JobName, job.JobGroup);
             }
@@ -291,12 +301,28 @@ namespace QuartzServiceLib
 
             //3 将定时器加入job中
             //var sche = new SchedulerFactory().GetScheduler();
-            sche.ScheduleJob(job, trigger);
+            try
+            {
+                //若调度池为空，则初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
+                sche.ScheduleJob(job, trigger);
+                //4 启动工作
+                //不启动该调度池
+                //sche.Start();
 
-            //4 启动工作
-            sche.Start();
-            response.Success = true;
-            response.Message = string.Format("作业已添加至调度池中");
+                response.Success = true;
+                response.Message = string.Format("作业已添加至调度池中");
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Source;
+                //response.Message = string.Format("作业添加至调度池时出错");
+            }
+            
             return response;
         }
         #endregion

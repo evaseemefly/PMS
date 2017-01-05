@@ -20,6 +20,7 @@ namespace SMSOA.Areas.Recycled.Controllers
             ViewBag.LoadActionType_ComboGrid = "GetAllRecycled_ComboGrid";
             ViewBag.LoadAllDelInfo_DataGrid = "GetAllDelInfoByType";
             ViewBag.DoDel = "DoDel";
+            ViewBag.ConfirmDoDel = "ConfirmDoDel";
             ViewBag.DoRec = "DoRecover";
             return View();
         }
@@ -73,11 +74,33 @@ namespace SMSOA.Areas.Recycled.Controllers
             string[] strIds = ids.Split(',');
             var list_ids = strIds.Select(p=>int.Parse(p)).ToList();
             //执行删除操作
-            if (myBLL.PhysicsDel(list_ids))
+            if (myBLL.PhysicsDel(list_ids,true))
             {
                 return Content("ok");
             } 
-            return Content("error");
+            return Content("confirm");
+        }
+
+        /// <summary>
+        /// 传入actionType以及要物理删除的对象id数组（用,分割）
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ConfirmDoDel()
+        {
+
+            var ids = Request.QueryString["ids"];
+            //
+            var typeId = int.Parse(Request["type"]);
+
+            var myBLL = SimpleRecFactory.CreateBLL(typeId);
+            string[] strIds = ids.Split(',');
+            var list_ids = strIds.Select(p => int.Parse(p)).ToList();
+            //执行删除操作
+            if (myBLL.PhysicsDel(list_ids))
+            {
+                return Content("ok");
+            }
+            return Content("confirm");
         }
 
         /// <summary>

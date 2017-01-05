@@ -93,39 +93,45 @@ SqlWorkflowInstanceStore store = new SqlWorkflowInstanceStore(connect_str);
 
         private static UnhandledExceptionAction OnUnhandledException(WorkflowApplicationUnhandledExceptionEventArgs arg)
         {
-            Console.WriteLine("异常了!!");
+            LogHelper.WriteError("出现异常");
+            //Console.WriteLine("异常了!!");
             syncEvent.Set();
             return UnhandledExceptionAction.Abort;
         }
 
         private static PersistableIdleAction OnPersistableIdle(WorkflowApplicationIdleEventArgs arg)
          {
-            Console.WriteLine("持久化");
+            LogHelper.WriteLog("持久化");
+           // Console.WriteLine("持久化");
             return PersistableIdleAction.Unload;
         }
 
         private static void OnIdle(WorkflowApplicationIdleEventArgs obj)
         {
             syncEvent.Set();
-            Console.WriteLine("工作流空闲!!");
+            //Console.WriteLine("工作流空闲!!");
+            LogHelper.WriteLog("工作流空闲");
         }
 
         private static void OnCompleted(WorkflowApplicationCompletedEventArgs obj)
         {
             syncEvent.Set();
-            Console.WriteLine("工作流完成了!!");
+            LogHelper.WriteLog("工作流完成");
+            //Console.WriteLine("工作流完成了!!");
         }
 
         private static void OnAborted(WorkflowApplicationAbortedEventArgs obj)
         {
             syncEvent.Set();
-            Console.WriteLine("工作流终止了!!");
+            LogHelper.WriteWarn("工作流中止");
+            //Console.WriteLine("工作流终止了!!");
         }
 
         private static void OnUloaded(WorkflowApplicationEventArgs obj)
         {
             syncEvent.Set();
-            Console.WriteLine("工作流卸载");
+            LogHelper.WriteWarn("工作流卸载");
+            //Console.WriteLine("工作流卸载");
         }
     }
 }

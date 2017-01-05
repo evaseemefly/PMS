@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="PMS2016Model.P_PersonInfo" Width="1.5" PointX="9.625" PointY="8" />
         <EntityTypeShape EntityType="PMS2016Model.R_Department_Mission" Width="1.5" PointX="9.625" PointY="1.375" />
         <EntityTypeShape EntityType="PMS2016Model.R_Group_Mission" Width="1.5" PointX="9.625" PointY="4.5" />
-        <EntityTypeShape EntityType="PMS2016Model.S_SMSMission" Width="1.5" PointX="7.375" PointY="4.25" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSMission" Width="1.5" PointX="18.25" PointY="10.375" />
         <AssociationConnector Association="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo" />
         <AssociationConnector Association="PMS2016Model.FK_R_Group_Mission_P_Group" />
         <AssociationConnector Association="PMS2016Model.FK_R_Department_Mission_S_SMSMission" />
@@ -27,7 +27,7 @@
         <AssociationConnector Association="PMS2016Model.R_Person_Group" />
         <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_Group" Width="1.5" PointX="9.625" PointY="11.75" />
         <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_SMSMission" Width="1.5" PointX="12.625" PointY="5.5" />
-        <EntityTypeShape EntityType="PMS2016Model.S_SMSContent" Width="1.5" PointX="9.625" PointY="15" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSContent" Width="2.625" PointX="8.5" PointY="15" />
         <EntityTypeShape EntityType="PMS2016Model.S_SMSRecord_Current" Width="2.375" PointX="11.875" PointY="8.25" />
         <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_Group_P_Group" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_Current_P_PersonInfo" />
@@ -45,7 +45,7 @@
         <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_DepartmentInfo_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_R_UserInfo_PersonInfo_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSRecord_History_S_SMSMission" />
-        <EntityTypeShape EntityType="PMS2016Model.S_SMSMsgContent" Width="1.5" PointX="9.625" PointY="18.75" />
+        <EntityTypeShape EntityType="PMS2016Model.S_SMSMsgContent" Width="2.75" PointX="8.375" PointY="18.75" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSMsgContent_UserInfo" />
         <AssociationConnector Association="PMS2016Model.FK_S_SMSContent_S_SMSMission" />

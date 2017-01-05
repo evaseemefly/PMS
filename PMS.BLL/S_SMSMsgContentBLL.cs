@@ -10,7 +10,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-   public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL, IBaseDelBLL
+   public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL, IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 根据用户id以及任务id查询与之相对应的短信模板实体对象
@@ -51,13 +51,16 @@ namespace PMS.BLL
         ///数据约束
         ///</summary>
         ///<param name="name"></param>
-        public bool EditValidation(int userID, int SMID)
-        {
-            //暂时和添加时的约束相同
-            return this.AddValidation(userID, SMID);
+        public bool EditValidation(int userID, int SMID,int TID)
+        {            
+            var user = this.CurrentDBSession.UserInfoDAL.GetListBy(u => u.ID == userID, true).FirstOrDefault();
+            //2.查看当前用户选定任务下是否已经存在模板
+           var list_Template =  user.S_SMSMsgContent.ToList().Where(u => u.TID != TID);
 
-        //    var list_model = this.GetListBy(p => p.isDel == false && p.TID != id).ToList();
-        //    return list_model.Exists(p => p.MsgName.Equals(name));
+
+            return list_Template.ToList().Exists(u=>u.SMID == SMID);
+            //    var list_model = this.GetListBy(p => p.isDel == false && p.TID != id).ToList();
+            //    return list_model.Exists(p => p.MsgName.Equals(name));
         }
 
         /// <summary>
@@ -99,7 +102,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             var list_model = this.GetListByIds(list_ids);
             if(list_model == null) { return false; }
@@ -137,6 +140,11 @@ namespace PMS.BLL
             var query = base.GetPageList<DateTime>(pageIndex, pageSize, a => a.isDel == true, a => a.SubTime, true);
             rowCount = query.Count();
             return query.ToList().Select(a => a.ToRecycleModel()).ToList();
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            throw new NotImplementedException();
         }
     }
 }

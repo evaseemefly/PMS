@@ -31,7 +31,7 @@ namespace QuartzProxy
         /// <returns></returns>
         public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp)
         {
-            return jobService.AddScheduleJob(jobInfo,data_temp) as IBaseResponse;
+            return jobService.AddScheduleJob(jobInfo.ToMiddleModel(),data_temp) as IBaseResponse;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace QuartzProxy
         /// <returns></returns>
         public IBaseResponse ResumeTargetJob(J_JobInfo job)
         {
-           return jobService.ResumeTargetJob(job) as IBaseResponse;
+           return jobService.ResumeTargetJob(job.ToMiddleModel()) as IBaseResponse;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace QuartzProxy
         /// <returns></returns>
         public IBaseResponse RemovceJob(J_JobInfo job)
         {
-            return jobService.RemovceJob(job) as IBaseResponse;
+            return jobService.RemovceJob(job.ToMiddleModel()) as IBaseResponse;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace QuartzProxy
         /// <returns></returns>
         public IBaseResponse PauseJob(J_JobInfo job)
         {
-            return jobService.PauseJob(job) as IBaseResponse;
+            return jobService.PauseJob(job.ToMiddleModel()) as IBaseResponse;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace QuartzProxy
         /// <returns></returns>
         public IBaseResponse RemoveJob(J_JobInfo job)
         {
-            return jobService.RemoveJob(job) as IBaseResponse;
+            return jobService.RemoveJob(job.ToMiddleModel()) as IBaseResponse;
         }
     }
 }

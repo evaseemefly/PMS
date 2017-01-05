@@ -37,8 +37,11 @@
                     window.parent.afterContact_Common("修改成功", 0);
                     window.parent.Refresh();
                 }
+                else if (data == "validation fails") {
+                    window.parent.afterContact_Common(name + "已经存在，请重新输入", 1)
+                }
                 else {
-                    window.parent.afterContact_Common("修改失败",1);
+                    window.parent.afterContact_Common("修改失败", 0);
                 }
                 //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
             }

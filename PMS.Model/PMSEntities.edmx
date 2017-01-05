@@ -431,7 +431,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Department_Mission_P_DepartmentInfo">
-          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_DepartmentInfo">
@@ -443,7 +445,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Department_Mission_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -455,7 +459,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Group_Mission_P_Group">
-          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_Group">
@@ -467,7 +473,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Group_Mission_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -559,7 +567,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Person_Group_P_Group">
-          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Person_Group" Type="Self.R_Person_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_Group">
@@ -571,7 +581,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Person_Group_P_PersonInfo">
-          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Person_Group" Type="Self.R_Person_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_PersonInfo">
@@ -659,7 +671,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_Group_P_Group">
-          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_Group">
@@ -819,7 +833,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_SMSMission_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -845,7 +861,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSContent_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -869,7 +887,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSMsgContent_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">

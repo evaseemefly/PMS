@@ -9,7 +9,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-   public partial class ActionInfoBLL: IBaseDelBLL
+   public partial class ActionInfoBLL: IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 根据id集合批量删除action
@@ -21,10 +21,20 @@ namespace PMS.BLL
             var actionInfoList = this.CurrentDBSession.ActionInfoDAL.GetListBy(u => list.Contains(u.ID));
             if(actionInfoList != null)
             {
-                foreach (var action in actionInfoList)
+                //添加判断判断是否有关联表含此数据
+                if (this.CanBeDel(list))
                 {
-                    this.CurrentDBSession.ActionInfoDAL.Del(action);
+                    //批量删除
+                    foreach (var action in actionInfoList)
+                    {
+                        this.CurrentDBSession.ActionInfoDAL.Del(action);
+                    }
                 }
+                else
+                {
+                    return false;
+                }
+               
             }
             return this.CurrentDBSession.SaveChanges();
         }
@@ -72,29 +82,35 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if (list_model == null) { return false; }
-            foreach (var item in list_model)
+            if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
-                //2.清除关系表中的数据
-                item.R_UserInfo_ActionInfo.Clear();
-                item.RoleInfo.Clear();
+                foreach (var item in list_model)
+                {
+                    //2.清除关系表中的数据
+                    item.R_UserInfo_ActionInfo.Clear();
+                    item.RoleInfo.Clear();
+                }
+                try
+                {
+                    //3. 从数据库中删除这些实体对象
+                    this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            try
-            {
-                //3. 从数据库中删除这些实体对象
-                this.CurrentDAL.UpdateByList(list_model);
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDAL.SaveChange();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+
+            return false;            
+            
         }
 
         /// <summary>
@@ -228,6 +244,24 @@ namespace PMS.BLL
                 return query;
             }
 
+        }
+
+        /// <summary>
+        /// 判断是否有其他的关联表
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query= base.GetListBy(a => list_ids.Contains(a.ID));
+            foreach (var item in query)
+            {
+                if (item.RoleInfo.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

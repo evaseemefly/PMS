@@ -18,8 +18,7 @@
 
         }
 
-        function editSMSMissionRow() {
-            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+        function isSelectedRow(rows) {         
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
@@ -28,8 +27,14 @@
                     msg: '请选择一行数据',
                     showType: 'show'
                 });
-                return;
+                return false;
             }
+            return true;
+        }
+
+        function editSMSMissionRow() {
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            if (!isSelectedRow(rows)) { return; }
             //**注意先加载iframe窗体的数据，在打开该窗口
             $("#addGroupFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].SMID);//会出现重定向的错误
             //title = "编辑任务";
@@ -45,16 +50,7 @@
         }
         function removeSMSMissionRow() {
             var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
-            //若选中的行不为一行
-            if (rows.length < 1) {
-                //提示
-                $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
-                    showType: 'show'
-                });
-                return;
-            }
+            if (!isSelectedRow(rows)) { return; }
             //post请求至软删除方法
             if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
                 if (r) {
@@ -69,6 +65,8 @@
                 if (data == "ok") {
                 //重新加载datagrid
                    Refresh();
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
                 //清楚所选中的行
                 $("#SMSMissiondatagrid").datagrid('clearSelections');
                 $.messager.alert("提示", "删除成功");

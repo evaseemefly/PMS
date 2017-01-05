@@ -135,9 +135,11 @@ namespace PMS.BLL
 
         #region 4- 根据条件查询
         /// <summary>
-        /// 4- 根据条件查询
+        /// 4 根据条件查询
+	    /// isNotTrack默认值为false查询对象加载至上下文对象中；只有为true时才进行AsNoTracking操作，查询对象不加载至DBContext中
         /// </summary>
         /// <param name="whereLambda"></param>
+        /// <param name="isNotTracking"></param>
         /// <returns></returns>
         public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda, bool isNotTracking = false)
         {

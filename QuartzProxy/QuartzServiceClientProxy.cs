@@ -47,7 +47,8 @@ namespace QuartzProxy
 
         public object PauseJob(J_JobInfo job)
         {
-            return base.Channel.PauseJob(job);
+            var response = base.Channel.PauseJob(job) as PMS.Model.Message.BaseResponse;
+            return response;
         }
 
         public Task<object> PauseJobAsync(J_JobInfo job)

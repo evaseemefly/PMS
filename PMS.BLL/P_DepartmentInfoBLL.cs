@@ -9,7 +9,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-   public partial class P_DepartmentInfoBLL : IBaseDelBLL
+   public partial class P_DepartmentInfoBLL : IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 从数据库中根据id集合查询返回指定的DepartmentInfo集合
@@ -67,37 +67,51 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             //1. 得到所有要删除的实体集合
             var list_model = this.GetListByIds(list_ids);
             if (list_model == null) { return false; }
             var department_Not_assigned = this.GetListBy(p => p.DepartmentName.Equals("无归属部门")).FirstOrDefault();
-            foreach (var item in list_model)
+            if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
-                //2. 得到群组和联系人的关联表数据并删除
-                var list_person = item.P_PersonInfo.ToList();
-                //添加到无归属部门
-                list_person.ForEach(p => department_Not_assigned.P_PersonInfo.Add(p));
-                //2. 得到群组和任务的关联表数据并删除
-                //item.R_Department_Mission.Clear();
-                ////2. 得到群组和用户的关联表数据并删除
-                //item.R_UserInfo_DepartmentInfo.Clear();
+                foreach (var item in list_model)
+                {
+                    //2. 得到群组和联系人的关联表数据并删除
+                    var list_person = item.P_PersonInfo.ToList();
+                    //添加到无归属部门
+                    list_person.ForEach(p => department_Not_assigned.P_PersonInfo.Add(p));
+                    item.P_PersonInfo.Clear();
+                    this.CurrentDAL.SaveChange();
+                    var list_r_Department_Mission = item.R_Department_Mission.Select(r => r).ToList();
+                    R_Department_MissionBLL rdmBLL = new R_Department_MissionBLL();
+                    rdmBLL.DelByList(list_r_Department_Mission);
+                    var list_r_UserInfo_DepartmentInfo = item.R_UserInfo_DepartmentInfo.Select(r => r).ToList();
+                    R_UserInfo_DepartmentInfoBLL rudBLL = new R_UserInfo_DepartmentInfoBLL();
+                    rudBLL.DelByList(list_r_UserInfo_DepartmentInfo);
+                    ////2. 得到群组和任务的关联表数据并删除
+                    //item.R_Department_Mission.Clear();
+                    ////2. 得到群组和用户的关联表数据并删除
+                    //item.R_UserInfo_DepartmentInfo.Clear();
+                    //item.P_PersonInfo.Clear();
+                }
+
+                try
+                {
+                    //3. 从数据库中删除这些实体对象
+                    this.CurrentDAL.Update(department_Not_assigned);
+                    //this.CurrentDAL.UpdateByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDAL.SaveChange();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
-           
-            try
-            {
-                //3. 从数据库中删除这些实体对象
-                this.CurrentDAL.Update(department_Not_assigned);
-                this.CurrentDAL.UpdateByList(list_model);
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDAL.SaveChange();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>
@@ -166,6 +180,27 @@ namespace PMS.BLL
             return list_model.Exists(r => r.DepartmentName.Equals(name));
 
 
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            var query = base.GetListBy(a => list_ids.Contains(a.DID));
+            foreach (var item in query)
+            {
+                if (item.P_PersonInfo.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_Department_Mission.Count() > 0)
+                {
+                    return false;
+                }
+                if (item.R_UserInfo_DepartmentInfo.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

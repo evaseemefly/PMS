@@ -9,7 +9,7 @@ using PMS.Model.ViewModel;
 
 namespace PMS.BLL
 {
-    public partial class J_JobTemplateBLL : IBaseDelBLL
+    public partial class J_JobTemplateBLL : IBaseDelBLL,ICanBeDel
     {
         /// <summary>
         /// 获取全部的模板
@@ -153,21 +153,26 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        public bool PhysicsDel(List<int> list_ids)
+        public bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false)
         {
             var list_model = this.GetListByIds(list_ids);
             if(list_model == null){ return false; }
-            try
+            if (CanBeDel(list_ids) || !isCheckCanBeDel)
             {
-                this.CurrentDAL.DelByList(list_model);
-                this.CurrentDBSession.SaveChanges();
-                return false;
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    this.CurrentDAL.DelByList(list_model);
+                    this.CurrentDBSession.SaveChanges();
+                    return false;
+                }
+                catch (Exception)
+                {
 
-                return true;
+                    return true;
+                }
             }
+            return false;
+            
         }
 
         /// <summary>
@@ -255,6 +260,11 @@ namespace PMS.BLL
 
             
             return false;
+        }
+
+        public bool CanBeDel(List<int> list_ids)
+        {
+            throw new NotImplementedException();
         }
     }
 }

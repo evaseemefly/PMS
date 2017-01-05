@@ -601,7 +601,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
             //****注意此处还未实现向前台向后台传递对象时应加上uid，并向combin_model中加入uid（以包含此属性）
-            DoSendNow(combine_model, out receive);
+            var isOk_Send= DoSendNow(combine_model, out receive);
 
             #region 测试批量写入时间时的测试返回对象
             //测试批量写入时间时的测试返回对象——现注释掉
@@ -620,11 +620,15 @@ namespace SMSOA.Areas.SMS.Controllers
             //    return Content("服务器错误");
             //}
 
-            if ("0".Equals(receive.result))
+            if ("0".Equals(receive.result)&&isOk_Send)
             {
                 //6 查询发送状态(是否加入等待时间？)
                 return Content("ok");
                 
+            }
+            if (!isOk_Send)
+            {
+                return Content("send_error");
             }
             else
             {

@@ -48,6 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IBLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ICanBeDel.cs" />
     <Compile Include="IDelListBLL.cs" />
     <Compile Include="IJ_JobInfoBLL.cs" />
     <Compile Include="IJ_JobTemplateBLL.cs" />

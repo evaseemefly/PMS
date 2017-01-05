@@ -14,7 +14,7 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        bool PhysicsDel(List<int> list_ids);
+        bool PhysicsDel(List<int> list_ids, bool isCheckCanBeDel = false);
 
 
         /// <summary>
@@ -29,6 +29,8 @@ namespace PMS.IBLL
         /// </summary>
         /// <returns></returns>
         List<ViewModel_Recycle_Common> GetIsDelList();
+
+        
 
         /// <summary>
         /// 分页获取已经软删除的集合
