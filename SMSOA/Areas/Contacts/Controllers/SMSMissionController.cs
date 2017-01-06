@@ -453,6 +453,24 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         
         
+        private List<P_Group> GetGroupFactory(PMS.Model.Enum.MMS_Enum isMMs,S_SMSMission mission, bool isPass)
+        {
+            List<P_Group> list_group = null;
+            switch (isMMs)
+            {
+                case PMS.Model.Enum.MMS_Enum.sms:
+                   return this.GetSMSGroups(isPass, mission);
+                    //break;
+                case PMS.Model.Enum.MMS_Enum.mms:
+                   return this.GetMMSGroups(isPass, mission);
+                    //break;
+                default:
+                    return list_group;
+                    //break;
+            }
+            
+
+        }
 
         /// <summary>
         /// 
@@ -461,14 +479,19 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// <returns></returns>
         public ActionResult GetGroup2Datagrid()
         {
+            //1月5日添加彩信功能
+            /*
+             * 功能描述：
+             * 根据传入的短彩信标记符判断是否需要加载彩信群组还是短信群组
+             */
             int smid = int.Parse(Request["smid"]);
             var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
 
             //1.获取当前任务已有的群组(未禁用)
             bool isPass = true;
-            var list_group = GetGroups(isPass, SMSMission);
+            var list_group = GetSMSGroups(isPass, SMSMission);
             //2.获取当前任务已有的群组(已禁用)
-            var list_group_isNotPass = GetGroups(isPass = false, SMSMission);
+            var list_group_isNotPass = GetSMSGroups(isPass = false, SMSMission);
             //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
 
             //2.获取所有的群组
@@ -687,25 +710,40 @@ namespace SMSOA.Areas.Contacts.Controllers
             return Content(temp);
         }
 
+        ///<summary>
+        ///根据选中任务获得群组
+        ///</summary>
+        ///<returns></returns>
+        public List<P_Group> GetMMSGroups(bool isPass, S_SMSMission SMSMission)
+        {
+
+            return GetBaseGroupMission(isPass, SMSMission).Where(r => r.isMMS == (int)PMS.Model.Enum.MMS_Enum.mms).Select(r => r.P_Group).ToList();
+        }
 
         ///<summary>
         ///根据选中任务获得群组
         ///</summary>
         ///<returns></returns>
-        public List<P_Group> GetGroups(bool isPass, S_SMSMission SMSMission)
+        public List<P_Group> GetSMSGroups(bool isPass, S_SMSMission SMSMission)
         {
-            if (SMSMission != null)
+            return GetBaseGroupMission(isPass, SMSMission).Where(r => r.isMMS == (int)PMS.Model.Enum.MMS_Enum.sms).Select(r => r.P_Group).ToList();
+        }
+
+        private IEnumerable<R_Group_Mission> GetBaseGroupMission(bool isPass,S_SMSMission smsMission)
+        {
+            if (smsMission != null)
             {
-                var list_R_Group_Mission = SMSMission.R_Group_Mission;
-                var list_group = (
+                var list_R_Group_Mission = smsMission.R_Group_Mission;
+                var r_group_mission = (
                    from r in list_R_Group_Mission
                    where r.isPass == isPass
-                   select r.P_Group
-                    ).ToList();
-                return list_group;
+                   select r
+                    );
+                return r_group_mission;
             }
             return null;
-          }
+        }       
+
         ///<summary>
         ///根据选中任务获得部门
         ///</summary>

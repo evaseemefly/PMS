@@ -145,6 +145,7 @@
           <Property Name="MissionID" Type="int" Nullable="false" />
           <Property Name="SubTime" Type="date" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
+          <Property Name="isMMS" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="R_Group_Mission">
           <Key>
@@ -154,6 +155,7 @@
           <Property Name="MissionID" Type="int" Nullable="false" />
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
+          <Property Name="isMMS" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="R_JobInfo_JobTemplate">
           <Key>
@@ -208,7 +210,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="DID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
@@ -251,7 +253,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="PID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
@@ -322,7 +324,7 @@
           <Property Name="UID" Type="int" />
           <Property Name="MsgContent" Type="nvarchar(max)" />
           <Property Name="isDel" Type="bit" Nullable="false" />
-          <Property Name="SubTime" Type="date" Nullable="false" />
+          <Property Name="SubTime" Type="datetime" Nullable="false" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="MsgName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="100" />
@@ -384,7 +386,7 @@
           <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“PMS20160406.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“SMS_NMEFC.dbo.WF_Query_StepInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="WF_Query_StepInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -431,9 +433,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Department_Mission_P_DepartmentInfo">
-          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
           <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_DepartmentInfo">
@@ -445,9 +445,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Department_Mission_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
           <End Role="R_Department_Mission" Type="Self.R_Department_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -459,9 +457,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Group_Mission_P_Group">
-          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
           <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_Group">
@@ -473,9 +469,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Group_Mission_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
           <End Role="R_Group_Mission" Type="Self.R_Group_Mission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -543,7 +537,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Person_Department_P_DepartmentInfo">
-          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1" />
+          <End Role="P_DepartmentInfo" Type="Self.P_DepartmentInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Person_Department" Type="Self.R_Person_Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_DepartmentInfo">
@@ -555,7 +551,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_Person_Department_P_PersonInfo">
-          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1" />
+          <End Role="P_PersonInfo" Type="Self.P_PersonInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="R_Person_Department" Type="Self.R_Person_Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_PersonInfo">
@@ -671,9 +669,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_Group_P_Group">
-          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="P_Group" Type="Self.P_Group" Multiplicity="1" />
           <End Role="R_UserInfo_Group" Type="Self.R_UserInfo_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="P_Group">
@@ -833,9 +829,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_R_UserInfo_SMSMission_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
           <End Role="R_UserInfo_SMSMission" Type="Self.R_UserInfo_SMSMission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -861,9 +855,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSContent_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
           <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -887,9 +879,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_S_SMSMsgContent_S_SMSMission">
-          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="S_SMSMission" Type="Self.S_SMSMission" Multiplicity="1" />
           <End Role="S_SMSMsgContent" Type="Self.S_SMSMsgContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="S_SMSMission">
@@ -1517,6 +1507,7 @@
           <Property Name="isPass" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="P_DepartmentInfo" Relationship="PMS2016Model.FK_R_Department_Mission_P_DepartmentInfo" FromRole="R_Department_Mission" ToRole="P_DepartmentInfo" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_R_Department_Mission_S_SMSMission" FromRole="R_Department_Mission" ToRole="S_SMSMission" />
+          <Property Name="isMMS" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="R_Group_Mission">
           <Key>
@@ -1528,6 +1519,7 @@
           <Property Name="isPass" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="P_Group" Relationship="PMS2016Model.FK_R_Group_Mission_P_Group" FromRole="R_Group_Mission" ToRole="P_Group" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_R_Group_Mission_S_SMSMission" FromRole="R_Group_Mission" ToRole="S_SMSMission" />
+          <Property Name="isMMS" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="S_SMSMission">
           <Key>
@@ -1856,7 +1848,7 @@
           <Property Name="SMID" Type="Int32" Nullable="false" />
           <Property Name="MsgContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isDel" Type="Boolean" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="S_SMSMission" Relationship="PMS2016Model.FK_S_SMSMsgContent_S_SMSMission" FromRole="S_SMSMsgContent" ToRole="S_SMSMission" />
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <Property Name="MsgName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2235,6 +2227,7 @@
           <EntitySetMapping Name="R_Department_Mission">
             <EntityTypeMapping TypeName="PMS2016Model.R_Department_Mission">
               <MappingFragment StoreEntitySet="R_Department_Mission">
+                <ScalarProperty Name="isMMS" ColumnName="isMMS" />
                 <ScalarProperty Name="isPass" ColumnName="isPass" />
                 <ScalarProperty Name="SubTime" ColumnName="SubTime" />
                 <ScalarProperty Name="MissionID" ColumnName="MissionID" />
@@ -2246,6 +2239,7 @@
           <EntitySetMapping Name="R_Group_Mission">
             <EntityTypeMapping TypeName="PMS2016Model.R_Group_Mission">
               <MappingFragment StoreEntitySet="R_Group_Mission">
+                <ScalarProperty Name="isMMS" ColumnName="isMMS" />
                 <ScalarProperty Name="isPass" ColumnName="isPass" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="MissionID" ColumnName="MissionID" />
