@@ -30,7 +30,7 @@
         <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
         匹配电话
         <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
-        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition()">查询</a>
+        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition(0)">查询</a>
     </div>
 }
 
@@ -319,8 +319,14 @@
                 //1.2 获取选中行的ID
                 strId = rows[0].SMID;
                 url = url + "?smid=" + strId;
-                if (queryModel != null) {
+                if (queryModel == null) {
+                    var queryModel = {
+                        SMID: strId,
+                        IsMMS: 0,
+                    }
+                } else {
                     queryModel.SMID = strId;
+                    queryModel.IsMMS = 0;
                 }
                 
                 loadDatagrid_Group(strId, GroupColumns);
@@ -349,6 +355,56 @@
                     queryParams: queryModel==null?null:queryModel
                 });
             }
+
+
+            function loadPersonGrid_MMS(url, myPersonColumns, queryModel) {
+                //1 获取选中的行
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
+                //1.2 获取选中行的ID
+                strId = rows[0].SMID;
+                url = url + "?smid=" + strId;
+
+                if (queryModel == null) {
+                    var queryModel = {
+                        SMID: strId,
+                        IsMMS: 1,
+                    }
+                } else {
+                    queryModel.SMID = strId;
+                    queryModel.IsMMS = 1;
+                }
+
+                //loadDatagrid_Group(strId, GroupColumns);
+                //loadTreegrid_Department(strId, DepartmentColumns);
+                //loadTreegrid_Department(strId, DepartmentColums);
+                //2 根据GroupID查询该群组所拥有的人员列表
+                $("#persondatagrid_MMS").datagrid({
+                    //width: '488px',
+                    // height: '450px',
+                    //height: 'auto',
+                    fit: true,
+                    fitColumns: true,
+                    striped: true,
+                    singleSelect: false,
+
+                    url: url,
+                    showHeader: true,
+                    loadMsg: '加载中……',
+                    pagination: true,//启用分页，默认每页10行
+                    rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                    pageSize: 20,   //设置 页容量为 5
+                    pageList: [20, 40, 60],//设置 页容量下拉框
+                    columns: myPersonColumns,
+                    //toolbar: myToolbar
+                    toolbar: '#tb_MMS',
+                    queryParams: queryModel == null ? null : queryModel
+                });
+            }
+
+
+
+
             function loadTreegrid_Department(smid, myDepartmentColumns) {
                 $('#department').treegrid({
                     rownumbers: true,                    
@@ -570,6 +626,7 @@
                         //$('#department').treegrid('loadData', []);
                         $('#department').treegrid('unselectAll');
                         loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
+                        loadPersonGrid_MMS("@ViewBag.GetPerson", PersonColumns);
                         checkShowToolbar("@showMissionToolbar", "@showPerToolbar", "mission");
                     }
                 });
@@ -583,25 +640,15 @@
     @RenderSection("westdiv")
     }
 
-@*QuYuan新修改彩信联系人列表*@
+@*QuYuan新修改彩信联系人列表在布局页呈现*@
+@section east_Columns{
+    @RenderSection("east_Columns")
+    }
+
+@*QuYuan新修改彩信联系人列表在布局页呈现*@
 @section eastdiv{
-    <div data-options="region:'east'" title="彩信联系人列表" style="width:40%">
-
-        <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:40%;"></table>
-        <div id="tb" style="padding:2px 5px;">
-
-            <a href="#" class="easyui-linkbutton" id="assign_group" data-options="iconCls:'icon-contacts_setgroup',text: '为当前任务分配彩信群组',plain:true" onclick="AssignGroup()"></a>
-            <a href="#" class="easyui-linkbutton" id="assign_department" data-options="iconCls:'icon-contacts_setdepartment',text: '为当前任务分配彩信部门',plain:true" onclick="AssignDepartment()"></a>
-            <a href="#" class="easyui-linkbutton" id="assign_save" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept()"></a>
-            <br />
-            匹配名称
-            <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
-            匹配电话
-            <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
-            <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition()">查询</a>
-        </div>
-    </div>
-}
+    @RenderSection("eastdiv")
+    }
 
 @section showWindow{
     @RenderSection("showWindow")

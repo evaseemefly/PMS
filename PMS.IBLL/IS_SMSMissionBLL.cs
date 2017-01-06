@@ -63,7 +63,7 @@ namespace PMS.IBLL
         /// <param name="smid"></param>
         /// <param name="isMiddle"></param>
         /// <returns></returns>
-        List<P_PersonInfo> GetPersonByMission(int smid, bool isMiddle);
+        List<P_PersonInfo> GetPersonByMission(int smid,int IsMMS, bool isMiddle);
 
 
         /// <summary>

@@ -353,7 +353,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             List<P_PersonInfo> list_person = new List<P_PersonInfo>();
             if (queryModel.SMID != null)
             {
-                list_person= smsmissionBLL.GetPersonByMission(queryModel.SMID, true);
+                list_person= smsmissionBLL.GetPersonByMission(queryModel.SMID,queryModel.IsMMS, true);
             }
             //筛选
             if (queryModel.PersonName != null)

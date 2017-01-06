@@ -128,7 +128,7 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult GetPersonByMission(int mid)
         {
 
-            var list_person = smsMissionBLL.GetPersonByMission(mid, true);
+            var list_person = smsMissionBLL.GetPersonByMission(mid,0, true);
             #region 8月16日 注释掉
             ////1 根据mid获取指定任务对象
             //var mission = smsMissionBLL.GetListBy(s => s.SMID == mid).FirstOrDefault();

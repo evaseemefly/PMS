@@ -19,6 +19,7 @@ namespace PMS.Model
         public int MissionID { get; set; }
         public System.DateTime SubTime { get; set; }
         public bool isPass { get; set; }
+        public int isMMS { get; set; }
     
         public virtual P_DepartmentInfo P_DepartmentInfo { get; set; }
         public virtual S_SMSMission S_SMSMission { get; set; }

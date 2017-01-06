@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c53a8ae520244205896e2c4ad588d238" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="c53a8ae520244205896e2c4ad588d238" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="PMS2016Model.ActionInfo" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_ActionInfo" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="PMS2016Model.RoleInfo" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />

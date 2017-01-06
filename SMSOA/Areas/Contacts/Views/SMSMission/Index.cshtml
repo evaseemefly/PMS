@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "View";
    
-    Layout = "~/Areas/Contacts/Views/Shared/_Layout_SMSMission.cshtml";
+    Layout = "~/Areas/Contacts/Views/Shared/_Layout_SMSMission_MMSInfo.cshtml";
 }
 @section toobar_scripts{
     <script type="text/javascript">
@@ -88,16 +88,32 @@
             loadDataGridByCondition('@ViewBag.GetInfo', myColumns, queryData);
         }
 
-        function searchPersonByCondition() {
-
+        function searchPersonByCondition() {            
             var name = $("#personName").val();
             var phone = $("#PhoneNum").val();
+            
+            var obj = {
+                PersonName: name,
+                PhoneNum: phone,                
+            }
+            var url = '@ViewBag.GetPerson';
+
+           loadPersonGrid(url, PersonColumns, obj);
+
+        }
+
+        function searchPersonByCondition_MMS() {
+            var name = $("#personName_MMS").val();
+            var phone = $("#PhoneNum_MMS").val();
+
             var obj = {
                 PersonName: name,
                 PhoneNum: phone,
             }
             var url = '@ViewBag.GetPerson';
-            loadPersonGrid(url, PersonColumns, obj);
+
+            loadPersonGrid_MMS(url, PersonColumns, obj)
+            
         }
 
         function loadDataGridByCondition(url, myColumns, queryModel) {
