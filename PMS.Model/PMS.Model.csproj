@@ -81,6 +81,7 @@
     <Compile Include="Enum\JobType_Enum.cs" />
     <Compile Include="Enum\JobUrl_Enum.cs" />
     <Compile Include="Enum\MatchCondition_Enum.cs" />
+    <Compile Include="Enum\MMS_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
