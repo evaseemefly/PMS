@@ -63,7 +63,20 @@ namespace PMS.IBLL
         /// <param name="smid"></param>
         /// <param name="isMiddle"></param>
         /// <returns></returns>
-        List<P_PersonInfo> GetPersonByMission(int smid, bool isMiddle);
+        List<P_PersonInfo> GetPersonByMission(int smid, PMS.Model.Enum.MMS_Enum IsMMS, bool isMiddle);
+
+        ///<summary>
+        ///根据选中任务获得群组
+        ///</summary>
+        ///<returns></returns>
+        List<P_Group> GetMMSGroups(bool isPass, S_SMSMission SMSMission);
+
+
+        ///<summary>
+        ///根据选中任务获得群组
+        ///</summary>
+        ///<returns></returns>
+        List<P_Group> GetSMSGroups(bool isPass, S_SMSMission SMSMission);
 
 
         /// <summary>

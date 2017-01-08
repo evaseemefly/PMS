@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
 
+
 namespace SMSOA.Areas.Contacts.Controllers
 {
     public class ContactPersonController : Controller
@@ -446,7 +447,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             return View("ShowEditPersonInfo");
         }
 
-        
+
 
     }
 }

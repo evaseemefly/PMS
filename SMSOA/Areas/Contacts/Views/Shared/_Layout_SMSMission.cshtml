@@ -30,7 +30,7 @@
         <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
         匹配电话
         <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
-        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition()">查询</a>
+        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition(0)">查询</a>
     </div>
 }
 
@@ -128,13 +128,13 @@
                {
                    id:'assign_group',
                    iconCls: 'icon-contacts_setgroup',
-                   text: "为当前短信任务分配群组",
+                   text: "为当前任务分配短信群组",
                    handler: AssignGroup
                },
                 {
                     id: 'assign_department',
                     iconCls: 'icon-contacts_setdepartment',
-                    text: "为当前短信任务分配部门",
+                    text: "为当前任务分配部门",
                     handler: AssignDepartment
                 },
                 {
@@ -319,10 +319,19 @@
                 //1.2 获取选中行的ID
                 strId = rows[0].SMID;
                 url = url + "?smid=" + strId;
-                if (queryModel != null) {
+                 @{var index = (int)PMS.Model.Enum.MMS_Enum.sms;};
+                var mms=@index;
+
+                if (queryModel == null) {
+                    var queryModel = {
+                        SMID: strId,
+                        IsMMS: mms,
+                    }
+                } else {
                     queryModel.SMID = strId;
+                    queryModel.IsMMS = mms;
                 }
-                
+
                 loadDatagrid_Group(strId, GroupColumns);
                 loadTreegrid_Department(strId, DepartmentColumns);
                 //loadTreegrid_Department(strId, DepartmentColums);
@@ -335,7 +344,7 @@
                     fitColumns: true,
                     striped: true,
                     singleSelect: false,
-                    
+
                     url: url,
                     showHeader: true,
                     loadMsg: '加载中……',
@@ -349,9 +358,59 @@
                     queryParams: queryModel==null?null:queryModel
                 });
             }
+
+
+            function loadPersonGrid_MMS(url, myPersonColumns, queryModel) {
+                //1 获取选中的行
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
+                //1.2 获取选中行的ID
+                strId = rows[0].SMID;
+                url = url + "?smid=" + strId;
+
+                if (queryModel == null) {
+                    var queryModel = {
+                        SMID: strId,
+                        IsMMS: 1,
+                    }
+                } else {
+                    queryModel.SMID = strId;
+                    queryModel.IsMMS = 1;
+                }
+
+                //loadDatagrid_Group(strId, GroupColumns);
+                //loadTreegrid_Department(strId, DepartmentColumns);
+                //loadTreegrid_Department(strId, DepartmentColums);
+                //2 根据GroupID查询该群组所拥有的人员列表
+                $("#persondatagrid_MMS").datagrid({
+                    //width: '488px',
+                    // height: '450px',
+                    //height: 'auto',
+                    fit: true,
+                    fitColumns: true,
+                    striped: true,
+                    singleSelect: false,
+
+                    url: url,
+                    showHeader: true,
+                    loadMsg: '加载中……',
+                    pagination: true,//启用分页，默认每页10行
+                    rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                    pageSize: 20,   //设置 页容量为 5
+                    pageList: [20, 40, 60],//设置 页容量下拉框
+                    columns: myPersonColumns,
+                    //toolbar: myToolbar
+                    toolbar: '#tb_MMS',
+                    queryParams: queryModel == null ? null : queryModel
+                });
+            }
+
+
+
+
             function loadTreegrid_Department(smid, myDepartmentColumns) {
                 $('#department').treegrid({
-                    rownumbers: true,                    
+                    rownumbers: true,
                     idField: 'DID',
                     treeField: 'DepartmentName',
                     animate: true,//折叠时显示动画效果
@@ -375,7 +434,7 @@
                     //onCancelEdit: function (row,index) {
                     //    //row.editing = false;
                     //    $("#department").treegrid('refreshRow', row.DID);
-                    //},                   
+                    //},
                     onCheck: function (row) {
                         //注意此时传入的row中的selected以及checked均为false
                         //if (row.IsPass == false) {
@@ -390,8 +449,8 @@
                             }
                         }
                         if (row.checked == undefined) {
-                            
-                            if (row.IsPass==true)   
+
+                            if (row.IsPass==true)
                                 row.IsPass = true;
                             else {
                                 row.IsPass = false;
@@ -570,6 +629,7 @@
                         //$('#department').treegrid('loadData', []);
                         $('#department').treegrid('unselectAll');
                         loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
+                        //loadPersonGrid_MMS("@ViewBag.GetPerson", PersonColumns);
                         checkShowToolbar("@showMissionToolbar", "@showPerToolbar", "mission");
                     }
                 });
@@ -581,6 +641,16 @@
 
 @section westdiv{
     @RenderSection("westdiv")
+    }
+
+@*QuYuan新修改彩信联系人列表在布局页呈现*@
+@section east_Columns{
+    @RenderSection("east_Columns")
+    }
+
+@*QuYuan新修改彩信联系人列表在布局页呈现*@
+@section eastdiv{
+    @RenderSection("eastdiv")
     }
 
 @section showWindow{

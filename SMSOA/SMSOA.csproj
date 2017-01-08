@@ -269,6 +269,8 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
     <Compile Include="Areas\Demo\Controllers\MMSController.cs" />
     <Compile Include="Areas\Demo\DemoAreaRegistration.cs" />
+    <Compile Include="Areas\Demo\Models\Enum\MMSCommands_Enum.cs" />
+    <Compile Include="Areas\Demo\SendMMS\MMSSend.cs" />
     <Compile Include="Areas\Job\Controllers\InstanceController.cs" />
     <Compile Include="Areas\Job\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Job\JobAreaRegistration.cs" />
@@ -479,6 +481,7 @@
     <Content Include="Areas\Demo\Views\web.config" />
     <Content Include="Areas\Demo\Views\MMS\Index.cshtml" />
     <Content Include="Areas\Demo\Views\Shared\_Layout_Common.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission_MMSInfo.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
@@ -573,7 +576,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
-    <Folder Include="Areas\Demo\Models\" />
     <Folder Include="Areas\Job\Models\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />

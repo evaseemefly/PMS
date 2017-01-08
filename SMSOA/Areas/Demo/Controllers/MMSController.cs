@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SMSOA.Areas.Demo.Controllers
 {
     public class MMSController : Controller
@@ -51,5 +52,15 @@ namespace SMSOA.Areas.Demo.Controllers
             // FileInfo fileex = new FileInfo(file.FileName);
             return Content(info);
         }
+        public ContentResult SendMMS()
+        {
+            string targetDir = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/Product");
+            //暂时发送指定的zip文件
+            String fileName = "u=605198921,4238220254&fm=21&gp=0.zip";
+            string path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(fileName));
+            var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
+            return Content("ok");
+        }
+
     }
 }
