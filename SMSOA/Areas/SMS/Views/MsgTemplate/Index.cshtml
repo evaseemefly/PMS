@@ -26,7 +26,12 @@
                 { field: 'TID', title: 'ID', width: 100,hidden:true },
                 { field: 'MsgName', title: '模板名称', width: '22%' },
                 { field: 'MsgContent', title: '内容', width: '50%' },
-                { field: 'SubTime', title: '创建时间', width: '26%' },
+                {
+                    field: 'SubTime', title: '创建时间', width: '26%',
+                    formatter: function (value) {
+                        return Date.getStrOfDate(value);
+                    }
+                },
                 { field: 'Sort', title: '顺序', width: 100,hidden:true }
     ]]
 

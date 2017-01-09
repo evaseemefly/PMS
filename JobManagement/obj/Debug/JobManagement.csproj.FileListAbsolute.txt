@@ -1,0 +1,16 @@
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\JobManagement.dll.config
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\JobManagement.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\JobManagement.pdb
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\PMS.Model.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\PMS.IModel.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\EntityFramework.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\System.Web.Mvc.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\PMS.Model.pdb
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\PMS.IModel.pdb
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\EntityFramework.xml
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\System.Web.Mvc.xml
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\obj\Debug\JobManagement.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\JobManagement\obj\Debug\JobManagement.dll
+D:\VSWorkSpace\nmefc\PMS\JobManagement\obj\Debug\JobManagement.pdb

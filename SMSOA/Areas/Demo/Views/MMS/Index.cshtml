@@ -11,6 +11,23 @@
                 url: 'FileUp'
             })
         }
+
+
+        function DoSend() {
+            $.ajax({
+                url: 'SendMMS',        
+                type: 'POST',
+                beforeSend: function () {
+                    alert("已经提交");
+                },
+                success: function (data) {
+                    if ("ok" == data) {
+                        alert("提交成功");
+                    } 
+                }
+
+            })
+        }
     </script>
     }
 
@@ -28,5 +45,8 @@
             <a href="#" class="easyui-linkbutton" type="submit" style="width:100%" onclick="upload()">上传</a>
         </div>
     </form>
+    <div>
+          <a href="#" class="easyui-linkbutton" type="submit" style="width:100%" onclick="DoSend()">发送彩信</a>
+    </div>
 </div>
     }

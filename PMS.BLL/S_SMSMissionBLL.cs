@@ -39,47 +39,97 @@ namespace PMS.BLL
             return list_missionExt;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="smid"></param>
-        /// <param name="isMiddle"></param>
-        /// <returns></returns>
-        public List<P_PersonInfo> GetPersonByMission(int smid,bool isMiddle)
+        ///<summary>
+        ///根据选中任务获得群组
+        ///</summary>
+        ///<returns></returns>
+        public List<P_Group> GetMMSGroups(bool isPass, S_SMSMission SMSMission)
+        {
+
+            return GetBaseGroupMission(isPass, SMSMission).Where(r => r.isMMS == (int)PMS.Model.Enum.MMS_Enum.mms).Select(r => r.P_Group).ToList();
+        }
+
+        ///<summary>
+        ///根据选中任务获得群组
+        ///</summary>
+        ///<returns></returns>
+        public List<P_Group> GetSMSGroups(bool isPass, S_SMSMission SMSMission)
+        {
+            return GetBaseGroupMission(isPass, SMSMission).Where(r => r.isMMS == (int)PMS.Model.Enum.MMS_Enum.sms).Select(r => r.P_Group).ToList();
+        }
+
+        public IEnumerable<R_Group_Mission> GetBaseGroupMission(bool isPass, S_SMSMission smsMission)
+        {
+            if (smsMission != null)
+            {
+                var list_R_Group_Mission = smsMission.R_Group_Mission;
+                var r_group_mission = (
+                   from r in list_R_Group_Mission
+                   where r.isPass == isPass
+                   select r
+                    );
+                return r_group_mission;
+            }
+            return null;
+        }
+
+        private void GetPersonByMissionFactory(int smid,int isMMS,bool isMiddle)
+        {
+
+        }
+
+        private void GetPersonByMission_MMS()
+        {
+
+        }
+
+        private void GetPersonByMission_SMS()
+        {
+
+        }
+
+        private void BaseGetGroupByMission(S_SMSMission mission)
+        {
+            var groups_allow = from r in mission.R_Group_Mission
+                               where r.isPass == true && r.P_Group.isDel == false && r.isMMS == 0
+                               select r.P_Group;
+            //2.2 禁用的群组
+            var groups_forbid = from r in mission.R_Group_Mission
+                                where r.isPass == false && r.P_Group.isDel == false && r.isMMS == 0
+                                select r.P_Group;
+        }
+
+        private List<P_PersonInfo> BaseGetPersonByMission(int smid,PMS.Model.Enum.MMS_Enum isMms, bool isMiddle)
         {
             //1 根据mid获取指定任务对象
             var mission = GetListBy(s => s.SMID == smid).FirstOrDefault();
-            //2 根据短信任务查找对应的群组
-            //10月29日
-            //以下有修改：注意：筛选时需要剔除已经删除的（软删除的）各类对象!
-            //2.1 启用的群组
-            var groups_allow = from r in mission.R_Group_Mission
-                        where r.isPass == true&&r.P_Group.isDel==false
-                        select r.P_Group;
-            //2.2 禁用的群组
-            var groups_forbid= from r in mission.R_Group_Mission
-                              where r.isPass == false&&r.P_Group.isDel==false
-                              select r.P_Group;
-            ////2.1 创建该任务所拥有的群组对象集合
-            //List < P_Group > list_group = new List<P_Group>();
-            ////2.2 添加至群组对象集合中
-            //group.ForEach(g => list_group.Add(g.P_Group));
-            //2.3 根据群组对象集合获取该群组集合中所共有的联系人
             //启用的联系人
             List<P_PersonInfo> list_person_allow = new List<P_PersonInfo>();
             //禁用的联系人
             List<P_PersonInfo> list_person_forbid = new List<P_PersonInfo>();
 
+            var groups_allow = from r in mission.R_Group_Mission
+                               where r.isPass == true && r.P_Group.isDel == false && r.isMMS == (int)isMms
+                               select r.P_Group;
+            //2.2 禁用的群组
+            var groups_forbid = from r in mission.R_Group_Mission
+                                where r.isPass == false && r.P_Group.isDel == false && r.isMMS == (int)isMms
+                                select r.P_Group;
+            ////2.1 创建该任务所拥有的群组对象集合
+            //List < P_Group > list_group = new List<P_Group>();
+            ////2.2 添加至群组对象集合中
+            //group.ForEach(g => list_group.Add(g.P_Group));
+            //2.3 根据群组对象集合获取该群组集合中所共有的联系人
             groups_allow.ToList().ForEach(g => list_person_allow.AddRange(g.P_PersonInfo));
             groups_forbid.ToList().ForEach(g => list_person_forbid.AddRange(g.P_PersonInfo));
 
             //3 根据短信任务查找对应的部门
             var departments_allow = from r in mission.R_Department_Mission
-                                    where r.isPass == true&&r.P_DepartmentInfo.isDel==false
+                                    where r.isPass == true && r.P_DepartmentInfo.isDel == false && r.isMMS == (int)isMms
                                     select r.P_DepartmentInfo;
 
             var departments_forbid = from r in mission.R_Department_Mission
-                                    where r.isPass == false && r.P_DepartmentInfo.isDel == false
+                                     where r.isPass == false && r.P_DepartmentInfo.isDel == false && r.isMMS == (int)isMms
                                      select r.P_DepartmentInfo;
 
             ////3.1 创建该任务所拥有的部门对象集合
@@ -87,22 +137,22 @@ namespace PMS.BLL
             ////3.2 添加至部门对象集合中
             //department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
             //3.3 根据部门对象集合获取该群组集合中所共有的联系人
-            departments_allow.ToList().ForEach(d => list_person_allow.AddRange(d.P_PersonInfo.Where(p=>p.isDel==false)));
+            departments_allow.ToList().ForEach(d => list_person_allow.AddRange(d.P_PersonInfo.Where(p => p.isDel == false)));
 
-            departments_forbid.ToList().ForEach(d => list_person_forbid.AddRange(d.P_PersonInfo.Where(p=>p.isDel==false)));
+            departments_forbid.ToList().ForEach(d => list_person_forbid.AddRange(d.P_PersonInfo.Where(p => p.isDel == false)));
             var list_person_forbid_ids = from p in list_person_forbid
-                                     select p.PID;
+                                         select p.PID;
             //4 将联系人集合去重
             list_person_allow = list_person_allow.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
             //去除禁用的联系人
-            if(isMiddle)
+            if (isMiddle)
             {
 
                 list_person_allow = (from p in list_person_allow
                                      where !list_person_forbid_ids.Contains(p.PID)
                                      select p.ToMiddleModel()).ToList();
             }
-            
+
             else
             {
                 list_person_allow = (from p in list_person_allow
@@ -110,6 +160,156 @@ namespace PMS.BLL
                                      select p).ToList();
             }
             return list_person_allow;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="smid"></param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public List<P_PersonInfo> GetPersonByMission(int smid,PMS.Model.Enum.MMS_Enum isMMS, bool isMiddle)
+        {
+            
+            //1 根据mid获取指定任务对象
+            var mission = GetListBy(s => s.SMID == smid).FirstOrDefault();
+
+            ExtEntityBLL.ExtEntity_Mission mission_Ext = new ExtEntityBLL.ExtEntity_Mission(mission);
+
+            //2 根据短信任务查找对应的群组
+            //10月29日
+            //以下有修改：注意：筛选时需要剔除已经删除的（软删除的）各类对象!
+            //2.1 启用的群组
+            //获取短信联系人 1月6日添加 By QuYuan
+            #region 以下已全部重写，注释备份
+            //if (isMMS == 0)
+            //{
+            //    //启用的联系人
+            //    List<P_PersonInfo> list_person_allow = new List<P_PersonInfo>();
+            //    //禁用的联系人
+            //    List<P_PersonInfo> list_person_forbid = new List<P_PersonInfo>();
+            //    var groups_allow = from r in mission.R_Group_Mission
+            //                       where r.isPass == true && r.P_Group.isDel == false && r.isMMS == 0
+            //                       select r.P_Group;
+            //    //2.2 禁用的群组
+            //    var groups_forbid = from r in mission.R_Group_Mission
+            //                        where r.isPass == false && r.P_Group.isDel == false && r.isMMS == 0
+            //                        select r.P_Group;
+            //    ////2.1 创建该任务所拥有的群组对象集合
+            //    //List < P_Group > list_group = new List<P_Group>();
+            //    ////2.2 添加至群组对象集合中
+            //    //group.ForEach(g => list_group.Add(g.P_Group));
+            //    //2.3 根据群组对象集合获取该群组集合中所共有的联系人
+
+
+            //    groups_allow.ToList().ForEach(g => list_person_allow.AddRange(g.P_PersonInfo));
+            //    groups_forbid.ToList().ForEach(g => list_person_forbid.AddRange(g.P_PersonInfo));
+
+            //    //3 根据短信任务查找对应的部门
+            //    var departments_allow = from r in mission.R_Department_Mission
+            //                            where r.isPass == true && r.P_DepartmentInfo.isDel == false && r.isMMS == 0
+            //                            select r.P_DepartmentInfo;
+
+            //    var departments_forbid = from r in mission.R_Department_Mission
+            //                             where r.isPass == false && r.P_DepartmentInfo.isDel == false && r.isMMS == 0
+            //                             select r.P_DepartmentInfo;
+
+            //    ////3.1 创建该任务所拥有的部门对象集合
+            //    //List < P_DepartmentInfo > list_department = new List<P_DepartmentInfo>();
+            //    ////3.2 添加至部门对象集合中
+            //    //department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
+            //    //3.3 根据部门对象集合获取该群组集合中所共有的联系人
+            //    departments_allow.ToList().ForEach(d => list_person_allow.AddRange(d.P_PersonInfo.Where(p => p.isDel == false)));
+
+            //    departments_forbid.ToList().ForEach(d => list_person_forbid.AddRange(d.P_PersonInfo.Where(p => p.isDel == false)));
+            //    var list_person_forbid_ids = from p in list_person_forbid
+            //                                 select p.PID;
+            //    //4 将联系人集合去重
+            //    list_person_allow = list_person_allow.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
+            //    //去除禁用的联系人
+            //    if (isMiddle)
+            //    {
+
+            //        list_person_allow = (from p in list_person_allow
+            //                             where !list_person_forbid_ids.Contains(p.PID)
+            //                             select p.ToMiddleModel()).ToList();
+            //    }
+
+            //    else
+            //    {
+            //        list_person_allow = (from p in list_person_allow
+            //                             where !list_person_forbid_ids.Contains(p.PID)
+            //                             select p).ToList();
+            //    }
+            //    return list_person_allow;
+
+            //}
+            ////获取彩信联系人 1月6日添加 By QuYuan
+            //else if(isMMS == 1)
+
+            //{
+            //    //启用的联系人
+            //    List<P_PersonInfo> list_person_allow = new List<P_PersonInfo>();
+            //    //禁用的联系人
+            //    List<P_PersonInfo> list_person_forbid = new List<P_PersonInfo>();
+            //    var groups_allow = from r in mission.R_Group_Mission
+            //                       where r.isPass == true && r.isMMS == 1 && r.P_Group.isDel == false && r.isMMS == 1
+            //                       select r.P_Group;
+            //    //2.2 禁用的群组
+            //    var groups_forbid = from r in mission.R_Group_Mission
+            //                        where r.isPass == false && r.P_Group.isDel == false && r.isMMS == 1
+            //                        select r.P_Group;
+            //    ////2.1 创建该任务所拥有的群组对象集合
+            //    //List < P_Group > list_group = new List<P_Group>();
+            //    ////2.2 添加至群组对象集合中
+            //    //group.ForEach(g => list_group.Add(g.P_Group));
+            //    //2.3 根据群组对象集合获取该群组集合中所共有的联系人
+
+            //    groups_allow.ToList().ForEach(g => list_person_allow.AddRange(g.P_PersonInfo));
+            //    groups_forbid.ToList().ForEach(g => list_person_forbid.AddRange(g.P_PersonInfo));
+
+            //    //3 根据短信任务查找对应的部门
+            //    var departments_allow = from r in mission.R_Department_Mission
+            //                            where r.isPass == true && r.P_DepartmentInfo.isDel == false && r.isMMS == 1
+            //                            select r.P_DepartmentInfo;
+
+            //    var departments_forbid = from r in mission.R_Department_Mission
+            //                             where r.isPass == false && r.P_DepartmentInfo.isDel == false && r.isMMS == 1
+            //                             select r.P_DepartmentInfo;
+
+            //    ////3.1 创建该任务所拥有的部门对象集合
+            //    //List < P_DepartmentInfo > list_department = new List<P_DepartmentInfo>();
+            //    ////3.2 添加至部门对象集合中
+            //    //department.ForEach(d => list_department.Add(d.P_DepartmentInfo));
+            //    //3.3 根据部门对象集合获取该群组集合中所共有的联系人
+            //    departments_allow.ToList().ForEach(d => list_person_allow.AddRange(d.P_PersonInfo.Where(p => p.isDel == false)));
+
+            //    departments_forbid.ToList().ForEach(d => list_person_forbid.AddRange(d.P_PersonInfo.Where(p => p.isDel == false)));
+            //    var list_person_forbid_ids = from p in list_person_forbid
+            //                                 select p.PID;
+            //    //4 将联系人集合去重
+            //    list_person_allow = list_person_allow.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).Select(p => p.ToMiddleModel()).ToList();
+            //    //去除禁用的联系人
+            //    if (isMiddle)
+            //    {
+
+            //        list_person_allow = (from p in list_person_allow
+            //                             where !list_person_forbid_ids.Contains(p.PID)
+            //                             select p.ToMiddleModel()).ToList();
+            //    }
+
+            //    else
+            //    {
+            //        list_person_allow = (from p in list_person_allow
+            //                             where !list_person_forbid_ids.Contains(p.PID)
+            //                             select p).ToList();
+            //    }
+            //    return list_person_allow;
+            //}
+            #endregion
+            //1月7日 重新修改 重复代码较多 重写并重新封装 ——liu
+            return mission_Ext.GetPersonAllowByMission(smid, isMMS, true);      
+            
         }
 
         /// <summary>

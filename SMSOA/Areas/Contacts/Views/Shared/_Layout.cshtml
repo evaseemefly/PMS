@@ -42,9 +42,11 @@
     @RenderSection("west_Columns",false)
     @RenderSection("west_Operate",false)
     @RenderSection("center_Columns",false)
+    @RenderSection("east_Columns",false)
     @RenderSection("center_Operate",false)
     @RenderSection("Common",false)
     @RenderSection("load_datagrid",false)
+    @RenderSection("load_datagrid_MMS",false)
 
     @RenderSection("onload",false)
     <script type="text/javascript">
@@ -61,12 +63,13 @@
         @RenderBody()
         <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
             @RenderSection("westdiv")
-            <div data-options="region:'center'" title="联系人列表" style="width:70%">
+            <div data-options="region:'center'" title="短信联系人列表" style="width:70%">
 
                 <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
                 @RenderSection("person_tb", false)
 
             </div>
+            @RenderSection("eastdiv",false)
         </div>
         @*群组、部门、任务均要重写*@
         @RenderSection("showWindow")

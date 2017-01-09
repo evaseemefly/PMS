@@ -30,7 +30,7 @@
         <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
         匹配电话
         <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
-        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition()">查询</a>
+        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition(0)">查询</a>
     </div>
 }
 
@@ -128,13 +128,13 @@
                {
                    id:'assign_group',
                    iconCls: 'icon-contacts_setgroup',
-                   text: "为当前短信任务分配群组",
+                   text: "为当前任务分配短信群组",
                    handler: AssignGroup
                },
                 {
                     id: 'assign_department',
                     iconCls: 'icon-contacts_setdepartment',
-                    text: "为当前短信任务分配部门",
+                    text: "为当前任务分配部门",
                     handler: AssignDepartment
                 },
                 {
@@ -153,10 +153,24 @@
                 $("#showGroupWindow").window('open');
 
             }
+
+            function AssignGroup_mms(){
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
+                $("#showGroupWindow_mms").window('open');
+            }
+
             function AssignDepartment() {
                 var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
                 if (!isSelectedRow(rows)) { return; }
                 $("#showDepartmentWindow").window('open');
+
+            }
+
+            function AssignDepartment_mms() {
+                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows)) { return; }
+                $("#showDepartmentWindow_mms").window('open');
 
             }
             //保存方法
@@ -274,6 +288,10 @@
                 });
 
             }
+
+            function Accept() {
+                alert("暂未实现");
+            }
         </script>
         }
 
@@ -312,22 +330,32 @@
             }
 
             //加载联系人信息列表
-            function loadPersonGrid(url, myPersonColumns, queryModel) {
+            //添加ismms参数，为枚举对应的int
+            //1月9日 修改此方法，之前短信 彩信 方法中只有部分参数不同，冗余
+            function loadPersonGrid(url, myPersonColumns, persondg_id, ismms,tb_id, queryModel) {
                 //1 获取选中的行
                 var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
                 if (!isSelectedRow(rows)) { return; }
                 //1.2 获取选中行的ID
                 strId = rows[0].SMID;
                 url = url + "?smid=" + strId;
-                if (queryModel != null) {
+
+
+                if (queryModel == null) {
+                    var queryModel = {
+                        SMID: strId,
+                        IsMMS: ismms,
+                    }
+                } else {
                     queryModel.SMID = strId;
+                    queryModel.IsMMS = ismms;
                 }
-                
-                loadDatagrid_Group(strId, GroupColumns);
+
+                loadDatagrid_Group(strId,GroupColumns,ismms);
                 loadTreegrid_Department(strId, DepartmentColumns);
                 //loadTreegrid_Department(strId, DepartmentColums);
                 //2 根据GroupID查询该群组所拥有的人员列表
-                $("#persondatagrid").datagrid({
+                $("#" + persondg_id).datagrid({
                     //width: '488px',
                    // height: '450px',
                     //height: 'auto',
@@ -335,7 +363,7 @@
                     fitColumns: true,
                     striped: true,
                     singleSelect: false,
-                    
+
                     url: url,
                     showHeader: true,
                     loadMsg: '加载中……',
@@ -345,13 +373,63 @@
                     pageList: [20, 40, 60],//设置 页容量下拉框
                     columns: myPersonColumns,
                     //toolbar: myToolbar
-                    toolbar: '#tb',
+                    toolbar: '#'+tb_id,
                     queryParams: queryModel==null?null:queryModel
                 });
             }
+
+
+            //function loadPersonGrid_MMS(url, myPersonColumns, queryModel) {
+            //    //1 获取选中的行
+            //    var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            //    if (!isSelectedRow(rows)) { return; }
+            //    //1.2 获取选中行的ID
+            //    strId = rows[0].SMID;
+            //    url = url + "?smid=" + strId;
+
+            //    if (queryModel == null) {
+            //        var queryModel = {
+            //            SMID: strId,
+            //            IsMMS: 1,
+            //        }
+            //    } else {
+            //        queryModel.SMID = strId;
+            //        queryModel.IsMMS = 1;
+            //    }
+
+            //    //loadDatagrid_Group(strId, GroupColumns);
+            //    //loadTreegrid_Department(strId, DepartmentColumns);
+            //    //loadTreegrid_Department(strId, DepartmentColums);
+            //    //2 根据GroupID查询该群组所拥有的人员列表
+            //    $("#persondatagrid_MMS").datagrid({
+            //        //width: '488px',
+            //        // height: '450px',
+            //        //height: 'auto',
+            //        fit: true,
+            //        fitColumns: true,
+            //        striped: true,
+            //        singleSelect: false,
+
+            //        url: url,
+            //        showHeader: true,
+            //        loadMsg: '加载中……',
+            //        pagination: true,//启用分页，默认每页10行
+            //        rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+            //        pageSize: 20,   //设置 页容量为 5
+            //        pageList: [20, 40, 60],//设置 页容量下拉框
+            //        columns: myPersonColumns,
+            //        //toolbar: myToolbar
+            //        toolbar: '#tb_MMS',
+            //        queryParams: queryModel == null ? null : queryModel
+            //    });
+            //}
+
+
+
+
             function loadTreegrid_Department(smid, myDepartmentColumns) {
                 $('#department').treegrid({
-                    rownumbers: true,                    
+                    rownumbers: true,
                     idField: 'DID',
                     treeField: 'DepartmentName',
                     animate: true,//折叠时显示动画效果
@@ -375,7 +453,7 @@
                     //onCancelEdit: function (row,index) {
                     //    //row.editing = false;
                     //    $("#department").treegrid('refreshRow', row.DID);
-                    //},                   
+                    //},
                     onCheck: function (row) {
                         //注意此时传入的row中的selected以及checked均为false
                         //if (row.IsPass == false) {
@@ -390,8 +468,8 @@
                             }
                         }
                         if (row.checked == undefined) {
-                            
-                            if (row.IsPass==true)   
+
+                            if (row.IsPass==true)
                                 row.IsPass = true;
                             else {
                                 row.IsPass = false;
@@ -438,9 +516,21 @@
 
             //-------------------6 页面加载首先运行-----------------
             //根据smid加载对应的群组并添加至combogrid中
-            function loadDatagrid_Group(smid, myGroupColumns) {
-                $("#group").datagrid({
-                    url: '@ViewBag.GetGroup_datagrid?smid=' + smid,
+            function loadDatagrid_Group(smid, myGroupColumns,ismms) {
+                var group_id;
+                switch(ismms){
+                    case index_sms:
+                        group_id="group";
+                        break;
+                    case index_mms:
+                        group_id="group_mms";
+                        break;
+                        defult:
+                        break;
+
+                }
+                $("#"+group_id).datagrid({
+                    url: '@ViewBag.GetGroup_datagrid?smid=' + smid+"&&ismms="+ismms,
                     panelWidth: 400,
                     multiple: true,
                     method: 'get',
@@ -553,12 +643,19 @@
 
     @section onload{
         <script type="text/javascript">
+
+            @{var index = (int)PMS.Model.Enum.MMS_Enum.sms;};
+            @{ var index_mms = (int)PMS.Model.Enum.MMS_Enum.mms;};
+            var index_sms=@index;
+            var index_mms=@index_mms;
+
             $(function () {
 
                 $("#editSMSMissionWindow").window('close');
                 $("#editPersonWindow").window('close');
                 $("#showDepartmentWindow").window('close');
                 $("#showGroupWindow").window('close');
+                $("#showGroupWindow_mms").window('close');
                 loadDataGrid('@ViewBag.GetInfo', myColumns);
 
                 //2 根据GroupID查询该群组所拥有的人员列表
@@ -569,11 +666,23 @@
                         //该命令不起作用，不清楚什么原因
                         //$('#department').treegrid('loadData', []);
                         $('#department').treegrid('unselectAll');
-                        loadPersonGrid("@ViewBag.GetPerson", PersonColumns);
-                        checkShowToolbar("@showMissionToolbar", "@showPerToolbar", "mission");
+                        @*loadPersonGrid("@ViewBag.GetPerson", PersonColumns);*@
+                        //改全局有变量
+                        @*@{var index = (int)PMS.Model.Enum.MMS_Enum.sms;};
+                        @{ var index_mms = (int)PMS.Model.Enum.MMS_Enum.mms;};
+                        var index_sms=@index;
+                        var index_mms=@index_mms;*@
+                        loadPersonGrid("@ViewBag.GetPerson", PersonColumns, "persondatagrid",index_sms,"tb");
+                        //暂时注释掉加载彩信dg，稍后恢复
+                        loadPersonGrid("@ViewBag.GetPerson", PersonColumns, "persondatagrid_MMS",index_mms,"tb_MMS");
+
+                        @*loadPersonGrid_MMS("@ViewBag.GetPerson", PersonColumns);*@
+
+                        @*checkShowToolbar("@showMissionToolbar", "@showPerToolbar", "mission");*@
                     }
                 });
-                checkShowToolbar("@showMissionToolbar", "@showPerToolbar", "mission");
+                //1月9日 暂时注释掉 可编辑或不可编辑分配群组及部门的 菜单栏
+                @*checkShowToolbar("@showMissionToolbar", "@showPerToolbar", "mission");*@
             })
         </script>
 @Html.Partial("_Partial_ShowToolbar")
@@ -581,6 +690,16 @@
 
 @section westdiv{
     @RenderSection("westdiv")
+    }
+
+@*QuYuan新修改彩信联系人列表在布局页呈现*@
+@section east_Columns{
+    @RenderSection("east_Columns")
+    }
+
+@*QuYuan新修改彩信联系人列表在布局页呈现*@
+@section eastdiv{
+    @RenderSection("eastdiv")
     }
 
 @section showWindow{
@@ -606,6 +725,14 @@
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">
             <select class="easyui-datagrid" id="group" data-options="fit:true"></select>
+        </div>
+    </div>
+</div>
+<div class="easyui-window" id="showGroupWindow_mms" title="群组列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+    <div class="easyui-layout" data-options="fit:true" style="border:0px">
+        @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
+        <div data-options="region:'center'" style="border:0px">
+            <select class="easyui-datagrid" id="group_mms" data-options="fit:true"></select>
         </div>
     </div>
 </div>
