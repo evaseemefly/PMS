@@ -96,6 +96,7 @@
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Config\QueryConfigHelper.cs" />
     <Compile Include="Config\RedisConfigHelper.cs" />
+    <Compile Include="Config\SMSSignConfigHelper.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Common.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />

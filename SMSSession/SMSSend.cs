@@ -288,28 +288,34 @@ namespace SMSFactory
             //2 获取短信内容
             var content = model.Content;
 
+            #region 定义 短信发送账户相关变量 已注释
+            ////2.1 设置发送对象相关参数
+            //string subCode = "";//短信子码"74431"，接收回馈信息用
+            //string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
+            ////string sign = "【辽宁海洋预警报】";
+            ////短信发送与查询所需参数
+            //string smsContent = content;//短信内容
+            //string sendTime;//计划发送时间，为空则立即发送
+            #endregion
 
-            //2.1 设置发送对象相关参数
-            string subCode = "";//短信子码"74431"，接收回馈信息用
-            string sign = "【国家海洋预报台】"; //短信签名，！仅在！发送短信时用= "【国家海洋预报台】";
-            //string sign = "【辽宁海洋预警报】";
-            //短信发送与查询所需参数
-            string smsContent = content;//短信内容
-            string sendTime;//计划发送时间，为空则立即发送
-                            //3 对短信内容进行校验——先暂时不做
+            //3 对短信内容进行校验——先暂时不做
+            //实例化短信签名的配置类
+            SMSSignConfigHelper smsSign = new SMSSignConfigHelper();
 
+            #region 手动为发送账户赋值，已不用，改为读取配置文件的方式
             //6月27日新增将List电话集合转成用,拼接的字符串
             //查询时不需要联系人电话
             //12月26日 预报中心备份
-            SMSModel_Send sendMsg = new SMSModel_Send()
-            {
-                account = "dh74381",
-                password = "uAvb3Qey",
-                content = content,
-                phones = list_phones.ToArray(),
-                sendtime = DateTime.Now,
-                sign = sign
-            };
+            //SMSModel_Send sendMsg = new SMSModel_Send()
+            //{
+            //    account = "dh74381",
+            //    password = "uAvb3Qey",
+            //    content = content,
+            //    phones = list_phones.ToArray(),
+            //    sendtime = DateTime.Now,
+            //    sign = sign
+            //};
+
 
             //12月26日 辽宁省台使用
             //SMSModel_Send sendMsg = new SMSModel_Send()
@@ -321,6 +327,18 @@ namespace SMSFactory
             //    sendtime = DateTime.Now,
             //    sign = sign
             //};
+            #endregion
+            
+            //1月19日 修改为读取配置文件获取账号相关信息
+            SMSModel_Send sendMsg = new SMSModel_Send()
+            {
+                account = smsSign.account,
+                password = smsSign.password,
+                content = content,
+                phones = list_phones.ToArray(),
+                sendtime = DateTime.Now,
+                sign = smsSign.sign
+            };
             return sendMsg;
         }
 
