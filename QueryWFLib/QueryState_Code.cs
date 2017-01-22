@@ -63,13 +63,18 @@ namespace QueryWFLib
             IS_SMSContentBLL smsContentBLL = new PMS.BLL.S_SMSContentBLL();
             IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
 
-            string account = "dh74381"; //账号"dh74381";
-            string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
+            //2017-01-22 通过config帮助类从配置文件中读取账号及密码
+            //string account = "dh74381"; //账号"dh74381";
+            //string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
+
+            Common.Config.SMSSignConfigHelper smsSign = new Common.Config.SMSSignConfigHelper();
+
             //6 查询发送状态(是否加入等待时间？)
             SMSModel_Query queryMsg = new SMSModel_Query()
             {
-                account = account,
-                password = passWord
+                account = smsSign.account,
+                password = smsSign.password
+
                 //phoneNums=model.PhoneNums
             };
             List<SMSModel_QueryReceive> list_QueryReceive;

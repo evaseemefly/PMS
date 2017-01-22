@@ -290,8 +290,11 @@ namespace QuartzServiceLib
         public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp)
         {
             //1 根据Job的类名通过反射的方式创建IJobDetial
-            var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
             IBaseResponse response = new BaseResponse() { Success = false };
+            //1月20日
+            //在作业工厂类 创建实例方法中 对代码进行修改，若出错则返回null
+            var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
+            
             if (job == null)
             {
                 response.Message = string.Format("创建作业实例时出错");

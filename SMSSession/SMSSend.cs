@@ -430,8 +430,8 @@ namespace SMSFactory
                          password = model.Model_Send.password,
                          phones = model.Model_Send.phones,
                          sendtime = model.Model_Send.sendtime,
-                         subcode = model.Model_Send.subcode
-                        
+                         subcode = model.Model_Send.subcode,
+                         sign=model.Model_Send.sign                         
                      },
 
                     Model_Message =new PMS.Model.ViewModel.ViewModel_Message()
@@ -552,9 +552,17 @@ namespace SMSFactory
             */
             ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
 
-            StringRedisHelper redisStrhelper = new StringRedisHelper();
-            redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
-            return true;
+            //2017-1-22 加入判断，若msgid为""或电话集合为空，则不写入redis中
+            if(!receive.msgid.Equals("")&& list_phones!=null)
+            {
+                StringRedisHelper redisStrhelper = new StringRedisHelper();
+                redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
         }
 
         protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)
