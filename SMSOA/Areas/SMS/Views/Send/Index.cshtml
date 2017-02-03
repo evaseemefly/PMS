@@ -5,28 +5,7 @@
 }
 
 @section Scripts{
-<script src="~/Scripts/MyScripts/EasyUI/my_ShowMessager.js"></script>
     <script type="text/javascript">
-        var missionColumns = [[
-                 { field: 'SMID', title: 'ID', width: 100, checkbox: true },
-                 //{ field: 'SMID', title: 'ID', width: 100,hidden:true },
-                 { field: 'SMSMissionName', title: '任务名称', width: 150 }
-        ]]
-
-        var groupColumns = [[
-                 //{ field: 'ck', checkbox: true },
-                 { field: 'GID', title: 'ID', width: 100, checkbox: true },
-                 { field: 'GroupName', title: '群组名称', width: 150 }
-                 //{ field: 'Operate', title: '是否禁用', width: 150 }
-        ]]
-
-        var PersonColumns = [[
-                 { field: 'PID', title: 'ID', width: 50, checkbox: true },
-                 { field: 'PName', title: '用户名称', width: 100 },
-                 { field: 'PhoneNum', title: '电话号码', width: 150 },
-                 { field: 'isVIP', title: '是否是VIP', width: 150 },
-                 //{ field: 'isTemp', title: '是否是临时联系人', width: 50 }
-        ]]
 
         function formatItem_combobox(row) {
             var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
@@ -212,45 +191,7 @@
         var isLoadSuccess_Group=false;
         var isLoadSuccess_Department=false;
         //----------------------------加载几个下拉框-----------------------------
-        //根据登录的用户加载其选中的常用 短信任务
-        //加载短信任务combogrid
-        function loadCombogrid_byUser() {
-            var myurl = '@ViewBag.GetMissionByUID';
-            
-            //拼接
-            if (@ViewBag.LoginUserID != -999)
-            {
-                userId='@ViewBag.LoginUserID'
-                myurl = myurl + "?userId=" +userId ;
-            }
-            //根据当前登录用户加载该用户所拥有的短信任务
-            $("#smsMission_combogrid").combogrid({
-                url: myurl,
-                method: 'get',
-                idField: 'SMID',
-                textField: 'SMSMissionName',
-                //width:120,
-                panelWidth: 180,
-                panelHeight: 'auto',
-                editable: false,
-                multiple: false,@*设置为单选*@
-                //formatter: formatItem_combobox,
-                columns: missionColumns,               
-                onSelect:function(rowIndex, rowData){
-                    //点击任务后显示该任务所拥有的群组以及部门
-                    //alert("被点击了");
-                    //每次选中短信任务时都要手动清空该临时联系人的表格
-                    clearDataGrid("person_temp_datagrid");
-                    loadComboTree_Department(rowData.SMID);
-                    loadComboGrid_Group(rowData.SMID,userId);
-                    //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
-                    var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
-                   
-                    //根据所选的短信任务类型加载模板
-                    loadtextbox_Template(rowData.SMID,userId);
-                }
-            })
-        }
+
 
         //根据选中的短信任务加载该任务所拥有的群组下拉框
         function loadComboGrid_Group(missionId,userId) {
@@ -280,7 +221,7 @@
                         loadDataGridByGroupDepartment_Persons();
                     }
                 },
-               // formatter: formatItem_combobox,
+                // formatter: formatItem_combobox,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
                     
