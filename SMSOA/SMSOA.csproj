@@ -409,7 +409,7 @@
     <Content Include="Areas\SMS\Views\Shared\_Layout_Send.cshtml" />
     <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Send\_Partial_Send_Body.cshtml" />
-    <Content Include="Areas\SMS\Views\Send\_Partial_Send_EditWin.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_EditWin.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_Statistics.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_Last10.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_CurrentDay.cshtml" />
@@ -487,7 +487,7 @@
     <Content Include="Areas\SMS\Views\MMSSend\_Partial_Send_MMS_Body.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate-7月8日备份.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />

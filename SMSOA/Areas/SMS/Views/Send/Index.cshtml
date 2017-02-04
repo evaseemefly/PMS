@@ -23,16 +23,7 @@
             return phones = phones.substr(0, phones.length - 1);
         }
 
-        function split4id(obj, index) {
-            var ids = "";
-            for (var i = 0; i < obj.length; i++) {
-                if(obj[i][index]!=null){
-                    ids = ids + obj[i][index] + ",";
-                }
-            }
-            ids = ids.substr(0, ids.length - 1);
-            return ids;
-        }
+
 
         
 
@@ -190,110 +181,10 @@
         var isLoadSuccess_Person = false;
         var isLoadSuccess_Group=false;
         var isLoadSuccess_Department=false;
-        //----------------------------加载几个下拉框-----------------------------
+        //----------------------------加载几个下拉框(放入模板页，短彩信共用)-----------------------------
 
 
-        //根据选中的短信任务加载该任务所拥有的群组下拉框
-        function loadComboGrid_Group(missionId,userId) {
-
-            //加载全部短信任务种类
-            $("#group_combogrid").combogrid({
-                url: '@ViewBag.GetGroupByMID_combogrid?mid='+missionId+'&uid='+userId,
-                //method: 'get',
-                idField: 'GID',
-                textField: 'GroupName',
-                editable: false,
-                //width:120,
-                panelWidth: 180,
-                panelHeight: 300,
-                multiple: true,
-                columns: groupColumns,
-                onBeforeLoad:function(){isLoadSuccess_Group=false},
-                onSelect:function(rowIndex, rowData){
-                    //alert("选中了一行");
-                    if (isLoadSuccess_Group) {
-                        loadDataGridByGroupDepartment_Persons();
-                    }
-                },
-                onUnselect:function(rowIndex, rowData){
-                    //alert("去掉已经选中的一行");
-                    if (isLoadSuccess_Group) {
-                        loadDataGridByGroupDepartment_Persons();
-                    }
-                },
-                // formatter: formatItem_combobox,
-                //获取数据成功后启动事件
-                onLoadSuccess: function () {
-                    
-                    var data= $("#group_combogrid").combogrid("grid").datagrid("getData");
-                    var rowData = data.rows;
-                    $.each(rowData, function (rowIndex, rowData) {
-                        if (rowData.checked) {
-                            $("#group_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
-                        }
-                    });
-
-                    //由于群组是放在第二个顺序加载，所以在群组下拉框全部加载完毕后执行一遍查询联系人的操作（获取选中的群组及部门）
-                    loadDataGridByGroupDepartment_Persons();
-                    //并设置加载成功标记为true，以后再点击下拉框（群组）才会加载联系人
-                    isLoadSuccess_Group=true;
-                }
-            })
-        }
-
-        //加载全部部门下拉框
-        function loadComboTree_Department(missionId) {
-            //2.2 加载上级部门下拉框
-            $("#DepartmentName_combotree").combotree({
-                panelWidth: 250,
-                panelHeight: 250,
-                url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
-                //required: true,
-                method: 'get',
-                //width: 210,
-                cascadeCheck: $(this).is(':checked'),//选中子节点不会选中父节点
-                //formatter: formatItem_combobox
-                //使用onCheck
-                //onSelect: function (node) {
-                //    //alert("选中了当前行" + node);
-                //    //var nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
-                //    //alert("选中了" + nodes.length+"个节点");
-                //    loadDataGridByGroupDepartment_Persons();
-                //},
-                onBeforeLoad:function(){isLoadSuccess_Department=false},
-                onLoadSuccess:function(){isLoadSuccess_Department=true},
-                onCheck:function(node){
-                    if(isLoadSuccess_Department){
-                        loadDataGridByGroupDepartment_Persons();
-                    }                   
-                }
-                //onUnselect:function(node){
-                //    alert("去掉已经选中的一行");
-                //    //loadDataGridByGroupDepartment_Persons();
-                //}
-            });
-            //选中子节点不会选中父节点
-            //$('#DepartmentName_combotree').combotree({ cascadeCheck: $(this).is(':checked') })
-
-        }
-
-        function loadDataGridByGroupDepartment_Persons() {
-            //1 获取当前选中的group以及department下拉框所选中的ids
-            //1.1 获取当前选中的群组下拉框
-            var grid = $("#group_combogrid").combogrid("grid");
-            var group_checkeds = grid.datagrid("getChecked");
-            var group_ids = split4id(group_checkeds, "GID");
-            //1.2 获取当前选中的部门下拉tree
-            var department_nodes = $('#DepartmentName_combotree').combotree("tree").tree('getChecked');
-            //var department_nodes_select = $('#DepartmentName_combotree').combotree("tree").tree('getSelections');
-            var department_ids = split4id(department_nodes, "id");
-            //2 请求url加载至Person_DataGrid
-            var url = '@ViewBag.GetPersonByGroupDepartment?gids=' + group_ids + '&dids=' + department_ids;
-
-            //loadDataGrid_Person(url);
-            loadDataGrid_Person("person_temp_datagrid",null,null,"tb",true);
-            loadDataGrid_Person("persondatagrid",url,"200",null,false);
-        }
+        
 
 
 
@@ -301,126 +192,15 @@
             alert("添加");
         }
 
-        var arr_UnSelectPersonIds=[];
+        
 
-        function loadDataGrid_Person(datagrid_id,url,isPagination,tb_id,isTempPerson) {
-            $("#"+datagrid_id).datagrid({
-                fitColumns: true,
-                striped: true,
-                multiple: true,     //单选
-                //fit: true,
-                url: url,
-                showHeader: true,
-                pagination:isPagination,//在数据表格控件底部显示分页工具栏
-                rownumbers: true, //是否加行号
-                loadMsg: '加载中……',
-                columns: PersonColumns,
-                toolbar: '#'+tb_id,
-                onBeforeLoad:function(){
-                    //alert("页面加载之前");
-                    isLoadSuccess_Person = false;
-                },
-                onLoadSuccess: function () {
-                    var data = $("#persondatagrid").datagrid("getData");
-                    var rowData = data.rows;
-                    $.each(rowData, function (rowIndex, rowData) {
-                        if ($.inArray(rowData["PID"], arr_UnSelectPersonIds) == -1) {
-                            $("#persondatagrid").datagrid("selectRow", rowIndex);
-                        }
-                    });
-                    isLoadSuccess_Person = true;
-                },
-                selectOnCheck:true,
-                checkOnSelect:true,
-                onSelect:function(rowIndex,rowData){
-                    if(!isTempPerson){
-                        if (isLoadSuccess_Person) {
-                            my_popFromArr(arr_UnSelectPersonIds, rowData["PID"]);
-                        }
-                    }
-                },
-                onUnselect:function(rowIndex, rowData){
-                    if(!isTempPerson){
-                        //alert("去掉已经选中的一行");
-                        my_pushInArr(arr_UnSelectPersonIds,rowData["PID"]); 
-                       //alert(arr_UnSelectPersonIds.length);
-                    }
-                   
-                }
-            });
-            //var p=$("#"+datagrid_id).datagrid('getPager');
-            //p.pagination({
-            //    displayMsg: '共{total}条数据'
-            //});
-            
-            //if(tb_id!=null){
-            //    $("#"+datagrid_id).datagrid({			
-            //        toolbar: '#'+tb_id
-            //    })
-            //}
-            
-            	
-            //if(isPagination!=null){
-            //    $("#"+datagrid_id).datagrid({			
-            //        pagination:true
-            //    })
-            //}
-        }
-
-        //向数组中插入不重复的值
-        function my_pushInArr(arr,value){
-            if(arr.indexOf(value)==-1){   
-                arr.push(value);
-            }
-        }
-
-        //向数组中插入数据
-        function my_popFromArr(arr,value){
-            if(arr.indexOf(value)!=-1){   
-                arr.splice(arr.indexOf(value),1);
-            }
-        }
-
-        //根据短信任务以及用户id加载该任务所拥有的短信
-        function loadtextbox_Template(smid,userid){
-            $.ajax({
-                url:"@ViewBag.GetTemplateByUidAndMission"+"?userId="+userid+"&smId="+smid ,
-
-                contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
-                async: false,
-                type: 'POST',
-                success: function (data) {
-                    //alert(data);
-                    $("#message").textbox('setValue',data);
-                }
-
-            })
-        }
 
         //暂时不使用
-        //加载常用的短信任务
 
 
-        function showEditWindow() {
-            //从指定页面中预读取数据
-            $("#SetFrame").attr("src", '@ViewBag.ShowSetOftenMissionAndGroup');
-            //打开编辑窗体
-            $("#editWindow").window('open');
+        
 
-        }
 
-        $(function () {
-            //1 隐藏设置的窗体
-            $("#editWindow").window('close');
-            loadCombogrid_byUser();
-            //OnSelected_Group();
-            //$("#DepartmentName_combotree").combotree({
-            //    onCheck: function () {
-            //        alert("此部门被选中了");
-            //    }
-            //});
-
-        })
 </script>
     }
 

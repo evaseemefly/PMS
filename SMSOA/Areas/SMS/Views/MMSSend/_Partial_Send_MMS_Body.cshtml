@@ -1,23 +1,4 @@
-﻿<script type="text/javascript">
-    var istiming = false;
-    $(function () {
-        $('#isTiming').switchbutton({
-            checked: false,
-            onChange: function (checked) {
-                if (checked == true) {
-                    $("#nextRunTime_date").datetimebox('enable');
-                    istiming = true;
-                    return;
-                }
-                if (checked == false) {
-                    $("#nextRunTime_date").datetimebox('disable');
-                    istiming = false;
-                }
-            }
-        })
-    })
-</script>
-
+﻿
 <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
     <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@ style="width:43%;">
         <table class="easyui-datagrid" id="person_temp_datagrid" title="添加临时联系人" data-options="" style="width:98%;height:30%"></table>
