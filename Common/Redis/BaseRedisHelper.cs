@@ -120,6 +120,11 @@ namespace Common.Redis
         {
             redis_client.SaveAsync();
         }
+
+        ~BaseRedisHelper()
+        {
+            Dispose(false);
+        }
     }
 }
     

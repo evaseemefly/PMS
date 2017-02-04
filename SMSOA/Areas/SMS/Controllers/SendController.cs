@@ -557,6 +557,8 @@ namespace SMSOA.Areas.SMS.Controllers
 
             StringRedisHelper redisStrhelper = new StringRedisHelper();
             redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));
+            //2017年2月4日 添加释放资源
+            redisStrhelper.Dispose();
             return true;
         }
 

@@ -17,13 +17,24 @@ namespace Common.Redis
             {
                 return redis_client.Set<string>(key, value);
             }
-            /// <summary>
-            /// 设置key的value并设置过期时间
-            /// </summary>
-            public bool Set(string key, string value, DateTime dt)
+        /// <summary>
+        /// 设置key的value并设置过期时间
+        /// </summary>
+        public bool Set(string key, string value, DateTime dt)
+        {
+            bool isOk = false;
+            try
             {
-                return redis_client.Set<string>(key, value, dt);
+                redis_client.Set<string>(key, value, dt);
+                isOk = true;
             }
+            catch (Exception ex)
+            {
+
+            }
+            return isOk;
+        }
+
             /// <summary>
             /// 设置key的value并设置过期时间
             /// </summary>

@@ -161,5 +161,7 @@ namespace Common.Redis
             var client = GetClient() as RedisClient;
             return client.GetAllKeys();
         }
+
+        
     }
 }
