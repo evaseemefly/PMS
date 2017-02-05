@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceStack.Redis;
 
 namespace Common.Redis
 {
     public class StringRedisHelper:BaseRedisHelper
     {
         
+        protected IRedisClient redisClient { get; set; }
+
+        public StringRedisHelper()
+        {
+            redisClient = base.GetClient();
+        }
+
             #region 赋值
-            /// <summary>
-            /// 设置key的value
-            /// </summary>
-            public bool Set(string key, string value)
-            {
-                return redis_client.Set<string>(key, value);
-            }
+        /// <summary>
+        /// 设置key的value
+        /// </summary>
+        public bool Set(string key, string value)
+        {
+            return redisClient.Set<string>(key, value);
+            // return redis_client.Set<string>(key, value);
+        }
         /// <summary>
         /// 设置key的value并设置过期时间
         /// </summary>
@@ -25,7 +34,8 @@ namespace Common.Redis
             bool isOk = false;
             try
             {
-                redis_client.Set<string>(key, value, dt);
+                redisClient.Set<string>(key, value, dt);
+                //redis_client.Set<string>(key, value, dt);
                 isOk = true;
             }
             catch (Exception ex)

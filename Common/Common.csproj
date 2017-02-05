@@ -111,6 +111,7 @@
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="Query\QueryHelper.cs" />
     <Compile Include="Redis\BaseRedisHelper.cs" />
+    <Compile Include="Redis\BaseRedisOperatHelper.cs" />
     <Compile Include="Redis\ListReidsHelper.cs" />
     <Compile Include="Redis\RedisConfig.cs" />
     <Compile Include="Redis\RedisHelper.cs" />

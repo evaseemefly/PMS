@@ -56,13 +56,15 @@ namespace RedisDemo
         {
             for (int i = 0; i < 2; i++)
             {
-                Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
+                
                 ThreadPool.QueueUserWorkItem(o =>
                 {
+                    Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
                     Random random = new Random();
                     string radom_str = random.Next().ToString();
-                    Console.WriteLine(radom_str);
-                    redisHelper.Set(radom_str, "1", DateTime.Now.AddMinutes(2));
+                    
+                   var index= redisHelper.Set(radom_str, "1", DateTime.Now.AddMinutes(2));
+                    Console.WriteLine(radom_str+":"+index);
                 });
                    
             }
