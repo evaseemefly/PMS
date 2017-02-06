@@ -280,6 +280,7 @@
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\Recycled\Controllers\HomeController.cs" />
     <Compile Include="Areas\Recycled\RecycledAreaRegistration.cs" />
+    <Compile Include="Areas\SMS\Controllers\MMSSendController.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
@@ -408,7 +409,7 @@
     <Content Include="Areas\SMS\Views\Shared\_Layout_Send.cshtml" />
     <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Send\_Partial_Send_Body.cshtml" />
-    <Content Include="Areas\SMS\Views\Send\_Partial_Send_EditWin.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_EditWin.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_Statistics.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_Last10.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_CurrentDay.cshtml" />
@@ -482,9 +483,11 @@
     <Content Include="Areas\Demo\Views\MMS\Index.cshtml" />
     <Content Include="Areas\Demo\Views\Shared\_Layout_Common.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission_MMSInfo.cshtml" />
+    <Content Include="Areas\SMS\Views\MMSSend\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\MMSSend\_Partial_Send_MMS_Body.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate-7月8日备份.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />
