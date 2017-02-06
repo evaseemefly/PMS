@@ -24,6 +24,12 @@ namespace Common.Redis
         private static readonly RedisConfig redis_config = RedisConfig.GetConfig();
 
         /// <summary>
+        /// 2017年2月5日 新建
+        /// 锁对象
+        /// </summary>
+        private static object _locker = new object();
+
+        /// <summary>
         /// Redis缓冲池管理对象
         /// </summary>
         private static PooledRedisClientManager prc_Manager;
@@ -49,23 +55,48 @@ namespace Common.Redis
         }
 
         /// <summary>
+        /// 创建Redis连接池管理对象
+        /// </summary>
+        /// <param name="readWriteUrl"></param>
+        /// <param name="readOnlyUrl"></param>
+        /// <returns></returns>
+        public static void CreateManager()
+        {
+            //1.1 只获取写入和读取ip数组
+            var writeServerArray = SplitString(redis_config.WriteServerList, ",").ToArray();
+            var readServerArray = SplitString(redis_config.ReadServerList, ",").ToArray();
+            //2 执行创建缓存池对象
+            CreateManager(writeServerArray, readServerArray);
+        }
+
+
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         static BaseRedisHelper()
         {
             //1 获取Redis配置的配置属性
             //6月24日 
-            //1.1 只获取写入和读取ip数组
-            var writeServerArray = SplitString(redis_config.WriteServerList, ",").ToArray();
-            var readServerArray = SplitString(redis_config.ReadServerList, ",").ToArray();
+            #region 2月5日 注释掉 封装至无参的CreateManager方法中（实验）——可行，不会再报错
+            ////1.1 只获取写入和读取ip数组
+            //var writeServerArray = SplitString(redis_config.WriteServerList, ",").ToArray();
+            //var readServerArray = SplitString(redis_config.ReadServerList, ",").ToArray();
 
-            //2 执行创建缓存池对象
-            CreateManager(writeServerArray, readServerArray);
-
+            ////2 执行创建缓存池对象
+            //CreateManager(writeServerArray, readServerArray);
+            #endregion
+            CreateManager();
             //3 通过缓存连接池获取Redis客户端对象，并赋给本类中定义的私有变量
             if (redis_client == null)
             {
-                redis_client = prc_Manager.GetClient() as RedisClient;
+                lock(_locker)
+                {
+                    if (redis_client == null)
+                    {
+                        redis_client = prc_Manager.GetClient() as RedisClient;
+                    }
+                }                
             }
         }
 
@@ -83,9 +114,14 @@ namespace Common.Redis
         }
 
 
-        private static IRedisClient GetClient()
+        public IRedisClient GetClient()
         {
             //获取客户端缓存操作对象
+            if (prc_Manager == null)
+            {
+                // CreateManager();
+                CreateManager();
+            }
             return prc_Manager.GetClient();
         }
        
