@@ -280,7 +280,7 @@
 
 
 
-        //-------------------------------3.弹出Edit常用任务和群组的窗口--------------------------
+        //-------------------------------3.弹出，关闭Edit常用任务和群组的窗口--------------------------
         //加载常用的短信任务
         //2.显示编辑常用任务和群组的窗口
         function showEditWindow() {
@@ -288,6 +288,10 @@
             $("#SetFrame").attr("src", '@ViewBag.ShowSetOftenMissionAndGroup');
             //打开编辑窗体
             $("#editWindow").window('open');
+
+        }
+        function CloseWindow() {
+            $("#editWindow").window('close');
 
         }
         //--------------------------------4. Util方法----------------------------------------------
@@ -316,10 +320,93 @@
                 arr.splice(arr.indexOf(value), 1);
             }
         }
+        function formatItem_combobox(row) {
+            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
+            return s;
+        }
+
+        function split4phone(obj, temp) {
+            var phones = "";
+
+            $.each(obj, function (index, data) {
+                //if (data["isTemp"] == 2) {
+                phones = phones + data[temp] + ",";
+                //}
+            })
+            return phones = phones.substr(0, phones.length - 1);
+        }
 
         //-----------------------------5.公共对象-----------------------------------------------
         var arr_UnSelectPersonIds = [];
 
+        var userId = -999;
+        //思路如下：
+        // 页面加载之前将isLoadSuccess_Person设置为false，页面加载过程中会触发onSelect及onCheck事件，此时不执行写在onSelect中的方法，只有在页面加载后才会执行onSelect中的方法
+        var isLoadSuccess_Person = false;
+        var isLoadSuccess_Group = false;
+        var isLoadSuccess_Department = false;
+        //---------------------------6.提交短彩信，清空，的方法----------------------------------
+        function ClearContent() {
+            //清除发送短信内容
+            $("#message").textbox('setValue', '');
+            //alert("清除短信内容");
+        }
+        //编辑或创建某个权限后执行的操作
+        function afterEdit(msg) {
+            //editWindow
+            //1 关闭加载的iframe页面
+            $.messager.alert('提示', msg);
+
+            $("#editWindow").window('close');
+            //2 刷新当前页面
+            //$("#contactstreegrid").treegrid('reload');
+            //loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+            //6月17日添加
+            //注意需要重新加载短信任务下拉框（不必加载群组及部门下拉框——因为这两个下拉框是在点击短信任务后才会加载）
+            //17年2月7日添加，清空所有
+            ClearAll();
+           
+        }
+        function ClearAll() {
+            loadCombogrid_byUser();
+            //清空群组
+            $("#group_combogrid").combogrid('clear');
+            //清空部门
+            $("#DepartmentName_combotree").combotree('clear');
+            //清空临时联系人,Datagrid没有清空的方法，需要自己写
+            $("#person_temp_datagrid").datagrid('loadData', { total: 0, rows: [] });
+            //清空联系人，Datagrid没有清空的方法，需要自己写
+            $("#persondatagrid").datagrid('loadData', { total: 0, rows: [] });
+            //清空消息框
+            ClearContent();
+        }
+        //-------------------------7.临时联系人的方法------------------------------------------
+        function append() {
+
+            //获取添加的内容
+            var phone = $("#txt_addPerson").val();
+            //向表格中追加
+            var row_temp = {
+                PName: '临时联系人',
+                isVIP: true,
+                PhoneNum: phone
+            };
+
+            //使用以下方式只能使用appenRow方法insertRow会有错
+            //var row_temp = new Object();            
+            //row_temp.PID=-1;
+            //row_temp.PName = '临时联系人';
+            //row_temp.isVIP = true;
+            //row_temp.PhoneNum = phone;
+            //row_temp.isTemp = 2;
+            //$('#person_temp_datagrid').datagrid('appendRow', row_temp); 
+
+            $('#person_temp_datagrid').datagrid('insertRow', {
+                index: 0,	// 索引从0开始
+                row: row_temp
+            });
+            $('#person_temp_datagrid').datagrid('checkRow', 0);
+        }
 
         //----------------------------短彩信共用入口方法---------------------------------------
         $(function () {

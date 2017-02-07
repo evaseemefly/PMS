@@ -7,56 +7,9 @@
 @section Scripts{
     <script type="text/javascript">
 
-        function formatItem_combobox(row) {
-            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
-            return s;
-        }
-
-        function split4phone(obj, temp) {
-            var phones = "";
-
-            $.each(obj, function (index, data) {
-                //if (data["isTemp"] == 2) {
-                    phones = phones + data[temp] + ",";
-                //}
-            })
-            return phones = phones.substr(0, phones.length - 1);
-        }
-
-
-
-        
-
-        function append() {
-           
-            //获取添加的内容
-            var phone= $("#txt_addPerson").val();
-            //向表格中追加
-            var row_temp= {
-                PName: '临时联系人',
-                isVIP: true,
-                PhoneNum: phone
-            };
-
-            //使用以下方式只能使用appenRow方法insertRow会有错
-            //var row_temp = new Object();            
-            //row_temp.PID=-1;
-            //row_temp.PName = '临时联系人';
-            //row_temp.isVIP = true;
-            //row_temp.PhoneNum = phone;
-            //row_temp.isTemp = 2;
-            //$('#person_temp_datagrid').datagrid('appendRow', row_temp); 
-
-            $('#person_temp_datagrid').datagrid('insertRow', {
-                index: 0,	// 索引从0开始
-                row: row_temp});      
-            $('#person_temp_datagrid').datagrid('checkRow', 0); 
-        }
-
         //function OnChecks() {
         //    var ids= $("#group_combogrid").combobox("getChecked");
         //}
-
 
         //异步提交
         function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds,isTiming,startRunTime,uid) {
@@ -98,20 +51,6 @@
             })
         }
 
-        //编辑或创建某个权限后执行的操作
-        function afterEdit(msg) {
-            //editWindow
-            //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
-
-            $("#editWindow").window('close');
-            //2 刷新当前页面
-            //$("#contactstreegrid").treegrid('reload');
-            //loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
-            //6月17日添加
-            //注意需要重新加载短信任务下拉框（不必加载群组及部门下拉框——因为这两个下拉框是在点击短信任务后才会加载）
-            loadCombogrid_byUser();
-        }
 
         function DoSend() {
             //alert("要发送短信了");
@@ -159,33 +98,11 @@
             
         }
 
-        function ClearContent() {
-            //清除发送短信内容
-            $("#message").textbox('setValue','');
-            //alert("清除短信内容");
-        }
-
-
-
         function CancelSend() {
             alert("取消发送短信");
         }
 
-        function CloseWindow() {
-            $("#editWindow").window('close');
-           
-        }
-        var userId=-999;
-        //思路如下：
-        // 页面加载之前将isLoadSuccess_Person设置为false，页面加载过程中会触发onSelect及onCheck事件，此时不执行写在onSelect中的方法，只有在页面加载后才会执行onSelect中的方法
-        var isLoadSuccess_Person = false;
-        var isLoadSuccess_Group=false;
-        var isLoadSuccess_Department=false;
         //----------------------------加载几个下拉框(放入模板页，短彩信共用)-----------------------------
-
-
-        
-
 
 
         function  addPerson_Temp() {
