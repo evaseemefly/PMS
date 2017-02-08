@@ -18,6 +18,8 @@ namespace Common.Redis
         /// </summary>
         protected static RedisClient redis_client;
 
+        protected IRedisClient redisClient { get; set; }
+
         /// <summary>
         /// 自定义的Redis配置对象
         /// </summary>
@@ -50,7 +52,13 @@ namespace Common.Redis
         /// <returns></returns>
         public static void CreateManager(string[] readWriteUrl, string[] readOnlyUrl)
         {
-            prc_Manager = new PooledRedisClientManager(readWriteUrl, readOnlyUrl);
+            prc_Manager = new PooledRedisClientManager(readWriteUrl, readOnlyUrl,new RedisClientManagerConfig
+            {
+                MaxReadPoolSize = redis_config.MaxReadPoolSize,
+                MaxWritePoolSize = redis_config.MaxWritePoolSize,
+                AutoStart = redis_config.AutoStart
+            });
+            
             //return manager;
         }
 
@@ -95,6 +103,7 @@ namespace Common.Redis
                     if (redis_client == null)
                     {
                         redis_client = prc_Manager.GetClient() as RedisClient;
+                        
                     }
                 }                
             }
@@ -114,7 +123,7 @@ namespace Common.Redis
         }
 
 
-        public IRedisClient GetClient()
+        public static IRedisClient GetClient()
         {
             //获取客户端缓存操作对象
             if (prc_Manager == null)
@@ -139,8 +148,12 @@ namespace Common.Redis
         }
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            if (redis_client != null)
+            {
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+            
         }
         /// <summary>
         /// 保存数据DB文件到硬盘

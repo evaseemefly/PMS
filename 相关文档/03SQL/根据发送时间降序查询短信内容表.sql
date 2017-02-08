@@ -1,0 +1,2 @@
+SELECT * FROM SMS_NMEFC.dbo.S_SMSContent AS C
+ORDER BY C.SendDateTime DESC

@@ -12,8 +12,8 @@ namespace RedisDemo
     {
         static void Main(string[] args)
         {
-            //StringRWTest();
-            StringRWbyThread();
+              //StringRWTest(11);
+            StringRWbyThread(2);
             //查询首元素并取出
             //for (int i = 0; i < 5; i++)
             //{
@@ -41,30 +41,36 @@ namespace RedisDemo
             Console.WriteLine(list_helper.Count(list_key));
         }
 
-        static void StringRWTest()
+        static void StringRWTest(int count)
         {
-            Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
-            for (int i = 0; i < 2; i++)
+            //Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
+            Common.Redis.StringReidsHelper_test stringHelper = new Common.Redis.StringReidsHelper_test();
+            for (int i = 0; i < count; i++)
             {
-                Random random = new Random();                
-                redisHelper.Set(random.Next().ToString(), "1", DateTime.Now.AddMinutes(2));
+                //Random random = new Random();                
+                //redisHelper.Set(random.Next().ToString(), "1", DateTime.Now.AddSeconds(10));
+                stringHelper.Set(i.ToString(), "ok", DateTime.Now.AddSeconds(10));
+                Console.WriteLine(i + ":" + "ok");
             }
             
         }
 
-        static void StringRWbyThread()
+        static void StringRWbyThread(int count)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < count; i++)
             {
                 
                 ThreadPool.QueueUserWorkItem(o =>
                 {
-                    Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
-                    Random random = new Random();
-                    string radom_str = random.Next().ToString();
-                    
-                   var index= redisHelper.Set(radom_str, "1", DateTime.Now.AddMinutes(2));
-                    Console.WriteLine(radom_str+":"+index);
+                    //Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
+                    Common.Redis.StringReidsHelper_test stringHelper = new Common.Redis.StringReidsHelper_test();
+                    //Random random = new Random();
+                    //string radom_str = random.Next().ToString();
+
+                    //var index= redisHelper.Set(i.ToString(), "1", DateTime.Now.AddSeconds(10));
+                    var index = stringHelper.Set(i.ToString(), "1", DateTime.Now.AddSeconds(10));
+                    stringHelper.
+                    Console.WriteLine(i + ":"+index);
                 });
                    
             }

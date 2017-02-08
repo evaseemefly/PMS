@@ -8,13 +8,16 @@ namespace Common.Redis
 {
     public class HashRedisHelper : BaseRedisHelper
     {
-        public HashRedisHelper() : base() { }
+        public HashRedisHelper() : base()
+        {
+            redisClient = GetClient();
+        }
         /// <summary>
         /// 判断某个数据是否已经被缓存
         /// </summary>
         public bool Exist(string hashId, string key)
         {
-            return redis_client.HashContainsEntry(hashId, key);
+            return redisClient.HashContainsEntry(hashId, key);
         }
 
         /// <summary>
@@ -28,28 +31,28 @@ namespace Common.Redis
         public bool Set<T>(string hashId, string key, T t)
         {
             var value = SerializerHelper.SerializerToString(t);
-            return redis_client.SetEntryInHash(hashId, key, value);
+            return redisClient.SetEntryInHash(hashId, key, value);
         }
         /// <summary>
         /// 移除hash中的某值
         /// </summary>
         public bool Remove(string hashId, string key)
         {
-            return redis_client.RemoveEntryFromHash(hashId, key);
+            return redisClient.RemoveEntryFromHash(hashId, key);
         }
         /// <summary>
         /// 移除整个hash
         /// </summary>
         public bool Remove(string key)
         {
-            return redis_client.Remove(key);
+            return redisClient.Remove(key);
         }
         /// <summary>
         /// 从hash表获取数据
         /// </summary>
         public T Get<T>(string hashId, string key)
         {
-            string value = redis_client.GetValueFromHash(hashId, key);
+            string value = redisClient.GetValueFromHash(hashId, key);
             return SerializerHelper.DeSerializerToObject<T>(value);
         }
         /// <summary>
@@ -58,7 +61,7 @@ namespace Common.Redis
         public List<T> GetAll<T>(string hashId)
         {
             var result = new List<T>();
-            var list = redis_client.GetHashValues(hashId);
+            var list = redisClient.GetHashValues(hashId);
             if (list != null && list.Count > 0)
             {
                 list.ForEach(x =>
@@ -74,7 +77,7 @@ namespace Common.Redis
         /// </summary>
         public void SetExpire(string key, DateTime datetime)
         {
-            redis_client.ExpireEntryAt(key, datetime);
+            redisClient.ExpireEntryAt(key, datetime);
         }
     }
 }
