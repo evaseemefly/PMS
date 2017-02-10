@@ -69,7 +69,7 @@ namespace RedisDemo
 
                     //var index= redisHelper.Set(i.ToString(), "1", DateTime.Now.AddSeconds(10));
                     var index = stringHelper.Set(i.ToString(), "1", DateTime.Now.AddSeconds(10));
-                    stringHelper.
+                    //stringHelper.
                     Console.WriteLine(i + ":"+index);
                 });
                    

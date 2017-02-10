@@ -41,8 +41,6 @@ namespace SMSOA.Areas.Demo.Controllers
             {
                 info = "上传失败";
             }
-
-
             // string fjssmk = context.Request["fjssmk"];
             ////string userid = Utility.GetCurrentUser().zybh + "";
             //HttpFileCollection httpFileCollection = context.Request.Files;
