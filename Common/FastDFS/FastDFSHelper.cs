@@ -1,4 +1,5 @@
-﻿using FastDFS.Client.Common;
+﻿using FastDFS.Client;
+using FastDFS.Client.Common;
 using FastDFS.Client.Storage;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Common.FastDFS
         /// <returns>存储节点实体类</returns>
         public static StorageNode GetStorageNode(string groupName = null)
         {
-            return null;
+            return FastDFSClient.GetStorageNode(groupName);
         }
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace Common.FastDFS
         /// <returns></returns>
         public static string GetFormatUrl(string host, string group, string shortName)
         {
+            //return FastDFSClient
             return null;
         }
         /// <summary>
@@ -72,7 +74,7 @@ namespace Common.FastDFS
         /// <returns>返回短文件名</returns>
         public static string UploadFile(StorageNode storageNode, byte[] contentByte, string fileExt, System.Action<string> beginDelegate, System.Action<string> afterDelegate)
         {
-            return null;
+            return FastDFSClient.UploadFile(storageNode, contentByte, fileExt);
         }
 
         /// <summary>
@@ -84,7 +86,7 @@ namespace Common.FastDFS
         /// <returns></returns>
         public static string UploadFile(StorageNode storageNode, byte[] contentByte, string fileExt)
         {
-            return null;
+            return FastDFSClient.UploadFile(storageNode, contentByte, fileExt);
         }
         /// <summary>
         /// 上传从文件
@@ -97,7 +99,7 @@ namespace Common.FastDFS
         /// <returns>文件名</returns>
         public static string UploadSlaveFile(string groupName, byte[] contentByte, string master_filename, string prefix_name, string fileExt)
         {
-            return null;
+            return FastDFSClient.UploadSlaveFile(groupName, contentByte, master_filename, prefix_name, fileExt);
         }
         /// <summary>
         /// 上传可以Append的文件
@@ -108,7 +110,7 @@ namespace Common.FastDFS
         /// <returns>文件名</returns>
         public static string UploadAppenderFile(StorageNode storageNode, byte[] contentByte, string fileExt)
         {
-            return null;
+            return FastDFSClient.UploadAppenderFile(storageNode, contentByte, fileExt);
         }
         /// <summary>
         /// 附加文件
@@ -118,6 +120,8 @@ namespace Common.FastDFS
         /// <param name="contentByte">文件内容</param>
         public static byte[] AppendFile(string groupName, string fileName, byte[] contentByte)
         {
+
+            // return FastDFSClient.AppendFile(groupName, fileName, contentByte);
             return null;
         }
         /// <summary>
@@ -127,7 +131,7 @@ namespace Common.FastDFS
         /// <param name="fileName">文件名</param>
         public static void RemoveFile(string groupName, string fileName)
         {
-            
+            FastDFSClient.RemoveFile(groupName, fileName);
         }
         /// <summary>
         /// 下载文件
@@ -137,7 +141,8 @@ namespace Common.FastDFS
         /// <returns>文件内容</returns>
         public static byte[] DownloadFile(StorageNode storageNode, string fileName)
         {
-            return null;
+            return FastDFSClient.DownloadFile(storageNode, fileName);
+           
         }
         /// <summary>
         /// 增量下载文件
@@ -149,6 +154,7 @@ namespace Common.FastDFS
         /// <returns>文件内容</returns>
         public static byte[] DownloadFile(StorageNode storageNode, string fileName, long offset, long length)
         {
+           // FastDFSClient.DownloadFile(storageNode,)
             return null;
         }
         /// <summary>
@@ -159,7 +165,8 @@ namespace Common.FastDFS
         /// <returns></returns>
         public static FDFSFileInfo GetFileInfo(StorageNode storageNode, string fileName)
         {
-            return null;
+            return FastDFSClient.GetFileInfo(storageNode, fileName);
+            
         }
     }
 }
