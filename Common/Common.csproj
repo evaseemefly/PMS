@@ -42,6 +42,10 @@
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FastDFS.Client, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastDFS.1.0.4\lib\FastDFS.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -102,6 +106,8 @@
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Mission.cs" />
     <Compile Include="Encryption.cs" />
+    <Compile Include="FastDFS\FastDFSHelper.cs" />
+    <Compile Include="FastDFS\fastDFSTestClient.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,11 +117,13 @@
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="Query\QueryHelper.cs" />
     <Compile Include="Redis\BaseRedisHelper.cs" />
+    <Compile Include="Redis\BaseRedisOperatHelper.cs" />
     <Compile Include="Redis\ListReidsHelper.cs" />
     <Compile Include="Redis\RedisConfig.cs" />
     <Compile Include="Redis\RedisHelper.cs" />
     <Compile Include="Redis\HashRedisHelper.cs" />
     <Compile Include="Redis\StringRedisHelper.cs" />
+    <Compile Include="Redis\StringReidsHelper_test.cs" />
     <Compile Include="Redis\ZSetRedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ValidateCode.cs" />

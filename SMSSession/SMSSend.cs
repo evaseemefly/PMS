@@ -557,6 +557,8 @@ namespace SMSFactory
             {
                 StringRedisHelper redisStrhelper = new StringRedisHelper();
                 redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
+                //2017年2月4日 添加释放资源
+                redisStrhelper.Dispose();
                 return true;
             }
             else
