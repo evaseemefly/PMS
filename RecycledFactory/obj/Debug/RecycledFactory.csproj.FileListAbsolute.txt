@@ -49,3 +49,4 @@ D:\VSWorkSpace\nmefc\PMS\RecycledFactory\bin\Debug\zh-Hans\System.Web.Mvc.resour
 D:\VSWorkSpace\nmefc\PMS\RecycledFactory\obj\Debug\RecycledFactory.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\RecycledFactory\obj\Debug\RecycledFactory.dll
 D:\VSWorkSpace\nmefc\PMS\RecycledFactory\obj\Debug\RecycledFactory.pdb
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\RecycledFactory\bin\Debug\QuartzProxy.pdb

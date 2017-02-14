@@ -52,3 +52,4 @@ D:\VSWorkSpace\nmefc\PMS\RedisFactory\bin\Debug\zh-Hans\System.Web.Mvc.resources
 D:\VSWorkSpace\nmefc\PMS\RedisFactory\obj\Debug\RedisFactory.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\RedisFactory\obj\Debug\RedisFactory.dll
 D:\VSWorkSpace\nmefc\PMS\RedisFactory\obj\Debug\RedisFactory.pdb
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\RedisFactory\bin\Debug\FastDFS.Client.pdb
