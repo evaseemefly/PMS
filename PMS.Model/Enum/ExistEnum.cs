@@ -23,7 +23,7 @@ namespace PMS.Model.Enum
         ///<summary>
         /// 不存在
         /// </summary>
-        isNotExist
+        isNotExist,
 
     }
 }

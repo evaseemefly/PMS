@@ -249,6 +249,12 @@ namespace PersonImporting
         #region 
         public static void DBOperate(List<ViewModel.PersonModel> list)
         {
+            //17年2月20日新加
+            if (!departmentBLL.CheckDepartmentRequired())
+            {
+                ShowMsg("数据库中没有顶级父节点，请先在数据库的部门表中创建顶级父节点，设置其DID为0，设置其ＰＤＩＤ为－１");
+                return;
+            }
             //2 写入数据库
             //判断是否已经存在群组
             //list 

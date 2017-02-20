@@ -88,4 +88,3 @@ D:\VSWorkSpace\nmefc\PMS\SMSSession\bin\Debug\zh-Hans\System.Web.Mvc.resources.d
 D:\VSWorkSpace\nmefc\PMS\SMSSession\obj\Debug\SMSFactory.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\SMSSession\obj\Debug\SMSFactory.dll
 D:\VSWorkSpace\nmefc\PMS\SMSSession\obj\Debug\SMSFactory.pdb
-D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSSession\bin\Debug\zh-Hans\EntityFramework.resources.dll
