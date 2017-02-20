@@ -12,24 +12,36 @@ namespace SMSOA.Areas.Demo.SendMMS
 {
     internal class MMSSend
     {
-        #region 测试用
+        #region 测试用,原方法为给出图片路径，读取图片，暂时不用此方法
         /// <summary>
         /// 测试是否能够发送彩信
         /// </summary>
         /// <returns></returns>
-        public static String test(String path)
-        {
-            
+        //public static String test(String path)
+        //{
 
-            String fileUrl = path;
+        //    String fileUrl = path;
+        //    String postUrl = "http://mms.3tong.net/http/mms";
+        //    String phoneNum = "13681211480,18610819818,13811104406";
+        //    String title = "测试彩信";
+        //    String account = "dh74381";
+        //    String password = md5("uAvb3Qey");
+
+        //    return sendMMS(postUrl, phoneNum, title, account, password, fileUrl);
+        //}
+        #endregion
+        public static String test(string content)
+        {
+
             String postUrl = "http://mms.3tong.net/http/mms";
-            String phoneNum = "13681211480";
-            String title = "测试短信";
+            String phoneNum = "13681211480,18610819818,13811104406";
+            String title = "测试彩信";
             String account = "dh74381";
             String password = md5("uAvb3Qey");
 
-            return sendMMS(postUrl, phoneNum, title, account, password, fileUrl);
+            return sendMMS(postUrl, phoneNum, title, account, password,content);
         }
+        #region 测试用,原方法为给出图片路径，读取图片，暂时不用此方法
         /// <summary>
         /// 发送彩信
         /// </summary>
@@ -40,13 +52,42 @@ namespace SMSOA.Areas.Demo.SendMMS
         /// <param name="password"></param>
         /// <param name="fileUrl"></param>
         /// <returns></returns>
-        private static String sendMMS(String postUrl, String phoneNum, String title, String account, String password, String fileUrl)
+        //private static String sendMMS(String postUrl, String phoneNum, String title, String account, String password, String fileUrl)
+        //{
+        //    String res = "";
+        //    var commandCode = ((int)MMSRequestType_Enum.MMS_Submit).ToString().PadLeft(3, '0');
+        //    try
+        //    { 
+        //        String content = ToBase64(ReadFile(fileUrl));
+        //        String message = "<?xml version='1.0' encoding='UTF-8'?><root><head>"
+        //                              + "<cmdId>" + commandCode + "</cmdId>"
+        //                              + "<account>" + account + "</account>" + "<password>"
+        //                              + password + "</password></head>"
+        //                              + "<body><submitMsg>"
+        //                              + "<msgid></msgid>"
+        //                              + "<phone>" + phoneNum + "</phone><content>"
+        //                              + content + "</content><title>"
+        //                              + title + "</title>"
+        //                              + "<subCode></subCode></submitMsg></body>"
+        //                              + "</root>";
+        //        res = DoRquest(postUrl, "POST", "UTF-8", message);
+        //   }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception(e.Message);
+        //    }
+        //    return res;
+        //}
+
+        #endregion
+
+        private static String sendMMS(String postUrl, String phoneNum, String title, String account, String password, String content)
         {
             String res = "";
             var commandCode = ((int)MMSRequestType_Enum.MMS_Submit).ToString().PadLeft(3, '0');
             try
-            { 
-                String content = ToBase64(ReadFile(fileUrl));
+            {
+               
                 String message = "<?xml version='1.0' encoding='UTF-8'?><root><head>"
                                       + "<cmdId>" + commandCode + "</cmdId>"
                                       + "<account>" + account + "</account>" + "<password>"
@@ -59,7 +100,7 @@ namespace SMSOA.Areas.Demo.SendMMS
                                       + "<subCode></subCode></submitMsg></body>"
                                       + "</root>";
                 res = DoRquest(postUrl, "POST", "UTF-8", message);
-           }
+            }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
@@ -114,40 +155,39 @@ namespace SMSOA.Areas.Demo.SendMMS
                     ReceiveStream.Close();
             }
         }
-
+        #region 暂时不使用从本地读取文件的方法
         /// <summary>
         /// 读取文件
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        private static byte[] ReadFile(String path)
-        {
-            if (File.Exists(path))
-            {
-                FileStream file = null;
-                try
-                {
-                    file = File.OpenRead(path);
-                    byte[] pictureContent = new byte[file.Length];
-                    file.Read(pictureContent, 0, pictureContent.Length);
-                   
-                    return pictureContent;
+        //private static byte[] ReadFile(String path)
+        //{
+        //    if (File.Exists(path))
+        //    {
+        //        FileStream file = null;
+        //        try
+        //        {
+        //            file = File.OpenRead(path);
+        //            byte[] pictureContent = new byte[file.Length];
+        //            file.Read(pictureContent, 0, pictureContent.Length);
 
-                }
-                catch(FileNotFoundException e)
-                {
-                    throw new FileNotFoundException(e.Message);
-                }
-                finally
-                {
-                    file.Close();
-                }
+        //            return pictureContent;
 
-            }
-            return null;
-         
-       
-        }
+        //        }
+        //        catch(FileNotFoundException e)
+        //        {
+        //            throw new FileNotFoundException(e.Message);
+        //        }
+        //        finally
+        //        {
+        //            file.Close();
+        //        }
+
+        //    }
+        //    return null;
+        #endregion
+        //}
         /// <summary>
         /// 加密程序
         /// </summary>
@@ -161,24 +201,26 @@ namespace SMSOA.Areas.Demo.SendMMS
             String md = BitConverter.ToString(output).Replace("-", "");
             return md.ToLower();
         }
+
+        #region 此为飞飞单独写 固注释掉
         /// <summary>
         /// 图片转base64函数
         /// </summary>
         /// <param name="binaryData"></param>
         /// <returns></returns>
-        private static string ToBase64(byte[] binaryData)       
-        {
-            try
-            {
-                string buffer1 = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
-                return buffer1;
-            }
-            catch (System.ArgumentNullException exp)
-            {
-                throw new Exception(exp.Message);
-            }
-        }
-
+        //private static string ToBase64(byte[] binaryData)       
+        //{
+        //    try
+        //    {
+        //        string buffer1 = System.Convert.ToBase64String(binaryData, 0, binaryData.Length);
+        //        return buffer1;
+        //    }
+        //    catch (System.ArgumentNullException exp)
+        //    {
+        //        throw new Exception(exp.Message);
+        //    }
+        //}
+        #endregion
 
         public String getReport(String url, String account, String password) //获取状态
         {
@@ -200,7 +242,7 @@ namespace SMSOA.Areas.Demo.SendMMS
             }
             return res;
         }
-        #endregion
+      
 
     }
 }

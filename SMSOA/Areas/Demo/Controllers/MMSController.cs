@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,6 +12,8 @@ namespace SMSOA.Areas.Demo.Controllers
 {
     public class MMSController : Controller
     {
+        //全局变量：唯一识别码
+        
         // GET: Demo/MMS
         public ActionResult Index()
         {
@@ -57,6 +60,7 @@ namespace SMSOA.Areas.Demo.Controllers
                 Guid newfileName = new Guid();
                 //hashId可以通过读取配置文件的方式读取
                 hash_redis.Set<byte[]>("fastdfsfile", newfileName.ToString(), content);
+                ViewBag.guid = newfileName.ToString();
                 info = "上传成功";
             }
             else
@@ -74,12 +78,49 @@ namespace SMSOA.Areas.Demo.Controllers
         }
         public ContentResult SendMMS()
         {
-            string targetDir = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/Product");
-            //暂时发送指定的zip文件
-            String fileName = "u=605198921,4238220254&fm=21&gp=0.zip";
-            string path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(fileName));
-            var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
-            return Content("ok");
+            string info;
+            //1. 判断唯一识别码是否被创建(是否传入Redis)
+            if (ViewBag.guid == null) { return Content(info = "请重新上传图片"); }
+            //2. 从Redis中获取图片数据
+            Common.Redis.HashRedisHelper hash_redis = new Common.Redis.HashRedisHelper();
+            byte[] imgData = hash_redis.Get<byte[]>("fastdfsfile", ViewBag.guid);
+
+            //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
+
+            #region 飞飞写的压缩程序，对图片进行压缩
+
+            #endregion
+
+            //4.发送
+            #region 飞飞写的打zip包程序，组成Zip包并返回btye[]
+
+            byte[] zipData = new byte[1];
+            #endregion
+            //4.1 将发送需要的content内容(zip包)转为字符串
+            string content = Encoding.Default.GetString(zipData);
+            #region 暂时不使用从本地读取文件的方式
+            //string targetDir = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/Product");
+            //暂时发送指定的zip文件            
+            //String fileName = "u=605198921,4238220254&fm=21&gp=0.zip";
+
+            //string path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(fileName));
+            #endregion
+            try
+            {
+                //4.2 发送彩信
+                var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(content);
+
+                //5.存入fastDFS,获取FileName
+                string fileName = Common.FastDFS.fastDFSTestClient.test(zipData);
+                info = "发送成功且成功存入fastDFS,fileName为" + fileName;
+            }
+            catch
+            {
+                info = "发送失败或存入FastDFS失败";
+            }
+
+
+            return Content(info);
         }
 
     }

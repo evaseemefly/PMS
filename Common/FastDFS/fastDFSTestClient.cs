@@ -9,8 +9,10 @@ namespace Common.FastDFS
 {
     public class fastDFSTestClient
     {
-        public void test()
+        public static string test(byte[] content)
         {
+
+           return FastDFSHelper.UploadFile(FastDFSHelper.DefaultGroup, content,"jpg");
            // FastDFSClient.UploadFile();
         }
     }
