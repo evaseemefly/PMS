@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>E:\03协同开发\999发布版\Sys\辽宁\2.0</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\03协同开发\999发布版\Sys\辽宁\2.1</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -199,7 +199,7 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout.cshtml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>01/10/2017 08:36:34</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_Contacts - 复制.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -208,7 +208,7 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>01/10/2017 08:36:34</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_Person.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -220,7 +220,10 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Layout_SMSMission.cshtml">
-      <publishTime>12/20/2016 10:46:40</publishTime>
+      <publishTime>01/10/2017 08:36:34</publishTime>
+    </File>
+    <File Include="Areas/Contacts/Views/Shared/_Layout_SMSMission_MMSInfo.cshtml">
+      <publishTime>01/10/2017 08:36:34</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/Shared/_Partial_ShowToolbar.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -229,7 +232,7 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/SMSMission/Index.cshtml">
-      <publishTime>12/20/2016 10:46:40</publishTime>
+      <publishTime>01/10/2017 08:36:34</publishTime>
     </File>
     <File Include="Areas/Contacts/Views/SMSMission/ShowAddSMSMissionInfo.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -241,7 +244,7 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/Demo/Views/MMS/Index.cshtml">
-      <publishTime>12/20/2016 15:05:28</publishTime>
+      <publishTime>02/20/2017 16:00:34</publishTime>
     </File>
     <File Include="Areas/Demo/Views/Shared/_Layout_Common.cshtml">
       <publishTime>12/20/2016 14:55:42</publishTime>
@@ -357,8 +360,14 @@
     <File Include="Areas/Recycled/Views/web.config">
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
+    <File Include="Areas/SMS/Views/MMSSend/Index.cshtml">
+      <publishTime>02/08/2017 15:09:45</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/MMSSend/_Partial_Send_MMS_Body.cshtml">
+      <publishTime>02/06/2017 12:57:45</publishTime>
+    </File>
     <File Include="Areas/SMS/Views/MsgTemplate/Index.cshtml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>01/10/2017 08:36:34</publishTime>
     </File>
     <File Include="Areas/SMS/Views/MsgTemplate/ShowEditTemplate-7月8日备份.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -370,16 +379,19 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/Index.cshtml">
-      <publishTime>12/19/2016 08:55:13</publishTime>
+      <publishTime>02/08/2017 15:09:45</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/ShowSetWindow.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/_Partial_Send_Body.cshtml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>02/06/2017 12:57:45</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Send/_Partial_Send_EditWin.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/ShowSetWindow.cshtml">
+      <publishTime>02/06/2017 12:57:45</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Shared/_Layout_AdvSearch.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -388,10 +400,13 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Shared/_Layout_Send.cshtml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>02/08/2017 15:09:45</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Shared/_Layout_Statistics.cshtml">
       <publishTime>12/15/2016 09:04:16</publishTime>
+    </File>
+    <File Include="Areas/SMS/Views/Shared/_Partial_Send_EditWin.cshtml">
+      <publishTime>02/06/2017 12:57:45</publishTime>
     </File>
     <File Include="Areas/SMS/Views/Statistics/Index.cshtml">
       <publishTime>12/20/2016 10:46:40</publishTime>
@@ -430,19 +445,19 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/28/2016 17:20:12</publishTime>
+      <publishTime>03/07/2017 15:57:06</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/28/2016 17:20:12</publishTime>
+      <publishTime>03/07/2017 15:57:06</publishTime>
     </File>
     <File Include="bin/BaseJob.dll">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:37</publishTime>
     </File>
     <File Include="bin/BaseJob.pdb">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:37</publishTime>
     </File>
     <File Include="bin/Common.dll">
-      <publishTime>12/28/2016 17:17:16</publishTime>
+      <publishTime>03/07/2017 15:40:19</publishTime>
     </File>
     <File Include="bin/Common.Logging.Core.dll">
       <publishTime>12/15/2016 09:04:22</publishTime>
@@ -454,19 +469,19 @@
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="bin/Common.pdb">
-      <publishTime>12/28/2016 17:17:16</publishTime>
+      <publishTime>03/07/2017 15:40:19</publishTime>
     </File>
     <File Include="bin/Config/controllers.xml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>02/06/2017 12:57:45</publishTime>
     </File>
     <File Include="bin/Config/service.xml">
       <publishTime>12/15/2016 09:04:16</publishTime>
     </File>
     <File Include="bin/DelegateSMS.dll">
-      <publishTime>12/28/2016 17:17:17</publishTime>
+      <publishTime>03/07/2017 15:40:21</publishTime>
     </File>
     <File Include="bin/DelegateSMS.pdb">
-      <publishTime>12/28/2016 17:17:17</publishTime>
+      <publishTime>03/07/2017 15:40:21</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>12/15/2016 09:04:22</publishTime>
@@ -474,26 +489,32 @@
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>12/15/2016 09:04:22</publishTime>
     </File>
+    <File Include="bin/FastDFS.Client.dll">
+      <publishTime>02/13/2017 09:07:42</publishTime>
+    </File>
+    <File Include="bin/FastDFS.Client.pdb">
+      <publishTime>02/13/2017 09:07:42</publishTime>
+    </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>12/15/2016 09:04:23</publishTime>
     </File>
     <File Include="bin/ISMS.dll">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:30</publishTime>
     </File>
     <File Include="bin/ISMS.pdb">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:30</publishTime>
     </File>
     <File Include="bin/JobInstances.dll">
-      <publishTime>12/28/2016 17:17:30</publishTime>
+      <publishTime>03/07/2017 15:40:57</publishTime>
     </File>
     <File Include="bin/JobInstances.pdb">
-      <publishTime>12/28/2016 17:17:30</publishTime>
+      <publishTime>03/07/2017 15:40:57</publishTime>
     </File>
     <File Include="bin/JobManagement.dll">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:30</publishTime>
     </File>
     <File Include="bin/JobManagement.pdb">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:30</publishTime>
     </File>
     <File Include="bin/log4net.config">
       <publishTime>12/15/2016 09:04:18</publishTime>
@@ -580,46 +601,46 @@
       <publishTime>12/15/2016 09:04:24</publishTime>
     </File>
     <File Include="bin/PMS.BLL.dll">
-      <publishTime>12/28/2016 17:17:22</publishTime>
+      <publishTime>03/07/2017 15:40:35</publishTime>
     </File>
     <File Include="bin/PMS.BLL.pdb">
-      <publishTime>12/28/2016 17:17:22</publishTime>
+      <publishTime>03/07/2017 15:40:35</publishTime>
     </File>
     <File Include="bin/PMS.DALFactory.dll">
-      <publishTime>12/28/2016 17:17:21</publishTime>
+      <publishTime>03/07/2017 15:40:33</publishTime>
     </File>
     <File Include="bin/PMS.DALFactory.pdb">
-      <publishTime>12/28/2016 17:17:21</publishTime>
+      <publishTime>03/07/2017 15:40:33</publishTime>
     </File>
     <File Include="bin/PMS.DALSQLSer.dll">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:31</publishTime>
     </File>
     <File Include="bin/PMS.DALSQLSer.pdb">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:31</publishTime>
     </File>
     <File Include="bin/PMS.IBLL.dll">
-      <publishTime>12/28/2016 17:17:17</publishTime>
+      <publishTime>03/07/2017 15:40:21</publishTime>
     </File>
     <File Include="bin/PMS.IBLL.pdb">
-      <publishTime>12/28/2016 17:17:17</publishTime>
+      <publishTime>03/07/2017 15:40:21</publishTime>
     </File>
     <File Include="bin/PMS.IDAL.dll">
-      <publishTime>12/28/2016 17:17:17</publishTime>
+      <publishTime>03/07/2017 15:40:21</publishTime>
     </File>
     <File Include="bin/PMS.IDAL.pdb">
-      <publishTime>12/28/2016 17:17:17</publishTime>
+      <publishTime>03/07/2017 15:40:21</publishTime>
     </File>
     <File Include="bin/PMS.IModel.dll">
-      <publishTime>12/28/2016 17:17:15</publishTime>
+      <publishTime>03/07/2017 15:40:13</publishTime>
     </File>
     <File Include="bin/PMS.IModel.pdb">
-      <publishTime>12/28/2016 17:17:15</publishTime>
+      <publishTime>03/07/2017 15:40:13</publishTime>
     </File>
     <File Include="bin/PMS.Model.dll">
-      <publishTime>12/28/2016 17:17:15</publishTime>
+      <publishTime>03/07/2017 15:40:17</publishTime>
     </File>
     <File Include="bin/PMS.Model.pdb">
-      <publishTime>12/28/2016 17:17:15</publishTime>
+      <publishTime>03/07/2017 15:40:17</publishTime>
     </File>
     <File Include="bin/Quartz.dll">
       <publishTime>12/15/2016 09:04:24</publishTime>
@@ -628,34 +649,34 @@
       <publishTime>12/15/2016 09:04:24</publishTime>
     </File>
     <File Include="bin/QuartzDemo.exe">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:38</publishTime>
     </File>
     <File Include="bin/QuartzDemo.pdb">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:38</publishTime>
     </File>
     <File Include="bin/QuartzJobFactory.dll">
-      <publishTime>12/28/2016 17:17:19</publishTime>
+      <publishTime>03/07/2017 15:40:29</publishTime>
     </File>
     <File Include="bin/QuartzJobFactory.pdb">
-      <publishTime>12/28/2016 17:17:19</publishTime>
+      <publishTime>03/07/2017 15:40:29</publishTime>
     </File>
     <File Include="bin/QuartzProxy.dll">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:30</publishTime>
     </File>
     <File Include="bin/QuartzProxy.pdb">
-      <publishTime>12/28/2016 17:17:20</publishTime>
+      <publishTime>03/07/2017 15:40:30</publishTime>
     </File>
     <File Include="bin/QueryWFLib.dll">
-      <publishTime>12/28/2016 17:17:29</publishTime>
+      <publishTime>03/07/2017 15:40:55</publishTime>
     </File>
     <File Include="bin/QueryWFLib.pdb">
-      <publishTime>12/28/2016 17:17:29</publishTime>
+      <publishTime>03/07/2017 15:40:55</publishTime>
     </File>
     <File Include="bin/RecycledFactory.dll">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:37</publishTime>
     </File>
     <File Include="bin/RecycledFactory.pdb">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:37</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>12/15/2016 09:04:23</publishTime>
@@ -700,16 +721,16 @@
       <publishTime>12/15/2016 09:04:25</publishTime>
     </File>
     <File Include="bin/SMSFactory.dll">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:39</publishTime>
     </File>
     <File Include="bin/SMSFactory.pdb">
-      <publishTime>12/28/2016 17:17:23</publishTime>
+      <publishTime>03/07/2017 15:40:39</publishTime>
     </File>
     <File Include="bin/SMSOA.dll">
-      <publishTime>12/28/2016 17:17:37</publishTime>
+      <publishTime>03/07/2017 15:41:10</publishTime>
     </File>
     <File Include="bin/SMSOA.pdb">
-      <publishTime>12/28/2016 17:17:37</publishTime>
+      <publishTime>03/07/2017 15:41:10</publishTime>
     </File>
     <File Include="bin/Spring.Core.dll">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -808,7 +829,7 @@
       <publishTime>12/15/2016 09:04:23</publishTime>
     </File>
     <File Include="Config/controllers.xml">
-      <publishTime>12/15/2016 09:04:16</publishTime>
+      <publishTime>02/06/2017 12:57:45</publishTime>
     </File>
     <File Include="Config/service.xml">
       <publishTime>12/15/2016 09:04:16</publishTime>
@@ -910,7 +931,7 @@
       <publishTime>12/15/2016 09:04:19</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>12/28/2016 17:19:58</publishTime>
+      <publishTime>03/07/2017 15:56:42</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>12/15/2016 09:04:18</publishTime>
@@ -1132,7 +1153,7 @@
       <publishTime>12/15/2016 09:04:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/28/2016 17:19:56</publishTime>
+      <publishTime>03/07/2017 15:56:34</publishTime>
     </File>
   </ItemGroup>
 </Project>
