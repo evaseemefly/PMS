@@ -339,6 +339,7 @@
     <Content Include="Images\Icon\Contact\phonebook.png" />
     <Content Include="Images\Image\page404.jpg" />
     <Content Include="Libs\Common.Logging.dll" />
+    <Content Include="Libs\FastDFS.Client.dll" />
     <Content Include="Libs\Spring.Core.dll" />
     <Content Include="Libs\Spring.Core.xml" />
     <Content Include="Libs\Spring.Web.Mvc4.dll" />

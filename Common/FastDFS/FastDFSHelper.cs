@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Config;
+using System.Net.NetworkInformation;
 
 namespace Common.FastDFS
 {
@@ -20,16 +22,46 @@ namespace Common.FastDFS
         /// <summary>
         /// FastDFS文件组
         /// </summary>
-        public static StorageNode DefaultGroup;
+        public StorageNode storageNode;
+
+        /// <summary>
+        /// 服务器地址（可公共访问，但只可在本来中赋值）
+        /// </summary>
+        public string Host { get; private set; }
+
+        /// <summary>
+        /// fdfs的配置对象
+        /// </summary>
+        protected static FastDFSConfigHelper fdfsConfig;
+
         /// <summary>
         /// 当前默认的组，节，卷名称
         /// 开发人员可以通过FastDFSClient.GetStorageNode("groupname")去指定自己的组
         /// </summary>
-        static FastDFSHelper()
+        public FastDFSHelper()
         {
             
+           fdfsConfig=new FastDFSConfigHelper();
+            //初始化storageNode节点
+            InitStorageNode();
         }
         #endregion
+
+        /// <summary>
+        /// 初始化storage节点
+        /// 为node与服务器地址属性赋值
+        /// </summary>
+        private void InitStorageNode()
+        {
+            if (fdfsConfig != null)
+            {
+                storageNode = FastDFSClient.GetStorageNode(fdfsConfig.DFSGroupName);
+                Host = storageNode.EndPoint.Address.ToString();
+            }
+            
+        }
+
+
 
         /// <summary>
         /// 获取存储节点,组名为空返回默认组
@@ -72,9 +104,9 @@ namespace Common.FastDFS
         /// <param name="beginDelegate">上传前回调</param>
         /// <param name="afterDelegate">上传后回调，参数为URL文件名</param>
         /// <returns>返回短文件名</returns>
-        public static string UploadFile(StorageNode storageNode, byte[] contentByte, string fileExt, System.Action<string> beginDelegate, System.Action<string> afterDelegate)
+        public static string UploadFile(StorageNode storageNode, byte[] contentByte, string fileExt, System.Action<string> beginDelegate=null, System.Action<string> afterDelegate=null)
         {
-            return FastDFSClient.UploadFile(storageNode, contentByte, fileExt);
+            return FastDFSClient.UploadFile(storageNode, contentByte, fileExt,beginDelegate, afterDelegate);
         }
 
         /// <summary>
@@ -167,6 +199,11 @@ namespace Common.FastDFS
         {
             return FastDFSClient.GetFileInfo(storageNode, fileName);
             
+        }
+
+        private bool CheckNetwork()
+        {
+            return NetworkInterface.GetIsNetworkAvailable();
         }
     }
 }

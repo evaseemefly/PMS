@@ -11,8 +11,10 @@ namespace Common.FastDFS
     {
         public static string test(byte[] content)
         {
-
-           return FastDFSHelper.UploadFile(FastDFSHelper.DefaultGroup, content,"jpg");
+            //3月8日
+            //现改为非静态类了，其中storageNode也是非静态属性
+            FastDFSHelper fdfsHelper = new FastDFSHelper();
+           return FastDFSHelper.UploadFile(fdfsHelper.storageNode, content,"jpg");
            // FastDFSClient.UploadFile();
         }
     }

@@ -42,9 +42,8 @@
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FastDFS.Client, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FastDFS.1.0.4\lib\FastDFS.Client.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="FastDFS.Client">
+      <HintPath>..\SMSOA\Libs\FastDFS.Client.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -98,6 +97,7 @@
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="Config\FastDFSConfigHelper.cs" />
     <Compile Include="Config\QueryConfigHelper.cs" />
     <Compile Include="Config\RedisConfigHelper.cs" />
     <Compile Include="Config\SMSSignConfigHelper.cs" />
