@@ -30,7 +30,11 @@ namespace Common.Redis
         /// <returns></returns>
         public bool Set<T>(string hashId, string key, T t)
         {
+            //if(typeof(T) is byte[])
             var value = SerializerHelper.SerializerToString(t);
+            
+
+
             return redisClient.SetEntryInHash(hashId, key, value);
         }
         /// <summary>
