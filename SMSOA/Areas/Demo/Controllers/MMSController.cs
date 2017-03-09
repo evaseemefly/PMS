@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMSOA.Areas.Demo.SendMMS;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -88,16 +89,37 @@ namespace SMSOA.Areas.Demo.Controllers
             //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
 
             #region 飞飞写的压缩程序，对图片进行压缩
+            string fileDirectory = @"d:\systest\";
+            Stream picture_stream = null;//建立stream
+            picture_stream = PicturePretreatment.BytesToStream(imgData);
+            //---------------------图片处理例程--------------------
+            //需要加载 System.Drawing;
+            string fileName = ViewBag.guid;
+            string mmsContent = "这是彩信内容，以string方式输入";
+            PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
+            bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
+            //注意：处理中的图片格式可能会变化
+            //得到的pp.picture_stream是处理后的图片流
+            byte[] picture_byte = pp.ToBytes();//图片二进制输出
+            pp.ToFile(fileDirectory + fileName); //图片文件输出file name 不必加扩展名
 
             #endregion
 
             //4.发送
             #region 飞飞写的打zip包程序，组成Zip包并返回btye[]
 
-            byte[] zipData = new byte[1];
+            //-----------txt和smil------------------
+            TxtSmilSynthesis smilFile = new TxtSmilSynthesis(fileDirectory, fileName, pp.picture_format, mmsContent);
+            smilFile.outputFile();//生成txt和smil文件
+
+
+            //------------------文件压缩例程-------------------------
+            //需要加载ICSharpCode.SharpZipLib.dll,using ICSharpCode.SharpZipLib.Zip;
+            ZipTools.ZipFile(fileDirectory + @"zips\" + fileName + ".zip", fileDirectory, fileName);//压缩匹配的文件
+            byte[] zipFileStream = ZipTools.FileToByte(fileDirectory + @"zips\" + fileName + ".zip");//压缩包转为流
             #endregion
             //4.1 将发送需要的content内容(zip包)转为字符串
-            string content = Encoding.Default.GetString(zipData);
+            string content = Encoding.Default.GetString(zipFileStream);
             #region 暂时不使用从本地读取文件的方式
             //string targetDir = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/Product");
             //暂时发送指定的zip文件            
@@ -111,8 +133,8 @@ namespace SMSOA.Areas.Demo.Controllers
                 var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(content);
 
                 //5.存入fastDFS,获取FileName
-                string fileName = Common.FastDFS.fastDFSTestClient.test(zipData);
-                info = "发送成功且成功存入fastDFS,fileName为" + fileName;
+                string fastDFS_fileName = Common.FastDFS.fastDFSTestClient.test(picture_byte);
+                info = "发送成功且成功存入fastDFS,fileName为" + fastDFS_fileName;
             }
             catch
             {

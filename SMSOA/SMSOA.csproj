@@ -272,7 +272,10 @@
     <Compile Include="Areas\Demo\Models\Enum\MMSCommands_Enum.cs" />
     <Compile Include="Areas\Demo\Models\MMSModel\ViewModel_MMSMessage.cs" />
     <Compile Include="Areas\Demo\SendMMS\FastDFSUtil.cs" />
+    <Compile Include="Areas\Demo\SendMMS\PicturePretreatment.cs" />
     <Compile Include="Areas\Demo\SendMMS\MMSSend.cs" />
+    <Compile Include="Areas\Demo\SendMMS\TxtSmilSynthesis.cs" />
+    <Compile Include="Areas\Demo\SendMMS\ZipTools.cs" />
     <Compile Include="Areas\Job\Controllers\InstanceController.cs" />
     <Compile Include="Areas\Job\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Job\JobAreaRegistration.cs" />
