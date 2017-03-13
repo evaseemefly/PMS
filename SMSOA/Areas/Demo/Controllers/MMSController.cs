@@ -32,12 +32,6 @@ namespace SMSOA.Areas.Demo.Controllers
                 //1 获取文件集合中的第一个文件(每次只上传一个文件)
                 HttpPostedFile file = files[0];
                 //定义文件存放的目标路径
-                string targetDir = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/Product");
-                //创建目标路径
-                Directory.CreateDirectory(targetDir);
-                //Files.CreateDirectory(targetDir);
-                //组合成文件的完整路径
-                string path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(file.FileName));
                 //保存上传的文件到指定路径中
                 //2 将上传的文件读取为二进制数组
                 //2.1将上传的图片转成二进制图片
@@ -86,7 +80,7 @@ namespace SMSOA.Areas.Demo.Controllers
             string info;
             //1. 判断唯一识别码是否被创建(是否传入Redis)
             //if (ViewBag.guid == null) { return Content(info = "请重新上传图片"); }
-            string guid= "9567dbeb7d3243a4ae41920762a565ee";
+            string guid= "25e554edc69245899b422938a455119f";
             //2. 从Redis中获取图片数据
             Common.Redis.HashRedisHelper hash_redis = new Common.Redis.HashRedisHelper();
             byte[] imgData = hash_redis.Get<byte[]>("fastdfsfile", guid);
@@ -94,7 +88,8 @@ namespace SMSOA.Areas.Demo.Controllers
             //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
 
             #region 飞飞写的压缩程序，对图片进行压缩
-            string fileDirectory = @"d:\systest\";
+            //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
+            string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
             Stream picture_stream = null;//建立stream
             picture_stream = PicturePretreatment.BytesToStream(imgData);
             //---------------------图片处理例程--------------------
@@ -120,22 +115,25 @@ namespace SMSOA.Areas.Demo.Controllers
 
             //------------------文件压缩例程-------------------------
             //需要加载ICSharpCode.SharpZipLib.dll,using ICSharpCode.SharpZipLib.Zip;
-            ZipTools.ZipFile(fileDirectory + @"zips\" + fileName + ".zip", fileDirectory, fileName);//压缩匹配的文件
-            byte[] zipFileStream = ZipTools.FileToByte(fileDirectory + @"zips\" + fileName + ".zip");//压缩包转为流
+            ZipTools.ZipFile(fileDirectory + @"Zip\" + fileName + ".zip", fileDirectory, fileName);//压缩匹配的文件
+
+            #region QuYuan 3月13日注释
+            //byte[] zipFileStream = ZipTools.FileToByte(fileDirectory + @"zips\" + fileName + ".zip");//压缩包转为流
             #endregion
             //4.1 将发送需要的content内容(zip包)转为字符串
-            string content = Encoding.ASCII.GetString(zipFileStream);
-            #region 暂时不使用从本地读取文件的方式
-            //string targetDir = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/Product");
+           //string content = Encoding.ASCII.GetString(zipFileStream);
+            #endregion
+            #region QuYuan 3月13日修改，从本地读取zip
+            
             //暂时发送指定的zip文件            
-            //String fileName = "u=605198921,4238220254&fm=21&gp=0.zip";
+            String fileNameWithExpand = fileName + ".zip";
 
-            //string path = System.IO.Path.Combine(targetDir, System.IO.Path.GetFileName(fileName));
+            string path = System.IO.Path.Combine(fileDirectory+@"Zip\", System.IO.Path.GetFileName(fileNameWithExpand));
             #endregion
             try
             {
                 //4.2 发送彩信
-                var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(content);
+                var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
 
                 //5.存入fastDFS,获取FileName
                 string fastDFS_fileName = Common.FastDFS.fastDFSTestClient.test(picture_byte);
