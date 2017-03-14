@@ -33,6 +33,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="FastDFS.Client">
+      <HintPath>..\SMSOA\Libs\FastDFS.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -98,6 +101,12 @@
     <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="ExtensionModel\UserInfo.cs" />
+    <Compile Include="FdfsParam\BaseDownloadParameter.cs" />
+    <Compile Include="FdfsParam\BaseUploadParameter.cs" />
+    <Compile Include="FdfsParam\FileDownParameter.cs" />
+    <Compile Include="FdfsParam\FileUploadParameter.cs" />
+    <Compile Include="FdfsParam\ImageDownParameter.cs" />
+    <Compile Include="FdfsParam\ImageUploadParameter.cs" />
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
     <Compile Include="JobDataModel\BaseJobDataModel.cs" />
@@ -109,6 +118,12 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Message\BaseResponse.cs" />
+    <Compile Include="Message\Fdfs\BaseDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\BaseUploadResult.cs" />
+    <Compile Include="Message\Fdfs\FileDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\FileUploadResult.cs" />
+    <Compile Include="Message\Fdfs\ImageDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\ImageUploadResult.cs" />
     <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
     <Compile Include="MiddlewareModel\J_JobInfo.cs" />
@@ -292,6 +307,9 @@
       <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
       <Name>PMS.IModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResultModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
