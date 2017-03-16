@@ -12,6 +12,13 @@
             })
         }
 
+        function DoUploadAndSend() {
+            $("#fm").form('submit', {
+                url: 'SendMMS'
+            })
+        }
+
+       
 
         function DoSend() {
             $.ajax({
@@ -32,7 +39,7 @@
     }
 
 @section div_Body{
-    @ViewBag.guid;
+    @ViewBag.guid
     <h2>Basic FileBox</h2>
 <p>The filebox component represents a file field of the forms.</p>
 <div style="margin:20px 0;"></div>
@@ -49,6 +56,10 @@
 
     <div>
           <a href="#" class="easyui-linkbutton" type="submit" style="width:100%" onclick="DoSend()">发送彩信</a>
+    </div>
+
+    <div>
+        <a href="#" class="easyui-linkbutton" type="submit" style="width:100%" onclick="DoUploadAndSend()">合并上传与发送按钮</a>
     </div>
 </div>
     }

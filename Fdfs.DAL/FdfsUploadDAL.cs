@@ -263,7 +263,7 @@ namespace Fdfs.DAL
             return new ImageUploadResult
             {
                 FullFilePath = CompleteUpload(param.Stream, shortName),
-                FileName = shortName,
+                FileNameIncludeScroll = shortName,
                 GroupName = Node.GroupName,
                 Url = Host
             };

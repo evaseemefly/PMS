@@ -18,8 +18,20 @@ namespace PMS.Model.Message.Fdfs
         public string FullFilePath { get; set; }
 
         /// <summary>
-        /// 文件名称
+        /// 文件名称（含卷名）
         /// eg：M00/00/00/wKgAcVjHVVKAGNhPAAInn_BrY3k026.jpg
+        /// </summary>
+        public string FileNameIncludeScroll { get; set; }
+
+        /// <summary>
+        /// 只含文件名称+拓展名
+        /// eg:wKgAcVjHVVKAGNhPAAInn_BrY3k026.jpg
+        /// </summary>
+        public string FileNameIncludeExt { get; set; }
+
+        /// <summary>
+        /// 只含文件名称
+        /// eg:wKgAcVjHVVKAGNhPAAInn_BrY3k026
         /// </summary>
         public string FileName { get; set; }
 

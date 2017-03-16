@@ -16,12 +16,12 @@ namespace SMSOA.Areas.Demo.Controllers
     public class MMSController : Controller
     {
         //全局变量：唯一识别码
-        IFdfsUploadBLL uploadBLL;
+        IFdfsUploadBLL uploadBLL=new FdfsUploadBLL();
         // GET: Demo/MMS
         public ActionResult Index()
         {
             //之后改为spring的方式
-            uploadBLL = new FdfsUploadBLL();
+            //uploadBLL = new FdfsUploadBLL();
             return View();
         }
 
@@ -60,10 +60,14 @@ namespace SMSOA.Areas.Demo.Controllers
                 var newfileName = Guid.NewGuid();
                 string guid_temp = newfileName.ToString();
                 guid_temp = guid_temp.Replace("-", "");
+
+                //3月15日测试的上传的图片guid
+                //8401089b60834cf68ad7e54639ad00f1
                 //hashId可以通过读取配置文件的方式读取
+                //应设置失效时间
                 hash_redis.Set<byte[]>("fastdfsfile", guid_temp, content);
                var getvalue= hash_redis.Get<byte[]>("fastdfsfile", guid_temp);
-                ViewBag.guid = newfileName.ToString();
+                //ViewBag.guid = newfileName.ToString();
                 info = "上传成功";
             }
             else
@@ -79,84 +83,172 @@ namespace SMSOA.Areas.Demo.Controllers
             // FileInfo fileex = new FileInfo(file.FileName);
             return Content(info);
         }
+        #region 备份发送与上传分离
+        //public ContentResult SendMMS()
+        //{
+        //    string info;
+        //    //1. 判断唯一识别码是否被创建(是否传入Redis)
+        //    //if (ViewBag.guid == null) { return Content(info = "请重新上传图片"); }
+        //    string guid= "8401089b60834cf68ad7e54639ad00f1";
+        //    //2. 从Redis中获取图片数据
+        //    Common.Redis.HashRedisHelper hash_redis = new Common.Redis.HashRedisHelper();
+        //    byte[] imgData = hash_redis.Get<byte[]>("fastdfsfile", guid);
+
+        //    //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
+
+        //    #region 飞飞写的压缩程序，对图片进行压缩
+        //    //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
+        //    string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
+        //    Stream picture_stream = null;//建立stream
+        //    picture_stream = PicturePretreatment.BytesToStream(imgData);
+        //    //---------------------图片处理例程--------------------
+        //    //需要加载 System.Drawing;
+        //    string fileName = guid;
+        //    string mmsContent = "这是彩信内容，以string方式输入";
+        //    PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
+        //    bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
+
+        //    //注意：处理中的图片格式可能会变化
+        //    //得到的pp.picture_stream是处理后的图片流
+        //    byte[] picture_byte = pp.ToBytes();//图片二进制输出
+        //    pp.ToFile(fileDirectory + fileName); //图片文件输出file name 不必加扩展名
+
+        //    #endregion
+
+        //    //4.发送
+        //    #region 飞飞写的打zip包程序，组成Zip包并返回btye[]
+
+        //    //-----------txt和smil------------------
+        //    TxtSmilSynthesis smilFile = new TxtSmilSynthesis(fileDirectory, fileName, pp.picture_format, mmsContent);
+        //    smilFile.outputFile();//生成txt和smil文件
+
+
+        //    //------------------文件压缩例程-------------------------
+        //    //需要加载ICSharpCode.SharpZipLib.dll,using ICSharpCode.SharpZipLib.Zip;
+        //    ZipTools.ZipFile(fileDirectory + @"Zip\" + fileName + ".zip", fileDirectory, fileName);//压缩匹配的文件
+
+        //    #region QuYuan 3月13日注释
+        //    //byte[] zipFileStream = ZipTools.FileToByte(fileDirectory + @"zips\" + fileName + ".zip");//压缩包转为流
+        //    #endregion
+        //    //4.1 将发送需要的content内容(zip包)转为字符串
+        //   //string content = Encoding.ASCII.GetString(zipFileStream);
+        //    #endregion
+        //    #region QuYuan 3月13日修改，从本地读取zip
+
+        //    //暂时发送指定的zip文件            
+        //    String fileNameWithExpand = fileName + ".zip";
+
+        //    string path = System.IO.Path.Combine(fileDirectory+@"Zip\", System.IO.Path.GetFileName(fileNameWithExpand));
+        //    #endregion
+        //    try
+        //    {
+        //        //4.2 发送彩信
+        //        var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
+
+        //        //3月14日 修改 
+        //        //5.存入fastDFS,获取FileName
+        //        var fileNamewithExt = string.Format("{0}.{1}", fileName, "jpg");
+
+        //        var imageParam = new PMS.Model.FdfsParam.ImageUploadParameter(pp.picture_stream, fileNamewithExt, 2);
+        //        //此处的result中应加入是否成功的bool值或枚举对象
+        //        var result = uploadBLL.UploadImage(imageParam);
+        //        //直接调用Fdfs.IBLL接口的实现类即可；以下方法注释
+        //        //string fastDFS_fileName = Common.FastDFS.fastDFSTestClient.test(picture_byte);
+
+        //        info = "发送成功且成功存入fastDFS,fileName为" + result.FileName;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        info = "发送失败或存入FastDFS失败";
+        //    }
+
+
+        //    return Content(info);
+        //}
+        #endregion
+
         public ContentResult SendMMS()
         {
+            HttpFileCollection files = System.Web.HttpContext.Current.Request.Files;
             string info;
-            //1. 判断唯一识别码是否被创建(是否传入Redis)
-            //if (ViewBag.guid == null) { return Content(info = "请重新上传图片"); }
-            string guid= "25e554edc69245899b422938a455119f";
-            //2. 从Redis中获取图片数据
-            Common.Redis.HashRedisHelper hash_redis = new Common.Redis.HashRedisHelper();
-            byte[] imgData = hash_redis.Get<byte[]>("fastdfsfile", guid);
+            //判断是否存在文件
+            if (files.Count > 0)
+            {
+                //1 获取文件集合中的第一个文件(每次只上传一个文件)
+                HttpPostedFile file = files[0];
+                //定义文件存放的目标路径
+                //保存上传的文件到指定路径中
+                //2 将上传的文件读取为二进制数组
+                //2.1将上传的图片转成二进制图片
+                var file_stream = file.InputStream;
+                //BinaryReader binary_reader = new BinaryReader(file_stream);
+                //2.2读取为二进制数组 此处需要使用异步读取吗？
+                //var content = binary_reader.ReadBytes((int)file_stream.Length);
+                //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
+                #region 飞飞写的压缩程序，对图片进行压缩
+                //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
+                string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
+                Stream picture_stream = file_stream;//建立stream
+                //picture_stream = PicturePretreatment.BytesToStream(content);
 
-            //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
+                //---------------------图片处理例程--------------------
+                var guid = Guid.NewGuid();
+               var guid_str= guid.ToString();
+                guid_str = guid_str.Replace("-", "");
+                //需要加载 System.Drawing;
+                string fileName = guid_str;
+                string mmsContent = "这是彩信内容，以string方式输入";
+                PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
+                bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
 
-            #region 飞飞写的压缩程序，对图片进行压缩
-            //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
-            string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
-            Stream picture_stream = null;//建立stream
-            picture_stream = PicturePretreatment.BytesToStream(imgData);
-            //---------------------图片处理例程--------------------
-            //需要加载 System.Drawing;
-            string fileName = guid;
-            string mmsContent = "这是彩信内容，以string方式输入";
-            PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
-            bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
-            //注意：处理中的图片格式可能会变化
-            //得到的pp.picture_stream是处理后的图片流
-            byte[] picture_byte = pp.ToBytes();//图片二进制输出
-            pp.ToFile(fileDirectory + fileName); //图片文件输出file name 不必加扩展名
+                //注意：处理中的图片格式可能会变化
+                //得到的pp.picture_stream是处理后的图片流
+                //byte[] picture_byte = pp.ToBytes();//图片二进制输出
+                pp.ToFile(fileDirectory + fileName); //图片文件输出file name 不必加扩展名
+                #endregion
 
-            #endregion
+                //4.发送
+                #region 飞飞写的打zip包程序，组成Zip包并返回btye[]
 
-            //4.发送
-            #region 飞飞写的打zip包程序，组成Zip包并返回btye[]
+                //-----------txt和smil------------------
+                TxtSmilSynthesis smilFile = new TxtSmilSynthesis(fileDirectory, fileName, pp.picture_format, mmsContent);
+                smilFile.outputFile();//生成txt和smil文件
 
-            //-----------txt和smil------------------
-            TxtSmilSynthesis smilFile = new TxtSmilSynthesis(fileDirectory, fileName, pp.picture_format, mmsContent);
-            smilFile.outputFile();//生成txt和smil文件
+                //------------------文件压缩例程-------------------------
+                //需要加载ICSharpCode.SharpZipLib.dll,using ICSharpCode.SharpZipLib.Zip;
+                ZipTools.ZipFile(fileDirectory + @"Zip\" + fileName + ".zip", fileDirectory, fileName);//压缩匹配的文件
+                #endregion
+
+                #region QuYuan 3月13日修改，从本地读取zip
+                //暂时发送指定的zip文件            
+                String fileNameWithExpand = fileName + ".zip";
+                string path = System.IO.Path.Combine(fileDirectory + @"Zip\", System.IO.Path.GetFileName(fileNameWithExpand));
+                #endregion
+                try
+                {
+                    //4.2 发送彩信
+                    var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
+
+                    //3月14日 修改 
+                    //5.存入fastDFS,获取FileName
+                    var fileNamewithExt = string.Format("{0}.{1}", fileName, "jpg");
+
+                    var imageParam = new PMS.Model.FdfsParam.ImageUploadParameter(pp.picture_stream, fileNamewithExt, 2);
+                    //此处的result中应加入是否成功的bool值或枚举对象
+                    var result = uploadBLL.UploadImage(imageParam);
+                    info = "发送成功且成功存入fastDFS,fileName为" + result.FileNameIncludeScroll;
+                }
+                catch (Exception ex)
+                {
+                    info = "发送失败或存入FastDFS失败";
+                }
 
 
-            //------------------文件压缩例程-------------------------
-            //需要加载ICSharpCode.SharpZipLib.dll,using ICSharpCode.SharpZipLib.Zip;
-            ZipTools.ZipFile(fileDirectory + @"Zip\" + fileName + ".zip", fileDirectory, fileName);//压缩匹配的文件
+                return Content(info);
+            }
 
-            #region QuYuan 3月13日注释
-            //byte[] zipFileStream = ZipTools.FileToByte(fileDirectory + @"zips\" + fileName + ".zip");//压缩包转为流
-            #endregion
-            //4.1 将发送需要的content内容(zip包)转为字符串
-           //string content = Encoding.ASCII.GetString(zipFileStream);
-            #endregion
-            #region QuYuan 3月13日修改，从本地读取zip
+            return Content("error");
             
-            //暂时发送指定的zip文件            
-            String fileNameWithExpand = fileName + ".zip";
-
-            string path = System.IO.Path.Combine(fileDirectory+@"Zip\", System.IO.Path.GetFileName(fileNameWithExpand));
-            #endregion
-            try
-            {
-                //4.2 发送彩信
-                var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
-
-                //3月14日 修改 
-                //5.存入fastDFS,获取FileName
-                var imageParam = new PMS.Model.FdfsParam.ImageUploadParameter(picture_stream, fileName,2);
-                //此处的result中应加入是否成功的bool值或枚举对象
-                var result = uploadBLL.UploadImage(imageParam);
-                //直接调用Fdfs.IBLL接口的实现类即可；以下方法注释
-                //string fastDFS_fileName = Common.FastDFS.fastDFSTestClient.test(picture_byte);
-                
-                info = "发送成功且成功存入fastDFS,fileName为" + result.FileName;
-            }
-            catch
-            {
-                info = "发送失败或存入FastDFS失败";
-            }
-
-
-            return Content(info);
         }
-
     }
 }
