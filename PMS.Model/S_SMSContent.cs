@@ -18,6 +18,7 @@ namespace PMS.Model
         {
             this.S_SMSRecord_Current = new HashSet<S_SMSRecord_Current>();
             this.S_SMSRecord_History = new HashSet<S_SMSRecord_History>();
+            this.FdfsContent = new HashSet<FdfsContent>();
         }
     
         public int ID { get; set; }
@@ -30,10 +31,13 @@ namespace PMS.Model
         public string BlackList { get; set; }
         public int ResultCode { get; set; }
         public int smsCount { get; set; }
+        public bool isMMS { get; set; }
+        public string MSTitle { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
         public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }
         public virtual S_SMSMission S_SMSMission { get; set; }
         public virtual ICollection<S_SMSRecord_History> S_SMSRecord_History { get; set; }
+        public virtual ICollection<FdfsContent> FdfsContent { get; set; }
     }
 }

@@ -11,6 +11,27 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region FdfsContentDAL   
+	//FdfsContent数据访问层
+	public class FdfsContentDAL:BaseDAL<FdfsContent>,IFdfsContentDAL
+    {
+    }
+	#endregion
+
+		#region FdfsStorageDAL   
+	//FdfsStorage数据访问层
+	public class FdfsStorageDAL:BaseDAL<FdfsStorage>,IFdfsStorageDAL
+    {
+    }
+	#endregion
+
+		#region FdfsTrackerDAL   
+	//FdfsTracker数据访问层
+	public class FdfsTrackerDAL:BaseDAL<FdfsTracker>,IFdfsTrackerDAL
+    {
+    }
+	#endregion
+
 		#region J_JobInfoDAL   
 	//J_JobInfo数据访问层
 	public class J_JobInfoDAL:BaseDAL<J_JobInfo>,IJ_JobInfoDAL

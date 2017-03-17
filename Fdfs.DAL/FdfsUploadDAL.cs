@@ -265,7 +265,10 @@ namespace Fdfs.DAL
                 FullFilePath = CompleteUpload(param.Stream, shortName),
                 FileNameIncludeScroll = shortName,
                 GroupName = Node.GroupName,
-                Url = Host
+                //Host:192.168.0.113
+                StoragePort = Host.Substring(Host.IndexOf(':')),
+                StorageUrl =  Host.Substring(0,Host.IndexOf(':')+1),
+                TrackerNode=Node
             };
         }
         #endregion

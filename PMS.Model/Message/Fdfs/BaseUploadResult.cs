@@ -42,10 +42,17 @@ namespace PMS.Model.Message.Fdfs
         public string GroupName { get; set; }
 
         /// <summary>
-        /// 服务器地址
+        /// 服务器地址，此url为storage节点的地址
         /// eg：192.168.0.113
         /// </summary>
-        public string Url { get; set; }
+        public string StorageUrl { get; set; }
+
+        /// <summary>
+        /// 端口号，此端口号为storage节点的端口号
+        /// 22122 storage
+        /// 23000 tracker
+        /// </summary>
+        public string StoragePort { get; set; }
 
         /// <summary>
         /// 错误消息列表

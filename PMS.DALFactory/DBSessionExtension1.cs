@@ -32,6 +32,87 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _FdfsContentDAL 属性 
+	private IDAL.IFdfsContentDAL _FdfsContentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取FdfsContentDAL的实例
+        /// </summary>
+        public IFdfsContentDAL FdfsContentDAL
+        {
+            get
+            {
+                if(_FdfsContentDAL==null)
+                {
+                    _FdfsContentDAL = AbstractFactory.CreateFdfsContentDAL();
+                }
+                return _FdfsContentDAL;
+            }
+
+            set
+            {
+                _FdfsContentDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _FdfsStorageDAL 属性 
+	private IDAL.IFdfsStorageDAL _FdfsStorageDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取FdfsStorageDAL的实例
+        /// </summary>
+        public IFdfsStorageDAL FdfsStorageDAL
+        {
+            get
+            {
+                if(_FdfsStorageDAL==null)
+                {
+                    _FdfsStorageDAL = AbstractFactory.CreateFdfsStorageDAL();
+                }
+                return _FdfsStorageDAL;
+            }
+
+            set
+            {
+                _FdfsStorageDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _FdfsTrackerDAL 属性 
+	private IDAL.IFdfsTrackerDAL _FdfsTrackerDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取FdfsTrackerDAL的实例
+        /// </summary>
+        public IFdfsTrackerDAL FdfsTrackerDAL
+        {
+            get
+            {
+                if(_FdfsTrackerDAL==null)
+                {
+                    _FdfsTrackerDAL = AbstractFactory.CreateFdfsTrackerDAL();
+                }
+                return _FdfsTrackerDAL;
+            }
+
+            set
+            {
+                _FdfsTrackerDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _J_JobInfoDAL 属性 
 	private IDAL.IJ_JobInfoDAL _J_JobInfoDAL;
 	#endregion

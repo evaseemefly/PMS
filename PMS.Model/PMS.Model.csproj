@@ -80,6 +80,7 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
+    <Compile Include="Enum\FileExt_Enum.cs" />
     <Compile Include="Enum\JobState_Enum.cs" />
     <Compile Include="Enum\JobType_Enum.cs" />
     <Compile Include="Enum\JobUrl_Enum.cs" />
@@ -101,12 +102,21 @@
     <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="ExtensionModel\UserInfo.cs" />
+    <Compile Include="FdfsContent.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="FdfsParam\BaseDownloadParameter.cs" />
     <Compile Include="FdfsParam\BaseUploadParameter.cs" />
     <Compile Include="FdfsParam\FileDownParameter.cs" />
     <Compile Include="FdfsParam\FileUploadParameter.cs" />
     <Compile Include="FdfsParam\ImageDownParameter.cs" />
     <Compile Include="FdfsParam\ImageUploadParameter.cs" />
+    <Compile Include="FdfsStorage.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdfsTracker.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
     <Compile Include="JobDataModel\BaseJobDataModel.cs" />

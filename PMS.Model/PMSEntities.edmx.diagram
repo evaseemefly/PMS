@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c53a8ae520244205896e2c4ad588d238" Name="Diagram1" ZoomLevel="109">
+      <Diagram DiagramId="c53a8ae520244205896e2c4ad588d238" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="PMS2016Model.ActionInfo" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="PMS2016Model.R_UserInfo_ActionInfo" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="PMS2016Model.RoleInfo" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
@@ -65,6 +65,12 @@
         <AssociationConnector Association="PMS2016Model.R_JobInfo_JobTemplate" />
         <AssociationConnector Association="PMS2016Model.R_JobTemplate_RoleInfo" />
         <EntityTypeShape EntityType="PMS2016Model.QRTZ_TRIGGERS" Width="2.375" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PMS2016Model.FdfsContent" Width="1.5" PointX="18.625" PointY="15" />
+        <EntityTypeShape EntityType="PMS2016Model.FdfsStorage" Width="1.5" PointX="16.375" PointY="15.375" />
+        <EntityTypeShape EntityType="PMS2016Model.FdfsTracker" Width="1.5" PointX="16.375" PointY="18.25" />
+        <AssociationConnector Association="PMS2016Model.FK_FdfsContent_FdfsStorage" />
+        <AssociationConnector Association="PMS2016Model.FK_FdfsContent_FdfsTracker" />
+        <AssociationConnector Association="PMS2016Model.R_SMSContent_FdfsContent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,13 +10,24 @@ using System.Web.Mvc;
 using Fdfs.BLL;
 using Fdfs.IBLL;
 using PMS.Model;
+using PMS.IBLL;
+using PMS.BLL;
 
 namespace SMSOA.Areas.Demo.Controllers
 {
     public class MMSController : Controller
     {
         //全局变量：唯一识别码
+
+        //以后改为spring的方式实现ioc
         IFdfsUploadBLL uploadBLL=new FdfsUploadBLL();
+
+        IFdfsStorageBLL fdfsStorageBLL = new FdfsStorageBLL();
+
+        IFdfsTrackerBLL fdfsTrackerBLL = new FdfsTrackerBLL();
+
+        IFdfsContentBLL fdfsContentBLL = new FdfsContentBLL();
+
         // GET: Demo/MMS
         public ActionResult Index()
         {
@@ -170,7 +181,7 @@ namespace SMSOA.Areas.Demo.Controllers
         public ContentResult SendMMS()
         {
             HttpFileCollection files = System.Web.HttpContext.Current.Request.Files;
-            string info;
+            string info=null;
             //判断是否存在文件
             if (files.Count > 0)
             {
@@ -227,16 +238,22 @@ namespace SMSOA.Areas.Demo.Controllers
                 try
                 {
                     //4.2 发送彩信
-                    var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
+                    //var res = SMSOA.Areas.Demo.SendMMS.MMSSend.test(path);
 
+
+                    //3月17日
+                    //需加入的内容
+                    //发送结束后将内容写入S_SMSContent表，并将写入的CID返回
+                    int cid=0;
                     //3月14日 修改 
                     //5.存入fastDFS,获取FileName
                     var fileNamewithExt = string.Format("{0}.{1}", fileName, "jpg");
 
                     var imageParam = new PMS.Model.FdfsParam.ImageUploadParameter(pp.picture_stream, fileNamewithExt, 2);
                     //此处的result中应加入是否成功的bool值或枚举对象
-                    var result = uploadBLL.UploadImage(imageParam);
-                    info = "发送成功且成功存入fastDFS,fileName为" + result.FileNameIncludeScroll;
+                    Save2Fdfs(imageParam,cid);
+                    //var result = uploadBLL.UploadImage(imageParam);
+                    //info = "发送成功且成功存入fastDFS,fileName为" + result.FileNameIncludeScroll;
                 }
                 catch (Exception ex)
                 {
@@ -249,6 +266,75 @@ namespace SMSOA.Areas.Demo.Controllers
 
             return Content("error");
             
+        }
+
+        public void Save2Fdfs(PMS.Model.FdfsParam.ImageUploadParameter uploadParam,int cid)
+        {
+            //1 上传图片
+            var result = uploadBLL.UploadImage(uploadParam);
+            //2 根据结果写回FdfsStorage
+            //2.1 先判断表中是否存在指定的对象
+           var storage_model= fdfsStorageBLL.GetListBy(fs => (fs.GroupName == result.GroupName) && (fs.URL == result.StorageUrl) && (fs.Port == result.StoragePort)).FirstOrDefault();
+            //2.2 没有则创建
+            if (storage_model == null)
+            {
+                fdfsStorageBLL.Create(new FdfsStorage()
+                {
+                    GroupName = result.GroupName,
+                    URL = result.StorageUrl,
+                    Port = result.StoragePort
+                });
+            }
+            //2.3 有则取出
+            else
+            {
+
+            }
+
+            //3 写回FdfsTracker
+            //3.1 先判断表中是否存在指定的对象            
+            var tracker_model = fdfsTrackerBLL.GetListBy(ft => (ft.URL == result.TrackerUrl) && (ft.GroupName == result.TrackerGroup) && (ft.Port == result.TrackerPort)).FirstOrDefault();
+            //3.2 没有则创建
+           
+            if (tracker_model == null)
+            {
+                tracker_model = new FdfsTracker()
+                {
+                    GroupName = result.GroupName,
+                    URL = result.TrackerUrl,
+                    Port = result.TrackerPort
+                };
+                fdfsTrackerBLL.Create(tracker_model);
+            }
+            //3.3 有则取出
+            else
+            {
+
+            }
+
+            //4 写回FdfsContent
+            int tid = 0;
+            int sid = 0;
+            //4.1 先判断表中是否存在指定的对象            
+            var content_model = fdfsContentBLL.GetListBy(fc => /*(fc.TID == tid) && (fc.SID == sid) && */(fc.FileName == result.FileName)).FirstOrDefault();
+            //4.2 没有则创建
+            if (content_model == null)
+            {
+                fdfsContentBLL.Create(new FdfsContent()
+                {
+                    TID=tid,
+                    SID=sid,
+                    FileName=result.FileName,
+                    ScrollName=result.Scroll,
+                    Ext=(int)result.ExtName
+                    
+                });
+            }
+            //4.3 有则取出
+            else
+            {
+
+            }
         }
     }
 }

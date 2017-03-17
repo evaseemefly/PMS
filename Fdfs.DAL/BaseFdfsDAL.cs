@@ -18,11 +18,13 @@ namespace Fdfs.DAL
         public string DFSGroupName { get; private set; }
         /// <summary>
         /// FastDFS结点
+        /// 注意此节点在初始化时被赋值，赋值后该节点为tracker节点
         /// </summary>
         public StorageNode Node { get; private set; }
 
         /// <summary>
         /// fastDFS服务器地址列表
+        /// 注意该地址列表实际为storage节点地址，也是在初始化时被赋值
         /// </summary>
         public List<IPEndPoint> trackerIPs = new List<IPEndPoint>();
 
@@ -45,6 +47,13 @@ namespace Fdfs.DAL
                 this.DFSGroupName = config.GroupName;
                 this.Host = config.FastDfsServer.FirstOrDefault().IpAddress;
                 //根据指定群组名称获取存储节点
+                /* 注意 
+                 * 虽然叫做StorageNode,
+                 * 但实际Node中的EndPoint为tracker的地址
+                 * eg
+                 * 192.168.0.113:23000
+                 * 
+                 */
                 Node = FastDFSClient.GetStorageNode(config.GroupName);
                 foreach (var item in config.FastDfsServer)
                 {

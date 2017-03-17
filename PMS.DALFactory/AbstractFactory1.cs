@@ -23,6 +23,45 @@ namespace PMS.DALFactory
         }
 		#endregion
 	 
+		#region 创建FdfsContent的实例
+        /// <summary>
+        /// 创建FdfsContent的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IFdfsContentDAL CreateFdfsContentDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".FdfsContentDAL";
+            return CreateInstance(fullClassName) as IFdfsContentDAL;
+        }
+		#endregion
+	 
+		#region 创建FdfsStorage的实例
+        /// <summary>
+        /// 创建FdfsStorage的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IFdfsStorageDAL CreateFdfsStorageDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".FdfsStorageDAL";
+            return CreateInstance(fullClassName) as IFdfsStorageDAL;
+        }
+		#endregion
+	 
+		#region 创建FdfsTracker的实例
+        /// <summary>
+        /// 创建FdfsTracker的实例
+        /// </summary>
+        /// <returns></returns>
+        public static IFdfsTrackerDAL CreateFdfsTrackerDAL()
+        {
+            //获取类的全名称：命名空间+类名
+            string fullClassName = NameSpace + ".FdfsTrackerDAL";
+            return CreateInstance(fullClassName) as IFdfsTrackerDAL;
+        }
+		#endregion
+	 
 		#region 创建J_JobInfo的实例
         /// <summary>
         /// 创建J_JobInfo的实例
