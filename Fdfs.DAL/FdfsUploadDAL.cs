@@ -248,7 +248,9 @@ namespace Fdfs.DAL
 
                     //**注意 调用FdfsClient的UploadFile时，拓展名不含.，需要手动去掉
                     //**注意返回值为：M00/00/00/wKgAcVjGSpSANp6XAAInn_BrY3k752.jpg
+                    // 即是BaseUploadResult中的FileNameIncludeScroll
                     shortName = FastDFSClient.UploadFile(Node, content, ext.Contains('.') ? ext.Substring(1) : ext);
+                    
                 }
             }
             else
@@ -260,15 +262,18 @@ namespace Fdfs.DAL
                 };
 
             }
-            return new ImageUploadResult
+            return new ImageUploadResult(Node, shortName,Node.GroupName)
             {
                 FullFilePath = CompleteUpload(param.Stream, shortName),
-                FileNameIncludeScroll = shortName,
-                GroupName = Node.GroupName,
+                //FileNameIncludeScroll = shortName,
+                //GroupName = Node.GroupName,
                 //Host:192.168.0.113
-                StoragePort = Host.Substring(Host.IndexOf(':')),
-                StorageUrl =  Host.Substring(0,Host.IndexOf(':')+1),
-                TrackerNode=Node
+                //注意此处的Host
+                //StoragePort = Host.Substring(Host.IndexOf(':')),
+                //StorageUrl =  Host.Substring(0,Host.IndexOf(':')+1),
+                //TrackerNode=Node,
+                
+
             };
         }
         #endregion

@@ -28,6 +28,8 @@ namespace SMSOA.Areas.Demo.Controllers
 
         IFdfsContentBLL fdfsContentBLL = new FdfsContentBLL();
 
+        IS_SMSContentBLL smsContentBLL = new S_SMSContentBLL();
+
         // GET: Demo/MMS
         public ActionResult Index()
         {
@@ -244,7 +246,8 @@ namespace SMSOA.Areas.Demo.Controllers
                     //3月17日
                     //需加入的内容
                     //发送结束后将内容写入S_SMSContent表，并将写入的CID返回
-                    int cid=0;
+                    //测试用
+                    int cid=9306;
                     //3月14日 修改 
                     //5.存入fastDFS,获取FileName
                     var fileNamewithExt = string.Format("{0}.{1}", fileName, "jpg");
@@ -271,25 +274,41 @@ namespace SMSOA.Areas.Demo.Controllers
         public void Save2Fdfs(PMS.Model.FdfsParam.ImageUploadParameter uploadParam,int cid)
         {
             //1 上传图片
-            var result = uploadBLL.UploadImage(uploadParam);
-            //2 根据结果写回FdfsStorage
-            //2.1 先判断表中是否存在指定的对象
-           var storage_model= fdfsStorageBLL.GetListBy(fs => (fs.GroupName == result.GroupName) && (fs.URL == result.StorageUrl) && (fs.Port == result.StoragePort)).FirstOrDefault();
-            //2.2 没有则创建
-            if (storage_model == null)
-            {
-                fdfsStorageBLL.Create(new FdfsStorage()
-                {
-                    GroupName = result.GroupName,
-                    URL = result.StorageUrl,
-                    Port = result.StoragePort
-                });
-            }
-            //2.3 有则取出
-            else
-            {
+            /*
+            ExtName:jpg
+            FileName:"wKgBaFjOLt-ATu3XAAAAAAAAAAA319"
+            FileNameIncludeExt:"wKgBaFjOLt-ATu3XAAAAAAAAAAA319.jpg"
+            FileNameIncludeScroll:"M00/00/00/wKgBaFjOLt-ATu3XAAAAAAAAAAA319.jpg"
+            FullFilePath:"http://192.168.1.104/group1/M00/00/00/wKgBaFjOLt-ATu3XAAAAAAAAAAA319.jpg"
+            GroupName:"group1"
 
-            }
+            TrackerGroup:"group1"
+            TrackerPort:"23000"
+            TrackerUrl:"192.168.1.104"
+            */
+            var result = uploadBLL.UploadImage(uploadParam);
+            
+
+            //2 根据结果写回FdfsStorage
+            //***** 注意先不往storage表中写回数据，上传成功后，并不会返回storage节点的信息 *****
+            //2.1 先判断表中是否存在指定的对象
+          // var storage_model= fdfsStorageBLL.GetListBy(fs => (fs.GroupName == result.GroupName) && (fs.URL == result.StorageUrl) && (fs.Port == result.StoragePort)).FirstOrDefault();
+            FdfsStorage storage_model=null;
+            //2.2 没有则创建
+            //if (storage_model == null)
+            //{
+            //    fdfsStorageBLL.Create(new FdfsStorage()
+            //    {
+            //        GroupName = result.GroupName,
+            //        //URL = result.StorageUrl,
+            //        //Port = result.StoragePort
+            //    });
+            //}
+            ////2.3 有则取出
+            //else
+            //{
+
+            //}
 
             //3 写回FdfsTracker
             //3.1 先判断表中是否存在指定的对象            
@@ -302,7 +321,8 @@ namespace SMSOA.Areas.Demo.Controllers
                 {
                     GroupName = result.GroupName,
                     URL = result.TrackerUrl,
-                    Port = result.TrackerPort
+                    Port = result.TrackerPort,
+                     StorePathIndex=0
                 };
                 fdfsTrackerBLL.Create(tracker_model);
             }
@@ -313,22 +333,26 @@ namespace SMSOA.Areas.Demo.Controllers
             }
 
             //4 写回FdfsContent
-            int tid = 0;
-            int sid = 0;
+            int tid = tracker_model.TID;
+            int sid = 1;
             //4.1 先判断表中是否存在指定的对象            
             var content_model = fdfsContentBLL.GetListBy(fc => /*(fc.TID == tid) && (fc.SID == sid) && */(fc.FileName == result.FileName)).FirstOrDefault();
             //4.2 没有则创建
             if (content_model == null)
             {
-                fdfsContentBLL.Create(new FdfsContent()
+                //4.2.1 找到SMSContent短信内容表中对应的内容
+                var smsContent= smsContentBLL.GetListBy(c => c.ID == cid).FirstOrDefault();
+                var fdfsContent = new FdfsContent()
                 {
-                    TID=tid,
-                    SID=sid,
-                    FileName=result.FileName,
-                    ScrollName=result.Scroll,
-                    Ext=(int)result.ExtName
-                    
-                });
+                    TID = tid,
+                    SID = sid,
+                    FileName = result.FileName,
+                    ScrollName = result.Scroll,
+                    Ext = (int)result.ExtName,
+
+                };
+                fdfsContent.S_SMSContent.Add(smsContent);
+                fdfsContentBLL.Create(fdfsContent);
             }
             //4.3 有则取出
             else
