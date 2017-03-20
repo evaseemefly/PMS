@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TID" Type="int" Nullable="false" />
           <Property Name="SID" Type="int" Nullable="false" />
           <Property Name="FileName" Type="varchar" MaxLength="32" Nullable="false" />
@@ -227,8 +227,6 @@
           <Property Name="RoleInfoID" Type="int" Nullable="false" />
           <Property Name="ActionInfoID" Type="int" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“SMS_NMEFC.dbo.R_SMSContent_FdfsContent”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="R_SMSContent_FdfsContent">
           <Key>
             <PropertyRef Name="CID" />
@@ -1061,6 +1059,7 @@
           <EntitySet Name="R_Person_Department" EntityType="Self.R_Person_Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Person_Group" EntityType="Self.R_Person_Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_RoleInfo_ActionInfo" EntityType="Self.R_RoleInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_SMSContent_FdfsContent" EntityType="Self.R_SMSContent_FdfsContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_DepartmentInfo" EntityType="Self.R_UserInfo_DepartmentInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_Group" EntityType="Self.R_UserInfo_Group" Schema="dbo" store:Type="Tables" />
@@ -1079,12 +1078,6 @@
           <EntitySet Name="S_SMSType" EntityType="Self.S_SMSType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WF_Query_Instance" EntityType="Self.WF_Query_Instance" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="R_SMSContent_FdfsContent" EntityType="Self.R_SMSContent_FdfsContent" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [R_SMSContent_FdfsContent].[CID] AS [CID], 
-    [R_SMSContent_FdfsContent].[FCID] AS [FCID]
-    FROM [dbo].[R_SMSContent_FdfsContent] AS [R_SMSContent_FdfsContent]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="WF_Query_StepInfo" EntityType="Self.WF_Query_StepInfo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [WF_Query_StepInfo].[ID] AS [ID], 

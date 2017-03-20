@@ -46,6 +46,8 @@
     <Compile Include="CTCWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MMSQuery.cs" />
+    <Compile Include="MMSSend.cs" />
     <Compile Include="ObjTransform.cs" />
     <Compile Include="Service References\ServiceReference_QuartzService\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -2,7 +2,6 @@
 using System.Text;
 using System.Collections.Specialized;
 using PMS.Model.SMSModel;
-using ISMS;
 using PMS.Model.Dictionary;
 using JobManagement;
 using System.Collections.Generic;
@@ -14,6 +13,7 @@ using PMS.Model.EqualCompare;
 using PMS.IModel;
 using Common.Redis;
 using Common.Config;
+using ISMS;
 
 namespace SMSFactory
 {
@@ -512,7 +512,8 @@ namespace SMSFactory
             client.SendMsg(model.Model_Send, out receiveModel);
             //receiveModel = new SMSModel_Receive() { msgid = "210cb72fe038484fb2952d0db96e0ae7", desc = "提交成功", result = "0", failPhones = new string[] { "" } };
             //发送之后执行将发送记录写会数据库的操作
-            this.AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
+            //17年3月20日修改此处删掉this关键字
+            AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
             //SendMsg(model, out response);
             return true;
         }
@@ -550,7 +551,7 @@ namespace SMSFactory
                     写入redis缓存中
                     （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
             */
-            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
+                        ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
 
             //2017-1-22 加入判断，若msgid为""或电话集合为空，则不写入redis中
             if(!receive.msgid.Equals("")&& list_phones!=null)

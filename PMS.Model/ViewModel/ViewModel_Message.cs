@@ -12,13 +12,11 @@ namespace PMS.Model.ViewModel
     /// 2）群组id
     /// 3）电话号码
     /// 4）任务id
-    /// 5）短息内容]
+    /// 5）短信内容
     /// 2 作业相关信息
     /// </summary>
-   public class ViewModel_Message : ViewModel_BaseJob
+    public class ViewModel_Message : ViewModel_BaseJob
     {
-
-
 
         /// <summary>
         /// 此处修改

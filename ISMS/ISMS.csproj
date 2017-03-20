@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMMSQuery.cs" />
+    <Compile Include="IMMSSend.cs" />
     <Compile Include="ISMSQuery.cs" />
     <Compile Include="ISMSSend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

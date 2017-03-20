@@ -55,6 +55,7 @@
   <object type="SMSOA.Areas.SMS.Controllers.MMSSendController, SMSOA" singleton="false" >
     <property name="smsMissionBLL" ref="smsmissionService" />
     <property name="userBLL" ref="userInfoService" />
+    <property name="mmsSendBLL" ref="mmsSendService" />
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
     <property name="smsMsgContentBLL" ref="smsMsgTemplateService" />

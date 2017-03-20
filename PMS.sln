@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Schemal", "00Schemal", "{0D654FEA-8FB1-47D2-A6FC-ABAD4F460A1B}"
 	ProjectSection(SolutionItems) = preProject
@@ -166,6 +166,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fdfs.DAL", "Fdfs.DAL\Fdfs.DAL.csproj", "{B7BECE01-40B2-445E-BC7D-13ED34502693}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fdfs.IDAL", "Fdfs.IDAL\Fdfs.IDAL.csproj", "{8B08411E-6606-460E-86D7-BE727C53BDDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMSFactoryServiceLib", "MMSFactoryServiceLib\MMSFactoryServiceLib.csproj", "{6453B740-6A57-44A8-AB16-16E8E740161D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -597,6 +599,14 @@ Global
 		{8B08411E-6606-460E-86D7-BE727C53BDDC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B08411E-6606-460E-86D7-BE727C53BDDC}.Release|x86.ActiveCfg = Release|Any CPU
 		{8B08411E-6606-460E-86D7-BE727C53BDDC}.Release|x86.Build.0 = Release|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Debug|x86.Build.0 = Debug|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Release|x86.ActiveCfg = Release|Any CPU
+		{6453B740-6A57-44A8-AB16-16E8E740161D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -662,5 +672,6 @@ Global
 		{0FC982C5-F9C3-48AC-B8F0-37C08A5FCFD4} = {1EF8CA97-5594-441C-9CEE-A731B1BED388}
 		{B7BECE01-40B2-445E-BC7D-13ED34502693} = {EBC17A9A-D279-48E6-A3D9-BAA52625AB6B}
 		{8B08411E-6606-460E-86D7-BE727C53BDDC} = {EBC17A9A-D279-48E6-A3D9-BAA52625AB6B}
+		{6453B740-6A57-44A8-AB16-16E8E740161D} = {916B2B93-CD7C-4E19-92F1-76E20450BB28}
 	EndGlobalSection
 EndGlobal

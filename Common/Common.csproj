@@ -108,8 +108,11 @@
     <Compile Include="Encryption.cs" />
     <Compile Include="FastDFS\FastDFSHelper.cs" />
     <Compile Include="FastDFS\fastDFSTestClient.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
+    <Compile Include="MMSZipProcessing.cs" />
+    <Compile Include="PicturePretreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quartz\Job\QueryJob.cs" />
     <Compile Include="Quartz\QuartzHelper.cs" />
@@ -126,9 +129,11 @@
     <Compile Include="Redis\StringReidsHelper_test.cs" />
     <Compile Include="Redis\ZSetRedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
+    <Compile Include="TxtSmilSynthesis.cs" />
     <Compile Include="ValidateCode.cs" />
     <Compile Include="WorkFlowAppHelper.cs" />
     <Compile Include="Xml2StrHelper.cs" />
+    <Compile Include="ZipTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
