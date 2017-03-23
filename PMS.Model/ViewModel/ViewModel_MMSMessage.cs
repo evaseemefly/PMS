@@ -30,5 +30,7 @@ namespace PMS.Model.ViewModel
         /// 3月19日添加 by QY
         /// </summary>
         public string MMSTitle { get; set; }
+
+       
     }
 }

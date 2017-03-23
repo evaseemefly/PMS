@@ -19,9 +19,13 @@
   </object>
   <object type="SMSFactory.SMSSend, SMSFactory" singleton="false" name="smsSendService" >
   </object>
+  <object type="SMSFactory.MMSSend, SMSFactory" singleton="false" name="mmsSendService" >
+  </object>
   <object type="PMS.BLL.S_SMSContentBLL, PMS.BLL" singleton="false" name="smsContentService" >
   </object>
   <object type="SMSFactory.SMSQuery, SMSFactory" singleton="false" name="smsQueryService" >
+  </object>
+  <object type="SMSFactory.MMSQuery, SMSFactory" singleton="false" name="mmsQueryService" >
   </object>
   <object type="PMS.BLL.S_SMSRecord_CurrentBLL, PMS.BLL" singleton="false" name="smsRecord_CurrentService" >
   </object>

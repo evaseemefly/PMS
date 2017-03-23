@@ -8,21 +8,35 @@ using PMS.IBLL;
 using Common.EasyUIFormat;
 using PMS.Model.SMSModel;
 using ISMS;
+using PMS.Model;
+using PMS.Model.EqualCompare;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
-    public class MMSSendController : SendController
+    public class MMSSendController: Admin.Controllers.BaseController
     {
         IP_PersonInfoBLL personBLL { get; set; }
         IP_GroupBLL groupBLL { get; set; }
         IS_SMSMissionBLL smsMissionBLL { get; set; }
         IUserInfoBLL userBLL { get; set; }
         IMMSSend mmsSendBLL { get; set; }
-        public override ViewModel_MyHttpContext GetHttpContext()
-        {
-            throw new NotImplementedException();
-        }
+        IP_DepartmentInfoBLL departmentBLL { get; set; }
+        IS_SMSContentBLL smsContentBLL { get; set; }
+        //IUserInfoBLL userInfoBLL { get; set; }
+        // GET: SMS/Send
+        IMMSQuery mmsQuery { get; set; }
+        IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
+        
+        private string list_id = "mylist";
+        //public ActionResult SetFiles()
+        //{
 
+        //    this.files = System.Web.HttpContext.Current.Request.Files;
+        //    return Content("ok");
+        //}
+
+
+        
         // GET: SMS/MMSSend
         public ActionResult Index()
         {
@@ -33,10 +47,12 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.GetDepartment_combotree = "/SMS/Send/GetDepartmentInfo4ComboTree";
             ViewBag.GetPersonByMission = "/SMS/Send/GetPersonByMission";
             ViewBag.GetPersonByGroupDepartment = "/SMS/Send/GetPersonByGroupDepartment";
-            ViewBag.DoSend = "/SMS/Send/DoSend";
+            ViewBag.DoSend_MMS = "/SMS/MMSSend/DoSend";
+
             ViewBag.GetTemplateByUidAndMission = "/SMS/MsgTemplate/GetTemplateByUserIdAndMission";
             //注意不在此处传获取任务的方法
             ViewBag.ShowSetOftenMissionAndGroup = "/SMS/Send/ShowSetWindow";
+            ViewBag.UploadFiles = "/SMS/MMSSend/SetFiles";
             ViewBag.LoginUser = -999;
             //若父控制器中的登录用户不为空
             if (base.LoginUser != null)
@@ -76,17 +92,39 @@ namespace SMSOA.Areas.SMS.Controllers
             temp = temp.Replace("Checked", "checked");
             return Content(temp);
         }
-        public ActionResult DoSend(PMS.Model.ViewModel.ViewModel_MMSMessage model)
+        public ActionResult DoSend()
         {
-            //1 有效性判断
+            //1 有效性判断,获取FormData传过来的值
+            ViewModel_MMSMessage model = new ViewModel_MMSMessage();
+            HttpFileCollection files;
+                files = System.Web.HttpContext.Current.Request.Files;
+                model.PersonIds  = System.Web.HttpContext.Current.Request.Params.GetValues("formData_PersonIds")[0];
+                model.PhoneNums = System.Web.HttpContext.Current.Request.Params.GetValues("formData_PhoneNums")[0];
+                model.Content = System.Web.HttpContext.Current.Request.Params.GetValues("formData_Content")[0];
+                model.SMSMissionID = System.Web.HttpContext.Current.Request.Params.GetValues("formData_SMSMissionID")[0];
+                var DepartmentIdsa = System.Web.HttpContext.Current.Request.Params.GetValues("formData_DepartmentIds")[0].Split(new char[] { ','});
+                if (DepartmentIdsa[0] != "") {
+                    model.DepartmentIds = Array.ConvertAll<string, int>(DepartmentIdsa, s => int.Parse(s));
+                }
+
+                model.isTiming  = bool.Parse(System.Web.HttpContext.Current.Request.Params.GetValues("formData_isTiming")[0]);
+                model.MMSTitle = System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
+                model.UID = int.Parse(System.Web.HttpContext.Current.Request.Params.GetValues("formData_UID")[0]);
+     
+
+
+            
+
             //1.1 联系人名单为空，不执行发送操作，返回
             //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
-            if(model.Content == null) { return Content("empty content"); }
+            if (model.Content == null) { return Content("empty content"); }
             if (model.Content.Length >= 300) { return Content("out of range"); }
             if(model.MMSTitle.Length >= 15) { return Content("title out of range"); }
-            HttpFileCollection files = System.Web.HttpContext.Current.Request.Files;
-            if (files.Count <= 0) { return Content("empty file"); }
+            //1.3 判断是否获取到获取图片
+
+            
+            if (files.Count < 1) { return Content( "file error"); }
             
             //2 图片处理
             HttpPostedFile file = files[0];
@@ -102,6 +140,7 @@ namespace SMSOA.Areas.SMS.Controllers
             combine_model.Model_Message = model;
             //3 执行发送操作
             var isOk_Send = DoSendNow(combine_model, out receive);
+            
             if ("0".Equals(receive.result) && isOk_Send)
                 {
                     //6 查询发送状态(是否加入等待时间？)
@@ -271,11 +310,50 @@ namespace SMSOA.Areas.SMS.Controllers
             
             return true;
         }
+        protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)
+        {
+
+            List<int> list_dids = new List<int>();
+            List<int> list_gids = new List<int>();
+            if (dids != "")
+            {
+                var list_dids_temp = (from g in dids.Split(',')
+                                      where g != ""
+                                      select g).ToList();
+                list_dids_temp.ForEach(g => list_dids.Add(int.Parse(g)));
+            }
+            if (gids != "")
+            {
+                var list_gids_temp = (from g in gids.Split(',')
+                                      where g != ""
+                                      select g).ToList();
+                list_gids_temp.ForEach(g => list_gids.Add(int.Parse(g)));
+            }
 
 
+            //2 根据department以及group的id查询其对应的Person对象集合
+            List<P_PersonInfo> list_person = new List<P_PersonInfo>();
+            var list_department = departmentBLL.GetListByIds(list_dids);
+            list_department.ForEach(d => list_person.AddRange(d.P_PersonInfo));
+            var list_group = groupBLL.GetListByIds(list_gids);
+            list_group.ForEach(g => list_person.AddRange(g.P_PersonInfo));
 
+            //3 将联系人集合去重
+            list_person = list_person.Distinct(new P_PersonEqualCompare()).ToList().Select(p => p.ToMiddleModel()).ToList();
+            list_person = list_person.OrderByDescending(a => a.isVIP).ToList();
+            rowCount = list_person.Count();
 
+            if (pageIndex != -1 && pageSize != -1)
+            {
+                //分页
+                list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+            return list_person;
+        }
 
-
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

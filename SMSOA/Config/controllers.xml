@@ -54,8 +54,14 @@
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MMSSendController, SMSOA" singleton="false" >
     <property name="smsMissionBLL" ref="smsmissionService" />
-    <property name="userBLL" ref="userInfoService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
     <property name="mmsSendBLL" ref="mmsSendService" />
+    <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />
+    <property name="mmsQuery" ref="mmsQueryService" />
+    <property name="smsRecord_CurrentBLL" ref="smsRecord_CurrentService" />
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
     <property name="smsMsgContentBLL" ref="smsMsgTemplateService" />
