@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="CombineModel\SendAndMessage_Model.cs" />
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
+    <Compile Include="Dictionary\MMSDictionary.cs" />
     <Compile Include="Dictionary\Quartz_TriggerStateDictionary.cs" />
     <Compile Include="Dictionary\RecycledTypeDictonary.cs" />
     <Compile Include="Dictionary\SMSQueryDictionary.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Enum\JobType_Enum.cs" />
     <Compile Include="Enum\JobUrl_Enum.cs" />
     <Compile Include="Enum\MatchCondition_Enum.cs" />
+    <Compile Include="Enum\MMSCommands_Enum.cs" />
     <Compile Include="Enum\MMS_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
@@ -224,6 +226,11 @@
     <Compile Include="R_UserInfo_SMSMission.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="SMSModel\MMSModel_Query.cs" />
+    <Compile Include="SMSModel\MMSModel_QueryReceive.cs" />
+    <Compile Include="SMSModel\MMSModel_Receive.cs" />
+    <Compile Include="SMSModel\MMSModel_Receive_Failphones.cs" />
+    <Compile Include="SMSModel\MMSModel_Send.cs" />
     <Compile Include="SMSModel\SMSModel_Query.cs" />
     <Compile Include="SMSModel\SMSModel_QueryReceive.cs" />
     <Compile Include="SMSModel\SMSModel_Receive.cs" />
@@ -263,6 +270,7 @@
     <Compile Include="ViewModel\ViewModel_JobTemplate.cs" />
     <Compile Include="ViewModel\ViewModel_Message.cs" />
     <Compile Include="ViewModel\ViewModel_Mission_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_MMSMessage.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_News.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
@@ -319,6 +327,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="MMSModel\" />
     <Folder Include="ResultModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

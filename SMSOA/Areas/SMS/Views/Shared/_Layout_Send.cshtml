@@ -367,6 +367,64 @@
             ClearAll();
            
         }
+
+        function DoSend(type) {
+            //alert("要发送短信了");
+            //1 获取右侧联系人datagrid列表中选中的联系人id
+            var state = messagerConfirm("请确认", "是否要执行发送操作?", function () {
+
+                //1 获取选中的群组及部门
+                //var group_checkeds = $("#group_combogrid").combogrid("getChecked");
+                var group_checkeds = $("#group_combogrid").combobox('getValues');
+                //var department_checkeds = $("#DepartmentName_combotree").combotree("getChecked");
+                var department_checkeds = $("#DepartmentName_combotree").combobox('getValues');
+                //var checkeds = $("#persondatagrid").datagrid("getChecked");
+                var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
+                if (group_checkeds.length > 0 || department_checkeds.length > 0 || temp_checkeds.length > 0) {
+                    //1.1 获取选中的联系人id用,分隔，并提交
+                    //var ids_person = split4id(checkeds, "PID");
+                    //注意此处为[1,...2]这种数组，需要将其拼接为1,...2字符串
+                    var ids_person = arr_UnSelectPersonIds.join(",");
+                    var phones_temp = split4phone(temp_checkeds, "PhoneNum");
+                    //2 获取短信内容
+                    var content = $("#message").textbox('getValue');
+                    var grid_mission = $("#smsMission_combogrid").combogrid("grid");
+                    var mission_checkeds = grid_mission.datagrid("getChecked");
+                    var mission_id = mission_checkeds[0]["SMID"];
+
+                    //var istiming=$("#isTiming").val();
+                    //if(istiming=="on"){
+                    //    istiming=true;
+                    //}else{
+                    //    istiming=false;
+                    //}
+                    var url = '';
+                    if ("SMS" == type) {
+                        url = '@ViewBag.DoSend';
+                        var startRunTime = $("#nextRunTime_date").datetimebox('getValue');
+                        AjaxSubmit(ids_person, phones_temp, content, url, mission_id, group_checkeds, department_checkeds, istiming, startRunTime, userId);
+                    } else if ("MMS" == type) {
+                        url = '@ViewBag.DoSend_MMS';
+                        var istiming = false;
+                        //DoSend_Img();
+                        AjaxSubmit_MMS(ids_person, phones_temp, content, url, mission_id, group_checkeds, department_checkeds, istiming, userId);
+
+                    }
+
+                    //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
+                    //3 发送（进行校验）
+
+
+                    return;
+                }
+                messagerAlertByAlert("提示", "请选择至少一个任务或群组");
+            });
+            //if(state==false){
+            //    return;
+            //}
+
+        }
+
         function ClearAll() {
             loadCombogrid_byUser();
             //清空群组

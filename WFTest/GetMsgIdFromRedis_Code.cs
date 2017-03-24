@@ -150,7 +150,7 @@ namespace WFTest
             List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_QueryReceive;
 
 
-            ISMS.ISMSQuery smsQuery = new SMSFactory.SMSQuery();
+            ISMSQuery smsQuery = new SMSFactory.SMSQuery();
 
             bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
             if (!isGetReturnMsg)

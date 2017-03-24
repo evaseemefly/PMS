@@ -17,5 +17,10 @@ namespace PMS.Model.CombineModel
         /// 提交的发送对象
         /// </summary>
         public SMSModel.SMSModel_Send Model_Send { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+      public SMSModel.MMSModel_Send Model_MMS { get; set; }
     }
 }

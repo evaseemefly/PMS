@@ -41,10 +41,10 @@
                         messagerShowOnCenter("错误","联系人名单为空，发送失败")
                     }else if("out of range" == data){
                         messagerShowOnCorner("提示","短信字数超过300字，提交失败");
-                       
+
                     }else if("empty content" == data){
                         messagerShowOnCorner("提示","短信内容为空，发送失败");
-                      
+
                     }
                 }
 
@@ -52,51 +52,6 @@
         }
 
 
-        function DoSend() {
-            //alert("要发送短信了");
-            //1 获取右侧联系人datagrid列表中选中的联系人id
-            var state= messagerConfirm("请确认","是否要执行发送短信操作?",function(){
-
-                //1 获取选中的群组及部门
-                //var group_checkeds = $("#group_combogrid").combogrid("getChecked");
-                var group_checkeds =  $("#group_combogrid").combobox('getValues');
-                //var department_checkeds = $("#DepartmentName_combotree").combotree("getChecked");
-                var department_checkeds =  $("#DepartmentName_combotree").combobox('getValues');
-                //var checkeds = $("#persondatagrid").datagrid("getChecked");
-                var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
-                if(group_checkeds.length>0||department_checkeds.length>0||temp_checkeds.length>0){
-                    //1.1 获取选中的联系人id用,分隔，并提交
-                    //var ids_person = split4id(checkeds, "PID");
-                    //注意此处为[1,...2]这种数组，需要将其拼接为1,...2字符串
-                    var ids_person = arr_UnSelectPersonIds.join(",");
-                    var phones_temp = split4phone(temp_checkeds, "PhoneNum");
-                    var url='@ViewBag.DoSend';
-                    //2 获取短信内容
-                    var content = $("#message").textbox('getValue');
-                    var grid_mission= $("#smsMission_combogrid").combogrid("grid");
-                    var mission_checkeds = grid_mission.datagrid("getChecked");
-                    var mission_id = mission_checkeds[0]["SMID"];
-
-                    //var istiming=$("#isTiming").val();
-                    //if(istiming=="on"){
-                    //    istiming=true;
-                    //}else{
-                    //    istiming=false;
-                    //}
-
-                    var startRunTime=$("#nextRunTime_date").datetimebox('getValue');
-                    //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
-                    //3 发送（进行校验）
-                    AjaxSubmit(ids_person,phones_temp, content, url, mission_id,group_checkeds,department_checkeds,istiming,startRunTime,userId);
-                    return;
-                }
-                messagerAlertByAlert("提示","请选择至少一个任务或群组");
-            });
-            //if(state==false){
-            //    return;
-            //}
-            
-        }
 
         function CancelSend() {
             alert("取消发送短信");
@@ -109,13 +64,13 @@
             alert("添加");
         }
 
-        
+
 
 
         //暂时不使用
 
 
-        
+
 
 
 </script>

@@ -13,7 +13,7 @@ using System.IO;
 namespace SMSFactoryServiceLib
 {
     // 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码和配置文件中的类名“Service1”。
-    public class SMSService : ISMSService
+    public class SMSService: ISMSService
     {
         
 
@@ -78,7 +78,7 @@ namespace SMSFactoryServiceLib
         /// <returns></returns>
         public bool SendBeforeCheck(SMSModel_Send smsdata)
         {
-            if (smsdata.account.Length < 1 & smsdata.account.Length < 1 & smsdata.sign.Length < 1 & smsdata.phones.Length < 1 & smsdata.content.Length < 1)
+            if (smsdata.account.Length < 1 & smsdata.password.Length < 1 & smsdata.sign.Length < 1 & smsdata.phones.Length < 1 & smsdata.content.Length < 1)
             {
                 return false;
             }
@@ -117,5 +117,6 @@ namespace SMSFactoryServiceLib
 
             return responseText;
         }
+
     }
 }
