@@ -45,7 +45,45 @@ namespace PMS.BLL
                 return false;
             }
         }
+        /// <summary>
+        /// 彩信存入
+        /// </summary>
+        /// <param name="receive"></param>
+        /// <param name="smsContent"></param>
+        /// <param name="mid"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public bool SaveMsg(MMSModel_Receive receive, string smsContent, string mid, int uid,string MMSTitle)
+        {
+            //计算字数要加上{国家海洋预报台}
+            //double count = ((double)smsContent.Length + 9) / 70;
+            S_SMSContent s_smsContent = new S_SMSContent()
+            {
+                UID = uid,
+                SMSContent = smsContent,
+                msgId = receive.msgid,
+                SendDateTime = DateTime.Now,
+                SMID = int.Parse(mid),
+                BlackList = string.Join(",", receive.failPhones),
+                ResultCode = int.Parse(receive.result),//此处有错误
+                smsCount = 1,
 
+                isMMS = true,
+                MSTitle = MMSTitle
+
+            };
+
+            //6月1日：此处有错，此时创建 短信内容对象，其中的id为默认值
+            try
+            {
+                this.Create(s_smsContent);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 对传入的S_SMSContent集合进行分页查询（并排序以及转为中间变量）
         /// </summary>

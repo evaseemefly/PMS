@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PMS.Model.SMSModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PMS.Model.SMSModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="MMSModel_Send">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SMSModel_Send">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MMSTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZipUrl" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MMSModel_Send" nillable="true" type="tns:MMSModel_Send" />
+  <xs:complexType name="SMSModel_Send">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="account" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="msgid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="phones" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="sendtime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="sign" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="subcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SMSModel_Send" nillable="true" type="tns:SMSModel_Send" />
+  <xs:complexType name="MMSModel_Receive">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SMSModel_Receive">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="list" nillable="true" type="tns:ArrayOfMMSModel_Receive_Failphones" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MMSModel_Receive" nillable="true" type="tns:MMSModel_Receive" />
+  <xs:complexType name="SMSModel_Receive">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="failPhones" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="msgid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="result" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SMSModel_Receive" nillable="true" type="tns:SMSModel_Receive" />
+  <xs:complexType name="ArrayOfMMSModel_Receive_Failphones">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MMSModel_Receive_Failphones" nillable="true" type="tns:MMSModel_Receive_Failphones" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMMSModel_Receive_Failphones" nillable="true" type="tns:ArrayOfMMSModel_Receive_Failphones" />
+  <xs:complexType name="MMSModel_Receive_Failphones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="desc_failPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="phoneNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="status_failPhone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MMSModel_Receive_Failphones" nillable="true" type="tns:MMSModel_Receive_Failphones" />
+</xs:schema>

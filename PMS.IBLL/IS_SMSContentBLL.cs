@@ -12,6 +12,7 @@ namespace PMS.IBLL
     {
         bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid);
 
+        bool SaveMsg(MMSModel_Receive receive, string smsContent, string mid, int uid,string MMStitle);
         void getResult(SMSModel_Receive receive,SMSModel_MsgResult result);
 
         /// <summary>
