@@ -69,7 +69,7 @@ namespace SMSFactory
         /// <summary>
         /// 为当前类中的redis的属性赋值
         /// </summary>
-        public void SetRedisProperties()
+        private void SetRedisProperties()
         {
             RedisConfigHelper configHelper = new RedisConfigHelper();
             this.redis_list_id = configHelper.redis_list_id;
@@ -349,11 +349,11 @@ namespace SMSFactory
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(PMS.Model.CombineModel.SendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*/SMSModel_Receive receive)
+        public bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/ PMS.IModel.ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*/SMSModel_Receive receive)
         {
             SendJobManagement jobManagement = new SendJobManagement();
             //判断是否开启定时发送功能
-            if (model.Model_Message.isTiming)
+            if ((model as PMS.Model.CombineModel.BaseMessage_Model).Model_Message.isTiming)
             {
                 //绑定定时发送功能
                 //使用作业调度
@@ -366,7 +366,7 @@ namespace SMSFactory
             }
             //不管具体绑定的是哪个方法，调用该发送方法
             //SMSModel_Receive receive = new SMSModel_Receive();
-            jobManagement.JobsRun(model,out receive);
+            jobManagement.JobsRun(model,out receive,true);
             //response = new PMS.Model.Message.BaseResponse() { Success = true };
             return false;
         }
@@ -378,7 +378,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyDelayed(PMS.Model.CombineModel.SendAndMessage_Model model,out  SMSModel_Receive response)
+        public bool SendMsgbyDelayed(/*PMS.Model.CombineModel.SendAndMessage_Model*/PMS.IModel.ISendAndMessage_Model model,out  SMSModel_Receive response,bool isMMS = false)
         {
             //response = new PMS.Model.Message.BaseResponse();
             //1 创建quartz父类客户端
@@ -395,7 +395,8 @@ namespace SMSFactory
             //jobInfoBLL.Create(new J_JobInfo() { JobName = "发送作业", JobClassName = "SendJob", NextRunTime=model.Model_Message.NextRunTime });
             //找到对应的作业模板（发送作业模板）
             //2.1 查找当前用户
-            var user_current= userInfoBLL.GetListBy(u =>u.ID==  model.Model_Message.UID).FirstOrDefault();
+            PMS.Model.CombineModel.SendAndMessage_Model model_Convert = model as PMS.Model.CombineModel.SendAndMessage_Model;
+            var user_current= userInfoBLL.GetListBy(u =>u.ID==  model_Convert.Model_Message.UID).FirstOrDefault();
             //2.2 根据当前用户找到指定类型（jobType）的作业模板
             var jobTemplate_target = (from t in user_current.J_JobTemplate
                                      where t.JobType == Convert.ToInt32(PMS.Model.Enum.JobType_Enum.sendJob)
@@ -404,11 +405,11 @@ namespace SMSFactory
             //    调用J_JobInfoBLL中的AddJobInfo方法创建作业实例
             J_JobInfo jobInstance = new J_JobInfo()
             {
-                UID = model.Model_Message.UID,
+                UID = model_Convert.Model_Message.UID,
                 CreateTime = DateTime.Now,
-                EndRunTime = model.Model_Message.EndRunTime == DateTime.MinValue ? model.Model_Message.StartRunTime : model.Model_Message.EndRunTime,//此处加入判断，若EndRunTime时间为1/1/1/1这种情况先将起始时间赋给他
-                NextRunTime = model.Model_Message.NextRunTime == DateTime.MinValue ? model.Model_Message.StartRunTime : model.Model_Message.NextRunTime,
-                StartRunTime = model.Model_Message.StartRunTime,
+                EndRunTime = model_Convert.Model_Message.EndRunTime == DateTime.MinValue ? model_Convert.Model_Message.StartRunTime : model_Convert.Model_Message.EndRunTime,//此处加入判断，若EndRunTime时间为1/1/1/1这种情况先将起始时间赋给他
+                NextRunTime = model_Convert.Model_Message.NextRunTime == DateTime.MinValue ? model_Convert.Model_Message.StartRunTime : model_Convert.Model_Message.NextRunTime,
+                StartRunTime = model_Convert.Model_Message.StartRunTime,
                 JobClassName = jobTemplate_target.JobClassName,
                 JobName = jobTemplate_target.JTName,
                 JobGroup = jobTemplate_target.JobGroup
@@ -424,21 +425,21 @@ namespace SMSFactory
                 {
                      Model_Send=new SMSModel_Send()
                      {
-                         account = model.Model_Send.account,
-                         content = model.Model_Send.content,
-                         msgid = model.Model_Send.msgid,
-                         password = model.Model_Send.password,
-                         phones = model.Model_Send.phones,
-                         sendtime = model.Model_Send.sendtime,
-                         subcode = model.Model_Send.subcode,
-                         sign=model.Model_Send.sign                         
+                         account = model_Convert.Model_Send.account,
+                         content = model_Convert.Model_Send.content,
+                         msgid = model_Convert.Model_Send.msgid,
+                         password = model_Convert.Model_Send.password,
+                         phones = model_Convert.Model_Send.phones,
+                         sendtime = model_Convert.Model_Send.sendtime,
+                         subcode = model_Convert.Model_Send.subcode,
+                         sign=model_Convert.Model_Send.sign                         
                      },
 
                     Model_Message =new PMS.Model.ViewModel.ViewModel_Message()
                     {
-                        UID = model.Model_Message.UID,
-                        Content=model.Model_Send.content,
-                        SMSMissionID=model.Model_Message.SMSMissionID
+                        UID = model_Convert.Model_Message.UID,
+                        Content=model_Convert.Model_Send.content,
+                        SMSMissionID=model_Convert.Model_Message.SMSMissionID
                          
                         
                     }
@@ -476,11 +477,18 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, out SMSModel_Receive receiveModel)
+        public bool SendMsgbyNow(/*PMS.Model.CombineModel.SendAndMessage_Model*/ISendAndMessage_Model model, out SMSModel_Receive receiveModel, bool isMMS=false)
         {
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+
+            if (isMMS)
+            {
+             ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
+            var receiveModel_MMS = new MMSModel_Receive();
+            client.SendMsg((model as PMS.Model.CombineModel.MMSSendAndMsg_Model).Model_MMS, out receiveModel_MMS);
+            }
             //SMSModel_Receive receiveModel = new SMSModel_Receive();
             // ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
-            ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
             //重新梳理并做抽象
             #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
             ////1 根据选定的群组及部门获取相应的联系人
@@ -507,21 +515,17 @@ namespace SMSFactory
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             //model.Model_Send = sendMsg;
             #endregion
-            // SMSModel_Receive receive = new SMSModel_Receive();
-            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-
-            var receiveModel_MMS = new MMSModel_Receive();
+            receiveModel = new SMSModel_Receive();
             
 
-            client.SendMsg(model.Model_MMS, out receiveModel_MMS);
 
             //client.SendMsg(model.Model_Send, out receiveModel);
             //receiveModel = new SMSModel_Receive() { msgid = "210cb72fe038484fb2952d0db96e0ae7", desc = "提交成功", result = "0", failPhones = new string[] { "" } };
             //发送之后执行将发送记录写会数据库的操作
             //17年3月20日修改此处删掉this关键字
 
-            receiveModel = receiveModel_MMS as SMSModel_Receive;
-            AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
+            //receiveModel = receiveModel_MMS as SMSModel_Receive;
+            //AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
             //SendMsg(model, out response);
             return true;
         }

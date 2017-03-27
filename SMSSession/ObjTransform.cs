@@ -38,7 +38,8 @@ namespace SMSFactory
         public static MMSModel_Receive Xml2Model_ReceiveMsg(string result, MMSModel_Send sendModel)
         {
             //1. 获取结果，解析头标签
-            var resultCode = Xml2StrHelper.Xml2Str(result, "head/result");
+            result = result.ToLower();
+            var resultCode = Xml2StrHelper.Xml2Str(result, "root/head/result");
             //当不等于0时，响应包中不会有body标签
             if(int.Parse(resultCode)!= 0)
             {
@@ -54,9 +55,9 @@ namespace SMSFactory
 
 
             //2.解析body标签的子标签
-            var msgid = Xml2StrHelper.xml2strList(result, "body/submitResult/Response/msgid");
-            var status = Xml2StrHelper.xml2strList(result, "body/submitResult/Response/status");
-            var phoneNum = Xml2StrHelper.xml2strList(result, "body/submitResult/Response/phone");
+            var msgid = Xml2StrHelper.xml2strList(result, "root/body/submitresult/response/msgid");
+            var status = Xml2StrHelper.xml2strList(result, "root/body/submitresult/response/status");
+            var phoneNum = Xml2StrHelper.xml2strList(result, "root/body/submitresult/response/phone");
             //3. 存入响应对象
             MMSModel_Receive model_receive = new MMSModel_Receive()
             {

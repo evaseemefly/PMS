@@ -169,6 +169,7 @@
     <None Include="Service References\ServiceReference_SMSService\SMSFactory.ServiceReference_SMSService.SendMsgResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="SMSFactory_Class.cd" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference_MMSService\" />

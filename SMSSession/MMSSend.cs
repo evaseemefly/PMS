@@ -11,6 +11,8 @@ using PMS.Model.SMSModel;
 using Common.Config;
 using Common;
 using Common.Redis;
+using PMS.Model.CombineModel;
+using JobManagement;
 
 namespace SMSFactory
 {
@@ -26,11 +28,11 @@ namespace SMSFactory
         /// <param name="picture_stream"></param>
         /// <param name="fileDirectory"></param>
 
-        public string CreateZip(System.IO.Stream picture_stream, string fileDirectory)
+        public string CreateZip(System.IO.Stream picture_stream, string fileDirectory,string content)
         {
             MMSZipProcessing zipProcessing = new MMSZipProcessing(picture_stream, fileDirectory);
             //CreateZipCompleteCallback callback = new CreateZipCompleteCallback(zipProcessing.GetZipUrl);
-            return zipProcessing.CreateZip();
+            return zipProcessing.CreateZip(content);
             
         }
         public MMSModel_Send ToSendModel(PMS.Model.SMSModel.MMSModel_Send model, List<string> list_phones)
@@ -83,6 +85,7 @@ namespace SMSFactory
                 return false;
             }
         }
+
     }
 
     }

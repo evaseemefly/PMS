@@ -8,5 +8,6 @@ namespace PMS.IModel
 {
     public interface ISendAndMessage_Model
     {
+       
     }
 }

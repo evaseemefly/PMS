@@ -24,7 +24,7 @@ namespace ISMS
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        bool SendMsg(PMS.Model.CombineModel.SendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse*/SMSModel_Receive receive);
+        bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/  PMS.IModel.ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse*/SMSModel_Receive receive);
 
         /// <summary>
         /// 获取添加的临时联系人
