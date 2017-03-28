@@ -136,8 +136,18 @@ namespace SMSOA.Areas.SMS.Controllers
             model.ZipUrl = path;
 
             PMS.Model.CombineModel.SendAndMessage_Model combine_model = new PMS.Model.CombineModel.SendAndMessage_Model();
-            SMSModel_Receive receive = new SMSModel_Receive();
+           
+            MMSModel_Send send = new MMSModel_Send();
+            send.content = model.Content; 
+            send.account=
+            send.ZipUrl = path;
+            send.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
+            //combine_model.Model_MMS.ZipUrl = path;
+            //combine_model.Model_MMS.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
             combine_model.Model_Message = model;
+            combine_model.Model_MMS = send;
+
+            SMSModel_Receive receive = new SMSModel_Receive();
             //3 执行发送操作
             var isOk_Send = DoSendNow(combine_model, out receive);
             
@@ -293,7 +303,7 @@ namespace SMSOA.Areas.SMS.Controllers
             var list_phones = list_PersonPhonesByGroupAndDepartment;
 
             //3 转成发送对象
-            var sendMsg = mmsSendBLL.ToSendModel(model.Model_Message, list_phones);
+            var sendMsg = mmsSendBLL.ToSendModel(model.Model_MMS, list_phones);
 
             /*步骤四
                     生成提交对象及短信及作业对象

@@ -21,18 +21,26 @@ namespace PMS.Model.Message.Fdfs
         /// </summary>
         public StorageNode TrackerNode {get;set;}
 
-        public ImageUploadResult()
+        public ImageUploadResult(StorageNode trackernode,string fileNameIncludeScroll,string group) :base(fileNameIncludeScroll,group)
         {
+            this.TrackerNode = trackernode;
+
             if (TrackerNode != null)
             {
                 this.TrackerUrl = TrackerNode.EndPoint.Address.ToString();
-                this.StoragePort = TrackerNode.EndPoint.Port.ToString();
+                this.TrackerPort = TrackerNode.EndPoint.Port.ToString();
                 this.TrackerGroup = TrackerNode.GroupName;
-                this.Scroll = base.FileNameIncludeScroll.Substring(0, base.FileNameIncludeScroll.LastIndexOf('/') + 1);
+                this.Scroll = base.FileNameIncludeScroll.Substring(0, FileNameIncludeScroll.LastIndexOf('/') + 1);
+                //this.Scroll = base.FileNameIncludeScroll.Substring(0, base.FileNameIncludeScroll.LastIndexOf('/') + 1);
                 Enum.FileExt_Enum enum_ext;
-              System.Enum.TryParse<Enum.FileExt_Enum>(base.FileNameIncludeExt.Substring(FileNameIncludeExt.LastIndexOf('.')+1),out enum_ext);
+                System.Enum.TryParse<Enum.FileExt_Enum>(base.FileNameIncludeExt.Substring(FileNameIncludeExt.LastIndexOf('.') + 1), out enum_ext);
                 this.ExtName = enum_ext;
             }
+        }
+
+        public ImageUploadResult()
+        {
+            
             
         }
 

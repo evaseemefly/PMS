@@ -33,7 +33,7 @@ namespace SMSFactory
             return zipProcessing.CreateZip();
             
         }
-        public MMSModel_Send ToSendModel(PMS.Model.ViewModel.ViewModel_MMSMessage model, List<string> list_phones)
+        public MMSModel_Send ToSendModel(PMS.Model.SMSModel.MMSModel_Send model, List<string> list_phones)
         {
             //1.获取配置文件中的账号信息等
             SMSSignConfigHelper smsSign = new SMSSignConfigHelper();
@@ -42,11 +42,11 @@ namespace SMSFactory
             {
                 account = smsSign.account,
                 password = smsSign.password,
-                content = model.Content,
+                content = model.content,
                 phones = list_phones.ToArray(),
                 sendtime = DateTime.Now,
                 sign = smsSign.sign,
-                zipUrl = model.ZipUrl,
+                ZipUrl = model.ZipUrl,
                 MMSTitle = model.MMSTitle
             };
             return sendMsg;

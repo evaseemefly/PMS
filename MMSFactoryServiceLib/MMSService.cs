@@ -44,9 +44,17 @@ namespace MMSFactoryServiceLib
             String _data = null;
             String _serverURL = "http://mms.3tong.net/http/mms";
             string returnMsg;
-
-            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
-            throw new NotImplementedException();
+            try
+            {
+                log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
+            }
+            catch (Exception ex)
+            {
+                //通过Log4net写在日志文件中（写在其他日志文件中）
+                throw new NotImplementedException();
+            }
+           
+            
             int responseCode = SendBeforeCheck(sendModel);
             //1.发送前判断参数是否足够
             if (responseCode != 100)
@@ -87,12 +95,11 @@ namespace MMSFactoryServiceLib
         }
         private int SendBeforeCheck(MMSModel_Send sendModel)
         {
-
-            if (sendModel.password.Length < 1 & sendModel.account.Length < 1) { return 99; }
-            if (sendModel.phones.Length < 1) { return 98; }
-            if (sendModel.content.Length < 1) { return 7; }
+            //if (sendModel.password.Length < 1 & sendModel.account.Length < 1) { return 99; }
+            //if (sendModel.phones.Length < 1) { return 98; }
+            //if (sendModel.content.Length < 1) { return 7; }
             if (sendModel.MMSTitle.Length < 1) { return 6; }
-            if (sendModel.zipUrl.Length < 1) { return 97; }
+            if (sendModel.ZipUrl.Length < 1) { return 97; }
             return 100;
         }
         /// <summary>

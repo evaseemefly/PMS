@@ -49,6 +49,11 @@
     <Compile Include="MMSQuery.cs" />
     <Compile Include="MMSSend.cs" />
     <Compile Include="ObjTransform.cs" />
+    <Compile Include="Service References\ServiceReference_MMSService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceReference_QuartzService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,7 +116,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\PMS.Model.SMSModel.MMSModel_Receive.datasource" />
     <None Include="Properties\DataSources\PMS.Model.SMSModel.SMSModel_Receive.datasource" />
+    <None Include="Service References\ServiceReference_MMSService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_MMSService\MMSFactoryServiceLib.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_MMSService\PMS.Model.SMSModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_MMSService\service.wsdl" />
+    <None Include="Service References\ServiceReference_MMSService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_MMSService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_MMSService\SMSFactory.ServiceReference_MMSService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference_MMSService\SMSFactory.ServiceReference_MMSService.SendMsgResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -143,6 +171,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference_MMSService\" />
     <WCFMetadataStorage Include="Service References\ServiceReference_QuartzService\" />
     <WCFMetadataStorage Include="Service References\ServiceReference_SMSService\" />
   </ItemGroup>
@@ -166,6 +195,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceReference_QuartzService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference_MMSService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference_MMSService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference_MMSService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

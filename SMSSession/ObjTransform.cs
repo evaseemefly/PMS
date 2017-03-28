@@ -229,7 +229,7 @@ namespace SMSFactory
         /// <returns></returns>
         public static string Model2Xml_FormatSend(MMSModel_Send smsdata)
         {
-            String content = Encryption.ToBase64(FileHelper.ReadFile(smsdata.zipUrl));
+            String content = Encryption.ToBase64(FileHelper.ReadFile(smsdata.ZipUrl));
             var commandCode = ((int)MMSRequestType_Enum.MMS_Submit).ToString().PadLeft(3, '0');
             //合成请求信息
             var _data = "<?xml version='1.0' encoding='UTF-8'?><root><head>"

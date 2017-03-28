@@ -21,6 +21,7 @@ namespace MMSFactoryServiceLib
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: 在此添加您的服务操作
+        [OperationContract]
         bool SendMsg(MMSModel_Send sendModel, out MMSModel_Receive receiveModel);
     }
 

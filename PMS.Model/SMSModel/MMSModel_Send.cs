@@ -19,7 +19,7 @@ namespace PMS.Model.SMSModel
     /// </summary>
     public class MMSModel_Send:SMSModel_Send
     {
-        public string zipUrl { get; set; }
+        public string ZipUrl { get; set; }
 
         public string MMSTitle { get; set; }
     }

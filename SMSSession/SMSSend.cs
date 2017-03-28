@@ -479,8 +479,8 @@ namespace SMSFactory
         public bool SendMsgbyNow(PMS.Model.CombineModel.SendAndMessage_Model model, out SMSModel_Receive receiveModel)
         {
             //SMSModel_Receive receiveModel = new SMSModel_Receive();
-            ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
-
+            // ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
+            ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
             //重新梳理并做抽象
             #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
             ////1 根据选定的群组及部门获取相应的联系人
@@ -509,10 +509,18 @@ namespace SMSFactory
             #endregion
             // SMSModel_Receive receive = new SMSModel_Receive();
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            client.SendMsg(model.Model_Send, out receiveModel);
+
+            var receiveModel_MMS = new MMSModel_Receive();
+            
+
+            client.SendMsg(model.Model_MMS, out receiveModel_MMS);
+
+            //client.SendMsg(model.Model_Send, out receiveModel);
             //receiveModel = new SMSModel_Receive() { msgid = "210cb72fe038484fb2952d0db96e0ae7", desc = "提交成功", result = "0", failPhones = new string[] { "" } };
             //发送之后执行将发送记录写会数据库的操作
             //17年3月20日修改此处删掉this关键字
+
+            receiveModel = receiveModel_MMS as SMSModel_Receive;
             AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
             //SendMsg(model, out response);
             return true;

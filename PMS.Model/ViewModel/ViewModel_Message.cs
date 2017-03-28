@@ -81,5 +81,7 @@ namespace PMS.Model.ViewModel
 
         public string Content { get; set; }
         public string SMSMissionID { get; set; }
+
+
     }
 }

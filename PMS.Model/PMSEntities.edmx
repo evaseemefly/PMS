@@ -2230,7 +2230,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TID" Type="Int32" Nullable="false" />
           <Property Name="SID" Type="Int32" Nullable="false" />
           <Property Name="FileName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
