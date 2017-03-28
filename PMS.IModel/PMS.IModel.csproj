@@ -43,6 +43,7 @@
     <Compile Include="ISendAndMessage_Model.cs" />
     <Compile Include="IJobData.cs" />
     <Compile Include="IJ_JobInfo.cs" />
+    <Compile Include="ISMSModel_Receive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

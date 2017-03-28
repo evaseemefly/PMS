@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PMS.Model.SMSModel;
 using PMS.IBLL;
 using DelegateSMS;
+using PMS.IModel;
 
 namespace ISMS
 {
@@ -24,7 +25,7 @@ namespace ISMS
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/  PMS.IModel.ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse*/SMSModel_Receive receive);
+        bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/  ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse*//*SMSModel_Receive*/ISMSModel_Receive receive, bool isMMS);
 
         /// <summary>
         /// 获取添加的临时联系人
@@ -49,7 +50,9 @@ namespace ISMS
         /// <param name="redis_list_id">redis中保存的list的key</param>
         /// <param name="redis_expirationDate">redis中保存集合的过期时间（默认72小时）</param>
         /// <returns></returns>
-        bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model, SMSModel_Receive receive, List<string> list_phones, string redis_list_id, int redis_expirationDate = 72);
+        bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model, SMSModel_Receive receive, List<string> list_phones);
+
+
 
         /// <summary>
         /// 获取短信内容

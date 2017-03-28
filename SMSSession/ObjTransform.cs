@@ -84,6 +84,9 @@ namespace SMSFactory
                  }
    
                 }
+            if(model_receive.list != null)
+            {
+
                 string[] failphone = new string[model_receive.list.Count()];
                 int j = 0;
                 foreach (var data in model_receive.list)
@@ -94,6 +97,7 @@ namespace SMSFactory
                 }
             //5.将所有提交不成功的号码存入返回模型
             model_receive.failPhones = failphone;
+            }
 
             return model_receive;
         }

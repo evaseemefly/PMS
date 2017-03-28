@@ -349,7 +349,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/ PMS.IModel.ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*/SMSModel_Receive receive)
+        public bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/ ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*//*SMSModel_Receive*/ISMSModel_Receive receive,bool isMMS)
         {
             SendJobManagement jobManagement = new SendJobManagement();
             //判断是否开启定时发送功能
@@ -366,7 +366,7 @@ namespace SMSFactory
             }
             //不管具体绑定的是哪个方法，调用该发送方法
             //SMSModel_Receive receive = new SMSModel_Receive();
-            jobManagement.JobsRun(model,out receive,true);
+            jobManagement.JobsRun(model,out receive,isMMS);
             //response = new PMS.Model.Message.BaseResponse() { Success = true };
             return false;
         }
@@ -378,7 +378,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyDelayed(/*PMS.Model.CombineModel.SendAndMessage_Model*/PMS.IModel.ISendAndMessage_Model model,out  SMSModel_Receive response,bool isMMS = false)
+        public bool SendMsgbyDelayed(/*PMS.Model.CombineModel.SendAndMessage_Model*/PMS.IModel.ISendAndMessage_Model model,out  /*SMSModel_Receive*/ISMSModel_Receive response,bool isMMS = false)
         {
             //response = new PMS.Model.Message.BaseResponse();
             //1 创建quartz父类客户端
@@ -477,18 +477,33 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyNow(/*PMS.Model.CombineModel.SendAndMessage_Model*/ISendAndMessage_Model model, out SMSModel_Receive receiveModel, bool isMMS=false)
+        public bool SendMsgbyNow(/*PMS.Model.CombineModel.SendAndMessage_Model*/ISendAndMessage_Model model, out /*SMSModel_Receive*/ISMSModel_Receive receiveModel, bool isMMS=false)
         {
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
             if (isMMS)
             {
-             ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
-            var receiveModel_MMS = new MMSModel_Receive();
-            client.SendMsg((model as PMS.Model.CombineModel.MMSSendAndMsg_Model).Model_MMS, out receiveModel_MMS);
-            }
-            //SMSModel_Receive receiveModel = new SMSModel_Receive();
-            // ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
+                ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
+                var receive_MMS = new MMSModel_Receive();
+                try
+                {
+                    client.SendMsg((model as PMS.Model.CombineModel.MMSSendAndMsg_Model).Model_MMS, out receive_MMS);
+                    //receiveModel = receive_MMS;
+                    return true;
+                }
+                catch (Exception)
+                {
+                    //以后需为其赋值
+                   // receive_MMS.result=
+                    return false;
+                }
+                finally
+                {
+                    receiveModel = receive_MMS;
+                                  
+                }
+           
+            }            
             //重新梳理并做抽象
             #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
             ////1 根据选定的群组及部门获取相应的联系人
@@ -515,10 +530,28 @@ namespace SMSFactory
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             //model.Model_Send = sendMsg;
             #endregion
-            receiveModel = new SMSModel_Receive();
-            
+            else
+            {
+                ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
+                var receive_SMS= new SMSModel_Receive();
+                try
+                {
+                    client.SendMsg((model as PMS.Model.CombineModel.SendAndMessage_Model).Model_Send, out receive_SMS);
+                    //receiveModel = receive_SMS;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+                finally
+                {
+                    receiveModel = receive_SMS;
+                }         
+            }
 
 
+            #region 已注释
             //client.SendMsg(model.Model_Send, out receiveModel);
             //receiveModel = new SMSModel_Receive() { msgid = "210cb72fe038484fb2952d0db96e0ae7", desc = "提交成功", result = "0", failPhones = new string[] { "" } };
             //发送之后执行将发送记录写会数据库的操作
@@ -527,7 +560,8 @@ namespace SMSFactory
             //receiveModel = receiveModel_MMS as SMSModel_Receive;
             //AfterSend(model.Model_Message, receiveModel, model.Model_Send.phones.ToList(), this.redis_list_id, this.Interval_OverTime);
             //SendMsg(model, out response);
-            return true;
+            #endregion
+
         }
 
 
@@ -544,29 +578,59 @@ namespace SMSFactory
         /// <param name="redis_list_id">redis中保存的list的key</param>
         /// <param name="redis_expirationDate">redis中保存集合的过期时间（默认72小时）</param>
         /// <returns></returns>
-        public bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model, SMSModel_Receive receive, List<string> list_phones,string redis_list_id,int redis_expirationDate=72)
-        {
-           
+        public bool AfterSend(PMS.Model.ViewModel.ViewModel_Message model, SMSModel_Receive receive, List<string> list_phones)
+        {           
             //5 将发送的短信以及提交响应存入SMSContent
             var mid = model.SMSMissionID;
             var uid = model.UID;
             bool isSaveMsgOk = smsContentBLL.SaveMsg(receive, model.Content, mid, uid);
 
+            #region 已封装至 AfterSend_Insert2DBAndRedis 方法中
+            ////在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
+            ////7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
+            //if (!smsRecord_CurrentBLL.CreateReceieveMsg(receive.msgid, list_phones))
+            //{
+            //    return false;
+            //}
+
+            ///*步骤六：
+            //        写入redis缓存中
+            //        （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
+            //*/
+            //            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
+
+            ////2017-1-22 加入判断，若msgid为""或电话集合为空，则不写入redis中
+            //if(!receive.msgid.Equals("")&& list_phones!=null)
+            //{
+            //    StringRedisHelper redisStrhelper = new StringRedisHelper();
+            //    redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
+            //    //2017年2月4日 添加释放资源
+            //    redisStrhelper.Dispose();
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //} 
+            #endregion
+           return AfterSend_Insert2DBAndRedis(receive, list_phones);
+        }
+
+        protected bool AfterSend_Insert2DBAndRedis(BaseModel_Receive receive,List<string> list_phones, int redis_expirationDate = 72)
+        {
             //在current表中存入发送信息，在query之前，表中的StatusCode默认为98，DescContent默认为"暂时未收到查询回执"
             //7月28日 注意此处已修改方法为：CreateReceieveMsg！！！
             if (!smsRecord_CurrentBLL.CreateReceieveMsg(receive.msgid, list_phones))
             {
                 return false;
             }
-
             /*步骤六：
                     写入redis缓存中
                     （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
             */
-                        ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
-
+            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
             //2017-1-22 加入判断，若msgid为""或电话集合为空，则不写入redis中
-            if(!receive.msgid.Equals("")&& list_phones!=null)
+            if (!receive.msgid.Equals("") && list_phones != null)
             {
                 StringRedisHelper redisStrhelper = new StringRedisHelper();
                 redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
@@ -577,7 +641,7 @@ namespace SMSFactory
             else
             {
                 return false;
-            } 
+            }
         }
 
         protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)

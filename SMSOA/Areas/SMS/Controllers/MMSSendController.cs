@@ -152,11 +152,15 @@ namespace SMSOA.Areas.SMS.Controllers
             combine_model.Model_Message = model;
             combine_model.Model_MMS = send;
 
-            SMSModel_Receive receive = new SMSModel_Receive();
+            //SMSModel_Receive receive = new SMSModel_Receive();
+            PMS.IModel.ISMSModel_Receive receive = new MMSModel_Receive();
             //3 执行发送操作
             var isOk_Send = DoSendNow(combine_model, out receive);
-            
-            if ("0".Equals(receive.result) && isOk_Send)
+                        
+
+            mmsSendBLL.AfterSend(model, receive as MMSModel_Receive/*testModel*/, combine_model.Model_MMS.phones.ToList());
+
+            if ("0".Equals((receive as MMSModel_Receive).result) && isOk_Send)
                 {
                     //6 查询发送状态(是否加入等待时间？)
                     return Content("ok");
@@ -177,7 +181,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <param name="model"></param>
         /// <param name="receive"></param>
         /// <returns></returns>
-        private bool DoSendNow(PMS.Model.CombineModel.MMSSendAndMsg_Model model, out SMSModel_Receive receive)
+        private bool DoSendNow(PMS.Model.CombineModel.MMSSendAndMsg_Model model, out /*SMSModel_Receive*/PMS.IModel.ISMSModel_Receive receive)
         {
             //重新梳理并做抽象
             #region 暂时注释掉
@@ -320,7 +324,8 @@ namespace SMSOA.Areas.SMS.Controllers
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             model.Model_MMS = sendMsg;
             //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            mmsSendBLL.SendMsg(model, out /*response*/receive);
+            mmsSendBLL.SendMsg(model, out /*response*/receive,true);
+           
             //receive = new SMSModel_Receive();
             
             return true;

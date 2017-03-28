@@ -29,7 +29,7 @@ namespace PMS.BLL
                 msgId = receive.msgid,
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
-                BlackList = string.Join(",", receive.failPhones),
+                BlackList =receive.failPhones==null?string.Empty:string.Join(",", receive.failPhones),
                 ResultCode = int.Parse(receive.result),//此处有错误
                 smsCount = (int)Math.Ceiling(count)
             };
@@ -45,6 +45,7 @@ namespace PMS.BLL
                 return false;
             }
         }
+
         /// <summary>
         /// 彩信存入
         /// </summary>
@@ -64,10 +65,9 @@ namespace PMS.BLL
                 msgId = receive.msgid,
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
-                BlackList = string.Join(",", receive.failPhones),
+                BlackList = receive.failPhones == null ? string.Empty : string.Join(",", receive.failPhones),
                 ResultCode = int.Parse(receive.result),//此处有错误
                 smsCount = 1,
-
                 isMMS = true,
                 MSTitle = MMSTitle
 
