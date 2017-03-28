@@ -73,7 +73,7 @@ namespace Common
         //#endregion
         //            return path;
         //        }
-            public string CreateZip()
+            public string CreateZip(string content)
             {
                 #region 飞飞写的压缩程序，对图片进行压缩
                 //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
@@ -84,7 +84,7 @@ namespace Common
                 guid_str = guid_str.Replace("-", "");
                 //需要加载 System.Drawing;
                 string fileName = guid_str;
-                string mmsContent = "这是彩信内容，以string方式输入";
+                string mmsContent = content;
                 PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
                 bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
 

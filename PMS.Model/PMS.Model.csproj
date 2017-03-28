@@ -58,6 +58,8 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CombineModel\BaseMessage_Model.cs" />
+    <Compile Include="CombineModel\MMSSendAndMsg_Model.cs" />
     <Compile Include="CombineModel\SendAndMessage_Model.cs" />
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
     <Compile Include="Dictionary\MMSDictionary.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="R_UserInfo_SMSMission.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="SMSModel\BaseModel_Receive.cs" />
     <Compile Include="SMSModel\MMSModel_Query.cs" />
     <Compile Include="SMSModel\MMSModel_QueryReceive.cs" />
     <Compile Include="SMSModel\MMSModel_Receive.cs" />

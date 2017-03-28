@@ -7,12 +7,11 @@ using PMS.IModel;
 
 namespace PMS.Model.CombineModel
 {
-    public class SendAndMessage_Model: BaseMessage_Model
-    {       
+    public class MMSSendAndMsg_Model:BaseMessage_Model
+    {
         /// <summary>
-        /// 提交的发送对象
+        /// 
         /// </summary>
-        public SMSModel.SMSModel_Send Model_Send { get; set; }
-        
+        public SMSModel.MMSModel_Send Model_MMS { get; set; }
     }
 }
