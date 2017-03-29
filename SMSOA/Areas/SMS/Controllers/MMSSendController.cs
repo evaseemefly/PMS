@@ -10,6 +10,7 @@ using PMS.Model.SMSModel;
 using ISMS;
 using PMS.Model;
 using PMS.Model.EqualCompare;
+using Fdfs.IBLL;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -26,8 +27,18 @@ namespace SMSOA.Areas.SMS.Controllers
         // GET: SMS/Send
         IMMSQuery mmsQuery { get; set; }
         IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
-        
-        private string list_id = "mylist";
+
+        IFdfsUploadBLL uploadBLL { get; set; }
+
+        IFdfsStorageBLL fdfsStorageBLL { get; set; }
+
+        IFdfsTrackerBLL fdfsTrackerBLL { get; set; }
+
+        IFdfsContentBLL fdfsContentBLL { get; set; }
+
+        public int imgMaxSize { get;private set; }
+
+    private string list_id = "mylist";
         //public ActionResult SetFiles()
         //{
 
@@ -41,6 +52,7 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult Index()
         {
             //定义Razor标签
+            this.imgMaxSize = 2;
             ViewBag.GetAllMission_combogrid = "/SMS/Send/GetAllMissionByPID";
             ViewBag.GetMissionByUID = "/SMS/Send/GetMissionByUID";
             ViewBag.GetGroupByMID_combogrid = "/SMS/MMSSend/GetGroupByMID";
@@ -115,10 +127,6 @@ namespace SMSOA.Areas.SMS.Controllers
                 model.isTiming  = bool.Parse(System.Web.HttpContext.Current.Request.Params.GetValues("formData_isTiming")[0]);
                 model.MMSTitle = System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
                 model.UID = int.Parse(System.Web.HttpContext.Current.Request.Params.GetValues("formData_UID")[0]);
-     
-
-
-            
 
             //1.1 联系人名单为空，不执行发送操作，返回
             //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
@@ -135,17 +143,20 @@ namespace SMSOA.Areas.SMS.Controllers
             HttpPostedFile file = files[0];
             var picture_stream = file.InputStream;
             string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
+            //保存的图片的：文件名+拓展名
+            string fileNameIncludeExt;
             //2.1最终在项目目录下创建Zip包,并获取路径
-            var path = mmsSendBLL.CreateZip(picture_stream, fileDirectory,model.Content);
+            var path_zip = mmsSendBLL.CreateZip(picture_stream, fileDirectory,model.Content,out fileNameIncludeExt);
+
             //2.2 将路径封装进实体模型
-            model.ZipUrl = path;
+            model.ZipUrl = path_zip;
 
             PMS.Model.CombineModel.MMSSendAndMsg_Model combine_model = new PMS.Model.CombineModel.MMSSendAndMsg_Model();
            
             MMSModel_Send send = new MMSModel_Send();
             send.content = model.Content; 
             //send.account=
-            send.ZipUrl = path;
+            send.ZipUrl = path_zip;
             send.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
             //combine_model.Model_MMS.ZipUrl = path;
             //combine_model.Model_MMS.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
@@ -156,9 +167,16 @@ namespace SMSOA.Areas.SMS.Controllers
             PMS.IModel.ISMSModel_Receive receive = new MMSModel_Receive();
             //3 执行发送操作
             var isOk_Send = DoSendNow(combine_model, out receive);
-                        
 
-            mmsSendBLL.AfterSend(model, receive as MMSModel_Receive/*testModel*/, combine_model.Model_MMS.phones.ToList());
+            var receive_temp = receive as MMSModel_Receive;
+
+           var result_In2Db= mmsSendBLL.AfterSend(model, receive_temp /*testModel*/, combine_model.Model_MMS.phones.ToList());
+            if (result_In2Db)
+            {
+                var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(picture_stream, fileNameIncludeExt, this.imgMaxSize);
+                this.Save2Fdfs(imgParam, receive_temp.msgid);
+            }
+            
 
             if ("0".Equals((receive as MMSModel_Receive).result) && isOk_Send)
                 {
@@ -324,12 +342,111 @@ namespace SMSOA.Areas.SMS.Controllers
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             model.Model_MMS = sendMsg;
             //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-            mmsSendBLL.SendMsg(model, out /*response*/receive,true);
-           
+           var result= mmsSendBLL.SendMsg(model, out /*response*/receive,true);
+            if (result)
+            {
+
+            }
             //receive = new SMSModel_Receive();
             
             return true;
         }
+
+        /// <summary>
+        /// 将图片上传至fdfs中
+        /// </summary>
+        /// <param name="uploadParam"></param>
+        /// <param name="msgid"></param>
+        private void Save2Fdfs(PMS.Model.FdfsParam.ImageUploadParameter uploadParam, string msgid)
+        {
+            //1 上传图片
+            /*
+            ExtName:jpg
+            FileName:"wKgBaFjOLt-ATu3XAAAAAAAAAAA319"
+            FileNameIncludeExt:"wKgBaFjOLt-ATu3XAAAAAAAAAAA319.jpg"
+            FileNameIncludeScroll:"M00/00/00/wKgBaFjOLt-ATu3XAAAAAAAAAAA319.jpg"
+            FullFilePath:"http://192.168.1.104/group1/M00/00/00/wKgBaFjOLt-ATu3XAAAAAAAAAAA319.jpg"
+            GroupName:"group1"
+
+            TrackerGroup:"group1"
+            TrackerPort:"23000"
+            TrackerUrl:"192.168.1.104"
+            */
+            var result = uploadBLL.UploadImage(uploadParam);
+
+
+            //2 根据结果写回FdfsStorage
+            //***** 注意先不往storage表中写回数据，上传成功后，并不会返回storage节点的信息 *****
+            //2.1 先判断表中是否存在指定的对象
+            // var storage_model= fdfsStorageBLL.GetListBy(fs => (fs.GroupName == result.GroupName) && (fs.URL == result.StorageUrl) && (fs.Port == result.StoragePort)).FirstOrDefault();
+            FdfsStorage storage_model = null;
+            //2.2 没有则创建
+            //if (storage_model == null)
+            //{
+            //    fdfsStorageBLL.Create(new FdfsStorage()
+            //    {
+            //        GroupName = result.GroupName,
+            //        //URL = result.StorageUrl,
+            //        //Port = result.StoragePort
+            //    });
+            //}
+            ////2.3 有则取出
+            //else
+            //{
+
+            //}
+
+            //3 写回FdfsTracker
+            //3.1 先判断表中是否存在指定的对象            
+            var tracker_model = fdfsTrackerBLL.GetListBy(ft => (ft.URL == result.TrackerUrl) && (ft.GroupName == result.TrackerGroup) && (ft.Port == result.TrackerPort)).FirstOrDefault();
+            //3.2 没有则创建
+
+            if (tracker_model == null)
+            {
+                tracker_model = new FdfsTracker()
+                {
+                    GroupName = result.GroupName,
+                    URL = result.TrackerUrl,
+                    Port = result.TrackerPort,
+                    StorePathIndex = 0
+                };
+                fdfsTrackerBLL.Create(tracker_model);
+            }
+            //3.3 有则取出
+            else
+            {
+
+            }
+
+            //4 写回FdfsContent
+            int tid = tracker_model.TID;
+            int sid = 1;
+            //4.1 先判断表中是否存在指定的对象            
+            var content_model = fdfsContentBLL.GetListBy(fc => /*(fc.TID == tid) && (fc.SID == sid) && */(fc.FileName == result.FileName)).FirstOrDefault();
+            //4.2 没有则创建
+            if (content_model == null)
+            {
+                //4.2.1 找到SMSContent短信内容表中对应的内容
+                var smsContent = smsContentBLL.GetListBy(c => c.msgId == msgid).FirstOrDefault();
+                var fdfsContent = new FdfsContent()
+                {
+                    TID = tid,
+                    SID = sid,
+                    FileName = result.FileName,
+                    ScrollName = result.Scroll,
+                    Ext = (int)result.ExtName,
+
+                };
+                fdfsContent.S_SMSContent.Add(smsContent);
+                fdfsContentBLL.Create(fdfsContent);
+            }
+            //4.3 有则取出
+            else
+            {
+
+            }
+        }
+
         protected List<P_PersonInfo> GetPersonListByGroupDepartment(string dids, string gids, out int rowCount, int pageSize = -1, int pageIndex = -1)
         {
 

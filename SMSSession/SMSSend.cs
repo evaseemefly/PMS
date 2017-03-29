@@ -55,7 +55,8 @@ namespace SMSFactory
 
         public SMSSend()
         {
-            departmentBLL = new P_DepartmentInfoBLL();
+            departmentBLL = Common.Ioc.UnityServiceLocator.Instance.GetService<IP_DepartmentInfoBLL>();
+            //departmentBLL = new P_DepartmentInfoBLL();
             groupBLL = new P_GroupBLL();
             personBLL = new P_PersonInfoBLL();
             jobTemplateBLL = new J_JobTemplateBLL();
@@ -491,7 +492,7 @@ namespace SMSFactory
                     //receiveModel = receive_MMS;
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //以后需为其赋值
                    // receive_MMS.result=

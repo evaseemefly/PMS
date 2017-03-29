@@ -580,6 +580,9 @@
     <Content Include="Views\Shared\_Admin_AddUser_Layout.cshtml" />
     <Content Include="Views\Shared\_Contact_AddEdit_Layout.cshtml" />
     <Content Include="Views\Shared\_Partial_loadDataGrid.cshtml" />
+    <Content Include="unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
