@@ -37,4 +37,8 @@
   </object>
   <object type="QuartzJobFactory.JobService, QuartzJobFactory" singleton="false" name="jobService" >
   </object>
+  <object type="Fdfs.BLL.FdfsUploadBLL, Fdfs.BLL" singleton="false" name="uploadService" ></object>
+  <object type="PMS.BLL.FdfsStorageBLL, PMS.BLL" singleton="false" name="fdfsStorageService" ></object>
+  <object type="PMS.BLL.FdfsTrackerBLL, PMS.BLL" singleton="false" name="fdfsTrackerService" ></object>
+  <object type="PMS.BLL.FdfsContentBLL, PMS.BLL" singleton="false" name="fdfsContentService" ></object>
 </objects>

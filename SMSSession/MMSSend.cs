@@ -35,14 +35,24 @@ namespace SMSFactory
         /// </summary>
         /// <param name="picture_stream"></param>
         /// <param name="fileDirectory"></param>
+        /// <param name="content"></param>
+        /// <param name="fileName">赋值后返回的 文件名+拓展名</param>
+        /// <returns>压缩包路径</returns>
 
-        public string CreateZip(System.IO.Stream picture_stream, string fileDirectory,string content)
+        public string CreateZip(System.IO.Stream picture_stream, string fileDirectory,string content,out string fileName)
         {
             MMSZipProcessing zipProcessing = new MMSZipProcessing(picture_stream, fileDirectory);
             //CreateZipCompleteCallback callback = new CreateZipCompleteCallback(zipProcessing.GetZipUrl);
-            return zipProcessing.CreateZip(content);
+            return zipProcessing.CreateZip(content,out fileName);
             
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="list_phones"></param>
+        /// <returns></returns>
         public MMSModel_Send ToSendModel(PMS.Model.SMSModel.MMSModel_Send model, List<string> list_phones)
         {
             //1.获取配置文件中的账号信息等
@@ -62,6 +72,13 @@ namespace SMSFactory
             return sendMsg;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="receive"></param>
+        /// <param name="list_phones"></param>
+        /// <returns></returns>
         public bool AfterSend(PMS.Model.ViewModel.ViewModel_MMSMessage model,MMSModel_Receive receive,List<string> list_phones)
         {
             //5 将发送的短信以及提交响应存入SMSContent
