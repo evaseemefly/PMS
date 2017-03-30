@@ -237,6 +237,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Language.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.designer.cs">
+      <DependentUpon>Language.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.zh-cn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.zh-cn.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -276,6 +291,8 @@
     <Compile Include="Areas\Demo\SendMMS\MMSSend.cs" />
     <Compile Include="Areas\Demo\SendMMS\TxtSmilSynthesis.cs" />
     <Compile Include="Areas\Demo\SendMMS\ZipTools.cs" />
+    <Compile Include="Areas\I18NDemo\I18NDemoAreaRegistration.cs" />
+    <Compile Include="Areas\I18NDemo\Controllers\InternationalizationController.cs" />
     <Compile Include="Areas\Job\Controllers\InstanceController.cs" />
     <Compile Include="Areas\Job\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Job\JobAreaRegistration.cs" />
@@ -308,6 +325,11 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyExceptionAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_GlobalResources\ResourceTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceTest.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -491,6 +513,10 @@
     <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission_MMSInfo.cshtml" />
     <Content Include="Areas\SMS\Views\MMSSend\Index.cshtml" />
     <Content Include="Areas\SMS\Views\MMSSend\_Partial_Send_MMS_Body.cshtml" />
+    <Content Include="Areas\I18NDemo\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\I18NDemo\Views\Internationalization\Index.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />
@@ -678,6 +704,26 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Language.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Language.designer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Areas\I18NDemo\zh-cn.resx" />
+    <EmbeddedResource Include="App_GlobalResources\ResourceTest.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceTest.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Language.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Language.zh-cn.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.zh-cn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Resources\ResourceE.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

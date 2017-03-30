@@ -87,4 +87,6 @@
     <property name="jobTemplateBLL" ref="jobTemplateService" />
     <property name="jobService" ref="jobService" />
   </object>
+    <object type="SMSOA.Areas.I18NDemo.Controllers.InternationalizationController, SMSOA" singleton="false" >
+  </object>
 </objects>
