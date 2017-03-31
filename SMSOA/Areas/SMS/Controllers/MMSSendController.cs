@@ -141,44 +141,47 @@ namespace SMSOA.Areas.SMS.Controllers
             
             //2 图片处理
             HttpPostedFile file = files[0];
-            var picture_stream = file.InputStream;
-            string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
-            //保存的图片的：文件名+拓展名
-            string fileNameIncludeExt;
-            //2.1最终在项目目录下创建Zip包,并获取路径
-            var path_zip = mmsSendBLL.CreateZip(picture_stream, fileDirectory,model.Content,out fileNameIncludeExt);
-
-            //2.2 将路径封装进实体模型
-            model.ZipUrl = path_zip;
-
-            PMS.Model.CombineModel.MMSSendAndMsg_Model combine_model = new PMS.Model.CombineModel.MMSSendAndMsg_Model();
-           
-            MMSModel_Send send = new MMSModel_Send();
-            send.content = model.Content; 
-            //send.account=
-            send.ZipUrl = path_zip;
-            send.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
-            //combine_model.Model_MMS.ZipUrl = path;
-            //combine_model.Model_MMS.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
-            combine_model.Model_Message = model;
-            combine_model.Model_MMS = send;
-
-            //SMSModel_Receive receive = new SMSModel_Receive();
-            PMS.IModel.ISMSModel_Receive receive = new MMSModel_Receive();
-            //3 执行发送操作
-            var isOk_Send = DoSendNow(combine_model, out receive);
-
-            var receive_temp = receive as MMSModel_Receive;
-
-           var result_In2Db= mmsSendBLL.AfterSend(model, receive_temp /*testModel*/, combine_model.Model_MMS.phones.ToList());
-            if (result_In2Db)
+            var file_stream = file.InputStream;
+            using (var picture_stream = file_stream)
             {
-                var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(picture_stream, fileNameIncludeExt, this.imgMaxSize);
-                this.Save2Fdfs(imgParam, receive_temp.msgid);
-            }
-            
 
-            if ("0".Equals((receive as MMSModel_Receive).result) && isOk_Send)
+                string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
+                //保存的图片的：文件名+拓展名
+                string fileNameIncludeExt;
+                //2.1最终在项目目录下创建Zip包,并获取路径
+                var path_zip = mmsSendBLL.CreateZip(picture_stream, fileDirectory, model.Content, out fileNameIncludeExt);
+
+                //2.2 将路径封装进实体模型
+                model.ZipUrl = path_zip;
+
+                PMS.Model.CombineModel.MMSSendAndMsg_Model combine_model = new PMS.Model.CombineModel.MMSSendAndMsg_Model();
+
+                MMSModel_Send send = new MMSModel_Send();
+                send.content = model.Content;
+                //send.account=
+                send.ZipUrl = path_zip;
+                send.MMSTitle = System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
+                //combine_model.Model_MMS.ZipUrl = path;
+                //combine_model.Model_MMS.MMSTitle= System.Web.HttpContext.Current.Request.Params.GetValues("formData_MMSTitle")[0];
+                combine_model.Model_Message = model;
+                combine_model.Model_MMS = send;
+
+                //SMSModel_Receive receive = new SMSModel_Receive();
+                PMS.IModel.ISMSModel_Receive receive = new MMSModel_Receive();
+                //3 执行发送操作
+                var isOk_Send = DoSendNow(combine_model, out receive);
+
+                var receive_temp = receive as MMSModel_Receive;
+
+                var result_In2Db = mmsSendBLL.AfterSend(model, receive_temp /*testModel*/, combine_model.Model_MMS.phones.ToList());
+                if (result_In2Db)
+                {
+                    var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(picture_stream, fileNameIncludeExt, this.imgMaxSize);
+                    this.Save2Fdfs(imgParam, receive_temp.msgid);
+
+                }
+
+                if ("0".Equals((receive as MMSModel_Receive).result) && isOk_Send)
                 {
                     //6 查询发送状态(是否加入等待时间？)
                     return Content("ok");
@@ -192,6 +195,11 @@ namespace SMSOA.Areas.SMS.Controllers
                 {
                     return Content("error");
                 }
+            }
+            
+            
+
+            
             }
         /// <summary>
         /// 发送彩信方法

@@ -14,6 +14,7 @@ using PMS.IModel;
 using Common.Redis;
 using Common.Config;
 using ISMS;
+using Common.Ioc;
 
 namespace SMSFactory
 {
@@ -55,15 +56,16 @@ namespace SMSFactory
 
         public SMSSend()
         {
-            departmentBLL = Common.Ioc.UnityServiceLocator.Instance.GetService<IP_DepartmentInfoBLL>();
+
+            departmentBLL = UnityServiceLocator.Instance.GetService<IP_DepartmentInfoBLL>();
             //departmentBLL = new P_DepartmentInfoBLL();
-            groupBLL = new P_GroupBLL();
-            personBLL = new P_PersonInfoBLL();
-            jobTemplateBLL = new J_JobTemplateBLL();
-            jobInfoBLL = new J_JobInfoBLL();
-            userInfoBLL = new UserInfoBLL();
-            smsContentBLL = new S_SMSContentBLL();
-            smsRecord_CurrentBLL = new S_SMSRecord_CurrentBLL();
+            groupBLL = UnityServiceLocator.Instance.GetService<IP_GroupBLL>();
+            personBLL = UnityServiceLocator.Instance.GetService<IP_PersonInfoBLL>();
+            jobTemplateBLL = UnityServiceLocator.Instance.GetService<IJ_JobTemplateBLL>();
+            jobInfoBLL = UnityServiceLocator.Instance.GetService<IJ_JobInfoBLL>();
+            userInfoBLL = UnityServiceLocator.Instance.GetService<IUserInfoBLL>();
+            smsContentBLL = UnityServiceLocator.Instance.GetService<IS_SMSContentBLL>();
+            smsRecord_CurrentBLL = UnityServiceLocator.Instance.GetService<IS_SMSRecord_CurrentBLL>();
             SetRedisProperties();
         }
 

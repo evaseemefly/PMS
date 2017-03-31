@@ -14,6 +14,7 @@ using Common.Redis;
 using PMS.Model.CombineModel;
 using JobManagement;
 using PMS.BLL;
+using Common.Ioc;
 
 namespace SMSFactory
 {
@@ -26,8 +27,8 @@ namespace SMSFactory
 
         public MMSSend()
         {
-            smsContentBLL = new S_SMSContentBLL();
-            smsRecord_CurrentBLL = new S_SMSRecord_CurrentBLL();
+            smsContentBLL = UnityServiceLocator.Instance.GetService<IS_SMSContentBLL>();
+            smsRecord_CurrentBLL = UnityServiceLocator.Instance.GetService<IS_SMSRecord_CurrentBLL>();
         }
 
         /// <summary>

@@ -185,7 +185,7 @@ namespace Common
 
             MemoryStream ms = new MemoryStream();
             myBitmap.Save(ms, myImageCodecInfo, myEncoderParameters);
-            szfile.Close();
+            //szfile.Close();
             return ms;
         }
         private static ImageCodecInfo GetEncoderInfo(String mimeType)
