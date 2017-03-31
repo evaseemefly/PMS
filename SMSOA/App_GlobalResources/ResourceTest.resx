@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddContact" xml:space="preserve">
+    <value>Add Contact</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>Advanced Search</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>After…</value>
+  </data>
+  <data name="AllMessages" xml:space="preserve">
+    <value>All Messages</value>
+  </data>
+  <data name="AllUsers" xml:space="preserve">
+    <value>All Users</value>
+  </data>
+  <data name="Areyousureyouwanttodeleteit" xml:space="preserve">
+    <value>Are you sure you want to delete it?</value>
+  </data>
+  <data name="AssignTheRightofWorkTemplate" xml:space="preserve">
+    <value>Assign The Right of Work Template</value>
+  </data>
+  <data name="Authority" xml:space="preserve">
+    <value>Authority</value>
+  </data>
+  <data name="AuthorityManagement" xml:space="preserve">
+    <value>Authority Management</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>Before…</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChangeDepartment" xml:space="preserve">
+    <value>Change Department</value>
+  </data>
+  <data name="ChangeGroup" xml:space="preserve">
+    <value>Change Group</value>
+  </data>
+  <data name="ChangePicture" xml:space="preserve">
+    <value>Change a Picture</value>
+  </data>
+  <data name="ChartofRecent10MessagesofCurrentUser" xml:space="preserve">
+    <value>Chart of Recent 10 Messages of Current User</value>
+  </data>
+  <data name="ChartofTodaySendingRecordofCurrentUser" xml:space="preserve">
+    <value>Chart of Today Sending Record of Current User</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>Choice</value>
+  </data>
+  <data name="ChoiceaType" xml:space="preserve">
+    <value>Choice a Type</value>
+  </data>
+  <data name="CommonMissionandGroupSetting" xml:space="preserve">
+    <value>Common Mission and Group Setting</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>Contact List</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="ContactsList" xml:space="preserve">
+    <value>Contacts List</value>
+  </data>
+  <data name="ContactsListUpdateNotice" xml:space="preserve">
+    <value>Contacts List Update Notice</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="ControllerName" xml:space="preserve">
+    <value>Controller Name</value>
+  </data>
+  <data name="CreateTime" xml:space="preserve">
+    <value>Create Time</value>
+  </data>
+  <data name="CronExpressions" xml:space="preserve">
+    <value>Cron Expressions</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>Current User</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteContact" xml:space="preserve">
+    <value>Delete Contact</value>
+  </data>
+  <data name="DepartmentList" xml:space="preserve">
+    <value>Department List</value>
+  </data>
+  <data name="DepartmentManagement" xml:space="preserve">
+    <value>Department Management</value>
+  </data>
+  <data name="DepartmentName" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="DepartmentSettingforSMSMission" xml:space="preserve">
+    <value>Department Setting for SMS Mission</value>
+  </data>
+  <data name="Describe" xml:space="preserve">
+    <value>Describe</value>
+  </data>
+  <data name="DeskTop" xml:space="preserve">
+    <value>DeskTop</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="During" xml:space="preserve">
+    <value>During…</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditContact" xml:space="preserve">
+    <value>Edit Contact</value>
+  </data>
+  <data name="Edite" xml:space="preserve">
+    <value>EdiTe</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="EnableDisable" xml:space="preserve">
+    <value>Enable/Disable</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="Enterthephonenumber" xml:space="preserve">
+    <value>Enter the phone number</value>
+  </data>
+  <data name="Enterthesamepassword" xml:space="preserve">
+    <value>Enter the same password</value>
+  </data>
+  <data name="ExecutionTime" xml:space="preserve">
+    <value>Execution Time</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="GroupList" xml:space="preserve">
+    <value>Group List</value>
+  </data>
+  <data name="GroupManagement" xml:space="preserve">
+    <value>Group Management</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="GroupSettingforSMSMission" xml:space="preserve">
+    <value>Group Setting for SMS Mission</value>
+  </data>
+  <data name="Hint" xml:space="preserve">
+    <value>Please enter your account and password
+If you have any problems  please Contact the administraTor.</value>
+  </data>
+  <data name="InputSMScontentplease" xml:space="preserve">
+    <value>Input SMS content please…</value>
+  </data>
+  <data name="Inputtemplatecontent" xml:space="preserve">
+    <value>Input template content…</value>
+  </data>
+  <data name="JobClassName" xml:space="preserve">
+    <value>Job Class Name</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Last Week</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MessageList" xml:space="preserve">
+    <value>Message List</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="MessagesManagement" xml:space="preserve">
+    <value>Messages Management</value>
+  </data>
+  <data name="MessageType" xml:space="preserve">
+    <value>Message Type</value>
+  </data>
+  <data name="MethodName" xml:space="preserve">
+    <value>Method Name</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="MissionList" xml:space="preserve">
+    <value>Mission List</value>
+  </data>
+  <data name="MissionManagement" xml:space="preserve">
+    <value>Mission Management</value>
+  </data>
+  <data name="MissionName" xml:space="preserve">
+    <value>Mission Name</value>
+  </data>
+  <data name="ModifiedTime" xml:space="preserve">
+    <value>Modified Time</value>
+  </data>
+  <data name="ModifyPassword" xml:space="preserve">
+    <value>Modify Password</value>
+  </data>
+  <data name="MoveIntoGroup" xml:space="preserve">
+    <value>Move Into Group</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameMaching" xml:space="preserve">
+    <value>Name Maching</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>New Message</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="NextExecutionTime" xml:space="preserve">
+    <value>Next Execution Time</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>Not Received</value>
+  </data>
+  <data name="NumberMatching" xml:space="preserve">
+    <value>Number Matching</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="OperationList" xml:space="preserve">
+    <value>Operation List</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="OptionalCronexpression" xml:space="preserve">
+    <value>Optional  Cron expression</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="OtherNotice" xml:space="preserve">
+    <value>Other Notice</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Phonenumber" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Pleasechoosethesuperiorofthisdepartment" xml:space="preserve">
+    <value>Please choose the superior of this department.</value>
+  </data>
+  <data name="Pleasedescribethegroupoptional" xml:space="preserve">
+    <value>Please describe the group (optional)</value>
+  </data>
+  <data name="Pleaseenteranewloginpassword" xml:space="preserve">
+    <value>Please enter a new login password</value>
+  </data>
+  <data name="Pleaseenterasubject" xml:space="preserve">
+    <value>Please enter a subject.</value>
+  </data>
+  <data name="Pleaseenterpassword" xml:space="preserve">
+    <value>Please enter password.</value>
+  </data>
+  <data name="Pleaseenterpasswordagain" xml:space="preserve">
+    <value>Please enter password again</value>
+  </data>
+  <data name="Pleaseentertheclassname" xml:space="preserve">
+    <value>Please enter the class name.</value>
+  </data>
+  <data name="Pleaseenterthecontactname" xml:space="preserve">
+    <value>Please enter the contact name</value>
+  </data>
+  <data name="Pleaseenterthecontentofthistemplate" xml:space="preserve">
+    <value>Please enter the content of this template.</value>
+  </data>
+  <data name="Pleaseenterthecontrollername" xml:space="preserve">
+    <value>Please enter the controller name</value>
+  </data>
+  <data name="PleaseentertheCronStr" xml:space="preserve">
+    <value>Please enter the CronStr.</value>
+  </data>
+  <data name="Pleaseenterthegroupname" xml:space="preserve">
+    <value>Please enter the group name</value>
+  </data>
+  <data name="Pleaseenterthegroupofthiswork" xml:space="preserve">
+    <value>Please enter the group of this work.</value>
+  </data>
+  <data name="Pleaseenterthenameofright" xml:space="preserve">
+    <value>Please enter the name of right.</value>
+  </data>
+  <data name="Pleaseenterthenameofthearea" xml:space="preserve">
+    <value>Please enter the name of the area</value>
+  </data>
+  <data name="Pleaseenterthenameofthecontroller" xml:space="preserve">
+    <value>Please enter the name of the controller</value>
+  </data>
+  <data name="Pleaseenterthenameofthedepartment" xml:space="preserve">
+    <value>Please enter the name of the department.</value>
+  </data>
+  <data name="Pleaseenterthenameofthemission" xml:space="preserve">
+    <value>Please enter the name of the mission.</value>
+  </data>
+  <data name="Pleaseentertherolename" xml:space="preserve">
+    <value>Please enter the role name.</value>
+  </data>
+  <data name="PleaseenterthetemplateName" xml:space="preserve">
+    <value>Please enter the template Name</value>
+  </data>
+  <data name="Pleaseenterthetemplatetypeinteger" xml:space="preserve">
+    <value>Please enter the template type (integer)</value>
+  </data>
+  <data name="Pleaseenterthetitlenomorethan50words" xml:space="preserve">
+    <value>Please enter the title no more than 50 words</value>
+  </data>
+  <data name="Pleaseentertheworktemplatesclassname" xml:space="preserve">
+    <value>Please enter the work template's class name.</value>
+  </data>
+  <data name="Pleaseentertheworktemplatesgroupname" xml:space="preserve">
+    <value>Please enter the work template's group name.</value>
+  </data>
+  <data name="Pleaseenterusername" xml:space="preserve">
+    <value>Please enter user name.</value>
+  </data>
+  <data name="Pleaseenterworkname" xml:space="preserve">
+    <value>Please enter work name.</value>
+  </data>
+  <data name="PleasefillinthetemplateName" xml:space="preserve">
+    <value>Please fill in the template Name</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Please Select</value>
+  </data>
+  <data name="Pleaseselectaperson" xml:space="preserve">
+    <value>Please select a person</value>
+  </data>
+  <data name="Pleaseselectthesuitablemissionforthistemplate" xml:space="preserve">
+    <value>Please select the suitable mission for this template.</value>
+  </data>
+  <data name="Pleaseselectyourcommongroups" xml:space="preserve">
+    <value>Please select your common groups.
+Selected groups will appears in the list of message sending interface.</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="ProjectFullName" xml:space="preserve">
+    <value>SMS Platform of NMEFC</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>SMS Platform of NMEFC</value>
+  </data>
+  <data name="Prompt" xml:space="preserve">
+    <value>Prompt</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="QueryAuthorizationName" xml:space="preserve">
+    <value>Query  AuthorizationName</value>
+  </data>
+  <data name="QueryControllerName" xml:space="preserve">
+    <value>Query Controller Name</value>
+  </data>
+  <data name="QueryMethodName" xml:space="preserve">
+    <value>Query Method Name</value>
+  </data>
+  <data name="QueryRegionName" xml:space="preserve">
+    <value>Query Region Name</value>
+  </data>
+  <data name="QueryRemarks" xml:space="preserve">
+    <value>Query Remarks</value>
+  </data>
+  <data name="QueryRoleName" xml:space="preserve">
+    <value>Query Role Name</value>
+  </data>
+  <data name="QueryUserName" xml:space="preserve">
+    <value>Query User Name</value>
+  </data>
+  <data name="RAuthorizationSettings" xml:space="preserve">
+    <value>Role's Authorization Settings</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>Receiving</value>
+  </data>
+  <data name="Recent10MessagesofCurrentUser" xml:space="preserve">
+    <value>Recent 10 Messages of Current User</value>
+  </data>
+  <data name="Recovery" xml:space="preserve">
+    <value>Recovery</value>
+  </data>
+  <data name="Recycle" xml:space="preserve">
+    <value>Recycle</value>
+  </data>
+  <data name="region" xml:space="preserve">
+    <value>region</value>
+  </data>
+  <data name="RegionName" xml:space="preserve">
+    <value>Region Name</value>
+  </data>
+  <data name="ReleaseTime" xml:space="preserve">
+    <value>Release Time</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="RequestType" xml:space="preserve">
+    <value>Request Type</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="RightName" xml:space="preserve">
+    <value>Right Name</value>
+  </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>Role Management</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="RoleSetting" xml:space="preserve">
+    <value>User's Role Setting</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Selectamission" xml:space="preserve">
+    <value>Select a mission</value>
+  </data>
+  <data name="SelectCommonMission" xml:space="preserve">
+    <value>Please select your common missions.
+Selected missions will appears in the list of message sending interface.</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Select Date</value>
+  </data>
+  <data name="SelectDepartment" xml:space="preserve">
+    <value>Select Department</value>
+  </data>
+  <data name="Selectonelineofdataatleast" xml:space="preserve">
+    <value>Select one line of data at least.</value>
+  </data>
+  <data name="SelecttheareaoftheDepartment" xml:space="preserve">
+    <value>Select the area of the Department</value>
+  </data>
+  <data name="Selectthedepartment" xml:space="preserve">
+    <value>Select the department</value>
+  </data>
+  <data name="Selectthetypeofmessage" xml:space="preserve">
+    <value>Select the type of message</value>
+  </data>
+  <data name="Selecttheuppermenuforthispermission" xml:space="preserve">
+    <value>Select the upper menu for this permission</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendNumber" xml:space="preserve">
+    <value>Send Number</value>
+  </data>
+  <data name="SendSMS" xml:space="preserve">
+    <value>Send SMS</value>
+  </data>
+  <data name="SendStatistics" xml:space="preserve">
+    <value>Send Statistics</value>
+  </data>
+  <data name="SendTime" xml:space="preserve">
+    <value>Send Time</value>
+  </data>
+  <data name="SetCommonGroup" xml:space="preserve">
+    <value>Set Common Group</value>
+  </data>
+  <data name="SetCommonMission" xml:space="preserve">
+    <value>SetCommonMission</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SetVIPcontacts" xml:space="preserve">
+    <value>Set VIP contacts</value>
+  </data>
+  <data name="Showrecords" xml:space="preserve">
+    <value>Show XX to XX in XX records</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SingleDay" xml:space="preserve">
+    <value>Single Day</value>
+  </data>
+  <data name="SMS" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="SMSContent" xml:space="preserve">
+    <value>SMS Content</value>
+  </data>
+  <data name="SMSEditor" xml:space="preserve">
+    <value>SMS Editor</value>
+  </data>
+  <data name="SMSMission" xml:space="preserve">
+    <value>SMS Mission</value>
+  </data>
+  <data name="SMSTaskName" xml:space="preserve">
+    <value>SMS Task Name</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="String53" xml:space="preserve">
+    <value>(第几页)/（共几页）</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SuitableMission" xml:space="preserve">
+    <value>Suitable Mission</value>
+  </data>
+  <data name="SuperiorDepartment" xml:space="preserve">
+    <value>Superior Department</value>
+  </data>
+  <data name="Suspend" xml:space="preserve">
+    <value>Suspend</value>
+  </data>
+  <data name="SystemMaintenanceNotice" xml:space="preserve">
+    <value>System Maintenance Notice</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="Templateclass" xml:space="preserve">
+    <value>Template class</value>
+  </data>
+  <data name="TemplateGroupName" xml:space="preserve">
+    <value>Template Group Name</value>
+  </data>
+  <data name="TemplateName" xml:space="preserve">
+    <value>Template Name</value>
+  </data>
+  <data name="TemporaryContacts" xml:space="preserve">
+    <value>Temporary Contacts</value>
+  </data>
+  <data name="Termination" xml:space="preserve">
+    <value>Termination</value>
+  </data>
+  <data name="Themessagesendingtime" xml:space="preserve">
+    <value>The message sending time.</value>
+  </data>
+  <data name="Thesmallerthenumberthehigherthepriority" xml:space="preserve">
+    <value>The smaller the number the higher the priority.</value>
+  </data>
+  <data name="Theswitchofdelayedsending" xml:space="preserve">
+    <value>The switch of delayed sending</value>
+  </data>
+  <data name="Thetimeofworkexecution" xml:space="preserve">
+    <value>The time of work execution</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>This Month</value>
+  </data>
+  <data name="TimerOnOff" xml:space="preserve">
+    <value>Timer On/Off</value>
+  </data>
+  <data name="TimerSetting" xml:space="preserve">
+    <value>Timer Setting</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="TodaySendingRecordofCurrentUser" xml:space="preserve">
+    <value>Today Sending Record of Current User</value>
+  </data>
+  <data name="UAuthorizationSettings" xml:space="preserve">
+    <value>User's Authorization Settings</value>
+  </data>
+  <data name="UnreadMessage" xml:space="preserve">
+    <value>Unread Message</value>
+  </data>
+  <data name="UpperMenu" xml:space="preserve">
+    <value>Upper Menu</value>
+  </data>
+  <data name="URoleSetting" xml:space="preserve">
+    <value>User's Role Setting</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Verification Code</value>
+  </data>
+  <data name="VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="WorkName" xml:space="preserve">
+    <value>Work Name</value>
+  </data>
+  <data name="Works" xml:space="preserve">
+    <value>Works</value>
+  </data>
+  <data name="WorksManagement" xml:space="preserve">
+    <value>Works Management</value>
+  </data>
+  <data name="WorkStatus" xml:space="preserve">
+    <value>Work Status</value>
+  </data>
+  <data name="WorksTemplate" xml:space="preserve">
+    <value>Works Template</value>
+  </data>
+  <data name="Youcanchangetheselecteddepartment" xml:space="preserve">
+    <value>You can change the selected department.</value>
+  </data>
+  <data name="Youcanchangetheselectedgroup" xml:space="preserve">
+    <value>You can change the selected group.</value>
+  </data>
+  <data name="Youcanselectcommonmissionandgroup" xml:space="preserve">
+    <value>You can select common mission and group.</value>
+  </data>
+</root>

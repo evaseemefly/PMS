@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>账号</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="AddContact" xml:space="preserve">
+    <value>添加联系人</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>高级搜索</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>某天之后</value>
+  </data>
+  <data name="AllMessages" xml:space="preserve">
+    <value>全部消息</value>
+  </data>
+  <data name="AllUsers" xml:space="preserve">
+    <value>全部用户</value>
+  </data>
+  <data name="Areyousureyouwanttodeleteit" xml:space="preserve">
+    <value>确定要删除吗？</value>
+  </data>
+  <data name="AssignTheRightofWorkTemplate" xml:space="preserve">
+    <value>分配作业模板</value>
+  </data>
+  <data name="Authority" xml:space="preserve">
+    <value>管理权限</value>
+  </data>
+  <data name="AuthorityManagement" xml:space="preserve">
+    <value>权限管理</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>某天之前</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>日历</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ChangeaPicture" xml:space="preserve">
+    <value>看不清，换一张</value>
+  </data>
+  <data name="ChangeDepartment" xml:space="preserve">
+    <value>修改部门</value>
+  </data>
+  <data name="ChangeGroup" xml:space="preserve">
+    <value>修改群组</value>
+  </data>
+  <data name="ChartofRecent10MessagesofCurrentUser" xml:space="preserve">
+    <value>当前用户发送短信趋势图</value>
+  </data>
+  <data name="ChartofTodaySendingRecordofCurrentUser" xml:space="preserve">
+    <value>用户当日发送短信趋势图</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="ChoiceaType" xml:space="preserve">
+    <value>删除/恢复的类型</value>
+  </data>
+  <data name="CommonMissionandGroupSetting" xml:space="preserve">
+    <value>设置常用任务及群组</value>
+  </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>联系人列表</value>
+  </data>
+  <data name="ContactList1" xml:space="preserve">
+    <value>联系人列表</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>用户名称</value>
+  </data>
+  <data name="ContactName1" xml:space="preserve">
+    <value>联系人姓名</value>
+  </data>
+  <data name="ContactName2" xml:space="preserve">
+    <value>指定联系人名称</value>
+  </data>
+  <data name="ContactsList" xml:space="preserve">
+    <value>通讯录</value>
+  </data>
+  <data name="ContactsListUpdateNotice" xml:space="preserve">
+    <value>通讯录更新公告</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="Content1" xml:space="preserve">
+    <value>发送内容</value>
+  </data>
+  <data name="Content2" xml:space="preserve">
+    <value>消息内容</value>
+  </data>
+  <data name="Content3" xml:space="preserve">
+    <value>公告内容</value>
+  </data>
+  <data name="ControllerName" xml:space="preserve">
+    <value>控制器名</value>
+  </data>
+  <data name="CreateTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="CronExpressions" xml:space="preserve">
+    <value>Cron表达式</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>当前用户</value>
+  </data>
+  <data name="CurrentUser1" xml:space="preserve">
+    <value>当前用户</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>查询日期</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Delete1" xml:space="preserve">
+    <value>删除公告</value>
+  </data>
+  <data name="DeleteContact" xml:space="preserve">
+    <value>删除联系人</value>
+  </data>
+  <data name="DepartmentList" xml:space="preserve">
+    <value>部门列表</value>
+  </data>
+  <data name="DepartmentManagement" xml:space="preserve">
+    <value>部门管理</value>
+  </data>
+  <data name="DepartmentName" xml:space="preserve">
+    <value>部门名称</value>
+  </data>
+  <data name="DepartmentSettingforSMSMission" xml:space="preserve">
+    <value>为当前短信任务分配部门</value>
+  </data>
+  <data name="Describe" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="DeskTop" xml:space="preserve">
+    <value>我的桌面</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="During" xml:space="preserve">
+    <value>时间范围</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="EditContact" xml:space="preserve">
+    <value>编辑联系人</value>
+  </data>
+  <data name="EdiTe" xml:space="preserve">
+    <value>编辑公告</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="EnableDisable" xml:space="preserve">
+    <value>是否禁用</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="Enterthephonenumber" xml:space="preserve">
+    <value>输入手机号码（不要输入固定电话）</value>
+  </data>
+  <data name="Enterthesamepassword" xml:space="preserve">
+    <value>输入相同密码</value>
+  </data>
+  <data name="ExecutionTime" xml:space="preserve">
+    <value>执行时间</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>群组</value>
+  </data>
+  <data name="Group1" xml:space="preserve">
+    <value>作业群组</value>
+  </data>
+  <data name="GroupList" xml:space="preserve">
+    <value>群组列表</value>
+  </data>
+  <data name="GroupManagement" xml:space="preserve">
+    <value>群组管理</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>群组名称</value>
+  </data>
+  <data name="GroupName1" xml:space="preserve">
+    <value>群组名称</value>
+  </data>
+  <data name="GroupSettingforSMSMission" xml:space="preserve">
+    <value>为当前短信任务分配群组</value>
+  </data>
+  <data name="InputSMScontentplease" xml:space="preserve">
+    <value>输入短信内容</value>
+  </data>
+  <data name="Inputtemplatecontent" xml:space="preserve">
+    <value>输入模板内容</value>
+  </data>
+  <data name="JobClassName" xml:space="preserve">
+    <value>作业类名</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>最近一周</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="MessageList" xml:space="preserve">
+    <value>公告列表</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>消息通知</value>
+  </data>
+  <data name="MessagesManagement" xml:space="preserve">
+    <value>消息及通知</value>
+  </data>
+  <data name="MessageType" xml:space="preserve">
+    <value>公告类型</value>
+  </data>
+  <data name="MethodName" xml:space="preserve">
+    <value>方法名</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>短信任务</value>
+  </data>
+  <data name="Mission1" xml:space="preserve">
+    <value>查询任务种类</value>
+  </data>
+  <data name="MissionList" xml:space="preserve">
+    <value>任务列表</value>
+  </data>
+  <data name="MissionManagement" xml:space="preserve">
+    <value>任务管理</value>
+  </data>
+  <data name="MissionName" xml:space="preserve">
+    <value>任务名称</value>
+  </data>
+  <data name="ModifiedTime" xml:space="preserve">
+    <value>最后修改时间</value>
+  </data>
+  <data name="ModifyPassword" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="MoveIntoGroup" xml:space="preserve">
+    <value>移至分组</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="NameMaching" xml:space="preserve">
+    <value>匹配名称</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>新增公告</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="NextExecutionTime" xml:space="preserve">
+    <value>下次执行</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>未收到人数</value>
+  </data>
+  <data name="NumberMatching" xml:space="preserve">
+    <value>匹配电话</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>具体某天</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="OperationList" xml:space="preserve">
+    <value>操作列表</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>可选</value>
+  </data>
+  <data name="OptionalCronexpression" xml:space="preserve">
+    <value>可选，Cron表达式</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>顺序</value>
+  </data>
+  <data name="OtherNotice" xml:space="preserve">
+    <value>系统介绍公告</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Password1" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Phonenumber" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="PhoneNumber1" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="PhoneNumber2" xml:space="preserve">
+    <value>匹配电话号码</value>
+  </data>
+  <data name="Pleasechoosethesuperiorofthisdepartment" xml:space="preserve">
+    <value>请选择该部门属于哪个上级机构</value>
+  </data>
+  <data name="Pleasedescribethegroupoptional" xml:space="preserve">
+    <value>请描述群组功能（可选）</value>
+  </data>
+  <data name="Pleaseenteranewloginpassword" xml:space="preserve">
+    <value>请输入新的登录密码</value>
+  </data>
+  <data name="Pleaseenterasubject" xml:space="preserve">
+    <value>请输入备注</value>
+  </data>
+  <data name="Pleaseenterpassword" xml:space="preserve">
+    <value>请输入登录密码</value>
+  </data>
+  <data name="Pleaseenterpasswordagain" xml:space="preserve">
+    <value>请再次输入密码</value>
+  </data>
+  <data name="Pleaseentertheclassname" xml:space="preserve">
+    <value>请填写作业对应的类名称</value>
+  </data>
+  <data name="Pleaseenterthecontactname" xml:space="preserve">
+    <value>请输入联系人姓名</value>
+  </data>
+  <data name="Pleaseenterthecontentofthistemplate" xml:space="preserve">
+    <value>请输入该任务所属的模板内容</value>
+  </data>
+  <data name="Pleaseenterthecontrollername" xml:space="preserve">
+    <value>请填写控制器名称</value>
+  </data>
+  <data name="PleaseentertheCronStr" xml:space="preserve">
+    <value>请填写CronStr</value>
+  </data>
+  <data name="Pleaseenterthegroupname" xml:space="preserve">
+    <value>请填写群组名称</value>
+  </data>
+  <data name="Pleaseenterthegroupofthiswork" xml:space="preserve">
+    <value>请填写作业所属于的群组</value>
+  </data>
+  <data name="Pleaseenterthenameofright" xml:space="preserve">
+    <value>请填写权限名称</value>
+  </data>
+  <data name="Pleaseenterthenameofthearea" xml:space="preserve">
+    <value>请填写区域名称</value>
+  </data>
+  <data name="Pleaseenterthenameofthecontroller" xml:space="preserve">
+    <value>请填写控制器中方法名称</value>
+  </data>
+  <data name="Pleaseenterthenameofthedepartment" xml:space="preserve">
+    <value>请输入该部门的名称（只能填写中文）</value>
+  </data>
+  <data name="Pleaseenterthenameofthemission" xml:space="preserve">
+    <value>请填写任务名称（请输入中文）</value>
+  </data>
+  <data name="Pleaseentertherolename" xml:space="preserve">
+    <value>请填写角色名称</value>
+  </data>
+  <data name="PleaseenterthetemplateName" xml:space="preserve">
+    <value>请填写模板名称</value>
+  </data>
+  <data name="Pleaseenterthetemplatetypeinteger" xml:space="preserve">
+    <value>请输入模板类型（整数）</value>
+  </data>
+  <data name="Pleaseenterthetitlenomorethan50words" xml:space="preserve">
+    <value>请填写题目，长度不超过50字</value>
+  </data>
+  <data name="Pleaseentertheworktemplatesclassname" xml:space="preserve">
+    <value>请填写模板类名</value>
+  </data>
+  <data name="Pleaseentertheworktemplatesgroupname" xml:space="preserve">
+    <value>请填写模板群组名</value>
+  </data>
+  <data name="Pleaseenterusername" xml:space="preserve">
+    <value>请填写系统登录用户名</value>
+  </data>
+  <data name="Pleaseenterworkname" xml:space="preserve">
+    <value>请填写作业名称</value>
+  </data>
+  <data name="PleaseenteryouraccountandpasswordIfyouhaveanyproblemspleaseContacttheadministraTor" xml:space="preserve">
+    <value>请从左侧输入登录账号和密码登录
+如果遇到系统问题，请联系网络管理员。
+如果没有账号，请联系网络管理员。</value>
+  </data>
+  <data name="PleasefillinthetemplateName" xml:space="preserve">
+    <value>请填写模板名称</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>请选择</value>
+  </data>
+  <data name="Pleaseselectaperson" xml:space="preserve">
+    <value>请选中某一个人</value>
+  </data>
+  <data name="Pleaseselectthesuitablemissionforthistemplate" xml:space="preserve">
+    <value>请选择该模板所属的短信任务种类</value>
+  </data>
+  <data name="PleaseselectyourcommongroupsSelectedgroupswillappearsinthelistofmessagesendinginterface" xml:space="preserve">
+    <value>请选择你常用的短信群组
+（此群组会出现在发送界面的短信任务列表中）
+</value>
+  </data>
+  <data name="PleaseselectyourcommonmissionsSelectedmissionswillappearsinthelistofmessagesendinginterface" xml:space="preserve">
+    <value>请选择你常用的短信任务种类
+（此任务会出现在发送界面的短信任务列表中）</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>优先级</value>
+  </data>
+  <data name="Prompt" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>查询作业</value>
+  </data>
+  <data name="QueryControllerName" xml:space="preserve">
+    <value>查询控制器</value>
+  </data>
+  <data name="QueryMethodName" xml:space="preserve">
+    <value>查询方法名</value>
+  </data>
+  <data name="QueryRegionName" xml:space="preserve">
+    <value>查询区域名</value>
+  </data>
+  <data name="QueryRemarks" xml:space="preserve">
+    <value>查询备注</value>
+  </data>
+  <data name="QueryRightName" xml:space="preserve">
+    <value>查询权限名</value>
+  </data>
+  <data name="QueryRoleName" xml:space="preserve">
+    <value>查询角色名</value>
+  </data>
+  <data name="QueryUserName" xml:space="preserve">
+    <value>查询用户名</value>
+  </data>
+  <data name="Received" xml:space="preserve">
+    <value>收到</value>
+  </data>
+  <data name="Receiving" xml:space="preserve">
+    <value>接收状态</value>
+  </data>
+  <data name="Recent10MessagesofCurrentUser" xml:space="preserve">
+    <value>当前用户发送短信统计</value>
+  </data>
+  <data name="Recent10MessagesofCurrentUser1" xml:space="preserve">
+    <value>该用户近十条短信</value>
+  </data>
+  <data name="Recovery" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="Recovery1" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="Recycle" xml:space="preserve">
+    <value>回收站</value>
+  </data>
+  <data name="region" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="RegionName" xml:space="preserve">
+    <value>区域名</value>
+  </data>
+  <data name="ReleaseTime" xml:space="preserve">
+    <value>发布时间</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>记住我</value>
+  </data>
+  <data name="RequestType" xml:space="preserve">
+    <value>请求类型</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+  <data name="RightName" xml:space="preserve">
+    <value>权限名称</value>
+  </data>
+  <data name="RolesRightSettings" xml:space="preserve">
+    <value>为角色设置权限</value>
+  </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>角色管理</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>角色名称</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Save1" xml:space="preserve">
+    <value>保存分配结果</value>
+  </data>
+  <data name="Selectamission" xml:space="preserve">
+    <value>请先选择短信任务种类</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>选择日期</value>
+  </data>
+  <data name="SelectDepartment" xml:space="preserve">
+    <value>选择所属部门</value>
+  </data>
+  <data name="Selectonelineofdataatleast" xml:space="preserve">
+    <value>请至少选中一行数据</value>
+  </data>
+  <data name="SelecttheareaoftheDepartment" xml:space="preserve">
+    <value>选择该部门所在的区域</value>
+  </data>
+  <data name="Selectthedepartment" xml:space="preserve">
+    <value>选择任职部门</value>
+  </data>
+  <data name="Selectthetypeofmessage" xml:space="preserve">
+    <value>请选择公告类型</value>
+  </data>
+  <data name="Selecttheuppermenuforthispermission" xml:space="preserve">
+    <value>选择该权限所属的上级菜单</value>
+  </data>
+  <data name="Selecttheuppermenuforthispermission1" xml:space="preserve">
+    <value>选择该权限所属的上级菜单</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>共发送</value>
+  </data>
+  <data name="Send1" xml:space="preserve">
+    <value>发送作业</value>
+  </data>
+  <data name="SendNumber" xml:space="preserve">
+    <value>发送总人数</value>
+  </data>
+  <data name="SendNumber1" xml:space="preserve">
+    <value>发送短信条数</value>
+  </data>
+  <data name="SendSMS" xml:space="preserve">
+    <value>发送短信</value>
+  </data>
+  <data name="SendStatistics" xml:space="preserve">
+    <value>用户发送统计</value>
+  </data>
+  <data name="SendTime" xml:space="preserve">
+    <value>发送时间</value>
+  </data>
+  <data name="SetCommonGroup" xml:space="preserve">
+    <value>设置常用短信群组</value>
+  </data>
+  <data name="SetCommonMission" xml:space="preserve">
+    <value>设置常用短信任务</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>个人设置</value>
+  </data>
+  <data name="SetVIPcontacts" xml:space="preserve">
+    <value>设置VIP联系人</value>
+  </data>
+  <data name="ShowXXtoXXinXXrecords" xml:space="preserve">
+    <value>显示xx到xx，共xx条记录</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="SMS" xml:space="preserve">
+    <value>短信发送</value>
+  </data>
+  <data name="SMSContent" xml:space="preserve">
+    <value>短信内容</value>
+  </data>
+  <data name="SMSEditor" xml:space="preserve">
+    <value>短信编辑</value>
+  </data>
+  <data name="SMSMission" xml:space="preserve">
+    <value>短信任务</value>
+  </data>
+  <data name="SMSPlatformofNMEFC" xml:space="preserve">
+    <value>国家海洋环境预报中心短信系统</value>
+  </data>
+  <data name="SMSPlatformofNMEFC1" xml:space="preserve">
+    <value>国家海洋环境预报中心短信云平台</value>
+  </data>
+  <data name="SMSTaskName" xml:space="preserve">
+    <value>短信任务名称</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>短信统计</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>题目</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="SuitableMission" xml:space="preserve">
+    <value>所属任务</value>
+  </data>
+  <data name="SuperiorDepartment" xml:space="preserve">
+    <value>所属上级机构</value>
+  </data>
+  <data name="Suspend" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="SystemMaintenanceNotice" xml:space="preserve">
+    <value>系统维护公告</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>短信模板</value>
+  </data>
+  <data name="Templateclass" xml:space="preserve">
+    <value>模板类名</value>
+  </data>
+  <data name="TemplateGroupName" xml:space="preserve">
+    <value>模板群组名称</value>
+  </data>
+  <data name="TemplateName" xml:space="preserve">
+    <value>模板名称</value>
+  </data>
+  <data name="TemporaryContacts" xml:space="preserve">
+    <value>添加临时联系人</value>
+  </data>
+  <data name="Termination" xml:space="preserve">
+    <value>终止</value>
+  </data>
+  <data name="Themessagesendingtime" xml:space="preserve">
+    <value>作业执行的时间</value>
+  </data>
+  <data name="Thesmallerthenumberthehigherthepriority" xml:space="preserve">
+    <value>数字越小优先级越高</value>
+  </data>
+  <data name="Theswitchofdelayedsending" xml:space="preserve">
+    <value>是否开启定时发送</value>
+  </data>
+  <data name="Thetimeofworkexecution" xml:space="preserve">
+    <value>作业执行的时间</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>本月</value>
+  </data>
+  <data name="TimerOnOff" xml:space="preserve">
+    <value>开启定时发送</value>
+  </data>
+  <data name="TimerSetting" xml:space="preserve">
+    <value>设置发送时间</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>公告题目</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="TodaySendingRecordofCurrentUser" xml:space="preserve">
+    <value>用户当日发送短信统计</value>
+  </data>
+  <data name="TodaySendingRecordofCurrentUser1" xml:space="preserve">
+    <value>当日发送短信统计</value>
+  </data>
+  <data name="UnreadMessage" xml:space="preserve">
+    <value>未读消息</value>
+  </data>
+  <data name="UpperMenu" xml:space="preserve">
+    <value>上级菜单</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>发送人</value>
+  </data>
+  <data name="UsersRightsSettings" xml:space="preserve">
+    <value>用户权限设置</value>
+  </data>
+  <data name="UsersRightsSettings1" xml:space="preserve">
+    <value>分配权限</value>
+  </data>
+  <data name="UsersRoleSetting" xml:space="preserve">
+    <value>用户角色设置</value>
+  </data>
+  <data name="UsersRoleSetting1" xml:space="preserve">
+    <value>分配角色</value>
+  </data>
+  <data name="User1" xml:space="preserve">
+    <value>查询用户</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>用户管理</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="UserName1" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="VIP" xml:space="preserve">
+    <value>是否为VIP联系人</value>
+  </data>
+  <data name="VIP1" xml:space="preserve">
+    <value>是否VIP</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>是否可见</value>
+  </data>
+  <data name="WorkName" xml:space="preserve">
+    <value>作业名称</value>
+  </data>
+  <data name="Works" xml:space="preserve">
+    <value>作业管理</value>
+  </data>
+  <data name="WorksManagement" xml:space="preserve">
+    <value>作业调度</value>
+  </data>
+  <data name="WorkStatus" xml:space="preserve">
+    <value>作业状态</value>
+  </data>
+  <data name="WorksTemplate" xml:space="preserve">
+    <value>模板管理</value>
+  </data>
+  <data name="Youcanchangetheselecteddepartment" xml:space="preserve">
+    <value>选择指定部门中的全部联系人</value>
+  </data>
+  <data name="Youcanchangetheselectedgroup" xml:space="preserve">
+    <value>选择指定群组中的全部联系人</value>
+  </data>
+  <data name="Youcanselectcommonmissionandgroup" xml:space="preserve">
+    <value>设置你常用的
+短信任务及常用的群组</value>
+  </data>
+</root>
