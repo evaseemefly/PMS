@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 区域名称 的本地化字符串。
+        /// </summary>
+        internal static string AreaName {
+            get {
+                return ResourceManager.GetString("AreaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 确定要删除吗？ 的本地化字符串。
         /// </summary>
         internal static string Areyousureyouwanttodeleteit {
@@ -363,6 +372,15 @@ namespace Resources {
         internal static string ControllerName {
             get {
                 return ResourceManager.GetString("ControllerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 控制器名称 的本地化字符串。
+        /// </summary>
+        internal static string ControllerName1 {
+            get {
+                return ResourceManager.GetString("ControllerName1", resourceCulture);
             }
         }
         
@@ -700,6 +718,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 数据加载中请稍候…… 的本地化字符串。
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 注销 的本地化字符串。
         /// </summary>
         internal static string Logout {
@@ -750,6 +777,15 @@ namespace Resources {
         internal static string MethodName {
             get {
                 return ResourceManager.GetString("MethodName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 方法（权限）名称 的本地化字符串。
+        /// </summary>
+        internal static string MethodName1 {
+            get {
+                return ResourceManager.GetString("MethodName1", resourceCulture);
             }
         }
         
@@ -1123,6 +1159,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 请填写控制器中方法名称 的本地化字符串。
+        /// </summary>
+        internal static string Pleaseenterthemethodname {
+            get {
+                return ResourceManager.GetString("Pleaseenterthemethodname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 请填写权限名称 的本地化字符串。
         /// </summary>
         internal static string Pleaseenterthenameofright {
@@ -1137,15 +1182,6 @@ namespace Resources {
         internal static string Pleaseenterthenameofthearea {
             get {
                 return ResourceManager.GetString("Pleaseenterthenameofthearea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///  查找类似 请填写控制器中方法名称 的本地化字符串。
-        /// </summary>
-        internal static string Pleaseenterthenameofthecontroller {
-            get {
-                return ResourceManager.GetString("Pleaseenterthenameofthecontroller", resourceCulture);
             }
         }
         
@@ -1397,6 +1433,15 @@ namespace Resources {
         internal static string QueryUserName {
             get {
                 return ResourceManager.GetString("QueryUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 准备提交？ 的本地化字符串。
+        /// </summary>
+        internal static string Readytocommit {
+            get {
+                return ResourceManager.GetString("Readytocommit", resourceCulture);
             }
         }
         
@@ -2054,6 +2099,15 @@ namespace Resources {
         internal static string TodaySendingRecordofCurrentUser1 {
             get {
                 return ResourceManager.GetString("TodaySendingRecordofCurrentUser1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 未登录 的本地化字符串。
+        /// </summary>
+        internal static string Unlogin {
+            get {
+                return ResourceManager.GetString("Unlogin", resourceCulture);
             }
         }
         

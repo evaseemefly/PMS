@@ -6,37 +6,37 @@
 <script src="~/Scripts/MyScripts/Common/my_FormatDate.js"></script>
 <script src="~/Scripts/MyScripts/Common/Overload_ToLocaleDateString.js"></script>
 <script type="text/javascript">
-    
+
     var toolbar= [ {
         iconCls: 'icon-add',
-        text: "新增",
+        text: "@Resources.Language.New",
         handler: addRow@*addRow("@ViewBag.ShowAdd")*@
-        }, '-', 
+        }, '-',
         {
             iconCls: 'icon-remove',
-            text: "删除",
+            text: "@Resources.Language.Delete",
             handler: removeRow@*removeRow("@ViewBag.Del_url")*@
             }, '-',
            {
                iconCls: 'icon-edit',
-               text: "编辑",
+               text: "@Resources.Language.Edit",
                handler: editRow@*editRow("@ViewBag.ShowEdit")*@
                }]
 
     var myColumns = [[
                 { field: 'ID', title: 'ID', width:'5%', hidden: true },
-                { field: 'ActionInfoName', title: '权限名称', width: '10%' },
+                { field: 'ActionInfoName', title: '@Resources.Language.RightName', width: '10%' },
                 {
-                    field: 'SubTime', title: '创建时间', width: '15%',
+                    field: 'SubTime', title: '@Resources.Language.CreateTime', width: '15%',
                     formatter: function (value) {
                         return Date.getStrOfDate(value);
                     }
                 },
-                { field: 'AreaName', title: '区域名', width: '10%' },
-                { field: 'ControllerName', title: '控制器名', width: '10%' },
-                { field: 'ActionMethodName', title: '方法名', width: '10%' },
-                { field: 'Remark', title: '备注', width: '30%' },
-                { field: 'Sort', title: '顺序', width: '5%' }
+                { field: 'AreaName', title: '@Resources.Language.RegionName', width: '10%' },
+                { field: 'ControllerName', title: '@Resources.Language.ControllerName', width: '10%' },
+                { field: 'ActionMethodName', title: '@Resources.Language.MethodName', width: '10%' },
+                { field: 'Remark', title: '@Resources.Language.Remarks', width: '30%' },
+                { field: 'Sort', title: '@Resources.Language.Order', width: '5%' }
     ]]
     var queryModel = { ActionInfoName: "", AreaName: "", ControllerName: "", ActionMethodName: "", Remark: "" };
     function provideAction() {
@@ -63,7 +63,7 @@
     function CancelSend() {
         $("#editWindow").window('close');
     }
-    
+
 </script>
   
 <div class="easyui-window" title="title" id="editWindow" style="overflow: hidden;width:700px;height:420px" data-options="shadow:true,modal:true">

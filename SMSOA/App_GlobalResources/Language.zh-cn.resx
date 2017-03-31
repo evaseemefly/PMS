@@ -477,7 +477,7 @@
   <data name="Pleaseenterthenameofthearea" xml:space="preserve">
     <value>请填写区域名称</value>
   </data>
-  <data name="Pleaseenterthenameofthecontroller" xml:space="preserve">
+  <data name="Pleaseenterthemethodname" xml:space="preserve">
     <value>请填写控制器中方法名称</value>
   </data>
   <data name="Pleaseenterthenameofthedepartment" xml:space="preserve">
@@ -854,5 +854,23 @@
   <data name="Youcanselectcommonmissionandgroup" xml:space="preserve">
     <value>设置你常用的
 短信任务及常用的群组</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>数据加载中请稍候……</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>区域名称</value>
+  </data>
+  <data name="ControllerName1" xml:space="preserve">
+    <value>控制器名称</value>
+  </data>
+  <data name="MethodName1" xml:space="preserve">
+    <value>方法（权限）名称</value>
+  </data>
+  <data name="Readytocommit" xml:space="preserve">
+    <value>准备提交？</value>
+  </data>
+  <data name="Unlogin" xml:space="preserve">
+    <value>未登录</value>
   </data>
 </root>
