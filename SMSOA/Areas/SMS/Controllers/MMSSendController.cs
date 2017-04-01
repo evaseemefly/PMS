@@ -11,6 +11,7 @@ using ISMS;
 using PMS.Model;
 using PMS.Model.EqualCompare;
 using Fdfs.IBLL;
+using System.IO;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -144,12 +145,13 @@ namespace SMSOA.Areas.SMS.Controllers
             var file_stream = file.InputStream;
             using (var picture_stream = file_stream)
             {
-
+                BinaryReader reader = new BinaryReader(picture_stream);
+                var content = reader.ReadBytes((int)picture_stream.Length);
                 string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
                 //保存的图片的：文件名+拓展名
                 string fileNameIncludeExt;
                 //2.1最终在项目目录下创建Zip包,并获取路径
-                var path_zip = mmsSendBLL.CreateZip(picture_stream, fileDirectory, model.Content, out fileNameIncludeExt);
+                var path_zip = mmsSendBLL.CreateZip(new MemoryStream(content), fileDirectory, model.Content, out fileNameIncludeExt);
 
                 //2.2 将路径封装进实体模型
                 model.ZipUrl = path_zip;
@@ -176,7 +178,7 @@ namespace SMSOA.Areas.SMS.Controllers
                 var result_In2Db = mmsSendBLL.AfterSend(model, receive_temp /*testModel*/, combine_model.Model_MMS.phones.ToList());
                 if (result_In2Db)
                 {
-                    var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(picture_stream, fileNameIncludeExt, this.imgMaxSize);
+                    var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(new MemoryStream(content), fileNameIncludeExt, this.imgMaxSize);
                     this.Save2Fdfs(imgParam, receive_temp.msgid);
 
                 }

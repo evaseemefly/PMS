@@ -194,9 +194,10 @@ namespace SMSOA.Areas.Demo.Controllers
                 //2 将上传的文件读取为二进制数组
                 //2.1将上传的图片转成二进制图片
                 var file_stream = file.InputStream;
+                //file_stream.Flush
                 //BinaryReader binary_reader = new BinaryReader(file_stream);
-                //2.2读取为二进制数组 此处需要使用异步读取吗？
-                //var content = binary_reader.ReadBytes((int)file_stream.Length);
+                //2.2读取为二进制数组 *** 此处以后考虑需要使用异步读取
+                
                 //3.封装进发送model-----------Demo中暂时不做，信息直接封装进XML，正式时再做
                 #region 飞飞写的压缩程序，对图片进行压缩
                 //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
@@ -211,9 +212,16 @@ namespace SMSOA.Areas.Demo.Controllers
                 //需要加载 System.Drawing;
                 string fileName = guid_str;
                 string mmsContent = "这是彩信内容，以string方式输入";
-                PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
-                bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
 
+                BinaryReader reader = new BinaryReader(file_stream);
+                var content = reader.ReadBytes((int)file_stream.Length);                
+                //BinaryReader reader_test = new BinaryReader(ms);
+                //var content_test = reader_test.ReadBytes((int)ms.Length);
+
+                PicturePretreatment pp = new PicturePretreatment(new MemoryStream(content));//图片预处理实体
+
+
+                bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
                 //注意：处理中的图片格式可能会变化
                 //得到的pp.picture_stream是处理后的图片流
                 //byte[] picture_byte = pp.ToBytes();//图片二进制输出
@@ -222,7 +230,7 @@ namespace SMSOA.Areas.Demo.Controllers
 
                 //4.发送
                 #region 飞飞写的打zip包程序，组成Zip包并返回btye[]
-
+                
                 //-----------txt和smil------------------
                 TxtSmilSynthesis smilFile = new TxtSmilSynthesis(fileDirectory, fileName, pp.picture_format, mmsContent);
                 smilFile.outputFile();//生成txt和smil文件
@@ -236,6 +244,7 @@ namespace SMSOA.Areas.Demo.Controllers
                 //暂时发送指定的zip文件            
                 String fileNameWithExpand = fileName + ".zip";
                 string path = System.IO.Path.Combine(fileDirectory + @"Zip\", System.IO.Path.GetFileName(fileNameWithExpand));
+                
                 #endregion
                 try
                 {
@@ -252,7 +261,7 @@ namespace SMSOA.Areas.Demo.Controllers
                     //5.存入fastDFS,获取FileName
                     var fileNamewithExt = string.Format("{0}.{1}", fileName, "jpg");
 
-                    var imageParam = new PMS.Model.FdfsParam.ImageUploadParameter(pp.picture_stream, fileNamewithExt, 2);
+                    var imageParam = new PMS.Model.FdfsParam.ImageUploadParameter(new MemoryStream(content), fileNamewithExt, 2);
                     //此处的result中应加入是否成功的bool值或枚举对象
                     Save2Fdfs(imageParam,cid);
                     //var result = uploadBLL.UploadImage(imageParam);

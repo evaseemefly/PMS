@@ -18,6 +18,10 @@ namespace SMSOA.Areas.Demo.SendMMS
             picture_stream = ps;
             try
             {
+                //BinaryReader reader_source = new BinaryReader(ps);
+                //var content_source = reader_source.ReadBytes((int)ps.Length);
+                //BinaryReader reader_temp = new BinaryReader(picture_stream);
+                //var content = reader_temp.ReadBytes((int)picture_stream.Length);
                 picture_bitmap = new Bitmap(picture_stream);//读取为图片
                 picture_format = PicturePretreatment.ExtendedNameTest(picture_bitmap.RawFormat);//获取真实扩展名
             }
@@ -147,6 +151,7 @@ namespace SMSOA.Areas.Demo.SendMMS
             Image bmcpy = null;//生成图片
             Graphics gh = null;//处理用格式
             img = Image.FromStream(szfile);//读取待处理图片
+            
             bmcpy = new Bitmap(width, height);//新建生成图片，按照要求的大小
             gh = Graphics.FromImage(bmcpy);//按新要求建立格式
             gh.DrawImage(img, new Rectangle(0, 0, width, height));//转换函数
@@ -185,7 +190,7 @@ namespace SMSOA.Areas.Demo.SendMMS
 
             MemoryStream ms = new MemoryStream();
             myBitmap.Save(ms, myImageCodecInfo, myEncoderParameters);
-            szfile.Close();
+            //szfile.Close();
             return ms;
         }
         private static ImageCodecInfo GetEncoderInfo(String mimeType)
