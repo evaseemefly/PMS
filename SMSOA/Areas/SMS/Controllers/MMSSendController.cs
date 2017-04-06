@@ -142,11 +142,16 @@ namespace SMSOA.Areas.SMS.Controllers
             
             //2 图片处理
             HttpPostedFile file = files[0];
-            var file_stream = file.InputStream;
-            using (var picture_stream = file_stream)
+            //var file_stream = file.InputStream;
+            //BinaryReader reader = new BinaryReader(file_stream);
+            //var file_content = reader.ReadBytes((int)file_stream.Length);
+            using (var file_stream = file.InputStream)
             {
-                BinaryReader reader = new BinaryReader(picture_stream);
-                var content = reader.ReadBytes((int)picture_stream.Length);
+                //2.1 读取文件流后需要先转换为二进制数组
+                BinaryReader reader = new BinaryReader(file_stream);
+                // 读取流，转为二进制数组
+                //****注意流读取结束后游标会移至读取的位置，所以以后需要使用流的地方再将二进制数组转为memoryStream即可
+                var content = reader.ReadBytes((int)file_stream.Length);
                 string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
                 //保存的图片的：文件名+拓展名
                 string fileNameIncludeExt;
