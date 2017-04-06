@@ -1,5 +1,5 @@
 ﻿@{
-   
+
     string userMsg = null;
     if (ViewBag.UserInfo != "")
     {
@@ -7,7 +7,7 @@
     }
     else
     {
-        userMsg = "未登录";
+        userMsg = @Resources.Language.Unlogin;
     }
 }
 
@@ -16,13 +16,13 @@
 </script>
 
 <div>
-    <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#mm_user',iconCls:'icon-home-user'">当前用户: @userMsg </a>
+    <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#mm_user',iconCls:'icon-home-user'">@Resources.Language.CurrentUser: @userMsg </a>
     <div id="mm_user" style="width:150px;">
-        <div data-options="iconCls:'icon-home-personalsetting'" class="myconfig">个人设置(尚未开通)</div>
-        <div data-options="iconCls:'icon-home-setpassword'" class="changepwd" onclick="ResetPassword()">修改密码</div>
-        <div data-options="iconCls:'icon-home-setpassword'" class="changepwd">回收站(正在实现)</div>
+        <div data-options="iconCls:'icon-home-personalsetting'" class="myconfig">@Resources.Language.Settings</div>
+        <div data-options="iconCls:'icon-home-setpassword'" class="changepwd" onclick="ResetPassword()">@Resources.Language.ModifyPassword</div>
+        <div data-options="iconCls:'icon-home-setpassword'" class="changepwd">@Resources.Language.Recycle</div>
         <div class="menu-sep"></div>
-        <div data-options="iconCls:'icon-home-logoutyellow'" class="loginOut"><a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a></div>
+        <div data-options="iconCls:'icon-home-logoutyellow'" class="loginOut"><a href="/Admin/Home/LoginOut" style="color:#ffffff">@Resources.Language.Logout</a></div>
     </div> 
 </div>
 @*实现顶部的按钮对应的点击及其他相关方法*@

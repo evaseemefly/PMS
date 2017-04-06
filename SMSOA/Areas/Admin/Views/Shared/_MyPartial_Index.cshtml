@@ -32,7 +32,7 @@
 
         function addRow() {
 
-            $("#editWindow").window({ title: '新建权限' });
+            $("#editWindow").window({ title: '@Resources.Language.CreatingRights' });
             //打开编辑窗体
             $("#editWindow").window('open');
             //从指定页面中预读取数据
@@ -46,13 +46,13 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
             }
-            $("#editWindow").window({ title: '编辑权限' });
+            $("#editWindow").window({ title: '@Resources.Language.EditingRights' });
             $("#editWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -66,14 +66,14 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataatleast',
                     showType: 'show'
                 });
                 return;
             }
             //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
@@ -88,7 +88,7 @@
                    $("#datagrid").datagrid('reload');
                 //清楚所选中的行
                 $("#datagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
             }
             });
             }
@@ -101,7 +101,7 @@
         function afterEdit(msg,type) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
             if (type == 0) {
                 $("#editWindow").window('close');
                 //2 刷新当前页面
@@ -141,7 +141,7 @@
                 striped: true,
                 singleSelect: true,
                 url: url,
-                loadMsg: '数据加载中请稍后……',
+                loadMsg: '@Resources.Language.Loading',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5

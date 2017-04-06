@@ -75,7 +75,7 @@
                     animate: true  //是否显示动画效果
                 })
                 //2 加载手风琴
-                var array = [{ "id": 3, "text": "管理权限", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 33, "text": "发送短信", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 34, "text": "发送统计", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 35, "text": "系统管理", "state": null, "Checked": false, "attributes": null, "children": null }];                
+                var array = [{ "id": 3, "text": "@Resources.Language.Authority", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 33, "text": "@Resources.Language.SendSMS", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 34, "text": "@Resources.Language.SendStatistics1", "state": null, "Checked": false, "attributes": null, "children": null }, { "id": 35, "text": "@Resources.Language.SystemManagement", "state": null, "Checked": false, "attributes": null, "children": null }];
                 //$.each(array, function (i, e) {
                 //    //alert(e.text);
                 //    addPanel(e.text)
@@ -98,10 +98,10 @@
                     title: row.text,
                     //获取每一个当前对象中判断children是否为空
                     content: "<ul id='tNodeId" + row.id + "' ></ul>"
-                   
+
                 });
             }
-            
+
             function TreeContent(row) {
                 //判断当前对象中children是否为空
                 if (row.children.length == 0) {
@@ -128,7 +128,7 @@
                 },
                 animate:true
             });
-        
+
 
         function createTabs(treeNode) {
             var $tabs = $("#tabs"); //获取tabs的容器
@@ -206,7 +206,7 @@
             <a href="/Admin/Home/LoginOut" style="color:#ffffff">注销</a>*@
         </div>        
     </div>
-    <div data-options="region:'west',split:true,title:'操作列表'" style="width:130px; padding:0px;">
+    <div data-options="region:'west',split:true,title:'@Resources.Language.OperationList'" style="width:130px; padding:0px;">
         <div class="easyui-accordion" id="WestAccordion" style="width:100%;padding:0px">
         </div>
         <div class="easyui-panel" style="padding:0px;border:0px;overflow-x:hidden">

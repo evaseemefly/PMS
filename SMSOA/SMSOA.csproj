@@ -237,15 +237,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Language.en-us.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Language.en-us.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\Language.designer.cs">
       <DependentUpon>Language.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Language.zh-cn.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -711,7 +711,7 @@
   <ItemGroup>
     <Content Include="App_GlobalResources\Language.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Language.designer.cs</LastGenOutput>
+      <LastGenOutput>Language1.designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Areas\I18NDemo\zh-cn.resx" />
     <EmbeddedResource Include="App_GlobalResources\ResourceTest.resx">

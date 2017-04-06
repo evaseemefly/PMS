@@ -695,8 +695,8 @@ Selected missions will appears in the list of message sending interface.</value>
     <value>Query Method Name</value>
     <comment>查询方法名</comment>
   </data>
-  <data name="QueryRegionName" xml:space="preserve">
-    <value>Query Region Name</value>
+  <data name="QueryAreaName" xml:space="preserve">
+    <value>Query Area Name</value>
     <comment>查询区域名</comment>
   </data>
   <data name="QueryRemarks" xml:space="preserve">
@@ -743,12 +743,12 @@ Selected missions will appears in the list of message sending interface.</value>
     <value>Recycle</value>
     <comment>回收站</comment>
   </data>
-  <data name="region" xml:space="preserve">
-    <value>region</value>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
     <comment>区域</comment>
   </data>
-  <data name="RegionName" xml:space="preserve">
-    <value>Region Name</value>
+  <data name="AreaName1" xml:space="preserve">
+    <value>Area Name</value>
     <comment>区域名</comment>
   </data>
   <data name="ReleaseTime" xml:space="preserve">
@@ -1123,5 +1123,93 @@ Selected missions will appears in the list of message sending interface.</value>
   <data name="Unlogin" xml:space="preserve">
     <value>Unlogin</value>
     <comment>未登录</comment>
+  </data>
+  <data name="SendStatistics1" xml:space="preserve">
+    <value>Send Statistics</value>
+    <comment>发送统计</comment>
+  </data>
+  <data name="SystemManagement" xml:space="preserve">
+    <value>System Management</value>
+    <comment>系统管理</comment>
+  </data>
+  <data name="Selectonelineofdataplease" xml:space="preserve">
+    <value>Select one line of data please.</value>
+    <comment>请选择一行数据</comment>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+    <comment>删除成功</comment>
+  </data>
+  <data name="RoleEditing" xml:space="preserve">
+    <value>Role Editing</value>
+    <comment>编辑角色</comment>
+  </data>
+  <data name="ModifySuccess" xml:space="preserve">
+    <value>Modify Success</value>
+    <comment>修改成功</comment>
+  </data>
+  <data name="Twoinputpasswordisnotthesamepleaseinputagain" xml:space="preserve">
+    <value>Two input password is not the same, please input again</value>
+    <comment>两次输入的密码不一致，请重新输入</comment>
+  </data>
+  <data name="Doyouwanttodothis" xml:space="preserve">
+    <value>Do you want to do this?</value>
+    <comment>是否要执行此操作?</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+    <comment>错误</comment>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed</value>
+    <comment>操作失败</comment>
+  </data>
+  <data name="Pleaseconfirm" xml:space="preserve">
+    <value>Please confirm.</value>
+    <comment>请确认</comment>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Server Error</value>
+    <comment>服务器错误</comment>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+    <comment>操作成功</comment>
+  </data>
+  <data name="CreatingRights" xml:space="preserve">
+    <value>Creating Rights</value>
+    <comment>新建权限</comment>
+  </data>
+  <data name="CreatingRoles" xml:space="preserve">
+    <value>Creating Roles</value>
+    <comment>新建角色</comment>
+  </data>
+  <data name="CreatingUsers" xml:space="preserve">
+    <value>Creating Users</value>
+    <comment>新建用户</comment>
+  </data>
+  <data name="EditingRights" xml:space="preserve">
+    <value>Editing Rights</value>
+    <comment>编辑权限</comment>
+  </data>
+  <data name="EditingUsers" xml:space="preserve">
+    <value>Editing Users</value>
+    <comment>编辑用户</comment>
+  </data>
+  <data name="Missionnamemustbefilled" xml:space="preserve">
+    <value>Mission name must be filled.</value>
+    <comment>任务名称必须填写</comment>
+  </data>
+  <data name="NewUserName" xml:space="preserve">
+    <value>New User Name</value>
+    <comment>新用户名</comment>
+  </data>
+  <data name="ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtheroleinassignrolesbutton" xml:space="preserve">
+    <value>This right is given by roles, and cannot be unchecked. You can try to click "Disable" or editing the role in  "assign roles" button.</value>
+    <comment>该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员</comment>
+  </data>
+  <data name="WhetherGivenByRoles" xml:space="preserve">
+    <value>Whether Given By Roles</value>
+    <comment>是否由角色赋予</comment>
   </data>
 </root>
