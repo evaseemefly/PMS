@@ -237,6 +237,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Language.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.designer.cs">
+      <DependentUpon>Language.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.zh-cn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.zh-cn.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -269,6 +284,15 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
     <Compile Include="Areas\Demo\Controllers\MMSController.cs" />
     <Compile Include="Areas\Demo\DemoAreaRegistration.cs" />
+    <Compile Include="Areas\Demo\Models\Enum\MMSCommands_Enum.cs" />
+    <Compile Include="Areas\Demo\Models\MMSModel\ViewModel_MMSMessage.cs" />
+    <Compile Include="Areas\Demo\SendMMS\FastDFSUtil.cs" />
+    <Compile Include="Areas\Demo\SendMMS\PicturePretreatment.cs" />
+    <Compile Include="Areas\Demo\SendMMS\MMSSend.cs" />
+    <Compile Include="Areas\Demo\SendMMS\TxtSmilSynthesis.cs" />
+    <Compile Include="Areas\Demo\SendMMS\ZipTools.cs" />
+    <Compile Include="Areas\I18NDemo\I18NDemoAreaRegistration.cs" />
+    <Compile Include="Areas\I18NDemo\Controllers\InternationalizationController.cs" />
     <Compile Include="Areas\Job\Controllers\InstanceController.cs" />
     <Compile Include="Areas\Job\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Job\JobAreaRegistration.cs" />
@@ -278,6 +302,7 @@
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\Recycled\Controllers\HomeController.cs" />
     <Compile Include="Areas\Recycled\RecycledAreaRegistration.cs" />
+    <Compile Include="Areas\SMS\Controllers\MMSSendController.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
@@ -300,6 +325,11 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyExceptionAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_GlobalResources\ResourceTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceTest.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -334,6 +364,7 @@
     <Content Include="Images\Icon\Contact\phonebook.png" />
     <Content Include="Images\Image\page404.jpg" />
     <Content Include="Libs\Common.Logging.dll" />
+    <Content Include="Libs\FastDFS.Client.dll" />
     <Content Include="Libs\Spring.Core.dll" />
     <Content Include="Libs\Spring.Core.xml" />
     <Content Include="Libs\Spring.Web.Mvc4.dll" />
@@ -406,7 +437,7 @@
     <Content Include="Areas\SMS\Views\Shared\_Layout_Send.cshtml" />
     <Content Include="Areas\SMS\Views\Send\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Send\_Partial_Send_Body.cshtml" />
-    <Content Include="Areas\SMS\Views\Send\_Partial_Send_EditWin.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\_Partial_Send_EditWin.cshtml" />
     <Content Include="Areas\SMS\Views\Shared\_Layout_Statistics.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_Last10.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\_Partial_Statistics_CurrentDay.cshtml" />
@@ -479,9 +510,16 @@
     <Content Include="Areas\Demo\Views\web.config" />
     <Content Include="Areas\Demo\Views\MMS\Index.cshtml" />
     <Content Include="Areas\Demo\Views\Shared\_Layout_Common.cshtml" />
+    <Content Include="Areas\Contacts\Views\Shared\_Layout_SMSMission_MMSInfo.cshtml" />
+    <Content Include="Areas\SMS\Views\MMSSend\Index.cshtml" />
+    <Content Include="Areas\SMS\Views\MMSSend\_Partial_Send_MMS_Body.cshtml" />
+    <Content Include="Areas\I18NDemo\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\I18NDemo\Views\Internationalization\Index.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Areas\SMS\Views\Send\ShowSetWindow.cshtml" />
+    <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\ShowEditTemplate-7月8日备份.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index.cshtml" />
     <Content Include="Areas\SMS\Views\Statistics\Index_AdvancedSearch.cshtml" />
@@ -568,12 +606,14 @@
     <Content Include="Views\Shared\_Admin_AddUser_Layout.cshtml" />
     <Content Include="Views\Shared\_Contact_AddEdit_Layout.cshtml" />
     <Content Include="Views\Shared\_Partial_loadDataGrid.cshtml" />
+    <Content Include="unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
-    <Folder Include="Areas\Demo\Models\" />
     <Folder Include="Areas\Job\Models\" />
     <Folder Include="Areas\Login\Models\" />
     <Folder Include="Areas\Login\Views\Shared\" />
@@ -607,6 +647,14 @@
     <ProjectReference Include="..\DelegateSMS\DelegateSMS.csproj">
       <Project>{feedb0cf-1934-4f23-aabd-e69f0500642b}</Project>
       <Name>DelegateSMS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.BLL\Fdfs.BLL.csproj">
+      <Project>{81978320-376f-47b7-bdd0-7c259ba7fd5d}</Project>
+      <Name>Fdfs.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.IBLL\Fdfs.IBLL.csproj">
+      <Project>{0fc982c5-f9c3-48ac-b8f0-37c08a5fcfd4}</Project>
+      <Name>Fdfs.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
@@ -659,6 +707,26 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Language.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Language.designer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Areas\I18NDemo\zh-cn.resx" />
+    <EmbeddedResource Include="App_GlobalResources\ResourceTest.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceTest.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Language.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Language.zh-cn.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.zh-cn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Resources\ResourceE.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

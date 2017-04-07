@@ -1,5 +1,5 @@
 ﻿<script type="text/javascript">
-    var istiming = false;
+    
     $(function () {
         $('#isTiming').switchbutton({
             checked: false,
@@ -34,10 +34,10 @@
                 <form id="ff" method="post">
                     <table cellspacing="10" style="font-size:15px;">
                         <tr>
-                            <td>短信任务:</td>
+                            <td>短彩信任务:</td>
                             <td class="comment">
                                 <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select><br />
-                                请先选择短信任务种类
+                                请先选择短彩信任务种类
                             </td>
                         </tr>
                         <tr>
@@ -80,7 +80,7 @@
                     </table>
                 </form>
                 <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
-                    <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSend()" style="width:80px">发送短信</a>
+                    <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSend('SMS')" style="width:80px">发送短信</a>
                     <a class="easyui-linkbutton c2" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="ClearContent()" style="width:80px">清除</a>
                     @*<a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>*@
                 </div>

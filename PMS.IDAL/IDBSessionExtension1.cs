@@ -10,6 +10,21 @@ namespace PMS.IDAL
 	  #endregion
 
 	  
+	  #region IFdfsContentDAL
+      IDAL.IFdfsContentDAL FdfsContentDAL { get; set; }
+	  #endregion
+
+	  
+	  #region IFdfsStorageDAL
+      IDAL.IFdfsStorageDAL FdfsStorageDAL { get; set; }
+	  #endregion
+
+	  
+	  #region IFdfsTrackerDAL
+      IDAL.IFdfsTrackerDAL FdfsTrackerDAL { get; set; }
+	  #endregion
+
+	  
 	  #region IJ_JobInfoDAL
       IDAL.IJ_JobInfoDAL J_JobInfoDAL { get; set; }
 	  #endregion

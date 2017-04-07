@@ -1,0 +1,4 @@
+D:\VSWorkSpace\nmefc\PMS\PMS.IModel\bin\Debug\PMS.IModel.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IModel\bin\Debug\PMS.IModel.pdb
+D:\VSWorkSpace\nmefc\PMS\PMS.IModel\obj\Debug\PMS.IModel.dll
+D:\VSWorkSpace\nmefc\PMS\PMS.IModel\obj\Debug\PMS.IModel.pdb

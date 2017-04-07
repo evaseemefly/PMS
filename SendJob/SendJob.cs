@@ -7,9 +7,9 @@ using BaseJob;
 using Quartz;
 using PMS.IBLL;
 using PMS.BLL;
-using ISMS;
 using SMSFactory;
 using Common;
+using ISMS;
 
 namespace JobInstances
 {
@@ -50,14 +50,15 @@ namespace JobInstances
             //其他信息: 在 ServiceModel 客户端配置部分中，找不到引用协定“ServiceReference_QuartzService.IJobService”的默认终结点元素。这可能是因为未找到应用程序的配置文件，或者是因为客户端元素中找不到与此协定匹配的终结点元素。
             ISMSSend send = new SMSFactory.SMSSend();
 
-            PMS.Model.SMSModel.SMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();
+            //PMS.Model.SMSModel.SMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();
+            PMS.IModel.ISMSModel_Receive receive_model = new PMS.Model.SMSModel.SMSModel_Receive();
 
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
             //send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = combine_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
             try
             {
-                send.SendMsg(combine_model, out receive_model);
+                send.SendMsg(combine_model, out receive_model,false);
                 LogHelper.WriteLog(string.Format("msgid:{0}已发送", combine_model.Model_Send.msgid));
             }
             catch (Exception ex)

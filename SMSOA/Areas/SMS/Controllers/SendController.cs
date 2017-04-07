@@ -15,6 +15,7 @@ using PMS.Model.ViewModel;
 using PMS.Model.SMSModel;
 using JobManagement;
 
+
 namespace SMSOA.Areas.SMS.Controllers
 {
     public class SendController : Admin.Controllers.BaseController
@@ -128,7 +129,7 @@ namespace SMSOA.Areas.SMS.Controllers
         public ActionResult GetPersonByMission(int mid)
         {
 
-            var list_person = smsMissionBLL.GetPersonByMission(mid, true);
+            var list_person = smsMissionBLL.GetPersonByMission(mid,PMS.Model.Enum.MMS_Enum.sms, true);
             #region 8月16日 注释掉
             ////1 根据mid获取指定任务对象
             //var mission = smsMissionBLL.GetListBy(s => s.SMID == mid).FirstOrDefault();
@@ -375,7 +376,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
 
-        private bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,out SMSModel_Receive receive)
+        private bool DoSendNow(PMS.Model.CombineModel.SendAndMessage_Model model,out /*SMSModel_Receive*/ PMS.IModel.ISMSModel_Receive receive)
         {
             //重新梳理并做抽象
             #region 暂时注释掉
@@ -518,7 +519,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             model.Model_Send = sendMsg;
             //PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
-             smsSendBLL.SendMsg(model, out /*response*/receive);
+             smsSendBLL.SendMsg(model, out /*response*/receive,false);
             //receive = new SMSModel_Receive();
             return true;
         }
@@ -557,6 +558,8 @@ namespace SMSOA.Areas.SMS.Controllers
 
             StringRedisHelper redisStrhelper = new StringRedisHelper();
             redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));
+            //2017年2月4日 添加释放资源
+            redisStrhelper.Dispose();
             return true;
         }
 
@@ -574,7 +577,8 @@ namespace SMSOA.Areas.SMS.Controllers
             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
             if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
-            SMSModel_Receive receive = new SMSModel_Receive();
+            //SMSModel_Receive receive = new SMSModel_Receive();
+            PMS.IModel.ISMSModel_Receive receive = new SMSModel_Receive();
             #region 11月14日已做修改，判断是定时还是实时发送在SMSFactory中的SMSSend中判断，此处暂时注释掉
             //SendJobManagement sendjobManagement = new SendJobManagement();
             //if (model.isTiming)
@@ -613,14 +617,19 @@ namespace SMSOA.Areas.SMS.Controllers
             //    result = "0"
             //};
             #endregion
+            var receive_model = receive as SMSModel_Receive;
 
-            //AfterSend(combine_model.Model_Message, receive/*testModel*/, combine_model.Model_Send.phones.ToList());
+            //if (receive_model.msgid != null)
+            //{
+            //    AfterSend(combine_model.Model_Message, receive_model /*testModel*/, combine_model.Model_Send.phones.ToList());
+            //}
+            
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");
             //}
 
-            if ("0".Equals(receive.result)&&isOk_Send)
+            if ("0".Equals((receive as SMSModel_Receive).result)&&isOk_Send)
             {
                 //6 查询发送状态(是否加入等待时间？)
                 return Content("ok");

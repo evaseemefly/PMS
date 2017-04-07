@@ -51,6 +51,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExtEntityBLL\ExtEntity_Mission.cs" />
+    <Compile Include="FdfsStorageBLL.cs" />
     <Compile Include="J_JobInfoBLL.cs" />
     <Compile Include="J_JobTemplateBLL.cs" />
     <Compile Include="N_NewsBaseBLL.cs" />

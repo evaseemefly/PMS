@@ -1,0 +1,69 @@
+﻿
+<div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
+    <div data-options="region:'east',split:true" title="联系人列表" @*dataoptions="fit:true"*@ style="width:43%;">
+        <table class="easyui-datagrid" id="person_temp_datagrid" title="添加临时联系人" data-options="" style="width:98%;height:30%"></table>
+        <table class="easyui-datagrid" title="联系人列表" id="persondatagrid" data-options="" style="width:98%;height:69%"></table>
+
+    </div>
+    <div id="tb">
+        <input class="easyui-textbox" id="txt_addPerson" data-options="buttonText:'添加',buttonIcon:'icon-add',prompt:'添加临时联系人...',onClickButton:function(){append()},validType:'Mobile'" } style="width:60%;">
+    </div>
+    <div data-options="region:'center'" title="短信编辑" style="width:70%">
+        <div style="padding:10px 30px 20px 10px">
+            <form id="ff" method="post" enctype="multipart/form-data">
+                <table cellspacing="10" style="font-size:15px;">
+                    <tr>
+                        <td>短彩信任务:</td>
+                        <td class="comment">
+                            <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select><br />
+                            请先选择短彩信任务种类
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>修改群组:</td>
+                        <td class="comment">
+                            <select class="easyui-combogrid" id="group_combogrid" multiple name="group" style="width:150px"></select><br />
+                            选择指定群组中的全部联系人
+                            @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>修改部门:</td>
+                        <td class="comment">
+                            <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" panelHeight="auto" style="width:150px" multiple data-options=""></select><br />
+                            选择指定部门中的全部联系人
+                            @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
+                        </td>
+                        <td>彩信题目</td>
+                        <td class="comment">
+                            <input class="easyui-textbox" name="MMSTitle" id="MMSTitle" value="国家海洋预报台" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>设置常用任务及群组:</td>
+                        <td class="comment">
+                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="showEditWindow()">设置</a><br />
+                            设置你常用的<br />任务及常用的群组
+                        </td>
+                        <td>上传彩信图片：</td>
+                        <td class="comment">
+                            <input id="filebox_image" class="easyui-filebox" name="file" data-options="prompt:'请选择一个文件...'" style="width:100%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>彩信内容:</td>
+                        <td colspan="3" class="comment"><input class="easyui-textbox" name="message" id="message" data-options="multiline:true,prompt:'输入彩信内容...'" style="height:200px;width:400px"></td>
+                    </tr>
+                </table>
+            </form>
+            <div data-options="region:'south',border:false" style="text-align:right;height:38px; padding:5px 0 0;">
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSend('MMS')" style="width:80px">发送彩信</a>
+                <a class="easyui-linkbutton c2" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="ClearContent()" style="width:80px">清除</a>
+                @*<a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>*@
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

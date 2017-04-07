@@ -18,6 +18,45 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	FdfsContentBLL
+    public partial class FdfsContentBLL : BaseBLL<FdfsContent>, IFdfsContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为FdfsContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.FdfsContentDAL;
+        }
+    }
+	#endregion
+	   #region	FdfsStorageBLL
+    public partial class FdfsStorageBLL : BaseBLL<FdfsStorage>, IFdfsStorageBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为FdfsStorageDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.FdfsStorageDAL;
+        }
+    }
+	#endregion
+	   #region	FdfsTrackerBLL
+    public partial class FdfsTrackerBLL : BaseBLL<FdfsTracker>, IFdfsTrackerBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为FdfsTrackerDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.FdfsTrackerDAL;
+        }
+    }
+	#endregion
 	   #region	J_JobInfoBLL
     public partial class J_JobInfoBLL : BaseBLL<J_JobInfo>, IJ_JobInfoBLL
     {	

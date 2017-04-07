@@ -112,6 +112,56 @@ namespace QuartzServiceLib
             }
         }
 
+        #region 1 添加任务计划
+        /// <summary>
+        /// 根据工作对象 添加任务计划
+        /// 作业需要含UID
+        /// </summary>
+        /// <param name="jobInfo">作业（含UID）</param>
+        /// <param name="data_temp">向作业调度中传的临时数据</param>
+        /// <returns></returns>
+        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp)
+        {
+            //1 根据Job的类名通过反射的方式创建IJobDetial
+            IBaseResponse response = new BaseResponse() { Success = false };
+            //1月20日
+            //在作业工厂类 创建实例方法中 对代码进行修改，若出错则返回null
+            var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
+
+            if (job == null)
+            {
+                response.Message = string.Format("创建作业实例时出错");
+            }
+            //2 创建定时器
+            var trigger = JobFactory.CreateTrigger(jobInfo);
+
+            //3 将定时器加入job中
+            //var sche = new SchedulerFactory().GetScheduler();
+            try
+            {
+                //若调度池为空，则初始化
+                if (sche == null)
+                {
+                    InitScheduler();
+                }
+                sche.ScheduleJob(job, trigger);
+                //4 启动工作
+                //不启动该调度池
+                //sche.Start();
+
+                response.Success = true;
+                response.Message = string.Format("作业已添加至调度池中");
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Source;
+                //response.Message = string.Format("作业添加至调度池时出错");
+            }
+
+            return response;
+        }
+        #endregion
         #region 2 添加监听器——可用此种方式实现作业执行后更新数据库中状态——未使用此种方式
         /// <summary>
         /// 为指定的作业添加监听器
@@ -279,53 +329,7 @@ namespace QuartzServiceLib
         }
         #endregion
 
-        #region 1 添加任务计划
-        /// <summary>
-        /// 根据工作对象 添加任务计划
-        /// 作业需要含UID
-        /// </summary>
-        /// <param name="jobInfo">作业（含UID）</param>
-        /// <param name="data_temp">向作业调度中传的临时数据</param>
-        /// <returns></returns>
-        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp)
-        {
-            //1 根据Job的类名通过反射的方式创建IJobDetial
-            var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
-            IBaseResponse response = new BaseResponse() { Success = false };
-            if (job == null)
-            {
-                response.Message = string.Format("创建作业实例时出错");
-            }
-            //2 创建定时器
-            var trigger = JobFactory.CreateTrigger(jobInfo);
-
-            //3 将定时器加入job中
-            //var sche = new SchedulerFactory().GetScheduler();
-            try
-            {
-                //若调度池为空，则初始化
-                if (sche == null)
-                {
-                    InitScheduler();
-                }
-                sche.ScheduleJob(job, trigger);
-                //4 启动工作
-                //不启动该调度池
-                //sche.Start();
-
-                response.Success = true;
-                response.Message = string.Format("作业已添加至调度池中");
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.Message = ex.Source;
-                //response.Message = string.Format("作业添加至调度池时出错");
-            }
-            
-            return response;
-        }
-        #endregion
+       
 
        
     }

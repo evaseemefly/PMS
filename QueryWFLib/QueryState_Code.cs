@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Activities;
-using ISMS;
 using PMS.IBLL;
 using PMS.Model.SMSModel;
+using ISMS;
 
 namespace QueryWFLib
 {
@@ -57,19 +57,25 @@ namespace QueryWFLib
         {
             //IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
             //以后通过spring .net 实现
-            state = 1;
+            //设置状态初始值为未知状态
+            state = (int)PMS.Model.Enum.QueryState_Enum.unknown;
             ISMSQuery smsQuery = new SMSFactory.SMSQuery();
 
             IS_SMSContentBLL smsContentBLL = new PMS.BLL.S_SMSContentBLL();
             IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
 
-            string account = "dh74381"; //账号"dh74381";
-            string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
+            //2017-01-22 通过config帮助类从配置文件中读取账号及密码
+            //string account = "dh74381"; //账号"dh74381";
+            //string passWord = "uAvb3Qey";//密码 = "uAvb3Qey";
+
+            Common.Config.SMSSignConfigHelper smsSign = new Common.Config.SMSSignConfigHelper();
+
             //6 查询发送状态(是否加入等待时间？)
             SMSModel_Query queryMsg = new SMSModel_Query()
             {
-                account = account,
-                password = passWord
+                account = smsSign.account,
+                password = smsSign.password
+
                 //phoneNums=model.PhoneNums
             };
             List<SMSModel_QueryReceive> list_QueryReceive;
@@ -77,16 +83,16 @@ namespace QueryWFLib
             //根据传入的信息进行查询，并有一个状态信息集合
             bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
             //根据传入的状态集合进行判断当前的状态
-            var index_state = smsQuery.GetQueryState(list_QueryReceive);
+            var enum_state = smsQuery.GetQueryState(list_QueryReceive);
 
             //为变量赋值
             list_queryReceive = list_QueryReceive;
-            //state = index_state;
+            state =(int)enum_state;
 
             if (!isGetReturnMsg)
             {
                 //查询结果有问题，跳出本次查询
-                state = 2;
+                state = (int)PMS.Model.Enum.QueryState_Enum.error;
                 return;
                 // return Content("服务器错误");
             }

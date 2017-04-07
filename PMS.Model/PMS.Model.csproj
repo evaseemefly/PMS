@@ -33,6 +33,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="FastDFS.Client">
+      <HintPath>..\SMSOA\Libs\FastDFS.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,8 +58,11 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CombineModel\BaseMessage_Model.cs" />
+    <Compile Include="CombineModel\MMSSendAndMsg_Model.cs" />
     <Compile Include="CombineModel\SendAndMessage_Model.cs" />
     <Compile Include="Dictionary\MethodTypeDictonary.cs" />
+    <Compile Include="Dictionary\MMSDictionary.cs" />
     <Compile Include="Dictionary\Quartz_TriggerStateDictionary.cs" />
     <Compile Include="Dictionary\RecycledTypeDictonary.cs" />
     <Compile Include="Dictionary\SMSQueryDictionary.cs" />
@@ -77,10 +83,12 @@
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
+    <Compile Include="Enum\FileExt_Enum.cs" />
     <Compile Include="Enum\JobState_Enum.cs" />
     <Compile Include="Enum\JobType_Enum.cs" />
     <Compile Include="Enum\JobUrl_Enum.cs" />
     <Compile Include="Enum\MatchCondition_Enum.cs" />
+    <Compile Include="Enum\MMSCommands_Enum.cs" />
     <Compile Include="Enum\MMS_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
@@ -98,6 +106,21 @@
     <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
     <Compile Include="ExtensionModel\UserInfo.cs" />
+    <Compile Include="FdfsContent.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdfsParam\BaseDownloadParameter.cs" />
+    <Compile Include="FdfsParam\BaseUploadParameter.cs" />
+    <Compile Include="FdfsParam\FileDownParameter.cs" />
+    <Compile Include="FdfsParam\FileUploadParameter.cs" />
+    <Compile Include="FdfsParam\ImageDownParameter.cs" />
+    <Compile Include="FdfsParam\ImageUploadParameter.cs" />
+    <Compile Include="FdfsStorage.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdfsTracker.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormatModel\MyAjaxModel.cs" />
     <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
     <Compile Include="JobDataModel\BaseJobDataModel.cs" />
@@ -109,6 +132,12 @@
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Message\BaseResponse.cs" />
+    <Compile Include="Message\Fdfs\BaseDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\BaseUploadResult.cs" />
+    <Compile Include="Message\Fdfs\FileDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\FileUploadResult.cs" />
+    <Compile Include="Message\Fdfs\ImageDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\ImageUploadResult.cs" />
     <Compile Include="Message\IBaseResponse.cs" />
     <Compile Include="MiddlewareModel\ActionInfo.cs" />
     <Compile Include="MiddlewareModel\J_JobInfo.cs" />
@@ -199,6 +228,12 @@
     <Compile Include="R_UserInfo_SMSMission.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="SMSModel\BaseModel_Receive.cs" />
+    <Compile Include="SMSModel\MMSModel_Query.cs" />
+    <Compile Include="SMSModel\MMSModel_QueryReceive.cs" />
+    <Compile Include="SMSModel\MMSModel_Receive.cs" />
+    <Compile Include="SMSModel\MMSModel_Receive_Failphones.cs" />
+    <Compile Include="SMSModel\MMSModel_Send.cs" />
     <Compile Include="SMSModel\SMSModel_Query.cs" />
     <Compile Include="SMSModel\SMSModel_QueryReceive.cs" />
     <Compile Include="SMSModel\SMSModel_Receive.cs" />
@@ -238,6 +273,7 @@
     <Compile Include="ViewModel\ViewModel_JobTemplate.cs" />
     <Compile Include="ViewModel\ViewModel_Message.cs" />
     <Compile Include="ViewModel\ViewModel_Mission_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_MMSMessage.cs" />
     <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
     <Compile Include="ViewModel\ViewModel_News.cs" />
     <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
@@ -292,6 +328,10 @@
       <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
       <Name>PMS.IModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MMSModel\" />
+    <Folder Include="ResultModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

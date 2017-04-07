@@ -9,6 +9,21 @@ namespace PMS.IBLL
         
 
     }
+	    public partial interface IFdfsContentBLL:IBaseBLL<FdfsContent>
+    {
+        
+
+    }
+	    public partial interface IFdfsStorageBLL:IBaseBLL<FdfsStorage>
+    {
+        
+
+    }
+	    public partial interface IFdfsTrackerBLL:IBaseBLL<FdfsTracker>
+    {
+        
+
+    }
 	    public partial interface IJ_JobInfoBLL:IBaseBLL<J_JobInfo>
     {
         

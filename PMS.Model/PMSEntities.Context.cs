@@ -51,5 +51,8 @@ namespace PMS.Model
         public DbSet<J_JobTemplate> J_JobTemplate { get; set; }
         public DbSet<J_JobInfo> J_JobInfo { get; set; }
         public DbSet<QRTZ_TRIGGERS> QRTZ_TRIGGERS { get; set; }
+        public DbSet<FdfsContent> FdfsContent { get; set; }
+        public DbSet<FdfsStorage> FdfsStorage { get; set; }
+        public DbSet<FdfsTracker> FdfsTracker { get; set; }
     }
 }

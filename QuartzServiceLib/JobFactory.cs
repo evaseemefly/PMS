@@ -22,10 +22,20 @@ namespace QuartzServiceLib
         public static IJobDetail CreateJobInstance(IJ_JobInfo jobInfo, IJobData jobdatamap)
         {
             //1 通过反射的方式创建Job实例
-            IJob job_temp = JobAbstractFactory.CreateJob(jobInfo.JobClassName);
+            IJob job_temp = null;
+            IJobDetail job = null;
+            try
+            {
+                job_temp = JobAbstractFactory.CreateJob(jobInfo.JobClassName);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }           
             //2 获取创建的Job实例的Type
             Type type = job_temp.GetType();
-            IJobDetail job = null;
+            
             #region 注释掉用以下方式替代
             //var obj= Activator.CreateInstance(type);
 
@@ -42,11 +52,12 @@ namespace QuartzServiceLib
                                     .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)
                                     .UsingJobData("UID", jobInfo.UID)
                                     .UsingJobData(jobdatamap.JobDataKey, SerializerHelper.SerializerToString(jobdatamap))        //添加一个需要传向作业调度中的对象（发送对象——含一些必要的信息）
+                                    
                                     .Build();
             }
             catch (Exception)
             {
-
+                
             }
 
             return job;
@@ -73,7 +84,7 @@ namespace QuartzServiceLib
             //根据条件添加Cron表达式
             if (jobInfo.CronStr != null)
             {
-                trigger.WithCronSchedule(jobInfo.CronStr);
+               trigger= trigger.WithCronSchedule(jobInfo.CronStr);
                 //trigger= trigger.WithCronSchedule("0/10 * * * * ?");
             }
 

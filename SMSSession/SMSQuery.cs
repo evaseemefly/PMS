@@ -97,6 +97,7 @@ namespace SMSFactory
             //2.2 将接收到的短信发送回执转换为对象
             //此处有问题           
             list_receiveModel = ObjTransform.Xml2Model_queryReceiveMsg(returnMsg);
+            //注意此时传入的smsid为null，注意！！
             if (this.CheckQueryReceiveLegal(smsdata.smsId, list_receiveModel))
             {
                 return true;

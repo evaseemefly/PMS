@@ -42,6 +42,9 @@
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FastDFS.Client">
+      <HintPath>..\SMSOA\Libs\FastDFS.Client.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -51,6 +54,22 @@
     </Reference>
     <Reference Include="Memcached.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
       <HintPath>..\packages\Memcached.Client.1.0.0\lib\Memcached.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -94,15 +113,24 @@
     <Compile Include="Attributes\SkipPemissionAttribute.cs" />
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="Config\FastDFSConfigHelper.cs" />
     <Compile Include="Config\QueryConfigHelper.cs" />
     <Compile Include="Config\RedisConfigHelper.cs" />
+    <Compile Include="Config\SMSSignConfigHelper.cs" />
+    <Compile Include="I18N\CultureAwareHttpModule.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombobox.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Common.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Group.cs" />
     <Compile Include="EasyUIFormat\ToEasyUICombogrid_Mission.cs" />
     <Compile Include="Encryption.cs" />
+    <Compile Include="FastDFS\FastDFSHelper.cs" />
+    <Compile Include="FastDFS\fastDFSTestClient.cs" />
+    <Compile Include="FileHelper.cs" />
+    <Compile Include="Ioc\UnityServiceLocator.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MemcacheHelper.cs" />
+    <Compile Include="MMSZipProcessing.cs" />
+    <Compile Include="PicturePretreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quartz\Job\QueryJob.cs" />
     <Compile Include="Quartz\QuartzHelper.cs" />
@@ -110,16 +138,20 @@
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="Query\QueryHelper.cs" />
     <Compile Include="Redis\BaseRedisHelper.cs" />
+    <Compile Include="Redis\BaseRedisOperatHelper.cs" />
     <Compile Include="Redis\ListReidsHelper.cs" />
     <Compile Include="Redis\RedisConfig.cs" />
     <Compile Include="Redis\RedisHelper.cs" />
     <Compile Include="Redis\HashRedisHelper.cs" />
     <Compile Include="Redis\StringRedisHelper.cs" />
+    <Compile Include="Redis\StringReidsHelper_test.cs" />
     <Compile Include="Redis\ZSetRedisHelper.cs" />
     <Compile Include="SerializerHelper.cs" />
+    <Compile Include="TxtSmilSynthesis.cs" />
     <Compile Include="ValidateCode.cs" />
     <Compile Include="WorkFlowAppHelper.cs" />
     <Compile Include="Xml2StrHelper.cs" />
+    <Compile Include="ZipTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">

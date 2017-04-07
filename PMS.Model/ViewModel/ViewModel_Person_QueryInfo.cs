@@ -32,5 +32,9 @@ namespace PMS.Model.ViewModel
         /// 部门id
         /// </summary>
         public int DID { get; set; }
+
+        public int IsMMS { get; set; }
+
+
     }
 }

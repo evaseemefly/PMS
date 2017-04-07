@@ -18,10 +18,18 @@ namespace Common.Redis
         /// </summary>
         protected static RedisClient redis_client;
 
+        protected IRedisClient redisClient { get; set; }
+
         /// <summary>
         /// 自定义的Redis配置对象
         /// </summary>
         private static readonly RedisConfig redis_config = RedisConfig.GetConfig();
+
+        /// <summary>
+        /// 2017年2月5日 新建
+        /// 锁对象
+        /// </summary>
+        private static object _locker = new object();
 
         /// <summary>
         /// Redis缓冲池管理对象
@@ -44,9 +52,32 @@ namespace Common.Redis
         /// <returns></returns>
         public static void CreateManager(string[] readWriteUrl, string[] readOnlyUrl)
         {
-            prc_Manager = new PooledRedisClientManager(readWriteUrl, readOnlyUrl);
+            prc_Manager = new PooledRedisClientManager(readWriteUrl, readOnlyUrl,new RedisClientManagerConfig
+            {
+                MaxReadPoolSize = redis_config.MaxReadPoolSize,
+                MaxWritePoolSize = redis_config.MaxWritePoolSize,
+                AutoStart = redis_config.AutoStart
+            });
+            
             //return manager;
         }
+
+        /// <summary>
+        /// 创建Redis连接池管理对象
+        /// </summary>
+        /// <param name="readWriteUrl"></param>
+        /// <param name="readOnlyUrl"></param>
+        /// <returns></returns>
+        public static void CreateManager()
+        {
+            //1.1 只获取写入和读取ip数组
+            var writeServerArray = SplitString(redis_config.WriteServerList, ",").ToArray();
+            var readServerArray = SplitString(redis_config.ReadServerList, ",").ToArray();
+            //2 执行创建缓存池对象
+            CreateManager(writeServerArray, readServerArray);
+        }
+
+
 
         /// <summary>
         /// 构造函数
@@ -55,17 +86,26 @@ namespace Common.Redis
         {
             //1 获取Redis配置的配置属性
             //6月24日 
-            //1.1 只获取写入和读取ip数组
-            var writeServerArray = SplitString(redis_config.WriteServerList, ",").ToArray();
-            var readServerArray = SplitString(redis_config.ReadServerList, ",").ToArray();
+            #region 2月5日 注释掉 封装至无参的CreateManager方法中（实验）——可行，不会再报错
+            ////1.1 只获取写入和读取ip数组
+            //var writeServerArray = SplitString(redis_config.WriteServerList, ",").ToArray();
+            //var readServerArray = SplitString(redis_config.ReadServerList, ",").ToArray();
 
-            //2 执行创建缓存池对象
-            CreateManager(writeServerArray, readServerArray);
-
+            ////2 执行创建缓存池对象
+            //CreateManager(writeServerArray, readServerArray);
+            #endregion
+            CreateManager();
             //3 通过缓存连接池获取Redis客户端对象，并赋给本类中定义的私有变量
             if (redis_client == null)
             {
-                redis_client = prc_Manager.GetClient() as RedisClient;
+                lock(_locker)
+                {
+                    if (redis_client == null)
+                    {
+                        redis_client = prc_Manager.GetClient() as RedisClient;
+                        
+                    }
+                }                
             }
         }
 
@@ -83,9 +123,14 @@ namespace Common.Redis
         }
 
 
-        private static IRedisClient GetClient()
+        public static IRedisClient GetClient()
         {
             //获取客户端缓存操作对象
+            if (prc_Manager == null)
+            {
+                // CreateManager();
+                CreateManager();
+            }
             return prc_Manager.GetClient();
         }
        
@@ -103,8 +148,12 @@ namespace Common.Redis
         }
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            if (redis_client != null)
+            {
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+            
         }
         /// <summary>
         /// 保存数据DB文件到硬盘
@@ -119,6 +168,11 @@ namespace Common.Redis
         public void SaveAsync()
         {
             redis_client.SaveAsync();
+        }
+
+        ~BaseRedisHelper()
+        {
+            Dispose(false);
         }
     }
 }

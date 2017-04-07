@@ -31,6 +31,36 @@
           <Property Name="isShow" Type="bit" Nullable="false" />
           <Property Name="MethodTypeEnum" Type="smallint" Nullable="false" />
         </EntityType>
+        <EntityType Name="FdfsContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TID" Type="int" Nullable="false" />
+          <Property Name="SID" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="ScrollName" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Ext" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FdfsStorage">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FdfsTracker">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StorePathIndex" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="J_JobInfo">
           <Key>
             <PropertyRef Name="JID" />
@@ -197,6 +227,14 @@
           <Property Name="RoleInfoID" Type="int" Nullable="false" />
           <Property Name="ActionInfoID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="R_SMSContent_FdfsContent">
+          <Key>
+            <PropertyRef Name="CID" />
+            <PropertyRef Name="FCID" />
+          </Key>
+          <Property Name="CID" Type="int" Nullable="false" />
+          <Property Name="FCID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="R_UserInfo_ActionInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -301,6 +339,8 @@
           <Property Name="BlackList" Type="nvarchar(max)" />
           <Property Name="ResultCode" Type="int" Nullable="false" />
           <Property Name="smsCount" Type="int" Nullable="false" />
+          <Property Name="isMMS" Type="bit" Nullable="false" />
+          <Property Name="MSTitle" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="S_SMSMission">
           <Key>
@@ -420,6 +460,30 @@
           <Property Name="ChildStepId" Type="int" Nullable="false" />
           <Property Name="WF_Query" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_FdfsContent_FdfsStorage">
+          <End Role="FdfsStorage" Type="Self.FdfsStorage" Multiplicity="1" />
+          <End Role="FdfsContent" Type="Self.FdfsContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FdfsStorage">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="FdfsContent">
+              <PropertyRef Name="SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FdfsContent_FdfsTracker">
+          <End Role="FdfsTracker" Type="Self.FdfsTracker" Multiplicity="1" />
+          <End Role="FdfsContent" Type="Self.FdfsContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FdfsTracker">
+              <PropertyRef Name="TID" />
+            </Principal>
+            <Dependent Role="FdfsContent">
+              <PropertyRef Name="TID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_N_News_UserInfo">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="N_News" Type="Self.N_News" Multiplicity="*" />
@@ -613,6 +677,30 @@
             </Principal>
             <Dependent Role="R_RoleInfo_ActionInfo">
               <PropertyRef Name="RoleInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_SMSContent_FdfsContent_FdfsContent">
+          <End Role="FdfsContent" Type="Self.FdfsContent" Multiplicity="1" />
+          <End Role="R_SMSContent_FdfsContent" Type="Self.R_SMSContent_FdfsContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FdfsContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_SMSContent_FdfsContent">
+              <PropertyRef Name="FCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_SMSContent_FdfsContent_S_SMSContent">
+          <End Role="S_SMSContent" Type="Self.S_SMSContent" Multiplicity="1" />
+          <End Role="R_SMSContent_FdfsContent" Type="Self.R_SMSContent_FdfsContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_SMSContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_SMSContent_FdfsContent">
+              <PropertyRef Name="CID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -954,6 +1042,9 @@
         </Association>
         <EntityContainer Name="PMS2016ModelStoreContainer">
           <EntitySet Name="ActionInfo" EntityType="Self.ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FdfsContent" EntityType="Self.FdfsContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FdfsStorage" EntityType="Self.FdfsStorage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FdfsTracker" EntityType="Self.FdfsTracker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="J_JobInfo" EntityType="Self.J_JobInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="J_JobTemplate" EntityType="Self.J_JobTemplate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="N_News" EntityType="Self.N_News" Schema="dbo" store:Type="Tables" />
@@ -968,6 +1059,7 @@
           <EntitySet Name="R_Person_Department" EntityType="Self.R_Person_Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_Person_Group" EntityType="Self.R_Person_Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_RoleInfo_ActionInfo" EntityType="Self.R_RoleInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="R_SMSContent_FdfsContent" EntityType="Self.R_SMSContent_FdfsContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Self.R_UserInfo_ActionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_DepartmentInfo" EntityType="Self.R_UserInfo_DepartmentInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="R_UserInfo_Group" EntityType="Self.R_UserInfo_Group" Schema="dbo" store:Type="Tables" />
@@ -1006,6 +1098,14 @@
     [WF_Query_StepInfo].[WF_Query] AS [WF_Query]
     FROM [dbo].[WF_Query_StepInfo] AS [WF_Query_StepInfo]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_FdfsContent_FdfsStorage" Association="Self.FK_FdfsContent_FdfsStorage">
+            <End Role="FdfsStorage" EntitySet="FdfsStorage" />
+            <End Role="FdfsContent" EntitySet="FdfsContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FdfsContent_FdfsTracker" Association="Self.FK_FdfsContent_FdfsTracker">
+            <End Role="FdfsTracker" EntitySet="FdfsTracker" />
+            <End Role="FdfsContent" EntitySet="FdfsContent" />
+          </AssociationSet>
           <AssociationSet Name="FK_N_News_UserInfo" Association="Self.FK_N_News_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="N_News" EntitySet="N_News" />
@@ -1065,6 +1165,14 @@
           <AssociationSet Name="FK_R_RoleInfo_ActionInfo_RoleInfo" Association="Self.FK_R_RoleInfo_ActionInfo_RoleInfo">
             <End Role="RoleInfo" EntitySet="RoleInfo" />
             <End Role="R_RoleInfo_ActionInfo" EntitySet="R_RoleInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_SMSContent_FdfsContent_FdfsContent" Association="Self.FK_R_SMSContent_FdfsContent_FdfsContent">
+            <End Role="FdfsContent" EntitySet="FdfsContent" />
+            <End Role="R_SMSContent_FdfsContent" EntitySet="R_SMSContent_FdfsContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_SMSContent_FdfsContent_S_SMSContent" Association="Self.FK_R_SMSContent_FdfsContent_S_SMSContent">
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+            <End Role="R_SMSContent_FdfsContent" EntitySet="R_SMSContent_FdfsContent" />
           </AssociationSet>
           <AssociationSet Name="FK_R_UserInfo_ActionInfo_ActionInfo" Association="Self.FK_R_UserInfo_ActionInfo_ActionInfo">
             <End Role="ActionInfo" EntitySet="ActionInfo" />
@@ -1449,6 +1557,21 @@
             <End Role="RoleInfo" EntitySet="RoleInfo" />
           </AssociationSet>
           <EntitySet Name="QRTZ_TRIGGERS" EntityType="PMS2016Model.QRTZ_TRIGGERS" />
+          <EntitySet Name="FdfsContent" EntityType="PMS2016Model.FdfsContent" />
+          <EntitySet Name="FdfsStorage" EntityType="PMS2016Model.FdfsStorage" />
+          <EntitySet Name="FdfsTracker" EntityType="PMS2016Model.FdfsTracker" />
+          <AssociationSet Name="FK_FdfsContent_FdfsStorage" Association="PMS2016Model.FK_FdfsContent_FdfsStorage">
+            <End Role="FdfsStorage" EntitySet="FdfsStorage" />
+            <End Role="FdfsContent" EntitySet="FdfsContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FdfsContent_FdfsTracker" Association="PMS2016Model.FK_FdfsContent_FdfsTracker">
+            <End Role="FdfsTracker" EntitySet="FdfsTracker" />
+            <End Role="FdfsContent" EntitySet="FdfsContent" />
+          </AssociationSet>
+          <AssociationSet Name="R_SMSContent_FdfsContent" Association="PMS2016Model.R_SMSContent_FdfsContent">
+            <End Role="FdfsContent" EntitySet="FdfsContent" />
+            <End Role="S_SMSContent" EntitySet="S_SMSContent" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="P_DepartmentInfo">
           <Key>
@@ -1636,6 +1759,9 @@
           <Property Name="BlackList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ResultCode" Type="Int32" Nullable="false" />
           <Property Name="smsCount" Type="Int32" Nullable="false" />
+          <Property Name="isMMS" Type="Boolean" Nullable="false" />
+          <Property Name="MSTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FdfsContent" Relationship="PMS2016Model.R_SMSContent_FdfsContent" FromRole="S_SMSContent" ToRole="FdfsContent" />
         </EntityType>
         <EntityType Name="S_SMSRecord_Current">
           <Key>
@@ -2100,6 +2226,69 @@
           <Property Name="MISFIRE_INSTR" Type="Int32" />
           <Property Name="JOB_DATA" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="FdfsContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TID" Type="Int32" Nullable="false" />
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ScrollName" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Ext" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FdfsStorage" Relationship="PMS2016Model.FK_FdfsContent_FdfsStorage" FromRole="FdfsContent" ToRole="FdfsStorage" />
+          <NavigationProperty Name="FdfsTracker" Relationship="PMS2016Model.FK_FdfsContent_FdfsTracker" FromRole="FdfsContent" ToRole="FdfsTracker" />
+          <NavigationProperty Name="S_SMSContent" Relationship="PMS2016Model.R_SMSContent_FdfsContent" FromRole="FdfsContent" ToRole="S_SMSContent" />
+        </EntityType>
+        <EntityType Name="FdfsStorage">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Port" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FdfsContent" Relationship="PMS2016Model.FK_FdfsContent_FdfsStorage" FromRole="FdfsStorage" ToRole="FdfsContent" />
+        </EntityType>
+        <EntityType Name="FdfsTracker">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Port" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StorePathIndex" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FdfsContent" Relationship="PMS2016Model.FK_FdfsContent_FdfsTracker" FromRole="FdfsTracker" ToRole="FdfsContent" />
+        </EntityType>
+        <Association Name="FK_FdfsContent_FdfsStorage">
+          <End Type="PMS2016Model.FdfsStorage" Role="FdfsStorage" Multiplicity="1" />
+          <End Type="PMS2016Model.FdfsContent" Role="FdfsContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FdfsStorage">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="FdfsContent">
+              <PropertyRef Name="SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FdfsContent_FdfsTracker">
+          <End Type="PMS2016Model.FdfsTracker" Role="FdfsTracker" Multiplicity="1" />
+          <End Type="PMS2016Model.FdfsContent" Role="FdfsContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FdfsTracker">
+              <PropertyRef Name="TID" />
+            </Principal>
+            <Dependent Role="FdfsContent">
+              <PropertyRef Name="TID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_SMSContent_FdfsContent">
+          <End Type="PMS2016Model.FdfsContent" Role="FdfsContent" Multiplicity="*" />
+          <End Type="PMS2016Model.S_SMSContent" Role="S_SMSContent" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2300,6 +2489,8 @@
           <EntitySetMapping Name="S_SMSContent">
             <EntityTypeMapping TypeName="PMS2016Model.S_SMSContent">
               <MappingFragment StoreEntitySet="S_SMSContent">
+                <ScalarProperty Name="MSTitle" ColumnName="MSTitle" />
+                <ScalarProperty Name="isMMS" ColumnName="isMMS" />
                 <ScalarProperty Name="smsCount" ColumnName="smsCount" />
                 <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
                 <ScalarProperty Name="BlackList" ColumnName="BlackList" />
@@ -2531,6 +2722,47 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FdfsContent">
+            <EntityTypeMapping TypeName="PMS2016Model.FdfsContent">
+              <MappingFragment StoreEntitySet="FdfsContent">
+                <ScalarProperty Name="Ext" ColumnName="Ext" />
+                <ScalarProperty Name="ScrollName" ColumnName="ScrollName" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FdfsStorage">
+            <EntityTypeMapping TypeName="PMS2016Model.FdfsStorage">
+              <MappingFragment StoreEntitySet="FdfsStorage">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FdfsTracker">
+            <EntityTypeMapping TypeName="PMS2016Model.FdfsTracker">
+              <MappingFragment StoreEntitySet="FdfsTracker">
+                <ScalarProperty Name="StorePathIndex" ColumnName="StorePathIndex" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="TID" ColumnName="TID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="R_SMSContent_FdfsContent" TypeName="PMS2016Model.R_SMSContent_FdfsContent" StoreEntitySet="R_SMSContent_FdfsContent">
+            <EndProperty Name="S_SMSContent">
+              <ScalarProperty Name="ID" ColumnName="CID" />
+            </EndProperty>
+            <EndProperty Name="FdfsContent">
+              <ScalarProperty Name="ID" ColumnName="FCID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

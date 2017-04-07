@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PersonImporting.ViewModel
 {
     public class PersonModel
@@ -17,5 +18,6 @@ namespace PersonImporting.ViewModel
         public string PersonName { get; set; }
 
         public string Phone { get; set; }
+
     }
 }

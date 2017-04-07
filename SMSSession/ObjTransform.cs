@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PMS.Model.Dictionary;
+using PMS.Model.Enum;
 
 namespace SMSFactory
 {
@@ -34,9 +35,74 @@ namespace SMSFactory
             };
             return model_receive;
         }
+        public static MMSModel_Receive Xml2Model_ReceiveMsg(string result, MMSModel_Send sendModel)
+        {
+            //1. 获取结果，解析头标签
+            result = result.ToLower();
+            var resultCode = Xml2StrHelper.Xml2Str(result, "root/head/result");
+            //当不等于0时，响应包中不会有body标签
+            if(int.Parse(resultCode)!= 0)
+            {
+                MMSModel_Receive receive = new MMSModel_Receive()
+                {
+                    msgid = sendModel.msgid,
+                    result = resultCode.ToString(),
+                    desc = MMSDictionary.GetResponseCode()[int.Parse(resultCode)],
+                    failPhones = sendModel.phones
+                };
+                return receive;
+            }
 
+
+            //2.解析body标签的子标签
+            var msgid = Xml2StrHelper.xml2strList(result, "root/body/submitresult/response/msgid");
+            var status = Xml2StrHelper.xml2strList(result, "root/body/submitresult/response/status");
+            var phoneNum = Xml2StrHelper.xml2strList(result, "root/body/submitresult/response/phone");
+            //3. 存入响应对象
+            MMSModel_Receive model_receive = new MMSModel_Receive()
+            {
+                msgid = msgid[0],
+                result = resultCode,
+                desc = MMSDictionary.GetResponseCode()[int.Parse(resultCode)],
+            };
+
+
+            //4.存入失败的号码
+
+            for(int i = 0; i < phoneNum.Length; i++)
+            {
+                if (int.Parse(status[i]) != 0)
+                {
+
+                    MMSModel_Receive_Failphones failphones = new MMSModel_Receive_Failphones()
+                    {
+                        phoneNum = phoneNum[i],
+                        status_failPhone = status[i],
+                        desc_failPhone = MMSDictionary.GetResponseCode()[int.Parse(status[i])]
+                    };
+                    model_receive.list.Add(failphones);
+                 }
+   
+                }
+            if(model_receive.list != null)
+            {
+
+                string[] failphone = new string[model_receive.list.Count()];
+                int j = 0;
+                foreach (var data in model_receive.list)
+                {
+                    failphone[j] = data.phoneNum;
+                    j++;
+
+                }
+            //5.将所有提交不成功的号码存入返回模型
+            model_receive.failPhones = failphone;
+            }
+
+            return model_receive;
+        }
         /// <summary>
-        /// 10-13：此方法需要重写
+        /// 查询
         /// </summary>
         /// <param name="returnMsg"></param>
         /// <returns></returns>
@@ -70,7 +136,7 @@ namespace SMSFactory
                         SMSModel_QueryReceive r = new SMSModel_QueryReceive()
                         //封装语句
                         {
-                            msgId= _msgid[i],
+                            msgId = _msgid[i],
                             phoneNumber = _phone[i],
                             status = _status[i],
                             desc = _desc[i],
@@ -80,7 +146,7 @@ namespace SMSFactory
                         };
                         list_r.Add(r);
                     }
-                   
+
 
                 }
             }
@@ -95,6 +161,46 @@ namespace SMSFactory
                     desc = desc,
                 };
                 list_r.Add(r);
+            }
+            return list_r;
+        }
+        /// <summary>
+        /// 10-13：此方法需要重写
+        /// </summary>
+        /// <param name="returnMsg"></param>
+        /// <returns></returns>
+        public static List<MMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg,MMSModel_Query smsdata)
+        {
+            List<MMSModel_QueryReceive> list_r = new List<MMSModel_QueryReceive>();
+            //1.解析前一部分(head)
+            var result = Xml2StrHelper.Xml2Str(returnMsg, "head/result");
+            //如果result不为0，则没有body标签
+            if (result != "0") { return list_r; }
+
+
+            //2.解析前二部分(body)
+            var _status = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/status");
+
+            if (_status != null)
+            {
+                var _msgid = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/msgid");
+                var _phone = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/phone");
+                var _desc = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/statusDesp");               
+
+                for (int i = 0; i < _status.Length; i++)
+                {
+     
+                        MMSModel_QueryReceive r = new MMSModel_QueryReceive()
+                        //封装语句
+                        {
+                            msgId= _msgid[i],
+                            phoneNumber = _phone[i],
+                            status = _status[i],
+                            desc = _desc[i],
+                        };
+                        list_r.Add(r);
+                   
+                }
             }
             return list_r;
         }
@@ -120,6 +226,30 @@ namespace SMSFactory
                           + "</message>";
             return _data;
         }
+
+        /// <summary>
+        /// 将彩信发送对象转成xml格式--重载
+        /// </summary>
+        /// <param name="smsdata"></param>
+        /// <returns></returns>
+        public static string Model2Xml_FormatSend(MMSModel_Send smsdata)
+        {
+            String content = Encryption.ToBase64(FileHelper.ReadFile(smsdata.ZipUrl));
+            var commandCode = ((int)MMSRequestType_Enum.MMS_Submit).ToString().PadLeft(3, '0');
+            //合成请求信息
+            var _data = "<?xml version='1.0' encoding='UTF-8'?><root><head>"
+                                       + "<cmdId>" + commandCode + "</cmdId>"
+                                       + "<account>" + smsdata.account + "</account>" + "<password>"
+                                       + Encryption.MD5Encryption(smsdata.password) + "</password></head>"
+                                       + "<body><submitMsg>"
+                                       + "<msgid></msgid>"
+                                       + "<phone>" + string.Join(",", smsdata.phones) + "</phone><content>"
+                                       + content + "</content><title>"
+                                       + smsdata.MMSTitle + "</title>"
+                                       + "<subCode>"+ smsdata.subcode + "</subCode></submitMsg></body>"
+                                       + "</root>";
+            return _data;
+        }
         /// <summary>
         /// 将查询请求对象转换成xml格式
         /// </summary>
@@ -134,6 +264,20 @@ namespace SMSFactory
                               + "<msgid>" + smsdata.smsId + "</msgid>"
                               + "<phone>" +""/*smsdata.phoneNums*/+ "</phone>"
                           + "</message>";
+            return _data;
+        }
+        /// <summary>
+        /// 将查询请求对象转换成xml格式 重载
+        /// </summary>
+        /// <param name="smsdata"></param>
+        /// <returns></returns>
+        public static string Model2Xml_FormatQuery(MMSModel_Query smsdata)
+        {
+            var _data = "<?xml version='1.0' encoding='UTF-8'?><root><head>"
+                                  + "<cmdId>"+smsdata.cmdid+"</cmdId>"
+                                  + "<account>" + smsdata.account + "</account>" + "<password>"
+                                  + smsdata.password + "</password></head>"
+                                  + "</root>";
             return _data;
         }
     }

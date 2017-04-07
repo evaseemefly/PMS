@@ -353,7 +353,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             List<P_PersonInfo> list_person = new List<P_PersonInfo>();
             if (queryModel.SMID != null)
             {
-                list_person= smsmissionBLL.GetPersonByMission(queryModel.SMID, true);
+                list_person= smsmissionBLL.GetPersonByMission(queryModel.SMID,(PMS.Model.Enum.MMS_Enum)queryModel.IsMMS, true);
             }
             //筛选
             if (queryModel.PersonName != null)
@@ -459,11 +459,12 @@ namespace SMSOA.Areas.Contacts.Controllers
             switch (isMMs)
             {
                 case PMS.Model.Enum.MMS_Enum.sms:
-                   return this.GetSMSGroups(isPass, mission);
+                    return smsmissionBLL.GetSMSGroups(isPass, mission);
+                    //return this.GetSMSGroups(isPass, mission);
                     //break;
                 case PMS.Model.Enum.MMS_Enum.mms:
-                   return this.GetMMSGroups(isPass, mission);
-                    //break;
+                   return smsmissionBLL.GetMMSGroups(isPass, mission);
+                //break;
                 default:
                     return list_group;
                     //break;
@@ -473,29 +474,14 @@ namespace SMSOA.Areas.Contacts.Controllers
         }
 
         /// <summary>
-        /// 
-        /// 
+        /// 根据启用、禁用的群组集合从全部群组集合中过滤返回easyui支持的DataGrid类型集合
         /// </summary>
+        /// <param name="list_group">已有的群组集合</param>
+        /// <param name="list_group_isNotPass">禁用的群组集合</param>
+        /// <param name="list_ALLGroup">全部群组集合</param>
         /// <returns></returns>
-        public ActionResult GetGroup2Datagrid()
+        private List<EasyUIDataGrid_Group> FilterGroupList2DataGrid(List<P_Group> list_group,List<P_Group> list_group_isNotPass,List<P_Group> list_ALLGroup)
         {
-            //1月5日添加彩信功能
-            /*
-             * 功能描述：
-             * 根据传入的短彩信标记符判断是否需要加载彩信群组还是短信群组
-             */
-            int smid = int.Parse(Request["smid"]);
-            var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
-
-            //1.获取当前任务已有的群组(未禁用)
-            bool isPass = true;
-            var list_group = GetSMSGroups(isPass, SMSMission);
-            //2.获取当前任务已有的群组(已禁用)
-            var list_group_isNotPass = GetSMSGroups(isPass = false, SMSMission);
-            //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
-
-            //2.获取所有的群组
-            var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
             List<EasyUIDataGrid_Group> list_EasyUIDatagrid_Group = new List<EasyUIDataGrid_Group>();
             //3.将已有的群组从所有群组中剔除，已拥有的群组（未禁用）排在前面
             foreach (var item in list_group)
@@ -542,14 +528,135 @@ namespace SMSOA.Areas.Contacts.Controllers
                 };
                 list_EasyUIDatagrid_Group.Add(datagrid_Group);
             }
-            //6.序列化
 
+            return list_EasyUIDatagrid_Group;
+        }
+
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetGroup2Datagrid()
+        {
+            //1月5日添加彩信功能
+            /*
+             * 功能描述：
+             * 根据传入的短彩信标记符判断是否需要加载彩信群组还是短信群组
+             */
+            int smid = int.Parse(Request["smid"]);
+            int index_mms = int.Parse(Request["ismms"]);
+            var enum_mms = (PMS.Model.Enum.MMS_Enum)index_mms;
+
+            var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+
+            //1.获取当前任务已有的群组(未禁用)
+            bool isPass = true;
+
+            var list_group = this.GetGroupFactory(enum_mms, SMSMission, isPass);
+            //2017年1月7日 修改 注释掉以下部分由以上替换
+            //var list_group = GetSMSGroups(isPass, SMSMission);
+
+            //2.获取当前任务已有的群组(已禁用)
+            //var list_group_isNotPass = GetSMSGroups(isPass = false, SMSMission);
+            var list_group_isNotPass = this.GetGroupFactory(enum_mms, SMSMission,isPass = false);
+            //var list_groupbySmid = groupBLL.GetListBy(p => p.isDel == false && p.R_Group_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.GroupName).ToList();
+
+            //3.获取所有的群组
+            var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
+
+            //4.对启用、禁用、全部群组过滤为 easyui datagrid group 集合 
+           var list_EasyUIDatagrid_Group= this.FilterGroupList2DataGrid(list_group, list_group_isNotPass, list_ALLGroup);
+            #region 2017年1月7日 此部分注释掉 由 FilterGroupList2DataGrid 方法封装
+            //List<EasyUIDataGrid_Group> list_EasyUIDatagrid_Group = new List<EasyUIDataGrid_Group>();
+            ////3.将已有的群组从所有群组中剔除，已拥有的群组（未禁用）排在前面
+            //foreach (var item in list_group)
+            //{
+
+            //    EasyUIDataGrid_Group datagrid_Group = new EasyUIDataGrid_Group()
+            //    {
+            //        selected = true,
+            //        Checked = true,
+            //        GID = item.GID,
+            //        GroupName = item.GroupName,
+            //        Remark = item.Remark,
+            //        IsPass = true,
+            //        Text = "启用"
+            //    };
+            //    list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
+            //    list_EasyUIDatagrid_Group.Add(datagrid_Group);
+            //}
+            ////4.将已有的群组从所有群组中剔除，已拥有的群组（已禁用）排在前面
+            //foreach (var item in list_group_isNotPass)
+            //{
+
+            //    EasyUIDataGrid_Group datagrid_Group = new EasyUIDataGrid_Group()
+            //    {
+            //        selected = true,
+            //        Checked = true,
+            //        GID = item.GID,
+            //        GroupName = item.GroupName,
+            //        Remark = item.Remark
+            //    };
+            //    list_ALLGroup = list_ALLGroup.Where(p => p.GID != item.GID).ToList();
+            //    list_EasyUIDatagrid_Group.Add(datagrid_Group);
+            //}
+            ////5.未拥有的群组
+            //foreach (var item in list_ALLGroup)
+            //{
+            //    EasyUIDataGrid_Group datagrid_Group = new EasyUIDataGrid_Group()
+            //    {
+            //        GID = item.GID,
+            //        GroupName = item.GroupName,
+            //        Remark = item.Remark,
+            //        IsPass = true,
+            //        Text = "请选择"
+            //    };
+            //    list_EasyUIDatagrid_Group.Add(datagrid_Group);
+            //}
+            #endregion
+
+            //5.序列化
             string temp = Common.SerializerHelper.SerializerToString(list_EasyUIDatagrid_Group);
             temp = temp.Replace("Checked", "checked");
             return Content(temp);
 
         }
 
+        /// <summary>
+        /// 根据传入的短信任务种类id以及是否为彩信标记取到指定的彩信群组的datagrid
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetMMSGroup2Datagrid()
+        {
+            //1月5日添加彩信功能
+            /*
+             * 功能描述：
+             * 根据传入的短彩信标记符判断是否需要加载彩信群组还是短信群组
+             */
+            int smid = int.Parse(Request["smid"]);
+            var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+
+            //1.获取当前任务已有的群组(未禁用)
+            bool isPass = true;
+
+            var list_group = this.GetGroupFactory(PMS.Model.Enum.MMS_Enum.mms, SMSMission, isPass);
+
+            //2.获取当前任务已有的群组(已禁用)
+            var list_group_isNotPass = this.GetGroupFactory(PMS.Model.Enum.MMS_Enum.mms, SMSMission, isPass = false);
+
+            //3.获取所有的群组
+            var list_ALLGroup = groupBLL.GetListBy(p => p.isDel == false).ToList();
+
+            //4.对启用、禁用、全部群组过滤为 easyui datagrid group 集合 
+            var list_EasyUIDatagrid_Group = this.FilterGroupList2DataGrid(list_group, list_group_isNotPass, list_ALLGroup);
+
+            //5.序列化
+            string temp = Common.SerializerHelper.SerializerToString(list_EasyUIDatagrid_Group);
+            temp = temp.Replace("Checked", "checked");
+            return Content(temp);
+
+        }
 
         ///<summary>
         ///得到选中任务所包含的群组,并转换为Combogrid
@@ -708,41 +815,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             string temp = Common.SerializerHelper.SerializerToString(list_treegrid);
             temp = temp.Replace("Checked", "checked");
             return Content(temp);
-        }
-
-        ///<summary>
-        ///根据选中任务获得群组
-        ///</summary>
-        ///<returns></returns>
-        public List<P_Group> GetMMSGroups(bool isPass, S_SMSMission SMSMission)
-        {
-
-            return GetBaseGroupMission(isPass, SMSMission).Where(r => r.isMMS == (int)PMS.Model.Enum.MMS_Enum.mms).Select(r => r.P_Group).ToList();
-        }
-
-        ///<summary>
-        ///根据选中任务获得群组
-        ///</summary>
-        ///<returns></returns>
-        public List<P_Group> GetSMSGroups(bool isPass, S_SMSMission SMSMission)
-        {
-            return GetBaseGroupMission(isPass, SMSMission).Where(r => r.isMMS == (int)PMS.Model.Enum.MMS_Enum.sms).Select(r => r.P_Group).ToList();
-        }
-
-        private IEnumerable<R_Group_Mission> GetBaseGroupMission(bool isPass,S_SMSMission smsMission)
-        {
-            if (smsMission != null)
-            {
-                var list_R_Group_Mission = smsMission.R_Group_Mission;
-                var r_group_mission = (
-                   from r in list_R_Group_Mission
-                   where r.isPass == isPass
-                   select r
-                    );
-                return r_group_mission;
-            }
-            return null;
-        }       
+        }           
 
         ///<summary>
         ///根据选中任务获得部门
