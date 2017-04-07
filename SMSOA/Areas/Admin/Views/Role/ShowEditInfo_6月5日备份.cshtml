@@ -28,10 +28,10 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("@Resources.Language.ModifySuccess");
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("@Resources.Language.ModifyFailed");
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -49,20 +49,20 @@
             @Html.HiddenFor(model => model.ID)
             <table cellpadding="5">
                 <tr>
-                    <td>角色名称:</td>
+                    <td>@Resources.Language.RoleName:</td>
                     <td>
                         @Html.TextBoxFor(model => model.RoleName, new { htmlAttributes = new { @class = "easyui-textbox", @name = "RoleInfoName" } })
                     </td>
                 </tr>
                 <tr>
-                    <td>顺序:</td>
+                    <td>@Resources.Language.Order:</td>
                     <td>
                         @Html.TextBoxFor(model => model.Sort, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Sort" } })
                     </td>
                 </tr>
                 <tr>
                 <tr>
-                    <td>创建时间</td>
+                    <td>@Resources.Language.CreateTime</td>
                     <td>
                         @Html.TextBoxFor(model => model.SubTime, new
                    {
@@ -72,7 +72,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>修改时间</td>
+                    <td>@Resources.Language.ModifiedTime</td>
                     <td>
                         @Html.TextBoxFor(model => model.ModifiedOnTime, new
                    {
@@ -83,7 +83,7 @@
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
-                <input type="submit" value="提交" />
+                <input type="submit" value="@Resources.Language.Submit" />
             </div>
         </div>
     }

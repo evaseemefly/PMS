@@ -31,36 +31,36 @@
             {*@
         <table cellpadding="5">
             <tr>
-                <td>权限名称:</td>
+                <td>@Resources.Language.RightName:</td>
                 <td>
                     <input class="easyui-textbox" type="text" name="ActionInfoName" data-options="required:true,value:'@*@ViewData["actionInfo"]*@@Model.ActionInfoName'"></input>
                 </td>
             </tr>
             <tr>
-                <td>上级菜单:</td>
+                <td>@Resources.Language.UpperMenu:</td>
                 <td>
                     <select class="easyui-combobox" id="ParentActionOptions" style="width:100px" name="ParentID" data-options="data: @ViewBag.data ,                            panelHeight:'auto',valueField: 'id',textField: 'text'"></select>
                 </td>
             </tr>
             <tr>
-                <td>区域名称:</td>
+                <td>@Resources.Language.AreaName:</td>
                 <td><input class="easyui-textbox" type="text" name="AreaName" data-options="required:true,value:'@Model.AreaName'">  </input></td>
             </tr>
             <tr>
-                <td>控制器名称:</td>
+                <td>@Resources.Language.ControllerName:</td>
                 <td><input class="easyui-textbox" type="text" name="ControllerName" data-options="required:true,value:'@Model.ControllerName'"></input></td> 
                 
             </tr>
             <tr>
-                <td>方法名称（权限）:</td>
+                <td>@Resources.Language.MethodName:</td>
                 <td><input class="easyui-textbox" type="text" name="ActionMethodName" data-options="required:true,value:'@Model.ActionInfoName'"></input></td>
             </tr>
             <tr>
-                <td>顺序:</td>
+                <td>@Resources.Language.Order:</td>
                 <td><input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input></td>
             </tr>
             <tr>
-                <td>请求类型:</td>
+                <td>@Resources.Language.RequestType:</td>
                 <td>
                     <select class="easyui-combobox" name="ActionTypeEnum">
                         <option value="0">POST</option>
@@ -71,8 +71,8 @@
             <tr>
         </table>
         <div style="text-align:center;padding:5px">
-            <a href="javascript:void(0)" class="easyui-linkbutton" type="submit">提交</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" type="submit">@Resources.Language.Submit</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">@Resources.Language.Cancel</a>
         </div>
         @*})*@
 

@@ -1,7 +1,7 @@
 ﻿<script type="text/javascript">
     function ResetPassword() {
         //执行对该选中行对象的重置密码操作
-        $("#showResetPwdWindow").window({ title: '重置密码' });
+        $("#showResetPwdWindow").window({ title: '@Resources.Language.ResetPassword' });
         $("#showResetPwdWindow").window('open');
         //若选中了一行数据则执行修改操作
         //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -10,7 +10,7 @@
     //显示回收站
     function ShowRecycled(){
         var obj=new Object();
-        obj.text="回收站";
+        obj.text="@Resources.Language.Recycle";
         obj.url="/Recycled/Home/Index";
         createTabs(obj);
     }
@@ -20,7 +20,7 @@
         var uid=@ViewBag.UserId;
         if(uid){
             //提交当前密码
-            if ($.messager.confirm("提示", "准备提交？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Readytocommit", function (r) {
                if (r) {
                 //获取修改的密码
            var newPwd = $("#UPwd").val();

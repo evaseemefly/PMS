@@ -22,19 +22,19 @@
 
         var toolbar= [ {
             iconCls: 'icon-add',
-            text: "新增",
+            text: "@Resources.Language.New",
             handler: addRow
         }, '-', {
             iconCls: 'icon-remove',
-            text: "删除",
+            text: "@Resources.Language.Delete",
             handler: removeRow
         }, '-',{
             iconCls: 'icon-edit',
-            text: "编辑",
+            text: "@Resources.Language.Edit",
             handler: editRow
         }, '-', {
             iconCls: 'icon-search',
-            text: "分配权限",
+            text: "@Resources.Language.UsersRightsSettings1",
             handler: provideAction
         }]
 
@@ -77,14 +77,14 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataatleast',
                     showType: 'show'
                 });
                 return;
             }
             //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
@@ -99,7 +99,7 @@
                    $("#datagrid").datagrid('reload');
                 //清楚所选中的行
                 $("#datagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
             }
                 });
             }
@@ -122,8 +122,8 @@
             if (rows.length != 1) {
                 //提示
                $.messager.show({
-                   title: '提示',
-                   msg: '请选择一行数据',
+                   title: '@Resources.Language.Prompt',
+                   msg: '@Resources.Language.Selectonelineofdataplease',
                    showType: 'show'
                });
                return;
@@ -138,7 +138,7 @@
         function afterEdit(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editWindow").window('close');
             //2 刷新当前页面
@@ -157,17 +157,17 @@
                 striped: true,
                 singleSelect: true,
                 url: '@ViewBag.Action_GetOption',
-                loadMsg: '数据加载中请稍后……',
+                loadMsg: '@Resources.Language.Loading',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
                 pageList: [5, 10, 20],//设置 页容量下拉框
                 columns: [[
                     { field: 'ID', title: 'ID', width: 100 },
-                    { field: 'RoleName', title: '角色名称', width: 150 },
-                    { field: 'SubTime', title: '创建时间', width: 250 },
-                    { field: 'Remark', title: '备注', width: 200 },
-                    { field: 'Sort', title: '顺序', width: 100 }
+                    { field: 'RoleName', title: '@Resources.Language.RoleName', width: 150 },
+                    { field: 'SubTime', title: '@Resources.Language.CreateTime', width: 250 },
+                    { field: 'Remark', title: '@Resources.Language.Remarks', width: 200 },
+                    { field: 'Sort', title: '@Resources.Language.Order', width: 100 }
                 ]],
                 toolbar: toolbar
             });

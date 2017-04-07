@@ -237,15 +237,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Language.en-us.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Language.en-us.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\Language.designer.cs">
       <DependentUpon>Language.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Language.zh-cn.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -711,20 +711,24 @@
   <ItemGroup>
     <Content Include="App_GlobalResources\Language.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Language.designer.cs</LastGenOutput>
+      <LastGenOutput>Language1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="Areas\I18NDemo\zh-cn.resx" />
     <EmbeddedResource Include="App_GlobalResources\ResourceTest.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceTest.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Language.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.en-us.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Language.zh-cn.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.zh-cn.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Resources\ResourceE.resx" />
   </ItemGroup>

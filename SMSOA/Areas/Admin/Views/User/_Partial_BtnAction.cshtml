@@ -3,20 +3,20 @@
     function DoResetPwd() {
         var rows = $("#datagrid").datagrid('getSelections');
         var uid = rows[0].ID;
-        if ($.messager.confirm("提示", "准备提交？", function (r) {
+        if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Readytocommit", function (r) {
                 if (r) {
             //11月24日 修改之前的备份（使用数据验证）——暂时备份掉
             //获取修改的密码
             var newPwd = $("#UPwd").val();
             var newRPwd = $("#RUPwd").val();
             if (newPwd!=newRPwd) {
-                messagerAlertByAlert("错误", "两次输入的密码不一致，请重新输入");
+                messagerAlertByAlert("@Resources.Language.Error", "@Resources.Language.Twoinputpasswordisnotthesamepleaseinputagain");
                 return;
             }
                $.post("@ViewBag.ResetPwd?uid=" + uid + "&&pwd=" + newPwd, function (data) {
             //请求成功后的回调函数
             //执行afterEdit
-            afterEdit("修改成功");
+            afterEdit("@Resources.Language.ModifySuccess");
              $("#showResetPwdWindow").window('close');
         });
 
@@ -35,11 +35,11 @@
         //判断是否有选中的行
         if (Common_checkSelectedRows()) {
             //执行对该选中行对象的重置密码操作
-            $("#showResetPwdWindow").window({ title: '重置密码' });
+            $("#showResetPwdWindow").window({ title: '@Resources.Language.ResetPassword' });
             $("#showResetPwdWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
-            
+
         }
     }
 
@@ -48,7 +48,7 @@
 
         //打开编辑窗体
 
-        $('#editWindow').window({ title: '新建用户' });
+        $('#editWindow').window({ title: '@Resources.Language.CreatingUsers' });
 
         //从指定页面中预读取数据
         $("#setUserRoleFrame").attr("src", "/Admin/User/ShowAddUserInfo");
@@ -63,14 +63,14 @@
         if (rows.length < 1) {
             //提示
             $.messager.show({
-                title: '提示',
-                msg: '请至少选中一行数据',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.Selectonelineofdataatleast',
                 showType: 'show'
             });
             return;
         }
         //post请求至软删除方法
-        if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+        if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
             if (r) {
                 var strId = "";
             for (var i = 0; i < rows.length; i++) {
@@ -85,7 +85,7 @@
                $("#datagrid").datagrid('reload');
             //清楚所选中的行
             $("#datagrid").datagrid('clearSelections');
-            $.messager.alert("提示", "删除成功");
+            $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
         }
         });
         }
@@ -101,14 +101,14 @@
         if (rows.length != 1) {
             //提示
             $.messager.show({
-                title: '提示',
-                msg: '请选择一行数据',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.Selectonelineofdataplease',
                 showType: 'show'
             });
             return;
         }
 
-        $("#editWindow").window({ title: '编辑用户' });
+        $("#editWindow").window({ title: '@Resources.Language.EditingUsers' });
         $("#editWindow").window('open');
         //若选中了一行数据则执行修改操作
         //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -131,8 +131,8 @@
         if (rows.length != 1) {
             //提示
             $.messager.show({
-                title: '提示',
-                msg: '请选择一行数据',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.Selectonelineofdataplease',
                 showType: 'show'
             });
             return;
@@ -149,8 +149,8 @@
         if (rows.length != 1) {
             //提示
             $.messager.show({
-                title: '提示',
-                msg: '请选择一行数据',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.Selectonelineofdataplease',
                 showType: 'show'
             });
             return;
@@ -167,8 +167,8 @@
         if (rows.length != 1) {
             //提示
             $.messager.show({
-                title: '提示',
-                msg: '请选择一行数据',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.Selectonelineofdataplease',
                 showType: 'show'
             });
             return false;

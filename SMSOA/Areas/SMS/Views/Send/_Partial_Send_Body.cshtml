@@ -36,7 +36,7 @@
                         <tr>
                             <td>短彩信任务:</td>
                             <td class="comment">
-                                <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select><br />
+                                <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" data-option="required:true" style="width:150px"></select><br />
                                 请先选择短彩信任务种类
                             </td>
                         </tr>
@@ -75,7 +75,7 @@
                         </tr>
                         <tr>
                             <td>短信内容:</td>
-                            <td colspan="3" class="comment"><input class="easyui-textbox" name="message" id="message" data-options="multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"></td>
+                            <td colspan="3" class="comment"><input class="easyui-textbox" name="message" id="message"  data-options="required:true,multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"></td>
                         </tr>
                     </table>
                 </form>

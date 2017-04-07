@@ -124,11 +124,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 区域 的本地化字符串。
+        /// </summary>
+        internal static string Area {
+            get {
+                return ResourceManager.GetString("Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 区域名称 的本地化字符串。
         /// </summary>
         internal static string AreaName {
             get {
                 return ResourceManager.GetString("AreaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 区域名 的本地化字符串。
+        /// </summary>
+        internal static string AreaName1 {
+            get {
+                return ResourceManager.GetString("AreaName1", resourceCulture);
             }
         }
         
@@ -453,6 +471,15 @@ namespace Resources {
         internal static string DeleteContact {
             get {
                 return ResourceManager.GetString("DeleteContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 删除成功 的本地化字符串。
+        /// </summary>
+        internal static string Deleted {
+            get {
+                return ResourceManager.GetString("Deleted", resourceCulture);
             }
         }
         
@@ -849,6 +876,15 @@ namespace Resources {
         internal static string ModifyPassword {
             get {
                 return ResourceManager.GetString("ModifyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 修改成功 的本地化字符串。
+        /// </summary>
+        internal static string ModifySuccess {
+            get {
+                return ResourceManager.GetString("ModifySuccess", resourceCulture);
             }
         }
         
@@ -1374,6 +1410,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 查询区域名 的本地化字符串。
+        /// </summary>
+        internal static string QueryAreaName {
+            get {
+                return ResourceManager.GetString("QueryAreaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 查询控制器 的本地化字符串。
         /// </summary>
         internal static string QueryControllerName {
@@ -1388,15 +1433,6 @@ namespace Resources {
         internal static string QueryMethodName {
             get {
                 return ResourceManager.GetString("QueryMethodName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///  查找类似 查询区域名 的本地化字符串。
-        /// </summary>
-        internal static string QueryRegionName {
-            get {
-                return ResourceManager.GetString("QueryRegionName", resourceCulture);
             }
         }
         
@@ -1509,24 +1545,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///  查找类似 区域 的本地化字符串。
-        /// </summary>
-        internal static string region {
-            get {
-                return ResourceManager.GetString("region", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///  查找类似 区域名 的本地化字符串。
-        /// </summary>
-        internal static string RegionName {
-            get {
-                return ResourceManager.GetString("RegionName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///  查找类似 发布时间 的本地化字符串。
         /// </summary>
         internal static string ReleaseTime {
@@ -1577,6 +1595,15 @@ namespace Resources {
         internal static string RightName {
             get {
                 return ResourceManager.GetString("RightName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 编辑角色 的本地化字符串。
+        /// </summary>
+        internal static string RoleEditing {
+            get {
+                return ResourceManager.GetString("RoleEditing", resourceCulture);
             }
         }
         
@@ -1658,6 +1685,15 @@ namespace Resources {
         internal static string Selectonelineofdataatleast {
             get {
                 return ResourceManager.GetString("Selectonelineofdataatleast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 请选择一行数据 的本地化字符串。
+        /// </summary>
+        internal static string Selectonelineofdataplease {
+            get {
+                return ResourceManager.GetString("Selectonelineofdataplease", resourceCulture);
             }
         }
         
@@ -1757,6 +1793,15 @@ namespace Resources {
         internal static string SendStatistics {
             get {
                 return ResourceManager.GetString("SendStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 发送统计 的本地化字符串。
+        /// </summary>
+        internal static string SendStatistics1 {
+            get {
+                return ResourceManager.GetString("SendStatistics1", resourceCulture);
             }
         }
         
@@ -1950,6 +1995,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 系统管理 的本地化字符串。
+        /// </summary>
+        internal static string SystemManagement {
+            get {
+                return ResourceManager.GetString("SystemManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 短信模板 的本地化字符串。
         /// </summary>
         internal static string Template {
@@ -2099,6 +2153,15 @@ namespace Resources {
         internal static string TodaySendingRecordofCurrentUser1 {
             get {
                 return ResourceManager.GetString("TodaySendingRecordofCurrentUser1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 @Resources.Language.Twoinputpasswordisnotthesamepleaseinputagain 的本地化字符串。
+        /// </summary>
+        internal static string Twoinputpasswordisnotthesamepleaseinputagain {
+            get {
+                return ResourceManager.GetString("Twoinputpasswordisnotthesamepleaseinputagain", resourceCulture);
             }
         }
         
