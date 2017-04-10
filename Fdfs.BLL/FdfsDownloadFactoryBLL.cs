@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Fdfs.IDAL;
 using Fdfs.DAL;
+using Common.Ioc;
 
 namespace Fdfs.BLL
 {
@@ -20,7 +21,8 @@ namespace Fdfs.BLL
             {
                 lock (lockObj)
                 {
-                    Instance = new FdfsDownloadDAL();
+                    //Instance = new FdfsDownloadDAL();
+                    Instance = UnityServiceLocator.Instance.GetService<IFdfsDownloadDAL>();
                 }
             }
         }

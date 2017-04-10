@@ -68,8 +68,27 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="log4net.config" />
+    <Content Include="unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fdfs.BLL\Fdfs.BLL.csproj">
+      <Project>{81978320-376f-47b7-bdd0-7c259ba7fd5d}</Project>
+      <Name>Fdfs.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.DAL\Fdfs.DAL.csproj">
+      <Project>{b7bece01-40b2-445e-bc7d-13ed34502693}</Project>
+      <Name>Fdfs.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
+      <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
+      <Name>PMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
+      <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
+      <Name>PMS.DALSQLSer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QuartzJobFactory\QuartzJobFactory.csproj">
       <Project>{0f928469-5038-4471-a6d4-5a2bab75253e}</Project>
       <Name>QuartzJobFactory</Name>

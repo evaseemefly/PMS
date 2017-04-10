@@ -243,13 +243,15 @@ namespace Fdfs.DAL
                 {
                     using (BinaryReader reader = new BinaryReader(param.Stream))
                     {
-                        content = reader.ReadBytes((int)param.Stream.Length);
+                        //BinaryReader reader = new BinaryReader(param.Stream);
+                        int count = (int)param.Stream.Length;
+                        content = reader.ReadBytes(count);
                     }
 
-                    //**注意 调用FdfsClient的UploadFile时，拓展名不含.，需要手动去掉
-                    //**注意返回值为：M00/00/00/wKgAcVjGSpSANp6XAAInn_BrY3k752.jpg
-                    // 即是BaseUploadResult中的FileNameIncludeScroll
-                    shortName = FastDFSClient.UploadFile(Node, content, ext.Contains('.') ? ext.Substring(1) : ext);
+                //**注意 调用FdfsClient的UploadFile时，拓展名不含.，需要手动去掉
+                //**注意返回值为：M00/00/00/wKgAcVjGSpSANp6XAAInn_BrY3k752.jpg
+                // 即是BaseUploadResult中的FileNameIncludeScroll
+                shortName = FastDFSClient.UploadFile(Node, content, ext.Contains('.') ? ext.Substring(1) : ext);
                     
                 }
             }
@@ -271,9 +273,7 @@ namespace Fdfs.DAL
                 //注意此处的Host
                 //StoragePort = Host.Substring(Host.IndexOf(':')),
                 //StorageUrl =  Host.Substring(0,Host.IndexOf(':')+1),
-                //TrackerNode=Node,
-                
-
+                //TrackerNode=Node,    
             };
         }
         #endregion

@@ -539,7 +539,10 @@ namespace SMSFactory
                 var receive_SMS= new SMSModel_Receive();
                 try
                 {
-                    client.SendMsg((model as PMS.Model.CombineModel.SendAndMessage_Model).Model_Send, out receive_SMS);
+                    var send_model = (model as PMS.Model.CombineModel.SendAndMessage_Model);
+                    client.SendMsg(send_model.Model_Send, out receive_SMS);
+                    //写入数据库的操作在此处完成
+                    AfterSend(send_model.Model_Message, receive_SMS, send_model.Model_Send.phones.ToList());
                     //receiveModel = receive_SMS;
                     return true;
                 }

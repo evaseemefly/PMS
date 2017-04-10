@@ -8,6 +8,7 @@ using System.Activities;
 using Common;
 using PMS.IBLL;
 using PMS.BLL;
+using Common.Ioc;
 
 namespace JobInstances
 {
@@ -40,15 +41,18 @@ namespace JobInstances
         {
             if (jobInfoBLL == null)
             {
-                jobInfoBLL = new J_JobInfoBLL();
+                //jobInfoBLL = new J_JobInfoBLL();
+                jobInfoBLL = UnityServiceLocator.Instance.GetService<IJ_JobInfoBLL>();
             }
             if (userInfoBLL == null)
             {
-                userInfoBLL = new UserInfoBLL();
+               // userInfoBLL = new UserInfoBLL();
+                userInfoBLL= UnityServiceLocator.Instance.GetService<IUserInfoBLL>();
             }
             if (qrtz_triggerBLL == null)
             {
-                qrtz_triggerBLL = new QRTZ_TRIGGERSBLL();
+                //qrtz_triggerBLL = new QRTZ_TRIGGERSBLL();
+                qrtz_triggerBLL =UnityServiceLocator.Instance.GetService<IQRTZ_TRIGGERSBLL>();
             }
             #region 11月8日测试修改数据库的bug，现注释
             //11月8日测试修改数据库的bug，现注释
@@ -75,7 +79,7 @@ namespace JobInstances
             if (uid != 0)
             {
                 //var uid_int = int.Parse(uid);
-                var user_temp = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault();
+                var user_temp = userInfoBLL.GetListBy(u => u.ID == uid,true).FirstOrDefault();
                 //2 根据用户id查询查询该用户所拥有的作业
                 var list = userInfoBLL.GetJobListByUser(user_temp.ID);
 
@@ -85,7 +89,7 @@ namespace JobInstances
                 var targetJob = (from j in list
                                  where j.JID == Convert.ToInt32(context.JobDetail.Key.Name)  /*&& j.JobGroup == context.JobDetail.Key.Group*/
                                  select j).FirstOrDefault();
-                PMS.BLL.J_JobInfoBLL job_temp = new PMS.BLL.J_JobInfoBLL();
+                
 
                 //UpdateJobState(targetJob);
                 //4 若存在则更新作业状态

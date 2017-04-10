@@ -158,12 +158,11 @@ namespace PMS.DALSQLSer
         {
             //Db.Set<int>().Where()
             var item = Db.Set<T>().Where(whereLambda);
-            ToNoTracking(ref item, isNotTrack);
-            //if (isNotTrack)
-            //{
-            //    return item.AsNoTracking();
-
-            //}
+            //ToNoTracking(ref item, isNotTrack);
+            if (isNotTrack)
+            {
+                return item.AsNoTracking();
+            }
             return item;
         }
         #endregion

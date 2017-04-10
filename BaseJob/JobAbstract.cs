@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Ioc;
 
 namespace BaseJob
 {
@@ -36,15 +37,18 @@ namespace BaseJob
         {
             if (jobInfoBLL == null)
             {
-                jobInfoBLL = new J_JobInfoBLL();
+                //jobInfoBLL = new J_JobInfoBLL();
+                jobInfoBLL = UnityServiceLocator.Instance.GetService<IJ_JobInfoBLL>();
             }
             if (userInfoBLL == null)
             {
-                userInfoBLL = new UserInfoBLL();
+                //userInfoBLL = new UserInfoBLL();
+                userInfoBLL= UnityServiceLocator.Instance.GetService<IUserInfoBLL>();
             }
             if (qrtz_triggerBLL == null)
             {
-                qrtz_triggerBLL = new QRTZ_TRIGGERSBLL();
+                //qrtz_triggerBLL = new QRTZ_TRIGGERSBLL();
+                qrtz_triggerBLL=UnityServiceLocator.Instance.GetService<IQRTZ_TRIGGERSBLL>();
             }
             #region 11月8日测试修改数据库的bug，现注释
             //11月8日测试修改数据库的bug，现注释

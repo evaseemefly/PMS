@@ -617,8 +617,13 @@ namespace SMSOA.Areas.SMS.Controllers
             //    result = "0"
             //};
             #endregion
+            var receive_model = receive as SMSModel_Receive;
 
-            AfterSend(combine_model.Model_Message, receive as SMSModel_Receive/*testModel*/, combine_model.Model_Send.phones.ToList());
+            //if (receive_model.msgid != null)
+            //{
+            //    AfterSend(combine_model.Model_Message, receive_model /*testModel*/, combine_model.Model_Send.phones.ToList());
+            //}
+            
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");

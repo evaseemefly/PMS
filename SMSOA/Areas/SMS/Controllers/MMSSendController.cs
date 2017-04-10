@@ -11,6 +11,7 @@ using ISMS;
 using PMS.Model;
 using PMS.Model.EqualCompare;
 using Fdfs.IBLL;
+using System.IO;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
@@ -141,15 +142,21 @@ namespace SMSOA.Areas.SMS.Controllers
             
             //2 图片处理
             HttpPostedFile file = files[0];
-            var file_stream = file.InputStream;
-            using (var picture_stream = file_stream)
+            //var file_stream = file.InputStream;
+            //BinaryReader reader = new BinaryReader(file_stream);
+            //var file_content = reader.ReadBytes((int)file_stream.Length);
+            using (var file_stream = file.InputStream)
             {
-
+                //2.1 读取文件流后需要先转换为二进制数组
+                BinaryReader reader = new BinaryReader(file_stream);
+                // 读取流，转为二进制数组
+                //****注意流读取结束后游标会移至读取的位置，所以以后需要使用流的地方再将二进制数组转为memoryStream即可
+                var content = reader.ReadBytes((int)file_stream.Length);
                 string fileDirectory = System.Web.HttpContext.Current.Server.MapPath("~/FileUpLoad/");
                 //保存的图片的：文件名+拓展名
                 string fileNameIncludeExt;
                 //2.1最终在项目目录下创建Zip包,并获取路径
-                var path_zip = mmsSendBLL.CreateZip(picture_stream, fileDirectory, model.Content, out fileNameIncludeExt);
+                var path_zip = mmsSendBLL.CreateZip(new MemoryStream(content), fileDirectory, model.Content, out fileNameIncludeExt);
 
                 //2.2 将路径封装进实体模型
                 model.ZipUrl = path_zip;
@@ -176,7 +183,7 @@ namespace SMSOA.Areas.SMS.Controllers
                 var result_In2Db = mmsSendBLL.AfterSend(model, receive_temp /*testModel*/, combine_model.Model_MMS.phones.ToList());
                 if (result_In2Db)
                 {
-                    var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(picture_stream, fileNameIncludeExt, this.imgMaxSize);
+                    var imgParam = new PMS.Model.FdfsParam.ImageUploadParameter(new MemoryStream(content), fileNameIncludeExt, this.imgMaxSize);
                     this.Save2Fdfs(imgParam, receive_temp.msgid);
 
                 }
