@@ -40,8 +40,8 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
@@ -61,14 +61,14 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataatleast',
                     showType: 'show'
                 });
                 return;
             }
             //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
@@ -83,7 +83,7 @@
                    $("#contactstreegrid").treegrid('reload');
                 //清楚所选中的行
                 $("#contactstreegrid").treegrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
             }
             });
             }
@@ -97,8 +97,8 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataatleast',
                     showType: 'show'
                 });
                 return;
@@ -114,7 +114,7 @@
         function afterEdit(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editWindow").window('close');
             //2 刷新当前页面
@@ -144,22 +144,22 @@
                       return areas[value];
                   }
               },
-              { field: 'Remark', title: '备注', width: 120 }
+              { field: 'Remark', title: '@Resources.Language.Remarks', width: 120 }
         ]]
 
         var toolbar = [{
             iconCls: 'icon-add',
-            text: "新增",
+            text: "@Resources.Language.New",
             handler: addRow@*addRow("@ViewBag.ShowAdd")*@
         }, '-',
         {
             iconCls: 'icon-remove',
-            text: "删除",
+            text: "@Resources.Language.Delete",
             handler: removeRow@*removeRow("@ViewBag.Del_url")*@
         }, '-',
            {
                iconCls: 'icon-edit',
-               text: "编辑",
+               text: "@Resources.Language.Edit",
                handler: editRow@*editRow("@ViewBag.ShowEdit")*@
            }, '-',
            {
@@ -181,7 +181,7 @@
                 singleSelect: true,
                 fit: true,
                 url: url,
-                loadMsg: '数据加载中请稍后……',
+                loadMsg: '@Resources.Language.Loading',
                 columns: myColumns,
                 toolbar: toolbar
 

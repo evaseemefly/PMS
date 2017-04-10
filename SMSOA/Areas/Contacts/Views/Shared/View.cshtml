@@ -32,26 +32,26 @@
         //-----------------------1 联系人toolbar------------------
         var PersonToolbar = [{
             iconCls: 'icon-add_person',
-            text: "添加联系人",
+            text: "@Resources.Language.AddContact",
             handler: addPersonRow@*addRow("@ViewBag.ShowAdd")*@
         },
         {
             iconCls: 'icon-del_person',
-            text: "删除联系人",
+            text: "@Resources.Language.DeleteContact",
             handler: removePersonRow@*removeRow("@ViewBag.Del_url")*@
         }, '-',
         {
             iconCls: 'icon-save',
-            text: "保存",
+            text: "@Resources.Language.Save",
             handler: SavePerson@*removeRow("@ViewBag.Del_url")*@
         }]
 
         //-----------------------2 列对象----------------------------
         var PersonColumns = [[
                  { field: 'PID', title: 'ID', width: 100, checkbox: true },
-                 { field: 'PName', title: '用户名称', width: 150 },
-                 { field: 'PhoneNum', title: '电话号码', width: 250 },
-                 { field: 'Remark', title: '备注', width: 120 }
+                 { field: 'PName', title: '@Resources.Language.ContactName', width: 150 },
+                 { field: 'PhoneNum', title: '@Resources.Language.PhoneNumber1', width: 250 },
+                 { field: 'Remark', title: '@Resources.Language.Remarks', width: 120 }
         ]]
 
 
@@ -70,8 +70,8 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
@@ -90,14 +90,14 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataatleast',
                     showType: 'show'
                 });
                 return;
             }
             //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
@@ -112,7 +112,7 @@
                    $("#persondatagrid").datagrid('reload');
                 //清楚所选中的行
                 $("#persondatagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
             }
             });
             }
@@ -130,7 +130,7 @@
 
             //若部门与群组均为选中则提示，并不做任何操作
             if (!selectGroupValue & !selectDepartmentValue) {
-                messagerShowOnCenter("提示", "部门与群组请至少选择一项");
+                messagerShowOnCenter("@Resources.Language.Prompt", "@Resources.Language.Pleaseselectonedepartmentorgroupatleast");
 
                 return;
             }
@@ -150,7 +150,7 @@
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
-                messagerShowOnCenter("提示", "请选中某一个人");
+                messagerShowOnCenter("@Resources.Language.Prompt", "@Resources.Language.Pleaseselectaperson");
                 //统一用从页面中间弹出消息框的方式，以下注释
                 //$.messager.show({
                 //    title: '提示',
@@ -193,7 +193,7 @@
 
         //提交
         function confirm_center(obj) {
-            $.messager.confirm('请确认', '是否要执行此操作?', function (r) {
+            $.messager.confirm('@Resources.Language.Pleaseconfirm', '@Resources.Language.Doyouwanttodothis', function (r) {
                 if (r) {
                     //alert("执行提交操作");
                     $.ajax({
@@ -208,11 +208,11 @@
                             if (data == "ok") {
                                 //使用此种方式会出现还未等到消息框弹出页面就刷新的问题
                                 //messagerShowOnCenter("提示", "修改成功");
-                                $.messager.alert("提示", "操作成功", "info", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Success", "info", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                             else {
-                                $.messager.alert("提示", "操作失败", "warning", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Failed", "warning", function () { window.close(); refresh(); });
                                 //refresh();
                             }
 
@@ -221,7 +221,7 @@
                         },
                         error: function () {
 
-                            $.messager.alert("错误", "服务器错误", "error", function () { window.close(); refresh(); });
+                            $.messager.alert("@Resources.Language.Error", "@Resources.Language.ServerError", "error", function () { window.close(); refresh(); });
                             //refresh();
                         }
                     });
@@ -236,7 +236,7 @@
         function afterEdit(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editGroupWindow").window('close');
             //2 刷新当前页面
@@ -255,8 +255,8 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
@@ -275,7 +275,7 @@
                 //fit: true,
                 url: url,
                 showHeader: true,
-                loadMsg: '加载中……',
+                loadMsg: '@Resources.Language.Loading',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 20,   //设置 页容量为 5
@@ -341,7 +341,7 @@
         </div>
         <div data-options="region:'center'" title="Center" style="width:70%">
             <div id="tb" style="padding:2px 5px;">
-                移至分组:
+                @Resources.Language.MoveIntoGroup:
                 <select class="easyui-combobox" id="group" panelHeight="auto" style="width:100px"
                         data-options="
                         url '@ViewBag.GetGroup_combobox' ,
@@ -352,17 +352,17 @@
                         panelHeight 'auto' ,
                         formatter formatItem_combobox
                         "></select>
-                选择所属部门
+                @Resources.Language.SelectDepartment
                 <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" data-options="required:true"></select>
             </div>
             <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
 
         </div>
     </div>
-    <div class="easyui-window" title="群组" id="editGroupWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" title="@Resources.Language.Group" id="editGroupWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="addGroupFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
-    <div class="easyui-window" title="联系人" id="editPersonWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" title="@Resources.Language.Contact" id="editPersonWindow" style="width:400px;height:250px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="addPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
 </body>

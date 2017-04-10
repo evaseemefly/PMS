@@ -626,11 +626,11 @@
     <comment>请填写题目，长度不超过50字</comment>
   </data>
   <data name="Pleaseentertheworktemplatesclassname" xml:space="preserve">
-    <value>Please enter the work template's class name.</value>
+    <value>Please enter the work template’s class name.</value>
     <comment>请填写模板类名</comment>
   </data>
   <data name="Pleaseentertheworktemplatesgroupname" xml:space="preserve">
-    <value>Please enter the work template's group name.</value>
+    <value>Please enter the work template’s group name.</value>
     <comment>请填写模板群组名</comment>
   </data>
   <data name="Pleaseenterusername" xml:space="preserve">
@@ -784,7 +784,7 @@ Selected missions will appears in the list of message sending interface.</value>
     <comment>角色名称</comment>
   </data>
   <data name="RolesRightSettings" xml:space="preserve">
-    <value>Role's Right Settings</value>
+    <value>Role’s Right Settings</value>
     <comment>为角色设置权限</comment>
   </data>
   <data name="Save" xml:space="preserve">
@@ -1036,19 +1036,19 @@ Selected missions will appears in the list of message sending interface.</value>
     <comment>用户名</comment>
   </data>
   <data name="UsersRightsSettings" xml:space="preserve">
-    <value>User's Rights Settings</value>
+    <value>User’s Rights Settings</value>
     <comment>用户权限设置</comment>
   </data>
   <data name="UsersRightsSettings1" xml:space="preserve">
-    <value>User's Rights Settings</value>
+    <value>User’s Rights Settings</value>
     <comment>分配权限</comment>
   </data>
   <data name="UsersRoleSetting" xml:space="preserve">
-    <value>User's Role Setting</value>
+    <value>User’s Role Setting</value>
     <comment>用户角色设置</comment>
   </data>
   <data name="UsersRoleSetting1" xml:space="preserve">
-    <value>User's Role Setting</value>
+    <value>User’s Role Setting</value>
     <comment>分配角色</comment>
   </data>
   <data name="VerificationCode" xml:space="preserve">
@@ -1211,5 +1211,89 @@ Selected missions will appears in the list of message sending interface.</value>
   <data name="WhetherGivenByRoles" xml:space="preserve">
     <value>Whether Given By Roles</value>
     <comment>是否由角色赋予</comment>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+    <comment>联系人</comment>
+  </data>
+  <data name="CreatingDepartment" xml:space="preserve">
+    <value>Creating Department</value>
+    <comment>新建部门</comment>
+  </data>
+  <data name="EditingDepartment" xml:space="preserve">
+    <value>Editing Department</value>
+    <comment>编辑部门</comment>
+  </data>
+  <data name="InTheDepartment" xml:space="preserve">
+    <value>In The Department</value>
+    <comment>所属部门</comment>
+  </data>
+  <data name="InTheGroup" xml:space="preserve">
+    <value>In The Group</value>
+    <comment>所属分组</comment>
+  </data>
+  <data name="PreventDeletes" xml:space="preserve">
+    <value>Prevent Deletes</value>
+    <comment>禁止删除</comment>
+  </data>
+  <data name="Thisnumberalreadyexistspleasereenter" xml:space="preserve">
+    <value>This number already exists, please re-enter.</value>
+    <comment>该电话号码已存在，请重新输入</comment>
+  </data>
+  <data name="AllContactsGroupmustbeselected" xml:space="preserve">
+    <value>All Contacts Group must be selected</value>
+    <comment>全部联系人必须选中</comment>
+  </data>
+  <data name="Alreadyexistspleasereenter" xml:space="preserve">
+    <value>Already exists, please re-enter.</value>
+    <comment>已经存在，请重新输入</comment>
+  </data>
+  <data name="CreatingGroup" xml:space="preserve">
+    <value>Creating Group</value>
+    <comment>新建群组</comment>
+  </data>
+  <data name="EditingGroup" xml:space="preserve">
+    <value>Editing Group</value>
+    <comment>编辑群组</comment>
+  </data>
+  <data name="ItsforbidentodeleteAllContactsGroup" xml:space="preserve">
+    <value>It's forbiden to delete “All contacts Group”.</value>
+    <comment>全部联系人禁止删除</comment>
+  </data>
+  <data name="Pleaseselectonedepartmentorgroupatleast" xml:space="preserve">
+    <value>Please select one department or group at least.</value>
+    <comment>部门与群组请至少选择一项</comment>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
+    <comment>退出</comment>
+  </data>
+  <data name="SMSContactList" xml:space="preserve">
+    <value>SMS Contact List</value>
+    <comment>短信联系人列表</comment>
+  </data>
+  <data name="Thisactionwillremovesthiscontactfromallgroupsanddepartments" xml:space="preserve">
+    <value>This action will removes this contact from all groups and departments!</value>
+    <comment>此操作会从其他群组及部门列表中删除该联系人！</comment>
+  </data>
+  <data name="CreatingMission" xml:space="preserve">
+    <value>Creating Mission</value>
+    <comment>新增任务</comment>
+  </data>
+  <data name="DepartmentSettingforMMSMission" xml:space="preserve">
+    <value>Department Setting for MMS Mission</value>
+    <comment>为当前任务分配彩信部门</comment>
+  </data>
+  <data name="EditingMission" xml:space="preserve">
+    <value>Editing Mission</value>
+    <comment>编辑任务</comment>
+  </data>
+  <data name="GroupSettingforMMSMission" xml:space="preserve">
+    <value>Group Setting for MMS Mission</value>
+    <comment>为当前任务分配彩信群组</comment>
+  </data>
+  <data name="MMSContactList" xml:space="preserve">
+    <value>MMS Contact List</value>
+    <comment>彩信联系人列表</comment>
   </data>
 </root>

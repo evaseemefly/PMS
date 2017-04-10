@@ -14,9 +14,9 @@
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data, "任务名称");
+                    afterEdit(data, "@Resources.Language.MissionName");
                 }
-            
+
             };
             myform.form('submit', options)
             }
@@ -24,7 +24,7 @@
             $(function () {
             })
             function CancelSend() {
-                window.parent.CancelSend();                
+                window.parent.CancelSend();
             }
             function afterEdit(data, name) {
 
@@ -34,18 +34,18 @@
                 //无法关闭此窗口
                 //window.close();
                 if (data == "ok") {
-                    window.parent.afterContact_Common("修改成功", 0);
+                    window.parent.afterContact_Common("@Resources.Language.ModifySuccess", 0);
                     window.parent.Refresh();
                 }
                 else if (data == "validation fails") {
-                    window.parent.afterContact_Common(name + "已经存在，请重新输入", 1)
+                    window.parent.afterContact_Common(name + "@Resources.Language.Alreadyexistspleasereenter", 1)
                 }
                 else {
-                    window.parent.afterContact_Common("修改失败", 0);
+                    window.parent.afterContact_Common("@Resources.Language.ModifyFailed", 0);
                 }
                 //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
             }
-        
+
     </script>
 }
 
@@ -57,21 +57,21 @@
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
             <table style="margin-left:40px;width:90%" cellpadding="3">
                 <tr>
-                    <td style="">任务名称:</td>
+                    <td style="">@Resources.Language.MissionName:</td>
                     <td class="comment">
-                        <input class="easyui-validatebox" type="text" name="SMSMissionName" value=@ViewBag.Name required="true" missingMessage="任务名称必须填写"></input><br />
-                        请填写任务名称（请输入中文）
+                        <input class="easyui-validatebox" type="text" name="SMSMissionName" value=@ViewBag.Name required="true" missingMessage="@Resources.Language.Missionnamemustbefilled"></input><br />
+                        @Resources.Language.Pleaseenterthenameofthemission
                     </td>
                 </tr>
                 <tr>
-                    <td>备注:</td>
+                    <td>@Resources.Language.Remarks:</td>
                     <td class="comment">
                         <input class="easyui-textbox" type="text" name="Remark" value="@ViewBag.Remark"data-options="multiline:true" style="height:50px;width:80%"></input> <br />
-                        任务备注
+                        @Resources.Language.Remarks
                     </td>
                 </tr>                
                 <tr>
-                    <td>优先级:</td>
+                    <td>@Resources.Language.Priority:</td>
                 </tr>
                 <tr>
                     <td class="comment" colspan="2">
@@ -79,15 +79,15 @@
                                rule: [0,'|',25,'|',50,'|',75,'|',100],
                                value:'@sort'
                                "><br />
-                        数字越小优先级越高
+                        @Resources.Language.Thesmallerthenumberthehigherthepriority
                     </td>
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
                 <div style="text-align:center;padding:5px">
                     @*<input type="submit" value="提交" />*@
-                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" style="width:80px">@Resources.Language.Submit</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">@Resources.Language.Cancel</a>
                 </div>
             </div>
         </form>

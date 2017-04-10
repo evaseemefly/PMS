@@ -15,7 +15,7 @@
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data,"群组名称");
+                    afterEdit(data,"@Resources.Language.GroupName");
                 }
             };
 
@@ -34,13 +34,13 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEditContact("修改成功",0);
+                window.parent.afterEditContact("@Resources.Language.ModifySuccess",0);
             }
             else if(data=="validation fails"){
-                window.parent.afterEditContact(name + "已经存在，请重新输入", 1);
+                window.parent.afterEditContact(name + "@Resources.Language.Alreadyexistspleasereenter", 1);
             }
             else {
-                window.parent.afterEditContact("修改失败",0);
+                window.parent.afterEditContact("@Resources.Language.ModifyFailed",0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -54,19 +54,19 @@
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
             <table cellpadding="3" style="margin-left:40px;width:95%">
                 <tr>
-                    <td>群组名称:</td>
+                    <td>@Resources.Language.GroupName:</td>
                     <td class="comment">
-                        <input class="easyui-validatebox" type="text" name="GroupName" value="@ViewBag.GroupName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />请填写群组名称
+                        <input class="easyui-validatebox" type="text" name="GroupName" value="@ViewBag.GroupName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />@Resources.Language.Pleaseenterthegroupname
                     </td>
                 </tr>
                 <tr>
-                    <td>备注:</td>
+                    <td>@Resources.Language.Remarks:</td>
                     <td class="comment">
-                        <input class="easyui-textbox" name="Remark" value="@ViewBag.Remark" style="height:50px" data-options="multiline:true"></input><br />请描述群组功能（可选）
+                        <input class="easyui-textbox" name="Remark" value="@ViewBag.Remark" style="height:50px" data-options="multiline:true"></input><br />@Resources.Language.Pleasedescribethegroupoptional
                     </td>
                 </tr>
                 <tr>
-                    <td>优先级:</td>
+                    <td>@Resources.Language.Priority:</td>
                 </tr>
                 <tr>
                     <td class="comment" colspan="2">
@@ -74,15 +74,15 @@
                                rule: [1,'|',25,'|',50,'|',75,'|',100],
                                value:'@sort'
                                "><br />
-                        数字越小优先级越高
+                        @Resources.Language.Thesmallerthenumberthehigherthepriority
                     </td>
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
                 <div style="text-align:center;padding:5px">
                     @*<input type="submit" value="提交" />*@
-                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" >提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >取消</a>
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" >@Resources.Language.Submit</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" >@Resources.Language.Cancel</a>
                 </div>
             </div>
         </form>

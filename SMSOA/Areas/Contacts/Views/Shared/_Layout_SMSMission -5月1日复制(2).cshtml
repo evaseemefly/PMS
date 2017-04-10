@@ -44,7 +44,7 @@
          { field: 'PName', title: '联系人姓名', width: 150 },
          { field: 'PhoneNum', title: '电话', width: 250 },
          { field: 'isVIP', title: '是否是VIP', width: 120 },
-         { field: 'Remark', title: '备注', width: 120 }
+         { field: 'Remark', title: '@Resources.Language.Remarks', width: 120 }
         ]]
 
         //是否禁用
@@ -58,8 +58,8 @@
 
         var GroupColumns = [[
          {field: 'ck', checkbox: true},
-         {field: 'GroupName', title: '群组名称', width: 100},
-         {field: 'Remark', title: '备注', width: 100},
+         {field: 'GroupName', title: '@Resources.Language.GroupName', width: 100},
+         {field: 'Remark', title: '@Resources.Language.Remarks', width: 100},
          {
              field: 'IsPass', title: '是否禁用', width: 200,
              //formatter: function (value) {
@@ -103,7 +103,7 @@
             var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
             if (rows_SMSMission == null) {
 
-                messagerShowOnCenter("提示","未选择短信任务");
+                messagerShowOnCenter("@Resources.Language.Prompt","未选择短信任务");
                 return;
             }
                 
@@ -116,7 +116,7 @@
             }
 
             if (GIDs == "" & IsPasses=="") {
-                messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
+                messagerShowOnCenter("@Resources.Language.Prompt", "部门与群组中请至少选择一项");
 
                 return;
             }
@@ -147,7 +147,7 @@
 
             //若部门与群组均为选中则提示，并不做任何操作
             if (!selectGroupValue & !selectDepartmentValue) {
-                messagerShowOnCenter("提示", "部门与群组请至少选择一项");
+                messagerShowOnCenter("@Resources.Language.Prompt", "部门与群组请至少选择一项");
 
                 return;
             }
@@ -167,7 +167,7 @@
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
-                messagerShowOnCenter("提示", "请选中某一个人");
+                messagerShowOnCenter("@Resources.Language.Prompt", "请选中某一个人");
                 //统一用从页面中间弹出消息框的方式，以下注释
                 //$.messager.show({
                 //    title: '提示',
@@ -225,11 +225,11 @@
                             if (data == "ok") {
                                 //使用此种方式会出现还未等到消息框弹出页面就刷新的问题
                                 //messagerShowOnCenter("提示", "修改成功");
-                                $.messager.alert("提示", "操作成功", "info", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "操作成功", "info", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                             else {
-                                $.messager.alert("提示", "操作失败", "warning", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "操作失败", "warning", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                         },
@@ -250,7 +250,7 @@
         function afterEdit(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editSMSMissionWindow").window('close');
             //2 刷新当前页面
@@ -273,7 +273,7 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
+                    title: '@Resources.Language.Prompt',
                     msg: '请选中一行数据',
                     showType: 'show'
                 });

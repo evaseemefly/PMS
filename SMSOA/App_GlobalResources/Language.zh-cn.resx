@@ -939,4 +939,67 @@
   <data name="WhetherGivenByRoles" xml:space="preserve">
     <value>是否由角色赋予</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="CreatingDepartment" xml:space="preserve">
+    <value>新建部门</value>
+  </data>
+  <data name="EditingDepartment" xml:space="preserve">
+    <value>编辑部门</value>
+  </data>
+  <data name="InTheDepartment" xml:space="preserve">
+    <value>所属部门</value>
+  </data>
+  <data name="InTheGroup" xml:space="preserve">
+    <value>所属分组</value>
+  </data>
+  <data name="PreventDeletes" xml:space="preserve">
+    <value>禁止删除</value>
+  </data>
+  <data name="Thisnumberalreadyexistspleasereenter" xml:space="preserve">
+    <value>该电话号码已存在，请重新输入</value>
+  </data>
+  <data name="AllContactsGroupmustbeselected" xml:space="preserve">
+    <value>全部联系人必须选中</value>
+  </data>
+  <data name="Alreadyexistspleasereenter" xml:space="preserve">
+    <value>已经存在，请重新输入</value>
+  </data>
+  <data name="CreatingGroup" xml:space="preserve">
+    <value>新建群组</value>
+  </data>
+  <data name="EditingGroup" xml:space="preserve">
+    <value>编辑群组</value>
+  </data>
+  <data name="ItsforbidentodeleteAllContactsGroup" xml:space="preserve">
+    <value>全部联系人禁止删除</value>
+  </data>
+  <data name="Pleaseselectonedepartmentorgroupatleast" xml:space="preserve">
+    <value>部门与群组请至少选择一项</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="SMSContactList" xml:space="preserve">
+    <value>短信联系人列表</value>
+  </data>
+  <data name="Thisactionwillremovesthiscontactfromallgroupsanddepartments" xml:space="preserve">
+    <value>此操作会从其他群组及部门列表中删除该联系人！</value>
+  </data>
+  <data name="CreatingMission" xml:space="preserve">
+    <value>新增任务</value>
+  </data>
+  <data name="DepartmentSettingforMMSMission" xml:space="preserve">
+    <value>为当前任务分配彩信部门</value>
+  </data>
+  <data name="EditingMission" xml:space="preserve">
+    <value>编辑任务</value>
+  </data>
+  <data name="GroupSettingforMMSMission" xml:space="preserve">
+    <value>为当前任务分配彩信群组</value>
+  </data>
+  <data name="MMSContactList" xml:space="preserve">
+    <value>彩信联系人列表</value>
+  </data>
 </root>

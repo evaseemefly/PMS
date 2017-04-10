@@ -57,9 +57,9 @@
 
         var PersonColumns = [[
                  { field: 'PID', title: 'ID', width: 100, checkbox: true },
-                 { field: 'PName', title: '用户名称', width: 150 },
-                 { field: 'PhoneNum', title: '电话号码', width: 250 },
-                 { field: 'Remark', title: '备注', width: 120 }
+                 { field: 'PName', title: '@Resources.Language.ContactName', width: 150 },
+                 { field: 'PhoneNum', title: '@Resources.Language.PhoneNumber1', width: 250 },
+                 { field: 'Remark', title: '@Resources.Language.Remarks', width: 120 }
         ]]
 
 
@@ -97,8 +97,8 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
@@ -118,14 +118,14 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
+                    title: '@Resources.Language.Prompt',
                     msg: '请选中一行数据',
                     showType: 'show'
                 });
                 return;
             }
             //2 post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
                 if (r) {
                 //2.1获取选中行的pid
                     var pid = rows[0].PID;
@@ -141,7 +141,7 @@
                    $("#persondatagrid").datagrid('reload');
                 //3.2 清楚所选中的行
                 $("#persondatagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
             }
             });
             }
@@ -159,7 +159,7 @@
 
             //若部门与群组均为选中则提示，并不做任何操作
             if (!selectGroupValue & !selectDepartmentValue) {
-                messagerShowOnCenter("提示", "部门与群组请至少选择一项");
+                messagerShowOnCenter("@Resources.Language.Prompt", "部门与群组请至少选择一项");
 
                 return;
             }
@@ -179,7 +179,7 @@
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
-                messagerShowOnCenter("提示", "请选中某一个人");
+                messagerShowOnCenter("@Resources.Language.Prompt", "请选中某一个人");
                 //统一用从页面中间弹出消息框的方式，以下注释
                 //$.messager.show({
                 //    title: '提示',
@@ -237,11 +237,11 @@
                             if (data == "ok") {
                                 //使用此种方式会出现还未等到消息框弹出页面就刷新的问题
                                 //messagerShowOnCenter("提示", "修改成功");
-                                $.messager.alert("提示", "操作成功", "info", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "操作成功", "info", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                             else {
-                                $.messager.alert("提示", "操作失败", "warning", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "操作失败", "warning", function () { window.close(); refresh(); });
                                 //refresh();
                             }
 
@@ -364,7 +364,7 @@
         function afterContact_Common(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editContactWindow").window('close');
             $("#editPersonWindow").window('close');
@@ -375,7 +375,7 @@
         function afterEdit(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editContactWindow").window('close');
             $("#editPersonWindow").window('close');
@@ -479,7 +479,7 @@
         </div>
     </div>
     @RenderSection("showWindow") 
-    <div class="easyui-window" title="联系人" id="editPersonWindow" style="width:460px;height:370px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" title="@Resources.Language.Contact" id="editPersonWindow" style="width:460px;height:370px;overflow: hidden" data-options="shadow:true,modal:true">
         <iframe id="addPersonFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
     </div>
 </body>

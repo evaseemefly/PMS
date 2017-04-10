@@ -51,7 +51,7 @@
                 window.parent.afterEdit("修改成功");
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("@Resources.Language.ModifyFailed");
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -65,11 +65,11 @@
                     <input type="hidden" name="SubTime" value="@data.SubTime" />
                     <table cellpadding="3">                        
                         <tr>
-                            <td style="color:#ffffff">群组名称:</td>
+                            <td style="color:#ffffff">@Resources.Language.GroupName:</td>
                             <td><input class="easyui-textbox" type="text" name="GroupName" value="@data.GroupName" data-options="required:true"></input></td>
                         </tr>
                         <tr>
-                            <td style="color:#ffffff">备注:</td>
+                            <td style="color:#ffffff">@Resources.Language.Remarks:</td>
                             <td>
                                 <input class="easyui-textbox"  name="GroupName" value="@data.Remark" style="height:50px" data-options="multiline:true"></input>
                             </td>

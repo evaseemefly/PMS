@@ -90,10 +90,10 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("@Resources.Language.ModifySuccess");
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("@Resources.Language.ModifyFailed");
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -124,7 +124,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="color:#ffffff">备注:</td>
+                    <td style="color:#ffffff">@Resources.Language.Remarks:</td>
                     <td>
                         <input class="easyui-textbox" name="Remark" style="height:50px" value="@ViewBag.Remark" data-options="multiline:true"></input>
                     </td>

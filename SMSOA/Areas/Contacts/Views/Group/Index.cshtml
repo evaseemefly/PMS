@@ -9,7 +9,7 @@
     <script type="text/javascript">
         var myColumns = [[
 { field: 'GID', title: 'ID', width: 100, hidden: true },
-{ field: 'GroupName', title: '群组名称', width: "100%" }
+{ field: 'GroupName', title: '@Resources.Language.GroupName', width: "100%" }
         ]]
 
 
@@ -17,7 +17,7 @@
             //从指定页面中预读取数据
             $("#addGroupFrame").attr("src", '@ViewBag.ShowAddGroup');
             //打开编辑窗体
-            $("#editContactWindow").panel({ title: "新建群组" });
+            $("#editContactWindow").panel({ title: "@Resources.Language.CreatingGroup" });
             $("#editContactWindow").window('open');
 
         }
@@ -28,15 +28,15 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选择一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
             }
             //**注意先加载iframe窗体的数据，在打开该窗口
             $("#addGroupFrame").attr("src", "@ViewBag.ShowEditGroup" + "?id=" + rows[0].GID);//会出现重定向的错误
-            $("#editContactWindow").panel({ title: "编辑群组" });
+            $("#editContactWindow").panel({ title: "@Resources.Language.EditingGroup" });
             $("#editContactWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
@@ -50,14 +50,14 @@
             if (rows.length < 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请至少选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataatleast',
                     showType: 'show'
                 });
                 return;
             }
             //post请求至软删除方法
-            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Areyousureyouwanttodeleteit", function (r) {
                 if (r) {
                     var strId = "";
                 for (var i = 0; i < rows.length; i++) {
@@ -66,8 +66,8 @@
                         if (rows[i].forbidDel) {
                 //提示全部联系人无法删除
                 $.messager.show({
-                title: '提示',
-                msg: '全部联系人禁止删除',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.ItsforbidentodeleteAllContactsGroup',
                 showType: 'show'
             });
             }
@@ -93,7 +93,7 @@
                 ClearPersonGrid();
                 ComboboxDisable();
                 $("#contactsdatagrid").datagrid('clearSelections');
-                $.messager.alert("提示", "删除成功");
+                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Deleted");
             }
             });
             }
@@ -121,7 +121,7 @@
         function afterEdit(msg) {
             //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
 
             $("#editGroupWindow").window('close');
             $("#editPersonWindow").window('close');
@@ -150,8 +150,8 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
@@ -181,8 +181,8 @@
             if (rows.length != 1) {
                 //提示
                 $.messager.show({
-                    title: '提示',
-                    msg: '请选中一行数据',
+                    title: '@Resources.Language.Prompt',
+                    msg: '@Resources.Language.Selectonelineofdataplease',
                     showType: 'show'
                 });
                 return;
@@ -245,7 +245,7 @@
                 singleSelect: true,
                 fit: true,
                 url: url,
-                loadMsg: '加载中……',
+                loadMsg: '@Resources.Language.Loading',
                 columns: myColumns,
                 toolbar: '#tb_contacts'
 
@@ -256,23 +256,23 @@
     }
 
 @section westdiv{
-    <div id="p" data-options="region:'west'" title="群组列表"]
+    <div id="p" data-options="region:'west'" title="@Resources.Language.GroupList"]
 style="width:21%">
         <input type="hidden" id="gid_Hidden" />
     <table class="easyui-datagrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
     </div>
     <div id="tb_contacts" style="padding:2px 5px;">
-    <a href="#" class="easyui-linkbutton" istb="true" id="add_group" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addGroupRow()"></a>
-    <a href="#" class="easyui-linkbutton" id="del_group" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeGroupRow()"></a>
-    <a href="#" class="easyui-linkbutton" id="edit_group" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editGroupRow()"></a>
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_group" data-options="iconCls:'icon-add',text: '@Resources.Language.New',plain:true" onclick="addGroupRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_group" data-options="iconCls:'icon-remove',text: '@Resources.Language.Delete',plain:true" onclick="removeGroupRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_group" data-options="iconCls:'icon-edit',text: '@Resources.Language.Edit',plain:true" onclick="editGroupRow()"></a>
     <br />
     <input class="easyui-validatebox" type="text" id="contactsName" style="width:'50%'" data-options="">
-    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a>
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">@Resources.Language.Go</a>
 </div>
     }
 
 @section showWindow{
-    <div class="easyui-window" title="编辑部门" id="editContactWindow" style="width:460px;height:405px;overflow: hidden" data-options="shadow:true,modal:true">
+    <div class="easyui-window" title="@Resources.Language.EditingDepartment" id="editContactWindow" style="width:460px;height:405px;overflow: hidden" data-options="shadow:true,modal:true">
     <iframe id="addGroupFrame" frameborder="0" width="100%" height="100%" scrolling="no" @*不显示滚动条*@></iframe>
 </div>
     }

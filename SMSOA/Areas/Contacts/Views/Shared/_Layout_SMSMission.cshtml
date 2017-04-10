@@ -22,15 +22,15 @@
 @section person_tb{
     <div id="tb" style="padding:2px 5px;">
 
-        <a href="#" class="easyui-linkbutton" id="assign_group" data-options="iconCls:'icon-contacts_setgroup',text: '为当前短信任务分配群组',plain:true" onclick="AssignGroup()"></a>
-        <a href="#" class="easyui-linkbutton" id="assign_department" data-options="iconCls:'icon-contacts_setdepartment',text: '为当前短信任务分配部门',plain:true" onclick="AssignDepartment()"></a>
-        <a href="#" class="easyui-linkbutton" id="assign_save" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept()"></a>
+        <a href="#" class="easyui-linkbutton" id="assign_group" data-options="iconCls:'icon-contacts_setgroup',text: '@Resources.Language.GroupSettingforSMSMission',plain:true" onclick="AssignGroup()"></a>
+        <a href="#" class="easyui-linkbutton" id="assign_department" data-options="iconCls:'icon-contacts_setdepartment',text: '@Resources.Language.DepartmentSettingforSMSMission',plain:true" onclick="AssignDepartment()"></a>
+        <a href="#" class="easyui-linkbutton" id="assign_save" data-options="iconCls:'icon-save',text: '@Resources.Language.Save1',plain:true" onclick="Accept()"></a>
         <br/>
-        匹配名称
+        @Resources.Language.NameMaching
         <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
-        匹配电话
+        @Resources.Language.NumberMatching
         <input class="easyui-validatebox" type="text" id="PhoneNum" style="width:'40%'" data-options="">
-        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition(0)">查询</a>
+        <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition(0)">@Resources.Language.Go</a>
     </div>
 }
 
@@ -38,7 +38,7 @@
         <script type="text/javascript">
             var myColumns = [[
 { field: 'SMID', title: 'ID', width: 100, hidden: true },
-{ field: 'SMSMissionName', title: '短信任务名称', width: "100%" }
+{ field: 'SMSMissionName', title: '@Resources.Language.SMSTaskName', width: "100%" }
             ]]
         </script>        
         }
@@ -47,10 +47,10 @@
         <script type="text/javascript">
             var PersonColumns = [[
         //{ field: 'PID', title: 'ID', width: 100, checkbox: true },
-        { field: 'PName', title: '联系人姓名', width: 150 },
-        { field: 'PhoneNum', title: '电话', width: 250 },
-        { field: 'isVIP', title: '是否是VIP', width: 200 },
-        { field: 'Remark', title: '备注', width: 120 }
+        { field: 'PName', title: '@Resources.Language.ContactName1', width: 150 },
+        { field: 'PhoneNum', title: '@Resources.Language.PhoneNumber1', width: 250 },
+        { field: 'isVIP', title: '@Resources.Language.VIP', width: 200 },
+        { field: 'Remark', title: '@Resources.Language.Remarks', width: 120 }
             ]]
 
 
@@ -58,26 +58,26 @@
             //是否禁用
             var IsPassColumns = [{
                 "IsPass": false,
-                "Text": "禁用",
+                "Text": "@Resources.Language.Disable",
             }, {
                 "IsPass": true,
-                "Text": "启用",
+                "Text": "@Resources.Language.Enable",
             }];
             //部门
             var DepartmentColumns = [[
                 { field: 'DID', checkbox: true },
 
-                { field: 'DepartmentName', title: '部门名称', width: "70%" },
+                { field: 'DepartmentName', title: '@Resources.Language.DepartmentName', width: "70%" },
                 {
-                    field: 'IsPass', title: '是否禁用', width: "15%",
+                    field: 'IsPass', title: '@Resources.Language.EnableDisable', width: "15%",
                     formatter: function (value, row) {
                         if (row.Text == null) {
-                            return "请选择";
+                            return "@Resources.Language.PleaseSelect";
                         }
                         else {
                             return row.Text;
                         }
-                       
+
                     },
                     editor: {
                         type: 'combobox',
@@ -96,10 +96,10 @@
             //群组
             var GroupColumns = [[
              { field: 'ck', checkbox: true },
-             { field: 'GroupName', title: '群组名称', width: "30%" },
-             { field: 'Remark', title: '备注', width: "45%" },
+             { field: 'GroupName', title: '@Resources.Language.GroupName', width: "30%" },
+             { field: 'Remark', title: '@Resources.Language.Remarks', width: "45%" },
              {
-                 field: 'IsPass', title: '是否禁用', width: "15%",
+                 field: 'IsPass', title: '@Resources.Language.EnableDisable', width: "15%",
                  //formatter: function (value) {
                  //    for (var i = 0; i < IsPass.length; i++) {
                  //        if (IsPass[i].value == value) return IsPass[i].name;
@@ -128,19 +128,19 @@
                {
                    id:'assign_group',
                    iconCls: 'icon-contacts_setgroup',
-                   text: "为当前任务分配短信群组",
+                   text: "@Resources.Language.GroupSettingforSMSMission",
                    handler: AssignGroup
                },
                 {
                     id: 'assign_department',
                     iconCls: 'icon-contacts_setdepartment',
-                    text: "为当前任务分配部门",
+                    text: "@Resources.Language.DepartmentSettingforSMSMission",
                     handler: AssignDepartment
                 },
                 {
                     id: 'assign_save',
                     iconCls: 'icon-save',
-                    text: "保存分配结果",
+                    text: "@Resources.Language.Save1",
                     handler: Accept
                 },
             ]
@@ -248,7 +248,7 @@
 
                 //若部门与群组均为选中则提示，并不做任何操作
                 if (!selectGroupValue & !selectDepartmentValue) {
-                    messagerShowOnCenter("提示", "部门与群组请至少选择一项");
+                    messagerShowOnCenter("@Resources.Language.Prompt", "@Resources.Language.Pleaseselectonedepartmentorgroupatleast");
 
                     return;
                 }
@@ -268,7 +268,7 @@
                 //若选中的行不为一行
                 if (rows.length != 1) {
                     //提示
-                    messagerShowOnCenter("提示", "请选中某一个人");
+                    messagerShowOnCenter("@Resources.Language.Prompt", "@Resources.Language.Pleaseselectaperson");
                     //统一用从页面中间弹出消息框的方式，以下注释
                     //$.messager.show({
                     //    title: '提示',
@@ -301,7 +301,7 @@
         //function afterEdit(msg,type) {
 		function afterContact_Common(msg,type) {            //editWindow
             //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
             if (type == 0) {
                 CancelSend();
             }
@@ -366,7 +366,7 @@
 
                     url: url,
                     showHeader: true,
-                    loadMsg: '加载中……',
+                    loadMsg: '@Resources.Language.Loading',
                     pagination: true,//启用分页，默认每页10行
                     rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                     pageSize: 20,   //设置 页容量为 5
@@ -440,7 +440,7 @@
                     singleSelect: false,
                     collapsible: true,
                     url: '@ViewBag.GetDepartment_treegrid?smid=' + smid,
-                    logMsg: '加载中……',
+                    logMsg: '@Resources.Language.Loading',
                     columns: myDepartmentColumns,
                     //onBeforeEdit: function (index, row) {
                     //    row.editing = true;
@@ -479,7 +479,7 @@
                     },
                     onUncheck: function (row) {
                         row.checked = false;
-                        row.Text = "请选择";
+                        row.Text = "@Resources.Language.PleaseSelect";
                         row.IsPass = null;
                         $('#department').treegrid('cancelEdit', row.DID);
                     },
@@ -535,7 +535,7 @@
                     multiple: true,
                     method: 'get',
                     panelHeight: 'auto',
-                    loadMsg: '加载中……',
+                    loadMsg: '@Resources.Language.Loading',
                     columns: myGroupColumns,
                     nowrap:false,
                     fitColumns: true,
@@ -560,7 +560,7 @@
                     },
                     onUncheck: function (index,row) {
                         row.checked = false;
-                        row.Text = "请选择";
+                        row.Text = "@Resources.Language.PleaseSelect";
                         $('#group').datagrid('cancelEdit', index);
                     },
                     onLoadSuccess: function (data) {
@@ -605,7 +605,7 @@
 
             //提交
             function confirm_center(obj) {
-                $.messager.confirm('请确认', '是否要执行此操作?', function (r) {
+                $.messager.confirm('@Resources.Language.Pleaseconfirm', '@Resources.Language.Doyouwanttodothis', function (r) {
                     if (r) {
                         //alert("执行提交操作");
                         $.ajax({
@@ -620,17 +620,17 @@
                                 if (data == "ok") {
                                     //使用此种方式会出现还未等到消息框弹出页面就刷新的问题
                                     //messagerShowOnCenter("提示", "修改成功");
-                                    $.messager.alert("提示", "操作成功", "info", function () { window.close(); refresh(); });
+                                    $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Success", "info", function () { window.close(); refresh(); });
                                     //refresh();
                                 }
                                 else {
-                                    $.messager.alert("提示", "操作失败", "warning", function () { window.close(); refresh(); });
+                                    $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Failed", "warning", function () { window.close(); refresh(); });
                                     //refresh();
                                 }
                             },
                             error: function () {
 
-                                $.messager.alert("错误", "服务器错误", "error", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Error", "@Resources.Language.ServerError", "error", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                         });
@@ -708,7 +708,7 @@
 
 @section showDepartmentWindow{
 @*分配部门的窗体*@
-<div class="easyui-window" id="showDepartmentWindow" title="部门列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+<div class="easyui-window" id="showDepartmentWindow" title="@Resources.Language.DepartmentList" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">
@@ -720,7 +720,7 @@
 
 @section showGroupWindow{
 @*分配群组的窗体*@
-<div class="easyui-window" id="showGroupWindow" title="群组列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+<div class="easyui-window" id="showGroupWindow" title="@Resources.Language.GroupList" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">
@@ -728,7 +728,7 @@
         </div>
     </div>
 </div>
-<div class="easyui-window" id="showGroupWindow_mms" title="群组列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+<div class="easyui-window" id="showGroupWindow_mms" title="@Resources.Language.GroupList" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">

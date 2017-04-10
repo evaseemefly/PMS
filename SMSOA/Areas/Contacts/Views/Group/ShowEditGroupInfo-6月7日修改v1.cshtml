@@ -45,10 +45,10 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("@Resources.Language.ModifySuccess");
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("@Resources.Language.ModifyFailed");
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -64,7 +64,7 @@
                     <td><input class="easyui-textbox" type="text" name="GroupName" value="@data.GroupName" data-options="required:true"></input>请填写群组名称</td>
                 </tr>
                 <tr>
-                    <td >备注:</td>
+                    <td >@Resources.Language.Remarks:</td>
                     <td>
                         <input class="easyui-textbox" name="Remark" value="@data.Remark" style="height:50px" data-options="multiline:true"></input>请描述群组功能（可选）
                     </td>

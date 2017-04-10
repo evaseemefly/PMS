@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>新增</title>
+    <title>@Resources.Language.New</title>
     <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
     <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
     @*注意需要添加此css才能使用easyui默认的颜色*@
@@ -32,7 +32,7 @@
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data,"短信任务名称");
+                    afterEdit(data,"@Resources.Language.SMSTaskName");
                 }
             };
 
@@ -50,13 +50,13 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功",0);
+                window.parent.afterEdit("@Resources.Language.ModifySuccess",0);
             }
             else if (data == "validation fails") {
-                window.parent.afterEdit(name + "已经存在，请重新输入",1)
+                window.parent.afterEdit(name + "@Resources.Language.Alreadyexistspleasereenter",1)
             }
             else{
-                window.parent.afterEdit("修改失败",0);
+                window.parent.afterEdit("@Resources.Language.ModifyFailed",0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -69,27 +69,27 @@
             <input type="hidden" name="SMID" value=@ViewBag.SMID />
             <table cellpadding="3">
                  <tr>
-                    <td style="color:#ffffff">任务名称:</td>
-                    <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name data-options="required:true,validType:['CHS','length[1,50]']" missingMessage="任务名称必须填写"></input></td>
+                    <td style="color:#ffffff">@Resources.Language.MissionName:</td>
+                    <td><input class="easyui-validatebox"  type="text" name="SMSMissionName" value=@ViewBag.Name data-options="required:true,validType:['CHS','length[1,50]']" missingMessage="@Resources.Language.Missionnamemustbefilled"></input></td>
                 </tr>
                 <tr>
-                    <td style="color:#ffffff">备注:</td>
+                    <td style="color:#ffffff">@Resources.Language.Remarks:</td>
                     <td>
                         <input class="easyui-textbox" name="Remark" style="height:50px" value=@ViewBag.Remark data-options="multiline:true"></input>
                     </td>
                 </tr>
                 <tr>
-                    <td style="color:#ffffff">创建时间:</td>
+                    <td style="color:#ffffff">@Resources.Language.CreateTime:</td>
                     <td><input class="easyui-textbox" type="text" name="SubTime"  readonly="readonly" value=@ViewBag.SubTime></input></td>
                 </tr>
                 <tr>
-                    <td style="color:#ffffff">最后修改时间:</td>
+                    <td style="color:#ffffff">@Resources.Language.ModifiedTime:</td>
                     <td><input class="easyui-textbox" type="text" name="ModifiedOnTime"  readonly="readonly" value=@ViewBag.ModifiedOnTime></input></td>
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" style="width:80px" type="submit" onclick="DoSubmit()">提交</a>
-                <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a>
+                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" style="width:80px" type="submit" onclick="DoSubmit()">@Resources.Language.Submit</a>
+                <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">@Resources.Language.Cancel</a>
             </div>
         </form>
     </div>

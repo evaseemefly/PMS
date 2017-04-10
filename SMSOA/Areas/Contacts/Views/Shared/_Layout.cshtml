@@ -63,7 +63,7 @@
         @RenderBody()
         <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;">
             @RenderSection("westdiv")
-            <div data-options="region:'center'" title="短信联系人列表" style="width:70%">
+            <div data-options="region:'center'" title="@Resources.Language.SMSContactList" style="width:70%">
 
                 <table class="easyui-datagrid" id="persondatagrid" data-options="" style="width:100%;"></table>
                 @RenderSection("person_tb", false)

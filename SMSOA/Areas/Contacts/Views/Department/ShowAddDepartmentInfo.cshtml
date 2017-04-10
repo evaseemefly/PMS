@@ -14,7 +14,7 @@
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data,"部门名称");
+                    afterEdit(data,"@Resources.Language.DepartmentName");
                 }
             };
 
@@ -76,13 +76,13 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEditContact("修改成功",0);
+                window.parent.afterEditContact("@Resources.Language.ModifySuccess",0);
             }
             else if (data = "validation fails") {
-                window.parent.afterEditContact(name + "已经存在，请重新输入", 1);
+                window.parent.afterEditContact(name + "@Resources.Language.Alreadyexistspleasereenter", 1);
             }
             else {
-                window.parent.afterEditContact("修改失败", 0);
+                window.parent.afterEditContact("@Resources.Language.ModifyFailed", 0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -97,36 +97,36 @@
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
             <table style="margin-left:40px;width:90%" cellpadding="3">
                 <tr>
-                    <td style="">所属上级机构:</td>
+                    <td style="">@Resources.Language.SuperiorDepartment:</td>
                     <td class="comment">
                         <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" @*data-options="required:true"*@></select><br />
-                        请选择该部门属于哪个上级机构
+                        @Resources.Language.Pleasechoosethesuperiorofthisdepartment
                     </td>
                     @*<td style="">优先级:</td>*@
                 </tr>
                 <tr>
-                    <td>部门名称:</td>
+                    <td>@Resources.Language.DepartmentName:</td>
                     <td class="comment">
                         <input class="easyui-validatebox" type="text" name="DepartmentName" value="@ViewBag.Name" @*data-options="required:true"*@ data-options="required:true,validType:['CHS','length[1,50]']"></input><br />
-                        请输入该部门的名称（只能填写中文）
+                        @Resources.Language.Pleaseenterthenameofthedepartment
                     </td>
                 </tr>
                 <tr>
-                    <td>区域:</td>
+                    <td>@Resources.Language.Area:</td>
                     <td class="comment">
                         <select class="easyui-combobox" name="Area" id="Area_combox" @*data-options="required:true"*@></select><br />
-                        选择该部门所在的区域
+                        @Resources.Language.SelecttheareaoftheDepartment
                     </td>
                 </tr>
                 <tr>
-                    <td>备注:</td>
+                    <td>@Resources.Language.Remarks:</td>
                     <td class="comment">
                         <input class="easyui-textbox" type="text" name="Remark" data-options="multiline:true" style="height:50px;width:80%;" value="@ViewBag.Remark"><br />
-                        可选
+                        @Resources.Language.Optional
                     </td>
                 </tr>
                 <tr>
-                    <td>优先级:</td>
+                    <td>@Resources.Language.Priority:</td>
                 </tr>
                 <tr>
                     <td class="comment" colspan="2">
@@ -134,15 +134,15 @@
                                rule: [0,'|',25,'|',50,'|',75,'|',100],
                                value:'@sort'
                                "><br />
-                        数字越小优先级越高
+                        @Resources.Language.Thesmallerthenumberthehigherthepriority
                     </td>
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
                 <div style="text-align:center;padding:5px">
                     @*<input type="submit" value="提交" />*@
-                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" style="width:80px">@Resources.Language.Submit</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">@Resources.Language.Cancel</a>
                 </div>
             </div>
         </form>

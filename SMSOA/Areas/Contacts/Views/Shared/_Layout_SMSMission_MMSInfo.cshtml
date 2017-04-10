@@ -36,21 +36,21 @@
 
 @*QuYuan新修改彩信联系人列表*@
 @section eastdiv{
-    <div data-options="region:'east'" title="彩信联系人列表" style="width:40%">
+    <div data-options="region:'east'" title="@Resources.Language.MMSContactList" style="width:40%">
 
         <table class="easyui-datagrid" id="persondatagrid_MMS" data-options="" style="width:40%;"></table>
         
         <div id="tb_MMS" style="padding:2px 5px;">
 
-            <a href="#" class="easyui-linkbutton" id="assign_group_MMS" data-options="iconCls:'icon-contacts_setgroup',text: '为当前任务分配彩信群组',plain:true" onclick="AssignGroup_mms()"></a>
-            <a href="#" class="easyui-linkbutton" id="assign_department_MMS" data-options="iconCls:'icon-contacts_setdepartment',text: '为当前任务分配彩信部门',plain:true" onclick="AssignDepartment_mms()"></a>
-            <a href="#" class="easyui-linkbutton" id="assign_save_MMS" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept_mms()"></a>
+            <a href="#" class="easyui-linkbutton" id="assign_group_MMS" data-options="iconCls:'icon-contacts_setgroup',text: '@Resources.Language.GroupSettingforMMSMission',plain:true" onclick="AssignGroup_mms()"></a>
+            <a href="#" class="easyui-linkbutton" id="assign_department_MMS" data-options="iconCls:'icon-contacts_setdepartment',text: '@Resources.Language.DepartmentSettingforMMSMission',plain:true" onclick="AssignDepartment_mms()"></a>
+            <a href="#" class="easyui-linkbutton" id="assign_save_MMS" data-options="iconCls:'icon-save',text: '@Resources.Language.Save1',plain:true" onclick="Accept_mms()"></a>
             <br />
-            匹配名称
+            @Resources.Language.NameMaching
             <input class="easyui-validatebox" type="text" id="personName_MMS" style="width:'40%'" data-options="">
-            匹配电话
+            @Resources.Language.NumberMatching
             <input class="easyui-validatebox" type="text" id="PhoneNum_MMS" style="width:'40%'" data-options="">
-            <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition_MMS()">查询</a>
+            <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchPersonByCondition_MMS()">@Resources.Language.Go</a>
         </div>
     </div>
 }
