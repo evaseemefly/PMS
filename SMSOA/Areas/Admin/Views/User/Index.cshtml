@@ -1,4 +1,4 @@
-﻿@{
+﻿ @{
     Layout = null;
 }
 
@@ -33,10 +33,10 @@
         var queryModel = {UName:"",Remark:""};
         var myColumns = [[
                     { field: 'ID', title: 'ID', width: '5%', hidden: true },
-                    { field: 'UName', title: '用户名', width: '20%' },
+                    { field: 'UName', title: '@Resources.Language.UserName', width: '20%' },
                     //{ field: 'UPwd', title: '密码', width: 250 },
                     {
-                        field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                        field: 'SubTime', title: '@Resources.Language.CreateTime', width: '15%', formatter: function (value) {
                             return Date.getStrOfDate(value);
                         }
                     },

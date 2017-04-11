@@ -24,7 +24,7 @@
 
         <a href="#" class="easyui-linkbutton" id="assign_group" data-options="iconCls:'icon-contacts_setgroup',text: '为当前短信任务分配群组',plain:true" onclick="AssignGroup()"></a>
         <a href="#" class="easyui-linkbutton" id="assign_department" data-options="iconCls:'icon-contacts_setdepartment',text: '为当前短信任务分配部门',plain:true" onclick="AssignDepartment()"></a>
-        <a href="#" class="easyui-linkbutton" id="assign_save" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept()"></a>
+        <a href="#" class="easyui-linkbutton sms" id="assign_save" data-options="iconCls:'icon-save',text: '保存分配结果',plain:true" onclick="Accept(this)"></a>
         <br/>
         匹配名称
         <input class="easyui-validatebox" type="text" id="personName" style="width:'40%'" data-options="">
@@ -148,6 +148,7 @@
             //-----------------3 增删改操作--------------------
             //分配部门按钮的方法
             function AssignGroup() {
+                this
                 var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
                 if (!isSelectedRow(rows)) { return; }
                 $("#showGroupWindow").window('open');
@@ -173,16 +174,18 @@
                 $("#showDepartmentWindow_mms").window('open');
 
             }
-            //保存方法
+            //用户修改了当前任务所拥有的群组及部门时——保存方法
             function Accept() {
-                var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
-                if (!isSelectedRow(rows)) { return; }
+                var rows_mission = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows_mission)) { return; }
                 //获取选中的部门
                 var d_rows = $("#department").treegrid('getSelections');
                 //结束部门编辑
                 $.each(d_rows, function (i, item) {
                     $('#department').treegrid('endEdit', item.DID);
                 })
+
+                
                 //获取选中的群组
                 var g_rows = $('#group').datagrid('getChecked');
                 //结束群组编辑
@@ -237,6 +240,10 @@
                 });
 
 
+                //4月11日修改 casablanca
+                //读取短彩信的所属群组及部门的思路
+                //$("#showGroupWindow .easyui-datagrid")
+
             }
             //为用户保存选中的分组及部门
             function SavePerson() {
@@ -289,7 +296,90 @@
 
             }
 
-            function Accept() {
+            function Accept(obj) {
+                var rows_mission = $("#SMSMissiondatagrid").datagrid('getSelections');
+                if (!isSelectedRow(rows_mission)) { return; }
+                //取到传入的对象，即easyui-linkbutton这个dom元素，需要通过$转为jquery对象
+                var class_name= $(obj).attr('class');
+                var str_isMMs;
+                //判断是sms还是mms
+                if($(obj).is('.sms')){
+                    //若是短信则执行 短信的群组、部门的获取选中操作
+                    str_isMMs='sms';
+                }
+                if($(obj).is('.mms')){
+                    str_isMMs='mms';
+                }
+                //var rows=$(".easyui-datagrid.sms.group").datagrid('getChecked');
+                //获取短信或彩信选中的群组
+                //easyui-datagrid sms group
+                $(".easyui-datagrid.group").filter(str_isMMs);
+
+                //获取选中的群组
+                var g_rows = $('#group').datagrid('getChecked');
+                //结束群组编辑
+                $('#group').datagrid('acceptChanges');
+
+                //获取选中的部门
+                var d_rows = $("#department").treegrid('getSelections');
+                //结束部门编辑
+                $.each(d_rows, function (i, item) {
+                    $('#department').treegrid('endEdit', item.DID);
+                })
+
+                
+                //获取选中的群组
+                var g_rows = $('#group').datagrid('getChecked');
+                //结束群组编辑
+                $('#group').datagrid('acceptChanges');
+
+                var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
+                //暂时没作用
+                //if (rows_SMSMission == null) {
+
+                //    messagerShowOnCenter("提示", "未选择短信任务");
+                //    return;
+                //}
+
+                var SMSMissionID = rows_SMSMission.SMID;
+                var GIDs = "";
+                var G_IsPasses = "";
+                var DIDs = "";
+                var D_IsPasses = "";
+
+
+                for (var i = 0; i < g_rows.length; i++) {
+                    GIDs = GIDs + g_rows[i].GID + ",";
+                    G_IsPasses = G_IsPasses + g_rows[i].IsPass + ",";
+                }
+                for (var i = 0; i < d_rows.length; i++) {
+                    DIDs = DIDs + d_rows[i].DID + ",";
+                    D_IsPasses = D_IsPasses + d_rows[i].IsPass + ",";
+                }
+                //需讨论
+                //if (GIDs == "" & DIDs == "") {
+                //    messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
+
+                //    return;
+                //}
+                //去掉结尾的逗号
+                GIDs = GIDs.substr(0, GIDs.length - 1);
+
+                G_IsPasses = G_IsPasses.substr(0, G_IsPasses.length - 1);
+
+                DIDs = DIDs.substr(0, DIDs.length - 1);
+
+                D_IsPasses = D_IsPasses.substr(0, D_IsPasses.length - 1);
+
+                //获取选中的任务
+
+                var result = confirm_center({
+                    'SMSMissionID': SMSMissionID,
+                    'groupIds': GIDs,
+                    'g_isPasses': G_IsPasses,
+                    'departmentIds': DIDs,
+                    'd_isPasses': D_IsPasses
+                });
                 alert("暂未实现");
             }
         </script>
@@ -724,7 +814,7 @@
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">
-            <select class="easyui-datagrid" id="group" data-options="fit:true"></select>
+            <select class="easyui-datagrid sms group"  id="group" data-options="fit:true"></select>
         </div>
     </div>
 </div>

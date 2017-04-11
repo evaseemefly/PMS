@@ -53,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
       <Name>PMS.BLL</Name>

@@ -93,6 +93,11 @@ namespace MMSFactoryServiceLib
             receiveModel = ObjTransform.Xml2Model_ReceiveMsg(returnMsg, sendModel);
             return true;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sendModel"></param>
+        /// <returns></returns>
         private int SendBeforeCheck(MMSModel_Send sendModel)
         {
             //if (sendModel.password.Length < 1 & sendModel.account.Length < 1) { return 99; }

@@ -62,6 +62,10 @@
     <property name="smsContentBLL" ref="smsContentService" />
     <property name="mmsQuery" ref="mmsQueryService" />
     <property name="smsRecord_CurrentBLL" ref="smsRecord_CurrentService" />
+    <property name="uploadBLL" ref="uploadService" />
+    <property name="fdfsStorageBLL" ref="fdfsStorageService" />
+    <property name="fdfsTrackerBLL" ref="fdfsTrackerService" />
+    <property name="fdfsContentBLL" ref="fdfsContentService" />
   </object>
   <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
     <property name="smsMsgContentBLL" ref="smsMsgTemplateService" />
@@ -86,5 +90,7 @@
     <property name="jobInfoBLL" ref="jobInfoService" />
     <property name="jobTemplateBLL" ref="jobTemplateService" />
     <property name="jobService" ref="jobService" />
+  </object>
+    <object type="SMSOA.Areas.I18NDemo.Controllers.InternationalizationController, SMSOA" singleton="false" >
   </object>
 </objects>

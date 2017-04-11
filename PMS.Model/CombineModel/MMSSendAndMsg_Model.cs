@@ -7,7 +7,7 @@ using PMS.IModel;
 
 namespace PMS.Model.CombineModel
 {
-    public class MMSSendAndMsg_Model:BaseMessage_Model,ISendAndMessage_Model
+    public class MMSSendAndMsg_Model:BaseMessage_Model
     {
         /// <summary>
         /// 

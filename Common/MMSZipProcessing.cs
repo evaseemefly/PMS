@@ -73,7 +73,13 @@ namespace Common
         //#endregion
         //            return path;
         //        }
-            public string CreateZip()
+        /// <summary>
+        /// 对图片进行压缩
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="fileNameIncludeExt">赋值后返回的 文件名+拓展名</param>
+        /// <returns>压缩包存储路径</returns>
+            public string CreateZip(string content,out string fileNameIncludeExt)
             {
                 #region 飞飞写的压缩程序，对图片进行压缩
                 //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
@@ -84,14 +90,14 @@ namespace Common
                 guid_str = guid_str.Replace("-", "");
                 //需要加载 System.Drawing;
                 string fileName = guid_str;
-                string mmsContent = "这是彩信内容，以string方式输入";
+                string mmsContent = content;
                 PicturePretreatment pp = new PicturePretreatment(picture_stream);//图片预处理实体
                 bool err = pp.PicturePretreatments();//图片流预处理，暂无法处理动态gif
 
                 //注意：处理中的图片格式可能会变化
                 //得到的pp.picture_stream是处理后的图片流
                 //byte[] picture_byte = pp.ToBytes();//图片二进制输出
-                pp.ToFile(fileDirectory + fileName); //图片文件输出file name 不必加扩展名
+               fileNameIncludeExt= pp.ToFile(fileDirectory + fileName); //图片文件输出file name 不必加扩展名
                 #endregion
 
                 //4.发送

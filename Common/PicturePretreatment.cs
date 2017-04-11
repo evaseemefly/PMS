@@ -185,7 +185,7 @@ namespace Common
 
             MemoryStream ms = new MemoryStream();
             myBitmap.Save(ms, myImageCodecInfo, myEncoderParameters);
-            szfile.Close();
+            //szfile.Close();
             return ms;
         }
         private static ImageCodecInfo GetEncoderInfo(String mimeType)
@@ -258,15 +258,18 @@ namespace Common
             Image img = Image.FromStream(picture_stream);//读取待处理流成为图片
             img.Save(file_name + ExtendedNameTest(img.RawFormat), img.RawFormat);
         }
+
         /// <summary>
         /// 流存成文件
         /// </summary>
-        /// <param name="file_name"></param>
-        public void ToFile(string file_name)//file name 不要加扩展名
+        /// <param name="file_name">文件名（不含拓展名）</param>
+        /// <returns>图片文件名+拓展名</returns>
+        public string ToFile(string file_name)//file name 不要加扩展名
         {
             Image img = Image.FromStream(picture_stream);//读取待处理流成为图片
             string fileFullName = file_name + ExtendedNameTest(img.RawFormat);
             img.Save(fileFullName, img.RawFormat);
+            return fileFullName;
         }
     }
 }

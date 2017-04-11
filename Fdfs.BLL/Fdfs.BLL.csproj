@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fdfs.DAL\Fdfs.DAL.csproj">
       <Project>{b7bece01-40b2-445e-bc7d-13ed34502693}</Project>
       <Name>Fdfs.DAL</Name>

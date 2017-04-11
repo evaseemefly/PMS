@@ -54,7 +54,7 @@ namespace PMS.Model.Dictionary
             dResponseCode.Add(98, "手机号列表为空");
             dResponseCode.Add(99, "账号或密码为空");
             dResponseCode.Add(100,"参数预检查通过");
-            dResponseCode.Add(100, "未收到服务器返回信息");
+            dResponseCode.Add(101, "未收到服务器返回信息");
 
         }
 
