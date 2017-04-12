@@ -451,14 +451,19 @@ namespace PMS.BLL
         /// </summary>
         /// <returns></returns>
 
-        public bool SetSMSMission4Group(int smid, List<ViewModel_isPass_Group> list_isPass_group)
+        public bool SetSMSMission4Group(int smid, List<ViewModel_isPass_Group> list_isPass_group,bool ismms)
         {
             var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
             List<R_Group_Mission> list = new List<R_Group_Mission>();
             //var times = 0;
             foreach (var item in list_isPass_group)
             {
-                var r_group_mission = this.CurrentDBSession.R_Group_MissionDAL.GetListBy(r => r.MissionID == smid && r.GroupID == item.gid).FirstOrDefault();
+                //2017-04-12 加入短彩信判断
+                var r_group_mission = this.CurrentDBSession.
+                    R_Group_MissionDAL.
+                    GetListBy(r => r.MissionID == smid && r.GroupID == item.gid).
+                    Where(r=>r.isMMS==((ismms)?1:0)).//2017-04-12 加入判断是否为短彩信的判断
+                    FirstOrDefault();
                 //根据groupID与smID从R表中找到唯一的记录
                 if (r_group_mission != null)
                 {
@@ -473,11 +478,13 @@ namespace PMS.BLL
                     r_Group_Mission.isPass = item.isPass;
                     //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
                     r_Group_Mission.GroupID = item.gid;
+                    r_Group_Mission.isMMS= (ismms) ? 1 : 0;
                     this.CurrentDBSession.R_Group_MissionDAL.Create(r_Group_Mission);
                 }
                 //times++;
             }
-            //7月28日从群组——任务关系表 中删除 本任务但在传入的集合中没有的对象
+
+            #region 传入的的与本任务相关的群组中筛选出需要禁用的群组集合
             //传入的的与本任务相关的群组中筛选出需要禁用的群组集合
             //var list_isNotPass_group_ids =
             //    (from g in list_isPass_group
@@ -486,10 +493,18 @@ namespace PMS.BLL
             //var list_isPass_group_ids= (from g in list_isPass_group
             //                            where g.isPass == true
             //                            select g.gid).ToArray();
+            #endregion
+            //7月28日从群组——任务关系表 中删除 本任务但在传入的集合中没有的对象
+
             var group_ids = (from g in list_isPass_group
                                   select g.gid).ToArray();
             //删除关系表中存在，但在传入的集合中既不是禁用的也不是启用的权限
-            var list_2del_group = this.CurrentDBSession.R_Group_MissionDAL.GetListBy(r => r.MissionID == smid&&!group_ids.Contains(r.GroupID)).ToList();
+            var list_2del_group = this.CurrentDBSession.
+                R_Group_MissionDAL.
+                GetListBy(r => r.MissionID == smid&&!group_ids.Contains(r.GroupID)).
+                Where(r=>r.isMMS == ((ismms) ? 1 : 0)).//2017-04-12 加入是否为彩信的判断
+                ToList();
+
             foreach (var item in list_2del_group)
             {
                 this.CurrentDBSession.R_Group_MissionDAL.Del(item);
@@ -505,12 +520,93 @@ namespace PMS.BLL
             }
         }
 
+        #region 2017-04-12 注释掉，可删除
         /// <summary>
         /// 为任务分配部门
         /// </summary>
         /// <returns></returns>
 
-        public bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_department)
+        //public bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_department)
+        //{
+        //    #region 7月28日
+        //    //var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
+        //    //List<R_Department_Mission> list = new List<R_Department_Mission>();
+        //    //var times = 0;
+        //    //foreach (var did in list_departmentIDs)
+        //    //{
+        //    //    var r_department_mission = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && r.DepartmentID == did).FirstOrDefault();
+        //    //    //根据departmentID与smID从R表中找到唯一的记录
+        //    //    if (r_department_mission != null)
+        //    //    {
+        //    //        r_department_mission.isPass = list_isPass[times];
+        //    //    }
+        //    //    else if (r_department_mission == null)
+        //    //    {
+        //    //        R_Department_Mission r_Department_Mission = new R_Department_Mission();
+        //    //        //r_UserInfo_ActionInfo.UserInfo = user;
+        //    //        r_Department_Mission.MissionID = smid;
+        //    //        //var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+        //    //        r_Department_Mission.isPass = list_isPass[times];
+        //    //        //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
+        //    //        r_Department_Mission.DepartmentID = did;
+        //    //        this.CurrentDBSession.R_Department_MissionDAL.Create(r_Department_Mission);
+        //    //    }
+        //    //    times++;
+        //    //}
+        //    //var list_del = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && !list_departmentIDs.Contains(r.DepartmentID));
+        //    #endregion
+        //    var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
+        //    List<R_Department_Mission> list = new List<R_Department_Mission>();
+        //    //var times = 0;
+        //    foreach (var item in list_isPass_department)
+        //    {
+        //        var r_department_mission = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && r.DepartmentID == item.did).FirstOrDefault();
+        //        //根据groupID与smID从R表中找到唯一的记录
+        //        if (r_department_mission != null)
+        //        {
+        //            r_department_mission.isPass = item.isPass;
+        //        }
+        //        else if (r_department_mission == null)
+        //        {
+        //            R_Department_Mission r_Department_Mission = new R_Department_Mission();
+        //            //r_UserInfo_ActionInfo.UserInfo = user;
+        //            r_Department_Mission.MissionID = smid;
+        //            //var actionInfo = this.CurrentDBSession.ActionInfoDAL.GetListBy(a => a.ID == item).FirstOrDefault();
+        //            r_Department_Mission.isPass = item.isPass;
+        //            //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
+        //            r_Department_Mission.DepartmentID = item.did;
+        //            this.CurrentDBSession.R_Department_MissionDAL.Create(r_Department_Mission);
+        //        }
+
+        //    }
+
+        //    var department_ids = (from d in list_isPass_department
+        //                     select d.did).ToArray();
+        //    //删除关系表中存在，但在传入的集合中既不是禁用的也不是启用的权限
+        //    var list_2del_department = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && !department_ids.Contains(r.DepartmentID)).ToList();
+
+        //    foreach (var item in list_2del_department)
+        //    {
+        //        this.CurrentDBSession.R_Department_MissionDAL.Del(item);
+        //    }
+        //    try
+        //    {
+        //        return this.CurrentDBSession.SaveChanges();
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return false;
+        //    }
+        //}
+        #endregion
+        
+        /// <summary>
+        /// 为任务分配部门
+        /// </summary>
+        /// <returns></returns>
+
+        public bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_department, bool ismms)
         {
             #region 7月28日
             //var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
@@ -544,7 +640,11 @@ namespace PMS.BLL
             //var times = 0;
             foreach (var item in list_isPass_department)
             {
-                var r_department_mission = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && r.DepartmentID == item.did).FirstOrDefault();
+                var r_department_mission = this.CurrentDBSession.
+                    R_Department_MissionDAL.
+                    GetListBy(r => r.MissionID == smid && r.DepartmentID == item.did).
+                    Where(r => r.isMMS == ((ismms) ? 1 : 0)).//2017-04-12 加入判断是否为短彩信的判断
+                    FirstOrDefault();
                 //根据groupID与smID从R表中找到唯一的记录
                 if (r_department_mission != null)
                 {
@@ -559,15 +659,20 @@ namespace PMS.BLL
                     r_Department_Mission.isPass = item.isPass;
                     //r_UserInfo_ActionInfo.ActionInfo = actionInfo;
                     r_Department_Mission.DepartmentID = item.did;
+                    r_Department_Mission.isMMS = ((ismms) ? 1 : 0);
                     this.CurrentDBSession.R_Department_MissionDAL.Create(r_Department_Mission);
                 }
-                
+
             }
-            
+
             var department_ids = (from d in list_isPass_department
-                             select d.did).ToArray();
+                                  select d.did).ToArray();
             //删除关系表中存在，但在传入的集合中既不是禁用的也不是启用的权限
-            var list_2del_department = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid && !department_ids.Contains(r.DepartmentID)).ToList();
+            var list_2del_department = this.CurrentDBSession.
+                R_Department_MissionDAL.
+                GetListBy(r => r.MissionID == smid && !department_ids.Contains(r.DepartmentID)).
+                 Where(r => r.isMMS == ((ismms) ? 1 : 0)).//2017-04-12 加入判断是否为短彩信的判断
+                ToList();
 
             foreach (var item in list_2del_department)
             {
@@ -583,17 +688,22 @@ namespace PMS.BLL
                 return false;
             }
         }
+
+
         /// <summary>
         /// 移除所有传入ID的任务所拥有的群组
         /// </summary>
         /// <param name="smid"></param>
         /// <returns></returns>
 
-        public bool RemoveAllGroup(int smid)
+        public bool RemoveAllGroup(int smid, bool ismms)
         {
             //var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
 
-            var list_del = this.CurrentDBSession.R_Group_MissionDAL.GetListBy(r => r.MissionID == smid);
+            var list_del = this.CurrentDBSession.
+                R_Group_MissionDAL.
+                GetListBy(r => r.MissionID == smid).
+                Where(r => r.isMMS == ((ismms) ? 1 : 0));//2017-04-12 加入判断是否为短彩信的判断;
 
             //如果原本该任务拥有的群组列表就为空
             if (list_del.FirstOrDefault() == null)
@@ -601,7 +711,9 @@ namespace PMS.BLL
                 return true;
             }
             //如果原本该任务拥有的群组列表不为空
-            foreach (var item in list_del)
+            //注意取出的list_del添加回数据上下文对象中时，需要让其立即加载，即Tolist或FirstOrDefualt，否则会提示正在被占用
+            //2017-04-12 casablanca
+            foreach (var item in list_del.ToList())
             {
                 this.CurrentDBSession.R_Group_MissionDAL.Del(item);
             }
@@ -622,17 +734,23 @@ namespace PMS.BLL
         /// <param name="smid"></param>
         /// <returns></returns>
 
-        public bool RemoveAllDepartment(int smid)
+        public bool RemoveAllDepartment(int smid,bool ismms)
         {
            // var SMSMission = this.CurrentDBSession.S_SMSMissionDAL.GetListBy(r => r.SMID == smid).FirstOrDefault();
-            var list_del = this.CurrentDBSession.R_Department_MissionDAL.GetListBy(r => r.MissionID == smid);
+            var list_del = this.CurrentDBSession.
+                R_Department_MissionDAL.
+                GetListBy(r => r.MissionID == smid).
+                Where(r => r.isMMS == ((ismms) ? 1 : 0))//2017-04-12 加入判断是否为短彩信的判断
+                ;
             //如果原本该任务拥有的群组列表就为空
             if (list_del.FirstOrDefault() == null)
             {
                 return true;
             }
             //如果原本该任务拥有的群组列表不为空
-            foreach (var item in list_del)
+            //注意取出的list_del添加回数据上下文对象中时，需要让其立即加载，即Tolist或FirstOrDefualt，否则会提示正在被占用
+            //2017-04-12 casablanca
+            foreach (var item in list_del.ToList())
             {
                 this.CurrentDBSession.R_Department_MissionDAL.Del(item);
             }

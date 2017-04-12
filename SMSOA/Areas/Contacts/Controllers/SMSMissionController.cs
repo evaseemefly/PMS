@@ -667,13 +667,15 @@ namespace SMSOA.Areas.Contacts.Controllers
         public ActionResult GetDepartment2Treegrid()
         {
             int smid = int.Parse(Request["smid"]);
+            var str_ismms = Request["ismms"];
             var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+
 
             //1.获取当前任务已有的部门(启用)
             //bool isPass = true;
-            var list_departments_isPass = GetDepartmemts(true, SMSMission);
+            var list_departments_isPass = GetDepartmemts(true, SMSMission,(str_ismms=="mms"?true:false));
             //2.获取当前任务已有的部门(禁用)
-            var list_department_isNotPass = GetDepartmemts(false, SMSMission);
+            var list_department_isNotPass = GetDepartmemts(false, SMSMission, (str_ismms == "mms" ? true : false));
 
             //2.获取所有的部门
             var list_ALLDepartment = departmentBLL.GetListBy(p => p.isDel == false).ToList();           
@@ -821,7 +823,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         ///根据选中任务获得部门
         ///</summary>
         ///<returns></returns>
-        public List<P_DepartmentInfo> GetDepartmemts(bool isPass, S_SMSMission SMSMission)
+        public List<P_DepartmentInfo> GetDepartmemts(bool isPass, S_SMSMission SMSMission,bool ismms)
         {
             if(SMSMission != null)
             {
@@ -829,7 +831,7 @@ namespace SMSOA.Areas.Contacts.Controllers
             var list_R_Department_Mission = SMSMission.R_Department_Mission;
                 var list_department = (
                    from r in list_R_Department_Mission
-                   where r.isPass == isPass
+                   where r.isPass == isPass&&r.isMMS== ((ismms) ? 1 : 0)
                    select r.P_DepartmentInfo
                     ).Select(r => r = new P_DepartmentInfo
                     {
@@ -851,25 +853,210 @@ namespace SMSOA.Areas.Contacts.Controllers
         }
 
 
-
+        #region 2017-04-12 备份——测试通过时可删除
         ///<summary>
         ///为所选的任务分配群组
         ///</summary>
         ///<returns></returns>
+        //public ActionResult DoAssignGroup2SMSMission(Models.ViewModel_SMSMissionDepartmentGroup model)
+        //{
+        //    bool isGroupOk = false;
+        //    bool isDepartmentOk = false;
+        //    if (model.SMSMissionID != null)
+        //    {
+        //            //1.得到所选的任务
+        //            var smid = int.Parse(model.SMSMissionID);
+        //            //var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+
+        //        //2.分配群组
+        //        if (model.groupIds == null)
+        //        {   //2.1 当为没有选中任何群组时，移除当前任务拥有的所有群组
+        //            var g_result = this.smsmissionBLL.RemoveAllGroup(smid);
+        //            if (g_result)
+        //            {
+        //                isGroupOk = true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            //2.2 分配群组操作
+        //           // List<int> list_groupIDs = new List<int>();
+        //            string[] groupIDs = model.groupIds.Split(',');
+        //            //List<bool> list_isPass = new List<bool>();
+        //            string[] g_isPasses = model.g_isPasses.Split(',');
+        //            //7月28日
+        //            //现准备将传入的对象转换为ViewModel_isPass_xxxx对象
+        //            //2.2先转换群组   
+        //            List<ViewModel_isPass_Group> list_group_isPass = new List<ViewModel_isPass_Group>();                 
+        //            //2.2.1 转换群组为ViewModel对象集合
+        //            if (groupIDs.Count() == g_isPasses.Count())
+        //            {
+        //                for (int i = 0; i < g_isPasses.Count(); i++)
+        //                {
+        //                    switch (g_isPasses[i])
+        //                    {
+        //                        case "启用":
+        //                            list_group_isPass.Add(new ViewModel_isPass_Group()
+        //                            {
+        //                                gid = int.Parse(groupIDs[i]),
+        //                                isPass = true
+        //                            });
+        //                            break;
+        //                        case "禁用":
+        //                            list_group_isPass.Add(new ViewModel_isPass_Group()
+        //                            {
+        //                                gid = int.Parse(groupIDs[i]),
+        //                                isPass = false
+        //                            });
+        //                            break;
+        //                    }
+        //                }
+        //                //foreach (var item in g_isPasses)
+        //                //{
+
+        //                //}
+        //            }
+
+
+        //            //2.2.1修改禁用功能
+        //            #region 7月28日——使用上面的方式替换
+        //            //foreach (var item in g_isPasses)
+        //            //{
+        //            //    if (item.Equals("启用"))
+        //            //    {
+        //            //        list_isPass.Add(true);
+        //            //    }
+        //            //    else if (item.Equals("禁用"))
+        //            //    {
+        //            //        list_isPass.Add(false);
+        //            //    }
+        //            //}
+        //            //groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
+        //            #endregion
+
+
+        //            var g_result = this.smsmissionBLL.SetSMSMission4Group(smid, list_group_isPass);
+
+        //            if (g_result)
+        //            {
+        //                isGroupOk = true;
+        //            }
+        //        }
+
+
+
+        //        //3.分配部门
+        //        if (model.departmentIds == null)
+        //        {   //3.1 当为没有选中任何部门时，移除当前任务拥有的所有部门
+        //            var d_result = this.smsmissionBLL.RemoveAllDepartment(smid);
+        //            if (d_result)
+        //            {
+        //                isDepartmentOk = true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            //3.2 分配部门操作
+        //           // List<int> list_departmentIDs = new List<int>();
+        //            string[] departmentIDs = model.departmentIds.Split(',');
+        //            //List<bool> list_disPass = new List<bool>();
+        //            string[] d_isPasses = model.d_isPasses.Split(',');
+
+        //            List<ViewModel_isPass_Department> list_department_isPass = new List<ViewModel_isPass_Department>();
+        //            //2.2.1 转换群组为ViewModel对象集合
+        //            if (departmentIDs.Count() == d_isPasses.Count())
+        //            {
+        //                for (int i = 0; i < d_isPasses.Count(); i++)
+        //                {
+        //                    switch (d_isPasses[i])
+        //                    {
+        //                        case "true":
+        //                            list_department_isPass.Add(new ViewModel_isPass_Department()
+        //                            {
+        //                                did = int.Parse(departmentIDs[i]),
+        //                                isPass = true
+        //                            });
+        //                            break;
+        //                        case "false":
+        //                            list_department_isPass.Add(new ViewModel_isPass_Department()
+        //                            {
+        //                                did = int.Parse(departmentIDs[i]),
+        //                                isPass = false
+        //                            });
+        //                            break;
+        //                    }
+        //                }
+        //                //foreach (var item in g_isPasses)
+        //                //{
+
+        //                //}
+        //            }
+        //            var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_department_isPass);
+
+        //            if (d_result)
+        //            {
+        //                isDepartmentOk = true;
+        //            }
+        //            //3.2.1修改禁用功能  
+        //            //foreach (var item in d_isPasses)
+        //            //{
+        //            //    if (item.Equals("true"))
+        //            //    {
+        //            //        list_disPass.Add(true);
+        //            //    }
+        //            //    else if (item.Equals("false"))
+        //            //    {
+        //            //        list_disPass.Add(false);
+        //            //    }
+        //            //}
+        //            //departmentIDs.ToList().ForEach(a => list_departmentIDs.Add(int.Parse(a)));
+        //            //var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_disPass);
+        //            //if (d_result)
+        //            //{
+        //            //    isDepartmentOk = true;
+        //            //}
+        //        }
+        //        }
+
+        //    if (isGroupOk && isDepartmentOk)
+        //    {
+        //        return Content("ok");
+        //    }
+        //    else
+        //    {
+        //        return Content("error");
+        //    }
+
+        //}
+        #endregion
+
+
+
+        //为所选的任务分配群组    
         public ActionResult DoAssignGroup2SMSMission(Models.ViewModel_SMSMissionDepartmentGroup model)
         {
+            //2017-04-12
+            /*
+             * 修改：
+             * 视图实体中多了isMMS标记
+             * 短信：sms；彩信：mms
+             * 需要判断是短信还是彩信
+             * casablanca
+             */
             bool isGroupOk = false;
             bool isDepartmentOk = false;
+            //若是彩信则为true，不是则为false
+            var ismms = model.isMMS.ToLower() == "mms" ? true : false;
             if (model.SMSMissionID != null)
             {
-                    //1.得到所选的任务
-                    var smid = int.Parse(model.SMSMissionID);
-                    //var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
+                //1.得到所选的任务
+                var smid = int.Parse(model.SMSMissionID);
+                //var SMSMission = smsmissionBLL.GetListBy(a => a.SMID == smid).FirstOrDefault();
 
                 //2.分配群组
                 if (model.groupIds == null)
                 {   //2.1 当为没有选中任何群组时，移除当前任务拥有的所有群组
-                    var g_result = this.smsmissionBLL.RemoveAllGroup(smid);
+                    var g_result = this.smsmissionBLL.RemoveAllGroup(smid, ismms);
                     if (g_result)
                     {
                         isGroupOk = true;
@@ -878,14 +1065,14 @@ namespace SMSOA.Areas.Contacts.Controllers
                 else
                 {
                     //2.2 分配群组操作
-                   // List<int> list_groupIDs = new List<int>();
+                    // List<int> list_groupIDs = new List<int>();
                     string[] groupIDs = model.groupIds.Split(',');
                     //List<bool> list_isPass = new List<bool>();
                     string[] g_isPasses = model.g_isPasses.Split(',');
                     //7月28日
                     //现准备将传入的对象转换为ViewModel_isPass_xxxx对象
                     //2.2先转换群组   
-                    List<ViewModel_isPass_Group> list_group_isPass = new List<ViewModel_isPass_Group>();                 
+                    List<ViewModel_isPass_Group> list_group_isPass = new List<ViewModel_isPass_Group>();
                     //2.2.1 转换群组为ViewModel对象集合
                     if (groupIDs.Count() == g_isPasses.Count())
                     {
@@ -908,14 +1095,10 @@ namespace SMSOA.Areas.Contacts.Controllers
                                     });
                                     break;
                             }
-                        }
-                        //foreach (var item in g_isPasses)
-                        //{
-                            
-                        //}
+                        }                        
                     }
 
-                    
+
                     //2.2.1修改禁用功能
                     #region 7月28日——使用上面的方式替换
                     //foreach (var item in g_isPasses)
@@ -931,9 +1114,8 @@ namespace SMSOA.Areas.Contacts.Controllers
                     //}
                     //groupIDs.ToList().ForEach(a => list_groupIDs.Add(int.Parse(a)));
                     #endregion
-
-
-                    var g_result = this.smsmissionBLL.SetSMSMission4Group(smid, list_group_isPass);
+                    
+                    var g_result = this.smsmissionBLL.SetSMSMission4Group(smid, list_group_isPass, ismms);
 
                     if (g_result)
                     {
@@ -946,7 +1128,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                 //3.分配部门
                 if (model.departmentIds == null)
                 {   //3.1 当为没有选中任何部门时，移除当前任务拥有的所有部门
-                    var d_result = this.smsmissionBLL.RemoveAllDepartment(smid);
+                    var d_result = this.smsmissionBLL.RemoveAllDepartment(smid, ismms);
                     if (d_result)
                     {
                         isDepartmentOk = true;
@@ -955,7 +1137,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                 else
                 {
                     //3.2 分配部门操作
-                   // List<int> list_departmentIDs = new List<int>();
+                    // List<int> list_departmentIDs = new List<int>();
                     string[] departmentIDs = model.departmentIds.Split(',');
                     //List<bool> list_disPass = new List<bool>();
                     string[] d_isPasses = model.d_isPasses.Split(',');
@@ -989,7 +1171,7 @@ namespace SMSOA.Areas.Contacts.Controllers
 
                         //}
                     }
-                    var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_department_isPass);
+                    var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_department_isPass, ismms);
 
                     if (d_result)
                     {
@@ -1014,7 +1196,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                     //    isDepartmentOk = true;
                     //}
                 }
-                }
+            }
 
             if (isGroupOk && isDepartmentOk)
             {
@@ -1026,8 +1208,6 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
 
         }
-
-
 
         /// <summary>
         /// 执行软删除
