@@ -46,7 +46,7 @@ namespace PMS.IBLL
         /// <param name="list_groupIDs"></param>
         /// <param name="list_isPass"></param>
         /// <returns></returns>
-        bool SetSMSMission4Group(int smid, List<ViewModel_isPass_Group> list_isPass_group);
+        bool SetSMSMission4Group(int smid, List<ViewModel_isPass_Group> list_isPass_group,bool ismms);
         /// <summary>
         /// 将传入的部门id集合赋给传入的Id对应的任务对象
         /// </summary>
@@ -55,7 +55,7 @@ namespace PMS.IBLL
         /// <param name="list_isPass"></param>
         /// <returns></returns>
 
-        bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_group);
+        bool SetSMSMission4Department(int smid, List<ViewModel_isPass_Department> list_isPass_group, bool ismms);
 
         /// <summary>
         /// 
@@ -85,7 +85,7 @@ namespace PMS.IBLL
         /// <param name="smid"></param>
         /// <returns></returns>
 
-        bool RemoveAllGroup(int smid);
+        bool RemoveAllGroup(int smid, bool ismms);
 
         /// <summary>
         /// 移除所有传入ID的任务所拥有的部门
@@ -93,7 +93,7 @@ namespace PMS.IBLL
         /// <param name="smid"></param>
         /// <returns></returns>
 
-        bool RemoveAllDepartment(int smid);
+        bool RemoveAllDepartment(int smid, bool ismms);
 
         bool AddValidation(String name);
 

@@ -175,7 +175,10 @@
 
             }
             //用户修改了当前任务所拥有的群组及部门时——保存方法
-            function Accept() {
+            //不用此方法
+            //2017-04-12
+            //casblanca
+            function Accept1() {
                 var rows_mission = $("#SMSMissiondatagrid").datagrid('getSelections');
                 if (!isSelectedRow(rows_mission)) { return; }
                 //获取选中的部门
@@ -296,6 +299,9 @@
 
             }
 
+            //2017-4-12
+            //
+            //casablanca
             function Accept(obj) {
                 var rows_mission = $("#SMSMissiondatagrid").datagrid('getSelections');
                 if (!isSelectedRow(rows_mission)) { return; }
@@ -313,34 +319,26 @@
                 //var rows=$(".easyui-datagrid.sms.group").datagrid('getChecked');
                 //获取短信或彩信选中的群组
                 //easyui-datagrid sms group
-                $(".easyui-datagrid.group").filter(str_isMMs);
+                //获取群组datagrid
+                var obj_datagrid_group= $(".easyui-datagrid.group").filter("."+str_isMMs);
+                //获取部门datagrid
+                var obj_datagrid_department=$(".easyui-treegrid.department").filter("."+str_isMMs);
 
                 //获取选中的群组
-                var g_rows = $('#group').datagrid('getChecked');
+               var g_rows = obj_datagrid_group.datagrid('getChecked');
                 //结束群组编辑
-                $('#group').datagrid('acceptChanges');
+               obj_datagrid_group.datagrid('acceptChanges');
 
                 //获取选中的部门
-                var d_rows = $("#department").treegrid('getSelections');
+               var d_rows = obj_datagrid_department.treegrid('getSelections');
                 //结束部门编辑
                 $.each(d_rows, function (i, item) {
-                    $('#department').treegrid('endEdit', item.DID);
+                    obj_datagrid_department.treegrid('endEdit', item.DID);
                 })
 
+                var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');                
                 
-                //获取选中的群组
-                var g_rows = $('#group').datagrid('getChecked');
-                //结束群组编辑
-                $('#group').datagrid('acceptChanges');
-
-                var rows_SMSMission = $('#SMSMissiondatagrid').datagrid('getSelected');
-                //暂时没作用
-                //if (rows_SMSMission == null) {
-
-                //    messagerShowOnCenter("提示", "未选择短信任务");
-                //    return;
-                //}
-
+                //之后未修改
                 var SMSMissionID = rows_SMSMission.SMID;
                 var GIDs = "";
                 var G_IsPasses = "";
@@ -356,12 +354,6 @@
                     DIDs = DIDs + d_rows[i].DID + ",";
                     D_IsPasses = D_IsPasses + d_rows[i].IsPass + ",";
                 }
-                //需讨论
-                //if (GIDs == "" & DIDs == "") {
-                //    messagerShowOnCenter("提示", "部门与群组中请至少选择一项");
-
-                //    return;
-                //}
                 //去掉结尾的逗号
                 GIDs = GIDs.substr(0, GIDs.length - 1);
 
@@ -378,9 +370,11 @@
                     'groupIds': GIDs,
                     'g_isPasses': G_IsPasses,
                     'departmentIds': DIDs,
-                    'd_isPasses': D_IsPasses
+                    'd_isPasses': D_IsPasses,
+                    'isMMS':str_isMMs//前台传递给后台的短信标记 eg:短信 sms,彩信 mms casablanca
+
                 });
-                alert("暂未实现");
+               
             }
         </script>
         }
@@ -442,7 +436,7 @@
                 }
 
                 loadDatagrid_Group(strId,GroupColumns,ismms);
-                loadTreegrid_Department(strId, DepartmentColumns);
+                loadTreegrid_Department(strId, DepartmentColumns,ismms);
                 //loadTreegrid_Department(strId, DepartmentColums);
                 //2 根据GroupID查询该群组所拥有的人员列表
                 $("#" + persondg_id).datagrid({
@@ -517,8 +511,30 @@
 
 
 
-            function loadTreegrid_Department(smid, myDepartmentColumns) {
-                $('#department').treegrid({
+            function loadTreegrid_Department(smid, myDepartmentColumns,ismms) {
+                var department_id;
+                var str_isMMS;
+                switch(ismms){
+                    case 0:
+                        
+                        str_isMMS="sms";
+                        break;
+                    case 1:
+                        
+                        str_isMMS="mms";
+                        break;
+                        defult:
+                            break;
+
+                }
+                //取到彩信或短信对应的treegrid
+                                
+                //获取短信或彩信选中的群组
+                //easyui-treegrid sms department
+                //获取部门treegrid
+                var obj_datagrid_department= $(".easyui-treegrid.department").filter("."+str_isMMS);  
+                
+                obj_datagrid_department.treegrid({
                     rownumbers: true,
                     idField: 'DID',
                     treeField: 'DepartmentName',
@@ -529,7 +545,7 @@
                     showFooter: true,
                     singleSelect: false,
                     collapsible: true,
-                    url: '@ViewBag.GetDepartment_treegrid?smid=' + smid,
+                    url: '@ViewBag.GetDepartment_treegrid?smid=' + smid+'&ismms='+str_isMMS,
                     logMsg: '加载中……',
                     columns: myDepartmentColumns,
                     //onBeforeEdit: function (index, row) {
@@ -565,33 +581,33 @@
                                 row.IsPass = false;
                             }
                         }
-                        $('#department').treegrid('beginEdit', row.DID);
+                        obj_datagrid_department.treegrid('beginEdit', row.DID);
                     },
                     onUncheck: function (row) {
                         row.checked = false;
                         row.Text = "请选择";
                         row.IsPass = null;
-                        $('#department').treegrid('cancelEdit', row.DID);
+                        obj_datagrid_department.treegrid('cancelEdit', row.DID);
                     },
                     onLoadSuccess: function (row, data) {
                         if (data) {
                             //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
-                            getChecked_treegrid(data)
+                            getChecked_treegrid(data,obj_datagrid_department)
                         }
                     }
                 });
             }
             //递归，遍历每一个子节点
-            function getChecked_treegrid(data) {
+            function getChecked_treegrid(data,obj_treegrid) {
                 if (data.length > 0) {
                     $.each(data, function (i, item) {
                         if (item.selected) {
-                            $('#department').treegrid('select', item.DID);
+                            obj_treegrid.treegrid('select', item.DID);
                         }
                     })
                     $.each(data, function (i, item) {
                         if (item.children.length > 0) {
-                            getChecked_treegrid(item.children)
+                            getChecked_treegrid(item.children,obj_treegrid)
                         }
                     })
                 }
@@ -608,18 +624,28 @@
             //根据smid加载对应的群组并添加至combogrid中
             function loadDatagrid_Group(smid, myGroupColumns,ismms) {
                 var group_id;
+                var str_isMMS;
                 switch(ismms){
-                    case index_sms:
+                    case 0:
                         group_id="group";
+                        str_isMMS="sms";
                         break;
-                    case index_mms:
+                    case 1:
                         group_id="group_mms";
+                        str_isMMS="mms";
                         break;
                         defult:
                         break;
 
                 }
-                $("#"+group_id).datagrid({
+                //取到彩信或短信对应的datagrid
+                                
+                //获取短信或彩信选中的群组
+                //easyui-datagrid sms group
+                //获取群组datagrid
+                var obj_datagrid_group= $(".easyui-datagrid.group").filter("."+str_isMMS);  
+
+                obj_datagrid_group.datagrid({
                     url: '@ViewBag.GetGroup_datagrid?smid=' + smid+"&&ismms="+ismms,
                     panelWidth: 400,
                     multiple: true,
@@ -629,29 +655,31 @@
                     columns: myGroupColumns,
                     nowrap:false,
                     fitColumns: true,
-                    //onBeforeEdit: function (index, row) {
-                    //    row.editing = true;
-                    //    $("#group").datagrid('refreshRow', index);
-                    //},
+                   
                     onAfterEdit: function (index, row) {
                         row.editing = false;
-                        $("#group").datagrid('refreshRow', index);
+                        //$("#group").datagrid('refreshRow', index);
+                        obj_datagrid_group.datagrid('refreshRow', index);
                     },
                     onCancelEdit: function (index, row) {
                         row.editing = false;
-                        $("#group").datagrid('refreshRow', index);
+                        obj_datagrid_group.datagrid('refreshRow', index);
+                        //$("#group").datagrid('refreshRow', index);
                     },
                     onEndEdit: function (index, row) {
-                        var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
+                        //var ed = $('#group').datagrid('getEditor', { index: index, field: 'IsPass' });
+                        var ed = obj_datagrid_group.datagrid('getEditor', { index: index, field: 'IsPass' });
                         row.IsPass = $(ed.target).combobox('getText');
                     },
                     onCheck: function (index,row) {
-                        $('#group').datagrid('beginEdit', index);
+                        //$('#group').datagrid('beginEdit', index);
+                        obj_datagrid_group.datagrid('beginEdit', index);
                     },
                     onUncheck: function (index,row) {
                         row.checked = false;
                         row.Text = "请选择";
-                        $('#group').datagrid('cancelEdit', index);
+                        //$('#group').datagrid('cancelEdit', index);
+                        obj_datagrid_group.datagrid('cancelEdit', index);
                     },
                     onLoadSuccess: function (data) {
                         if (data) {
@@ -659,8 +687,8 @@
                             $.each(data.rows, function (index, item) {
                                 if (item.checked) {
 
-                                    $('#group').datagrid('checkRow', index);
-
+                                    //$('#group').datagrid('checkRow', index);
+                                    obj_datagrid_group.datagrid('checkRow', index);
                                 }
                             })
                         }
@@ -743,9 +771,11 @@
 
                 $("#editSMSMissionWindow").window('close');
                 $("#editPersonWindow").window('close');
+                //需修改
                 $("#showDepartmentWindow").window('close');
                 $("#showGroupWindow").window('close');
                 $("#showGroupWindow_mms").window('close');
+                $("#showDepartmentWindow_mms").window('close');
                 loadDataGrid('@ViewBag.GetInfo', myColumns);
 
                 //2 根据GroupID查询该群组所拥有的人员列表
@@ -797,19 +827,28 @@
 }
 
 @section showDepartmentWindow{
-@*分配部门的窗体*@
+@*短信分配部门的窗体*@
 <div class="easyui-window" id="showDepartmentWindow" title="部门列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">
-            <select class="easyui-treegrid" id="department" data-options="fit:true"></select>
+            <select class="easyui-treegrid sms department" id="department" data-options="fit:true"></select>
+        </div>
+    </div>
+</div>
+    @*彩信分配部门窗口*@
+<div class="easyui-window" id="showDepartmentWindow_mms" title="部门列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
+    <div class="easyui-layout" data-options="fit:true" style="border:0px">
+        @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
+        <div data-options="region:'center'" style="border:0px">
+            <select class="easyui-treegrid mms department" id="department_mms" data-options="fit:true"></select>
         </div>
     </div>
 </div>
     }
 
 @section showGroupWindow{
-@*分配群组的窗体*@
+@*短信分配群组的窗体*@
 <div class="easyui-window" id="showGroupWindow" title="群组列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
@@ -818,11 +857,12 @@
         </div>
     </div>
 </div>
+    @*彩信分配群组窗口*@
 <div class="easyui-window" id="showGroupWindow_mms" title="群组列表" style="width:520px;height:380px;overflow: hidden;" data-options="shadow:true,modal:true">
     <div class="easyui-layout" data-options="fit:true" style="border:0px">
         @*<div data-options="region:'east',split:true" style="width:100px"></div>*@
         <div data-options="region:'center'" style="border:0px">
-            <select class="easyui-datagrid" id="group_mms" data-options="fit:true"></select>
+            <select class="easyui-datagrid mms group" id="group_mms" data-options="fit:true"></select>
         </div>
     </div>
 </div>
