@@ -1212,4 +1212,7 @@ Selected missions will appears in the list of message sending interface.</value>
     <value>Whether Given By Roles</value>
     <comment>是否由角色赋予</comment>
   </data>
+  <data name="SendMMS" xml:space="preserve">
+    <value>Send MMS</value>
+  </data>
 </root>

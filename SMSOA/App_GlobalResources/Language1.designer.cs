@@ -412,6 +412,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 新建权限 的本地化字符串。
+        /// </summary>
+        internal static string CreatingRights {
+            get {
+                return ResourceManager.GetString("CreatingRights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新建角色 的本地化字符串。
+        /// </summary>
+        internal static string CreatingRoles {
+            get {
+                return ResourceManager.GetString("CreatingRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新建用户 的本地化字符串。
+        /// </summary>
+        internal static string CreatingUsers {
+            get {
+                return ResourceManager.GetString("CreatingUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 Cron表达式 的本地化字符串。
         /// </summary>
         internal static string CronExpressions {
@@ -547,6 +574,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 是否要执行此操作? 的本地化字符串。
+        /// </summary>
+        internal static string Doyouwanttodothis {
+            get {
+                return ResourceManager.GetString("Doyouwanttodothis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 时间范围 的本地化字符串。
         /// </summary>
         internal static string During {
@@ -579,6 +615,24 @@ namespace Resources {
         internal static string EdiTe {
             get {
                 return ResourceManager.GetString("EdiTe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 编辑权限 的本地化字符串。
+        /// </summary>
+        internal static string EditingRights {
+            get {
+                return ResourceManager.GetString("EditingRights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 编辑用户 的本地化字符串。
+        /// </summary>
+        internal static string EditingUsers {
+            get {
+                return ResourceManager.GetString("EditingUsers", resourceCulture);
             }
         }
         
@@ -628,11 +682,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 错误 的本地化字符串。
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 执行时间 的本地化字符串。
         /// </summary>
         internal static string ExecutionTime {
             get {
                 return ResourceManager.GetString("ExecutionTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 操作失败 的本地化字符串。
+        /// </summary>
+        internal static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
             }
         }
         
@@ -862,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 任务名称必须填写 的本地化字符串。
+        /// </summary>
+        internal static string Missionnamemustbefilled {
+            get {
+                return ResourceManager.GetString("Missionnamemustbefilled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 最后修改时间 的本地化字符串。
         /// </summary>
         internal static string ModifiedTime {
@@ -939,6 +1020,15 @@ namespace Resources {
         internal static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新用户名 的本地化字符串。
+        /// </summary>
+        internal static string NewUserName {
+            get {
+                return ResourceManager.GetString("NewUserName", resourceCulture);
             }
         }
         
@@ -1083,6 +1173,15 @@ namespace Resources {
         internal static string Pleasechoosethesuperiorofthisdepartment {
             get {
                 return ResourceManager.GetString("Pleasechoosethesuperiorofthisdepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 请确认 的本地化字符串。
+        /// </summary>
+        internal static string Pleaseconfirm {
+            get {
+                return ResourceManager.GetString("Pleaseconfirm", resourceCulture);
             }
         }
         
@@ -1761,6 +1860,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 彩信发送 的本地化字符串。
+        /// </summary>
+        internal static string SendMMS {
+            get {
+                return ResourceManager.GetString("SendMMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 发送总人数 的本地化字符串。
         /// </summary>
         internal static string SendNumber {
@@ -1811,6 +1919,15 @@ namespace Resources {
         internal static string SendTime {
             get {
                 return ResourceManager.GetString("SendTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 服务器错误 的本地化字符串。
+        /// </summary>
+        internal static string ServerError {
+            get {
+                return ResourceManager.GetString("ServerError", resourceCulture);
             }
         }
         
@@ -1959,6 +2076,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 操作成功 的本地化字符串。
+        /// </summary>
+        internal static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 所属任务 的本地化字符串。
         /// </summary>
         internal static string SuitableMission {
@@ -2099,6 +2225,16 @@ namespace Resources {
         internal static string ThisMonth {
             get {
                 return ResourceManager.GetString("ThisMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员 的本地化字符串。
+        /// </summary>
+        internal static string ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtheroleinassignrolesbutton {
+            get {
+                return ResourceManager.GetString("ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtherol" +
+                        "einassignrolesbutton", resourceCulture);
             }
         }
         
@@ -2306,6 +2442,15 @@ namespace Resources {
         internal static string Visible {
             get {
                 return ResourceManager.GetString("Visible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 是否由角色赋予 的本地化字符串。
+        /// </summary>
+        internal static string WhetherGivenByRoles {
+            get {
+                return ResourceManager.GetString("WhetherGivenByRoles", resourceCulture);
             }
         }
         

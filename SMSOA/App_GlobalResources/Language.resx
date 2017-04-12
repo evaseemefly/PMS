@@ -939,4 +939,7 @@
   <data name="WhetherGivenByRoles" xml:space="preserve">
     <value>是否由角色赋予</value>
   </data>
+  <data name="SendMMS" xml:space="preserve">
+    <value>彩信发送</value>
+  </data>
 </root>

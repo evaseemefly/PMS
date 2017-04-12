@@ -34,9 +34,17 @@
                 beforeSend: function () {
                     messagerShowOnCenter("提交","已经提交");
                 },
+
                 success: function (data) {
-                    if("ok" == data){
-                        messagerShowOnCenter("提示","提交成功");
+                    if ("ok_nextMMS" == data) {
+                        messagerShowOnCenter("提示", "提交成功");
+                        messagerConfirm("提示", "是否跳转至彩信发送页面", function () {
+                            redirectMMS(content);
+                        })
+                    }
+                    else if("ok" == data){
+                        messagerShowOnCenter("提示", "提交成功");
+                        
                     }else if("empty contact list" == data){
                         messagerShowOnCenter("错误","联系人名单为空，发送失败")
                     }else if("out of range" == data){
@@ -50,8 +58,42 @@
 
             })
         }
+        //提交成功后执行重定向到彩信发送页面
+        function redirectMMS(content) {
+            //1.获取主界面的jq对象
+            var main = top.jQuery;
+            //2.获取彩信发送的标题以及index页面的url
+            var title = "@ViewBag.MMS_Name";
+            var url = "@ViewBag.GetIframe_MMS" + "?content=" + content;
+            //3.判断是否已经打开了彩信发送的标签页
+                            if (main('#tabs').tabs('exists', title)) {
+                                //3.1 如果已经打开了彩信发送,则更新页面
+                                main('#tabs').tabs('select', title);
+                                var tab = main('#tabs').tabs('getSelected');
+                                main('#tabs').tabs('update', {
+                                        tab: tab,
+                                        options: {
+                                            title: title,
+                                            href:url
+                                        }
+                                    });
+                            } else {
+                                //3.1 如果已经打开了彩信发送,则更新页面
+                                main('#tabs').tabs('add', {
+                                        title: title,
+                                        selected: true,
+                                        closable: true,
+                                        fit: true,
+                                        content: createNewIframe_MMS(url)
 
+                                    });
+                            }
+        }
+        function createNewIframe_MMS(url) {
 
+            var iframeStr = "<iframe frameborder='0' src='" + url + "' style='width:100%;height:99.5%;frameborder:0px solid #000;'></iframe>";
+            return iframeStr;
+        }
 
         function CancelSend() {
             alert("取消发送短信");
