@@ -304,7 +304,8 @@ namespace SMSOA.Areas.SMS.Controllers
 
 
             //根据短信任务查找短信任务所拥有的群组（在R_Group_Mission表中），并只拿取isPass为true的所对应的群组
-            smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault().R_Group_Mission.Where(r => r.isPass == true).ToList().ForEach(r => list_owned_group.Add(r.P_Group));
+            //17.4.17修改 By屈远 加入
+            smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault().R_Group_Mission.Where(r => r.isPass == true & r.isMMS == 0).ToList().ForEach(r => list_owned_group.Add(r.P_Group));
             list_owned_group = list_owned_group.Select(g => g.ToMiddleModel()).ToList();
             var list_owned_Ids = list_owned_group.Select(g => g.GID).ToList();
 
@@ -613,7 +614,7 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //****注意此处还未实现向前台向后台传递对象时应加上uid，并向combin_model中加入uid（以包含此属性）
             var isOk_Send= DoSendNow(combine_model, out receive);
-
+            //var isOk_Send = "0";
             #region 测试批量写入时间时的测试返回对象
             //测试批量写入时间时的测试返回对象——现注释掉
             //SMSModel_Receive testModel = new SMSModel_Receive()
