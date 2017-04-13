@@ -10,7 +10,7 @@
     
     <script type="text/javascript">
         function Save() {
-            DoSubmit("ff", '@ViewBag.backAction',"用户名");
+            DoSubmit("ff", '@ViewBag.backAction',"@Resources.Language.UserName");
         }
 
         function CancelSend() {
@@ -41,36 +41,36 @@
             <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
             <table style="margin-left:40px;width:90%" cellpadding="3">
                 <tr>
-                    <td style="">用户名:</td>
+                    <td style="">@Resources.Language.UserName:</td>
                     <td class="comment">
                         <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="UName" value="@ViewBag.UName" data-options="required:true,validType:['String','length[1,50]']"></input><br />
-                        请填写系统登录用户名
+                        @Resources.Language.Pleaseenterusername
                     </td>    
                     @*<td style="">优先级:</td>*@                   
                 </tr>      
                 <tr>
-                    <td >密码:</td>
+                    <td >@Resources.Language.Password:</td>
                     <td class="comment">
                         <input id="UPwd" class="easyui-validatebox" style="width:80%;height:25px" type="password" name="UPwd" value="@ViewBag.UPwd" data-options="required:true,validType:['String','length[1,32]']"></input><br />
-                        请输入登录密码
+                        @Resources.Language.Pleaseenterpassword
                     </td>
                 </tr>
                 <tr>
-                    <td >请再次输入密码:</td>
+                    <td >@Resources.Language.Pleaseenterpasswordagain:</td>
                     <td class="comment">
                         <input id="RUPwd" class="easyui-validatebox" type="password" style="width:80%;height:25px" name="RUPwd" value="@ViewBag.UPwd" required="required" validType="Equals['#UPwd']" ></input><br />
-                        输入相同密码
+                        @Resources.Language.Enterthesamepassword
                     </td>
                 </tr>
                 <tr>
-                    <td>备注:</td>
+                    <td>@Resources.Language.Remarks:</td>
                     <td class="comment">
                         <input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:50px;width:80%;" value="@ViewBag.Remark"><br />
-                        可选
+                        @Resources.Language.Optional
                     </td>
                 </tr>
                 <tr>
-                    <td>优先级:</td>
+                    <td>@Resources.Language.Priority:</td>
                 </tr>
                 <tr>
                     <td class="comment" colspan="2">
@@ -79,15 +79,15 @@
                                rule: [0,'|',25,'|',50,'|',75,'|',100],
                                value:'@ViewBag.SMID'
                                "><br />
-                        数字越小优先级越高
+                        @Resources.Language.Thesmallerthenumberthehigherthepriority
                     </td>
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
                 <div style="text-align:center;padding:5px">
                     @*<input type="submit" value="提交" />*@
-                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">提交</a>
-                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="Save()" style="width:80px">@Resources.Language.Submit</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">@Resources.Language.Cancel</a>
                 </div>
             </div>
         </form>

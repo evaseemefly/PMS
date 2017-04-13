@@ -242,15 +242,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.en-us.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Language.designer.cs">
-      <DependentUpon>Language.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="App_GlobalResources\Language.zh-cn.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.zh-cn.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -652,6 +652,10 @@
       <Project>{81978320-376f-47b7-bdd0-7c259ba7fd5d}</Project>
       <Name>Fdfs.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fdfs.DAL\Fdfs.DAL.csproj">
+      <Project>{b7bece01-40b2-445e-bc7d-13ed34502693}</Project>
+      <Name>Fdfs.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fdfs.IBLL\Fdfs.IBLL.csproj">
       <Project>{0fc982c5-f9c3-48ac-b8f0-37c08a5fcfd4}</Project>
       <Name>Fdfs.IBLL</Name>
@@ -711,18 +715,22 @@
   <ItemGroup>
     <Content Include="App_GlobalResources\Language.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Language.designer.cs</LastGenOutput>
+      <LastGenOutput>Language1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="Areas\I18NDemo\zh-cn.resx" />
     <EmbeddedResource Include="App_GlobalResources\ResourceTest.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceTest.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Language.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.en-us.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Language.zh-cn.resx">
+      <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.zh-cn.Designer.cs</LastGenOutput>
     </EmbeddedResource>

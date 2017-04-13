@@ -36,6 +36,13 @@ namespace SMSOA.Areas.SMS.Controllers
 
         public ActionResult Index()
         {
+            //17年4月12日 新增：在发送完成后跳转到彩信发送页面的url
+            ViewBag.GetIframe_MMS = "/SMS/MMSSend/Index";
+
+            //17年4月12日 新增：在发送完成后跳转到彩信发送页面的title。注意！！！此处的title为彩信发送，需要与数据库中权限表的彩信发送的Name一致（暂时写死，需要从权限表中读取）。
+            
+            ViewBag.MMS_Name = Resources.Language.SendMMS;
+
             ViewBag.GetAllMission_combogrid = "/SMS/Send/GetAllMissionByPID";
             ViewBag.GetMissionByUID = "/SMS/Send/GetMissionByUID";
             ViewBag.GetGroupByMID_combogrid = "/SMS/Send/GetGroupByMID";
@@ -56,7 +63,7 @@ namespace SMSOA.Areas.SMS.Controllers
             
             return View();
         }
-
+        
         public ActionResult ShowSetWindow()
         {
             ViewBag.LoginUserID = -999;
@@ -623,15 +630,17 @@ namespace SMSOA.Areas.SMS.Controllers
             //{
             //    AfterSend(combine_model.Model_Message, receive_model /*testModel*/, combine_model.Model_Send.phones.ToList());
             //}
-            
+
             //if (!isSaveMsgOk)
             //{
             //    return Content("服务器错误");
             //}
-
+            
             if ("0".Equals((receive as SMSModel_Receive).result)&&isOk_Send)
             {
                 //6 查询发送状态(是否加入等待时间？)
+                //7 检查是否还要发彩信
+                if (isIncludeMMSGroups(int.Parse(model.SMSMissionID))) { return Content("ok_nextMMS"); }
                 return Content("ok");
                 
             }
@@ -724,7 +733,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(model));
         }
-
+     
         public override ViewModel_MyHttpContext GetHttpContext()
         {
             var httpModel = new ViewModel_MyHttpContext()
@@ -735,6 +744,24 @@ namespace SMSOA.Areas.SMS.Controllers
                 Url = Request.Url.ToString()
             };
             return httpModel;
+        }
+        /// <summary>
+        /// 检查是否有彩信群组
+        /// </summary>
+        /// <returns></returns>
+        private bool isIncludeMMSGroups(int mid)
+        {
+            var mission = smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault();
+            bool isMMS = false;
+            if (mission != null)
+            {
+                var list  = smsMissionBLL.GetMMSGroups(true, mission);
+                if(0 < list.Count)
+                {
+                    isMMS = true;
+                }    
+            }
+            return isMMS;
         }
     }
 }

@@ -15,7 +15,7 @@
                     <tr>
                         <td>短彩信任务:</td>
                         <td class="comment">
-                            <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" style="width:150px"></select><br />
+                            <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" data-option="required:true" style="width:150px"></select><br />
                             请先选择短彩信任务种类
                         </td>
                     </tr>
@@ -36,7 +36,7 @@
                         </td>
                         <td>彩信题目</td>
                         <td class="comment">
-                            <input class="easyui-textbox" name="MMSTitle" id="MMSTitle" value="国家海洋预报台" />
+                            <input class="easyui-textbox" name="MMSTitle" id="MMSTitle" data-options="required:true,validType:['String','length[1,10]']" value="国家海洋预报台" />
                         </td>
                     </tr>
                     <tr>
@@ -47,12 +47,12 @@
                         </td>
                         <td>上传彩信图片：</td>
                         <td class="comment">
-                            <input id="filebox_image" class="easyui-filebox" name="file" data-options="prompt:'请选择一个文件...'" style="width:100%">
+                            <input id="filebox_image" class="easyui-filebox" name="file" data-options="required:true,prompt:'请选择一个文件...'" style="width:100%">
                         </td>
                     </tr>
                     <tr>
                         <td>彩信内容:</td>
-                        <td colspan="3" class="comment"><input class="easyui-textbox" name="message" id="message" data-options="multiline:true,prompt:'输入彩信内容...'" style="height:200px;width:400px"></td>
+                        <td colspan="3" class="comment"><input class="easyui-textbox" name="message" id="message" value="@ViewBag.Content" data-options="required:true,multiline:true,prompt:'输入彩信内容...'" style="height:200px;width:400px"></td>
                     </tr>
                 </table>
             </form>

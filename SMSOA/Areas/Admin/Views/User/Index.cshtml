@@ -41,37 +41,37 @@
                         }
                     },
                     {
-                        field: 'ModifiedOnTime', title: '最后修改时间', width: '15%', formatter: function (value) {
+                        field: 'ModifiedOnTime', title: '@Resources.Language.ModifiedTime', width: '15%', formatter: function (value) {
                             return Date.getStrOfDate(value);
                         }
                     },
-                    { field: 'Remark', title: '备注', width: '30%' },
-                    { field: 'Sort', title: '顺序', width: '10%' },
+                    { field: 'Remark', title: '@Resources.Language.Remarks', width: '30%' },
+                    { field: 'Sort', title: '@Resources.Language.Order', width: '10%' },
         ]]
 
         var toolbar = [{
             iconCls: 'icon-add',
-            text: "新增",
+            text: "@Resources.Language.New",
             handler: addRow
         }, '-', {
             iconCls: 'icon-remove',
-            text: "删除",
+            text: "@Resources.Language.Delete",
             handler: removeRow
         }, '-', {
             iconCls: 'icon-edit',
-            text: "编辑",
+            text: "@Resources.Language.Edit",
             handler: editRow
         }, '-', {
             iconCls: 'icon-search',
-            text: "用户权限设置",
+            text: "@Resources.Language.UsersRightsSettings",
             handler: AssignAction
         }, "-", {
             iconCls: 'icon-search',
-            text: "用户角色设置",
+            text: "@Resources.Language.UsersRoleSetting",
             handler: AssignRole
         },"-", {
             iconCls: 'icon-key-16',
-             text: "重置密码",
+             text: "@Resources.Language.ResetPassword",
              handler: ResetPassword
          }]
 
@@ -79,10 +79,10 @@
         var IsPassColumns = [
             {
                 "IsPass": false,
-                "Text": "禁用",
+                "Text": "@Resources.Language.Disable",
             }, {
                 "IsPass": true,
-                "Text": "启用",
+                "Text": "@Resources.Language.Enable",
             }
         ];
 
@@ -90,22 +90,22 @@
         //角色
         var RoleColumns = [[
             { field: 'ck', checkbox: true },
-            { field: 'RoleName', title: '角色名称', width: 100 },
-            { field: 'SubTime', title: '创建时间', width: 150 },
-            { field: 'ModifiedTime',title:'最后修改时间', width:150},
-            { field: 'Remark', title: '备注', width: 100},
-            { field: 'Sort',title:'顺序',width:50},
+            { field: 'RoleName', title: '@Resources.Language.RoleName', width: 100 },
+            { field: 'SubTime', title: '@Resources.Language.CreateTime', width: 150 },
+            { field: 'ModifiedTime',title:'@Resources.Language.ModifiedTime', width:150},
+            { field: 'Remark', title: '@Resources.Language.Remarks', width: 100},
+            { field: 'Sort',title:'@Resources.Language.Order',width:50},
         ]]
 
         //权限(包括是否禁用)
         var ActionColumns = [[
             { field: 'ck', checkbox: true },
-            { field: 'ActionName', title: '权限名称', width: 100 },
-            { field: 'SubTime', title: '创建时间', width: 100 },
-            { field: 'ModifiedTime', title: '最后修改时间', width: 100 },
-            { field: 'byRole',title:'是否由角色赋予',width:50},
+            { field: 'ActionName', title: '@Resources.Language.RightName', width: 100 },
+            { field: 'SubTime', title: '@Resources.Language.CreateTime', width: 100 },
+            { field: 'ModifiedTime', title: '@Resources.Language.ModifiedTime', width: 100 },
+            { field: 'byRole',title:'@Resources.Language.WhetherGivenByRoles',width:50},
         {
-            field: 'IsPass', title: '是否禁用', width: 50,
+            field: 'IsPass', title: '@Resources.Language.EnableDisable', width: 50,
                 formatter: function (value, row) {
                     return row.Text;
                 },
@@ -130,7 +130,7 @@
                 multiple: true,
                 method: 'get',
                 panelHeight: 'auto',
-                loadMsg: '加载中.......',
+                loadMsg: '@Resources.Language.Loading',
                 columns: myRoleColumns,
                 fitColumns: true,
                 onLoadSuccess: function (data) {
@@ -157,7 +157,7 @@
                 multiple: true,
                 method: 'get',
                 panelHeight: 'auto',
-                loadMsg: '加载中.......',
+                loadMsg: '@Resources.Language.Loading',
                 columns: myActionColumns,
                 fitColumns: true,
                 onBeforeEdit: function (index, row) {
@@ -177,12 +177,12 @@
                 onUnselect: function (index, row) {
                     if (row.byRole == true) {
                         $('#action').datagrid('checkRow', index);
-                        $.messager.alert('提示', "该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员");
+                        $.messager.alert('@Resources.Language.Prompt', "@Resources.Language.ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtheroleinassignrolesbutton");
                         row.checked = true;
                     } else {
 
                         row.checked = false;
-                        row.Text = "请选择";
+                        row.Text = "@Resources.Language.PleaseSelect";
                         $('#action').datagrid('cancelEdit', index);
                     }
                 },
@@ -193,7 +193,7 @@
                     }
                 },
 
-                
+
                 onLoadSuccess: function (data) {
                     if (data) {
                         //返回的data中checkbox列中包含true or false 就是用来设定 Checkbox 是否勾选，而设定的动作必须要在 DataGrid 加载数据完成后再去执行，这边会使用到 jQuery 的 each 去逐一检查每个数据列的的数据内容，假如 checked 为 true，那就使用datagrid.('checkRow')这个 Method 将该数据列的 Checkbox 设为勾选的状态，
@@ -213,7 +213,7 @@
 
 
 
-        
+
 
         function getRoleSelection() {
             //获取所选的角色
@@ -225,12 +225,12 @@
             //去掉最后一个逗号
             strIds = strIds.substr(0, strIds.length - 1);
 
-            if ($.messager.confirm("提示", "准备提交？", function (r) {
+            if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Readytocommit", function (r) {
                     if (r) {
                    $.post("@ViewBag.DoAssignRoleInfo?UserId=" + UserId + "&&ids=" + strIds, function (data) {
                 //请求成功后的回调函数
                 //执行afterEdit
-                afterEdit("修改成功");
+                afterEdit("@Resources.Language.ModifySuccess");
                  $("#showRoleWindow").window('close');
                          });
                         }
@@ -279,7 +279,7 @@
 
         //提交
         function confirm_center(obj) {
-            $.messager.confirm('请确认', '是否要执行此操作?', function (r) {
+            $.messager.confirm('@Resources.Language.Pleaseconfirm', '@Resources.Language.Doyouwanttodothis'+'?', function (r) {
                 if (r) {
                     //alert("执行提交操作");
                     $.ajax({
@@ -294,17 +294,17 @@
                             if (data == "ok") {
                                 //使用此种方式会出现还未等到消息框弹出页面就刷新的问题
                                 //messagerShowOnCenter("提示", "修改成功");
-                                $.messager.alert("提示", "操作成功", "info", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Success", "info", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                             else {
-                                $.messager.alert("提示", "操作失败", "warning", function () { window.close(); refresh(); });
+                                $.messager.alert("@Resources.Language.Prompt", "@Resources.Language.Failed", "warning", function () { window.close(); refresh(); });
                                 //refresh();
                             }
                         },
                         error: function () {
 
-                            $.messager.alert("错误", "服务器错误", "error", function () { window.close(); refresh(); });
+                            $.messager.alert("@Resources.Language.Error", "@Resources.Language.ServerError", "error", function () { window.close(); refresh(); });
                             //refresh();
                         }
                     });
@@ -362,7 +362,7 @@
                  UName: match_userName,
                  Remark: match_remark
             };
-        
+
              loadDataGrid('@ViewBag.GetUserInfo', myColumns, queryData);
            }
 
@@ -374,14 +374,14 @@
             $("#editWindow").window('close');
         }
         //编辑或创建某个权限后执行的操作
-        
+
         function afterEdit(msg,type) {
             //editWindow
             //1 关闭加载的iframe页面
            // $.messager.alart('', 'aaaa');
 			//此处可改为根据枚举动态生成type的值
             if (type == 0) {
-          
+
                 $("#editWindow").window('close');
                 //2 刷新当前页面
                 $("#datagrid").datagrid('reload');
@@ -390,7 +390,7 @@
                 // $("#editWindow").window('refresh');
                 editRow();
             }
-            $.messager.alert('提示', msg);
+            $.messager.alert('@Resources.Language.Prompt', msg);
         }
 
         function CancelRoleAssign() {
@@ -410,7 +410,7 @@
                 striped: true,
                 singleSelect: true,
                 url: url,
-                loadMsg: '数据加载中请稍后……',
+                loadMsg: '@Resources.Language.Loading',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
@@ -437,7 +437,7 @@
     <div>
         <table class="easyui-datagrid" id="datagrid"></table>
 
-        @Html.Partial("_Partial_Toolbar_User")
+        @Html.Partial("_Partial_Toolbar_User");
 
         <div class="easyui-window" title="title" scrolling="no" id="editWindow" style="width:400px;height:440px;overflow: hidden" data-options="shadow:true,modal:true">
             <iframe id="setUserRoleFrame" frameborder="0" width="100%" height="100%" scrolling="no" scroll="no" @*不显示滚动条*@></iframe>
