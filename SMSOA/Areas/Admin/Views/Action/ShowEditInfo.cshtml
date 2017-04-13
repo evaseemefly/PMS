@@ -12,7 +12,7 @@
 
     <script type="text/javascript">
         function Save() {
-            DoSubmit("ff", '@ViewBag.backAction', "权限名称");
+            DoSubmit("ff", '@ViewBag.backAction', "@Resources.Language.RightName");
         }
         function CancelSend() {
             window.parent.CancelSend();
@@ -87,61 +87,61 @@
         <input type="hidden" id="hidden_isShow" @*name="isShow"*@ value="" />
         <table style="margin-left:40px;width:95%" cellpadding="3">
             <tr>
-                <td style="">权限名称:</td>
+                <td style="">@Resources.Language.RightName:</td>
                 <td class="comment">
-                    <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="ActionInfoName" value="@ViewBag.ActionInfoName" data-options="required:true,validType:['CHS','length[1,50]']"></input><br />
-                    请填写权限名称
+                    <input class="easyui-validatebox" type="text" style="width:80%;height:25px" name="ActionInfoName" value="@ViewBag.ActionInfoName" data-options="required:true,validType:['String','length[1,50]']"></input><br />
+                    @Resources.Language.Pleaseenterthenameofright
                 </td>
-                <td style="">上级菜单:</td>
+                <td style="">@Resources.Language.UpperMenu:</td>
                 <td class="comment">
                     <select id="combo_parent" name="ParentID" class="easyui-combobox" style="width:80%;height:25px;" @*required="required"*@/><br />
-                    选择该权限所属的上级菜单
+                    @Resources.Language.Selecttheuppermenuforthispermission
                 </td>
             </tr>
             <tr>
-                <td style="">区域名称:</td>
+                <td style="">@Resources.Language.AreaName:</td>
                 <td class="comment">
                     <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="AreaName" value="@ViewBag.AreaName" @*required="required"*@></input><br />
-                    请填写区域名称
+                    @Resources.Language.Pleaseenterthenameofthearea
                 </td>
-                <td style="">控制器名称:</td>
+                <td style="">@Resources.Language.ControllerName:</td>
                 <td class="comment">
                     <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ControllerName" value="@ViewBag.ControllerName" @*required="required"*@></input><br />
-                    请填写控制器名称
+                    @Resources.Language.Pleaseenterthecontrollername
                 </td>
             </tr>
             <tr>
-                <td style="">方法（权限）名称:</td>
+                <td style="">@Resources.Language.MethodName:</td>
                 <td class="comment">
                     <input class="easyui-textbox" type="text" style="width:80%;height:25px" name="ActionMethodName" value="@ViewBag.ActionMethodName" @*required="required"*@></input><br />
-                    请填写控制器中方法名称
+                    @Resources.Language.Pleaseenterthemethodname
                 </td>
-                <td style="">请求类型:</td>
+                <td style="">@Resources.Language.RequestType:</td>
                 <td class="comment">
                     <select id="combo_actionType" class="easyui-combobox" name="ActionTypeEnum" style="width:80%;height:25px; "data-options="panelHeight: 'auto',editable: false" required="required">
                         <option value="1">Get</option>
                         <option value="2">Post</option>
                         <option value="3">Both</option>
                         </select><br />
-                    选择该权限所属的上级菜单
+                    @Resources.Language.Selecttheuppermenuforthispermission
                 </td>
             </tr>
             <tr>
-                <td>备注:</td>
+                <td>@Resources.Language.Remarks:</td>
                 <td class="comment" colspan="2">
                     <input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:40px;width:80%;" value="@ViewBag.Remark"><br />
-                    可选
+                    @Resources.Language.Optional
                 </td>
-                <td style="">是否可见: <input id="isShow" name="isShow" class="easyui-switchbutton" >
+                <td style="">@Resources.Language.Visible: <input id="isShow" name="isShow" class="easyui-switchbutton" >
                 </td>
             </tr>           
             <tr>
-                <td colspan="2">优先级:</td>
-                <td style="">请求类型:</td>
+                <td colspan="2">@Resources.Language.Priority:</td>
+                <td style="">@Resources.Language.RequestType:</td>
                 <td class="comment">
                     <select id="combo_MethodTypeEnum" class="easyui-combobox" name="MethodTypeEnum" style="width:80%;height:25px; " data-options="panelHeight: 'auto',editable: false" required="required">                        
                     </select><br />
-                    选择该权限所属的上级菜单
+                    @Resources.Language.Selecttheuppermenuforthispermission
                 </td>
             </tr>
             <tr>
@@ -150,10 +150,10 @@
                                rule: [0,'|',25,'|',50,'|',75,'|',100],
                                value:'@sort'
                                "><br />
-                    数字越小优先级越高
+                    @Resources.Language.Thesmallerthenumberthehigherthepriority
                 </td>
-                <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()">提交</a></td>
-                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a></td>
+                <td><a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:100%" data-options="iconCls:'icon-ok'" onclick="Save()">@Resources.Language.Submit</a></td>
+                <td><a class="easyui-linkbutton c5" style="margin-bottom:5px;width:50%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">@Resources.Language.Cancel</a></td>
             </tr>
         </table>
     </form>

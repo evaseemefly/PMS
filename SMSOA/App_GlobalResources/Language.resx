@@ -477,7 +477,7 @@
   <data name="Pleaseenterthenameofthearea" xml:space="preserve">
     <value>请填写区域名称</value>
   </data>
-  <data name="Pleaseenterthenameofthecontroller" xml:space="preserve">
+  <data name="Pleaseenterthemethodname" xml:space="preserve">
     <value>请填写控制器中方法名称</value>
   </data>
   <data name="Pleaseenterthenameofthedepartment" xml:space="preserve">
@@ -551,7 +551,7 @@
   <data name="QueryMethodName" xml:space="preserve">
     <value>查询方法名</value>
   </data>
-  <data name="QueryRegionName" xml:space="preserve">
+  <data name="QueryAreaName" xml:space="preserve">
     <value>查询区域名</value>
   </data>
   <data name="QueryRemarks" xml:space="preserve">
@@ -587,10 +587,10 @@
   <data name="Recycle" xml:space="preserve">
     <value>回收站</value>
   </data>
-  <data name="region" xml:space="preserve">
+  <data name="Area" xml:space="preserve">
     <value>区域</value>
   </data>
-  <data name="RegionName" xml:space="preserve">
+  <data name="AreaName1" xml:space="preserve">
     <value>区域名</value>
   </data>
   <data name="ReleaseTime" xml:space="preserve">
@@ -854,5 +854,92 @@
   <data name="Youcanselectcommonmissionandgroup" xml:space="preserve">
     <value>设置你常用的
 短信任务及常用的群组</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>数据加载中请稍候……</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>区域名称</value>
+  </data>
+  <data name="ControllerName1" xml:space="preserve">
+    <value>控制器名称</value>
+  </data>
+  <data name="MethodName1" xml:space="preserve">
+    <value>方法（权限）名称</value>
+  </data>
+  <data name="Readytocommit" xml:space="preserve">
+    <value>准备提交？</value>
+  </data>
+  <data name="Unlogin" xml:space="preserve">
+    <value>未登录</value>
+  </data>
+  <data name="SendStatistics1" xml:space="preserve">
+    <value>发送统计</value>
+  </data>
+  <data name="SystemManagement" xml:space="preserve">
+    <value>系统管理</value>
+  </data>
+  <data name="Selectonelineofdataplease" xml:space="preserve">
+    <value>请选择一行数据</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="RoleEditing" xml:space="preserve">
+    <value>编辑角色</value>
+  </data>
+  <data name="ModifySuccess" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="Twoinputpasswordisnotthesamepleaseinputagain" xml:space="preserve">
+    <value>@Resources.Language.Twoinputpasswordisnotthesamepleaseinputagain</value>
+  </data>
+  <data name="Doyouwanttodothis" xml:space="preserve">
+    <value>是否要执行此操作?</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>操作失败</value>
+  </data>
+  <data name="Pleaseconfirm" xml:space="preserve">
+    <value>请确认</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>服务器错误</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>操作成功</value>
+  </data>
+  <data name="CreatingRights" xml:space="preserve">
+    <value>新建权限</value>
+  </data>
+  <data name="CreatingRoles" xml:space="preserve">
+    <value>新建角色</value>
+  </data>
+  <data name="CreatingUsers" xml:space="preserve">
+    <value>新建用户</value>
+  </data>
+  <data name="EditingRights" xml:space="preserve">
+    <value>编辑权限</value>
+  </data>
+  <data name="EditingUsers" xml:space="preserve">
+    <value>编辑用户</value>
+  </data>
+  <data name="Missionnamemustbefilled" xml:space="preserve">
+    <value>任务名称必须填写</value>
+  </data>
+  <data name="NewUserName" xml:space="preserve">
+    <value>新用户名</value>
+  </data>
+  <data name="ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtheroleinassignrolesbutton" xml:space="preserve">
+    <value>该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员</value>
+  </data>
+  <data name="WhetherGivenByRoles" xml:space="preserve">
+    <value>是否由角色赋予</value>
+  </data>
+  <data name="SendMMS" xml:space="preserve">
+    <value>彩信发送</value>
   </data>
 </root>

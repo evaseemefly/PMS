@@ -67,11 +67,17 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.ShowSetOftenMissionAndGroup = "/SMS/Send/ShowSetWindow";
             ViewBag.UploadFiles = "/SMS/MMSSend/SetFiles";
             ViewBag.LoginUser = -999;
+            ViewBag.Content = "";
             //若父控制器中的登录用户不为空
             if (base.LoginUser != null)
             {
                 //获取登录用户的id
                 ViewBag.LoginUserID = base.LoginUser.ID;
+            }
+            var content  = Request.QueryString["content"];
+            if (null != content)
+            {
+                ViewBag.Content = content;
             }
             return View();
         }

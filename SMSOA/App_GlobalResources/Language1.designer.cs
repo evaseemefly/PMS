@@ -124,6 +124,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 区域 的本地化字符串。
+        /// </summary>
+        internal static string Area {
+            get {
+                return ResourceManager.GetString("Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 区域名称 的本地化字符串。
+        /// </summary>
+        internal static string AreaName {
+            get {
+                return ResourceManager.GetString("AreaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 区域名 的本地化字符串。
+        /// </summary>
+        internal static string AreaName1 {
+            get {
+                return ResourceManager.GetString("AreaName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 确定要删除吗？ 的本地化字符串。
         /// </summary>
         internal static string Areyousureyouwanttodeleteit {
@@ -367,11 +394,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 控制器名称 的本地化字符串。
+        /// </summary>
+        internal static string ControllerName1 {
+            get {
+                return ResourceManager.GetString("ControllerName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 创建时间 的本地化字符串。
         /// </summary>
         internal static string CreateTime {
             get {
                 return ResourceManager.GetString("CreateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新建权限 的本地化字符串。
+        /// </summary>
+        internal static string CreatingRights {
+            get {
+                return ResourceManager.GetString("CreatingRights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新建角色 的本地化字符串。
+        /// </summary>
+        internal static string CreatingRoles {
+            get {
+                return ResourceManager.GetString("CreatingRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新建用户 的本地化字符串。
+        /// </summary>
+        internal static string CreatingUsers {
+            get {
+                return ResourceManager.GetString("CreatingUsers", resourceCulture);
             }
         }
         
@@ -439,6 +502,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 删除成功 的本地化字符串。
+        /// </summary>
+        internal static string Deleted {
+            get {
+                return ResourceManager.GetString("Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 部门列表 的本地化字符串。
         /// </summary>
         internal static string DepartmentList {
@@ -502,6 +574,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 是否要执行此操作? 的本地化字符串。
+        /// </summary>
+        internal static string Doyouwanttodothis {
+            get {
+                return ResourceManager.GetString("Doyouwanttodothis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 时间范围 的本地化字符串。
         /// </summary>
         internal static string During {
@@ -534,6 +615,24 @@ namespace Resources {
         internal static string EdiTe {
             get {
                 return ResourceManager.GetString("EdiTe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 编辑权限 的本地化字符串。
+        /// </summary>
+        internal static string EditingRights {
+            get {
+                return ResourceManager.GetString("EditingRights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 编辑用户 的本地化字符串。
+        /// </summary>
+        internal static string EditingUsers {
+            get {
+                return ResourceManager.GetString("EditingUsers", resourceCulture);
             }
         }
         
@@ -583,11 +682,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 错误 的本地化字符串。
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 执行时间 的本地化字符串。
         /// </summary>
         internal static string ExecutionTime {
             get {
                 return ResourceManager.GetString("ExecutionTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 操作失败 的本地化字符串。
+        /// </summary>
+        internal static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
             }
         }
         
@@ -700,6 +817,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 数据加载中请稍候…… 的本地化字符串。
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 注销 的本地化字符串。
         /// </summary>
         internal static string Logout {
@@ -754,6 +880,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 方法（权限）名称 的本地化字符串。
+        /// </summary>
+        internal static string MethodName1 {
+            get {
+                return ResourceManager.GetString("MethodName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 短信任务 的本地化字符串。
         /// </summary>
         internal static string Mission {
@@ -799,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 任务名称必须填写 的本地化字符串。
+        /// </summary>
+        internal static string Missionnamemustbefilled {
+            get {
+                return ResourceManager.GetString("Missionnamemustbefilled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 最后修改时间 的本地化字符串。
         /// </summary>
         internal static string ModifiedTime {
@@ -813,6 +957,15 @@ namespace Resources {
         internal static string ModifyPassword {
             get {
                 return ResourceManager.GetString("ModifyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 修改成功 的本地化字符串。
+        /// </summary>
+        internal static string ModifySuccess {
+            get {
+                return ResourceManager.GetString("ModifySuccess", resourceCulture);
             }
         }
         
@@ -867,6 +1020,15 @@ namespace Resources {
         internal static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 新用户名 的本地化字符串。
+        /// </summary>
+        internal static string NewUserName {
+            get {
+                return ResourceManager.GetString("NewUserName", resourceCulture);
             }
         }
         
@@ -1015,6 +1177,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 请确认 的本地化字符串。
+        /// </summary>
+        internal static string Pleaseconfirm {
+            get {
+                return ResourceManager.GetString("Pleaseconfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 请描述群组功能（可选） 的本地化字符串。
         /// </summary>
         internal static string Pleasedescribethegroupoptional {
@@ -1123,6 +1294,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 请填写控制器中方法名称 的本地化字符串。
+        /// </summary>
+        internal static string Pleaseenterthemethodname {
+            get {
+                return ResourceManager.GetString("Pleaseenterthemethodname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 请填写权限名称 的本地化字符串。
         /// </summary>
         internal static string Pleaseenterthenameofright {
@@ -1137,15 +1317,6 @@ namespace Resources {
         internal static string Pleaseenterthenameofthearea {
             get {
                 return ResourceManager.GetString("Pleaseenterthenameofthearea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///  查找类似 请填写控制器中方法名称 的本地化字符串。
-        /// </summary>
-        internal static string Pleaseenterthenameofthecontroller {
-            get {
-                return ResourceManager.GetString("Pleaseenterthenameofthecontroller", resourceCulture);
             }
         }
         
@@ -1338,6 +1509,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 查询区域名 的本地化字符串。
+        /// </summary>
+        internal static string QueryAreaName {
+            get {
+                return ResourceManager.GetString("QueryAreaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 查询控制器 的本地化字符串。
         /// </summary>
         internal static string QueryControllerName {
@@ -1352,15 +1532,6 @@ namespace Resources {
         internal static string QueryMethodName {
             get {
                 return ResourceManager.GetString("QueryMethodName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///  查找类似 查询区域名 的本地化字符串。
-        /// </summary>
-        internal static string QueryRegionName {
-            get {
-                return ResourceManager.GetString("QueryRegionName", resourceCulture);
             }
         }
         
@@ -1397,6 +1568,15 @@ namespace Resources {
         internal static string QueryUserName {
             get {
                 return ResourceManager.GetString("QueryUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 准备提交？ 的本地化字符串。
+        /// </summary>
+        internal static string Readytocommit {
+            get {
+                return ResourceManager.GetString("Readytocommit", resourceCulture);
             }
         }
         
@@ -1464,24 +1644,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///  查找类似 区域 的本地化字符串。
-        /// </summary>
-        internal static string region {
-            get {
-                return ResourceManager.GetString("region", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///  查找类似 区域名 的本地化字符串。
-        /// </summary>
-        internal static string RegionName {
-            get {
-                return ResourceManager.GetString("RegionName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///  查找类似 发布时间 的本地化字符串。
         /// </summary>
         internal static string ReleaseTime {
@@ -1532,6 +1694,15 @@ namespace Resources {
         internal static string RightName {
             get {
                 return ResourceManager.GetString("RightName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 编辑角色 的本地化字符串。
+        /// </summary>
+        internal static string RoleEditing {
+            get {
+                return ResourceManager.GetString("RoleEditing", resourceCulture);
             }
         }
         
@@ -1617,6 +1788,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 请选择一行数据 的本地化字符串。
+        /// </summary>
+        internal static string Selectonelineofdataplease {
+            get {
+                return ResourceManager.GetString("Selectonelineofdataplease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 选择该部门所在的区域 的本地化字符串。
         /// </summary>
         internal static string SelecttheareaoftheDepartment {
@@ -1680,6 +1860,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 彩信发送 的本地化字符串。
+        /// </summary>
+        internal static string SendMMS {
+            get {
+                return ResourceManager.GetString("SendMMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 发送总人数 的本地化字符串。
         /// </summary>
         internal static string SendNumber {
@@ -1716,11 +1905,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 发送统计 的本地化字符串。
+        /// </summary>
+        internal static string SendStatistics1 {
+            get {
+                return ResourceManager.GetString("SendStatistics1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 发送时间 的本地化字符串。
         /// </summary>
         internal static string SendTime {
             get {
                 return ResourceManager.GetString("SendTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 服务器错误 的本地化字符串。
+        /// </summary>
+        internal static string ServerError {
+            get {
+                return ResourceManager.GetString("ServerError", resourceCulture);
             }
         }
         
@@ -1869,6 +2076,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 操作成功 的本地化字符串。
+        /// </summary>
+        internal static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 所属任务 的本地化字符串。
         /// </summary>
         internal static string SuitableMission {
@@ -1901,6 +2117,15 @@ namespace Resources {
         internal static string SystemMaintenanceNotice {
             get {
                 return ResourceManager.GetString("SystemMaintenanceNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 系统管理 的本地化字符串。
+        /// </summary>
+        internal static string SystemManagement {
+            get {
+                return ResourceManager.GetString("SystemManagement", resourceCulture);
             }
         }
         
@@ -2004,6 +2229,16 @@ namespace Resources {
         }
         
         /// <summary>
+        ///  查找类似 该权限由角色赋予，不可取消勾选该权限。如不想分配该权限给该用户，请在“分配角色”按钮下操作，或点击‘禁用’。如有疑问，请联系管理员 的本地化字符串。
+        /// </summary>
+        internal static string ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtheroleinassignrolesbutton {
+            get {
+                return ResourceManager.GetString("ThisrightisgivenbyrolesandcannotbeuncheckedYoucantrytoclickDisableoreditingtherol" +
+                        "einassignrolesbutton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///  查找类似 开启定时发送 的本地化字符串。
         /// </summary>
         internal static string TimerOnOff {
@@ -2054,6 +2289,24 @@ namespace Resources {
         internal static string TodaySendingRecordofCurrentUser1 {
             get {
                 return ResourceManager.GetString("TodaySendingRecordofCurrentUser1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 @Resources.Language.Twoinputpasswordisnotthesamepleaseinputagain 的本地化字符串。
+        /// </summary>
+        internal static string Twoinputpasswordisnotthesamepleaseinputagain {
+            get {
+                return ResourceManager.GetString("Twoinputpasswordisnotthesamepleaseinputagain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 未登录 的本地化字符串。
+        /// </summary>
+        internal static string Unlogin {
+            get {
+                return ResourceManager.GetString("Unlogin", resourceCulture);
             }
         }
         
@@ -2189,6 +2442,15 @@ namespace Resources {
         internal static string Visible {
             get {
                 return ResourceManager.GetString("Visible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///  查找类似 是否由角色赋予 的本地化字符串。
+        /// </summary>
+        internal static string WhetherGivenByRoles {
+            get {
+                return ResourceManager.GetString("WhetherGivenByRoles", resourceCulture);
             }
         }
         

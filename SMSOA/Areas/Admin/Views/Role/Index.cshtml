@@ -10,53 +10,53 @@
 
     var toolbar= [ {
         iconCls: 'icon-add',
-        text: "新增",
+        text: "@Resources.Language.New",
         handler: addRow@*addRow("@ViewBag.ShowAdd")*@
         }, '-',
         {
             iconCls: 'icon-remove',
-            text: "删除",
+            text: "@Resources.Language.Delete",
             handler: removeRow@*removeRow("@ViewBag.Del_url")*@
         }, '-',
            {
                 iconCls: 'icon-edit',
-                text: "编辑",
+                text: "@Resources.Language.Edit",
                 handler: editRow@*editRow("@ViewBag.ShowEdit")*@
             }, '-',
                 {
                     iconCls: 'icon-search',
-                    text: "分配权限",
+                    text: "@Resources.Language.UsersRightsSettings1",
                     handler: provideAction    //无法传参数
                 }]
 
     var myColumns=[[
                 { field: 'ID', title: 'ID', width: '5%', hidden: true },
-                { field: 'RoleName', title: '角色名称', width: '20%' },
+                { field: 'RoleName', title: '@Resources.Language.RoleName', width: '20%' },
                 {
-                    field: 'SubTime', title: '创建时间', width: '15%', formatter: function (value) {
+                    field: 'SubTime', title: '@Resources.Language.CreateTime', width: '15%', formatter: function (value) {
                         return Date.getStrOfDate(value);
                     }
                 },
                 {
-                    field: 'ModifiedOnTime', title: '修改时间', width: '15%', formatter: function (value) {
+                    field: 'ModifiedOnTime', title: '@Resources.Language.ModifiedTime', width: '15%', formatter: function (value) {
                         return Date.getStrOfDate(value);
                     }
                 },
-                { field: 'Remark', title: '备注', width: '30%' },
-                { field: 'Sort', title: '顺序', width: '10%' }
+                { field: 'Remark', title: '@Resources.Language.Remarks', width: '30%' },
+                { field: 'Sort', title: '@Resources.Language.Order', width: '10%' }
     ]]
 
     var myActionColumns = [[
             { field: 'checked', checkbox: true },
             //{ checkbox: true },
             { field: 'ID', title: 'ID', width: 100 },
-            { field: 'ActionInfoName', title: '权限名称', width: 150 },
-            { field: 'SubTime', title: '创建时间', width: 250 },
-            { field: 'AreaName', title: '区域名', width: 120 },
-            { field: 'ControllerName', title: '控制器名', width: 120 },
-            { field: 'ActionMethodName', title: '方法名', width: 200 },
-            { field: 'Remark', title: '备注', width: 200 },
-            { field: 'Sort', title: '顺序', width: 100 },
+            { field: 'ActionInfoName', title: '@Resources.Language.RightName', width: 150 },
+            { field: 'SubTime', title: '@Resources.Language.CreateTime', width: 250 },
+            { field: 'AreaName', title: '@Resources.Language.AreaName1', width: 120 },
+            { field: 'ControllerName', title: '@Resources.Language.ControllerName', width: 120 },
+            { field: 'ActionMethodName', title: '@Resources.Language.MethodName', width: 200 },
+            { field: 'Remark', title: '@Resources.Language.Remarks', width: 200 },
+            { field: 'Sort', title: '@Resources.Language.Order', width: 100 },
             //{
             //    field: 'Operation', title: '操作', width: 100, align: 'right',
             //    formatter: function (value, row, index) {
@@ -85,14 +85,14 @@
         //去掉最后一个逗号
         strIds = strIds.substr(0, strIds.length - 1);
 
-        if ($.messager.confirm("提示", "准备提交？", function (r) {
+        if ($.messager.confirm("@Resources.Language.Prompt", "@Resources.Language.Readytocommit", function (r) {
                 if (r) {
 
                $.post("@ViewBag.SetRole4Action?RoleId=" + RoleId + "&&ids=" + strIds, function (data) {
             //请求成功后的回调函数
             //执行afterEdit
              $("#showActionWindow").window('close');
-            afterEdit("修改成功");
+            afterEdit("@Resources.Language.ModifySuccess");
 
 
         });
@@ -127,8 +127,8 @@
         if (rows.length != 1) {
             //提示
             $.messager.show({
-                title: '提示',
-                msg: '请选择唯一一行',
+                title: '@Resources.Language.Prompt',
+                msg: '@Resources.Language.Selectonelineofdataplease',
                 showType: 'show'
             });
             return;
@@ -136,7 +136,7 @@
         else {
 
             RoleId = rows[0].ID;
-            $("#showActionWindow").window({title:'分配权限'});
+            $("#showActionWindow").window({title:'@Resources.Language.UsersRightsSettings1'});
             //打开设置权限的窗体
             $("#showActionWindow").window('open');
 
@@ -154,7 +154,7 @@
 
                 //url: "/Admin/Action/SetRoleAction?id=" + RoleId,
                 url: "/Admin/Action/SetRoleActionNoPagination?id=" + RoleId,
-                loadMsg: '数据加载中请稍后……',
+                loadMsg: '@Resources.Language.Loading',
                 //pagination: true,//启用分页，默认每页10行
                 //rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 //pageSize: 10,   //设置 页容量为 5

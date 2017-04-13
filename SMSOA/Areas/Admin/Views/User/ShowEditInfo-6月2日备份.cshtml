@@ -42,10 +42,10 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("@Resources.Language.ModifySuccess");
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("@Resources.Language.ModifyFailed");
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
@@ -68,13 +68,13 @@
             @*@Html.HiddenFor(model => model.Url)*@
             <table cellpadding="5">
                 <tr>
-                    <td>新用户名:</td>
+                    <td>@Resources.Language.NewUserName:</td>
                     <td>
                         @Html.TextBoxFor(model => model.UName)
                     </td>
                 </tr>
                 <tr>
-                    <td>密码:</td>
+                    <td>@Resources.Language.Password:</td>
                     <td>
                         @Html.PasswordFor(model => model.UPwd)
 
@@ -83,21 +83,21 @@
                 </tr>
              
                 <tr>
-                    <td>顺序:</td>
+                    <td>@Resources.Language.Order:</td>
                     <td>
                         @Html.TextBoxFor(model => model.Sort, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Sort" } })
                         @*<input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input>*@
                     </td>
                 </tr>
                 <tr>
-                    <td>备注:</td>
+                    <td>@Resources.Language.Remarks:</td>
                     <td>
                         @Html.TextBoxFor(model => model.Remark, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Remark" } })
                         @*<input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input>*@
                     </td>
                 </tr>
                 <tr>
-                    <td>创建时间</td>
+                    <td>@Resources.Language.CreateTime</td>
                     <td>
                         @Html.TextBoxFor(model => model.SubTime, new
                    {
@@ -108,7 +108,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>修改时间</td>
+                    <td>@Resources.Language.ModifiedTime</td>
                     <td>
                         @Html.TextBoxFor(model => model.ModifiedOnTime, new
                    {
@@ -120,7 +120,7 @@
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
-                <input type="submit" value="提交" />
+                <input type="submit" value="@Resources.Language.Submit" />
                 @*<a href="javascript:void(0)" class="easyui-linkbutton" type="submit">提交</a>*@
                 @*<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>*@
             </div>
