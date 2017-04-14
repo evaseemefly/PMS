@@ -673,6 +673,14 @@ namespace SMSOA.Areas.Contacts.Controllers
 
             //1.获取当前任务已有的部门(启用)
             //bool isPass = true;
+            /*2017-04-14
+              bug:
+              list_departments_isPass集合中存在对象
+              isPass=true
+              Text="禁用"
+              （实际是启用状态）
+              casablanca
+            */
             var list_departments_isPass = GetDepartmemts(true, SMSMission,(str_ismms=="mms"?true:false));
             //2.获取当前任务已有的部门(禁用)
             var list_department_isNotPass = GetDepartmemts(false, SMSMission, (str_ismms == "mms" ? true : false));
@@ -1176,25 +1184,7 @@ namespace SMSOA.Areas.Contacts.Controllers
                     if (d_result)
                     {
                         isDepartmentOk = true;
-                    }
-                    //3.2.1修改禁用功能  
-                    //foreach (var item in d_isPasses)
-                    //{
-                    //    if (item.Equals("true"))
-                    //    {
-                    //        list_disPass.Add(true);
-                    //    }
-                    //    else if (item.Equals("false"))
-                    //    {
-                    //        list_disPass.Add(false);
-                    //    }
-                    //}
-                    //departmentIDs.ToList().ForEach(a => list_departmentIDs.Add(int.Parse(a)));
-                    //var d_result = this.smsmissionBLL.SetSMSMission4Department(smid, list_departmentIDs, list_disPass);
-                    //if (d_result)
-                    //{
-                    //    isDepartmentOk = true;
-                    //}
+                    }               
                 }
             }
 
