@@ -1,0 +1,16 @@
+<smil>
+<head>
+<meta name="title" content="mms"/>
+<meta name = "author" content="ctc"/>
+<layout>
+<region id = "reg0" height="50%" width="100%" top="0" left="0" fit="meet" />
+<region id = "reg1" height="50%" width="100%" top="50%" left="0" fit="meet" />
+</layout>
+</head>
+<body>
+<par dur="5000ms">
+<img src="cdb3125196b24db38827e9f6172c883d.jpg" region="reg0"/>
+<text src="cdb3125196b24db38827e9f6172c883d.txt" region="reg1"/>
+</par>
+</body>
+</smil>

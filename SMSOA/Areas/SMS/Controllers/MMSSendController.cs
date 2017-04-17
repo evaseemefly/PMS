@@ -68,6 +68,8 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.UploadFiles = "/SMS/MMSSend/SetFiles";
             ViewBag.LoginUser = -999;
             ViewBag.Content = "";
+            ViewBag.Smid = -1;
+            ViewBag.Redirect = 0;
             //若父控制器中的登录用户不为空
             if (base.LoginUser != null)
             {
@@ -77,7 +79,14 @@ namespace SMSOA.Areas.SMS.Controllers
             var content  = Request.QueryString["content"];
             if (null != content)
             {
-                ViewBag.Content = content;
+                var smid_string = Request.QueryString["smid"];
+                if(null != smid_string)
+                {
+                    ViewBag.Content = content;
+                    ViewBag.Redirect = 1;
+                    ViewBag.Smid = int.Parse(smid_string);
+
+                }
             }
             return View();
         }

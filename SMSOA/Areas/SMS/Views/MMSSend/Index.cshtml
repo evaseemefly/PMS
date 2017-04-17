@@ -5,6 +5,15 @@
 
 @section Scripts{
         <script type="text/javascript">
+            $(function () {
+                index_isMMS = 1;
+                temp_isRedirect=@ViewBag.Redirect;
+                smid_Redirect=@ViewBag.Smid;
+               
+
+
+            })
+
 
             //1. 彩信发送私有的方法
             //1.1 取消发送彩信
@@ -28,13 +37,13 @@
             //        }
 
             //        });
-           
+
             //}
-            
+
             function AjaxSubmit_MMS(pids, phones, content, url, missionId, groupIds, departmentIds, isTiming, uid,file) {
                 //1 创建FormData对象,其中已包含文件
                 var formData = new FormData($('#ff')[0]);
-                
+
                 //2 获取MMS标题
                 var MMSTitle = $("#MMSTitle").textbox('getValue');
                 //3 向FormData中添加键值对
@@ -60,7 +69,7 @@
                 //model.isTiming = isTiming;
                 //model.UID = uid;
                 //model.MMSTitle = MMSTitle;
-                
+
                 //2 使用ajax方式提交（此处先不用post）
                 $.ajax({
                     url: url,

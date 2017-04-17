@@ -418,7 +418,6 @@
     <Content Include="Areas\Contacts\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\SMS\Views\web.config" />
-    <Content Include="Areas\SMS\Views\Send\Index-6月17使用分部视图替代前备份.cshtml" />
     <Content Include="Areas\SMS\Views\MsgTemplate\Index.cshtml" />
     <Content Include="Areas\Contacts\Views\ContactPerson\Index - 复制.cshtml" />
     <Content Include="Areas\Contacts\Views\Shared\_Layout_Contacts - 复制.cshtml" />
