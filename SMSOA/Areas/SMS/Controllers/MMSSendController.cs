@@ -126,7 +126,9 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewModel_MMSMessage model = new ViewModel_MMSMessage();
             HttpFileCollection files;
                 files = System.Web.HttpContext.Current.Request.Files;
+            //取消选中的联系人
                 model.PersonIds  = System.Web.HttpContext.Current.Request.Params.GetValues("formData_PersonIds")[0];
+            //临时发送联系人
                 model.PhoneNums = System.Web.HttpContext.Current.Request.Params.GetValues("formData_PhoneNums")[0];
                 model.Content = System.Web.HttpContext.Current.Request.Params.GetValues("formData_Content")[0];
                 model.SMSMissionID = System.Web.HttpContext.Current.Request.Params.GetValues("formData_SMSMissionID")[0];
@@ -150,13 +152,13 @@ namespace SMSOA.Areas.SMS.Controllers
             if (model.Content == null) { return Content("empty content"); }
             if (model.Content.Length >= 300) { return Content("out of range"); }
             if(model.MMSTitle.Length >= 15) { return Content("title out of range"); }
+            
             //1.3 判断是否获取到获取图片
 
             
-            if (files.Count < 1) { return Content( "file error"); }
-            
-            //2 图片处理
             HttpPostedFile file = files[0];
+            if (file.ContentLength < 1 || file.FileName.Length < 1) { return Content( "file error"); }
+            //2 图片处理
             //var file_stream = file.InputStream;
             //BinaryReader reader = new BinaryReader(file_stream);
             //var file_content = reader.ReadBytes((int)file_stream.Length);
@@ -192,6 +194,8 @@ namespace SMSOA.Areas.SMS.Controllers
                 PMS.IModel.ISMSModel_Receive receive = new MMSModel_Receive();
                 //3 执行发送操作
                 var isOk_Send = DoSendNow(combine_model, out receive);
+                //3.1联系人列表为空时跳出
+                if ("empty list".Equals(isOk_Send)){return Content("list error");}
 
                 var receive_temp = receive as MMSModel_Receive;
 
@@ -203,18 +207,15 @@ namespace SMSOA.Areas.SMS.Controllers
 
                 }
 
-                if ("0".Equals((receive as MMSModel_Receive).result) && isOk_Send)
+                if ("0".Equals((receive as MMSModel_Receive).result))
                 {
                     //6 查询发送状态(是否加入等待时间？)
                     return Content("ok");
 
                 }
-                if (!isOk_Send)
-                {
-                    return Content("send_error");
-                }
                 else
                 {
+                    //未知错误，需要开发人员进行调试
                     return Content("error");
                 }
             }
@@ -229,7 +230,7 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <param name="model"></param>
         /// <param name="receive"></param>
         /// <returns></returns>
-        private bool DoSendNow(PMS.Model.CombineModel.MMSSendAndMsg_Model model, out /*SMSModel_Receive*/PMS.IModel.ISMSModel_Receive receive)
+        private string DoSendNow(PMS.Model.CombineModel.MMSSendAndMsg_Model model, out /*SMSModel_Receive*/PMS.IModel.ISMSModel_Receive receive)
         {
             //重新梳理并做抽象
             #region 暂时注释掉
@@ -358,7 +359,10 @@ namespace SMSOA.Areas.SMS.Controllers
             list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
 
             var list_phones = list_PersonPhonesByGroupAndDepartment;
-
+            if (list_phones.Count < 1) {
+                receive = new SMSModel_Receive();
+                return "empty list";
+            }
             //3 转成发送对象
             var sendMsg = mmsSendBLL.ToSendModel(model.Model_MMS, list_phones);
 
@@ -379,7 +383,7 @@ namespace SMSOA.Areas.SMS.Controllers
             }
             //receive = new SMSModel_Receive();
             
-            return true;
+            return "ok";
         }
 
         /// <summary>
