@@ -1,6 +1,0 @@
-D:\VSWorkSpace\nmefc\PMS\WCFTestDemo\bin\Debug\WCFTestDemo.exe.config
-D:\VSWorkSpace\nmefc\PMS\WCFTestDemo\bin\Debug\WCFTestDemo.exe
-D:\VSWorkSpace\nmefc\PMS\WCFTestDemo\bin\Debug\WCFTestDemo.pdb
-D:\VSWorkSpace\nmefc\PMS\WCFTestDemo\obj\Debug\WCFTestDemo.exe
-D:\VSWorkSpace\nmefc\PMS\WCFTestDemo\obj\Debug\WCFTestDemo.pdb
-D:\VSWorkSpace\nmefc\PMS\WCFTestDemo\obj\Debug\WCFTestDemo.csprojResolveAssemblyReference.cache

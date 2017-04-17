@@ -18,8 +18,9 @@ using Common.Ioc;
 
 namespace SMSFactory
 {
+
     
-    
+
     public class MMSSend : SMSSend , IMMSSend
     {
         IS_SMSContentBLL smsContentBLL { get; set; }
@@ -42,10 +43,17 @@ namespace SMSFactory
 
         public string CreateZip(System.IO.Stream picture_stream, string fileDirectory,string content,out string fileName)
         {
-            MMSZipProcessing zipProcessing = new MMSZipProcessing(picture_stream, fileDirectory);
-            //CreateZipCompleteCallback callback = new CreateZipCompleteCallback(zipProcessing.GetZipUrl);
-            return zipProcessing.CreateZip(content,out fileName);
+            ImageProcessingManagement management = new ImageProcessingManagement();
+            //根据不同的业务实例化不同的图片处理类（可用工厂模式改进）
+            BaseImageProcessing processing = new MMSZipProcessing(picture_stream, fileDirectory);
             
+            management.processingEvent += processing.Excute;
+            return management.DoImageProcessing(content, out fileName);
+            
+            
+            //MMSZipProcessing zipProcessing = new MMSZipProcessing(picture_stream, fileDirectory);
+            //return zipProcessing.Excute(content,out fileName);
+
         }
 
         /// <summary>

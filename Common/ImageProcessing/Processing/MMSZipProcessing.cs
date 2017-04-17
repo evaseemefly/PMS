@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace Common
 {
+
+    
     /// <summary>
     /// 回调函数
     /// </summary>
     /// <returns></returns>
     //public delegate string CreateZipCompleteCallback(string fileName);
-    public class MMSZipProcessing
+    public class MMSZipProcessing: BaseImageProcessing
     {
-        private System.IO.Stream picture_stream { get; set;}
-        private string fileDirectory { get; set; }
-
-
         public MMSZipProcessing(System.IO.Stream picture_stream, string fileDirectory)
         {
             this.picture_stream = picture_stream;
@@ -79,7 +77,7 @@ namespace Common
         /// <param name="content"></param>
         /// <param name="fileNameIncludeExt">赋值后返回的 文件名+拓展名</param>
         /// <returns>压缩包存储路径</returns>
-            public string CreateZip(string content,out string fileNameIncludeExt)
+            public override string Excute(string content,out string fileNameIncludeExt)
             {
                 #region 飞飞写的压缩程序，对图片进行压缩
                 //QuYuan注释 3月13日: 将本地绝对路径改为项目下相对路径
