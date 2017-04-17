@@ -57,7 +57,8 @@
 
         //是否定时发送的标记
         var istiming = false;
-
+        //是否为彩信的标记
+        var index_isMMS = 0;
          @*-----------------------2.短彩信共用加载方法------------------------------*@
         //1. 根据登录的用户加载其选中的常用 短信任务
         //加载短信任务combogrid
@@ -88,12 +89,15 @@
                     //alert("被点击了");
                     //每次选中短信任务时都要手动清空该临时联系人的表格
                     clearDataGrid("person_temp_datagrid");
-                    loadComboTree_Department(rowData.SMID);
+                    loadComboTree_Department(rowData.SMID, index_isMMS);
                     loadComboGrid_Group(rowData.SMID,userId);
                     //点击所选任务后显示该任务现在已有的联系人（在右侧联系人列表中显示）
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
 
                     //根据所选的短信任务类型加载模板
+                    if (temp_isRedirect=1) {
+                        return;
+                    }                    
                     loadtextbox_Template(rowData.SMID,userId);
                 }
             })
@@ -148,12 +152,12 @@
         }
 
         //加载全部部门下拉框
-        function loadComboTree_Department(missionId) {
+        function loadComboTree_Department(missionId,isMMS) {
             //2.2 加载上级部门下拉框
             $("#DepartmentName_combotree").combotree({
                 panelWidth: 250,
                 panelHeight: 250,
-                url: '@ViewBag.GetDepartment_combotree?mid=' + missionId,
+                url: '@ViewBag.GetDepartment_combotree?mid=' + missionId + "&&isMMS=" + isMMS,
                 //required: true,
                 method: 'get',
                 //width: 210,

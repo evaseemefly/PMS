@@ -78,6 +78,7 @@ namespace SMSOA.Areas.SMS.Controllers
             if (null != content)
             {
                 ViewBag.Content = content;
+                ViewBag.Redirect = 1;
             }
             return View();
         }

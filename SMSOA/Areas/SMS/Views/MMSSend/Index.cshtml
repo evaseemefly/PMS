@@ -5,6 +5,12 @@
 
 @section Scripts{
         <script type="text/javascript">
+            $(function () {
+                index_isMMS = 1;
+                temp_isRedirect=@ViewBag.Redirect;
+            })
+
+            var temp_isRedirect = 0;
 
             //1. 彩信发送私有的方法
             //1.1 取消发送彩信
