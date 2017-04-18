@@ -18,7 +18,7 @@ using JobManagement;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
-    public class SendController : Admin.Controllers.BaseController
+    public class SendController : /*Admin.Controllers.BaseController*/SMSBaseController
     {
         IS_SMSMissionBLL smsMissionBLL { get; set; }
         IP_GroupBLL groupBLL { get; set; }
@@ -520,9 +520,14 @@ namespace SMSOA.Areas.SMS.Controllers
             list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
 
             var list_phones = list_PersonPhonesByGroupAndDepartment;
-
+           var isEmpty= list_phones.Count() == 0 ? true : false;
+            if (isEmpty)
+            {
+                receive = new SMSModel_Receive();
+                return false;
+            }
             //3 转成发送对象
-           var sendMsg= smsSendBLL.ToSendModel(model.Model_Message, list_phones);
+            var sendMsg= smsSendBLL.ToSendModel(model.Model_Message, list_phones);
 
             /*步骤四
                     生成提交对象及短信及作业对象

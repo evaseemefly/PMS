@@ -305,6 +305,7 @@
     <Compile Include="Areas\SMS\Controllers\MMSSendController.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
+    <Compile Include="Areas\SMS\Controllers\SMSBaseController.cs" />
     <Compile Include="Areas\SMS\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_AdvStatistics_Record.cs" />
     <Compile Include="Areas\SMS\Models\ViewModel_GroupMission.cs" />
@@ -619,6 +620,7 @@
     <Folder Include="Areas\News\Models\" />
     <Folder Include="Areas\News\Views\News\" />
     <Folder Include="Areas\Recycled\Models\" />
+    <Folder Include="Areas\SMS\Views\SMSBase\" />
     <Folder Include="Content\Images\login\" />
     <Folder Include="Scripts\EasyUI\themes\black\" />
     <Folder Include="Scripts\EasyUI\themes\bootstrap\" />

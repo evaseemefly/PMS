@@ -39,7 +39,7 @@
                     if ("ok_nextMMS" == data) {
                         messagerShowOnCenter("提示", "提交成功");
                         messagerConfirm("提示", "是否跳转至彩信发送页面", function () {
-                            redirectMMS(content);
+                            redirectMMS(content, missionId);
                         })
                     }
                     else if("ok" == data){
@@ -48,36 +48,30 @@
                     }else if("empty contact list" == data){
                         messagerShowOnCenter("错误","联系人名单为空，发送失败")
                     }else if("out of range" == data){
-                        messagerShowOnCorner("提示","短信字数超过300字，提交失败");
+                        messagerShowOnCenter("提示", "短信字数超过300字，提交失败");
 
                     }else if("empty content" == data){
-                        messagerShowOnCorner("提示","短信内容为空，发送失败");
+                        messagerShowOnCenter("提示", "短信内容为空，发送失败");
 
                     }
+                    else {
+                        messagerShowOnCenter("错误", "发送失败");
+                    }
                 }
-
             })
         }
         //提交成功后执行重定向到彩信发送页面
-        function redirectMMS(content) {
+        function redirectMMS(content, missionId) {
             //1.获取主界面的jq对象
             var main = top.jQuery;
             //2.获取彩信发送的标题以及index页面的url
             var title = "@ViewBag.MMS_Name";
-            var url = "@ViewBag.GetIframe_MMS" + "?content=" + content;
+            var url = "@ViewBag.GetIframe_MMS" + "?content=" + content + "&smid=" + missionId;
             //3.判断是否已经打开了彩信发送的标签页
                             if (main('#tabs').tabs('exists', title)) {
                                 //3.1 如果已经打开了彩信发送,则更新页面
-                                main('#tabs').tabs('select', title);
-                                var tab = main('#tabs').tabs('getSelected');
-                                main('#tabs').tabs('update', {
-                                        tab: tab,
-                                        options: {
-                                            title: title,
-                                            href:url
-                                        }
-                                    });
-                            } else {
+                                main('#tabs').tabs('close', title);
+                            } 
                                 //3.1 如果已经打开了彩信发送,则更新页面
                                 main('#tabs').tabs('add', {
                                         title: title,
@@ -85,9 +79,8 @@
                                         closable: true,
                                         fit: true,
                                         content: createNewIframe_MMS(url)
-
                                     });
-                            }
+                            
         }
         function createNewIframe_MMS(url) {
 

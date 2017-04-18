@@ -34,6 +34,10 @@
 
     @*-----------------------1.短彩信共用列对象------------------------------*@
     <script type="text/javascript">
+        //全局变量：彩信为1，短信时为0
+        var temp_isRedirect = 0;
+        var smid_Redirect = -1;
+
         var missionColumns = [[
         { field: 'SMID', title: 'ID', width: 100, checkbox: true },
         //{ field: 'SMID', title: 'ID', width: 100,hidden:true },
@@ -95,12 +99,18 @@
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
 
                     //根据所选的短信任务类型加载模板
-                    if (temp_isRedirect=1) {
-                        return;
-                    }                    
-                    loadtextbox_Template(rowData.SMID,userId);
+                    if (1 == temp_isRedirect) {
+                        temp_isRedirect = 0;
+                    } else {
+                        loadtextbox_Template(rowData.SMID, userId);
+                    }
+                },
+                onLoadSuccess: function () {
+                    if (1 == temp_isRedirect) {
+                        autoSelectSMSMission();
+                    }
                 }
-            })
+            })            
         }
 
         //根据选中的短信任务加载该任务所拥有的群组下拉框
@@ -115,6 +125,7 @@
                 editable: false,
                 //width:120,
                 panelWidth: 180,
+                //max-height:300,
                 panelHeight: 300,
                 multiple: true,
                 columns: groupColumns,
@@ -122,15 +133,18 @@
                 onSelect: function (rowIndex, rowData) {
                     //alert("选中了一行");
                     if (isLoadSuccess_Group) {
+                        //clearDataGrid("person_temp_datagrid");
                         loadDataGridByGroupDepartment_Persons();
                     }
                 },
                 onUnselect: function (rowIndex, rowData) {
                     //alert("去掉已经选中的一行");
                     if (isLoadSuccess_Group) {
+                        //clearDataGrid("person_temp_datagrid");
                         loadDataGridByGroupDepartment_Persons();
                     }
                 },
+                //panelHeight:'auto',
                 // formatter: formatItem_combobox,
                 //获取数据成功后启动事件
                 onLoadSuccess: function () {
@@ -188,6 +202,9 @@
         }
         //加载联系人列表
         function loadDataGridByGroupDepartment_Persons() {
+            //2017-04-18
+            //每次加载部门及群组时清除临时联系人列表
+            clearDataGrid("person_temp_datagrid");
             //1 获取当前选中的group以及department下拉框所选中的ids
             //1.1 获取当前选中的群组下拉框
             var grid = $("#group_combogrid").combogrid("grid");
@@ -387,6 +404,14 @@
                 var department_checkeds = $("#DepartmentName_combotree").combobox('getValues');
                 //var checkeds = $("#persondatagrid").datagrid("getChecked");
                 var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
+
+                //2017-04-18 加入短彩信Content的判断 casablanca
+                if ($("#message").textbox('getValue')=="") {
+                    //messagerAlertByAlert("提示", "请填写短信内容");
+                    //此种效果更好
+                    messagerShowOnCenter("提示", "请填写信息内容");
+                    return;
+                }
                 if (group_checkeds.length > 0 || department_checkeds.length > 0 || temp_checkeds.length > 0) {
                     //1.1 获取选中的联系人id用,分隔，并提交
                     //var ids_person = split4id(checkeds, "PID");
@@ -465,7 +490,11 @@
             //row_temp.PhoneNum = phone;
             //row_temp.isTemp = 2;
             //$('#person_temp_datagrid').datagrid('appendRow', row_temp); 
-
+            var rows = $("#person_temp_datagrid").datagrid('getRows');
+            if (CheckExistPhone(row_temp, rows)) {
+                messagerShowOnCorner("提示", "电话已添加请勿重复添加");
+                return;
+            }
             $('#person_temp_datagrid').datagrid('insertRow', {
                 index: 0,	// 索引从0开始
                 row: row_temp
@@ -473,11 +502,37 @@
             $('#person_temp_datagrid').datagrid('checkRow', 0);
         }
 
+        //判断传入的集合中是否包含指定的电话号码，包含返回true 2017-04-18
+        function CheckExistPhone(phone, list) {
+            var index = 0;
+            var result = false;
+            $.each(list, function (index, value) {
+                index++;
+                if (phone.PhoneNum == value.PhoneNum) {
+                    result = true;
+                    return false;
+                }
+            })
+            return result;
+        }
+
+        function autoSelectSMSMission() {
+            $("#smsMission_combogrid").combogrid('grid').datagrid('selectRecord', smid_Redirect);
+        }
+        
         //----------------------------短彩信共用入口方法---------------------------------------
         $(function () {
+            
             //1 隐藏设置的窗体
             $("#editWindow").window('close');
             loadCombogrid_byUser();
+            
+            //2017-04-18 隐藏群组下拉框 casablanca
+            //$("#group_combogrid").combogrid('hidePanel');
+            if (temp_isRedirect == 1) {
+                //如果是重定向过来的，就默认选中短信发送时选中的任务
+                autoSelectSMSMission();
+            }
             //OnSelected_Group();
             //$("#DepartmentName_combotree").combotree({
             //    onCheck: function () {

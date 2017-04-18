@@ -92,12 +92,26 @@ namespace SMSOA.Areas.SMS.Controllers
             //1 查询全部的短信内容模板，并根据sort进行排序
             var list_allMsgContent = smsMsgContentBLL.GetPageList(pageIndex, pageSize, ref rowCount, m => m.isDel == false&&m.UID==userId, m => m.Sort, true).ToList().Select(m => m.ToMiddleModel()).ToList();
 
+            //1.1 排序，按照创建时间 17年4月18日修改 By QuYuan
+            #region 以下几种方法均可使用，有待研究效率
+            //1.1.1 第一种排序，按照与当前时间的差值
+            var list_allMsgContent_SortBySubTime =  list_allMsgContent.OrderBy(x =>DateTime.Now.Subtract(new DateTime(x.SubTime.Year, x.SubTime.Month, x.SubTime.Day,x.SubTime.Hour,x.SubTime.Minute,x.SubTime.Second)).TotalSeconds).ToList();
+
+            //1.1.2 第二种排序，使用间隔数
+            //Date.SubTime.Ticks单位是 100 毫微秒。表示自 0001 年 1 月 1 日午夜 12:00:00 以来已经过的时间的以 100 毫微秒为间隔的间隔数
+            //list_allMsgContent.OrderBy(p => p.SubTime.Ticks);
+            //list_allMsgContent.OrderBy(p => p.SubTime.ToFileTime);
+
+            //1.1.3 第三种排序，按照年月日依次排序
+            //list_allMsgContent.OrderByDescending(p => p.SubTime.Year).ThenByDescending(p => p.SubTime.Month).ThenByDescending(p => p.SubTime.Day).ThenByDescending(p => p.SubTime.Hour).ThenByDescending(p => p.SubTime.Month).ThenByDescending(p => p.SubTime.Second);
+            #endregion
+
 
             //2 转成easyui DataGrid
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_allMsgContent,
+                rows = list_allMsgContent_SortBySubTime,
                 footer = null
             };
             //3 序列化
