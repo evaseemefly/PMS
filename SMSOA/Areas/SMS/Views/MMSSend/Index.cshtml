@@ -8,9 +8,12 @@
             $(function () {
                 index_isMMS = 1;
                 temp_isRedirect=@ViewBag.Redirect;
+                smid_Redirect=@ViewBag.Smid;
+               
+
+
             })
 
-            var temp_isRedirect = 0;
 
             //1. 彩信发送私有的方法
             //1.1 取消发送彩信
@@ -34,13 +37,13 @@
             //        }
 
             //        });
-           
+
             //}
-            
+
             function AjaxSubmit_MMS(pids, phones, content, url, missionId, groupIds, departmentIds, isTiming, uid,file) {
                 //1 创建FormData对象,其中已包含文件
                 var formData = new FormData($('#ff')[0]);
-                
+
                 //2 获取MMS标题
                 var MMSTitle = $("#MMSTitle").textbox('getValue');
                 //3 向FormData中添加键值对
@@ -66,7 +69,7 @@
                 //model.isTiming = isTiming;
                 //model.UID = uid;
                 //model.MMSTitle = MMSTitle;
-                
+
                 //2 使用ajax方式提交（此处先不用post）
                 $.ajax({
                     url: url,
@@ -84,15 +87,21 @@
                         if ("ok" == data) {
                             messagerShowOnCenter("提示", "提交成功");
                         } else if ("empty contact list" == data) {
-                            messagerShowOnCenter("错误", "联系人名单为空，发送失败")
+                            messagerShowOnCenter("错误", "联系人名单为空，提交失败")
                         } else if ("out of range" == data) {
-                            messagerShowOnCorner("提示", "彩信字数超过300字，提交失败");
+                            messagerShowOnCenter("提示", "彩信字数超过300字，提交失败");
 
                         } else if ("empty content" == data) {
-                            messagerShowOnCorner("提示", "彩信内容为空，发送失败");
+                            messagerShowOnCenter("提示", "彩信内容为空，提交失败");
 
                         } else if ("title out of range" == data) {
-                            messagerShowOnCorner("提示", "彩信标题为空，发送失败");
+                            messagerShowOnCenter("提示", "彩信标题为空，提交失败");
+                        } else if ("file error" == data) {
+                            messagerShowOnCenter("提示", "请上传正确格式的图片，提交失败");
+                        }else if ("error"==data) {
+                            messagerShowOnCenter("提示", "请联系管理员,提交失败");
+                        }else if ("list error" == data ) {
+                            messagerShowOnCenter("提示", "联系人列表为空，提交失败");
                         }
                     }
 

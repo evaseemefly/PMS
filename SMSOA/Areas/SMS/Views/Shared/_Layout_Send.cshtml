@@ -34,6 +34,10 @@
 
     @*-----------------------1.短彩信共用列对象------------------------------*@
     <script type="text/javascript">
+        //全局变量：彩信为1，短信时为0
+        var temp_isRedirect = 0;
+        var smid_Redirect = -1;
+
         var missionColumns = [[
         { field: 'SMID', title: 'ID', width: 100, checkbox: true },
         //{ field: 'SMID', title: 'ID', width: 100,hidden:true },
@@ -95,12 +99,18 @@
                     var url = '@ViewBag.GetPersonByMission?mid=' + rowData.SMID;
 
                     //根据所选的短信任务类型加载模板
-                    if (temp_isRedirect=1) {
-                        return;
-                    }                    
-                    loadtextbox_Template(rowData.SMID,userId);
+                    if (1 == temp_isRedirect) {
+                        temp_isRedirect = 0;
+                    } else {
+                        loadtextbox_Template(rowData.SMID, userId);
+                    }
+                },
+                onLoadSuccess: function () {
+                    if (1 == temp_isRedirect) {
+                        autoSelectSMSMission();
+                    }
                 }
-            })
+            })            
         }
 
         //根据选中的短信任务加载该任务所拥有的群组下拉框
@@ -472,12 +482,21 @@
             });
             $('#person_temp_datagrid').datagrid('checkRow', 0);
         }
-
+        function autoSelectSMSMission() {
+            $("#smsMission_combogrid").combogrid('grid').datagrid('selectRecord', smid_Redirect);
+        }
+        
         //----------------------------短彩信共用入口方法---------------------------------------
         $(function () {
+            
             //1 隐藏设置的窗体
             $("#editWindow").window('close');
             loadCombogrid_byUser();
+            
+            if (temp_isRedirect == 1) {
+                //如果是重定向过来的，就默认选中短信发送时选中的任务
+                autoSelectSMSMission();
+            }
             //OnSelected_Group();
             //$("#DepartmentName_combotree").combotree({
             //    onCheck: function () {
