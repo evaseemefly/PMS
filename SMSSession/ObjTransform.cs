@@ -276,7 +276,7 @@ namespace SMSFactory
             var _data = "<?xml version='1.0' encoding='UTF-8'?><root><head>"
                                   + "<cmdId>"+smsdata.cmdid+"</cmdId>"
                                   + "<account>" + smsdata.account + "</account>" + "<password>"
-                                  + smsdata.password + "</password></head>"
+                                  +Common.Encryption.MD5Encryption(smsdata.password) + "</password></head>"
                                   + "</root>";
             return _data;
         }

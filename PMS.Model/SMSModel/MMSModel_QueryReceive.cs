@@ -8,5 +8,6 @@ namespace PMS.Model.SMSModel
 {
     public class MMSModel_QueryReceive:SMSModel_QueryReceive
     {
+
     }
 }

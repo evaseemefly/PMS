@@ -45,6 +45,13 @@
         <Variable x:TypeArguments="pms:SMSModel_QueryReceive" Name="ReceviceModel" />
         <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_Exist_queryModel" />
         <Variable x:TypeArguments="pme:MatchCondition_Enum" Name="_matchCondition_enum" />
+        <Variable x:TypeArguments="pme:MMS_Enum" Name="_isMMS">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">MMS_Enum.mms</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)" Name="_list_queryModel_MMS" />
+        <Variable x:TypeArguments="pme:QueryState_Enum" Name="_state_enum_mms" />
       </Flowchart.Variables>
       <Flowchart.StartNode>
         <FlowStep x:Name="__ReferenceID5">
@@ -63,11 +70,21 @@
                             <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
                           </OutArgument>
                         </local:QueryState_Code.List_QueryReceive>
+                        <local:QueryState_Code.List_QueryReceive_MMS>
+                          <OutArgument x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">
+                            <mca:CSharpReference x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">_list_queryModel_MMS</mca:CSharpReference>
+                          </OutArgument>
+                        </local:QueryState_Code.List_QueryReceive_MMS>
                         <local:QueryState_Code.State>
                           <OutArgument x:TypeArguments="x:Int32">
                             <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
                           </OutArgument>
                         </local:QueryState_Code.State>
+                        <local:QueryState_Code.isMMS>
+                          <InArgument x:TypeArguments="pme:MMS_Enum">
+                            <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
+                          </InArgument>
+                        </local:QueryState_Code.isMMS>
                       </local:QueryState_Code>
                       <FlowStep.Next>
                         <FlowStep x:Name="__ReferenceID6">
@@ -80,17 +97,27 @@
                           </local:LogIn_Code>
                           <FlowStep.Next>
                             <FlowStep x:Name="__ReferenceID3">
-                              <local:GetStateByQueryList_Code Text="{x:Null}" DisplayName="GetStateByQueryList_Code">
+                              <local:GetStateByQueryList_Code Text="{x:Null}" isMMS="{x:Null}" DisplayName="GetStateByQueryList_Code">
                                 <local:GetStateByQueryList_Code.List_QueryReceive>
                                   <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                                     <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
                                   </InArgument>
                                 </local:GetStateByQueryList_Code.List_QueryReceive>
+                                <local:GetStateByQueryList_Code.List_QueryReceive_mms>
+                                  <InArgument x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">
+                                    <mca:CSharpValue x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">_list_queryModel_MMS</mca:CSharpValue>
+                                  </InArgument>
+                                </local:GetStateByQueryList_Code.List_QueryReceive_mms>
                                 <local:GetStateByQueryList_Code.State>
                                   <OutArgument x:TypeArguments="pme:QueryState_Enum">
                                     <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
                                   </OutArgument>
                                 </local:GetStateByQueryList_Code.State>
+                                <local:GetStateByQueryList_Code.State_MMS>
+                                  <OutArgument x:TypeArguments="pme:QueryState_Enum">
+                                    <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum_mms</mca:CSharpReference>
+                                  </OutArgument>
+                                </local:GetStateByQueryList_Code.State_MMS>
                               </local:GetStateByQueryList_Code>
                               <FlowStep.Next>
                                 <FlowStep x:Name="__ReferenceID7">
@@ -266,7 +293,7 @@
       <x:Reference>__ReferenceID6</x:Reference>
       <x:Reference>__ReferenceID7</x:Reference>
       <x:Reference>__ReferenceID8</x:Reference>
-      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw0MQOZAg8CAQE+CT6TAQMB+wFBDUHAAQMB+gFEEUSeAQMB+AFHFVItAwHlAVUZWywDAdsBXh1pPgMByAFsIXI0AwG+AXUl5wEqAgEZ6gEp/AEuAgECPooBPpABAwH8AUSRAUSbAQMB+QFKG0qMAQMB7wFPG09mAwHmAVgfWGsDAdwBYSNhjAEDAdIBZiNmfwMByQFvJ29yAwG/AXgreJ0BAgEafCnlATQCASPtAS/tAa8BAgED8QEt+gE4AgEMfSuIATQDAasBiQErlAE0AwGYAZUBK98BNQIBLuABK+QBNwIBJPIBL/gBSgIBD/kBL/kBjwECAQ2FATGFAbIBAwG1AYABMYABqAEDAawBkQExkQGrAQMBogGMATGMAZoBAwGZAZgBMZgBoQEDAY8BnwEv3QE6AgEv4gEv4gGaAQIBJfUBNfUBpAECARD5AYYB+QGMAQIBDqMBMdwBPAIBMKQBM68BUwIBeLABM9sBOAIBMawBOawBkwEDAYQBpwE5pwGMAQIBebMBObMBqQECATK3ATfQAUICAUnTATfZAUoCAT24ATm+AUwCAWy/ATnPAV0CAUrWAT3WAY8BAgE+uwE/uwGMAQIBbcwBP8wBqAECAWHHAT/HAbYBAgFWwgE/wgGSAQIBSw==</sads:DebugSymbol.Symbol>
+      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw5MQO0Ag8CAQE9Cz1ZAgECRQlFkwEDAfwCSA1IwAEDAfsCSxFLngEDAfkCThVjLQMByAJmGWwsAwG7Am8dhAE+AwGKAocBIY0BNAMB/QGQASWCAioCASuFAimXAi4CAQ5FigFFkAEDAf0CS5EBS5sBAwH6AmAbYGMDAe0CURtRjAEDAeECVhtWkAEDAdUCWxtbZgMByQJpH2lrAwG8AoEBI4EBgwEDAa8CciNyjAEDAaMCfCN8fwMBlwJ3I3eQAQMBiwKKASeKAXIDAf4BkwErkwGdAQIBLJcBKYACNAIBOIgCL4gCrwECAQ+MAi2VAjgCARuYASujATQDAeQBpAErrwE0AwHLAbABK/oBNQIBRvsBK/8BNwIBOY0CL5MCSgIBHpQCL5QCjwECARygATGgAbIBAwHxAZsBMZsBqAEDAeUBrAExrAGrAQMB2AGnATGnAZoBAwHMAbMBMbMBoQEDAb8BugEv+AE6AgFH/QEv/QGaAQIBOpACNZACpAECAR+UAoYBlAKMAQIBHb4BMfcBPAIBSL8BM8oBUwMBogHLATP2ATgCAUnHATnHAZMBAwGxAcIBOcIBjAEDAaMBzgE5zgGpAQIBStIBN+sBQgIBZ+4BN/QBSgIBWNMBOdkBTAMBkwHaATnqAV0CAWjxAT3xAY8BAgFZ1gE/1gGMAQMBlAHnAT/nAagBAwGFAeIBP+IBtgECAXfdAT/dAZIBAgFp</sads:DebugSymbol.Symbol>
     </Flowchart>
   </local:Activity1.Implementation>
 </local:Activity1>

@@ -83,8 +83,10 @@ namespace JobInstances
             //smsSendBLL.AfterSend(model, receive_model,)
         }
 
+        //需要向数据库写回作业状态
         protected void AfterSend()
         {
+            //获取QRTZ_JOB_DETAILS表中的当前作业的JOB NAME——即J_JobInfo表的id
             if (this.smsSendBLL == null)
             {
                 smsSendBLL = new SMSFactory.SMSSend();

@@ -118,6 +118,10 @@ namespace BaseJob
         protected bool UpdateJobState(PMS.Model.J_JobInfo job)
         {
             //此处有问题，对象已经修改但数据库中未更新
+            /*
+             * JID:5067
+             * 查询作业
+             */
             if (jobInfoBLL != null)
                 return jobInfoBLL.Update(job);
             else

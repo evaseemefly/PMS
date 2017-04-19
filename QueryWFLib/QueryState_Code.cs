@@ -15,6 +15,9 @@ namespace QueryWFLib
         // 定义一个字符串类型的活动输入参数
         public InArgument<string> Text { get; set; }
 
+        public InArgument<PMS.Model.Enum.MMS_Enum> isMMS { get; set; }
+        
+
         //返回查询状态（先设定为string）类型
         /// <summary>
         /// 查询之后返回的状态
@@ -26,6 +29,8 @@ namespace QueryWFLib
         /// </summary>
         public OutArgument<List<SMSModel_QueryReceive>> List_QueryReceive { get; set; }
 
+        public OutArgument<List<MMSModel_QueryReceive>> List_QueryReceive_MMS { get; set; }
+
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
         //qu
@@ -33,18 +38,30 @@ namespace QueryWFLib
         {
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
+            var ismms = context.GetValue(this.isMMS);
             //执行查询操作
             //进行查询传入的msgid的
-            var list = new List<SMSModel_QueryReceive>();
+            var list_sms = new List<SMSModel_QueryReceive>();
+            var list_mms = new List<MMSModel_QueryReceive>();
             int state = -1;
-            
+
 
             //此处查询只是将msgid传入即可
             //只保留smsIndex为1的xml节点并转成对象集合
-            ToQuery(out list, out state);
+            switch (ismms)
+            {
+                case PMS.Model.Enum.MMS_Enum.mms:
+                    ToQuery(out list_mms, out state);
+                    break;
+                default:
+                    ToQuery(out list_sms, out state);
+                    break;
+            }
+            
 
             context.SetValue(State, state);
-            context.SetValue(List_QueryReceive, list);
+            context.SetValue(List_QueryReceive, list_sms);
+            context.SetValue(List_QueryReceive_MMS, list_mms);
         }
 
 
@@ -123,6 +140,46 @@ namespace QueryWFLib
             //    //return;
             //}
             #endregion
+        }
+
+        /// <summary>
+        /// 彩信查询
+        /// </summary>
+        /// <param name="list_queryReceive"></param>
+        /// <param name="state"></param>
+        public static void ToQuery(out List<MMSModel_QueryReceive> list_queryReceive, out int state)
+        {
+           
+            //以后通过spring .net 实现
+            //设置状态初始值为未知状态
+            state = (int)PMS.Model.Enum.QueryState_Enum.unknown;
+            IMMSQuery smsQuery = new SMSFactory.MMSQuery();
+            
+            Common.Config.SMSSignConfigHelper smsSign = new Common.Config.SMSSignConfigHelper();
+
+            //6 查询发送状态
+            MMSModel_Query queryMsg = new MMSModel_Query()
+            {
+                account = smsSign.account,
+                password = smsSign.password
+            };
+            List<MMSModel_QueryReceive> list_QueryReceive;
+
+            //根据传入的信息进行查询，并有一个状态信息集合
+            bool isGetReturnMsg = smsQuery.QueryMsg(queryMsg, out list_QueryReceive);
+            //根据传入的状态集合进行判断当前的状态
+            var enum_state = smsQuery.GetQueryState(list_QueryReceive);
+
+            //为变量赋值
+            list_queryReceive = list_QueryReceive;
+            state = (int)enum_state;
+
+            if (!isGetReturnMsg)
+            {
+                //查询结果有问题，跳出本次查询
+                state = (int)PMS.Model.Enum.QueryState_Enum.error;
+                return;
+            }            
         }
     }
 }
