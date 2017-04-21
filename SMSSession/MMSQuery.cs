@@ -83,6 +83,7 @@ namespace SMSFactory
                 list_receiveModel = new List<MMSModel_QueryReceive>();
                 return false;
             }
+            smsdata.cmdid = "004";
             _data = ObjTransform.Model2Xml_FormatQuery(smsdata);
             returnMsg = DoRquest(_serverURL, "POST", "UTF-8", _data);
             //解析服务器反馈信息
@@ -118,7 +119,7 @@ namespace SMSFactory
             //根据传入的msgid遍历集合中的全部对象
             if (list_receive.Where(q => q.msgId == msgid).Count() == 0)
             {
-                return false;
+                return true;
             }
             return true;
         }

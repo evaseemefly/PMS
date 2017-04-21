@@ -14,7 +14,7 @@ namespace QueryWFLib
     {
 
         ISMSQuery smsQuery = new SMSFactory.SMSQuery();
-        IMMSQuery mmsQuery;
+        IMMSQuery mmsQuery = new SMSFactory.MMSQuery();
         // 定义一个字符串类型的活动输入参数
         public InArgument<string> Text { get; set; }
 

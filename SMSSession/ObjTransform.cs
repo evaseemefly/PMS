@@ -173,19 +173,19 @@ namespace SMSFactory
         {
             List<MMSModel_QueryReceive> list_r = new List<MMSModel_QueryReceive>();
             //1.解析前一部分(head)
-            var result = Xml2StrHelper.Xml2Str(returnMsg, "head/result");
+            var result = Xml2StrHelper.Xml2Str(returnMsg, "root/head/result");
             //如果result不为0，则没有body标签
             if (result != "0") { return list_r; }
 
 
             //2.解析前二部分(body)
-            var _status = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/status");
+            var _status = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/status");
 
             if (_status != null)
             {
-                var _msgid = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/msgid");
-                var _phone = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/phone");
-                var _desc = Xml2StrHelper.xml2strList(returnMsg, "body/reportMsg/statusDesp");               
+                var _msgid = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/msgid");
+                var _phone = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/phone");
+                var _desc = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/statusDesp");               
 
                 for (int i = 0; i < _status.Length; i++)
                 {
@@ -251,6 +251,7 @@ namespace SMSFactory
             return _data;
         }
         /// <summary>
+        /// 短信
         /// 将查询请求对象转换成xml格式
         /// </summary>
         /// <param name="smsdata"></param>
@@ -267,6 +268,7 @@ namespace SMSFactory
             return _data;
         }
         /// <summary>
+        /// 彩信
         /// 将查询请求对象转换成xml格式 重载
         /// </summary>
         /// <param name="smsdata"></param>

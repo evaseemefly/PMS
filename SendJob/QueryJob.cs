@@ -28,7 +28,8 @@ namespace JobInstances
         protected override void Exceuted(IJobExecutionContext context)
         {
             LogHelper.WriteLog("开始写入作业状态");
-            ExceutedTest(context);
+            //执行后执行的方法封装在父类中，此处注释 2017-04-21 casablanca
+            //AfterExceuted(context);
 
             //throw new NotImplementedException();
         }
@@ -37,7 +38,7 @@ namespace JobInstances
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public void ExceutedTest(IJobExecutionContext context)
+        public void AfterExceuted(IJobExecutionContext context)
         {
             if (jobInfoBLL == null)
             {
