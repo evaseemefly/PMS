@@ -72,6 +72,10 @@
       <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
       <Name>PMS.IBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
+      <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
+      <Name>PMS.IModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>

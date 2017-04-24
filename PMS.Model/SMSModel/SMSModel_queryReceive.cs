@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PMS.Model.SMSModel
 {
-    public class SMSModel_QueryReceive
+    public class SMSModel_QueryReceive:IModel.SMSModel.IQueryReceive
     {
         /// <summary>
         /// 短信唯一识别码

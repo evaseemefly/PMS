@@ -45,6 +45,8 @@
     <Compile Include="IJ_JobInfo.cs" />
     <Compile Include="ISMSModel_Receive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMSModel\IQueryReceive.cs" />
+    <Compile Include="SMSModel\IQuerySign.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

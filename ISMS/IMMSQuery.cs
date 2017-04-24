@@ -12,10 +12,12 @@ namespace ISMS
     {
         /// <summary>
         /// 根据传入的信息进行短信发送状态的查询
+        /// （不在此处判断是否包含指定的msgid——9月26日添加对返回的集合中是否存在指定msgid的对象的判断）
+        /// 若存在则返回true，不存在则返回false
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool QueryMsg(MMSModel_Query smsdata, out List<MMSModel_QueryReceive> list_receiveModel);
+        bool QueryMsg(PMS.IModel.SMSModel.IQuerySign smsdata, out List<MMSModel_QueryReceive> list_receiveModel);
 
         /// <summary>
         /// 根据刚刚查询所返回的回执集合

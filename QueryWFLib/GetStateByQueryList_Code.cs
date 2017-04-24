@@ -49,14 +49,16 @@ namespace QueryWFLib
             switch (ismms)
             {
                 case PMS.Model.Enum.MMS_Enum.mms:
-                    var list_sms = context.GetValue(List_QueryReceive);
-                    //根据传入的集合判断查询状态（结束，还可查询）
-                    state_enum = smsQuery.GetQueryState(list_sms);
-                    break;
-                default:
+                    //彩信时获取彩信查询集合
                     var list_mms = context.GetValue(List_QueryReceive_mms);
                     //根据传入的集合判断查询状态（结束，还可查询）
                     state_enum_mms = mmsQuery.GetQueryState(list_mms);
+                    break;
+                default:
+                    //短信时获取短信查询集合
+                    var list_sms = context.GetValue(List_QueryReceive);
+                    //根据传入的集合判断查询状态（结束，还可查询）
+                    state_enum = smsQuery.GetQueryState(list_sms);                   
                     break;
             }
             context.SetValue(State, state_enum);

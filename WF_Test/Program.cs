@@ -45,9 +45,9 @@ namespace WF_Test
             ITrigger trigger = TriggerBuilder.Create()
               .WithIdentity("myQueryTrigger", "query")
               .StartNow()
-              .WithSimpleSchedule(x => x
-                  .WithIntervalInSeconds(120)
-                  .RepeatForever())
+              //.WithSimpleSchedule(x => x
+              //    //.WithIntervalInSeconds(120)
+              //    .RepeatForever())
               .Build();
 
             sched.ScheduleJob(job, trigger);
