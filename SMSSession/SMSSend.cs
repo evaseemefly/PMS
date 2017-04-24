@@ -490,7 +490,9 @@ namespace SMSFactory
                 var receive_MMS = new MMSModel_Receive();
                 try
                 {
-                    client.SendMsg((model as PMS.Model.CombineModel.MMSSendAndMsg_Model).Model_MMS, out receive_MMS);
+                    var send_model = (model as PMS.Model.CombineModel.MMSSendAndMsg_Model);
+                    client.SendMsg(send_model.Model_MMS, out receive_MMS);
+                    AfterSend(send_model.Model_Message, receive_MMS, send_model.Model_MMS.phones.ToList());
                     //receiveModel = receive_MMS;
                     return true;
                 }

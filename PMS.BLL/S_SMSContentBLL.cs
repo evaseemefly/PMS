@@ -19,17 +19,30 @@ namespace PMS.BLL
         /// <param name="smsContent"></param>
         /// <param name="mid"></param>
         /// <returns></returns>
-        public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid)
+        public bool SaveMsg(SMSModel_Receive receive, string smsContent, string mid, int uid/*,string title,Model.Enum.MMS_Enum isMMS=Model.Enum.MMS_Enum.sms*/)
         {
             //计算字数要加上{国家海洋预报台}
             double count = ((double)smsContent.Length + 9 )/ 70;
+            //S_SMSContent s_smsContent = new S_SMSContent()
+            //{   UID = uid,
+            //    SMSContent = smsContent,
+            //    msgId = receive.msgid,
+            //    SendDateTime = DateTime.Now,
+            //    SMID = int.Parse(mid),
+            //    BlackList =receive.failPhones==null?string.Empty:string.Join(",", receive.failPhones),
+            //    ResultCode = int.Parse(receive.result),//此处有错误
+            //    smsCount = (int)Math.Ceiling(count),
+            //    isMMS=(isMMS==Model.Enum.MMS_Enum.sms?false:true),
+            //    MSTitle=(isMMS == Model.Enum.MMS_Enum.sms ?null:title)
+            //};
             S_SMSContent s_smsContent = new S_SMSContent()
-            {   UID = uid,
+            {
+                UID = uid,
                 SMSContent = smsContent,
                 msgId = receive.msgid,
                 SendDateTime = DateTime.Now,
                 SMID = int.Parse(mid),
-                BlackList =receive.failPhones==null?string.Empty:string.Join(",", receive.failPhones),
+                BlackList = receive.failPhones == null ? string.Empty : string.Join(",", receive.failPhones),
                 ResultCode = int.Parse(receive.result),//此处有错误
                 smsCount = (int)Math.Ceiling(count)
             };

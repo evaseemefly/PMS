@@ -45,9 +45,11 @@ namespace PersonImporting.Utils
         {
             var array = txtLine.Split(',');
             //格式错误
-            if (array.Length != 3) {return false;}
+            if (array.Length != 3) {
+                return false;}
             //电话号码不为11位
-            if(array[2].Length != 11) { return false; }
+            if(array[2].Length != 11) {
+                return false; }
             return true;
         }
     }

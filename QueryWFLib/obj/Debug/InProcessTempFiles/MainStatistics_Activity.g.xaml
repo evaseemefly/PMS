@@ -30,6 +30,7 @@
       <AssemblyReference>PMS.IBLL</AssemblyReference>
       <AssemblyReference>PMS.Model</AssemblyReference>
       <AssemblyReference>SMSFactory</AssemblyReference>
+      <AssemblyReference>PMS.IModel</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>QueryWFLib</AssemblyReference>
     </sco:Collection>
@@ -45,6 +46,14 @@
         <Variable x:TypeArguments="pms:SMSModel_QueryReceive" Name="ReceviceModel" />
         <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_Exist_queryModel" />
         <Variable x:TypeArguments="pme:MatchCondition_Enum" Name="_matchCondition_enum" />
+        <Variable x:TypeArguments="pme:MMS_Enum" Name="_isMMS">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">MMS_Enum.mms</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)" Name="_list_queryModel_MMS" />
+        <Variable x:TypeArguments="pme:QueryState_Enum" Name="_state_enum_mms" />
+        <Variable x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)" Name="_list_Exist_queryModel_MMS" />
       </Flowchart.Variables>
       <Flowchart.StartNode>
         <FlowStep x:Name="__ReferenceID5">
@@ -63,11 +72,21 @@
                             <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
                           </OutArgument>
                         </local:QueryState_Code.List_QueryReceive>
+                        <local:QueryState_Code.List_QueryReceive_MMS>
+                          <OutArgument x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">
+                            <mca:CSharpReference x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">_list_queryModel_MMS</mca:CSharpReference>
+                          </OutArgument>
+                        </local:QueryState_Code.List_QueryReceive_MMS>
                         <local:QueryState_Code.State>
                           <OutArgument x:TypeArguments="x:Int32">
                             <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
                           </OutArgument>
                         </local:QueryState_Code.State>
+                        <local:QueryState_Code.isMMS>
+                          <InArgument x:TypeArguments="pme:MMS_Enum">
+                            <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
+                          </InArgument>
+                        </local:QueryState_Code.isMMS>
                       </local:QueryState_Code>
                       <FlowStep.Next>
                         <FlowStep x:Name="__ReferenceID6">
@@ -86,11 +105,26 @@
                                     <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
                                   </InArgument>
                                 </local:GetStateByQueryList_Code.List_QueryReceive>
+                                <local:GetStateByQueryList_Code.List_QueryReceive_mms>
+                                  <InArgument x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">
+                                    <mca:CSharpValue x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">_list_queryModel_MMS</mca:CSharpValue>
+                                  </InArgument>
+                                </local:GetStateByQueryList_Code.List_QueryReceive_mms>
                                 <local:GetStateByQueryList_Code.State>
                                   <OutArgument x:TypeArguments="pme:QueryState_Enum">
                                     <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
                                   </OutArgument>
                                 </local:GetStateByQueryList_Code.State>
+                                <local:GetStateByQueryList_Code.State_MMS>
+                                  <OutArgument x:TypeArguments="pme:QueryState_Enum">
+                                    <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum_mms</mca:CSharpReference>
+                                  </OutArgument>
+                                </local:GetStateByQueryList_Code.State_MMS>
+                                <local:GetStateByQueryList_Code.isMMS>
+                                  <InArgument x:TypeArguments="pme:MMS_Enum">
+                                    <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
+                                  </InArgument>
+                                </local:GetStateByQueryList_Code.isMMS>
                               </local:GetStateByQueryList_Code>
                               <FlowStep.Next>
                                 <FlowStep x:Name="__ReferenceID7">
@@ -150,7 +184,7 @@
                                                     <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
                                                   </Sequence.Variables>
                                                   <Sequence>
-                                                    <local:CheckMsgIdInRedist_Code Text="{x:Null}" DisplayName="判断指定msgid及电话是否存在于缓存及数据库中">
+                                                    <local:CheckMsgIdInRedist_Code Text="{x:Null}" DisplayName="CheckMsgIdInRedist_Code">
                                                       <local:CheckMsgIdInRedist_Code.Item_Model>
                                                         <InArgument x:TypeArguments="pms:SMSModel_QueryReceive">
                                                           <mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue>
@@ -228,7 +262,7 @@
                                             </If.Condition>
                                             <If.Then>
                                               <Sequence>
-                                                <local:ListWriteInDb_Code Text="{x:Null}" Write_Enum="{x:Null}" DisplayName="对存在的集合写入数据库">
+                                                <local:ListWriteInDb_Code Text="{x:Null}" Write_Enum="{x:Null}" DisplayName="ListWriteInDb_Code">
                                                   <local:ListWriteInDb_Code.List_Final>
                                                     <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                                                       <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpValue>
@@ -266,7 +300,130 @@
       <x:Reference>__ReferenceID6</x:Reference>
       <x:Reference>__ReferenceID7</x:Reference>
       <x:Reference>__ReferenceID8</x:Reference>
-      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw0MQOZAg8CAQE+CT6TAQMB+wFBDUHAAQMB+gFEEUSeAQMB+AFHFVItAwHlAVUZWywDAdsBXh1pPgMByAFsIXI0AwG+AXUl5wEqAgEZ6gEp/AEuAgECPooBPpABAwH8AUSRAUSbAQMB+QFKG0qMAQMB7wFPG09mAwHmAVgfWGsDAdwBYSNhjAEDAdIBZiNmfwMByQFvJ29yAwG/AXgreJ0BAgEafCnlATQCASPtAS/tAa8BAgED8QEt+gE4AgEMfSuIATQDAasBiQErlAE0AwGYAZUBK98BNQIBLuABK+QBNwIBJPIBL/gBSgIBD/kBL/kBjwECAQ2FATGFAbIBAwG1AYABMYABqAEDAawBkQExkQGrAQMBogGMATGMAZoBAwGZAZgBMZgBoQEDAY8BnwEv3QE6AgEv4gEv4gGaAQIBJfUBNfUBpAECARD5AYYB+QGMAQIBDqMBMdwBPAIBMKQBM68BUwIBeLABM9sBOAIBMawBOawBkwEDAYQBpwE5pwGMAQIBebMBObMBqQECATK3ATfQAUICAUnTATfZAUoCAT24ATm+AUwCAWy/ATnPAV0CAUrWAT3WAY8BAgE+uwE/uwGMAQIBbcwBP8wBqAECAWHHAT/HAbYBAgFWwgE/wgGSAQIBSw==</sads:DebugSymbol.Symbol>
+      <FlowStep>
+        <Switch x:TypeArguments="pme:MMS_Enum">
+          <Switch.Expression>
+            <InArgument x:TypeArguments="pme:MMS_Enum">
+              <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
+            </InArgument>
+          </Switch.Expression>
+          <If x:Key="sms" DisplayName="遍历查询集合写入最终集合">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">_state_enum==PMS.Model.Enum.QueryState_Enum.remnant</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <Sequence>
+                <Assign DisplayName="存在的查询集合（最终要写入数据库中）">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                      <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                      <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">new List&lt;SMSModel_QueryReceive&gt;();</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign>
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="pme:MatchCondition_Enum">
+                      <mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference>
+                    </OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="pme:MatchCondition_Enum">
+                      <mca:CSharpValue x:TypeArguments="pme:MatchCondition_Enum">PMS.Model.Enum.MatchCondition_Enum.unconform;</mca:CSharpValue>
+                    </InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ForEach x:TypeArguments="pms:SMSModel_QueryReceive" DisplayName="ForEach&lt;SMSModel_QueryReceive&gt;">
+                  <ForEach.Values>
+                    <InArgument x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">
+                      <mca:CSharpValue x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
+                    </InArgument>
+                  </ForEach.Values>
+                  <ActivityAction x:TypeArguments="pms:SMSModel_QueryReceive">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="pms:SMSModel_QueryReceive" Name="item" />
+                    </ActivityAction.Argument>
+                    <Sequence>
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" />
+                      </Sequence.Variables>
+                      <Sequence>
+                        <local:CheckMsgIdInRedist_Code Text="{x:Null}" DisplayName="CheckMsgIdInRedist_Code">
+                          <local:CheckMsgIdInRedist_Code.Item_Model>
+                            <InArgument x:TypeArguments="pms:SMSModel_QueryReceive">
+                              <mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue>
+                            </InArgument>
+                          </local:CheckMsgIdInRedist_Code.Item_Model>
+                          <local:CheckMsgIdInRedist_Code.enum_Exist>
+                            <OutArgument x:TypeArguments="pme:ExistEnum">
+                              <mca:CSharpReference x:TypeArguments="pme:ExistEnum">_enum_ItemExist</mca:CSharpReference>
+                            </OutArgument>
+                          </local:CheckMsgIdInRedist_Code.enum_Exist>
+                        </local:CheckMsgIdInRedist_Code>
+                        <If>
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean">_enum_ItemExist==PMS.Model.Enum.ExistEnum.isExist</mca:CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <If.Then>
+                            <Sequence>
+                              <local:LogIn_Code Text="{x:Null}">
+                                <local:LogIn_Code.LogIn>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在"</mca:CSharpValue>
+                                  </InArgument>
+                                </local:LogIn_Code.LogIn>
+                              </local:LogIn_Code>
+                              <local:InsertReciveModel2List_Code State="{x:Null}" Text="{x:Null}">
+                                <local:InsertReciveModel2List_Code.Item>
+                                  <InArgument x:TypeArguments="pms:SMSModel_QueryReceive">
+                                    <mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue>
+                                  </InArgument>
+                                </local:InsertReciveModel2List_Code.Item>
+                                <local:InsertReciveModel2List_Code.List_QueryReceive>
+                                  <InOutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                    <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpReference>
+                                  </InOutArgument>
+                                </local:InsertReciveModel2List_Code.List_QueryReceive>
+                                <local:InsertReciveModel2List_Code.Match_Enum>
+                                  <InOutArgument x:TypeArguments="pme:MatchCondition_Enum">
+                                    <mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference>
+                                  </InOutArgument>
+                                </local:InsertReciveModel2List_Code.Match_Enum>
+                              </local:InsertReciveModel2List_Code>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <local:LogIn_Code Text="{x:Null}">
+                              <local:LogIn_Code.LogIn>
+                                <InArgument x:TypeArguments="x:String">
+                                  <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存中"</mca:CSharpValue>
+                                </InArgument>
+                              </local:LogIn_Code.LogIn>
+                            </local:LogIn_Code>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </Sequence>
+                  </ActivityAction>
+                </ForEach>
+                <WriteLine>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">"现集合中共有"+_list_Exist_queryModel.Count()+"个对象"</mca:CSharpValue>
+                  </InArgument>
+                </WriteLine>
+              </Sequence>
+            </If.Then>
+          </If> <If x:Key="mms" DisplayName="遍历查询集合写入最终集合"><If.Condition><InArgument x:TypeArguments="x:Boolean"><mca:CSharpValue x:TypeArguments="x:Boolean">_state_enum==PMS.Model.Enum.QueryState_Enum.remnant</mca:CSharpValue></InArgument></If.Condition><If.Then><Sequence><Assign DisplayName="存在的查询集合（最终要写入数据库中）"><Assign.To><OutArgument x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)"><mca:CSharpReference x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">_list_Exist_queryModel_MMS</mca:CSharpReference></OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)"><mca:CSharpValue x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)">new List&lt;MMSModel_QueryReceive&gt;();</mca:CSharpValue></InArgument></Assign.Value></Assign><Assign><Assign.To><OutArgument x:TypeArguments="pme:MatchCondition_Enum"><mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference></OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="pme:MatchCondition_Enum"><mca:CSharpValue x:TypeArguments="pme:MatchCondition_Enum">PMS.Model.Enum.MatchCondition_Enum.unconform;</mca:CSharpValue></InArgument></Assign.Value></Assign><ForEach x:TypeArguments="pms:SMSModel_QueryReceive" DisplayName="ForEach&lt;SMSModel_QueryReceive&gt;"><ForEach.Values><InArgument x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)"><mca:CSharpValue x:TypeArguments="scg:IEnumerable(pms:SMSModel_QueryReceive)">_list_queryModel_MMS</mca:CSharpValue></InArgument></ForEach.Values><ActivityAction x:TypeArguments="pms:SMSModel_QueryReceive"><ActivityAction.Argument><DelegateInArgument x:TypeArguments="pms:SMSModel_QueryReceive" Name="item" /></ActivityAction.Argument><Sequence><Sequence.Variables><Variable x:TypeArguments="pme:ExistEnum" Name="_enum_ItemExist" /></Sequence.Variables><Sequence><local:CheckMsgIdInRedist_Code Text="{x:Null}" DisplayName="CheckMsgIdInRedist_Code"><local:CheckMsgIdInRedist_Code.Item_Model><InArgument x:TypeArguments="pms:SMSModel_QueryReceive"><mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue></InArgument></local:CheckMsgIdInRedist_Code.Item_Model><local:CheckMsgIdInRedist_Code.enum_Exist><OutArgument x:TypeArguments="pme:ExistEnum"><mca:CSharpReference x:TypeArguments="pme:ExistEnum">_enum_ItemExist</mca:CSharpReference></OutArgument></local:CheckMsgIdInRedist_Code.enum_Exist></local:CheckMsgIdInRedist_Code><If><If.Condition><InArgument x:TypeArguments="x:Boolean"><mca:CSharpValue x:TypeArguments="x:Boolean">_enum_ItemExist==PMS.Model.Enum.ExistEnum.isExist</mca:CSharpValue></InArgument></If.Condition><If.Then><Sequence><local:LogIn_Code Text="{x:Null}"><local:LogIn_Code.LogIn><InArgument x:TypeArguments="x:String"><mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在"</mca:CSharpValue></InArgument></local:LogIn_Code.LogIn></local:LogIn_Code><local:InsertReciveModel2List_Code State="{x:Null}" Text="{x:Null}"><local:InsertReciveModel2List_Code.Item><InArgument x:TypeArguments="pms:SMSModel_QueryReceive"><mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue></InArgument></local:InsertReciveModel2List_Code.Item><local:InsertReciveModel2List_Code.List_QueryReceive><InOutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)"><mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpReference></InOutArgument></local:InsertReciveModel2List_Code.List_QueryReceive><local:InsertReciveModel2List_Code.Match_Enum><InOutArgument x:TypeArguments="pme:MatchCondition_Enum"><mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference></InOutArgument></local:InsertReciveModel2List_Code.Match_Enum></local:InsertReciveModel2List_Code></Sequence></If.Then><If.Else><local:LogIn_Code Text="{x:Null}"><local:LogIn_Code.LogIn><InArgument x:TypeArguments="x:String"><mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存中"</mca:CSharpValue></InArgument></local:LogIn_Code.LogIn></local:LogIn_Code></If.Else></If></Sequence></Sequence></ActivityAction></ForEach><WriteLine><InArgument x:TypeArguments="x:String"><mca:CSharpValue x:TypeArguments="x:String">"现集合中共有"+_list_Exist_queryModel.Count()+"个对象"</mca:CSharpValue></InArgument></WriteLine></Sequence></If.Then></If></Switch>
+      </FlowStep>
+      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw6MgOqBA8CAQE+Cz5ZAgECRwlHkwEDAaUDSg1KwAEDAaQDTRFNngEDAaIDUBVlLQMB7QJoGW4sAwHfAnEdiwE+AwGdAo4BIZQBNAMBjwKXASWJAioCAS6MAimeAi4CAQ9HigFHkAEDAaYDTZEBTZsBAwGjA2IbYmMDAZUDUxtTjAEDAYgDWBtYkAEDAfsCXRtdZgMB7gJrH2trAwHgAogBI4gBawMB0gKDASODAYMBAwHFAnQjdIwBAwG4An4jfn8DAasCeSN5kAEDAZ4CkQEnkQFyAwGQApoBK5oBnQECAS+eASmHAjQCATyPAi+PAq8BAgEQkwItnAI4AgEdnwErqgE0AwH0AasBK7YBNAMB2QG3ASuBAjUCAUuCAiuGAjcCAT2UAi+aAkoCASCbAi+bAo8BAgEepwExpwGyAQMBggKiATGiAagBAwH1AbMBMbMBqwEDAecBrgExrgGaAQMB2gG6ATG6AaEBAwHMAcEBL/8BOgIBTIQCL4QCmgECAT6XAjWXAqQBAgEhmwKGAZsCjAECAR/FATH+ATwCAU3GATPRAVMDAa0B0gEz/QE4AgFOzgE5zgGTAQMBvQHJATnJAYwBAwGuAdUBOdUBqQECAU/ZATfyAUICAW71ATf7AUoCAV7aATngAUwDAZ0B4QE58QFdAgFv+AE9+AGPAQIBX90BP90BjAEDAZ4B7gE/7gGoAQMBjgHpAT/pAbYBAgF/5AE/5AGSAQIBcA==</sads:DebugSymbol.Symbol>
     </Flowchart>
   </local:Activity1.Implementation>
 </local:Activity1>

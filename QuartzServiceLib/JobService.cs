@@ -124,9 +124,19 @@ namespace QuartzServiceLib
         {
             //1 根据Job的类名通过反射的方式创建IJobDetial
             IBaseResponse response = new BaseResponse() { Success = false };
+            IJobDetail job = null;
             //1月20日
-            //在作业工厂类 创建实例方法中 对代码进行修改，若出错则返回null
-            var job = JobFactory.CreateJobInstance(jobInfo, data_temp);
+            try
+            {
+                //在作业工厂类 创建实例方法中 对代码进行修改，若出错则返回null
+                job = JobFactory.CreateJobInstance(jobInfo, data_temp);
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.ToString();
+                return response;
+            }
+            
 
             if (job == null)
             {
@@ -155,7 +165,7 @@ namespace QuartzServiceLib
             catch (Exception ex)
             {
                 response.Success = false;
-                response.Message = ex.Source;
+                response.Message = ex.ToString();
                 //response.Message = string.Format("作业添加至调度池时出错");
             }
 

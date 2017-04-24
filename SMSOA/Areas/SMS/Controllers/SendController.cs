@@ -18,7 +18,7 @@ using JobManagement;
 
 namespace SMSOA.Areas.SMS.Controllers
 {
-    public class SendController : Admin.Controllers.BaseController
+    public class SendController : /*Admin.Controllers.BaseController*/SMSBaseController
     {
         IS_SMSMissionBLL smsMissionBLL { get; set; }
         IP_GroupBLL groupBLL { get; set; }
@@ -305,7 +305,14 @@ namespace SMSOA.Areas.SMS.Controllers
 
             //根据短信任务查找短信任务所拥有的群组（在R_Group_Mission表中），并只拿取isPass为true的所对应的群组
             //17.4.17修改 By屈远 加入
-            smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault().R_Group_Mission.Where(r => r.isPass == true & r.isMMS == 0).ToList().ForEach(r => list_owned_group.Add(r.P_Group));
+            smsMissionBLL.
+                GetListBy(m => m.SMID == mid).
+                FirstOrDefault().
+                R_Group_Mission.
+                Where(r => r.isPass == true & r.isMMS == 0).
+                ToList().
+                ForEach(r => list_owned_group.Add(r.P_Group));
+
             list_owned_group = list_owned_group.Select(g => g.ToMiddleModel()).ToList();
             var list_owned_Ids = list_owned_group.Select(g => g.GID).ToList();
 
@@ -513,9 +520,14 @@ namespace SMSOA.Areas.SMS.Controllers
             list_PersonPhonesByGroupAndDepartment.AddRange(list_tempPersonPhones);
 
             var list_phones = list_PersonPhonesByGroupAndDepartment;
-
+           var isEmpty= list_phones.Count() == 0 ? true : false;
+            if (isEmpty)
+            {
+                receive = new SMSModel_Receive();
+                return false;
+            }
             //3 转成发送对象
-           var sendMsg= smsSendBLL.ToSendModel(model.Model_Message, list_phones);
+            var sendMsg= smsSendBLL.ToSendModel(model.Model_Message, list_phones);
 
             /*步骤四
                     生成提交对象及短信及作业对象
@@ -678,11 +690,20 @@ namespace SMSOA.Areas.SMS.Controllers
         /// <returns></returns>
         public ActionResult GetDepartmentInfo4ComboTree(int mid)
         {
+
+            int index_isMMs = 0;
+            index_isMMs=int.Parse(Request["isMMS"]);
             //根据短信任务找到与该任务对应的所属部门
            var mission= smsMissionBLL.GetListBy(m => m.SMID == mid).FirstOrDefault();
             List<int> list_id = new List<int>();
             
-            mission.R_Department_Mission.ToList().ForEach(r => list_id.Add(r.DepartmentID));
+            //2017-04-17 casablanca
+            mission.
+                R_Department_Mission.
+                Where(r=>r.isMMS== index_isMMs).
+                ToList().
+                ForEach(r => list_id.Add(r.DepartmentID));
+
            var list_alldepartment= departmentBLL.GetListBy(d => d.isDel == false).ToList().Select(d=>d.ToMiddleModel()).ToList();
             //8月31日
             //备份如下

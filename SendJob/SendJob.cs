@@ -15,12 +15,7 @@ namespace JobInstances
 {
     public class SendJob : JobAbstract
     {
-        //protected IUserInfoBLL userInfoBLL { get; set; }
-
-        //protected IJ_JobInfoBLL jobInfoBLL { get; set; }
-
-        //protected IQRTZ_TRIGGERSBLL qrtz_triggerBLL { get; set; }
-
+        
         protected ISMS.ISMSSend smsSendBLL { get; set; }
 
         public SendJob():base()
@@ -58,6 +53,7 @@ namespace JobInstances
             //send.SendMsg(new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Send = combine_model, Model_Message = new PMS.Model.ViewModel.ViewModel_Message() { isTiming = false } } , out receive_model);
             try
             {
+                //receive_model中包含msgid
                 send.SendMsg(combine_model, out receive_model,false);
                 LogHelper.WriteLog(string.Format("msgid:{0}已发送", combine_model.Model_Send.msgid));
             }
@@ -83,8 +79,10 @@ namespace JobInstances
             //smsSendBLL.AfterSend(model, receive_model,)
         }
 
+        //需要向数据库写回作业状态
         protected void AfterSend()
         {
+            //获取QRTZ_JOB_DETAILS表中的当前作业的JOB NAME——即J_JobInfo表的id
             if (this.smsSendBLL == null)
             {
                 smsSendBLL = new SMSFactory.SMSSend();
@@ -93,6 +91,7 @@ namespace JobInstances
             
         }
 
+        #region 注释掉的Exceuted方法
         //protected override void Exceuted(IJobExecutionContext context)
         //{
         //    if (jobInfoBLL == null)
@@ -183,16 +182,7 @@ namespace JobInstances
         //    else
         //        return false;
         //}
-
-        public class ServiceReference1
-        {
-            public class SendMsgRequest
-            {
-            }
-
-            public class SendMsgResponse
-            {
-            }
-        }
+        #endregion
+        
     }
 }

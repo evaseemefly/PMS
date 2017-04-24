@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Ioc;
+using Common;
 
 namespace BaseJob
 {
@@ -64,10 +65,14 @@ namespace BaseJob
             //向数据库中写入
             //获取JobDataMap
             var data = context.JobDetail.JobDataMap;
+            if (data == null)
+            {
+                LogHelper.WriteError("JobDataMap中未保存对象");
+                return;
+            }
             //1 需要传入一个用户id
-
             var uid = data.GetInt("UID");
-            if (uid != null)
+            if (uid != 0)
             {
                 //var uid_int = int.Parse(uid);
                 var user_temp = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault();
@@ -80,7 +85,12 @@ namespace BaseJob
                 var targetJob = (from j in list
                                  where j.JID == Convert.ToInt32(context.JobDetail.Key.Name)  /*&& j.JobGroup == context.JobDetail.Key.Group*/
                                  select j).FirstOrDefault();
-                PMS.BLL.J_JobInfoBLL job_temp = new PMS.BLL.J_JobInfoBLL();
+                //若作业为空则跳出
+                if (targetJob == null)
+                {
+                    LogHelper.WriteWarn(string.Format("未找到\"{0}\"作业", context.JobDetail.Key.Name));
+                    return;
+                }
 
                 //UpdateJobState(targetJob);
                 //4 若存在则更新作业状态
@@ -105,7 +115,9 @@ namespace BaseJob
                             targetJob.NextRunTime = context.Trigger.GetNextFireTimeUtc().GetValueOrDefault().DateTime.AddHours(8);
                         }
                     }
-                    UpdateJobState(targetJob);
+                    if (UpdateJobState(targetJob))  
+                        LogHelper.WriteLog("更新作业状态成功");
+                    
                 }
                 //4 若不存在则创建新的作业
             }
@@ -118,6 +130,10 @@ namespace BaseJob
         protected bool UpdateJobState(PMS.Model.J_JobInfo job)
         {
             //此处有问题，对象已经修改但数据库中未更新
+            /*
+             * JID:5067
+             * 查询作业
+             */
             if (jobInfoBLL != null)
                 return jobInfoBLL.Update(job);
             else

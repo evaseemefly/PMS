@@ -18,7 +18,7 @@ namespace ISMS
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool QueryMsg(SMSModel_Query smsdata, out List<SMSModel_QueryReceive> list_receiveModel);
+        bool QueryMsg(PMS.IModel.SMSModel.IQuerySign smsdata, out List<SMSModel_QueryReceive> list_receiveModel);
 
         /// <summary>
         /// 根据刚刚查询所返回的回执集合

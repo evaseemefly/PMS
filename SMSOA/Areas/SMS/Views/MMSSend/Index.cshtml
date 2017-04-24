@@ -5,36 +5,25 @@
 
 @section Scripts{
         <script type="text/javascript">
+            $(function () {
+                index_isMMS = 1;
+                temp_isRedirect=@ViewBag.Redirect;
+                smid_Redirect=@ViewBag.Smid;
+
+            })
+
 
             //1. 彩信发送私有的方法
             //1.1 取消发送彩信
             function CancelSend() {
                 alert("取消发送彩信");
             }
-            //测试文件上传
-            //function DoSend_Img() {
-            //    var formData = new FormData($('#ff')[0]);
-            //    $.ajax({
-            //        url: "/SMS/MMSSend/SetFiles",
-            //        type: 'POST',
-            //        data: formData,
-            //        processData: false,
-            //        contentType: false,
-            //        cache: false,//上传文件不需要缓存
-            //        success: function (data) {
-            //            if ("ok" == data) {
-            //                messagerShowOnCenter("提示", "提交成功");
-            //            }
-            //        }
-
-            //        });
            
-            //}
-            
+
             function AjaxSubmit_MMS(pids, phones, content, url, missionId, groupIds, departmentIds, isTiming, uid,file) {
                 //1 创建FormData对象,其中已包含文件
                 var formData = new FormData($('#ff')[0]);
-                
+
                 //2 获取MMS标题
                 var MMSTitle = $("#MMSTitle").textbox('getValue');
                 //3 向FormData中添加键值对
@@ -48,19 +37,6 @@
                 formData.append("formData_MMSTitle", MMSTitle);
                 formData.append("formData_UID", uid);
 
-
-
-                //var model = new Object();
-                //model.PersonIds = pids;
-                //model.PhoneNums = phones;
-                //model.Content = content;
-                //model.SMSMissionID = missionId;
-                //model.GroupIds = groupIds;
-                //model.DepartmentIds = departmentIds;
-                //model.isTiming = isTiming;
-                //model.UID = uid;
-                //model.MMSTitle = MMSTitle;
-                
                 //2 使用ajax方式提交（此处先不用post）
                 $.ajax({
                     url: url,
@@ -78,63 +54,26 @@
                         if ("ok" == data) {
                             messagerShowOnCenter("提示", "提交成功");
                         } else if ("empty contact list" == data) {
-                            messagerShowOnCenter("错误", "联系人名单为空，发送失败")
+                            messagerShowOnCenter("错误", "联系人名单为空，提交失败")
                         } else if ("out of range" == data) {
-                            messagerShowOnCorner("提示", "彩信字数超过300字，提交失败");
+                            messagerShowOnCenter("提示", "彩信字数超过300字，提交失败");
 
                         } else if ("empty content" == data) {
-                            messagerShowOnCorner("提示", "彩信内容为空，发送失败");
+                            messagerShowOnCenter("提示", "彩信内容为空，提交失败");
 
                         } else if ("title out of range" == data) {
-                            messagerShowOnCorner("提示", "彩信标题为空，发送失败");
+                            messagerShowOnCenter("提示", "彩信标题为空，提交失败");
+                        } else if ("file error" == data) {
+                            messagerShowOnCenter("提示", "请上传正确格式的图片，提交失败");
+                        }else if ("error"==data) {
+                            messagerShowOnCenter("提示", "请联系管理员,提交失败");
+                        }else if ("list error" == data ) {
+                            messagerShowOnCenter("提示", "联系人列表为空，提交失败");
                         }
                     }
 
                 })
             }
-            //原来提交到后台的方法
-            //function AjaxSubmit_MMS(pids, phones, content, url, missionId, groupIds, departmentIds, isTiming, uid) {
-            //    //1 创建对象
-
-            //    var MMSTitle = $("#MMSTitle").textbox('getValue');
-            //    var model = new Object();
-            //    model.PersonIds = pids;
-            //    model.PhoneNums = phones;
-            //    model.Content = content;
-            //    model.SMSMissionID = missionId;
-            //    model.GroupIds = groupIds;
-            //    model.DepartmentIds = departmentIds;
-            //    model.isTiming = isTiming;
-            //    model.UID = uid;
-            //    model.MMSTitle = MMSTitle;
-            //    //2 使用ajax方式提交（此处先不用post）
-            //    $.ajax({
-            //        url: url,
-            //        data: JSON.stringify(model),
-            //        contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
-            //        async: true,
-            //        type: 'POST',
-            //        beforeSend: function () {
-            //            messagerShowOnCenter("提交", "已经提交");
-            //        },
-            //        success: function (data) {
-            //            if ("ok" == data) {
-            //                messagerShowOnCenter("提示", "提交成功");
-            //            } else if ("empty contact list" == data) {
-            //                messagerShowOnCenter("错误", "联系人名单为空，发送失败")
-            //            } else if ("out of range" == data) {
-            //                messagerShowOnCorner("提示", "彩信字数超过300字，提交失败");
-
-            //            } else if ("empty content" == data) {
-            //                messagerShowOnCorner("提示", "彩信内容为空，发送失败");
-
-            //            } else if ("title out of range" == data) {
-            //                messagerShowOnCorner("提示", "彩信标题为空，发送失败");
-            //            }
-            //        }
-
-            //    })
-            //}
         </script>
     }
 

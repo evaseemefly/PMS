@@ -16,6 +16,12 @@
             }
         })
     })
+
+    //function MsgCount(obj) {        
+    //    var num = obj.value.length;
+    //    $('#txtNum').html("<font font-size='14px'>已经输入：" + num + "字</font>");
+       
+    //}
 </script>
 
 <div class="easyui-layout" id="body_layout" style="width:100%;height:91%;" >
@@ -34,16 +40,16 @@
                 <form id="ff" method="post">
                     <table cellspacing="10" style="font-size:15px;">
                         <tr>
-                            <td>短彩信任务:</td>
+                            <td>短信任务:</td>
                             <td class="comment">
                                 <select class="easyui-combogrid" name="smsMission" id="smsMission_combogrid" data-option="required:true" style="width:150px"></select><br />
-                                请先选择短彩信任务种类
+                                请先选择短信任务种类
                             </td>
                         </tr>
                         <tr>
                             <td>修改群组:</td>
                             <td class="comment">
-                                <select class="easyui-combogrid" id="group_combogrid" multiple name="group" style="width:150px"></select><br />
+                                <select class="easyui-combogrid" id="group_combogrid" multiple name="group" panelHeight="auto" style="width:150px"></select><br />
                                 选择指定群组中的全部联系人
                                 @*<input id="sb" class="easyui-switchbutton" checked style="width:60px;height:30px">*@
                             </td>
@@ -75,7 +81,14 @@
                         </tr>
                         <tr>
                             <td>短信内容:</td>
-                            <td colspan="3" class="comment"><input class="easyui-textbox" name="message" id="message"  data-options="required:true,multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"></td>
+                            <td colspan="3" class="comment">
+                                @*<input class="easyui-textbox" name="message" id="message"  data-options="required:true,multiline:true,prompt:'输入短信内容...'" style="height:200px;width:400px"oninput="return MsgCount(this);" onchange="return MsgCount(this);" onpropertychange="return MsgCount(this);">*@
+                                <textarea rows="12" cols="120" height="200px;width:200px" id="message" style="width:380px;" maxlength="500" class="easyui-validatebox textarea " validtype="length[0,500]" invalidMessage="最大长度500位" oninput="MsgCount(this);" ></textarea>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td>字数:</td>
+                            <td style="width: 269px;text-align:right"><span id="txtNum"></span></td>
                         </tr>
                     </table>
                 </form>
