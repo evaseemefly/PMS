@@ -349,10 +349,11 @@ namespace SMSFactory
 
         /// <summary>
         /// 短信发送
+        /// （只有短信发送，彩信发送已剔除在子类中实现）
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/ ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*//*SMSModel_Receive*/ISMSModel_Receive receive,bool isMMS)
+        public virtual bool SendMsg(/*PMS.Model.CombineModel.SendAndMessage_Model*/ ISendAndMessage_Model model, out /*PMS.Model.Message.BaseResponse response*//*SMSModel_Receive*/ISMSModel_Receive receive,bool isMMS)
         {
             SendJobManagement jobManagement = new SendJobManagement();
             //判断是否开启定时发送功能
@@ -480,35 +481,48 @@ namespace SMSFactory
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool SendMsgbyNow(/*PMS.Model.CombineModel.SendAndMessage_Model*/ISendAndMessage_Model model, out /*SMSModel_Receive*/ISMSModel_Receive receiveModel, bool isMMS=false)
+        public bool SendMsgbyNow(/*PMS.Model.CombineModel.SendAndMessage_Model*/ISendAndMessage_Model model, out /*SMSModel_Receive*/ISMSModel_Receive receiveModel, bool isMMS = false)
         {
             PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
 
-            if (isMMS)
-            {
-                ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
-                var receive_MMS = new MMSModel_Receive();
-                try
-                {
-                    var send_model = (model as PMS.Model.CombineModel.MMSSendAndMsg_Model);
-                    client.SendMsg(send_model.Model_MMS, out receive_MMS);
-                    AfterSend(send_model.Model_Message, receive_MMS, send_model.Model_MMS.phones.ToList());
-                    //receiveModel = receive_MMS;
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    //以后需为其赋值
-                   // receive_MMS.result=
-                    return false;
-                }
-                finally
-                {
-                    receiveModel = receive_MMS;
-                                  
-                }
-           
-            }            
+            #region 放在父类的SendMsg方法中，此处注释掉
+            //if (isMMS)
+            //{
+            //    ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
+            //    var receive_MMS = new MMSModel_Receive();
+            //    try
+            //    {
+            //        var send_model = (model as PMS.Model.CombineModel.MMSSendAndMsg_Model);
+            //        client.SendMsg(send_model.Model_MMS, out receive_MMS);
+            //        //     
+            //        var model_mms = (model as PMS.Model.ViewModel.ViewModel_MMSMessage);
+            //        PMS.Model.ViewModel.ViewModel_MMSMessage model_mms_view = new PMS.Model.ViewModel.ViewModel_MMSMessage()
+            //        {
+            //             SMSMissionID=send_model.Model_Message.SMSMissionID,
+            //              UID=send_model.Model_Message.UID,
+            //              Content=send_model.Model_Message.Content,
+            //               MMSTitle=send_model.Model_MMS.MMSTitle
+            //        };
+
+            //        AfterSend(model_mms, receive_MMS, send_model.Model_MMS.phones.ToList());
+
+            //        //receiveModel = receive_MMS;
+            //        return true;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        //以后需为其赋值
+            //       // receive_MMS.result=
+            //        return false;
+            //    }
+            //    finally
+            //    {
+            //        receiveModel = receive_MMS;
+
+            //    }
+
+            //}  
+            #endregion
             //重新梳理并做抽象
             #region 11-14 在控制器中已经调用这些方法（现写在控制器中），此处与控制器重复，注释掉
             ////1 根据选定的群组及部门获取相应的联系人
@@ -534,29 +548,27 @@ namespace SMSFactory
             //      result:定时时间格式错误
             //PMS.Model.CombineModel.SendAndMessage_Model sendandMsgModel = new PMS.Model.CombineModel.SendAndMessage_Model() { Model_Message = model, Model_Send = sendMsg };
             //model.Model_Send = sendMsg;
-            #endregion
-            else
+            #endregion            
+            ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
+            var receive_SMS = new SMSModel_Receive();
+            try
             {
-                ServiceReference_SMSService.SMSServiceClient client = new ServiceReference_SMSService.SMSServiceClient();
-                var receive_SMS= new SMSModel_Receive();
-                try
-                {
-                    var send_model = (model as PMS.Model.CombineModel.SendAndMessage_Model);
-                    client.SendMsg(send_model.Model_Send, out receive_SMS);
-                    //写入数据库的操作在此处完成
-                    AfterSend(send_model.Model_Message, receive_SMS, send_model.Model_Send.phones.ToList());
-                    //receiveModel = receive_SMS;
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-                finally
-                {
-                    receiveModel = receive_SMS;
-                }         
+                var send_model = (model as PMS.Model.CombineModel.SendAndMessage_Model);
+                client.SendMsg(send_model.Model_Send, out receive_SMS);
+                //写入数据库的操作在此处完成
+                AfterSend(send_model.Model_Message, receive_SMS, send_model.Model_Send.phones.ToList());
+                //receiveModel = receive_SMS;
+                return true;
             }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                receiveModel = receive_SMS;
+            }
+
 
 
             #region 已注释
@@ -572,6 +584,7 @@ namespace SMSFactory
 
         }
 
+        //public abstract bool AfterSend(PMS.Model.ViewModel.ViewModel_MMSMessage model, MMSModel_Receive receive, List<string> list_phones);
 
         /// <summary>
         /// 在发送短信之后执行

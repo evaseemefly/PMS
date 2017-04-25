@@ -55,6 +55,7 @@ namespace QueryWFLib
             StringRedisHelper redis_string = new StringRedisHelper();
 
             var temp = redis_string.Get(msgid);
+            //temp应为1
             if (temp != null)
             {
                 return true;

@@ -110,7 +110,7 @@ namespace SMSFactory
                 return false;
             }
             sgin_mms.cmdid = "004";
-            _data = ObjTransform.Model2Xml_FormatQuery(sgin_mms);
+            _data = ObjTransform.Model2Xml_FormatQuery_MMS(sgin_mms);
             returnMsg = DoRquest(_serverURL, "POST", "UTF-8", _data);
             //解析服务器反馈信息
             if (returnMsg.Length < 1)
