@@ -480,3 +480,9 @@ D:\VSWorkSpace\nmefc\PMS\SMSOA\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAcco
 D:\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.dll
 D:\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.pdb
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.csprojResolveAssemblyReference.cache
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.Areas.I18NDemo.zh-cn.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.App_GlobalResources.ResourceTest.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.App_GlobalResources.Language.en-us.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.App_GlobalResources.Language.zh-cn.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\SMSOA\obj\Debug\SMSOA.csproj.GenerateResource.Cache

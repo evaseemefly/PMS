@@ -166,43 +166,49 @@ namespace SMSFactory
         }
         /// <summary>
         /// 10-13：此方法需要重写
+        /// 彩信
         /// </summary>
         /// <param name="returnMsg"></param>
         /// <returns></returns>
-        public static List<MMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg,MMSModel_Query smsdata)
+        public static List</*MMSModel_QueryReceive*/SMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg,MMSModel_Query smsdata)
         {
-            List<MMSModel_QueryReceive> list_r = new List<MMSModel_QueryReceive>();
+            List</*MMSModel_QueryReceive*/SMSModel_QueryReceive> list_r = new List</*MMSModel_QueryReceive*/SMSModel_QueryReceive>();
             //1.解析前一部分(head)
             var result = Xml2StrHelper.Xml2Str(returnMsg, "root/head/result");
+            var cmdid = Xml2StrHelper.Xml2Str(returnMsg, "root/head/cmdid");
             //如果result不为0，则没有body标签
-            if (result != "0") { return list_r; }
-
-
+            if (result != "0") { return null; }            
             //2.解析前二部分(body)
-            var _status = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/status");
-
-            if (_status != null)
+            //此处需要同时满足result=4且cmdid=804才会有联系人列表
+            if(result=="0"&&(cmdid=="804"||cmdid=="704"))
             {
-                var _msgid = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/msgid");
-                var _phone = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/phone");
-                var _desc = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/statusDesp");               
+                var _status = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/status");
 
-                for (int i = 0; i < _status.Length; i++)
+                if (_status != null)
                 {
-     
-                        MMSModel_QueryReceive r = new MMSModel_QueryReceive()
+                    var _msgid = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/msgid");
+                    var _phone = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/phone");
+                    var _desc = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/statusDesp");
+
+                    for (int i = 0; i < _status.Length; i++)
+                    {
+
+                        SMSModel_QueryReceive r = new SMSModel_QueryReceive()
                         //封装语句
                         {
-                            msgId= _msgid[i],
+                            msgId = _msgid[i],
                             phoneNumber = _phone[i],
                             status = _status[i],
                             desc = _desc[i],
                         };
                         list_r.Add(r);
-                   
+
+                    }
                 }
+                return list_r;
             }
-            return list_r;
+            return null;
+           
         }
         /// <summary>
         /// 

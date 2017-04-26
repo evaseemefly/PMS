@@ -47,7 +47,17 @@
                 editable: false,
                 onLoadSuccess: AfterLoadNewsType
             });
-            })
+        })
+
+        var editor = new baidu.editor.ui.Editor({
+            UEDITOR_HOME_URL: '~/Scripts/MyScripts/UEditor',//配置编辑器路径
+            iframeCssUrl: '~/Scripts/MyScripts/UEditor/themes/iframe.css',//样式路径
+            initialContent: '',//初始化编辑器内容
+            autoHeightEnabled: true,//高度自动增长
+            minFrameHeight: 500//最小高度
+        });
+        editor.render('editor');
+
     </script>
     }
 
@@ -82,7 +92,8 @@
         </tr>
         <tr>            
             <td colspan="2" class="comment">
-              <input class="easyui-textbox" type="text" name="NewsContent" id="NewsContent" value="@ViewBag.NewsContent" data-options="required:true,multiline:true" style="height:80px;width:300px">
+                <textarea id="editor" name="NewsContent"></textarea>
+              @*<input class="easyui-textbox" type="text" name="NewsContent" id="NewsContent" value="@ViewBag.NewsContent" data-options="required:true,multiline:true" style="height:80px;width:300px">*@
             </td>
         </tr>
     </table>

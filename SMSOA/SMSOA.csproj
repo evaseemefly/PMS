@@ -561,6 +561,12 @@
     <Content Include="Scripts\MyScripts\EasyUI\my_ShowMessager.js" />
     <Content Include="Scripts\MyScripts\EasyUI\SwitchBtn.js" />
     <Content Include="Scripts\MyScripts\jquery.msgProcess.js" />
+    <Content Include="Scripts\MyScripts\UEditor\index.html" />
+    <Content Include="Scripts\MyScripts\UEditor\ueditor.all.js" />
+    <Content Include="Scripts\MyScripts\UEditor\ueditor.all.min.js" />
+    <Content Include="Scripts\MyScripts\UEditor\ueditor.config.js" />
+    <Content Include="Scripts\MyScripts\UEditor\ueditor.parse.js" />
+    <Content Include="Scripts\MyScripts\UEditor\ueditor.parse.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -631,6 +637,11 @@
     <Folder Include="Scripts\EasyUI\themes\metro\" />
     <Folder Include="Scripts\EasyUI_backup\themes\" />
     <Folder Include="Scripts\Highcharts\js\" />
+    <Folder Include="Scripts\MyScripts\UEditor\dialogs\" />
+    <Folder Include="Scripts\MyScripts\UEditor\lang\" />
+    <Folder Include="Scripts\MyScripts\UEditor\net\" />
+    <Folder Include="Scripts\MyScripts\UEditor\themes\" />
+    <Folder Include="Scripts\MyScripts\UEditor\third-party\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

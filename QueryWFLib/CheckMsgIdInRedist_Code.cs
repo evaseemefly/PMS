@@ -20,10 +20,7 @@ namespace QueryWFLib
         public OutArgument<PMS.Model.Enum.ExistEnum> enum_Exist { get; set; }
 
         public InArgument<PMS.Model.SMSModel.SMSModel_QueryReceive> Item_Model { get; set; }
-
-        //public InArgument<PMS.Model.SMSModel.MMSModel_QueryReceive> Item_Model_MMS { get; set; }
-
-       // public InArgument<PMS.Model.Enum.MMS_Enum> isMMS { get; set; }
+       
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
