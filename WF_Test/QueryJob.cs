@@ -14,7 +14,11 @@ namespace WF_Test
         public void Execute(IJobExecutionContext context)
         {
             Activity workflow_temp = new QueryWFLib.Activity1();
-            var dic = new Dictionary<string, object>() { };
+            var dic = new Dictionary<string, object>()
+            {
+                {"isMMS",PMS.Model.Enum.MMS_Enum.mms }
+            };
+            
             var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
         }
     }

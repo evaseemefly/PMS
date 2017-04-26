@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="QueryWFLib.Activity1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="QueryWFLib.MainStatistics_Activity_1"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="QueryWFLib.Activity1"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:local="clr-namespace:QueryWFLib"
@@ -12,6 +12,16 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="isMMS" Type="InArgument(pme:MMS_Enum)" />
+  </x:Members>
+  <local:Activity1.isMMS>
+    <InArgument x:TypeArguments="pme:MMS_Enum">
+      <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">PMS.Model.Enum.MMS_Enum.sms</mca:CSharpValue>
+    </InArgument>
+  </local:Activity1.isMMS>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>QueryWFLib.MainStatistics_Activity_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System</x:String>
@@ -59,7 +69,7 @@
       <Variable x:TypeArguments="pme:MatchCondition_Enum" Name="_matchCondition_enum" />
       <Variable x:TypeArguments="pme:MMS_Enum" Name="_isMMS">
         <Variable.Default>
-          <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">MMS_Enum.sms</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">isMMS</mca:CSharpValue>
         </Variable.Default>
       </Variable>
       <Variable x:TypeArguments="scg:List(pms:MMSModel_QueryReceive)" Name="_list_queryModel_MMS" />
@@ -301,7 +311,7 @@
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
-    <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw4MgOxAg8CAQE+Cz5ZAgECRwlHkwEDAYsDSg1KwAEDAYoDTRFNngEDAYgDUBVgLQMB4AJjGWksAwHSAmwdgQE+AwGdAoQBIYoBNAMBjwKNASX/ASoCAS6CAimUAi4CAQ9HigFHkAEDAYwDTZEBTZsBAwGJA10bXWMDAfsCUxtTjAEDAe4CWBtYZgMB4QJmH2ZrAwHTAn4jfmsDAcUCeSN5gwEDAbgCbyNvjAEDAasCdCN0fwMBngKHASeHAXIDAZACkAErkAGdAQIBL5QBKf0BNAIBPIUCL4UCrwECARCJAi2SAjgCAR2VASugATQDAfQBoQErrAE0AwHZAa0BK/cBNQIBS/gBK/wBNwIBPYoCL5ACSgIBIJECL5ECjwECAR6dATGdAbIBAwGCApgBMZgBqAEDAfUBqQExqQGrAQMB5wGkATGkAZoBAwHaAbABMbABoQEDAcwBtwEv9QE6AgFM+gEv+gGaAQIBPo0CNY0CpAECASGRAoYBkQKMAQIBH7sBMfQBPAIBTbwBM8cBUwMBrQHIATPzATgCAU7EATnEAZMBAwG9Ab8BOb8BjAEDAa4BywE5ywGpAQIBT88BN+gBQgIBbusBN/EBSgIBXtABOdYBTAMBnQHXATnnAV0CAW/uAT3uAY8BAgFf0wE/0wGMAQMBngHkAT/kAagBAwGOAd8BP98BtgECAX/aAT/aAZIBAgFw</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw5FAcUZAECPAO7Ag8CAQFIC0hSAgECUQlRkwEDAaYDVA1UwAEDAaUDVxFXngEDAaMDWhVqLQMB+AJtGXMsAwHpAnYdiwE+AwGwAo4BIZQBNAMBoQKXASWJAioCATGMAimeAi4CARBRigFRkAEDAacDV5EBV5sBAwGkA2cbZ2MDAZUDXRtdjAEDAYcDYhtiZgMB+QJwH3BrAwHqAogBI4gBawMB2wKDASODAYMBAwHNAnkjeYwBAwG/An4jfn8DAbECkQEnkQFyAwGiApoBK5oBnQECATKeASmHAjQCAUCPAi+PAq8BAgERkwItnAI4AgEfnwErqgE0AwGEAqsBK7YBNAMB5wG3ASuBAjUCAVCCAiuGAjcCAUGUAi+aAkoCASKbAi+bAo8BAgEgpwExpwGyAQMBkwKiATGiAagBAwGFArMBMbMBqwEDAfYBrgExrgGaAQMB6AG6ATG6AaEBAwHZAcEBL/8BOgIBUYQCL4QCmgECAUKXAjWXAqQBAgEjmwKGAZsCjAECASHFATH+ATwCAVLGATPRAVMDAbgB0gEz/QE4AgFTzgE5zgGTAQMByQHJATnJAYwBAwG5AdUBOdUBqQECAVTZATfyAUICAXX1ATf7AUoCAWTaATngAUwDAacB4QE58QFdAgF2+AE9+AGPAQIBZd0BP90BjAEDAagB7gE/7gGoAQMBlwHpAT/pAbYBAwGHAeQBP+QBkgECAXc=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>

@@ -18,8 +18,9 @@ namespace JobInstances
 
         protected override void ExceuteBody(IJobExecutionContext context)
         {
+            var dataMap = context.JobDetail.JobDataMap;
             Activity workflow_temp = new QueryWFLib.Activity1();
-            var dic = new Dictionary<string, object>() { };
+            var dic = new Dictionary<string, object>() { { "isMMS", Common.SerializerHelper.DeSerializerToObject <PMS.Model.Enum.MMS_Enum>(dataMap["isMMS"].ToString()) } };
             LogHelper.WriteLog("启动查询wf");
             var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
             LogHelper.WriteLog("跳出wf");

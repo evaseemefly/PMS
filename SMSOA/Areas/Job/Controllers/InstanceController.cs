@@ -176,6 +176,8 @@ namespace SMSOA.Areas.Job.Controllers
             //注意需要修改此bll中实现的方法，不仅创建J_JobInfo还要创建与UserInfo的关联关系
             //***注意此时的顺序是先向数据库中的JobInfo表写入再执行Quartz操作（向数据库中写入后model中会有JID）——但应该先执行Quartz的添加作业操作****
             //1 将状态写入数据库
+            //测试彩信查询
+
             var response = jobInfoBLL.AddJobInfo(model);
             return this.ToResponse(response);
 
