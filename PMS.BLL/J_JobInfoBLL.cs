@@ -155,8 +155,14 @@ namespace PMS.BLL
             }
             else
             {
-                response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.QueryJobDataModel);
+                response = new Model.Message.BaseResponse() { Success = false, Message=null };
+                
+
             }
+            //else
+            //{
+            //    response = client_quartzProxy.AddScheduleJob(model,jobData);
+            //}
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
             base.Create(model);
             //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);

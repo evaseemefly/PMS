@@ -182,7 +182,7 @@ namespace SMSOA.Areas.Job.Controllers
             //2017-04-26 casablanca
             //将是否为短信的标记符放在该JobDataModel中
             var mmsModel =new PMS.Model.JobDataModel.QueryJobDataModel() {  JobDataValue=ismms};
-            var response = jobInfoBLL.AddJobInfo(model);
+            var response = jobInfoBLL.AddJobInfo(model,mmsModel);
             return this.ToResponse(response);
 
             //11月20日 备注掉
