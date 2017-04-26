@@ -143,13 +143,22 @@ namespace PMS.BLL
             //注意此处不要将user转成中间变量,否则会创建一个新的user对象该userInfo表中
             //model.UserInfoes.Add(user.ToMiddleModel());
             model.UserInfoes.Add(user);
+            //调用服务添加作业后返回的请求
+            //2017-04-26
+            Model.Message.IBaseResponse response;
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
-            if(jobData==null) jobData = new PMS.Model.JobDataModel.SendJobDataModel();
+            if (jobData == null)
+            {
+                jobData = new PMS.Model.JobDataModel.SendJobDataModel();                
+                response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.SendJobDataModel);
+            }
+            else
+            {
+                response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.QueryJobDataModel);
+            }
             model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
             base.Create(model);
-            //var response = ijobService.AddScheduleJob(model, jobData);
-            var response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.SendJobDataModel);
             //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);
             //var response= response_wcf as Model.Message.IBaseResponse;
             //client.AddScheduleJob(model.ToMiddleModel(), jobData);

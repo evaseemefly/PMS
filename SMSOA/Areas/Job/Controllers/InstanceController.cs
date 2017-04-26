@@ -157,8 +157,9 @@ namespace SMSOA.Areas.Job.Controllers
         /// <returns></returns>
         public ContentResult DoAddJobInfo(PMS.Model.J_JobInfo model)
         {
-            
+
             //***此时传入的model中已经包含了uid的值了
+            string ismms = "mms";
             if (model.NextRunTime <= DateTime.MinValue)
             {
                 model.NextRunTime = DateTime.Now;
@@ -178,6 +179,9 @@ namespace SMSOA.Areas.Job.Controllers
             //1 将状态写入数据库
             //测试彩信查询
 
+            //2017-04-26 casablanca
+            //将是否为短信的标记符放在该JobDataModel中
+            var mmsModel =new PMS.Model.JobDataModel.QueryJobDataModel() {  JobDataValue=ismms};
             var response = jobInfoBLL.AddJobInfo(model);
             return this.ToResponse(response);
 
