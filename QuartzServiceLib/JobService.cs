@@ -120,7 +120,7 @@ namespace QuartzServiceLib
         /// <param name="jobInfo">作业（含UID）</param>
         /// <param name="data_temp">向作业调度中传的临时数据</param>
         /// <returns></returns>
-        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp)
+        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, /*PMS.Model.JobDataModel.SendJobDataModel*/IJobData data_temp)
         {
             //1 根据Job的类名通过反射的方式创建IJobDetial
             IBaseResponse response = new BaseResponse() { Success = false };

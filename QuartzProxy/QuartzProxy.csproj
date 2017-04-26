@@ -62,32 +62,20 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.CombineModel.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.Message1.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.Message.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.SMSModel.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.ViewModel.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\service1.wsdl" />
+    <None Include="Service References\ServiceReference_QuartzService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference_QuartzService\service.wsdl" />
-    <None Include="Service References\ServiceReference_QuartzService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference_QuartzService\service1.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

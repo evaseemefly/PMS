@@ -151,12 +151,12 @@ namespace PMS.BLL
             if (jobData == null)
             {
                 jobData = new PMS.Model.JobDataModel.SendJobDataModel();                
-                response = client_quartzProxy.AddScheduleJob(model, jobData as PMS.Model.JobDataModel.SendJobDataModel);
+                response = client_quartzProxy.AddScheduleJob(model, jobData);
             }
             else
             {
-                response = new Model.Message.BaseResponse() { Success = false, Message=null };
-                
+                //response = new Model.Message.BaseResponse() { Success = false, Message=null };
+                response = client_quartzProxy.AddScheduleJob(model, jobData);
 
             }
             //else

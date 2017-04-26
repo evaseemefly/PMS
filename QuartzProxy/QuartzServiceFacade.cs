@@ -29,7 +29,7 @@ namespace QuartzProxy
         /// <param name="jobInfo"></param>
         /// <param name="data_temp"></param>
         /// <returns></returns>
-        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp)
+        public IBaseResponse AddScheduleJob(J_JobInfo jobInfo, /*PMS.Model.JobDataModel.SendJobDataModel*/IJobData data_temp)
         {
             return jobService.AddScheduleJob(jobInfo.ToMiddleModel(),data_temp) as IBaseResponse;
         }

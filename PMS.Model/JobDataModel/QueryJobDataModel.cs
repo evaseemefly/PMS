@@ -10,7 +10,7 @@ namespace PMS.Model.JobDataModel
     {
         public override string GetKey()
         {
-            return "QueryModel";
+            return "isMMS";
         }
     }
 }
