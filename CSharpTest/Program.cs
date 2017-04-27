@@ -12,6 +12,9 @@ namespace CSharpTest
         {
             MyObj myObj = new MyObj();
             myObj.Run();
+
+            //关于枚举的序列化与反序列化
+
             Console.ReadLine();
         }
     }

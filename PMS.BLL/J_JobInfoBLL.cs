@@ -146,6 +146,8 @@ namespace PMS.BLL
             //调用服务添加作业后返回的请求
             //2017-04-26
             Model.Message.IBaseResponse response;
+            model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
+            base.Create(model);
             //2 创建J_JobInfo对象
             // 1 添加作业至调度池中
             if (jobData == null)
@@ -163,8 +165,7 @@ namespace PMS.BLL
             //{
             //    response = client_quartzProxy.AddScheduleJob(model,jobData);
             //}
-            model.JobState = (int)(PMS.Model.Enum.JobState_Enum.WAITING);
-            base.Create(model);
+           
             //object response_wcf= jobServiceClient.AddScheduleJob(model.ToMiddleModel(), jobData);
             //var response= response_wcf as Model.Message.IBaseResponse;
             //client.AddScheduleJob(model.ToMiddleModel(), jobData);

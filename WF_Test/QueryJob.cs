@@ -16,7 +16,7 @@ namespace WF_Test
             Activity workflow_temp = new QueryWFLib.Activity1();
             var dic = new Dictionary<string, object>()
             {
-                {"isMMS",PMS.Model.Enum.MMS_Enum.mms }
+                {"isMMS",PMS.Model.Enum.MMS_Enum.sms }
             };
             
             var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);

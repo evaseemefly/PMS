@@ -159,7 +159,7 @@ namespace SMSOA.Areas.Job.Controllers
         {
 
             //***此时传入的model中已经包含了uid的值了
-            string ismms = "mms";
+            string ismms = "sms";
             if (model.NextRunTime <= DateTime.MinValue)
             {
                 model.NextRunTime = DateTime.Now;

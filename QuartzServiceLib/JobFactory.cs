@@ -51,7 +51,7 @@ namespace QuartzServiceLib
                 job = JobBuilder.Create(type)
                                     .WithIdentity(jobInfo.JID.ToString(), jobInfo.JobGroup)
                                     .UsingJobData("UID", jobInfo.UID)
-                                    .UsingJobData(jobdatamap.JobDataKey, SerializerHelper.SerializerToString(jobdatamap))        //添加一个需要传向作业调度中的对象（发送对象——含一些必要的信息）
+                                    .UsingJobData(jobdatamap.JobDataKey, SerializerHelper.SerializerToString(jobdatamap.JobDataValue))        //添加一个需要传向作业调度中的对象（发送对象——含一些必要的信息）
                                     
                                     .Build();
             }
