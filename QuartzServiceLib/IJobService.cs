@@ -24,11 +24,12 @@ namespace QuartzServiceLib
         /// <param name="data_temp">向作业调度中传的临时数据</param>
         /// <returns></returns>
         [OperationContract]
-        //[ServiceKnownType(typeof(PMS.Model.JobDataModel.SendJobDataModel))]
-        [ServiceKnownType(typeof(PMS.Model.CombineModel.SendAndMessage_Model))]
+        //[ServiceKnownType(typeof(IJobData))]
+        //[ServiceKnownType(typeof(PMS.Model.CombineModel.SendAndMessage_Model))]
+        [ServiceKnownType(typeof(PMS.Model.JobDataModel.QueryJobDataModel))]
+        [ServiceKnownType(typeof(PMS.Model.JobDataModel.SendJobDataModel))]
         [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
-        //[ServiceKnownType("JobDataValue", typeof(PMS.Model.CombineModel.SendAndMessage_Model))]
-        IBaseResponse AddScheduleJob(J_JobInfo jobInfo, PMS.Model.JobDataModel.SendJobDataModel data_temp);
+        IBaseResponse AddScheduleJob(J_JobInfo jobInfo, /*PMS.Model.JobDataModel.SendJobDataModel*/IJobData data_temp);
         #endregion
 
         [OperationContract]

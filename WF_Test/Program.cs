@@ -39,6 +39,7 @@ namespace WF_Test
             // define the job and tie it to our HelloJob class
             IJobDetail job = JobBuilder.Create<QueryJob>()
                 .WithIdentity("myQueryJob", "query")
+                //UsingJobData("isMMS",(int)PMS.Model.Enum.MMS_Enum.mms)
                 .Build();
 
             // Trigger the job to run now, and then every 40 seconds

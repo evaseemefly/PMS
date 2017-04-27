@@ -76,6 +76,7 @@ namespace SMSFactory
         /// <returns></returns>
         public virtual bool QueryMsg(PMS.IModel.SMSModel.IQuerySign smsdata, out List<SMSModel_QueryReceive> list_receiveModel)
         {
+            
             String _data = null;//XML文本
             String _serverURL = "http://wt.3tong.net/http/sms/Report";//服务器地址
             string returnMsg;
@@ -86,7 +87,7 @@ namespace SMSFactory
                 list_receiveModel = new List<SMSModel_QueryReceive>();
                 return false;
             }
-            _data = ObjTransform.Model2Xml_FormatQuery(sgin_sms);
+            _data = ObjTransform.Model2Xml_FormatQuery_SMS(sgin_sms);
             returnMsg = httpInvoke(_serverURL, _data);
             //解析服务器反馈信息
             if (returnMsg.Length < 1)
@@ -107,6 +108,8 @@ namespace SMSFactory
             {
                 return false;
             }
+            
+            
                
 
         }

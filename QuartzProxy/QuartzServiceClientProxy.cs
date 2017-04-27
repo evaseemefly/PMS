@@ -27,7 +27,7 @@ namespace QuartzProxy
             throw new NotImplementedException();
         }
 
-        public object AddScheduleJob(J_JobInfo jobInfo, SendJobDataModel data_temp)
+        public object AddScheduleJob(J_JobInfo jobInfo, IJobData data_temp)
         {
             var response= base.Channel.AddScheduleJob(jobInfo, data_temp) as PMS.Model.Message.BaseResponse;
 
@@ -95,6 +95,13 @@ namespace QuartzProxy
         public Task<object> ResumeTargetJobAsync(J_JobInfo job)
         {
             throw new NotImplementedException();
+        }
+
+        public object AddScheduleJob(J_JobInfo jobInfo, object data_temp)
+        {
+            var response = base.Channel.AddScheduleJob(jobInfo, data_temp) as PMS.Model.Message.BaseResponse;
+
+            return response;
         }
     }
 }

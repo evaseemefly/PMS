@@ -29,7 +29,7 @@ namespace QueryWFLib
         /// </summary>
         public OutArgument<List<SMSModel_QueryReceive>> List_QueryReceive { get; set; }
 
-        public OutArgument<List<MMSModel_QueryReceive>> List_QueryReceive_MMS { get; set; }
+        //public OutArgument<List<MMSModel_QueryReceive>> List_QueryReceive_MMS { get; set; }
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
@@ -68,7 +68,9 @@ namespace QueryWFLib
             var list_QueryReceive = new List<SMSModel_QueryReceive>();
            bool isGetReturnMsg = ToQueryList(smsQuery, out list_QueryReceive);
             //根据传入的状态集合进行判断当前的状态
-            var enum_state = smsQuery.GetQueryState(list_QueryReceive);
+            //2017 04 25 
+            //不在此处实现——放在GetStateByQueryList_Code中
+            //var enum_state = smsQuery.GetQueryState(list_QueryReceive);
             
             if (!isGetReturnMsg)
             {
@@ -84,7 +86,12 @@ namespace QueryWFLib
             //context.SetValue(List_QueryReceive_MMS, list_mms);
         }
 
-
+        /// <summary>
+        /// 根据传入的query（短彩信查询实现对象）查询并以集合的形式放回
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="list_QueryReceive_mms"></param>
+        /// <returns></returns>
         private bool ToQueryList(ISMSQuery query,out List<SMSModel_QueryReceive> list_QueryReceive_mms)
         {
             Common.Config.SMSSignConfigHelper smsSign = new Common.Config.SMSSignConfigHelper();
@@ -99,7 +106,7 @@ namespace QueryWFLib
             //IMMSQuery smsQuery = new SMSFactory.MMSQuery();
             //6 查询发送状态
             //list_QueryReceive_mms;
-            var state = new PMS.Model.Enum.QueryState_Enum();
+            //var state = new PMS.Model.Enum.QueryState_Enum();
             //根据传入的信息进行查询，并有一个状态信息集合
             return query.QueryMsg(sign, out list_QueryReceive_mms);
             //return list_QueryReceive_mms;           
@@ -117,7 +124,7 @@ namespace QueryWFLib
             //根据传入的信息进行查询，并有一个状态信息集合
             bool isGetReturnMsg = smsQuery.QueryMsg(sign, out list_QueryReceive_mms);
             //将查询集合写回上下文中
-            context.SetValue(List_QueryReceive_MMS, list_QueryReceive_mms);
+            context.SetValue(List_QueryReceive, list_QueryReceive_mms);
             //根据传入的状态集合进行判断当前的状态
             var enum_state = smsQuery.GetQueryState(list_QueryReceive_mms);
            state = enum_state;

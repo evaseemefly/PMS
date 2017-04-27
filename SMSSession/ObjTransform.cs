@@ -173,6 +173,8 @@ namespace SMSFactory
         public static List</*MMSModel_QueryReceive*/SMSModel_QueryReceive> Xml2Model_queryReceiveMsg(string returnMsg,MMSModel_Query smsdata)
         {
             List</*MMSModel_QueryReceive*/SMSModel_QueryReceive> list_r = new List</*MMSModel_QueryReceive*/SMSModel_QueryReceive>();
+            //将返回结果都转换为小写
+            returnMsg = returnMsg.ToLower();
             //1.解析前一部分(head)
             var result = Xml2StrHelper.Xml2Str(returnMsg, "root/head/result");
             var cmdid = Xml2StrHelper.Xml2Str(returnMsg, "root/head/cmdid");
@@ -182,13 +184,13 @@ namespace SMSFactory
             //此处需要同时满足result=4且cmdid=804才会有联系人列表
             if(result=="0"&&(cmdid=="804"||cmdid=="704"))
             {
-                var _status = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/status");
+                var _status = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportmsg/status");
 
                 if (_status != null)
                 {
-                    var _msgid = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/msgid");
-                    var _phone = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/phone");
-                    var _desc = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportMsg/statusDesp");
+                    var _msgid = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportmsg/msgid");
+                    var _phone = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportmsg/phone");
+                    var _desc = Xml2StrHelper.xml2strList(returnMsg, "root/body/reportmsg/statusdesp");
 
                     for (int i = 0; i < _status.Length; i++)
                     {
@@ -262,7 +264,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public static string Model2Xml_FormatQuery(SMSModel_Query smsdata)
+        public static string Model2Xml_FormatQuery_SMS(SMSModel_Query smsdata)
         {
             var _data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
                           + "<message>"
@@ -279,7 +281,7 @@ namespace SMSFactory
         /// </summary>
         /// <param name="smsdata"></param>
         /// <returns></returns>
-        public static string Model2Xml_FormatQuery(MMSModel_Query smsdata)
+        public static string Model2Xml_FormatQuery_MMS(MMSModel_Query smsdata)
         {
             var _data = "<?xml version='1.0' encoding='UTF-8'?><root><head>"
                                   + "<cmdId>"+smsdata.cmdid+"</cmdId>"

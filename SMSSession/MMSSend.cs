@@ -15,6 +15,7 @@ using PMS.Model.CombineModel;
 using JobManagement;
 using PMS.BLL;
 using Common.Ioc;
+using PMS.IModel;
 
 namespace SMSFactory
 {
@@ -80,6 +81,56 @@ namespace SMSFactory
             };
             return sendMsg;
         }
+
+        /// <summary>
+        /// 彩信发送，短信发送在父类中实现
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="receive"></param>
+        /// <param name="isMMS"></param>
+        /// <returns></returns>
+        public override bool SendMsg(ISendAndMessage_Model model, out ISMSModel_Receive receive, bool isMMS)
+        {
+            PMS.Model.Message.BaseResponse response = new PMS.Model.Message.BaseResponse();
+           
+            ServiceReference_MMSService.MMSServiceClient client = new ServiceReference_MMSService.MMSServiceClient();
+            var receive_MMS = new MMSModel_Receive();
+            try
+            {
+                var send_model = (model as PMS.Model.CombineModel.MMSSendAndMsg_Model);
+                client.SendMsg(send_model.Model_MMS, out receive_MMS);
+                //     
+                //var model_mms = (model as PMS.Model.ViewModel.ViewModel_MMSMessage);
+                PMS.Model.ViewModel.ViewModel_MMSMessage viewmodel_mms = new PMS.Model.ViewModel.ViewModel_MMSMessage()
+                {
+                    SMSMissionID = send_model.Model_Message.SMSMissionID,
+                    UID = send_model.Model_Message.UID,
+                    Content = send_model.Model_Message.Content,
+                    MMSTitle = send_model.Model_MMS.MMSTitle
+                };
+                //写回放在控制器中完成
+                //AfterSend(viewmodel_mms, receive_MMS, send_model.Model_MMS.phones.ToList());
+
+                //receiveModel = receive_MMS;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //以后需为其赋值
+                // receive_MMS.result=
+                return false;
+            }
+            finally
+            {
+                receive = receive_MMS;
+
+            }
+
+            
+           
+        }
+
+       
 
         /// <summary>
         /// 

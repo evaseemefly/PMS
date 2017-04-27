@@ -1,3 +1,0 @@
-D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\Fdfs.BLL\bin\Debug\Quartz.pdb
-D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\Fdfs.BLL\bin\Debug\System.Web.Mvc.xml
-D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\Fdfs.BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll

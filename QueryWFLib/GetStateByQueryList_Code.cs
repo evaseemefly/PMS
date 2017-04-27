@@ -35,34 +35,32 @@ namespace QueryWFLib
         /// <summary>
         /// 传入的查询回执对象集合
         /// </summary>
-        public InArgument<List<SMSModel_QueryReceive>> List_QueryReceive { get; set; }
-
-        public InArgument<List<MMSModel_QueryReceive>> List_QueryReceive_mms { get; set; }
+        public InArgument<List<SMSModel_QueryReceive>> List_QueryReceive { get; set; }       
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
         protected override void Execute(CodeActivityContext context)
         {
             var ismms = context.GetValue(this.isMMS);
+            //var list_mms = context.GetValue(List_QueryReceive);
+            //短信时获取短信查询集合
+            var list_sms = context.GetValue(List_QueryReceive);
             QueryState_Enum state_enum=QueryState_Enum.error;
             QueryState_Enum state_enum_mms= QueryState_Enum.error; 
             switch (ismms)
             {
-                case PMS.Model.Enum.MMS_Enum.mms:
-                    //彩信时获取彩信查询集合
-                    var list_mms = context.GetValue(List_QueryReceive_mms);
+                case MMS_Enum.mms:
                     //根据传入的集合判断查询状态（结束，还可查询）
-                    state_enum_mms = mmsQuery.GetQueryState(list_mms);
+                    state_enum = mmsQuery.GetQueryState(list_sms);
                     break;
-                default:
-                    //短信时获取短信查询集合
-                    var list_sms = context.GetValue(List_QueryReceive);
+                default:                    
                     //根据传入的集合判断查询状态（结束，还可查询）
                     state_enum = smsQuery.GetQueryState(list_sms);                   
                     break;
             }
+
             context.SetValue(State, state_enum);
-            context.SetValue(State_MMS, state_enum_mms);
+            //context.SetValue(State_MMS, state_enum_mms);
         }
     }
 }

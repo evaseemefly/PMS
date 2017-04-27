@@ -17,6 +17,8 @@ namespace QueryWFLib {
         
         private bool _contentLoaded;
         
+        private System.Activities.InArgument<PMS.Model.Enum.MMS_Enum> _isMMS;
+        
 partial void BeforeInitializeComponent(ref bool isInitialized);
 
 partial void AfterInitializeComponent();
@@ -25,6 +27,15 @@ partial void AfterInitializeComponent();
         [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
         public Activity1() {
             this.InitializeComponent();
+        }
+        
+        public System.Activities.InArgument<PMS.Model.Enum.MMS_Enum> isMMS {
+            get {
+                return this._isMMS;
+            }
+            set {
+                this._isMMS = value;
+            }
         }
         
         /// <summary>

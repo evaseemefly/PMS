@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="HpnRnTNwYpi5ly/PNuXJncHvpaU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="0lDeaAE3vlslFX4QPXrH/q9UVRQ=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IJobService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IJobService" contract="ServiceReference_QuartzService.IJobService" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/" bindingConfiguration="BasicHttpBinding_IJobService">
+    <endpoint name="BasicHttpBinding_IJobService" contract="ServiceReference_QuartzService.IJobService" bindingType="basicHttpBinding" address="http://localhost:8734/Design_Time_Addresses/QuartzServiceLib/JobService/" bindingConfiguration="BasicHttpBinding_IJobService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/QuartzServiceLib/JobService/</serializedValue>
+          <serializedValue>http://localhost:8734/Design_Time_Addresses/QuartzServiceLib/JobService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
