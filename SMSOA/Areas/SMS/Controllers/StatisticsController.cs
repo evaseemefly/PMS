@@ -39,6 +39,7 @@ namespace SMSOA.Areas.SMS.Controllers
             ViewBag.LoadSearchRecordData = "/SMS/Statistics/LoadSearchRecordData";
             ViewBag.GetRecordByCID = "/SMS/Statistics/GetRecordByCID";
             ViewBag.GetUserInfo = "GetUserInfo";
+            ViewBag.GetMessageType = "GetMessageType";
             return View();
         }
 
@@ -120,6 +121,7 @@ namespace SMSOA.Areas.SMS.Controllers
                         UserName = userName,
                         ContentID = item.ID,
                         Content = item.SMSContent,
+                        MessageType = item.isMMS,
                         MissionName = item.S_SMSMission.SMSMissionName,
                         SendDateTime = item.SendDateTime,
                         TotalOfReceiveNum = item.S_SMSRecord_Current.Count(),
@@ -175,6 +177,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //使用这种方式转换时间
             DateTime dt = new DateTime();
             DateTime.TryParse(model.Dt_target, out dt);
+
 
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
@@ -375,5 +378,22 @@ namespace SMSOA.Areas.SMS.Controllers
             temp = temp.Replace("Checked", "checked");
             return Content(temp);
         }
+
+        public ActionResult GetMessageType()
+        {
+            List<PMS.Model.EasyUIModel.MessageType_ViewModel> list = new List<PMS.Model.EasyUIModel.MessageType_ViewModel>();
+            //短信：
+            list.Add(new PMS.Model.EasyUIModel.MessageType_ViewModel() { TypeID = 0, TypeName = "短信" });
+            //彩信：
+            list.Add(new PMS.Model.EasyUIModel.MessageType_ViewModel() { TypeID = 1, TypeName = "彩信" });
+
+            PMS.Model.EasyUIModel.EasyUIDataGrid model = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                footer = null,
+                total = 0,
+                rows = list
+            };
+            return Content(Common.SerializerHelper.SerializerToString(model));
+        } 
     }
 }

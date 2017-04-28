@@ -82,6 +82,7 @@
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
     <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
+    <Compile Include="EasyUIModel\MessageType_ViewModel.cs" />
     <Compile Include="Enum\ExistEnum.cs" />
     <Compile Include="Enum\FileExt_Enum.cs" />
     <Compile Include="Enum\JobState_Enum.cs" />

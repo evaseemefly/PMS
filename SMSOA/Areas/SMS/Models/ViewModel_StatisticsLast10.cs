@@ -40,5 +40,10 @@ namespace SMSOA.Areas.SMS.Models
         /// 未收到人员总数
         /// </summary>
         public int NotReceiveNum { get; set; }
+
+        /// <summary>
+        /// 类型：短信/彩信
+        /// </summary>
+        public bool MessageType { get; set; }
     }
 }

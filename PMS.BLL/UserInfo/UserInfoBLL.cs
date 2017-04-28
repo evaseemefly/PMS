@@ -530,8 +530,8 @@ namespace PMS.BLL
             {
                 case 1:
                     //1 找到对应用户
-                    var userModel = GetListBy(u => u.ID == uid).FirstOrDefault();
-                    query = userModel.S_SMSContent.ToList();
+                    var userModel = GetListBy(u => u.ID == uid && u.DelFlag==false).FirstOrDefault();
+                    query = userModel.S_SMSContent.Where(c=>c.isDel ==false).ToList();
                     break;
                 case 0:
                     // 查询全部用发送的短信内容
@@ -551,6 +551,12 @@ namespace PMS.BLL
                 //query= query.Where(u =>u.SMID== model.Mission_id).ToList();
                 query = query.Where(u =>model.Mission_ids.Contains(u.SMID)).ToList();
                 
+            }
+
+
+            if (model.Type != null && model.Type.Length == 1)
+            {
+                query = query.Where(u => model.Type.Contains(u.isMMS)).ToList();
             }
 
             //3 根据时间的三个参数获取指定时间范围

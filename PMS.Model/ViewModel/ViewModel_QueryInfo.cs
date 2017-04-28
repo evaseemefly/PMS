@@ -26,5 +26,7 @@ namespace PMS.Model.ViewModel
         public string Dt_start { get; set; }
 
         public string Dt_finish { get; set; }
+
+        public bool[] Type { get; set; }
     }
 }
