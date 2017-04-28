@@ -77,7 +77,7 @@ namespace SMSOA.Areas.Job.Controllers
             ViewBag.LoginUserID = uid;
             ViewBag.jobType = jopType;
             ViewBag.backAction = "DoAddJobInfo";
-
+            ViewBag.isMMs = (jopType == (int)PMS.Model.Enum.JobType_Enum.mmsqueryJob) ? "mms" : "sms";
             ViewBag.GetJobTemplateData = "/Job/Instance/GetJobTemplateDataByTemplate";
            // ViewBag.GetJobTemplate4Combo = "/Job/Instance/GetJobTemplate4Combo";
             return View("ShowEditInstance");
@@ -155,11 +155,12 @@ namespace SMSOA.Areas.Job.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ContentResult DoAddJobInfo(PMS.Model.J_JobInfo model)
+        public ContentResult DoAddJobInfo(PMS.Model.J_JobInfo/*ViewModel_JobInfo*/ model)
         {
 
             //***此时传入的model中已经包含了uid的值了
-            string ismms = "sms";
+            string ismms = Request["isMMS"].ToString();
+           // string ismms = "sms";
             if (model.NextRunTime <= DateTime.MinValue)
             {
                 model.NextRunTime = DateTime.Now;
@@ -181,10 +182,10 @@ namespace SMSOA.Areas.Job.Controllers
 
             //2017-04-26 casablanca
             //将是否为短信的标记符放在该JobDataModel中
-            var mmsModel =new PMS.Model.JobDataModel.QueryJobDataModel()
-            {  
-                JobDataValue=ismms
-                
+            var mmsModel = new PMS.Model.JobDataModel.QueryJobDataModel()
+            {
+                JobDataValue = ismms/* model.isMMS*/
+
             };
             var response = jobInfoBLL.AddJobInfo(model,mmsModel);
             return this.ToResponse(response);

@@ -16,6 +16,7 @@ namespace PMS.Model.Enum
         /// 查询作业
         /// </summary>
         queryJob=1,
+        mmsqueryJob=3,
         /// <summary>
         /// 其他作业
         /// </summary>
