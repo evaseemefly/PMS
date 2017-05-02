@@ -6,6 +6,8 @@ using System.Activities;
 using Common.Redis;
 using PMS.Model.Enum;
 using PMS.BLL;
+using Common.Ioc;
+using PMS.IBLL;
 
 namespace QueryWFLib
 {
@@ -75,7 +77,7 @@ namespace QueryWFLib
         /// <returns></returns>
         private ExistEnum CheckTargetMsgIdContainsPhone(string msgid, string phone)
         {
-            PMS.IBLL.IS_SMSContentBLL contentBLL = new S_SMSContentBLL();
+            IS_SMSContentBLL contentBLL = UnityServiceLocator.Instance.GetService<IS_SMSContentBLL>();
             //根据指定msgid查询短信内容表
             var content_temp = contentBLL.GetListBy(c => c.msgId == msgid).FirstOrDefault();
             //根据msgid的短信（彩信）内容表查询对应的发送记录（短彩信共用一张表）

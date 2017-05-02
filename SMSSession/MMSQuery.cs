@@ -67,21 +67,22 @@ namespace SMSFactory
                     //1:未有未被查询到的用户
                     return QueryState_Enum.finish;
                 }
-                else
-                {
-                    //99：原因未知
-                    return QueryState_Enum.unknown;
-                }
+                //else
+                //{
+                //    //99：原因未知
+                //    return QueryState_Enum.unknown;
+                //}
             }
-            else if (list.Count == 0)
+            if (list.Count == 0)
             {
                 return QueryState_Enum.error;
             }
-            else
+            if(list.Count>0)
             {
                 //大于1时
                 return QueryState_Enum.remnant;
             }
+            return QueryState_Enum.unknown;
         }
 
         /// <summary>

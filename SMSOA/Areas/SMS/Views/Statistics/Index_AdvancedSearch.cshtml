@@ -11,6 +11,7 @@
             loadDataGrid('@ViewBag.GetPageStatisticList', myColumns);
             loadComboGrid_User();
             loadComboGrid_Mission();
+            loadComboGrid_MessageType();
             loadDataGrid_person('', myColumns_person);
             var now_date = new Date();
             now_date = now_date.toLocaleDateString();
@@ -131,8 +132,23 @@
             //获取短信任务种类
             var grid_user = $("#smsUserInfo_combogrid").combogrid("grid");
             var grid_mission = $("#smsMission_combogrid").combogrid("grid");
+            var grid_type = $("#MessageType_combogrid").combogrid("grid");
+            var type_checkeds = grid_type.datagrid("getChecked");
             var mission_checkeds = grid_mission.datagrid("getChecked");
             var user_checkeds = grid_user.datagrid("getChecked");
+
+            //处理Type:如果短信彩信均被选中，视为未选择（展示所有短信）
+            var type_ids = new Array();
+            if (type_checkeds[0] != null) {
+                for (var i = 0; i < type_checkeds.length; i++) {
+                    if (0 == type_checkeds[i]["TypeID"]) {
+                        type_ids[i] = false;
+                    } else {
+                        type_ids[i] = true;
+                    }
+                }
+            }
+
             var mission_id;
             var mission_ids = new Array();
             var user_id = user_checkeds[0]["id"];
@@ -163,7 +179,8 @@
                 Mission_ids:mission_ids,
                 Dt_target: dt_target,
                 Dt_start: dt_start,
-                Dt_finish: dt_finish
+                Dt_finish: dt_finish,
+                Type : type_ids
             }
 
             loadDataGrid('@ViewBag.LoadSearchData', myColumns, queryData);
@@ -390,6 +407,12 @@
                  //{ field: 'Operate', title: '是否禁用', width: 150 }
         ]]
 
+        //查询信息类型：下拉列表
+        var messageTypeColumns = [[
+            { field:'TypeID', title:'ID',width: 10,checkbox:true},
+            { field:'TypeName',title:'类型名称',width:60}
+        ]]
+
         //由分部视图替代重用的代码部分
        @Html.Partial("_Partial_Common_pColumns")
         
@@ -433,7 +456,7 @@
             })
             
         }
-
+        //查询任务：加载下拉框
         function loadComboGrid_Mission() {
 
             //加载全部短信任务种类
@@ -457,6 +480,20 @@
             //    checkOnSelect: true,
             //    selectOnCheck: true
             //})
+        }
+
+        //查询信息类型：加载下拉列表
+        function loadComboGrid_MessageType() {
+            $("#MessageType_combogrid").combogrid({
+                url: '@ViewBag.GetMessageType',
+                method: 'get',
+                idField: 'TypeID',
+                textField: 'TypeName',
+                panelWidth: 90,
+                panelHeight: 'auto',
+                multiple: true,
+                columns:messageTypeColumns
+            })
         }
 
         function loadDataGrid_person(url, myColumns, model) {

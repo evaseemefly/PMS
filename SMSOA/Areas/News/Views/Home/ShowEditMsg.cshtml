@@ -22,6 +22,10 @@
 
 @section Scripts{
     <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
+    <script src="~/Scripts/MyScripts/UEditor/ueditor.config.js"></script>
+    <script charset="utf-8" src="~/Scripts/MyScripts/UEditor/ueditor.all.js"></script>
+    @*<script charset="utf-8" src="~/Scripts/MyScripts/UEditor/themes/iframe.css"></script>*@
+    <script charset="utf-8" src="~/Scripts/MyScripts/UEditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript">
         function Save() {
             DoSubmit("ff", '@ViewBag.backAction',"公告");
@@ -47,7 +51,14 @@
                 editable: false,
                 onLoadSuccess: AfterLoadNewsType
             });
-            })
+        })
+
+       
+        var ue = UE.getEditor('editor');
+        ue.ready(function () {
+            var content = '@Html.Raw(@ViewBag.NewsContent)';
+            ue.setContent(content);
+        });
     </script>
     }
 
@@ -57,7 +68,7 @@
     <input type="hidden" name="SNID" value="@ViewBag.SNID" />
     <input type="hidden" name="SubDateTime" value="@ViewBag.SubDateTime" />
     <input type="hidden" name="UID" value="@ViewBag.UID" />
-    <table style="margin-left:40px;width:90%" cellpadding="3">
+    <table style="margin-left:40px;height:70%;width:90%" cellpadding="3">
 
         <tr>
             <td style="">公告题目:</td>
@@ -82,7 +93,8 @@
         </tr>
         <tr>            
             <td colspan="2" class="comment">
-              <input class="easyui-textbox" type="text" name="NewsContent" id="NewsContent" value="@ViewBag.NewsContent" data-options="required:true,multiline:true" style="height:80px;width:300px">
+                <textarea id="editor" name="NewsContent" value="@ViewBag.NewsContent"></textarea>
+              @*<input class="easyui-textbox" type="text" name="NewsContent" id="NewsContent" value="@ViewBag.NewsContent" data-options="required:true,multiline:true" style="height:80px;width:300px">*@
             </td>
         </tr>
     </table>

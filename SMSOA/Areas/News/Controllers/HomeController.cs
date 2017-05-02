@@ -14,6 +14,7 @@ namespace SMSOA.Areas.News.Controllers
         IN_NewsBLL newsBLL;
         IUserInfoBLL userBLL;
         // GET: News/News
+        
         public ActionResult Index()
         {
             ViewBag.GetAllNewsList = "GetNewsByTypeList";
@@ -82,11 +83,13 @@ namespace SMSOA.Areas.News.Controllers
         /// 添加公告的功能实现
         /// </summary>
         /// <returns></returns>
+        [ValidateInput(false)]
         public ActionResult DoAddMsg(N_News model)
         {
             model.UID = base.LoginUser.ID;
             model.isDel = false;
             model.SubDateTime = DateTime.Now;
+            //model.NewsContent = Server.HtmlEncode(model.NewsContent);
             try
             {
                 //8月12日修改：此处不仅需要在N_News中添加一个消息对象，还需要添加该消息与全部用户之前的关系
@@ -134,11 +137,14 @@ namespace SMSOA.Areas.News.Controllers
         /// 编辑公告的功能实现
         /// </summary>
         /// <returns></returns>
+
+        [ValidateInput(false)]
         public ActionResult DoEditMsg(N_News model)
         {
             model.isDel = false;
             model.SubDateTime = DateTime.Now;
             model.UID = base.LoginUser.ID;
+            model.NewsContent = model.NewsContent;
             try
             {
                 newsBLL.Update(model);
@@ -199,6 +205,8 @@ namespace SMSOA.Areas.News.Controllers
             int count = 0;
             //根据登录用户查询其接收到的全部消息
             var list = GetAllKindsOfNewsFactory(type, ref count, pageIndex, pageSize);
+            //list.ForEach(p => p.NewsContent = Server.HtmlDecode(p.NewsContent));
+            list = list.Where(p => p.isDel == false).ToList();
             //var list = newsBLL.GetAllNewsPageListByUser(this.LoginUser.ID, ref count, true, pageIndex, pageSize);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {

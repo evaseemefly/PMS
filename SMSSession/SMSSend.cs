@@ -654,7 +654,7 @@ namespace SMSFactory
             if (!receive.msgid.Equals("") && list_phones != null)
             {
                 StringRedisHelper redisStrhelper = new StringRedisHelper();
-                redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddMinutes(redis_expirationDate));
+                redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(redis_expirationDate));
                 //2017年2月4日 添加释放资源
                 redisStrhelper.Dispose();
                 return true;
