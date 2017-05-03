@@ -28,6 +28,7 @@ namespace QuartzServiceLib
         //[ServiceKnownType(typeof(PMS.Model.CombineModel.SendAndMessage_Model))]
         [ServiceKnownType(typeof(PMS.Model.JobDataModel.QueryJobDataModel))]
         [ServiceKnownType(typeof(PMS.Model.JobDataModel.SendJobDataModel))]
+        [ServiceKnownType(typeof(PMS.Model.CombineModel.SendAndMessage_Model))]        
         [ServiceKnownType(typeof(PMS.Model.Message.BaseResponse))]
         IBaseResponse AddScheduleJob(J_JobInfo jobInfo, /*PMS.Model.JobDataModel.SendJobDataModel*/IJobData data_temp);
         #endregion

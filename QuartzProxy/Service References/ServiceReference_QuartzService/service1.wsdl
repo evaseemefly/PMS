@@ -5,6 +5,10 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.JobDataModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.CombineModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.ViewModel" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.SMSModel" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.Message" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model" />
     </xsd:schema>

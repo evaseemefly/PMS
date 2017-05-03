@@ -9,17 +9,27 @@
       <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="phones" nillable="true" type="q1:ArrayOfstring" />
       <xs:element minOccurs="0" name="sendtime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="sign" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="subcode" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SMSModel_Send" nillable="true" type="tns:SMSModel_Send" />
   <xs:complexType name="SMSModel_Receive">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseModel_Receive">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="failPhones" nillable="true" type="q2:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SMSModel_Receive" nillable="true" type="tns:SMSModel_Receive" />
+  <xs:complexType name="BaseModel_Receive">
     <xs:sequence>
-      <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="failPhones" nillable="true" type="q2:ArrayOfstring" />
       <xs:element minOccurs="0" name="msgid" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="result" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="SMSModel_Receive" nillable="true" type="tns:SMSModel_Receive" />
+  <xs:element name="BaseModel_Receive" nillable="true" type="tns:BaseModel_Receive" />
 </xs:schema>

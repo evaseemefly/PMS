@@ -140,17 +140,20 @@
     <None Include="Service References\ServiceReference_MMSService\SMSFactory.ServiceReference_MMSService.SendMsgResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.Message.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\service.wsdl" />
-    <None Include="Service References\ServiceReference_QuartzService\service.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference_QuartzService\service1.xsd">
+    <None Include="Service References\ServiceReference_QuartzService\service1.wsdl" />
+    <None Include="Service References\ServiceReference_QuartzService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference_SMSService\Arrays.xsd">
