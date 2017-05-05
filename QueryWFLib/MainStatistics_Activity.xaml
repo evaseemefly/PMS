@@ -93,11 +93,6 @@
                           <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
                         </OutArgument>
                       </local:QueryState_Code.List_QueryReceive>
-                      <local:QueryState_Code.State>
-                        <OutArgument x:TypeArguments="x:Int32">
-                          <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
-                        </OutArgument>
-                      </local:QueryState_Code.State>
                       <local:QueryState_Code.isMMS>
                         <InArgument x:TypeArguments="pme:MMS_Enum">
                           <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
@@ -126,11 +121,6 @@
                                   <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
                                 </OutArgument>
                               </local:GetStateByQueryList_Code.State>
-                              <local:GetStateByQueryList_Code.State_MMS>
-                                <OutArgument x:TypeArguments="pme:QueryState_Enum">
-                                  <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum_mms</mca:CSharpReference>
-                                </OutArgument>
-                              </local:GetStateByQueryList_Code.State_MMS>
                               <local:GetStateByQueryList_Code.isMMS>
                                 <InArgument x:TypeArguments="pme:MMS_Enum">
                                   <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
@@ -207,14 +197,14 @@
                                                       </OutArgument>
                                                     </local:CheckMsgIdInRedist_Code.enum_Exist>
                                                   </local:CheckMsgIdInRedist_Code>
-                                                  <If sap2010:WorkflowViewState.IdRef="If_3">
+                                                  <If sap2010:Annotation.AnnotationText="判断当前查询对象是否满足msgid对应的记录中包含当前对象中的电话" sap2010:WorkflowViewState.IdRef="If_3">
                                                     <If.Condition>
                                                       <InArgument x:TypeArguments="x:Boolean">
                                                         <mca:CSharpValue x:TypeArguments="x:Boolean">_enum_ItemExist==PMS.Model.Enum.ExistEnum.isExist</mca:CSharpValue>
                                                       </InArgument>
                                                     </If.Condition>
                                                     <If.Then>
-                                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                                      <Sequence sap2010:Annotation.AnnotationText="满足条件则将该查询对象中写入集合中" sap2010:WorkflowViewState.IdRef="Sequence_3">
                                                         <local:LogIn_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="LogIn_Code_4">
                                                           <local:LogIn_Code.LogIn>
                                                             <InArgument x:TypeArguments="x:String">
@@ -311,7 +301,7 @@
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
-    <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw5FAcUZAECPAO7Ag8CAQFIC0hSAgECUQlRkwEDAaYDVA1UwAEDAaUDVxFXngEDAaMDWhVqLQMB+AJtGXMsAwHpAnYdiwE+AwGwAo4BIZQBNAMBoQKXASWJAioCATGMAimeAi4CARBRigFRkAEDAacDV5EBV5sBAwGkA2cbZ2MDAZUDXRtdjAEDAYcDYhtiZgMB+QJwH3BrAwHqAogBI4gBawMB2wKDASODAYMBAwHNAnkjeYwBAwG/An4jfn8DAbECkQEnkQFyAwGiApoBK5oBnQECATKeASmHAjQCAUCPAi+PAq8BAgERkwItnAI4AgEfnwErqgE0AwGEAqsBK7YBNAMB5wG3ASuBAjUCAVCCAiuGAjcCAUGUAi+aAkoCASKbAi+bAo8BAgEgpwExpwGyAQMBkwKiATGiAagBAwGFArMBMbMBqwEDAfYBrgExrgGaAQMB6AG6ATG6AaEBAwHZAcEBL/8BOgIBUYQCL4QCmgECAUKXAjWXAqQBAgEjmwKGAZsCjAECASHFATH+ATwCAVLGATPRAVMDAbgB0gEz/QE4AgFTzgE5zgGTAQMByQHJATnJAYwBAwG5AdUBOdUBqQECAVTZATfyAUICAXX1ATf7AUoCAWTaATngAUwDAacB4QE58QFdAgF2+AE9+AGPAQIBZd0BP90BjAEDAagB7gE/7gGoAQMBlwHpAT/pAbYBAwGHAeQBP+QBkgECAXc=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbDcUBxRkAQI8A7ECDwIBAUgLSFICAQJRCVGTAQMBigNUDVTAAQMBiQNXEVeeAQMBhwNaFWUtAwHqAmgZbiwDAdsCcR2BAT4DAbAChAEhigE0AwGhAo0BJf8BKgIBMYICKZQCLgIBEFGKAVGQAQMBiwNXkQFXmwEDAYgDYhtiYwMB+QJdG12MAQMB6wJrH2trAwHcAn4jfmsDAc0CdCN0jAEDAb8CeSN5fwMBsQKHASeHAXIDAaICkAErkAGdAQIBMpQBKf0BNAIBQIUCL4UCrwECARGJAi2SAjgCAR+VASugATQDAYQCoQErrAE0AwHnAa0BK/cBNQIBUPgBK/wBNwIBQYoCL5ACSgIBIpECL5ECjwECASCdATGdAbIBAwGTApgBMZgBqAEDAYUCqQExqQGrAQMB9gGkATGkAZoBAwHoAbABMbABoQEDAdkBtwEv9QE6AgFR+gEv+gGaAQIBQo0CNY0CpAECASORAoYBkQKMAQIBIbsBMfQBPAIBUrwBM8cBUwMBuAHIATPzATgCAVPEATnEAZMBAwHJAb8BOb8BjAEDAbkBywE5ywGpAQIBVM8BN+gBQgIBdesBN/EBSgIBZNABOdYBTAMBpwHXATnnAV0CAXbuAT3uAY8BAgFl0wE/0wGMAQMBqAHkAT/kAagBAwGXAd8BP98BtgEDAYcB2gE/2gGSAQIBdw==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -386,23 +376,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,233">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LogIn_Code_5" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,386" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,631">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,780">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,275">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -410,9 +384,32 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="538,931" />
+      <sap2010:ViewStateData Id="LogIn_Code_5" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,453">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,698">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,847">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="538,998" />
       <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="538,63" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="560,1360">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="560,1427">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

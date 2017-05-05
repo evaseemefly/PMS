@@ -6,6 +6,7 @@ using System.Activities;
 using PMS.Model.SMSModel;
 using PMS.Model;
 using PMS.IBLL;
+using Common.Ioc;
 
 namespace QueryWFLib
 {
@@ -46,7 +47,7 @@ namespace QueryWFLib
         /// <param name="write_enum"></param>
         private void WriteInDB(List<SMSModel_QueryReceive> list,ref PMS.Model.Enum.WriteInDb_Enum write_enum)
         {
-            IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = new PMS.BLL.S_SMSRecord_CurrentBLL();
+            IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL = UnityServiceLocator.Instance.GetService<IS_SMSRecord_CurrentBLL>();/* new PMS.BLL.S_SMSRecord_CurrentBLL();*/
             //思路
             /*尽量减少反复连接数据库的操作
               先从list中提取msgid不同的对象
@@ -57,18 +58,18 @@ namespace QueryWFLib
                                       select s.msgId;
             write_enum = PMS.Model.Enum.WriteInDb_Enum.ok;
             //2 遍历
-            foreach (var item in list_distinct_msgid)
+            foreach (var msgid in list_distinct_msgid)
             {
                 //2.1 取出对应msgid对应的集合
                 var list_temp = (from s in list
-                                where s.msgId == item
+                                where s.msgId == msgid
                                 select s).ToList();
                 //2.2批量写入
                 try
                 {
-                    smsRecord_CurrentBLL.SaveReceieveMsg(list_temp,item);
+                    smsRecord_CurrentBLL.SaveReceieveMsg(list_temp,msgid);
 
-                    Console.WriteLine("写入成功{0}个人其对应msgid为{1}",list_temp.Count(),item);
+                    Console.WriteLine("写入成功{0}个人其对应msgid为{1}",list_temp.Count(),msgid);
                 }
                 catch (Exception ex)
                 {

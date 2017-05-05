@@ -6,6 +6,7 @@ using System.Activities;
 using PMS.Model.SMSModel;
 using PMS.Model.Enum;
 using ISMS;
+using Common.Ioc;
 
 namespace QueryWFLib
 {
@@ -13,8 +14,10 @@ namespace QueryWFLib
     public sealed class GetStateByQueryList_Code : CodeActivity
     {
 
-        ISMSQuery smsQuery = new SMSFactory.SMSQuery();
-        IMMSQuery mmsQuery = new SMSFactory.MMSQuery();
+        ISMSQuery smsQuery;  /*new SMSFactory.SMSQuery();*/
+
+        IMMSQuery mmsQuery; /*new SMSFactory.MMSQuery();*/
+
         // 定义一个字符串类型的活动输入参数
         public InArgument<string> Text { get; set; }
 
@@ -30,7 +33,7 @@ namespace QueryWFLib
         /// <summary>
         /// 查询之后返回的状态
         /// </summary>
-        public OutArgument<QueryState_Enum> State_MMS { get; set; }
+        //public OutArgument<QueryState_Enum> State_MMS { get; set; }
 
         /// <summary>
         /// 传入的查询回执对象集合
@@ -41,12 +44,17 @@ namespace QueryWFLib
         // 并从 Execute 方法返回该值。
         protected override void Execute(CodeActivityContext context)
         {
-            var ismms = context.GetValue(this.isMMS);
-            //var list_mms = context.GetValue(List_QueryReceive);
+            smsQuery = /*new SMSFactory.SMSQuery();*/UnityServiceLocator.Instance.GetService<ISMSQuery>();
+            mmsQuery = /*new SMSFactory.MMSQuery();*/UnityServiceLocator.Instance.GetService<IMMSQuery>();
+            //获取外部传入的参数
+            #region 获取外部传入的参数
+            var ismms = context.GetValue(this.isMMS);  
             //短信时获取短信查询集合
             var list_sms = context.GetValue(List_QueryReceive);
+            #endregion
+
             QueryState_Enum state_enum=QueryState_Enum.error;
-            QueryState_Enum state_enum_mms= QueryState_Enum.error; 
+           
             switch (ismms)
             {
                 case MMS_Enum.mms:

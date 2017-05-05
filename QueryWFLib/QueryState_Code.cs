@@ -22,7 +22,7 @@ namespace QueryWFLib
         /// <summary>
         /// 查询之后返回的状态
         /// </summary>
-        public OutArgument<int> State { get; set; }
+        //public OutArgument<int> State { get; set; }
 
         /// <summary>
         /// 本次查询的回执
@@ -38,13 +38,15 @@ namespace QueryWFLib
         {
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
+            //短彩信标识（枚举）
             var ismms = context.GetValue(this.isMMS);
             //执行查询操作
             //进行查询传入的msgid的
             //var list_sms = new List<SMSModel_QueryReceive>();
             var list_query = new List<PMS.IModel.SMSModel.IQueryReceive>();
             //var list_mms = new List<MMSModel_QueryReceive>();
-            PMS.Model.Enum.QueryState_Enum state = PMS.Model.Enum.QueryState_Enum.unknown;
+            //创建查询状态标识符（枚举）
+            //PMS.Model.Enum.QueryState_Enum state = PMS.Model.Enum.QueryState_Enum.unknown;
 
             ISMSQuery smsQuery;
             //此处查询只是将msgid传入即可
@@ -72,14 +74,15 @@ namespace QueryWFLib
             //不在此处实现——放在GetStateByQueryList_Code中
             //var enum_state = smsQuery.GetQueryState(list_QueryReceive);
             
-            if (!isGetReturnMsg)
-            {
-                //查询结果有问题，跳出本次查询
-                state = PMS.Model.Enum.QueryState_Enum.error;
-            }
+            //if (!isGetReturnMsg)
+            //{
+            //    //查询结果有问题，跳出本次查询
+            //    state = PMS.Model.Enum.QueryState_Enum.error;
+            //}
 
             //赋值
-            context.SetValue(State, (int)state);
+            //此处可不判断查询状态
+            //context.SetValue(State, (int)state);
             context.SetValue(List_QueryReceive, list_QueryReceive);
             //context.SetValue(State, state);
             //context.SetValue(List_QueryReceive, list_sms);

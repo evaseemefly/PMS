@@ -36,11 +36,17 @@ namespace QueryWFLib
            // int state = -1;
             //将拥有符合条件的msgid的item存入list
             InsertListModel(item, ref list, ref state);
-
+            
             context.SetValue(Match_Enum, state);
             context.SetValue(List_QueryReceive, list);
         }
 
+        /// <summary>
+        /// 根据传入的item将item插入集合中
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="list"></param>
+        /// <param name="state"></param>
         public static void InsertListModel(SMSModel_QueryReceive item, ref List<SMSModel_QueryReceive> list, ref PMS.Model.Enum.MatchCondition_Enum state)
         {
             if(item != null)

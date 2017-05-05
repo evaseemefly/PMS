@@ -77,11 +77,6 @@
                             <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpReference>
                           </OutArgument>
                         </local:QueryState_Code.List_QueryReceive>
-                        <local:QueryState_Code.State>
-                          <OutArgument x:TypeArguments="x:Int32">
-                            <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
-                          </OutArgument>
-                        </local:QueryState_Code.State>
                         <local:QueryState_Code.isMMS>
                           <InArgument x:TypeArguments="pme:MMS_Enum">
                             <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
@@ -110,11 +105,6 @@
                                     <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpReference>
                                   </OutArgument>
                                 </local:GetStateByQueryList_Code.State>
-                                <local:GetStateByQueryList_Code.State_MMS>
-                                  <OutArgument x:TypeArguments="pme:QueryState_Enum">
-                                    <mca:CSharpReference x:TypeArguments="pme:QueryState_Enum">_state_enum_mms</mca:CSharpReference>
-                                  </OutArgument>
-                                </local:GetStateByQueryList_Code.State_MMS>
                                 <local:GetStateByQueryList_Code.isMMS>
                                   <InArgument x:TypeArguments="pme:MMS_Enum">
                                     <mca:CSharpValue x:TypeArguments="pme:MMS_Enum">_isMMS</mca:CSharpValue>
@@ -295,7 +285,7 @@
       <x:Reference>__ReferenceID6</x:Reference>
       <x:Reference>__ReferenceID7</x:Reference>
       <x:Reference>__ReferenceID8</x:Reference>
-      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw5FAcUZAECPAO7Ag8CAQFIC0hSAgECUQlRkwEDAaYDVA1UwAEDAaUDVxFXngEDAaMDWhVqLQMB+AJtGXMsAwHpAnYdiwE+AwGwAo4BIZQBNAMBoQKXASWJAioCATGMAimeAi4CARBRigFRkAEDAacDV5EBV5sBAwGkA2cbZ2MDAZUDXRtdjAEDAYcDYhtiZgMB+QJwH3BrAwHqAogBI4gBawMB2wKDASODAYMBAwHNAnkjeYwBAwG/An4jfn8DAbECkQEnkQFyAwGiApoBK5oBnQECATKeASmHAjQCAUCPAi+PAq8BAgERkwItnAI4AgEfnwErqgE0AwGEAqsBK7YBNAMB5wG3ASuBAjUCAVCCAiuGAjcCAUGUAi+aAkoCASKbAi+bAo8BAgEgpwExpwGyAQMBkwKiATGiAagBAwGFArMBMbMBqwEDAfYBrgExrgGaAQMB6AG6ATG6AaEBAwHZAcEBL/8BOgIBUYQCL4QCmgECAUKXAjWXAqQBAgEjmwKGAZsCjAECASHFATH+ATwCAVLGATPRAVMDAbgB0gEz/QE4AgFTzgE5zgGTAQMByQHJATnJAYwBAwG5AdUBOdUBqQECAVTZATfyAUICAXX1ATf7AUoCAWTaATngAUwDAacB4QE58QFdAgF2+AE9+AGPAQIBZd0BP90BjAEDAagB7gE/7gGoAQMBlwHpAT/pAbYBAwGHAeQBP+QBkgECAXc=</sads:DebugSymbol.Symbol>
+      <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbDcUBxRkAQI8A7ECDwIBAUgLSFICAQJRCVGTAQMBigNUDVTAAQMBiQNXEVeeAQMBhwNaFWUtAwHqAmgZbiwDAdsCcR2BAT4DAbAChAEhigE0AwGhAo0BJf8BKgIBMYICKZQCLgIBEFGKAVGQAQMBiwNXkQFXmwEDAYgDYhtiYwMB+QJdG12MAQMB6wJrH2trAwHcAn4jfmsDAc0CdCN0jAEDAb8CeSN5fwMBsQKHASeHAXIDAaICkAErkAGdAQIBMpQBKf0BNAIBQIUCL4UCrwECARGJAi2SAjgCAR+VASugATQDAYQCoQErrAE0AwHnAa0BK/cBNQIBUPgBK/wBNwIBQYoCL5ACSgIBIpECL5ECjwECASCdATGdAbIBAwGTApgBMZgBqAEDAYUCqQExqQGrAQMB9gGkATGkAZoBAwHoAbABMbABoQEDAdkBtwEv9QE6AgFR+gEv+gGaAQIBQo0CNY0CpAECASORAoYBkQKMAQIBIbsBMfQBPAIBUrwBM8cBUwMBuAHIATPzATgCAVPEATnEAZMBAwHJAb8BOb8BjAEDAbkBywE5ywGpAQIBVM8BN+gBQgIBdesBN/EBSgIBZNABOdYBTAMBpwHXATnnAV0CAXbuAT3uAY8BAgFl0wE/0wGMAQMBqAHkAT/kAagBAwGXAd8BP98BtgEDAYcB2gE/2gGSAQIBdw==</sads:DebugSymbol.Symbol>
     </Flowchart>
   </local:Activity1.Implementation>
 </local:Activity1>

@@ -70,7 +70,7 @@ namespace QueryWFLib
         
 
         /// <summary>
-        /// 
+        /// 判断指定msgid对应的短信记录中是否包含指定电话
         /// </summary>
         /// <param name="msgid"></param>
         /// <param name="phone"></param>
