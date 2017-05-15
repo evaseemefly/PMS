@@ -56,7 +56,9 @@ namespace QueryWFLib
             //判断redis中的string中是否存有指定的msgid
             StringRedisHelper redis_string = new StringRedisHelper();
 
+            //加入日志
             var temp = redis_string.Get(msgid);
+            Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1},{2}在redis缓存中", "3", msgid, temp==null?"y":"n"));
             //temp应为1
             if (temp != null)
             {

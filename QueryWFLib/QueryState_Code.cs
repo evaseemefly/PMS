@@ -41,12 +41,7 @@ namespace QueryWFLib
             //短彩信标识（枚举）
             var ismms = context.GetValue(this.isMMS);
             //执行查询操作
-            //进行查询传入的msgid的
-            //var list_sms = new List<SMSModel_QueryReceive>();
-            var list_query = new List<PMS.IModel.SMSModel.IQueryReceive>();
-            //var list_mms = new List<MMSModel_QueryReceive>();
-            //创建查询状态标识符（枚举）
-            //PMS.Model.Enum.QueryState_Enum state = PMS.Model.Enum.QueryState_Enum.unknown;
+            var list_query = new List<PMS.IModel.SMSModel.IQueryReceive>();    
 
             ISMSQuery smsQuery;
             //此处查询只是将msgid传入即可
@@ -55,38 +50,20 @@ namespace QueryWFLib
             {
                 case PMS.Model.Enum.MMS_Enum.mms:
                     smsQuery=new SMSFactory.MMSQuery();
-                    //ToQueryList(context,ToQueryFunc_MMS);
-                    //ToQuery(out list_mms, out state);
                     break;
                 case PMS.Model.Enum.MMS_Enum.sms:
                     smsQuery = new SMSFactory.SMSQuery();
                     break;
                 default:
-                    //ToQueryList(context,ToQueryFunc_SMS);
-                    //ToQuery(out list_sms, out state);
                     smsQuery = new SMSFactory.SMSQuery();
                     break;
             }
             var list_QueryReceive = new List<SMSModel_QueryReceive>();
            bool isGetReturnMsg = ToQueryList(smsQuery, out list_QueryReceive);
             //根据传入的状态集合进行判断当前的状态
-            //2017 04 25 
-            //不在此处实现——放在GetStateByQueryList_Code中
-            //var enum_state = smsQuery.GetQueryState(list_QueryReceive);
-            
-            //if (!isGetReturnMsg)
-            //{
-            //    //查询结果有问题，跳出本次查询
-            //    state = PMS.Model.Enum.QueryState_Enum.error;
-            //}
-
             //赋值
             //此处可不判断查询状态
-            //context.SetValue(State, (int)state);
             context.SetValue(List_QueryReceive, list_QueryReceive);
-            //context.SetValue(State, state);
-            //context.SetValue(List_QueryReceive, list_sms);
-            //context.SetValue(List_QueryReceive_MMS, list_mms);
         }
 
         /// <summary>
@@ -97,23 +74,17 @@ namespace QueryWFLib
         /// <returns></returns>
         private bool ToQueryList(ISMSQuery query,out List<SMSModel_QueryReceive> list_QueryReceive_mms)
         {
+            //读取配置文件中的账号及密码
             Common.Config.SMSSignConfigHelper smsSign = new Common.Config.SMSSignConfigHelper();
             SMSModel_Query sign = new SMSModel_Query()
             {
                 account = smsSign.account,
                 password = smsSign.password
             };
-
-           //var queryState_enum= toQuery(context,queryMsg);
-             
-            //IMMSQuery smsQuery = new SMSFactory.MMSQuery();
-            //6 查询发送状态
-            //list_QueryReceive_mms;
-            //var state = new PMS.Model.Enum.QueryState_Enum();
+          
+            //6 查询发送状态            
             //根据传入的信息进行查询，并有一个状态信息集合
-            return query.QueryMsg(sign, out list_QueryReceive_mms);
-            //return list_QueryReceive_mms;           
-            
+            return query.QueryMsg(sign, out list_QueryReceive_mms);            
         }
 
         //查询彩信
