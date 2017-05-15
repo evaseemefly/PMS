@@ -45,7 +45,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseCodeActivity.cs" />
     <Compile Include="CheckItemIsFirstMsg_Code.cs" />
     <Compile Include="CheckMsgIdInRedist_Code.cs" />
     <Compile Include="GetStateByQueryList_Code.cs" />

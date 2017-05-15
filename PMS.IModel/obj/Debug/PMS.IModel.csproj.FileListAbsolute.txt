@@ -2,8 +2,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS.IModel\bin\Debug\PMS.IModel.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.IModel\bin\Debug\PMS.IModel.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.IModel\obj\Debug\PMS.IModel.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.IModel\obj\Debug\PMS.IModel.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.IModel\bin\Debug\PMS.IModel.dll
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.IModel\bin\Debug\PMS.IModel.pdb
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.IModel\obj\Debug\PMS.IModel.csprojResolveAssemblyReference.cache
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.IModel\obj\Debug\PMS.IModel.dll
-D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\PMS.IModel\obj\Debug\PMS.IModel.pdb
