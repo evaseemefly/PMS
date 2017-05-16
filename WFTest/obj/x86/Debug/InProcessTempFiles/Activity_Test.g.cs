@@ -24,7 +24,7 @@ partial void BeforeInitializeComponent(ref bool isInitialized);
 partial void AfterInitializeComponent();
 
         
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
         public Activity_Test() {
             this.InitializeComponent();
         }
@@ -42,7 +42,7 @@ partial void AfterInitializeComponent();
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
         public void InitializeComponent() {
             if ((this._contentLoaded == true)) {
                 return;
@@ -86,7 +86,7 @@ partial void AfterInitializeComponent();
             this.AfterInitializeComponent();
         }
         
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
         private string FindResource() {
             string[] resources = typeof(Activity_Test).Assembly.GetManifestResourceNames();
             for (int i = 0; (i < resources.Length); i = (i + 1)) {
@@ -99,12 +99,12 @@ partial void AfterInitializeComponent();
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033")]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
         void System.ComponentModel.ISupportInitialize.BeginInit() {
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033")]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
         void System.ComponentModel.ISupportInitialize.EndInit() {
             this.InitializeComponent();
         }

@@ -2,7 +2,3 @@ D:\VSWorkSpace\nmefc\PMS\PMS.IModel\bin\Debug\PMS.IModel.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.IModel\bin\Debug\PMS.IModel.pdb
 D:\VSWorkSpace\nmefc\PMS\PMS.IModel\obj\Debug\PMS.IModel.dll
 D:\VSWorkSpace\nmefc\PMS\PMS.IModel\obj\Debug\PMS.IModel.pdb
-E:\03协同开发\短信\PMS\PMS\PMS.IModel\bin\Debug\PMS.IModel.dll
-E:\03协同开发\短信\PMS\PMS\PMS.IModel\bin\Debug\PMS.IModel.pdb
-E:\03协同开发\短信\PMS\PMS\PMS.IModel\obj\Debug\PMS.IModel.dll
-E:\03协同开发\短信\PMS\PMS\PMS.IModel\obj\Debug\PMS.IModel.pdb
