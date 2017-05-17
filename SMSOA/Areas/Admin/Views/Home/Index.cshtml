@@ -97,11 +97,12 @@
                 $("#WestAccordion").accordion('add', {
                     title: row.text,
                     //获取每一个当前对象中判断children是否为空
-                    content: "<ul id='tNodeId" + row.id + "' ></ul>"
-
+                    content: "<ul id='tNodeId" + row.id + "' ></ul>",
+                    selected:row.Checked
                 });
             }
 
+        //在手风琴项中添加数节点
             function TreeContent(row) {
                 //判断当前对象中children是否为空
                 if (row.children.length == 0) {
