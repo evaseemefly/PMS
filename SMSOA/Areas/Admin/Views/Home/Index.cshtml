@@ -111,8 +111,22 @@
                 else {
                     $("#tNodeId" + row.id).tree({
                         data: row.children,
-                        onClick:function(node){
+                        onSelect: function (node) {
                             createTabs(node);
+                        },
+                        onLoadSuccess: function (node, data) {
+                            //var checked_node = $("#tNodeId" + row.id).tree('getChecked')[0];
+                            for (var i = 0; i < row.children.length; i++) {
+                                if (row.children[i].Checked) {
+                                    var node_target = $("#tNodeId" + row.id).tree('find',row.children[i].id);
+
+                                    $("#tNodeId" + row.id).tree('select', node_target.target);
+                                }
+                            }
+                            //if (checked_node != null) {
+                            //    $("#tNodeId" + row.id).tree('select', checked_node.target);
+                            //}
+
                         },
                         animate: true
                     })
@@ -126,6 +140,13 @@
                 },
                 onClick: function (node) {
                     createTabs(node);
+                },
+                onLoadSuccess: function (node, data) {
+                    var checked_node = $("#easyui_tree").tree('getChecked')[0];
+                    if (checked_node != null) {
+                        $("#easyui_tree").tree('select', checked_node.target);
+                    }
+
                 },
                 animate:true
             });
