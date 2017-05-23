@@ -177,6 +177,3 @@ E:\03协同开发\短信\PMS\0630\PMS\WFTest\obj\x86\Debug\WFTest.dll
 E:\03协同开发\短信\PMS\0630\PMS\WFTest\obj\x86\Debug\WFTest_Activity_Test_CompiledExpressionRoot.cs
 E:\03协同开发\短信\PMS\0630\PMS\WFTest\obj\x86\Debug\WFTest_MainStatistics_Advanced_CompiledExpressionRoot.cs
 E:\03协同开发\短信\PMS\0630\PMS\WFTest\obj\x86\Debug\AC2C1ABA-CCF6-44D4-8127-588FD4D0A860-DeferredValidationErrors.xml
-E:\03协同开发\短信\PMS\PMS\WFTest\obj\x86\Debug\WFTest.csprojResolveAssemblyReference.cache
-E:\03协同开发\短信\PMS\PMS\WFTest\obj\x86\Debug\WFTest.exe
-E:\03协同开发\短信\PMS\PMS\WFTest\obj\x86\Debug\WFTest.pdb
