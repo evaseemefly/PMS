@@ -18,6 +18,7 @@ namespace PMS.Model
         public int UserInfoID { get; set; }
         public int ActionInfoID { get; set; }
         public bool isPass { get; set; }
+        public bool isDefault { get; set; }
     
         public virtual ActionInfo ActionInfo { get; set; }
         public virtual UserInfo UserInfo { get; set; }

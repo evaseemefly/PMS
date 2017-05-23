@@ -134,12 +134,15 @@ namespace SMSOA.Areas.Contacts.Controllers
             //获取筛选后的联系人集合的总数
             rowCount = list_person.Count();
             list_person = list_person.OrderByDescending(a => a.isVIP);
-            list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           //list_person.ToList();
+           // list_person = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_person.ToList().Select(p=>p.ToMiddleModel()).ToList() ,
+                //rows = list_person.Select(p => p.ToMiddleModel()).ToList(),
+                //rows = list_person.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(p=>p.ToMiddleModel()).ToList() ,
+                rows = list_person.ToList().Skip((pageIndex - 1) * pageSize).Take(pageSize).Select(p => p.ToMiddleModel()).ToList(),
                 footer = null
             };
 
