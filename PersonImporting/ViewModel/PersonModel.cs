@@ -20,4 +20,19 @@ namespace PersonImporting.ViewModel
         public string Phone { get; set; }
 
     }
+
+    public class MissionModel
+    {
+        public string Name { get; set; }
+
+        public string GroupOrDepartment { get; set; }
+
+        public string MissionName { get; set; }
+
+        public int MissionSort { get; set; }
+
+        public string MSGType { get; set; }
+
+        public string IsPass { get; set; }
+    }
 }
