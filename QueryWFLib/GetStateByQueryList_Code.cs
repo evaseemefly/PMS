@@ -66,9 +66,18 @@ namespace QueryWFLib
                     state_enum = smsQuery.GetQueryState(list_sms);                   
                     break;
             }
-
+            //写入日志 2017-05-15
+            LogIn(()=>{
+                string msgid_temp = list_sms.FirstOrDefault() == null ? "empty" : list_sms.FirstOrDefault().msgId;
+                Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1}传入的集合判断其状态{2}", "2", msgid_temp, state_enum.ToString()));
+            });            
             context.SetValue(State, state_enum);
             //context.SetValue(State_MMS, state_enum_mms);
+        }
+
+        private void LogIn(Action action)
+        {
+            action();
         }
     }
 }

@@ -67,13 +67,22 @@ namespace QueryWFLib
                 //2.2批量写入
                 try
                 {
-                    smsRecord_CurrentBLL.SaveReceieveMsg(list_temp,msgid);
-
-                    Console.WriteLine("写入成功{0}个人其对应msgid为{1}",list_temp.Count(),msgid);
+                   var isok= smsRecord_CurrentBLL.SaveReceieveMsg(list_temp,msgid);
+                    if (isok)
+                    {
+                        Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1}写入数据库成功,共{2}人", "4", msgid, list_temp.Count()));
+                        //Console.WriteLine("写入成功{0}个人其对应msgid为{1}", list_temp.Count(), msgid);
+                    }
+                    else
+                    {
+                        Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1}写入数据库失败", "4", msgid));
+                    }
+                   
                 }
                 catch (Exception ex)
                 {
                     write_enum =PMS.Model.Enum.WriteInDb_Enum.error;
+                    Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1}写入数据库出错，错误信息{2}", "4", msgid,ex.ToString()));
                 }
             }
             

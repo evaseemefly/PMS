@@ -1,0 +1,19 @@
+[2017-05-15 08:59:00,755]  118 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 08:59:00状态码为0
+[2017-05-15 08:59:00,755]  118 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 08:59:00写入成功
+[2017-05-15 08:59:00,755]  118 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-15 08:59:16,464]  118 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-15 09:00:00,019]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-15 09:00:00,035]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-15 09:00:00,035]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-15 09:00:00,035]  113 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 09:00:00启动查询
+[2017-05-15 09:00:00,986]  113 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>bccb9ff9540a4877993f690cb51c58a4</msgid><phone>13811104406</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-15 08:59:14</time><smsCount>2</smsCount><smsIndex>2</smsIndex></report><report><msgid>bccb9ff9540a4877993f690cb51c58a4</msgid><phone>13811104406</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-15 08:59:14</time><smsCount>2</smsCount><smsIndex>1</smsIndex></report><report><msgid>bccb9ff9540a4877993f690cb51c58a4</msgid><phone>13681211480</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-15 08:59:15</time><smsCount>2</smsCount><smsIndex>2</smsIndex></report><report><msgid>bccb9ff9540a4877993f690cb51c58a4</msgid><phone>18610819818</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-15 08:59:15</time><smsCount>2</smsCount><smsIndex>2</smsIndex></report><report><msgid>bccb9ff9540a4877993f690cb51c58a4</msgid><phone>13681211480</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-15 08:59:15</time><smsCount>2</smsCount><smsIndex>1</smsIndex></report><report><msgid>bccb9ff9540a4877993f690cb51c58a4</msgid><phone>18610819818</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-15 08:59:26</time><smsCount>2</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-15 09:00:01,002]  113 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 09:00:01查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-15 09:00:01,002]  113 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 09:00:01状态码为0
+[2017-05-15 09:01:00,032]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-15 09:01:00,032]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-15 09:01:00,032]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-15 09:01:00,032]  110 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 09:01:00启动查询
+[2017-05-15 09:01:00,672]  110 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-15 09:01:00,672]  110 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 09:01:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-15 09:01:00,688]  110 -- WARN  -- mylogger [WriteWarn] -- 2017-05-15 09:01:00状态码为0
+

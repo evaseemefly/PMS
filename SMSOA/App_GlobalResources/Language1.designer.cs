@@ -1860,7 +1860,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///  查找类似 彩信发送 的本地化字符串。
+        ///  查找类似 发送彩信 的本地化字符串。
         /// </summary>
         internal static string SendMMS {
             get {
