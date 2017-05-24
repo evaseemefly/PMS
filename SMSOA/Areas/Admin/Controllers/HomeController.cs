@@ -177,7 +177,7 @@ namespace SMSOA.Areas.Admin.Controllers
             #endregion
             //封装后写法如下：
             var list= userInfoBLL.GetActionListByUID(userId,false, true);
-            //新加入找到默认选中的对象并设置其为选中状态
+            //新加入找到默认选中的对象并设置其为选中状态,若没有则返回null
             var action_default = userInfoBLL.GetDefaultActionByUID(userId, true, true);
             //4.6 将action集合转换为树节点集合
             List<PMS.Model.EasyUIModel.EasyUITreeNode> list_easyUITreeNode = ActionInfo.ToEasyUITreeNode(list,action_default);

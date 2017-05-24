@@ -448,8 +448,14 @@ namespace PMS.BLL
                    where r.isPass == true&&r.isDefault==true
                    select r.ActionInfo
                     ).FirstOrDefault();
-                
-                return action_isDefault.isShow ? ((isMiddle) ? action_isDefault.ToMiddleModel() : action_isDefault) : null;               
+                if (action_isDefault != null)
+                {
+                    return action_isDefault.isShow ? ((isMiddle) ? action_isDefault.ToMiddleModel() : action_isDefault) : null;
+                }
+                else
+                {
+                    return null;
+                }                            
             }
             return null;
         }

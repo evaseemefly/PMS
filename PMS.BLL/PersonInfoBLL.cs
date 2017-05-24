@@ -403,5 +403,23 @@ namespace PMS.BLL
         {
             throw new NotImplementedException();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /// <summary>        /// lifei 5.11改        /// </summary>        /// <param name="phone"></param>        /// <param name="id_group"></param>        /// <param name="id_department"></param>        /// <returns></returns>        public bool UpdatePerson(string phone, int[] id_group)        {            var person_model = this.CurrentDBSession.P_PersonInfoDAL.GetListBy(p => p.PhoneNum == phone, false).FirstOrDefault();            var groups_temp = this.CurrentDBSession.P_GroupDAL.GetListBy(g => id_group.Contains(g.GID), false).ToList();            var group_exists = person_model.P_Group.Select(g => g.GID).ToArray();
+            //为联系人分配群组
+            foreach (var item_group in groups_temp)            {                if (group_exists.Contains(item_group.GID))                {                    continue;                }                else                {                    person_model.P_Group.Add(item_group);                }            }            return Update(person_model);        }
     }
 }
