@@ -56,6 +56,3 @@ D:\VSWorkSpace\nmefc\PMS\SMSFactoryServiceLib\bin\Debug\zh-Hans\System.Web.Mvc.r
 D:\VSWorkSpace\nmefc\PMS\SMSFactoryServiceLib\obj\Debug\SMSFactoryServiceLib.dll
 D:\VSWorkSpace\nmefc\PMS\SMSFactoryServiceLib\obj\Debug\SMSFactoryServiceLib.pdb
 D:\VSWorkSpace\nmefc\PMS\SMSFactoryServiceLib\obj\Debug\SMSFactoryServiceLib.csprojResolveAssemblyReference.cache
-E:\03协同开发\短信\PMS\PMS\SMSFactoryServiceLib\bin\Debug\SMSFactoryServiceLib.dll
-E:\03协同开发\短信\PMS\PMS\SMSFactoryServiceLib\bin\Debug\PMS.Model.dll
-E:\03协同开发\短信\PMS\PMS\SMSFactoryServiceLib\bin\Debug\PMS.IModel.dll

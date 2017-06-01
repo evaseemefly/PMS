@@ -34,7 +34,3 @@ D:\VSWorkSpace\nmefc\PMS\QuartzServiceLib\bin\Debug\zh-Hans\System.Web.Mvc.resou
 D:\VSWorkSpace\nmefc\PMS\QuartzServiceLib\obj\Debug\QuartzServiceLib.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\QuartzServiceLib\obj\Debug\QuartzServiceLib.dll
 D:\VSWorkSpace\nmefc\PMS\QuartzServiceLib\obj\Debug\QuartzServiceLib.pdb
-E:\03协同开发\短信\PMS\PMS\QuartzServiceLib\bin\Debug\QuartzServiceLib.dll
-E:\03协同开发\短信\PMS\PMS\QuartzServiceLib\bin\Debug\PMS.IModel.dll
-E:\03协同开发\短信\PMS\PMS\QuartzServiceLib\bin\Debug\PMS.Model.dll
-E:\03协同开发\短信\PMS\PMS\QuartzServiceLib\bin\Debug\Quartz.dll
