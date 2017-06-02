@@ -82,7 +82,7 @@
                   <local:LogIn_Code Text="{x:Null}">
                     <local:LogIn_Code.LogIn>
                       <InArgument x:TypeArguments="x:String">
-                        <mca:CSharpValue x:TypeArguments="x:String">"查询结果含"+_list_queryModel.ToString();</mca:CSharpValue>
+                        <mca:CSharpValue x:TypeArguments="x:String">"查询结果含："+_list_queryModel.Count();</mca:CSharpValue>
                       </InArgument>
                     </local:LogIn_Code.LogIn>
                   </local:LogIn_Code>
@@ -110,7 +110,7 @@
                           <local:LogIn_Code Text="{x:Null}">
                             <local:LogIn_Code.LogIn>
                               <InArgument x:TypeArguments="x:String">
-                                <mca:CSharpValue x:TypeArguments="x:String">"状态码为"+_state</mca:CSharpValue>
+                                <mca:CSharpValue x:TypeArguments="x:String">"查询集合的总数为" +((_list_queryModel==null)?0:_list_queryModel.Count());</mca:CSharpValue>
                               </InArgument>
                             </local:LogIn_Code.LogIn>
                           </local:LogIn_Code>
@@ -186,7 +186,7 @@
                                                   <local:LogIn_Code Text="{x:Null}">
                                                     <local:LogIn_Code.LogIn>
                                                       <InArgument x:TypeArguments="x:String">
-                                                        <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在"</mca:CSharpValue>
+                                                        <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在于数据库中"</mca:CSharpValue>
                                                       </InArgument>
                                                     </local:LogIn_Code.LogIn>
                                                   </local:LogIn_Code>
@@ -213,7 +213,7 @@
                                                 <local:LogIn_Code Text="{x:Null}">
                                                   <local:LogIn_Code.LogIn>
                                                     <InArgument x:TypeArguments="x:String">
-                                                      <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存中"</mca:CSharpValue>
+                                                      <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存或数据库中"</mca:CSharpValue>
                                                     </InArgument>
                                                   </local:LogIn_Code.LogIn>
                                                 </local:LogIn_Code>
@@ -223,13 +223,18 @@
                                         </Sequence>
                                       </ActivityAction>
                                     </ForEach>
-                                    <WriteLine>
-                                      <InArgument x:TypeArguments="x:String">
-                                        <mca:CSharpValue x:TypeArguments="x:String">"现集合中共有"+_list_Exist_queryModel.Count()+"个对象"</mca:CSharpValue>
-                                      </InArgument>
-                                    </WriteLine>
+                                    <local:LogIn_Code Text="{x:Null}">
+                                      <local:LogIn_Code.LogIn>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <mca:CSharpValue x:TypeArguments="x:String">"现集合中共有" + _list_Exist_queryModel.Count() + "个对象"</mca:CSharpValue>
+                                        </InArgument>
+                                      </local:LogIn_Code.LogIn>
+                                    </local:LogIn_Code>
                                   </Sequence>
                                 </If.Then>
+                                <If.Else>
+                                  <local:LogIn_Code Text="{x:Null}" LogIn="不满足条件跳出写入新集合操作" />
+                                </If.Else>
                               </If>
                               <FlowStep.Next>
                                 <FlowStep x:Name="__ReferenceID3">
@@ -273,7 +278,7 @@
       <x:Reference>__ReferenceID4</x:Reference>
       <x:Reference>__ReferenceID5</x:Reference>
       <x:Reference>__ReferenceID6</x:Reference>
-      <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbDQUBxRkAQI8A6UCDwIBAUgLSFICAQJRCVGTAQMBhwNUDV8lAwHqAmIRaCQDAdsCaxV7NgMBsAJ+GYQBLAMBoQKHAR35ASICATH8ASGOAiYCARBRigFRkAEDAYgDXBNcWwMB+QJXE1eEAQMB6wJlF2V5AwHcAngbeGMDAc0CbhtuhAEDAb8CcxtzdwMBsQKBAR+BAWoDAaICigEjigGVAQIBMo4BIfcBLAIBQP8BJ/8BpwECARGDAiWMAjACAR+PASOaASwDAYQCmwEjpgEsAwHnAacBI/EBLQIBUPIBI/YBLwIBQYQCJ4oCQgIBIosCJ4sChwECASCXASmXAaoBAwGTApIBKZIBoAEDAYUCowEpowGjAQMB9gGeASmeAZIBAwHoAaoBKaoBmQEDAdkBsQEn7wEyAgFR9AEn9AGSAQIBQocCLYcCnAECASOLAn6LAoQBAgEhtQEp7gE0AgFStgErwQFLAwG4AcIBK+0BMAIBU74BMb4BiwEDAckBuQExuQGEAQMBuQHFATHFAaEBAgFUyQEv4gE6AgF15QEv6wFCAgFkygEx0AFEAwGnAdEBMeEBVQIBdugBNegBhwECAWXNATfNAYQBAwGoAd4BN94BoAEDAZcB2QE32QGuAQMBhwHUATfUAYoBAgF3</sads:DebugSymbol.Symbol>
+      <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw2FAcUZAECPAOqAg8CAQFIC0hSAgECUQlRkwEDAYkDVA1fJQMB7AJiEWgkAwHdAmsVezYDAbICfhmEASwDAaMChwEd/gEiAgExgQIhkwImAgEQUYoBUZABAwGKA1wTXFsDAfsCVxNXhAEDAe0CZRdldwMB3gJ4G3hjAwHPAm4bboQBAwHBAnMbc3cDAbMCgQEfgQGfAQMBpAKKASOKAZUBAgEyjgEh+QEsAgFC/AEh/AGLAQIBQIQCJ4QCpwECARGIAiWRAjACAR+PASOaASwDAYYCmwEjpgEsAwHpAacBI/EBLQIBUvIBI/gBNgIBQ/wBePwBiAECAUGJAiePAkICASKQAieQAocBAgEglwEplwGqAQMBlQKSASmSAaABAwGHAqMBKaMBowEDAfgBngEpngGSAQMB6gGqASmqAZkBAwHbAbEBJ+8BMgIBU/UBKfUBmAECAUSMAi2MApwBAgEjkAJ+kAKEAQIBIbUBKe4BNAIBVLYBK8EBSwMBugHCASvtATACAVW+ATG+AYsBAwHLAbkBMbkBhAEDAbsBxQExxQGhAQIBVskBL+IBOgIBd+UBL+sBQgIBZsoBMdABRAMBqQHRATHhAVUCAXjoATXoAYsBAgFnzQE3zQGJAQMBqgHeATfeAaABAwGZAdkBN9kBrgEDAYkB1AE31AGKAQIBeQ==</sads:DebugSymbol.Symbol>
     </Flowchart>
   </local:Activity1.Implementation>
 </local:Activity1>

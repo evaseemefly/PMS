@@ -98,7 +98,7 @@
                 <local:LogIn_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="LogIn_Code_2">
                   <local:LogIn_Code.LogIn>
                     <InArgument x:TypeArguments="x:String">
-                      <mca:CSharpValue x:TypeArguments="x:String">"查询结果含"+_list_queryModel.ToString();</mca:CSharpValue>
+                      <mca:CSharpValue x:TypeArguments="x:String">"查询结果含："+_list_queryModel.Count();</mca:CSharpValue>
                     </InArgument>
                   </local:LogIn_Code.LogIn>
                 </local:LogIn_Code>
@@ -123,10 +123,10 @@
                     </local:GetStateByQueryList_Code>
                     <FlowStep.Next>
                       <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_12">
-                        <local:LogIn_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="LogIn_Code_3">
+                        <local:LogIn_Code Text="{x:Null}" sap2010:Annotation.AnnotationText="记录根据联通查询接口查询到的_list_queryModel集合中的查询结果数量" sap2010:WorkflowViewState.IdRef="LogIn_Code_3">
                           <local:LogIn_Code.LogIn>
                             <InArgument x:TypeArguments="x:String">
-                              <mca:CSharpValue x:TypeArguments="x:String">"状态码为"+_state</mca:CSharpValue>
+                              <mca:CSharpValue x:TypeArguments="x:String">"查询集合的总数为" +((_list_queryModel==null)?0:_list_queryModel.Count());</mca:CSharpValue>
                             </InArgument>
                           </local:LogIn_Code.LogIn>
                         </local:LogIn_Code>
@@ -202,11 +202,11 @@
                                                 <local:LogIn_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="LogIn_Code_4">
                                                   <local:LogIn_Code.LogIn>
                                                     <InArgument x:TypeArguments="x:String">
-                                                      <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在"</mca:CSharpValue>
+                                                      <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"存在于数据库中"</mca:CSharpValue>
                                                     </InArgument>
                                                   </local:LogIn_Code.LogIn>
                                                 </local:LogIn_Code>
-                                                <local:InsertReciveModel2List_Code State="{x:Null}" Text="{x:Null}" sap2010:Annotation.AnnotationText="" sap2010:WorkflowViewState.IdRef="InsertReciveModel2List_Code_1">
+                                                <local:InsertReciveModel2List_Code State="{x:Null}" Text="{x:Null}" sap2010:Annotation.AnnotationText="若当前对象的msgid存在于缓存中，则插入新建的集合中" sap2010:WorkflowViewState.IdRef="InsertReciveModel2List_Code_1">
                                                   <local:InsertReciveModel2List_Code.Item>
                                                     <InArgument x:TypeArguments="pms:SMSModel_QueryReceive">
                                                       <mca:CSharpValue x:TypeArguments="pms:SMSModel_QueryReceive">item</mca:CSharpValue>
@@ -226,10 +226,10 @@
                                               </Sequence>
                                             </If.Then>
                                             <If.Else>
-                                              <local:LogIn_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="LogIn_Code_5">
+                                              <local:LogIn_Code Text="{x:Null}" sap2010:Annotation.AnnotationText="当前对象的msgid不存在于缓存中" sap2010:WorkflowViewState.IdRef="LogIn_Code_5">
                                                 <local:LogIn_Code.LogIn>
                                                   <InArgument x:TypeArguments="x:String">
-                                                    <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存中"</mca:CSharpValue>
+                                                    <mca:CSharpValue x:TypeArguments="x:String">item.msgId+"不存在于缓存或数据库中"</mca:CSharpValue>
                                                   </InArgument>
                                                 </local:LogIn_Code.LogIn>
                                               </local:LogIn_Code>
@@ -239,13 +239,18 @@
                                       </Sequence>
                                     </ActivityAction>
                                   </ForEach>
-                                  <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_9">
-                                    <InArgument x:TypeArguments="x:String">
-                                      <mca:CSharpValue x:TypeArguments="x:String">"现集合中共有"+_list_Exist_queryModel.Count()+"个对象"</mca:CSharpValue>
-                                    </InArgument>
-                                  </WriteLine>
+                                  <local:LogIn_Code Text="{x:Null}" sap2010:Annotation.AnnotationText="日志记录新建的存在集合中的个数" sap2010:WorkflowViewState.IdRef="LogIn_Code_7">
+                                    <local:LogIn_Code.LogIn>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <mca:CSharpValue x:TypeArguments="x:String">"现集合中共有" + _list_Exist_queryModel.Count() + "个对象"</mca:CSharpValue>
+                                      </InArgument>
+                                    </local:LogIn_Code.LogIn>
+                                  </local:LogIn_Code>
                                 </Sequence>
                               </If.Then>
+                              <If.Else>
+                                <local:LogIn_Code Text="{x:Null}" sap2010:WorkflowViewState.IdRef="LogIn_Code_8" LogIn="不满足条件跳出写入新集合操作" />
+                              </If.Else>
                             </If>
                             <FlowStep.Next>
                               <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_9">
@@ -289,7 +294,7 @@
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
-    <sads:DebugSymbol.Symbol>d1lEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFF1ZXJ5V0ZMaWJcTWFpblN0YXRpc3RpY3NfQWN0aXZpdHkueGFtbDQUBxRkAQI8A6UCDwIBAUgLSFICAQJRCVGTAQMBhwNUDV8lAwHqAmIRaCQDAdsCaxV7NgMBsAJ+GYQBLAMBoQKHAR35ASICATH8ASGOAiYCARBRigFRkAEDAYgDXBNcWwMB+QJXE1eEAQMB6wJlF2V5AwHcAngbeGMDAc0CbhtuhAEDAb8CcxtzdwMBsQKBAR+BAWoDAaICigEjigGVAQIBMo4BIfcBLAIBQP8BJ/8BpwECARGDAiWMAjACAR+PASOaASwDAYQCmwEjpgEsAwHnAacBI/EBLQIBUPIBI/YBLwIBQYQCJ4oCQgIBIosCJ4sChwECASCXASmXAaoBAwGTApIBKZIBoAEDAYUCowEpowGjAQMB9gGeASmeAZIBAwHoAaoBKaoBmQEDAdkBsQEn7wEyAgFR9AEn9AGSAQIBQocCLYcCnAECASOLAn6LAoQBAgEhtQEp7gE0AgFStgErwQFLAwG4AcIBK+0BMAIBU74BMb4BiwEDAckBuQExuQGEAQMBuQHFATHFAaEBAgFUyQEv4gE6AgF15QEv6wFCAgFkygEx0AFEAwGnAdEBMeEBVQIBdugBNegBhwECAWXNATfNAYQBAwGoAd4BN94BoAEDAZcB2QE32QGuAQMBhwHUATfUAYoBAgF3</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWw2FAcUZAECPAOqAg8CAQFIC0hSAgECUQlRkwEDAYkDVA1fJQMB7AJiEWgkAwHdAmsVezYDAbICfhmEASwDAaMChwEd/gEiAgExgQIhkwImAgEQUYoBUZABAwGKA1wTXFsDAfsCVxNXhAEDAe0CZRdldwMB3gJ4G3hjAwHPAm4bboQBAwHBAnMbc3cDAbMCgQEfgQGfAQMBpAKKASOKAZUBAgEyjgEh+QEsAgFC/AEh/AGLAQIBQIQCJ4QCpwECARGIAiWRAjACAR+PASOaASwDAYYCmwEjpgEsAwHpAacBI/EBLQIBUvIBI/gBNgIBQ/wBePwBiAECAUGJAiePAkICASKQAieQAocBAgEglwEplwGqAQMBlQKSASmSAaABAwGHAqMBKaMBowEDAfgBngEpngGSAQMB6gGqASmqAZkBAwHbAbEBJ+8BMgIBU/UBKfUBmAECAUSMAi2MApwBAgEjkAJ+kAKEAQIBIbUBKe4BNAIBVLYBK8EBSwMBugHCASvtATACAVW+ATG+AYsBAwHLAbkBMbkBhAEDAbsBxQExxQGhAQIBVskBL+IBOgIBd+UBL+sBQgIBZsoBMdABRAMBqQHRATHhAVUCAXjoATXoAYsBAgFnzQE3zQGJAQMBqgHeATfeAaABAwGZAdkBN9kBrgEDAYkB1AE31AGKAQIBeQ==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -324,16 +329,17 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LogIn_Code_3" sap:VirtualizedContainerService.HintSize="200,22">
+      <sap2010:ViewStateData Id="LogIn_Code_3" sap:VirtualizedContainerService.HintSize="200,76">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="538,61" />
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="538,61" />
-      <sap2010:ViewStateData Id="CheckMsgIdInRedist_Code_1" sap:VirtualizedContainerService.HintSize="464,81">
+      <sap2010:ViewStateData Id="CheckMsgIdInRedist_Code_1" sap:VirtualizedContainerService.HintSize="464,76">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -341,14 +347,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="LogIn_Code_4" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="InsertReciveModel2List_Code_1" sap:VirtualizedContainerService.HintSize="200,47">
+      <sap2010:ViewStateData Id="InsertReciveModel2List_Code_1" sap:VirtualizedContainerService.HintSize="200,60">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,275">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,284">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -356,22 +362,28 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LogIn_Code_5" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,453">
+      <sap2010:ViewStateData Id="LogIn_Code_5" sap:VirtualizedContainerService.HintSize="200,60">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,698">
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,456">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,696">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,847">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="508,843">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -379,15 +391,22 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="538,998" />
-      <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="538,63" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="560,1427">
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="538,992" />
+      <sap2010:ViewStateData Id="LogIn_Code_7" sap:VirtualizedContainerService.HintSize="538,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="560,1418">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogIn_Code_8" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -422,7 +441,7 @@
       <sap2010:ViewStateData Id="FlowStep_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">200,644.5</av:Point>
+            <av:Point x:Key="ShapeLocation">200,704.5</av:Point>
             <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -430,9 +449,9 @@
       <sap2010:ViewStateData Id="FlowStep_5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">200,544.5</av:Point>
+            <av:Point x:Key="ShapeLocation">200,613.5</av:Point>
             <av:Size x:Key="ShapeSize">200,51</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,595.5 300,644.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,664.5 300,704.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -440,8 +459,8 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,499</av:Point>
-            <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,521 300,544.5</av:PointCollection>
+            <av:Size x:Key="ShapeSize">200,76</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,575 300,613.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

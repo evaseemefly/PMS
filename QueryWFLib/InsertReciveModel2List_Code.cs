@@ -31,6 +31,7 @@ namespace QueryWFLib
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
             var state = context.GetValue(this.Match_Enum);
+            Common.LogHelper.WriteLog(string.Format("——执行InsertReciveModel2List_Code事件代码——"));
             List<SMSModel_QueryReceive> list = context.GetValue(List_QueryReceive);
             SMSModel_QueryReceive item = context.GetValue(Item);
            // int state = -1;
@@ -39,6 +40,7 @@ namespace QueryWFLib
             
             context.SetValue(Match_Enum, state);
             context.SetValue(List_QueryReceive, list);
+            Common.LogHelper.WriteLog(string.Format("——InsertReciveModel2List_Code事件代码执行结束——"));
         }
 
         /// <summary>
