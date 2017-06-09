@@ -54,6 +54,9 @@ namespace JobInstances
                 {
                     //receive_model中包含msgid
                     send.SendMsg(send_model_message, out receive_model, false);
+                    var receive_str = SerializerHelper.SerializerToString(receive_model);
+                    LogHelper.WriteLog(string.Format("发送后的回执为{0}", receive_str));
+
                     LogHelper.WriteLog(string.Format("msgid:{0}已发送", send_model_message.Model_Send.msgid));
                 }
                 catch (Exception ex)
