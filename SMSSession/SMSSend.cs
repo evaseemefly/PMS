@@ -405,6 +405,12 @@ namespace SMSFactory
             var jobTemplate_target = (from t in user_current.J_JobTemplate
                                      where t.JobType == Convert.ToInt32(PMS.Model.Enum.JobType_Enum.sendJob)
                                      select t).FirstOrDefault();
+            if (jobTemplate_target == null)
+            {
+               var exception= new PMS.Model.ExceptionModel.PMSException(string.Format("用户：{0}未拥有指定作业：{1}", user_current.ID, PMS.Model.Enum.JobType_Enum.sendJob.ToString()));
+                throw exception;
+                
+            }
             //2.3 根据作业模板创建作业实例
             //    调用J_JobInfoBLL中的AddJobInfo方法创建作业实例
             J_JobInfo jobInstance = new J_JobInfo()
