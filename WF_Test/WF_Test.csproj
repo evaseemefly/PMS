@@ -73,12 +73,34 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+    <Content Include="unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{648b0371-b409-44cf-af78-e07e617d8828}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.BLL\Fdfs.BLL.csproj">
+      <Project>{81978320-376f-47b7-bdd0-7c259ba7fd5d}</Project>
+      <Name>Fdfs.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.DAL\Fdfs.DAL.csproj">
+      <Project>{b7bece01-40b2-445e-bc7d-13ed34502693}</Project>
+      <Name>Fdfs.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.IBLL\Fdfs.IBLL.csproj">
+      <Project>{0fc982c5-f9c3-48ac-b8f0-37c08a5fcfd4}</Project>
+      <Name>Fdfs.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fdfs.IDAL\Fdfs.IDAL.csproj">
+      <Project>{8b08411e-6606-460e-86d7-be727c53bddc}</Project>
+      <Name>Fdfs.IDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>

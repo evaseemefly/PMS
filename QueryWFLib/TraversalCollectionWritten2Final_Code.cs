@@ -16,7 +16,7 @@ namespace QueryWFLib
         /// <summary>
         /// 输入的查询状态
         /// </summary>
-        //public InArgument<PMS.Model.Enum.QueryState_Enum> State_Query { get; set; }
+        public InArgument<QueryState_Enum> State_Query { get; set; }
 
         /// <summary>
         /// 输入的在步骤二进行的查询结果集合
@@ -31,7 +31,7 @@ namespace QueryWFLib
         /// <summary>
         /// 返回最终的匹配结果（枚举）
         /// </summary>
-        public OutArgument<PMS.Model.Enum.MatchCondition_Enum> Enum_MatchCondition { get; set; }
+        public OutArgument<MatchCondition_Enum> Enum_MatchCondition { get; set; }
 
         // 如果活动返回值，则从 CodeActivity<TResult>
         // 并从 Execute 方法返回该值。
@@ -44,15 +44,21 @@ namespace QueryWFLib
 
             List<PMS.Model.SMSModel.SMSModel_QueryReceive> list_newQuery = new List<PMS.Model.SMSModel.SMSModel_QueryReceive>();
 
+            var state_query = context.GetValue(this.State_Query);
+
             MatchCondition_Enum state_match= MatchCondition_Enum.other;
 
             //var state = context.GetValue(this.State_Query);
             ExistEnum exist_enum = ExistEnum.isNotExist;
-            if (list_ordQuery.Count() > 0)
+            int index = 0;
+            
+            if (list_ordQuery.Count() > 0&&state_query== QueryState_Enum.remnant)
             {
                 //遍历当前集合
                 list_ordQuery.ForEach(r => 
                 {
+                    index++;
+                    Common.LogHelper.WriteWarn(string.Format("查询第{0}个对象", index));
                     //为当前集合中的每个对象创建查询实例
                     var queryReceive = new QueryRecive(r);
                     //判断当前查询结果是否满足条件

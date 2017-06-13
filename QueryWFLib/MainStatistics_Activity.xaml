@@ -132,12 +132,27 @@
                         </local:LogIn_Code>
                         <FlowStep.Next>
                           <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_13">
-                            <local:TraversalCollectionWritten2Final_Code Enum_MatchCondition="{x:Null}" List_QueryReceive="{x:Null}" Text="{x:Null}" sap2010:Annotation.AnnotationText="编辑查询集合写入最终集合" sap2010:WorkflowViewState.IdRef="TraversalCollectionWritten2Final_Code_1">
+                            <local:TraversalCollectionWritten2Final_Code Text="{x:Null}" sap2010:Annotation.AnnotationText="编辑查询集合写入最终集合" sap2010:WorkflowViewState.IdRef="TraversalCollectionWritten2Final_Code_1">
+                              <local:TraversalCollectionWritten2Final_Code.Enum_MatchCondition>
+                                <OutArgument x:TypeArguments="pme:MatchCondition_Enum">
+                                  <mca:CSharpReference x:TypeArguments="pme:MatchCondition_Enum">_matchCondition_enum</mca:CSharpReference>
+                                </OutArgument>
+                              </local:TraversalCollectionWritten2Final_Code.Enum_MatchCondition>
                               <local:TraversalCollectionWritten2Final_Code.List_QueryModel>
                                 <InArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
                                   <mca:CSharpValue x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryModel</mca:CSharpValue>
                                 </InArgument>
                               </local:TraversalCollectionWritten2Final_Code.List_QueryModel>
+                              <local:TraversalCollectionWritten2Final_Code.List_QueryReceive>
+                                <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                  <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_Exist_queryModel</mca:CSharpReference>
+                                </OutArgument>
+                              </local:TraversalCollectionWritten2Final_Code.List_QueryReceive>
+                              <local:TraversalCollectionWritten2Final_Code.State_Query>
+                                <InArgument x:TypeArguments="pme:QueryState_Enum">
+                                  <mca:CSharpValue x:TypeArguments="pme:QueryState_Enum">_state_enum</mca:CSharpValue>
+                                </InArgument>
+                              </local:TraversalCollectionWritten2Final_Code.State_Query>
                             </local:TraversalCollectionWritten2Final_Code>
                             <FlowStep.Next>
                               <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_9">
@@ -175,7 +190,7 @@
       </FlowStep>
     </Flowchart.StartNode>
     <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_5">
-      <If sap2010:Annotation.AnnotationText="不使用此种方式&#xD;&#xA;20170612" DisplayName="遍历查询集合写入最终集合" sap2010:WorkflowViewState.IdRef="If_1">
+      <If sap2010:Annotation.AnnotationText="不使用此种方式&#xA;20170612" DisplayName="遍历查询集合写入最终集合" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Condition>
           <InArgument x:TypeArguments="x:Boolean">
             <mca:CSharpValue x:TypeArguments="x:Boolean">_state_enum==PMS.Model.Enum.QueryState_Enum.remnant</mca:CSharpValue>
@@ -303,7 +318,7 @@
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
-    <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWwZFAcUZAECPAOzAg8CAQFIC0hSAgECUQlRkwEDAaYBVA1fJQMBiQFiEWgkAgF6axV7NgIBT34ZhAEsAgFAhwEdjQFLAgExkAEhogEmAgEQUYoBUZABAwGnAVwTXFsDAZgBVxNXhAEDAYoBZRdldwIBe3gbeGMCAWxuG26EAQIBXnMbc3cCAVCBAR+BAZ8BAgFBigEjigGMAQIBMpMBJ5MBpwECARGXASWgATACAR+YASeeAUICASKfASefAYcBAgEgmwEtmwGcAQIBI58Bfp8BhAECASE=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0hFOlwwM+WNj+WQjOW8gOWPkVznn63kv6FcUE1TXFBNU1xRdWVyeVdGTGliXE1haW5TdGF0aXN0aWNzX0FjdGl2aXR5LnhhbWwcFAcUZAECPAPCAg8CAQFIC0hSAgECUQlRkwEDAdABVA1fJQMBswFiEWgkAwGkAWsVezYCAXl+GYQBLAIBaocBHZwBSwIBMZ8BIbEBJgIBEFGKAVGQAQMB0QFcE1xbAwHCAVcTV4QBAwG0AWUXZXcDAaUBeBt4YwMBlgFuG26EAQMBiAFzG3N3AgF6gQEfgQGfAQIBa48BI48BjAECAVyZASOZAXcCAU6UASOUAZoBAgFAigEjigGMAQIBMqIBJ6IBpwECARGmASWvATACAR+nASetAUICASKuASeuAYcBAgEgqgEtqgGcAQIBI64Bfq4BhAECASE=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
