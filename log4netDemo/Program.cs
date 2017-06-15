@@ -12,11 +12,12 @@ namespace log4netDemo
     {
         static void Main(string[] args)
         {
-            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
+            Common.LogHelper.WriteLog("测试");
+            //log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
 
-            var logInfo = log4net.LogManager.GetLogger("loginfo");
-            logInfo.Info("测试测试");
-            LogHelper.WriteLog("测试日志");
+            //var logInfo = log4net.LogManager.GetLogger("loginfo");
+            //logInfo.Info("测试测试");
+            //LogHelper.WriteLog("测试日志");
 
             Console.ReadLine();
         }

@@ -60,6 +60,25 @@ namespace PersonImporting.BLL
             return enum_exist;
         }
 
+        public ExistEnum CheckDepartmentExistNoNew(string departmentName)
+        {
+
+            //根据群组名称获取群组集合
+            //17年2月20日修改：获取无归属部门的DID
+            var PDID = departmentBLL.GetListBy(g => g.DepartmentName == "无归属部门").FirstOrDefault().DID;
+
+            var groupList = departmentBLL.GetListBy(g => g.DepartmentName == departmentName).ToList();
+            ExistEnum enum_exist = ExistEnum.isExist;
+            //判断集合是否为空
+            if (groupList.Count() == 0)
+            {
+                //不需要创建
+                enum_exist = ExistEnum.isNotExist;
+            }
+            return enum_exist;
+        }
+
+
         /// <summary>
         /// 根据部门名称得到Id
         /// </summary>

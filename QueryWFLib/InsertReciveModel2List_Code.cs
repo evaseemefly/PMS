@@ -31,16 +31,24 @@ namespace QueryWFLib
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
             var state = context.GetValue(this.Match_Enum);
+            Common.LogHelper.WriteLog(string.Format("——执行InsertReciveModel2List_Code事件代码——"));
             List<SMSModel_QueryReceive> list = context.GetValue(List_QueryReceive);
             SMSModel_QueryReceive item = context.GetValue(Item);
            // int state = -1;
             //将拥有符合条件的msgid的item存入list
             InsertListModel(item, ref list, ref state);
-
+            
             context.SetValue(Match_Enum, state);
             context.SetValue(List_QueryReceive, list);
+            Common.LogHelper.WriteLog(string.Format("——InsertReciveModel2List_Code事件代码执行结束——"));
         }
 
+        /// <summary>
+        /// 根据传入的item将item插入集合中
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="list"></param>
+        /// <param name="state"></param>
         public static void InsertListModel(SMSModel_QueryReceive item, ref List<SMSModel_QueryReceive> list, ref PMS.Model.Enum.MatchCondition_Enum state)
         {
             if(item != null)

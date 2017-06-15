@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using log4net;
+using System.IO;
 
 namespace Common
 {
@@ -12,17 +13,26 @@ namespace Common
     /// </summary>
     public class LogHelper
     {
-        //private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
+        #region 2017-05-05 不使用此种方式，注释
+        //private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("Info");
 
-        //private static readonly ILog logWarn = LogManager.GetLogger("logWarn");
+        //private static readonly ILog logWarn = LogManager.GetLogger("WARN");
 
-        //private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("logerror");
+        //private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("ERROR");
+        #endregion
 
-        private static readonly log4net.ILog logInfo = log4net.LogManager.GetLogger("Info");
 
-        private static readonly ILog logWarn = LogManager.GetLogger("WARN");
+        private static string path_logConfig = string.Empty;
 
-        private static readonly log4net.ILog logError = log4net.LogManager.GetLogger("ERROR");
+        private static log4net.Core.LogImpl logImpl;
+
+        static LogHelper()
+        {
+            string path_logConfig=Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config");
+
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(path_logConfig));
+           logImpl= log4net.LogManager.GetLogger("mylogger") as log4net.Core.LogImpl;
+        }
 
         /// <summary>
         /// 写入日志
@@ -31,9 +41,10 @@ namespace Common
         public static void WriteLog(string info)
         {
             //logInfo.Info(info);
-            if (logInfo.IsInfoEnabled)   //IsInfoEnabled？
+            //logImpl.Info(info);
+            if (logImpl.IsInfoEnabled)   //IsInfoEnabled？
             {
-                logInfo.Info(info);
+                logImpl.Info(info);
             }
         }
 
@@ -43,9 +54,9 @@ namespace Common
         /// <param name="warn"></param>
         public static void WriteWarn(string warn)
         {
-            if (logWarn.IsWarnEnabled)
+            if (logImpl.IsWarnEnabled)
             {
-                logWarn.Warn(warn);               
+                logImpl.Warn(warn);               
             }
         }
 
@@ -56,12 +67,12 @@ namespace Common
         /// <param name="ex"></param>
         public static void WriteError(string info,Exception ex=null)
         {
-            if(logError.IsErrorEnabled)  //IsErrorEnabled?
+            if(logImpl.IsErrorEnabled)  //IsErrorEnabled?
             {
                 if (ex != null)
-                    logError.Error(info, ex);
+                    logImpl.Error(info, ex);
                 else
-                    logError.Error(info);
+                    logImpl.Error(info);
             }
         }
     }

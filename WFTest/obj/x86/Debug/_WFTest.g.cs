@@ -11,7 +11,7 @@
 namespace XamlStaticHelperNamespace {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
     internal class _XamlStaticHelper {
         
         private static System.WeakReference schemaContextField;
@@ -79,6 +79,104 @@ namespace XamlStaticHelperNamespace {
             assemblyList.Add(Load("PMS.IBLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("SMSFactory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("System.Collections.Concurrent, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b" +
+                        "03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d5" +
+                        "0a3a"));
+            assemblyList.Add(Load("System.ComponentModel.Annotations, Version=4.0.0.0, Culture=neutral, PublicKeyTok" +
+                        "en=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.ComponentModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f1" +
+                        "1d50a3a"));
+            assemblyList.Add(Load("System.ComponentModel.EventBasedAsync, Version=4.0.0.0, Culture=neutral, PublicKe" +
+                        "yToken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Diagnostics.Contracts, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b0" +
+                        "3f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Diagnostics.Debug, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f" +
+                        "7f11d50a3a"));
+            assemblyList.Add(Load("System.Diagnostics.Tools, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f" +
+                        "7f11d50a3a"));
+            assemblyList.Add(Load("System.Diagnostics.Tracing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f" +
+                        "5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Dynamic.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f" +
+                        "11d50a3a"));
+            assemblyList.Add(Load("System.Globalization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11" +
+                        "d50a3a"));
+            assemblyList.Add(Load("System.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Linq.Expressions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7" +
+                        "f11d50a3a"));
+            assemblyList.Add(Load("System.Linq.Parallel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11" +
+                        "d50a3a"));
+            assemblyList.Add(Load("System.Linq.Queryable, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f1" +
+                        "1d50a3a"));
+            assemblyList.Add(Load("System.Net.NetworkInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b" +
+                        "03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Net.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f1" +
+                        "1d50a3a"));
+            assemblyList.Add(Load("System.Net.Requests, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d" +
+                        "50a3a"));
+            assemblyList.Add(Load("System.ObjectModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d5" +
+                        "0a3a"));
+            assemblyList.Add(Load("System.Reflection, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50" +
+                        "a3a"));
+            assemblyList.Add(Load("System.Reflection.Emit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f" +
+                        "11d50a3a"));
+            assemblyList.Add(Load("System.Reflection.Emit.ILGeneration, Version=4.0.0.0, Culture=neutral, PublicKeyT" +
+                        "oken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Reflection.Emit.Lightweight, Version=4.0.0.0, Culture=neutral, PublicKeyTo" +
+                        "ken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Reflection.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b0" +
+                        "3f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Reflection.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b0" +
+                        "3f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Resources.ResourceManager, Version=4.0.0.0, Culture=neutral, PublicKeyToke" +
+                        "n=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" +
+                        ""));
+            assemblyList.Add(Load("System.Runtime.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5" +
+                        "f7f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime.InteropServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=" +
+                        "b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime.InteropServices.WindowsRuntime, Version=4.0.0.0, Culture=neutral, " +
+                        "PublicKeyToken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7" +
+                        "f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime.Serialization.Json, Version=4.0.0.0, Culture=neutral, PublicKeyTok" +
+                        "en=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime.Serialization.Primitives, Version=4.0.0.0, Culture=neutral, Public" +
+                        "KeyToken=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Runtime.Serialization.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToke" +
+                        "n=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Security.Principal, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5" +
+                        "f7f11d50a3a"));
+            assemblyList.Add(Load("System.ServiceModel.Duplex, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f" +
+                        "5f7f11d50a3a"));
+            assemblyList.Add(Load("System.ServiceModel.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f" +
+                        "7f11d50a3a"));
+            assemblyList.Add(Load("System.ServiceModel.NetTcp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f" +
+                        "5f7f11d50a3a"));
+            assemblyList.Add(Load("System.ServiceModel.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=" +
+                        "b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.ServiceModel.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b0" +
+                        "3f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Text.Encoding, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11" +
+                        "d50a3a"));
+            assemblyList.Add(Load("System.Text.Encoding.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken" +
+                        "=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Text.RegularExpressions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=" +
+                        "b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Threading, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a" +
+                        "3a"));
+            assemblyList.Add(Load("System.Threading.Tasks, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f" +
+                        "11d50a3a"));
+            assemblyList.Add(Load("System.Threading.Tasks.Parallel, Version=4.0.0.0, Culture=neutral, PublicKeyToken" +
+                        "=b03f5f7f11d50a3a"));
+            assemblyList.Add(Load("System.Xml.ReaderWriter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7" +
+                        "f11d50a3a"));
+            assemblyList.Add(Load("System.Xml.XDocument, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11" +
+                        "d50a3a"));
+            assemblyList.Add(Load("System.Xml.XmlSerializer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f" +
+                        "7f11d50a3a"));
             assemblyList.Add(System.Reflection.Assembly.GetExecutingAssembly());
             return assemblyList;
         }

@@ -425,6 +425,42 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据用户id 查询该用户所拥有默认权限（排除禁用的）
+        /// </summary>
+        /// <param name="uid">用户id</param>
+        /// <param name="isMiddle"></param>
+        /// <returns></returns>
+        public ActionInfo GetDefaultActionByUID(int uid, bool isMiddle,bool isDefault=false)
+        {            
+            //1 从数据库中读取指定的用户对象
+            var userInfo = this.GetListBy(u => u.ID == uid).FirstOrDefault();
+            if (userInfo != null)
+            {
+                //不通过路线二查询（即不查询角色这条线） 
+
+                //3 获取该用户对象对应的R_UserInfo_ActionInfo导航属性集合
+                //list_R_User_Action存储的是userInfoId为1的R_User_Action对象的集合
+                var list_R_User_Action = userInfo.R_UserInfo_ActionInfo;
+                //4 取出userInfo id为2的用户所对应的Action集合（路线一的方式）                
+                //4.1 取出isPass为true，默认权限为true的唯一对象
+                var action_isDefault = (
+                   from r in list_R_User_Action
+                   where r.isPass == true&&r.isDefault==true
+                   select r.ActionInfo
+                    ).FirstOrDefault();
+                if (action_isDefault != null)
+                {
+                    return action_isDefault.isShow ? ((isMiddle) ? action_isDefault.ToMiddleModel() : action_isDefault) : null;
+                }
+                else
+                {
+                    return null;
+                }                            
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 返回指定用户的顶部按钮方法集合
         /// </summary>
         /// <param name="uid"></param>

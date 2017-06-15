@@ -655,6 +655,7 @@ namespace SMSFactory
             {
                 StringRedisHelper redisStrhelper = new StringRedisHelper();
                 redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(redis_expirationDate));
+                Common.LogHelper.WriteLog(String.Format("msgid:{0}写入redis成功",receive.msgid));
                 //2017年2月4日 添加释放资源
                 redisStrhelper.Dispose();
                 return true;

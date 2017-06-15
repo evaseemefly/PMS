@@ -32,15 +32,11 @@ namespace QueryWFLib
         private void ReadAppConfig(CodeActivityContext context)
         {
 
-            //为三个输出变量赋值
-            //context.SetValue(SleepTime, int.Parse(ConfigHelper.GetSettingValue("sleepTime")));
-            //var key_list = ConfigHelper.GetSettingValue("id_list");
-            //var key_hash = ConfigHelper.GetSettingValue("id_hash");
+            //为三个输出变量赋值    
+            //只读取保存msgid的list在redis中的id        
             var key_list_msgid = ConfigHelper.GetSettingValue("id_list_msgid");
 
-            context.SetValue(Id_list_msgid, key_list_msgid);
-            //context.SetValue(Id_hash, key_hash);
-            //context.SetValue(Seconds_Interval, double.Parse(ConfigHelper.GetSettingValue("seconds_add")));
+            context.SetValue(Id_list_msgid, key_list_msgid);            
 
         }
     }

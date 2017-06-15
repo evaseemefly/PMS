@@ -19,7 +19,7 @@ namespace PersonImporting.BLL
         {
             //根据群组名称获取群组集合
             var personList = personBLL.GetListBy(g => g.PhoneNum == phone).ToList();
-            ExistEnum enum_exist = ExistEnum.error;
+            ExistEnum enum_exist = ExistEnum.isExist;
             //判断集合是否为空
             if (personList.Count() == 0)
             {
@@ -30,7 +30,7 @@ namespace PersonImporting.BLL
                     PhoneNum = phone,
                     isDel = false,
                     isVIP = false
-                }) == true ? ExistEnum.ok : ExistEnum.isExist;
+                }) == true ? ExistEnum.ok : ExistEnum.error;
             }
             return enum_exist;
         }
@@ -49,6 +49,23 @@ namespace PersonImporting.BLL
             //   isOk = personBLL.UpdatePerson(pid, gid, did);
             //}
             #endregion
+            return isOk;
+        }
+
+
+
+        /// <summary>
+        /// LiFei5月11日改动
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="gids"></param>
+        /// <param name="dids"></param>
+        /// <returns></returns>
+        public bool CreatPersonRelationship(string phone, int[] gids)
+        {
+            bool isOk = false;
+            //根据电话号码（唯一）查找指定联系人
+            isOk = personBLL.UpdatePerson(phone, gids);
             return isOk;
         }
     }

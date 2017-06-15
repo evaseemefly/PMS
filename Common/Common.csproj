@@ -96,6 +96,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />

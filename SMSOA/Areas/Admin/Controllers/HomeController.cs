@@ -177,9 +177,24 @@ namespace SMSOA.Areas.Admin.Controllers
             #endregion
             //封装后写法如下：
             var list= userInfoBLL.GetActionListByUID(userId,false, true);
+            //新加入找到默认选中的对象并设置其为选中状态,若没有则返回null
+            var action_default = userInfoBLL.GetDefaultActionByUID(userId, true, true);
             //4.6 将action集合转换为树节点集合
-            List<PMS.Model.EasyUIModel.EasyUITreeNode> list_easyUITreeNode = ActionInfo.ToEasyUITreeNode(list);
-
+            List<PMS.Model.EasyUIModel.EasyUITreeNode> list_easyUITreeNode = ActionInfo.ToEasyUITreeNode(list,action_default);
+            #region 不使用以下方式修改节点的选中状态
+            ////从集合中取出对应的treenode机器父节点对象
+            //var treenode = list_easyUITreeNode.Where(a => a.id == action_default.ID).FirstOrDefault();
+            //var treenode_parent = list_easyUITreeNode.Where(a => a.id == action_default.ParentID).FirstOrDefault();
+            ////找到其在集合中的位置
+            //var index = list_easyUITreeNode.IndexOf(treenode);
+            //var index_parent = list_easyUITreeNode.IndexOf(treenode_parent);
+            ////修改checked为true
+            //treenode.Checked = true;
+            //treenode_parent.Checked = true;
+            ////替换
+            //list_easyUITreeNode[index] = treenode;
+            //list_easyUITreeNode[index_parent] = treenode_parent;
+            #endregion
             //4.7 将树节点集合转换为json格式并返回
             return Content(Common.SerializerHelper.SerializerToString(list_easyUITreeNode));
             //return null;

@@ -67,7 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="log4net.config" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="unity.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -80,6 +82,10 @@
     <ProjectReference Include="..\Fdfs.DAL\Fdfs.DAL.csproj">
       <Project>{b7bece01-40b2-445e-bc7d-13ed34502693}</Project>
       <Name>Fdfs.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISMS\ISMS.csproj">
+      <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>
+      <Name>ISMS</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
@@ -100,6 +106,10 @@
     <ProjectReference Include="..\SendJob\JobInstances.csproj">
       <Project>{de4ccb95-5614-4e54-b11b-4b1ba260df59}</Project>
       <Name>JobInstances</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMSSession\SMSFactory.csproj">
+      <Project>{ace327d0-a08b-431e-a422-abaa4ba73ac7}</Project>
+      <Name>SMSFactory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
