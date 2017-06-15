@@ -62,10 +62,22 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceReference_QuartzService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.CombineModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model.Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.SMSModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.ViewModel.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference_QuartzService\PMS.Model1.xsd">

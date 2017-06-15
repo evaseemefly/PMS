@@ -20,10 +20,18 @@ namespace JobInstances
         {
             var dataMap = context.JobDetail.JobDataMap;
             Activity workflow_temp = new QueryWFLib.Activity1();
-            var dic = new Dictionary<string, object>() { { "isMMS", Common.SerializerHelper.DeSerializerToObject <PMS.Model.Enum.MMS_Enum>(dataMap["isMMS"].ToString()) } };
-            LogHelper.WriteLog("启动查询wf");
-            var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
-            LogHelper.WriteLog("跳出wf");
+            if (dataMap["isMMS"] != null)
+            {
+                var value_isMMS = Common.SerializerHelper.DeSerializerToObject<PMS.Model.Enum.MMS_Enum>(dataMap["isMMS"].ToString());
+                var dic = new Dictionary<string, object>() { { "isMMS", value_isMMS } };
+                LogHelper.WriteLog("启动查询wf");
+                var work = WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
+                LogHelper.WriteLog("跳出wf");
+            }
+            else {
+                LogHelper.WriteLog("datamap中参数错误，启动wf失败");
+            }
+            
         }
 
         protected override void Exceuted(IJobExecutionContext context)

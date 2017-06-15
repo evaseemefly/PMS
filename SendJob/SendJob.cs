@@ -33,12 +33,22 @@ namespace JobInstances
         {
             LogHelper.WriteLog("执行发送作业");
             var dataMap = context.JobDetail.JobDataMap;
-            
+
             //反序列化
             //var send_model =Common.SerializerHelper.DeSerializerToObject<PMS.Model.SMSModel.SMSModel_Send>(dataMap["SendModel"].ToString());
-            var sendjob_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.JobDataModel.SendJobDataModel>(dataMap["SendModel"].ToString());
-           var obj= sendjob_model.JobDataValue;
-            var combine_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.CombineModel.SendAndMessage_Model>(obj.ToString());
+
+            //var sendjob_model = Common.SerializerHelper.DeSerializerToObject<PMS.Model.JobDataModel.SendJobDataModel>(dataMap["SendModel"].ToString());
+            var sendjob_model = new PMS.Model.JobDataModel.SendJobDataModel ();
+            //sendjob_model.JobDataValue
+                var send_model_message=Common.SerializerHelper.DeSerializerToObject<PMS.Model.CombineModel.SendAndMessage_Model>(dataMap["SendModel"].ToString());
+            //var test= 
+            var obj= sendjob_model.JobDataValue;
+            //if (obj != null)
+            //{
+
+            //}
+
+            var combine_model = send_model_message;/*Common.SerializerHelper.DeSerializerToObject<PMS.Model.CombineModel.SendAndMessage_Model>(obj.ToString());*/
             combine_model.Model_Message.isTiming = false;
             //var send_model = dataMap["SendModel"] as PMS.Model.JobDataModel.SendJobDataModel;
 

@@ -422,8 +422,7 @@ namespace SMSFactory
             //var jobInstance = jobInfoBLL.GetListBy(j => j.JID == 27).FirstOrDefault();
             //3 创建JobData
             var jobData = new PMS.Model.JobDataModel.SendJobDataModel()
-            {
-                
+            {                
                 //4 将前台传入的model值赋给JobData中的JobValue
                 JobDataValue=new PMS.Model.CombineModel.SendAndMessage_Model()
                 {
@@ -554,6 +553,7 @@ namespace SMSFactory
             try
             {
                 var send_model = (model as PMS.Model.CombineModel.SendAndMessage_Model);
+
                 client.SendMsg(send_model.Model_Send, out receive_SMS);
                 //写入数据库的操作在此处完成
                 AfterSend(send_model.Model_Message, receive_SMS, send_model.Model_Send.phones.ToList());
