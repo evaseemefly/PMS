@@ -24,7 +24,7 @@ namespace QueryWFLib
             string logInfo = context.GetValue(this.LogIn);
            // LogHelper.WriteWarn(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")+logInfo);
             
-           Common.LogHelper.WriteLog(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + logInfo);
+           LogHelper.WriteLog(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + logInfo);
         }
     }
 }

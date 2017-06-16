@@ -23,8 +23,8 @@ namespace Common.Redis
             {
                 try
                 {
-                    
-                    redis_client.AddItemToList(id, model);
+
+                    redis_Client.AddItemToList(id, model);
                     return true;
                 }
                 catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Common.Redis
             {
                 try
                 {
-                    redis_client.AddItemToList(this.list_id, model);
+                    redis_Client.AddItemToList(this.list_id, model);
                     return true;
                 }
                 catch(Exception ex)
@@ -60,8 +60,8 @@ namespace Common.Redis
             var model = Common.SerializerHelper.SerializerToString(t);
             try
             {
-                
-                redis_client.EnqueueItemOnList(key, model);
+
+                redis_Client.EnqueueItemOnList(key, model);
                 //redis_client.ExpireEntryIn(key, timespan);
                 //redis_client.Expire(key, timespan);
                 //redis_client.ExpireEntryAt
@@ -81,7 +81,7 @@ namespace Common.Redis
         /// <returns></returns>
         public long Count(string key)
         {
-            return redis_client.GetListCount(key);
+            return redis_Client.GetListCount(key);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Common.Redis
         /// <returns></returns>
         public string DequeueItemFromList(string key)
         {
-           return redis_client.DequeueItemFromList(key);
+           return redis_Client.DequeueItemFromList(key);
 
         }
 
@@ -111,7 +111,7 @@ namespace Common.Redis
             //若集合中有值采取出该集合中第一个对象，并进行反序列化
             else
             {
-                return Common.SerializerHelper.DeSerializerToObject<T>(redis_client.GetItemFromList(key, 0));
+                return Common.SerializerHelper.DeSerializerToObject<T>(redis_Client.GetItemFromList(key, 0));
             }
            
         }
@@ -121,7 +121,7 @@ namespace Common.Redis
         /// <returns></returns>
         public List<T> GetLast()
         {
-            var list_temp= redis_client.GetAllItemsFromList(this.list_id);
+            var list_temp= redis_Client.GetAllItemsFromList(this.list_id);
             //反序列化
             List<T> list_final = new List<T>();
             list_temp.ForEach(p => list_final.Add(Common.SerializerHelper.DeSerializerToObject<T>(p)));
@@ -134,7 +134,8 @@ namespace Common.Redis
         /// <param name="key"></param>
         public void Delete(string key)
         {
-            redis_client.LPop(key);
+            //redis_Client.pop
+            //redis_Client.LPop(key);
         }
     }
 }
