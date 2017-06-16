@@ -67,4 +67,3 @@ D:\VSWorkSpace\nmefc\PMS\QuartzJobByTopShelfDemo\bin\Debug\zh-Hans\System.Web.Mv
 D:\VSWorkSpace\nmefc\PMS\QuartzJobByTopShelfDemo\obj\Debug\QuartzJobByTopShelfDemo.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\QuartzJobByTopShelfDemo\obj\Debug\QuartzJobByTopShelfDemo.exe
 D:\VSWorkSpace\nmefc\PMS\QuartzJobByTopShelfDemo\obj\Debug\QuartzJobByTopShelfDemo.pdb
-E:\01开发\02短信系统\PMS\QuartzJobByTopShelfDemo\bin\Debug\QuartzJobByTopShelfDemo.exe.config
