@@ -13,16 +13,16 @@
 
                     }
                 },
-                { field: 'Content', title: '发送内容', width: '40%' },
+                { field: 'Content', title: '发送内容', width: '30%' },
                 {
                     field: 'SendDateTime', title: '发送时间', width: '15%',
                     formatter: function (value) {
                         return Date.getStrOfDate(value);
                     }
                 },
-                { field: 'TotalOfReceiveNum', title: '发送总人数', width: '6%' },
+                { field: 'TotalOfReceiveNum', title: '发送总人数', width: '8%' },
                 {
-                    field: 'NotReceiveNum', title: '未收到人数', width: '6%',
+                    field: 'NotReceiveNum', title: '未收到人数', width: '8%',
                     formatter: function (value) {
                         if (value == 0) {
                             return '<span style="color:#4cff00;">' + value + '</span>';
@@ -32,5 +32,6 @@
                         }
 
                     }
-                }
+                },
+{ field: 'SMSCount', title: '信息条数', width: '7%' }
         ]]
