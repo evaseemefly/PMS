@@ -15,11 +15,13 @@ namespace WF_Test
     {
         static void Main(string[] args)
         {
-            //Activity workflow_temp = new QueryWFLib.Activity1();
-            //var dic = new Dictionary<string, object>() { };
-            //var work = Common.WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
+            Activity workflow_temp = new QueryWFLib.Activity1();
+            var value_isMMS = PMS.Model.Enum.MMS_Enum.sms; 
+            var dic = new Dictionary<string, object>() { { "isMMS", value_isMMS } };
+           
+            var work = Common.WorkFlowAppHelper.CreateWorkflowApplication(workflow_temp, dic);
 
-            Run();
+            //Run();
 
             //PMS.IBLL.IS_SMSContentBLL contentBLL = new S_SMSContentBLL();
             //var content_temp = contentBLL.GetListBy(c => c.msgId == "1").FirstOrDefault();

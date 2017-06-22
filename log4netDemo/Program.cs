@@ -12,7 +12,8 @@ namespace log4netDemo
     {
         static void Main(string[] args)
         {
-            Common.LogHelper.WriteLog("测试");
+            LogHelper.WriteLog("测试");
+            LogHelper.WriteError("测试错误");
             //log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
 
             //var logInfo = log4net.LogManager.GetLogger("loginfo");
