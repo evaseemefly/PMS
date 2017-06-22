@@ -45,5 +45,10 @@ namespace SMSOA.Areas.SMS.Models
         /// 类型：短信/彩信
         /// </summary>
         public bool MessageType { get; set; }
+
+        /// <summary>
+        /// 短信条数
+        /// </summary>
+        public int SMSCount { get; set; }
     }
 }
