@@ -26,15 +26,14 @@ namespace PMS.Model
         /// </summary>
         /// <param name="list_action"></param>
         /// <returns></returns>
-        public static List<EasyUIModel.EasyUITreeNode> ToEasyUITreeNode(List<ActionInfo> list_action)
+        public static List<EasyUIModel.EasyUITreeNode> ToEasyUITreeNode(List<ActionInfo> list_action,ActionInfo action_default=null)
         {
             List<EasyUIModel.EasyUITreeNode> list_nodes = new List<EasyUIModel.EasyUITreeNode>();
 
-            LoadTreeNode(list_action, list_nodes, 0);
+            LoadTreeNode(list_action, list_nodes, 0, action_default);
             return list_nodes;
         }
 
-           
         /// <summary>
         /// 2 
         /// </summary>
@@ -61,7 +60,41 @@ namespace PMS.Model
                     LoadTreeNode(list_action, node.children, node.id);
                 }
             }
-        }   
+        }
+
+        /// <summary>
+        /// 将权限集合转换为easyui使用的treenode集合
+        /// 并根据传入的默认（选中）的权限设置指定节点为选中状态
+        /// </summary>
+        /// <param name="list_action"></param>
+        /// <param name="list_node"></param>
+        /// <param name="pid"></param>
+        /// <param name="action_default"></param>
+        public static void LoadTreeNode(List<ActionInfo> list_action, List<EasyUIModel.EasyUITreeNode> list_node, int pid,ActionInfo action_default=null)
+        {
+            //遍历权限集合
+            /*
+            1 
+            */
+            foreach (var item in list_action)
+            {
+                //如果权限父id=pid
+                if (item.ParentID == pid)
+                {
+                    //根据当前的ActionInfo对象转换为Node节点
+                    EasyUIModel.EasyUITreeNode node = item.ToNode();
+                    //若默认权限（选中菜单）非空，且（当前id为默认权限的父节点或默认权限本身），则将当前节点的checked设置为true                    
+                    if (action_default != null&&(action_default.ParentID == item.ID||action_default.ID==item.ID))
+                    {
+                        node.Checked = true;
+                    }
+                    //将该节点 加入到 树节点集合中
+                    list_node.Add(node);
+
+                    LoadTreeNode(list_action, node.children, node.id,action_default);
+                }
+            }
+        }
 
         /// <summary>
         /// 生成当前对象的url

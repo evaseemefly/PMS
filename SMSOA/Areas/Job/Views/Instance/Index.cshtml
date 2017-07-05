@@ -47,6 +47,7 @@
                  { field: 'Remark', title: '描述', width: 140 },
         ]]
 
+
     //加载显示菜单按钮
         function load_MenuButton_Job(){
             $('#add_job').menubutton({
@@ -90,7 +91,10 @@
             }
             }));
         }
-      
+    //取消操作
+    function CancelSend() {
+        $("#editWindow").window('close');
+    }
 
     $(function () {
 

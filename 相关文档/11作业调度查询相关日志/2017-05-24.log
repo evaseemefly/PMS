@@ -1,0 +1,1452 @@
+
+[2017-05-24 13:17:00,002]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:17:00,002]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:17:00,017]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:17:00启动查询
+[2017-05-24 13:17:00,017]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:17:00,127]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:17:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:17:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:17:00,127]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:17:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:17:00状态码为0
+[2017-05-24 13:17:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:17:00写入成功
+[2017-05-24 13:17:00,127]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:17:15,647]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:18:00,000]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:18:00,016]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:18:00,016]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:18:00启动查询
+[2017-05-24 13:18:00,016]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:18:00,108]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:18:00,109]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:18:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:18:00,109]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:18:00,110]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:18:00状态码为0
+[2017-05-24 13:18:00,110]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:18:00写入成功
+[2017-05-24 13:18:00,111]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:18:15,606]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:19:00,005]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:19:00,021]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:19:00,021]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:19:00启动查询
+[2017-05-24 13:19:00,021]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:19:00,099]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:19:00,099]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:19:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:19:00,099]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:19:00,099]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:19:00状态码为0
+[2017-05-24 13:19:00,099]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:19:00写入成功
+[2017-05-24 13:19:00,099]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:19:15,648]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:20:00,012]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:20:00,017]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:20:00,017]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:20:00启动查询
+[2017-05-24 13:20:00,017]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:20:00,096]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:20:00,096]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:20:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:20:00,112]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:20:00,112]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:20:00状态码为0
+[2017-05-24 13:20:00,112]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:20:00写入成功
+[2017-05-24 13:20:00,112]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:20:15,628]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:21:00,012]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:21:00,017]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:21:00,018]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:21:00启动查询
+[2017-05-24 13:21:00,018]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:21:00,193]  24 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:21:00,194]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:21:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:21:00,195]  24 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:21:00,195]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:21:00状态码为0
+[2017-05-24 13:21:00,196]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:21:00写入成功
+[2017-05-24 13:21:00,196]  24 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:21:15,663]  24 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:22:00,016]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:22:00,016]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:22:00,016]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:22:00启动查询
+[2017-05-24 13:22:00,016]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:22:00,119]  24 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:22:00,120]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:22:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:22:00,121]  24 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:22:00,122]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:22:00状态码为0
+[2017-05-24 13:22:00,122]  24 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:22:00写入成功
+[2017-05-24 13:22:00,123]  24 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:22:15,575]  24 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:23:00,006]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:23:00,023]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:23:00,024]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:23:00启动查询
+[2017-05-24 13:23:00,024]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:23:00,127]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:23:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:23:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:23:00,127]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:23:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:23:00状态码为0
+[2017-05-24 13:23:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:23:00写入成功
+[2017-05-24 13:23:00,127]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:23:15,630]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:24:00,012]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:24:00,015]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:24:00,015]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:24:00启动查询
+[2017-05-24 13:24:00,015]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:24:00,134]  23 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:24:00,135]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:24:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:24:00,135]  23 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:24:00,136]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:24:00状态码为0
+[2017-05-24 13:24:00,137]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:24:00写入成功
+[2017-05-24 13:24:00,137]  23 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:24:15,663]  23 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:25:00,020]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:25:00,025]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:25:00,026]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:25:00启动查询
+[2017-05-24 13:25:00,026]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:25:00,151]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:25:00,152]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:25:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:25:00,153]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:25:00,154]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:25:00状态码为0
+[2017-05-24 13:25:00,154]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:25:00写入成功
+[2017-05-24 13:25:00,155]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:25:15,686]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:26:00,022]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:26:00,022]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:26:00,022]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:26:00启动查询
+[2017-05-24 13:26:00,022]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:26:00,129]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:26:00,129]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:26:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:26:00,129]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:26:00,129]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:26:00状态码为0
+[2017-05-24 13:26:00,129]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:26:00写入成功
+[2017-05-24 13:26:00,129]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:26:15,632]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:27:00,012]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:27:00,017]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:27:00,018]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:27:00启动查询
+[2017-05-24 13:27:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:27:00,094]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:27:00,094]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:27:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:27:00,094]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:27:00,094]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:27:00状态码为0
+[2017-05-24 13:27:00,094]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:27:00写入成功
+[2017-05-24 13:27:00,094]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:27:15,594]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:28:00,015]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:28:00,015]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:28:00,015]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:28:00启动查询
+[2017-05-24 13:28:00,030]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:28:00,125]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:28:00,125]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:28:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:28:00,125]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:28:00,125]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:28:00状态码为0
+[2017-05-24 13:28:00,125]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:28:00写入成功
+[2017-05-24 13:28:00,125]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:28:15,621]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:29:00,005]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:29:00,020]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:29:00,020]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:29:00启动查询
+[2017-05-24 13:29:00,020]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:29:00,115]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:29:00,115]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:29:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:29:00,115]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:29:00,115]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:29:00状态码为0
+[2017-05-24 13:29:00,115]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:29:00写入成功
+[2017-05-24 13:29:00,115]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:29:15,635]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:30:00,007]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:30:00,025]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:30:00,025]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:30:00启动查询
+[2017-05-24 13:30:00,025]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:30:00,131]  20 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:30:00,131]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:30:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:30:00,131]  20 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:30:00,131]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:30:00状态码为0
+[2017-05-24 13:30:00,131]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:30:00写入成功
+[2017-05-24 13:30:00,131]  20 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:30:15,631]  20 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:31:00,012]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:31:00,029]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:31:00,029]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:31:00启动查询
+[2017-05-24 13:31:00,029]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:31:00,110]  20 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:31:00,110]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:31:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:31:00,110]  20 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:31:00,110]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:31:00状态码为0
+[2017-05-24 13:31:00,110]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:31:00写入成功
+[2017-05-24 13:31:00,110]  20 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:31:15,590]  20 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:32:00,006]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:32:00,023]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:32:00,024]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:32:00启动查询
+[2017-05-24 13:32:00,024]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:32:00,108]  20 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:32:00,108]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:32:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:32:00,108]  20 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:32:00,108]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:32:00状态码为0
+[2017-05-24 13:32:00,108]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:32:00写入成功
+[2017-05-24 13:32:00,108]  20 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:32:15,591]  20 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:33:00,006]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:33:00,022]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:33:00,022]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:33:00启动查询
+[2017-05-24 13:33:00,022]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:33:00,095]  20 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:33:00,095]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:33:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:33:00,095]  20 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:33:00,095]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:33:00状态码为0
+[2017-05-24 13:33:00,095]  20 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:33:00写入成功
+[2017-05-24 13:33:00,095]  20 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:33:15,597]  20 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:34:00,012]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:34:00,017]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:34:00,018]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:34:00启动查询
+[2017-05-24 13:34:00,018]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:34:00,124]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:34:00,124]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:34:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:34:00,124]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:34:00,124]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:34:00状态码为0
+[2017-05-24 13:34:00,124]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:34:00写入成功
+[2017-05-24 13:34:00,124]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:34:15,645]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:35:00,009]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:35:00,025]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:35:00,026]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:35:00启动查询
+[2017-05-24 13:35:00,026]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:35:00,124]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:35:00,140]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:35:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:35:00,140]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:35:00,140]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:35:00状态码为0
+[2017-05-24 13:35:00,140]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:35:00写入成功
+[2017-05-24 13:35:00,140]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:35:15,651]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:36:00,004]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:36:00,019]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:36:00,019]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:36:00启动查询
+[2017-05-24 13:36:00,019]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:36:00,126]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:36:00,127]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:36:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:36:00,128]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:36:00,129]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:36:00状态码为0
+[2017-05-24 13:36:00,130]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:36:00写入成功
+[2017-05-24 13:36:00,130]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:36:15,590]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:37:00,017]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:37:00,022]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:37:00,023]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:37:00启动查询
+[2017-05-24 13:37:00,023]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:37:00,124]  25 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:37:00,124]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:37:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:37:00,124]  25 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:37:00,124]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:37:00状态码为0
+[2017-05-24 13:37:00,124]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:37:00写入成功
+[2017-05-24 13:37:00,124]  25 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:37:15,693]  25 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:38:00,009]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:38:00,025]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:38:00,025]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:38:00启动查询
+[2017-05-24 13:38:00,025]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:38:00,109]  25 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:38:00,109]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:38:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:38:00,109]  25 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:38:00,109]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:38:00状态码为0
+[2017-05-24 13:38:00,109]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:38:00写入成功
+[2017-05-24 13:38:00,109]  25 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:38:15,542]  25 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:39:00,005]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:39:00,020]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:39:00,020]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:39:00启动查询
+[2017-05-24 13:39:00,020]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:39:00,126]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:39:00,128]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:39:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:39:00,128]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:39:00,129]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:39:00状态码为0
+[2017-05-24 13:39:00,129]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:39:00写入成功
+[2017-05-24 13:39:00,130]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:39:15,606]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:40:00,006]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:40:00,021]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:40:00,021]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:40:00启动查询
+[2017-05-24 13:40:00,021]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:40:00,094]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:40:00,094]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:40:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:40:00,094]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:40:00,094]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:40:00状态码为0
+[2017-05-24 13:40:00,110]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:40:00写入成功
+[2017-05-24 13:40:00,110]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:40:15,626]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:41:00,011]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:41:00,026]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:41:00,026]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:41:00启动查询
+[2017-05-24 13:41:00,026]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:41:00,140]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:41:00,140]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:41:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:41:00,140]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:41:00,140]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:41:00状态码为0
+[2017-05-24 13:41:00,140]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:41:00写入成功
+[2017-05-24 13:41:00,155]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:41:15,645]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:42:00,007]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:42:00,022]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:42:00,022]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:42:00启动查询
+[2017-05-24 13:42:00,022]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:42:00,109]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:42:00,109]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:42:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:42:00,109]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:42:00,109]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:42:00状态码为0
+[2017-05-24 13:42:00,109]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:42:00写入成功
+[2017-05-24 13:42:00,109]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:42:15,620]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:43:00,004]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:43:00,020]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:43:00,020]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:43:00启动查询
+[2017-05-24 13:43:00,020]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:43:00,126]  27 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:43:00,126]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:43:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:43:00,142]  27 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:43:00,142]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:43:00状态码为0
+[2017-05-24 13:43:00,142]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:43:00写入成功
+[2017-05-24 13:43:00,142]  27 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:43:15,645]  27 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:44:00,016]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:44:00,021]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:44:00,022]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:44:00启动查询
+[2017-05-24 13:44:00,022]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:44:00,123]  26 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:44:00,123]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:44:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:44:00,123]  26 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:44:00,123]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:44:00状态码为0
+[2017-05-24 13:44:00,123]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:44:00写入成功
+[2017-05-24 13:44:00,123]  26 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:44:15,622]  26 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:45:00,006]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:45:00,022]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:45:00,022]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:45:00启动查询
+[2017-05-24 13:45:00,022]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:45:00,108]  26 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:45:00,108]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:45:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:45:00,108]  26 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:45:00,108]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:45:00状态码为0
+[2017-05-24 13:45:00,108]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:45:00写入成功
+[2017-05-24 13:45:00,108]  26 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:45:15,574]  26 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:45:36,004]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 执行发送作业
+[2017-05-24 13:45:36,004]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- sendmodel为:{"Model_Send":{"account":"dh74381","password":"uAvb3Qey","msgid":null,"phones":["15210161270","15801659948","13693205053","15801609121","13810710963","13426494401","13661394753","13001107766","13910552882","13691506196","13693236733","13520182108","13426175066","13811146150","15010677883","13041082636","13811104406","13911130087","13021261917","13381231009","13381236023","13501261082","13522200808","13552805536","13601338962","13611166163","13611177763","13661282020","13661355747","13671289515","13699246836","13717970239","13801369775","13810607655","13811793756","13910007283","13910086797","13911525307","13911851735","13911901696","15801635822","18811057297","13511060301","13488748264","15110011780","15810547580","13011193099","13601238901","13601229601","13661361039","13311128555","13683096776","13601184649","13601249380","13681250859","15810901681","13661055057","13810686475","18701070781","13120095055","13671289603","13810512456","13691491684","18701092896","13810724365","13911232205","13691146452","13683606395","13521748697","13901172751","13641333717","13552591231","13426392122","13718945779","13522591610","15510179671","13552618827","13621361866","18601361511","13810277509","13810043796","13552762521","18510380198","18611765900","18611546653","13601130018","15210085536","13910323677","15801665562","13810382590","13601274415","13810065215","18810389062","18810361810","18610102949","13810513320","18001331500","13910980370","18811355750","18618486727","13426377129","13683356205","13581820232","15101022547","15810890600","13810148217","13581832853","13910553880","13811958902","13161289121","18618298738","17710326013","13301095966","18600317913","13601229685","13910687256","13641263128","13466306736","18511712176","18311003955","15811281154","13811457386","15801528774","13811809611","18519500261","13611376812","18510004233","18810918683","13717841107","15801605212","13810579426","18610932832","18618162086","18618162881","13810226035","13501068687","18800176471","13910928764","18810401422","18610690532","13811798605","15210674283","18310589916","13777444516"],"content":"会商通知：国家海洋环境预报中心将于5月25日09时00分举行“海洋预报月展望”视频会商。会商地点：9层。","sign":"【国家海洋预报台】","subcode":null,"sendtime":"2017-05-24T08:46:00.6167816+08:00"},"Model_Message":{"PersonIds":null,"PersonId_Int":[],"GroupIds":null,"DepartmentIds":null,"PhoneNums":null,"PhoneNum_Str":[],"Content":"会商通知：国家海洋环境预报中心将于5月25日09时00分举行“海洋预报月展望”视频会商。会商地点：9层。","SMSMissionID":"14","JID":0,"JobName":null,"JobGroup":null,"JobClassName":null,"JobState":0,"CronStr":null,"StartRunTime":"0001-01-01T00:00:00","EndRunTime":"0001-01-01T00:00:00","NextRunTime":"0001-01-01T00:00:00","Token":null,"AppID":null,"Remark":null,"InfoState":0,"CreateUser":null,"CreateTime":"0001-01-01T00:00:00","isDel":false,"isTiming":false,"UID":3}}
+[2017-05-24 13:45:38,117]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- msgid:30a50f9a8f5347f0a9c8f4bed71cf980写入redis成功
+[2017-05-24 13:45:38,117]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- msgid:已发送
+[2017-05-24 13:45:38,164]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 更新作业状态成功
+[2017-05-24 13:46:00,004]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:46:00,020]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:46:00,020]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:00启动查询
+[2017-05-24 13:46:00,020]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:46:00,159]  25 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18611765900</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810513320</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:36</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13621361866</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:36</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>17710326013</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13683606395</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:36</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13041082636</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15210161270</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15210674283</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601338962</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13426494401</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18001331500</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13552591231</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13301095966</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910086797</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13381236023</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810382590</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13381231009</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:42</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810277509</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13520182108</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13311128555</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:45</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13911901696</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13426377129</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18800176471</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13426392122</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15801528774</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13901172751</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13552618827</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811146150</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810724365</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811104406</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13691506196</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18810401422</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810043796</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15210085536</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910007283</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811793756</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811809611</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13522200808</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13681250859</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810226035</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13426175066</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601130018</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18811355750</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811958902</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18600317913</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13011193099</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:37</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13001107766</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13021261917</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18601361511</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18611546653</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18519500261</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18610690532</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18618298738</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13801369775</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15801665562</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13552805536</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15010677883</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13581820232</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13552762521</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910323677</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13501261082</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15810890600</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15811281154</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18701092896</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13611376812</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13466306736</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15801609121</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13611166163</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13717841107</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13661361039</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13691491684</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13911232205</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18810918683</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13911525307</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601238901</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15110011780</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810607655</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910553880</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13671289515</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810710963</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13581832853</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18810361810</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601229601</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810686475</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910980370</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13522591610</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13661355747</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13693205053</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13777444516</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13661055057</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18810389062</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13718945779</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13641333717</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15801635822</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910928764</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:38</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15801605212</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13661282020</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18618162086</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15510179671</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18511712176</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18510004233</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13521748697</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15810901681</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18311003955</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13661394753</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13683356205</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13910552882</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13699246836</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810148217</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810065215</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601184649</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18310589916</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18811057297</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:39</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13911851735</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13911130087</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13693236733</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18610932832</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18610102949</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18701070781</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810512456</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13611177763</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601249380</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15101022547</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811798605</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:40</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13717970239</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13683096776</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>15801659948</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13601229685</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13811457386</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13810579426</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:41</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18510380198</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:42</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13120095055</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:42</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>18618486727</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 13:45:42</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13671289603</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:44</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 13:46:00,175]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:46:00,175]  25 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为30a50f9a8f5347f0a9c8f4bed71cf980传入的集合判断其状态remnant
+[2017-05-24 13:46:00,175]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:00状态码为0
+[2017-05-24 13:46:00,175]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,191]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,191]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,191]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,208]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,210]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,226]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,226]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,226]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,226]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,226]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,226]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,226]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,241]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,241]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,241]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,241]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,241]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,241]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,241]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,257]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,257]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,257]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,257]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,257]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,257]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,273]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,273]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,273]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,273]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,273]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,273]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,273]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,288]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,288]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,288]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,288]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,288]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,288]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,304]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,304]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,304]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,304]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,304]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,304]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,304]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,319]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,319]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,319]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,319]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,319]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,319]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,335]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,335]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,335]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,335]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,335]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,335]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,335]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,351]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,351]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,351]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,351]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,351]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,351]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,366]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,366]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,366]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,366]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,366]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,366]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,382]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,385]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,387]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,390]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,392]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,395]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,395]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,395]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,395]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,395]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,395]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,395]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,410]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,410]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,410]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,410]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,426]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,426]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,426]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:46:00,426]  25 -- INFO  -- mylogger [WriteLog] -- 步骤3：msgid为30a50f9a8f5347f0a9c8f4bed71cf980,n在redis缓存中
+[2017-05-24 13:46:00,442]  25 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:46:0030a50f9a8f5347f0a9c8f4bed71cf980存在
+[2017-05-24 13:47:00,003]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:47:00,019]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:47:00,019]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:47:00启动查询
+[2017-05-24 13:47:00,019]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:47:00,093]  23 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13161289121</phone><status>2</status><desc>空号或屏蔽</desc><wgcode>12</wgcode><time>2017-05-24 13:45:35</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 13:47:00,093]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:47:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:47:00,093]  23 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为30a50f9a8f5347f0a9c8f4bed71cf980传入的集合判断其状态remnant
+[2017-05-24 13:47:00,093]  23 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:47:00状态码为0
+[2017-05-24 13:48:00,008]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:48:00,024]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:48:00,024]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:48:00启动查询
+[2017-05-24 13:48:00,024]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:48:00,093]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:48:00,093]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:48:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:48:00,093]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:48:00,093]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:48:00状态码为0
+[2017-05-24 13:48:00,093]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:48:00写入成功
+[2017-05-24 13:48:00,093]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:48:15,526]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:49:00,004]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:49:00,020]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:49:00,020]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:49:00启动查询
+[2017-05-24 13:49:00,020]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:49:00,114]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:49:00,114]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:49:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:49:00,114]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:49:00,114]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:49:00状态码为0
+[2017-05-24 13:49:00,114]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:49:00写入成功
+[2017-05-24 13:49:00,114]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:49:15,635]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:50:00,003]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:50:00,019]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:50:00,019]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:50:00启动查询
+[2017-05-24 13:50:00,019]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:50:00,109]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:50:00,109]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:50:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:50:00,109]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:50:00,109]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:50:00状态码为0
+[2017-05-24 13:50:00,109]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:50:00写入成功
+[2017-05-24 13:50:00,109]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:50:15,610]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:51:00,011]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:51:00,027]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:51:00,027]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:51:00启动查询
+[2017-05-24 13:51:00,027]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:51:00,107]  26 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13691146452</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:36</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 13:51:00,107]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:51:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:51:00,107]  26 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为30a50f9a8f5347f0a9c8f4bed71cf980传入的集合判断其状态remnant
+[2017-05-24 13:51:00,107]  26 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:51:00状态码为0
+[2017-05-24 13:52:00,006]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:52:00,022]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:52:00,022]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:52:00启动查询
+[2017-05-24 13:52:00,022]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:52:00,107]  27 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13641263128</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:36</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 13:52:00,107]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:52:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:52:00,107]  27 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为30a50f9a8f5347f0a9c8f4bed71cf980传入的集合判断其状态remnant
+[2017-05-24 13:52:00,107]  27 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:52:00状态码为0
+[2017-05-24 13:53:00,003]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:53:00,019]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:53:00,019]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:53:00启动查询
+[2017-05-24 13:53:00,019]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:53:00,111]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:53:00,112]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:53:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:53:00,113]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:53:00,113]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:53:00状态码为0
+[2017-05-24 13:53:00,114]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:53:00写入成功
+[2017-05-24 13:53:00,114]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:53:15,589]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:54:00,026]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:54:00,031]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:54:00,032]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:54:00启动查询
+[2017-05-24 13:54:00,032]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:54:00,107]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:54:00,107]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:54:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:54:00,107]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:54:00,107]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:54:00状态码为0
+[2017-05-24 13:54:00,107]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:54:00写入成功
+[2017-05-24 13:54:00,107]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:54:15,676]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:55:00,006]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:55:00,022]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:55:00,022]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:55:00启动查询
+[2017-05-24 13:55:00,022]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:55:00,106]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:55:00,106]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:55:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:55:00,106]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:55:00,106]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:55:00状态码为0
+[2017-05-24 13:55:00,106]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:55:00写入成功
+[2017-05-24 13:55:00,106]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:55:15,650]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:56:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:56:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:56:00,018]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:56:00启动查询
+[2017-05-24 13:56:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:56:00,649]  34 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:56:00,649]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:56:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:56:00,649]  34 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:56:00,649]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:56:00状态码为0
+[2017-05-24 13:56:00,649]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:56:00写入成功
+[2017-05-24 13:56:00,649]  34 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:56:16,184]  34 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:57:00,004]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:57:00,020]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:57:00,020]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:57:00启动查询
+[2017-05-24 13:57:00,020]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:57:00,092]  34 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:57:00,092]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:57:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:57:00,092]  34 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:57:00,092]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:57:00状态码为0
+[2017-05-24 13:57:00,092]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:57:00写入成功
+[2017-05-24 13:57:00,092]  34 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:57:15,584]  34 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:58:00,007]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:58:00,007]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:58:00,007]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:58:00启动查询
+[2017-05-24 13:58:00,007]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:58:00,108]  29 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:58:00,108]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:58:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:58:00,108]  29 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:58:00,108]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:58:00状态码为0
+[2017-05-24 13:58:00,108]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:58:00写入成功
+[2017-05-24 13:58:00,108]  29 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:58:15,650]  29 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 13:59:00,004]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 13:59:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 13:59:00,019]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:59:00启动查询
+[2017-05-24 13:59:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 13:59:00,097]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 13:59:00,097]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:59:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 13:59:00,097]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 13:59:00,097]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:59:00状态码为0
+[2017-05-24 13:59:00,097]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 01:59:00写入成功
+[2017-05-24 13:59:00,097]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 13:59:15,571]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:00:00,003]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:00:00,018]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:00:00,018]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:00:00启动查询
+[2017-05-24 14:00:00,018]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:00:00,109]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:00:00,109]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:00:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:00:00,109]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:00:00,109]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:00:00状态码为0
+[2017-05-24 14:00:00,109]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:00:00写入成功
+[2017-05-24 14:00:00,109]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:00:15,672]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:01:00,010]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:01:00,010]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:01:00,026]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:01:00启动查询
+[2017-05-24 14:01:00,026]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:01:00,138]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:01:00,138]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:01:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:01:00,138]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:01:00,138]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:01:00状态码为0
+[2017-05-24 14:01:00,138]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:01:00写入成功
+[2017-05-24 14:01:00,138]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:01:15,650]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:02:00,004]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:02:00,020]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:02:00,020]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:02:00启动查询
+[2017-05-24 14:02:00,020]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:02:00,090]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:02:00,106]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:02:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:02:00,106]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:02:00,106]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:02:00状态码为0
+[2017-05-24 14:02:00,106]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:02:00写入成功
+[2017-05-24 14:02:00,106]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:02:15,587]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:03:00,002]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:03:00,018]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:03:00,018]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:03:00启动查询
+[2017-05-24 14:03:00,018]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:03:00,112]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:03:00,112]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:03:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:03:00,112]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:03:00,112]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:03:00状态码为0
+[2017-05-24 14:03:00,112]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:03:00写入成功
+[2017-05-24 14:03:00,112]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:03:15,563]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:04:00,003]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:04:00,019]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:04:00,019]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:04:00启动查询
+[2017-05-24 14:04:00,019]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:04:00,105]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:04:00,105]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:04:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:04:00,105]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:04:00,105]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:04:00状态码为0
+[2017-05-24 14:04:00,105]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:04:00写入成功
+[2017-05-24 14:04:00,105]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:04:15,622]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:05:00,007]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:05:00,007]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:05:00,007]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:05:00启动查询
+[2017-05-24 14:05:00,007]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:05:00,121]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:05:00,121]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:05:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:05:00,121]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:05:00,121]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:05:00状态码为0
+[2017-05-24 14:05:00,121]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:05:00写入成功
+[2017-05-24 14:05:00,121]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:05:15,634]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:06:00,003]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:06:00,019]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:06:00,019]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:06:00启动查询
+[2017-05-24 14:06:00,019]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:06:00,128]  34 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13511060301</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:35</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 14:06:00,128]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:06:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:06:00,128]  34 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为30a50f9a8f5347f0a9c8f4bed71cf980传入的集合判断其状态remnant
+[2017-05-24 14:06:00,128]  34 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:06:00状态码为0
+[2017-05-24 14:07:00,002]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:07:00,018]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:07:00,018]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:07:00启动查询
+[2017-05-24 14:07:00,018]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:07:00,109]  29 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:07:00,110]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:07:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:07:00,110]  29 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:07:00,111]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:07:00状态码为0
+[2017-05-24 14:07:00,111]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:07:00写入成功
+[2017-05-24 14:07:00,112]  29 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:07:15,593]  29 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:08:00,025]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:08:00,025]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:08:00,025]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:08:00启动查询
+[2017-05-24 14:08:00,025]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:08:00,122]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:08:00,122]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:08:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:08:00,122]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:08:00,122]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:08:00状态码为0
+[2017-05-24 14:08:00,122]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:08:00写入成功
+[2017-05-24 14:08:00,122]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:08:15,544]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:09:00,003]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:09:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:09:00,019]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:09:00启动查询
+[2017-05-24 14:09:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:09:00,423]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:09:00,424]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:09:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:09:00,424]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:09:00,425]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:09:00状态码为0
+[2017-05-24 14:09:00,425]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:09:00写入成功
+[2017-05-24 14:09:00,426]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:09:15,993]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:10:00,019]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:10:00,019]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:10:00,019]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:10:00启动查询
+[2017-05-24 14:10:00,019]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:10:00,118]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:10:00,119]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:10:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:10:00,119]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:10:00,120]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:10:00状态码为0
+[2017-05-24 14:10:00,120]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:10:00写入成功
+[2017-05-24 14:10:00,121]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:10:15,607]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:11:00,009]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:11:00,024]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:11:00,024]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:11:00启动查询
+[2017-05-24 14:11:00,024]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:11:00,120]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:11:00,120]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:11:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:11:00,120]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:11:00,120]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:11:00状态码为0
+[2017-05-24 14:11:00,120]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:11:00写入成功
+[2017-05-24 14:11:00,120]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:11:15,604]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:12:00,005]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:12:00,005]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:12:00,005]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:12:00启动查询
+[2017-05-24 14:12:00,005]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:12:00,099]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:12:00,099]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:12:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:12:00,099]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:12:00,099]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:12:00状态码为0
+[2017-05-24 14:12:00,099]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:12:00写入成功
+[2017-05-24 14:12:00,099]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:12:15,587]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:13:00,003]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:13:00,018]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:13:00,018]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:13:00启动查询
+[2017-05-24 14:13:00,018]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:13:00,081]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:13:00,096]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:13:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:13:00,096]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:13:00,096]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:13:00状态码为0
+[2017-05-24 14:13:00,096]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:13:00写入成功
+[2017-05-24 14:13:00,096]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:13:15,586]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:14:00,008]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:14:00,023]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:14:00,023]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:14:00启动查询
+[2017-05-24 14:14:00,023]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:14:00,103]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:14:00,103]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:14:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:14:00,103]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:14:00,103]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:14:00状态码为0
+[2017-05-24 14:14:00,103]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:14:00写入成功
+[2017-05-24 14:14:00,103]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:14:15,636]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:15:00,012]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:15:00,017]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:15:00,017]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:15:00启动查询
+[2017-05-24 14:15:00,018]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:15:00,099]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:15:00,099]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:15:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:15:00,099]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:15:00,099]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:15:00状态码为0
+[2017-05-24 14:15:00,099]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:15:00写入成功
+[2017-05-24 14:15:00,099]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:15:15,570]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:16:00,003]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:16:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:16:00,018]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:16:00启动查询
+[2017-05-24 14:16:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:16:00,096]  29 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:16:00,112]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:16:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:16:00,112]  29 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:16:00,112]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:16:00状态码为0
+[2017-05-24 14:16:00,112]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:16:00写入成功
+[2017-05-24 14:16:00,112]  29 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:16:15,665]  29 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:17:00,002]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:17:00,018]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:17:00,018]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:17:00启动查询
+[2017-05-24 14:17:00,018]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:17:00,111]  33 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:17:00,112]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:17:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:17:00,113]  33 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:17:00,113]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:17:00状态码为0
+[2017-05-24 14:17:00,114]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:17:00写入成功
+[2017-05-24 14:17:00,114]  33 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:17:15,592]  33 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:18:00,007]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:18:00,023]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:18:00,024]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:18:00启动查询
+[2017-05-24 14:18:00,024]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:18:00,100]  29 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:18:00,100]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:18:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:18:00,100]  29 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:18:00,100]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:18:00状态码为0
+[2017-05-24 14:18:00,100]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:18:00写入成功
+[2017-05-24 14:18:00,100]  29 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:18:15,572]  29 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:19:00,003]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:19:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:19:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:19:00,019]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:19:00启动查询
+[2017-05-24 14:19:00,112]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:19:00,112]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:19:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:19:00,112]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:19:00,112]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:19:00状态码为0
+[2017-05-24 14:19:00,112]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:19:00写入成功
+[2017-05-24 14:19:00,112]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:19:15,665]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:20:00,002]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:20:00,002]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:20:00,018]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:20:00启动查询
+[2017-05-24 14:20:00,018]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:20:00,096]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:20:00,096]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:20:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:20:00,096]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:20:00,096]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:20:00状态码为0
+[2017-05-24 14:20:00,096]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:20:00写入成功
+[2017-05-24 14:20:00,096]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:20:15,576]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:21:00,007]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:21:00,023]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:21:00,023]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:21:00启动查询
+[2017-05-24 14:21:00,023]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:21:00,102]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:21:00,102]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:21:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:21:00,102]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:21:00,102]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:21:00状态码为0
+[2017-05-24 14:21:00,102]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:21:00写入成功
+[2017-05-24 14:21:00,102]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:21:15,588]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:22:00,012]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:22:00,017]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:22:00,018]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:22:00启动查询
+[2017-05-24 14:22:00,018]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:22:00,108]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:22:00,108]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:22:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:22:00,108]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:22:00,108]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:22:00状态码为0
+[2017-05-24 14:22:00,108]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:22:00写入成功
+[2017-05-24 14:22:00,108]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:22:15,568]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:23:00,000]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:23:00,016]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:23:00,016]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:23:00启动查询
+[2017-05-24 14:23:00,016]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:23:00,094]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:23:00,094]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:23:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:23:00,110]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:23:00,110]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:23:00状态码为0
+[2017-05-24 14:23:00,110]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:23:00写入成功
+[2017-05-24 14:23:00,110]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:23:15,584]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:24:00,008]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:24:00,024]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:24:00,024]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:24:00启动查询
+[2017-05-24 14:24:00,024]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:24:00,117]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:24:00,118]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:24:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:24:00,119]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:24:00,119]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:24:00状态码为0
+[2017-05-24 14:24:00,120]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:24:00写入成功
+[2017-05-24 14:24:00,120]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:24:15,635]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:25:00,006]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:25:00,023]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:25:00,024]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:25:00启动查询
+[2017-05-24 14:25:00,032]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:25:00,099]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:25:00,114]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:25:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:25:00,114]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:25:00,114]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:25:00状态码为0
+[2017-05-24 14:25:00,114]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:25:00写入成功
+[2017-05-24 14:25:00,114]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:25:15,586]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:26:00,002]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:26:00,002]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:26:00,017]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:26:00启动查询
+[2017-05-24 14:26:00,017]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:26:00,095]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:26:00,095]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:26:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:26:00,095]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:26:00,095]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:26:00状态码为0
+[2017-05-24 14:26:00,095]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:26:00写入成功
+[2017-05-24 14:26:00,111]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:26:15,548]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:27:00,012]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:27:00,017]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:27:00,017]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:27:00启动查询
+[2017-05-24 14:27:00,017]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:27:00,111]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:27:00,111]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:27:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:27:00,111]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:27:00,111]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:27:00状态码为0
+[2017-05-24 14:27:00,111]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:27:00写入成功
+[2017-05-24 14:27:00,111]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:27:15,607]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:28:00,007]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:28:00,022]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:28:00,022]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:28:00启动查询
+[2017-05-24 14:28:00,022]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:28:00,115]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:28:00,115]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:28:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:28:00,115]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:28:00,115]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:28:00状态码为0
+[2017-05-24 14:28:00,115]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:28:00写入成功
+[2017-05-24 14:28:00,115]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:28:15,589]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:29:00,014]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:29:00,017]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:29:00,017]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:29:00启动查询
+[2017-05-24 14:29:00,017]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:29:00,095]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:29:00,095]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:29:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:29:00,095]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:29:00,095]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:29:00状态码为0
+[2017-05-24 14:29:00,095]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:29:00写入成功
+[2017-05-24 14:29:00,095]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:29:15,664]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:30:00,012]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:30:00,017]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:30:00,018]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:30:00启动查询
+[2017-05-24 14:30:00,018]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:30:00,097]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:30:00,097]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:30:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:30:00,097]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:30:00,097]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:30:00状态码为0
+[2017-05-24 14:30:00,097]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:30:00写入成功
+[2017-05-24 14:30:00,097]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:30:15,622]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:31:00,009]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:31:00,025]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:31:00,025]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:31:00启动查询
+[2017-05-24 14:31:00,025]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:31:00,117]  33 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:31:00,118]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:31:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:31:00,119]  33 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:31:00,119]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:31:00状态码为0
+[2017-05-24 14:31:00,120]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:31:00写入成功
+[2017-05-24 14:31:00,120]  33 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:31:15,575]  33 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:32:00,019]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:32:00,024]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:32:00,024]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:32:00启动查询
+[2017-05-24 14:32:00,025]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:32:00,097]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:32:00,097]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:32:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:32:00,097]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:32:00,097]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:32:00状态码为0
+[2017-05-24 14:32:00,097]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:32:00写入成功
+[2017-05-24 14:32:00,097]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:32:15,663]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:33:00,000]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:33:00,016]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:33:00,016]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:33:00启动查询
+[2017-05-24 14:33:00,016]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:33:00,109]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:33:00,109]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:33:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:33:00,109]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:33:00,109]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:33:00状态码为0
+[2017-05-24 14:33:00,109]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:33:00写入成功
+[2017-05-24 14:33:00,109]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:33:15,613]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:34:00,022]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:34:00,027]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:34:00,027]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:34:00启动查询
+[2017-05-24 14:34:00,027]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:34:00,095]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:34:00,095]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:34:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:34:00,111]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:34:00,112]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:34:00状态码为0
+[2017-05-24 14:34:00,112]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:34:00写入成功
+[2017-05-24 14:34:00,113]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:34:15,642]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:35:00,007]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:35:00,023]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:35:00,023]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:35:00启动查询
+[2017-05-24 14:35:00,023]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:35:00,112]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:35:00,112]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:35:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:35:00,112]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:35:00,112]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:35:00状态码为0
+[2017-05-24 14:35:00,112]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:35:00写入成功
+[2017-05-24 14:35:00,112]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:35:15,615]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:36:00,015]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:36:00,030]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:36:00,030]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:36:00启动查询
+[2017-05-24 14:36:00,030]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:36:00,108]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:36:00,108]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:36:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:36:00,108]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:36:00,108]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:36:00状态码为0
+[2017-05-24 14:36:00,108]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:36:00写入成功
+[2017-05-24 14:36:00,108]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:36:15,647]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:37:00,015]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:37:00,015]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:37:00,015]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:37:00启动查询
+[2017-05-24 14:37:00,015]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:37:00,109]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:37:00,109]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:37:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:37:00,109]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:37:00,109]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:37:00状态码为0
+[2017-05-24 14:37:00,109]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:37:00写入成功
+[2017-05-24 14:37:00,109]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:37:15,605]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:38:00,006]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:38:00,022]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:38:00,022]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:38:00启动查询
+[2017-05-24 14:38:00,022]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:38:00,098]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:38:00,098]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:38:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:38:00,098]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:38:00,098]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:38:00状态码为0
+[2017-05-24 14:38:00,098]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:38:00写入成功
+[2017-05-24 14:38:00,098]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:38:15,601]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:39:00,018]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:39:00,023]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:39:00,023]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:39:00启动查询
+[2017-05-24 14:39:00,024]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:39:00,095]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:39:00,095]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:39:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:39:00,095]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:39:00,095]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:39:00状态码为0
+[2017-05-24 14:39:00,095]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:39:00写入成功
+[2017-05-24 14:39:00,095]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:39:15,615]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:40:00,024]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:40:00,029]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:40:00,030]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:40:00启动查询
+[2017-05-24 14:40:00,030]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:40:00,110]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:40:00,110]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:40:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:40:00,110]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:40:00,110]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:40:00状态码为0
+[2017-05-24 14:40:00,110]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:40:00写入成功
+[2017-05-24 14:40:00,110]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:40:15,621]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:41:00,006]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:41:00,022]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:41:00,022]  37 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:41:00启动查询
+[2017-05-24 14:41:00,022]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:41:00,100]  37 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:41:00,100]  37 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:41:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:41:00,100]  37 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:41:00,100]  37 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:41:00状态码为0
+[2017-05-24 14:41:00,100]  37 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:41:00写入成功
+[2017-05-24 14:41:00,100]  37 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:41:15,559]  37 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:42:00,005]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:42:00,022]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:42:00,023]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:42:00启动查询
+[2017-05-24 14:42:00,023]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:42:01,712]  29 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:42:01,712]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:42:01查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:42:01,712]  29 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:42:01,728]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:42:01状态码为0
+[2017-05-24 14:42:01,728]  29 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:42:01写入成功
+[2017-05-24 14:42:01,728]  29 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:42:17,228]  29 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:43:00,014]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:43:00,031]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:43:00,031]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:43:00启动查询
+[2017-05-24 14:43:00,031]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:43:00,109]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:43:00,109]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:43:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:43:00,109]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:43:00,109]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:43:00状态码为0
+[2017-05-24 14:43:00,109]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:43:00写入成功
+[2017-05-24 14:43:00,109]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:43:15,628]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:44:00,007]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:44:00,023]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:44:00,024]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:44:00启动查询
+[2017-05-24 14:44:00,024]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:44:01,011]  33 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:44:01,011]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:44:01查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:44:01,011]  33 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:44:01,011]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:44:01状态码为0
+[2017-05-24 14:44:01,011]  33 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:44:01写入成功
+[2017-05-24 14:44:01,011]  33 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:44:16,512]  33 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:45:00,005]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:45:00,021]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:45:00,021]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:45:00启动查询
+[2017-05-24 14:45:00,021]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:45:00,113]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:45:00,113]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:45:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:45:00,113]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:45:00,113]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:45:00状态码为0
+[2017-05-24 14:45:00,113]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:45:00写入成功
+[2017-05-24 14:45:00,113]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:45:15,637]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:46:00,012]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:46:00,017]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:46:00,018]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:46:00启动查询
+[2017-05-24 14:46:00,018]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:46:00,092]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:46:00,092]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:46:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:46:00,092]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:46:00,092]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:46:00状态码为0
+[2017-05-24 14:46:00,092]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:46:00写入成功
+[2017-05-24 14:46:00,092]  3 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:46:15,645]  3 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:47:00,007]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:47:00,023]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:47:00,023]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:47:00启动查询
+[2017-05-24 14:47:00,023]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:47:00,109]  3 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>30a50f9a8f5347f0a9c8f4bed71cf980</msgid><phone>13488748264</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 13:45:36</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 14:47:00,109]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:47:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:47:00,109]  3 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为30a50f9a8f5347f0a9c8f4bed71cf980传入的集合判断其状态remnant
+[2017-05-24 14:47:00,109]  3 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:47:00状态码为0
+[2017-05-24 14:48:00,007]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:48:00,022]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:48:00,022]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:48:00启动查询
+[2017-05-24 14:48:00,022]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:48:00,113]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:48:00,113]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:48:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:48:00,113]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:48:00,113]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:48:00状态码为0
+[2017-05-24 14:48:00,113]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:48:00写入成功
+[2017-05-24 14:48:00,113]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:48:15,620]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:49:00,005]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:49:00,023]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:49:00,023]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:49:00启动查询
+[2017-05-24 14:49:00,024]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:49:00,109]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:49:00,109]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:49:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:49:00,109]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:49:00,109]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:49:00状态码为0
+[2017-05-24 14:49:00,109]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:49:00写入成功
+[2017-05-24 14:49:00,109]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:49:15,647]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:50:00,010]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:50:00,026]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:50:00,026]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:50:00启动查询
+[2017-05-24 14:50:00,026]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:50:00,109]  36 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:50:00,109]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:50:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:50:00,109]  36 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:50:00,109]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:50:00状态码为0
+[2017-05-24 14:50:00,109]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:50:00写入成功
+[2017-05-24 14:50:00,109]  36 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:50:15,575]  36 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:51:00,006]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:51:00,021]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:51:00,021]  39 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:51:00启动查询
+[2017-05-24 14:51:00,021]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:51:00,107]  39 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:51:00,107]  39 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:51:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:51:00,107]  39 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:51:00,107]  39 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:51:00状态码为0
+[2017-05-24 14:51:00,107]  39 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:51:00写入成功
+[2017-05-24 14:51:00,107]  39 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:51:15,590]  39 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:52:00,005]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:52:00,021]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:52:00,021]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:52:00启动查询
+[2017-05-24 14:52:00,021]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:52:00,110]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:52:00,110]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:52:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:52:00,110]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:52:00,110]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:52:00状态码为0
+[2017-05-24 14:52:00,110]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:52:00写入成功
+[2017-05-24 14:52:00,110]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:52:15,549]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:53:00,013]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:53:00,029]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:53:00,029]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:53:00启动查询
+[2017-05-24 14:53:00,029]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:53:00,638]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:53:00,638]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:53:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:53:00,638]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:53:00,638]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:53:00状态码为0
+[2017-05-24 14:53:00,638]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:53:00写入成功
+[2017-05-24 14:53:00,638]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:53:16,126]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:54:00,007]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:54:00,023]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:54:00,023]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:54:00启动查询
+[2017-05-24 14:54:00,023]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:54:00,108]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:54:00,108]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:54:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:54:00,108]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:54:00,108]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:54:00状态码为0
+[2017-05-24 14:54:00,108]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:54:00写入成功
+[2017-05-24 14:54:00,108]  31 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:54:15,606]  31 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:55:00,006]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:55:00,021]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:55:00,021]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:55:00启动查询
+[2017-05-24 14:55:00,021]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:55:02,090]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:55:02,090]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:55:02查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:55:02,090]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:55:02,090]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:55:02状态码为0
+[2017-05-24 14:55:02,090]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:55:02写入成功
+[2017-05-24 14:55:02,090]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:55:17,611]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:56:00,014]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:56:00,014]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:56:00,014]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:56:00启动查询
+[2017-05-24 14:56:00,014]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:56:00,109]  32 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:56:00,109]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:56:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:56:00,109]  32 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:56:00,109]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:56:00状态码为0
+[2017-05-24 14:56:00,109]  32 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:56:00写入成功
+[2017-05-24 14:56:00,109]  32 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:56:15,561]  32 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:57:00,007]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:57:00,023]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:57:00,023]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:57:00启动查询
+[2017-05-24 14:57:00,023]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:57:00,107]  38 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:57:00,107]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:57:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:57:00,107]  38 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:57:00,107]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:57:00状态码为0
+[2017-05-24 14:57:00,107]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:57:00写入成功
+[2017-05-24 14:57:00,107]  38 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:57:15,620]  38 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:58:00,004]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:58:00,020]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:58:00,020]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:58:00启动查询
+[2017-05-24 14:58:00,020]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:58:00,098]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:58:00,098]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:58:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:58:00,098]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:58:00,098]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:58:00状态码为0
+[2017-05-24 14:58:00,098]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:58:00写入成功
+[2017-05-24 14:58:00,098]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:58:15,557]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 14:59:00,005]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 14:59:00,021]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 14:59:00,021]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:59:00启动查询
+[2017-05-24 14:59:00,021]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 14:59:00,423]  36 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 14:59:00,423]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:59:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 14:59:00,423]  36 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 14:59:00,423]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:59:00状态码为0
+[2017-05-24 14:59:00,423]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 02:59:00写入成功
+[2017-05-24 14:59:00,423]  36 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 14:59:15,906]  36 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:00:00,008]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:00:00,024]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:00:00,024]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:00:00启动查询
+[2017-05-24 15:00:00,024]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:00:00,107]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:00:00,123]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:00:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:00:00,123]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:00:00,123]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:00:00状态码为0
+[2017-05-24 15:00:00,123]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:00:00写入成功
+[2017-05-24 15:00:00,123]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:00:15,651]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:01:00,004]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:01:00,020]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:01:00,020]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:01:00启动查询
+[2017-05-24 15:01:00,020]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:01:00,161]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:01:00,161]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:01:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:01:00,161]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:01:00,161]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:01:00状态码为0
+[2017-05-24 15:01:00,161]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:01:00写入成功
+[2017-05-24 15:01:00,161]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:01:15,652]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:02:00,005]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:02:00,020]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:02:00,020]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:02:00启动查询
+[2017-05-24 15:02:00,020]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:02:00,109]  38 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:02:00,109]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:02:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:02:00,109]  38 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:02:00,109]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:02:00状态码为0
+[2017-05-24 15:02:00,109]  38 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:02:00写入成功
+[2017-05-24 15:02:00,109]  38 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:02:15,599]  38 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:03:00,023]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:03:00,027]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:03:00,027]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:03:00启动查询
+[2017-05-24 15:03:00,027]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:03:00,108]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:03:00,108]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:03:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:03:00,108]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:03:00,108]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:03:00状态码为0
+[2017-05-24 15:03:00,108]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:03:00写入成功
+[2017-05-24 15:03:00,108]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:03:15,622]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:04:00,006]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:04:00,022]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:04:00,022]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:04:00启动查询
+[2017-05-24 15:04:00,022]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:04:02,224]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:04:02,224]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:04:02查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:04:02,224]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:04:02,224]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:04:02状态码为0
+[2017-05-24 15:04:02,224]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:04:02写入成功
+[2017-05-24 15:04:02,224]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:04:17,749]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:05:00,004]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:05:00,019]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:05:00,019]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:05:00启动查询
+[2017-05-24 15:05:00,019]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:05:00,126]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:05:00,126]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:05:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:05:00,126]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:05:00,126]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:05:00状态码为0
+[2017-05-24 15:05:00,126]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:05:00写入成功
+[2017-05-24 15:05:00,126]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:05:15,664]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:06:00,005]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:06:00,020]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:06:00,020]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:06:00启动查询
+[2017-05-24 15:06:00,020]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:06:00,122]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:06:00,122]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:06:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:06:00,122]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:06:00,122]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:06:00状态码为0
+[2017-05-24 15:06:00,122]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:06:00写入成功
+[2017-05-24 15:06:00,122]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:06:15,637]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:07:00,007]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:07:00,022]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:07:00,022]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:07:00启动查询
+[2017-05-24 15:07:00,022]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:07:00,123]  36 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:07:00,123]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:07:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:07:00,123]  36 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:07:00,123]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:07:00状态码为0
+[2017-05-24 15:07:00,123]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:07:00写入成功
+[2017-05-24 15:07:00,123]  36 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:07:15,650]  36 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:08:00,003]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:08:00,018]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:08:00,018]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:08:00启动查询
+[2017-05-24 15:08:00,018]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:08:00,096]  36 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:08:00,096]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:08:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:08:00,096]  36 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:08:00,096]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:08:00状态码为0
+[2017-05-24 15:08:00,096]  36 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:08:00写入成功
+[2017-05-24 15:08:00,096]  36 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:08:15,620]  36 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:09:00,003]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:09:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:09:00,019]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:09:00启动查询
+[2017-05-24 15:09:00,019]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:09:00,125]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:09:00,125]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:09:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:09:00,125]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:09:00,125]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:09:00状态码为0
+[2017-05-24 15:09:00,125]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:09:00写入成功
+[2017-05-24 15:09:00,125]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:09:15,595]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:10:00,009]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:10:00,009]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:10:00,009]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:10:00启动查询
+[2017-05-24 15:10:00,009]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:10:00,125]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:10:00,125]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:10:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:10:00,125]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:10:00,125]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:10:00状态码为0
+[2017-05-24 15:10:00,125]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:10:00写入成功
+[2017-05-24 15:10:00,125]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:10:15,588]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:11:00,004]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:11:00,019]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:11:00,019]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:11:00启动查询
+[2017-05-24 15:11:00,019]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:11:00,091]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:11:00,091]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:11:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:11:00,091]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:11:00,091]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:11:00状态码为0
+[2017-05-24 15:11:00,091]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:11:00写入成功
+[2017-05-24 15:11:00,091]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:11:15,603]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:12:00,004]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:12:00,019]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:12:00,019]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:12:00启动查询
+[2017-05-24 15:12:00,019]  InDbScheduler_Worker-5 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:12:00,108]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:12:00,108]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:12:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:12:00,108]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:12:00,108]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:12:00状态码为0
+[2017-05-24 15:12:00,108]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:12:00写入成功
+[2017-05-24 15:12:00,108]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:12:15,615]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:13:00,010]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:13:00,026]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:13:00,027]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:13:00启动查询
+[2017-05-24 15:13:00,027]  InDbScheduler_Worker-6 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:13:00,107]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:13:00,107]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:13:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:13:00,107]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:13:00,107]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:13:00状态码为0
+[2017-05-24 15:13:00,107]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:13:00写入成功
+[2017-05-24 15:13:00,107]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:13:15,695]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:14:00,004]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:14:00,020]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:14:00,020]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:14:00启动查询
+[2017-05-24 15:14:00,020]  InDbScheduler_Worker-7 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:14:00,096]  35 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:14:00,096]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:14:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:14:00,097]  35 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:14:00,098]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:14:00状态码为0
+[2017-05-24 15:14:00,098]  35 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:14:00写入成功
+[2017-05-24 15:14:00,099]  35 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:14:15,572]  35 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:15:00,002]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:15:00,018]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:15:00,018]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:15:00启动查询
+[2017-05-24 15:15:00,018]  InDbScheduler_Worker-8 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:15:00,651]  28 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:15:00,652]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:15:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:15:00,653]  28 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:15:00,654]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:15:00状态码为0
+[2017-05-24 15:15:00,655]  28 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:15:00写入成功
+[2017-05-24 15:15:00,655]  28 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:15:16,189]  28 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:16:00,004]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:16:00,019]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:16:00,019]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:16:00启动查询
+[2017-05-24 15:16:00,019]  InDbScheduler_Worker-9 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:16:00,106]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:16:00,106]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:16:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:16:00,106]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:16:00,106]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:16:00状态码为0
+[2017-05-24 15:16:00,106]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:16:00写入成功
+[2017-05-24 15:16:00,106]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:16:15,605]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:17:00,006]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:17:00,021]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:17:00,021]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:17:00启动查询
+[2017-05-24 15:17:00,021]  InDbScheduler_Worker-10 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:17:02,406]  16 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:17:02,421]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:17:02查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:17:02,421]  16 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:17:02,421]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:17:02状态码为0
+[2017-05-24 15:17:02,421]  16 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:17:02写入成功
+[2017-05-24 15:17:02,421]  16 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:17:18,033]  16 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:18:00,001]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:18:00,017]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:18:00,017]  15 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:18:00启动查询
+[2017-05-24 15:18:00,017]  InDbScheduler_Worker-1 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:18:00,126]  15 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:18:00,126]  15 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:18:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:18:00,126]  15 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:18:00,126]  15 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:18:00状态码为0
+[2017-05-24 15:18:00,126]  15 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:18:00写入成功
+[2017-05-24 15:18:00,126]  15 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:18:15,649]  15 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:19:00,002]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:19:00,018]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:19:00,018]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:19:00启动查询
+[2017-05-24 15:19:00,018]  InDbScheduler_Worker-2 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:19:00,122]  22 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:19:00,122]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:19:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:19:00,122]  22 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:19:00,122]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:19:00状态码为0
+[2017-05-24 15:19:00,122]  22 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:19:00写入成功
+[2017-05-24 15:19:00,122]  22 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:19:15,671]  22 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:20:00,021]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:20:00,026]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:20:00,027]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:20:00启动查询
+[2017-05-24 15:20:00,027]  InDbScheduler_Worker-3 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:20:00,122]  30 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc></response>
+[2017-05-24 15:20:00,122]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:20:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:20:00,122]  30 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为传入的集合判断其状态finish
+[2017-05-24 15:20:00,122]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:20:00状态码为0
+[2017-05-24 15:20:00,122]  30 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:20:00写入成功
+[2017-05-24 15:20:00,122]  30 -- INFO  -- mylogger [WriteLog] -- 工作流完成
+[2017-05-24 15:20:15,604]  30 -- WARN  -- mylogger [WriteWarn] -- 工作流中止
+[2017-05-24 15:21:00,002]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 启动查询wf
+[2017-05-24 15:21:00,018]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 跳出wf
+[2017-05-24 15:21:00,018]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:21:00启动查询
+[2017-05-24 15:21:00,018]  InDbScheduler_Worker-4 -- INFO  -- mylogger [WriteLog] -- 开始写入作业状态
+[2017-05-24 15:21:00,129]  31 -- INFO  -- mylogger [WriteLog] -- 查询返回结果为<?xml version='1.0' encoding='utf-8'?><response><result>0</result><desc>成功</desc><report><msgid>cf764d09096a40dc8bbe58541269ac36</msgid><phone>13811104406</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 15:20:23</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>cf764d09096a40dc8bbe58541269ac36</msgid><phone>18610819818</phone><status>0</status><desc>发送成功</desc><wgcode>0</wgcode><time>2017-05-24 15:20:23</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>cf764d09096a40dc8bbe58541269ac36</msgid><phone>13681211480</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 15:20:24</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report><report><msgid>cf764d09096a40dc8bbe58541269ac36</msgid><phone>13426494401</phone><status>0</status><desc>发送成功</desc><wgcode>DELIVRD</wgcode><time>2017-05-24 15:20:24</time><smsCount>1</smsCount><smsIndex>1</smsIndex></report></response>
+[2017-05-24 15:21:00,129]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:21:00查询结果含System.Collections.Generic.List`1[PMS.Model.SMSModel.SMSModel_QueryReceive]
+[2017-05-24 15:21:00,129]  31 -- INFO  -- mylogger [WriteLog] -- 步骤2：msgid为cf764d09096a40dc8bbe58541269ac36传入的集合判断其状态remnant
+[2017-05-24 15:21:00,129]  31 -- WARN  -- mylogger [WriteWarn] -- 2017-05-24 03:21:00状态码为0

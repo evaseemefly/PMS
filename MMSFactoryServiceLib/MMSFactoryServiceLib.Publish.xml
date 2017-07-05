@@ -1,88 +1,207 @@
 <publishData>
+  <publishTarget publishUrl="E:\03协同开发\999发布版\WCF\预报中心\3.2\MMS\">
+    <file relUrl="bin/PMS.IModel.dll" publishTime="05/23/2017 15:51:59" />
+    <file relUrl="bin\Debug/Common.Logging.pdb" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/Memcached.Client.dll" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin/Microsoft.Practices.Unity.Configuration.dll" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin\Debug/Quartz.xml" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="bin/SMSFactory.pdb" publishTime="05/23/2017 15:54:12" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.xml" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin\Debug/PMS.Model.dll" publishTime="05/23/2017 15:52:02" />
+    <file relUrl="bin/PMS.IModel.pdb" publishTime="05/23/2017 15:51:59" />
+    <file relUrl="bin\Debug/Newtonsoft.Json.pdb" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="bin\Debug/QuartzJobFactory.dll" publishTime="05/23/2017 15:52:10" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/EntityFramework.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/PMS.IBLL.pdb" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin/System.Web.Mvc.dll" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="MMSFactoryServiceLib.MMSService.svc" publishTime="05/23/2017 15:54:41" />
+    <file relUrl="Web.config" publishTime="03/29/2017 16:54:12" />
+    <file relUrl="bin/DelegateSMS.pdb" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.dll" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="MMSFactoryServiceLib.csproj" publishTime="05/08/2017 08:43:50" />
+    <file relUrl="bin\Debug/Newtonsoft.Json.xml" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="MMSFactoryServiceLib.csproj.user" publishTime="05/04/2017 07:45:33" />
+    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin/MMSFactoryServiceLib.pdb" publishTime="05/23/2017 15:54:37" />
+    <file relUrl="bin\Debug/Common.Logging.Core.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.dll" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin/SMSFactory.dll" publishTime="05/23/2017 15:54:12" />
+    <file relUrl="bin\Debug/Quartz.dll" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="bin/Microsoft.Practices.Unity.Configuration.xml" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin/QuartzJobFactory.dll" publishTime="05/23/2017 15:52:10" />
+    <file relUrl="bin/Common.Logging.Core.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/Common.Logging.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/Common.Logging.Core.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/Memcached.Client.xml" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin/Newtonsoft.Json.xml" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="bin/MMSFactoryServiceLib.dll.config" publishTime="03/29/2017 16:54:12" />
+    <file relUrl="bin\Debug/Common.pdb" publishTime="05/23/2017 15:52:05" />
+    <file relUrl="bin/QuartzJobFactory.pdb" publishTime="05/23/2017 15:52:10" />
+    <file relUrl="bin/Common.Logging.pdb" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/ServiceStack.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin/JobManagement.dll" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/MMSFactoryServiceLib.dll.config" publishTime="03/29/2017 16:54:12" />
+    <file relUrl="bin/System.Web.Mvc.xml" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.dll" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin/Newtonsoft.Json.pdb" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="bin\Debug/System.Web.Mvc.dll" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin\Debug/ServiceStack.Interfaces.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin\Debug/JobManagement.pdb" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/ServiceStack.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin\Debug/Common.Logging.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="IMMSService.cs" publishTime="03/24/2017 11:09:33" />
+    <file relUrl="bin\Debug/log4net.config" publishTime="05/08/2017 08:43:50" />
+    <file relUrl="bin\Debug/JobManagement.dll" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.pdb" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.pdb" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin\Debug/MMSFactoryServiceLib.dll" publishTime="05/23/2017 15:54:37" />
+    <file relUrl="bin/FastDFS.Client.dll" publishTime="03/14/2017 14:50:59" />
+    <file relUrl="bin/Quartz.xml" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="bin\Debug/DelegateSMS.dll" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/Memcached.Client.xml" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="MMSService.cs" publishTime="03/29/2017 08:53:23" />
+    <file relUrl="bin/ISMS.dll" publishTime="05/23/2017 15:52:04" />
+    <file relUrl="bin\zh-Hans/EntityFramework.resources.dll" publishTime="03/02/2015 09:32:38" />
+    <file relUrl="bin\Debug/Common.Logging.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/log4net.config" publishTime="05/08/2017 08:43:50" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.xml" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin/DelegateSMS.dll" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin/ISMS.pdb" publishTime="05/23/2017 15:52:04" />
+    <file relUrl="bin/JobManagement.pdb" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/QuartzJobFactory.pdb" publishTime="05/23/2017 15:52:10" />
+    <file relUrl="bin/log4net.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin/PMS.Model.pdb" publishTime="05/23/2017 15:52:02" />
+    <file relUrl="bin\Debug/MMSFactoryServiceLib.pdb" publishTime="05/23/2017 15:54:37" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.xml" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin\Debug\zh-Hans/EntityFramework.resources.dll" publishTime="03/02/2015 09:32:38" />
+    <file relUrl="bin\Debug\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
+    <file relUrl="bin\Debug/Common.Logging.Core.pdb" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/Common.Logging.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="Properties/AssemblyInfo.cs" publishTime="03/24/2017 09:01:11" />
+    <file relUrl="bin/Common.dll" publishTime="05/23/2017 15:52:05" />
+    <file relUrl="bin/Memcached.Client.dll" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin/Microsoft.Practices.Unity.xml" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin\Debug/Quartz.pdb" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="bin/PMS.Model.dll" publishTime="05/23/2017 15:52:02" />
+    <file relUrl="bin/Common.Logging.Core.pdb" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/Newtonsoft.Json.dll" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="bin/Common.pdb" publishTime="05/23/2017 15:52:05" />
+    <file relUrl="bin\Debug/PMS.Model.pdb" publishTime="05/23/2017 15:52:02" />
+    <file relUrl="bin\Debug/Common.dll" publishTime="05/23/2017 15:52:05" />
+    <file relUrl="bin/Quartz.pdb" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="bin/PMS.IBLL.dll" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/SMSFactory.dll" publishTime="05/23/2017 15:54:12" />
+    <file relUrl="bin/Common.Logging.Core.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/FastDFS.Client.dll" publishTime="03/14/2017 14:50:59" />
+    <file relUrl="bin/log4net.xml" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="MMSFactoryServiceLib.Publish.xml" publishTime="05/08/2017 08:43:50" />
+    <file relUrl="bin/ServiceStack.Interfaces.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin/MMSFactoryServiceLib.dll" publishTime="05/23/2017 15:54:37" />
+    <file relUrl="bin/PMS.IBLL.pdb" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/log4net.xml" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin/Quartz.dll" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="log4net.config" publishTime="05/08/2017 08:43:50" />
+    <file relUrl="bin\Debug/DelegateSMS.pdb" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/PMS.IModel.pdb" publishTime="05/23/2017 15:51:59" />
+    <file relUrl="bin\Debug/log4net.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.xml" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin\Debug/System.Web.Mvc.xml" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin\Debug/PMS.IModel.dll" publishTime="05/23/2017 15:51:59" />
+    <file relUrl="bin\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
+    <file relUrl="bin\Debug/PMS.IBLL.dll" publishTime="05/23/2017 15:52:03" />
+    <file relUrl="bin\Debug/ISMS.dll" publishTime="05/23/2017 15:52:04" />
+    <file relUrl="bin\Debug/SMSFactory.pdb" publishTime="05/23/2017 15:54:12" />
+    <file relUrl="bin\Debug/EntityFramework.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.dll" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin\Debug/ISMS.pdb" publishTime="05/23/2017 15:52:04" />
+    <file relUrl="App.config" publishTime="03/29/2017 16:54:12" />
+  </publishTarget>
   <publishTarget publishUrl="D:\02编程\2016年\06发布目录\预报中心\WCF\彩信\">
     <file relUrl="bin/PMS.IModel.dll" publishTime="05/05/2017 16:15:16" />
     <file relUrl="bin\Debug/Common.Logging.pdb" publishTime="10/31/2016 08:08:27" />
-    <file relUrl="bin/ISMS.pdb" publishTime="05/05/2017 16:15:24" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="04/14/2016 15:27:47" />
     <file relUrl="bin\Debug/Memcached.Client.dll" publishTime="01/19/2014 17:15:14" />
     <file relUrl="bin/Microsoft.Practices.Unity.Configuration.dll" publishTime="04/06/2017 10:01:17" />
     <file relUrl="bin\Debug/Quartz.xml" publishTime="10/31/2016 08:08:28" />
     <file relUrl="bin/SMSFactory.pdb" publishTime="05/05/2017 16:18:26" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.xml" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/PMS.IModel.pdb" publishTime="05/05/2017 16:15:16" />
     <file relUrl="bin\Debug/Newtonsoft.Json.pdb" publishTime="04/14/2016 15:27:45" />
-    <file relUrl="bin/log4net.xml" publishTime="12/08/2016 09:46:00" />
     <file relUrl="bin\Debug/QuartzJobFactory.dll" publishTime="05/05/2017 16:15:23" />
-    <file relUrl="bin/EntityFramework.xml" publishTime="04/14/2016 15:27:47" />
+    <file relUrl="bin\Debug/SMSFactory.dll" publishTime="05/05/2017 16:18:26" />
     <file relUrl="bin\Debug/EntityFramework.xml" publishTime="04/14/2016 15:27:47" />
     <file relUrl="bin\Debug/PMS.Model.dll" publishTime="05/05/2017 16:15:17" />
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="04/14/2016 15:27:47" />
     <file relUrl="MMSFactoryServiceLib.MMSService.svc" publishTime="05/05/2017 16:19:53" />
     <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.dll" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin/JobManagement.pdb" publishTime="05/05/2017 16:15:24" />
-    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="04/06/2017 10:01:17" />
-    <file relUrl="MMSFactoryServiceLib.csproj" publishTime="05/05/2017 11:11:44" />
+    <file relUrl="bin/DelegateSMS.pdb" publishTime="05/05/2017 16:15:20" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.dll" publishTime="04/06/2017 10:01:17" />
+    <file relUrl="bin/PMS.Model.dll" publishTime="05/05/2017 16:15:17" />
     <file relUrl="bin\Debug/Newtonsoft.Json.xml" publishTime="04/14/2016 15:27:45" />
     <file relUrl="MMSFactoryServiceLib.csproj.user" publishTime="05/05/2017 11:11:44" />
+    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="04/06/2017 10:01:17" />
     <file relUrl="bin/MMSFactoryServiceLib.pdb" publishTime="05/05/2017 16:19:50" />
     <file relUrl="bin\Debug/MMSFactoryServiceLib.dll" publishTime="05/05/2017 16:19:50" />
     <file relUrl="bin/SMSFactory.dll" publishTime="05/05/2017 16:18:26" />
+    <file relUrl="bin\Debug/Quartz.dll" publishTime="10/31/2016 08:08:28" />
     <file relUrl="bin/Microsoft.Practices.Unity.Configuration.xml" publishTime="04/06/2017 10:01:17" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.dll" publishTime="04/06/2017 10:01:17" />
-    <file relUrl="bin\Debug/SMSFactory.dll" publishTime="05/05/2017 16:18:26" />
+    <file relUrl="bin\Debug/MMSFactoryServiceLib.dll.config" publishTime="04/06/2017 10:01:16" />
+    <file relUrl="bin/Common.Logging.Core.xml" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin/Common.Logging.xml" publishTime="10/31/2016 08:08:27" />
-    <file relUrl="bin/PMS.Model.pdb" publishTime="05/05/2017 16:15:17" />
     <file relUrl="bin/Memcached.Client.xml" publishTime="01/19/2014 17:15:14" />
-    <file relUrl="bin/Microsoft.Practices.ServiceLocation.xml" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/Newtonsoft.Json.xml" publishTime="04/14/2016 15:27:45" />
     <file relUrl="bin/MMSFactoryServiceLib.dll.config" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin\Debug/PMS.IBLL.dll" publishTime="05/05/2017 16:15:19" />
     <file relUrl="Properties/AssemblyInfo.cs" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/QuartzJobFactory.pdb" publishTime="05/05/2017 16:15:23" />
-    <file relUrl="bin\Debug/EntityFramework.dll" publishTime="04/14/2016 15:27:47" />
-    <file relUrl="App.config" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin/Microsoft.Practices.Unity.xml" publishTime="04/06/2017 10:01:17" />
+    <file relUrl="bin\Debug/FastDFS.Client.dll" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/ServiceStack.dll" publishTime="07/01/2016 09:21:09" />
-    <file relUrl="log4net.config" publishTime="05/05/2017 15:33:08" />
     <file relUrl="bin/Common.Logging.pdb" publishTime="10/31/2016 08:08:27" />
-    <file relUrl="bin/PMS.Model.dll" publishTime="05/05/2017 16:15:17" />
-    <file relUrl="bin\Debug/MMSFactoryServiceLib.dll.config" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/System.Web.Mvc.xml" publishTime="04/14/2016 15:27:47" />
-    <file relUrl="bin/Common.Logging.Core.dll" publishTime="10/31/2016 08:08:27" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.dll" publishTime="04/06/2017 10:01:17" />
+    <file relUrl="bin\Debug/PMS.IBLL.pdb" publishTime="05/05/2017 16:15:19" />
     <file relUrl="bin\Debug/System.Web.Mvc.dll" publishTime="04/14/2016 15:27:47" />
+    <file relUrl="bin\Debug/ServiceStack.Interfaces.dll" publishTime="07/01/2016 09:21:09" />
     <file relUrl="bin\Debug/JobManagement.pdb" publishTime="05/05/2017 16:15:24" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.xml" publishTime="04/06/2017 10:01:17" />
+    <file relUrl="bin\Debug/ServiceStack.dll" publishTime="07/01/2016 09:21:09" />
     <file relUrl="bin\Debug/Common.pdb" publishTime="05/05/2017 16:15:18" />
-    <file relUrl="bin/log4net.dll" publishTime="12/08/2016 09:46:00" />
+    <file relUrl="MMSFactoryServiceLib.csproj" publishTime="05/05/2017 11:11:44" />
     <file relUrl="bin/Newtonsoft.Json.dll" publishTime="04/14/2016 15:27:45" />
     <file relUrl="IMMSService.cs" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin\Debug/log4net.config" publishTime="05/05/2017 15:33:08" />
     <file relUrl="bin\Debug/JobManagement.dll" publishTime="05/05/2017 16:15:24" />
+    <file relUrl="bin\Debug/Common.Logging.xml" publishTime="10/31/2016 08:08:27" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.pdb" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/Microsoft.Practices.ServiceLocation.pdb" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin\Debug/Common.Logging.Core.pdb" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin/FastDFS.Client.dll" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin\Debug/Quartz.pdb" publishTime="10/31/2016 08:08:28" />
+    <file relUrl="bin\Debug/SMSFactory.pdb" publishTime="05/05/2017 16:18:26" />
     <file relUrl="bin\Debug/DelegateSMS.dll" publishTime="05/05/2017 16:15:20" />
-    <file relUrl="bin/DelegateSMS.pdb" publishTime="05/05/2017 16:15:20" />
     <file relUrl="bin\Debug/Memcached.Client.xml" publishTime="01/19/2014 17:15:14" />
+    <file relUrl="bin/JobManagement.dll" publishTime="05/05/2017 16:15:24" />
     <file relUrl="MMSService.cs" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin/ISMS.dll" publishTime="05/05/2017 16:15:24" />
     <file relUrl="bin\zh-Hans/EntityFramework.resources.dll" publishTime="03/02/2015 09:32:38" />
     <file relUrl="bin\Debug/Common.Logging.dll" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin/Quartz.xml" publishTime="10/31/2016 08:08:28" />
-    <file relUrl="bin/DelegateSMS.dll" publishTime="05/05/2017 16:15:20" />
-    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.xml" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin/log4net.config" publishTime="05/05/2017 15:33:08" />
-    <file relUrl="bin\Debug/QuartzJobFactory.pdb" publishTime="05/05/2017 16:15:23" />
     <file relUrl="Web.config" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.xml" publishTime="04/06/2017 10:01:17" />
+    <file relUrl="bin/DelegateSMS.dll" publishTime="05/05/2017 16:15:20" />
+    <file relUrl="bin/ISMS.pdb" publishTime="05/05/2017 16:15:24" />
+    <file relUrl="bin/JobManagement.pdb" publishTime="05/05/2017 16:15:24" />
+    <file relUrl="bin\Debug/QuartzJobFactory.pdb" publishTime="05/05/2017 16:15:23" />
+    <file relUrl="bin/log4net.dll" publishTime="12/08/2016 09:46:00" />
+    <file relUrl="bin/PMS.Model.pdb" publishTime="05/05/2017 16:15:17" />
     <file relUrl="bin\Debug/MMSFactoryServiceLib.pdb" publishTime="05/05/2017 16:19:50" />
-    <file relUrl="bin\Debug/ServiceStack.dll" publishTime="07/01/2016 09:21:09" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.xml" publishTime="04/06/2017 10:01:17" />
+    <file relUrl="bin/log4net.config" publishTime="05/05/2017 15:33:08" />
     <file relUrl="bin\Debug\zh-Hans/EntityFramework.resources.dll" publishTime="03/02/2015 09:32:38" />
-    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.pdb" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin\Debug/PMS.IBLL.pdb" publishTime="05/05/2017 16:15:19" />
+    <file relUrl="bin\Debug\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
+    <file relUrl="bin\Debug/Common.Logging.Core.pdb" publishTime="10/31/2016 08:08:27" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.xml" publishTime="04/06/2017 10:01:17" />
     <file relUrl="bin/Common.dll" publishTime="05/05/2017 16:15:18" />
     <file relUrl="bin/Memcached.Client.dll" publishTime="01/19/2014 17:15:14" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.dll" publishTime="04/06/2017 10:01:17" />
-    <file relUrl="bin\Debug/DelegateSMS.pdb" publishTime="05/05/2017 16:15:20" />
+    <file relUrl="bin/Microsoft.Practices.Unity.xml" publishTime="04/06/2017 10:01:17" />
     <file relUrl="bin\Debug/Common.Logging.Core.dll" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin/Common.Logging.Core.pdb" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin\Debug/Newtonsoft.Json.dll" publishTime="04/14/2016 15:27:45" />
@@ -91,33 +210,34 @@
     <file relUrl="bin\Debug/Common.dll" publishTime="05/05/2017 16:15:18" />
     <file relUrl="bin/Newtonsoft.Json.pdb" publishTime="04/14/2016 15:27:45" />
     <file relUrl="bin\Debug/Common.Logging.Core.xml" publishTime="10/31/2016 08:08:27" />
-    <file relUrl="bin/PMS.IBLL.dll" publishTime="05/05/2017 16:15:19" />
+    <file relUrl="bin/Common.Logging.Core.dll" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin/EntityFramework.dll" publishTime="04/14/2016 15:27:47" />
-    <file relUrl="bin\Debug/FastDFS.Client.dll" publishTime="04/06/2017 10:01:16" />
-    <file relUrl="bin/QuartzJobFactory.dll" publishTime="05/05/2017 16:15:23" />
+    <file relUrl="bin/PMS.IBLL.dll" publishTime="05/05/2017 16:15:19" />
+    <file relUrl="bin\Debug/Quartz.pdb" publishTime="10/31/2016 08:08:28" />
+    <file relUrl="bin/log4net.xml" publishTime="12/08/2016 09:46:00" />
     <file relUrl="MMSFactoryServiceLib.Publish.xml" publishTime="05/03/2017 15:23:17" />
     <file relUrl="bin/ServiceStack.Interfaces.dll" publishTime="07/01/2016 09:21:09" />
     <file relUrl="bin/MMSFactoryServiceLib.dll" publishTime="05/05/2017 16:19:50" />
     <file relUrl="bin/PMS.IBLL.pdb" publishTime="05/05/2017 16:15:19" />
     <file relUrl="bin\Debug/log4net.xml" publishTime="12/08/2016 09:46:00" />
     <file relUrl="bin/Quartz.dll" publishTime="10/31/2016 08:08:28" />
-    <file relUrl="bin\Debug\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
+    <file relUrl="log4net.config" publishTime="05/05/2017 15:33:08" />
     <file relUrl="bin/Quartz.pdb" publishTime="10/31/2016 08:08:28" />
-    <file relUrl="bin\Debug/Quartz.dll" publishTime="10/31/2016 08:08:28" />
+    <file relUrl="bin\Debug/DelegateSMS.pdb" publishTime="05/05/2017 16:15:20" />
     <file relUrl="bin\Debug/PMS.IModel.pdb" publishTime="05/05/2017 16:15:16" />
     <file relUrl="bin/Common.Logging.dll" publishTime="10/31/2016 08:08:27" />
     <file relUrl="bin\Debug/log4net.dll" publishTime="12/08/2016 09:46:00" />
-    <file relUrl="bin\Debug/ServiceStack.Interfaces.dll" publishTime="07/01/2016 09:21:09" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.xml" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin\Debug/System.Web.Mvc.xml" publishTime="04/14/2016 15:27:47" />
     <file relUrl="bin\Debug/PMS.IModel.dll" publishTime="05/05/2017 16:15:16" />
     <file relUrl="bin\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
-    <file relUrl="bin\Debug/Common.Logging.xml" publishTime="10/31/2016 08:08:27" />
+    <file relUrl="bin\Debug/PMS.IBLL.dll" publishTime="05/05/2017 16:15:19" />
     <file relUrl="bin\Debug/ISMS.dll" publishTime="05/05/2017 16:15:24" />
-    <file relUrl="bin\Debug/SMSFactory.pdb" publishTime="05/05/2017 16:18:26" />
-    <file relUrl="bin/JobManagement.dll" publishTime="05/05/2017 16:15:24" />
+    <file relUrl="bin\Debug/EntityFramework.dll" publishTime="04/14/2016 15:27:47" />
     <file relUrl="bin/Microsoft.Practices.ServiceLocation.dll" publishTime="04/06/2017 10:01:16" />
     <file relUrl="bin\Debug/ISMS.pdb" publishTime="05/05/2017 16:15:24" />
-    <file relUrl="bin/Common.Logging.Core.xml" publishTime="10/31/2016 08:08:27" />
+    <file relUrl="App.config" publishTime="04/06/2017 10:01:16" />
+    <file relUrl="bin/QuartzJobFactory.dll" publishTime="05/05/2017 16:15:23" />
   </publishTarget>
   <publishTarget publishUrl="E:\03协同开发\999发布版\WCF\预报中心\3.0\MMS\">
     <file relUrl="bin/PMS.IModel.dll" publishTime="04/10/2017 08:58:22" />
@@ -127,8 +247,10 @@
     <file relUrl="bin/Microsoft.Practices.Unity.Configuration.dll" publishTime="10/05/2015 09:37:20" />
     <file relUrl="bin\Debug/Quartz.xml" publishTime="12/15/2016 09:04:24" />
     <file relUrl="bin/SMSFactory.pdb" publishTime="04/10/2017 09:05:31" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.xml" publishTime="05/05/2014 11:25:44" />
     <file relUrl="bin/PMS.IModel.pdb" publishTime="04/10/2017 08:58:22" />
     <file relUrl="bin\Debug/Newtonsoft.Json.pdb" publishTime="12/15/2016 09:04:16" />
+    <file relUrl="bin/log4net.xml" publishTime="12/15/2016 09:04:25" />
     <file relUrl="bin\Debug/QuartzJobFactory.dll" publishTime="04/10/2017 08:59:23" />
     <file relUrl="bin\Debug/SMSFactory.dll" publishTime="04/10/2017 09:05:31" />
     <file relUrl="bin\Debug/EntityFramework.xml" publishTime="12/15/2016 09:04:22" />
@@ -136,72 +258,70 @@
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="12/15/2016 09:04:23" />
     <file relUrl="MMSFactoryServiceLib.MMSService.svc" publishTime="04/10/2017 09:05:52" />
     <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.dll" publishTime="05/05/2014 11:25:44" />
-    <file relUrl="bin/DelegateSMS.pdb" publishTime="04/10/2017 08:58:48" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.dll" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="10/05/2015 09:37:20" />
     <file relUrl="MMSFactoryServiceLib.csproj" publishTime="03/24/2017 10:30:31" />
     <file relUrl="bin\Debug/Newtonsoft.Json.xml" publishTime="12/15/2016 09:04:16" />
     <file relUrl="MMSFactoryServiceLib.csproj.user" publishTime="04/10/2017 09:05:41" />
-    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="10/05/2015 09:37:20" />
     <file relUrl="bin/MMSFactoryServiceLib.pdb" publishTime="04/10/2017 09:05:48" />
     <file relUrl="bin\Debug/MMSFactoryServiceLib.dll" publishTime="04/10/2017 09:05:48" />
     <file relUrl="bin/SMSFactory.dll" publishTime="04/10/2017 09:05:31" />
-    <file relUrl="bin\Debug/Quartz.dll" publishTime="12/15/2016 09:04:24" />
     <file relUrl="bin/Microsoft.Practices.Unity.Configuration.xml" publishTime="10/05/2015 09:37:20" />
-    <file relUrl="bin\Debug/MMSFactoryServiceLib.dll.config" publishTime="03/29/2017 16:54:12" />
-    <file relUrl="bin/ISMS.pdb" publishTime="04/10/2017 08:58:52" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.dll" publishTime="10/05/2015 09:37:20" />
     <file relUrl="bin/Common.Logging.xml" publishTime="12/15/2016 09:04:22" />
-    <file relUrl="bin\Debug/Common.Logging.Core.dll" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/Memcached.Client.xml" publishTime="12/15/2016 09:04:23" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.xml" publishTime="05/05/2014 11:25:44" />
     <file relUrl="bin/Newtonsoft.Json.xml" publishTime="12/15/2016 09:04:16" />
     <file relUrl="bin/MMSFactoryServiceLib.dll.config" publishTime="03/29/2017 16:54:12" />
+    <file relUrl="bin\Debug/PMS.IBLL.dll" publishTime="04/10/2017 08:58:49" />
     <file relUrl="Properties/AssemblyInfo.cs" publishTime="03/24/2017 09:01:11" />
     <file relUrl="bin/QuartzJobFactory.pdb" publishTime="04/10/2017 08:59:23" />
+    <file relUrl="bin\Debug/EntityFramework.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="App.config" publishTime="03/29/2017 16:54:12" />
     <file relUrl="bin\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
     <file relUrl="bin/ServiceStack.dll" publishTime="12/15/2016 09:04:25" />
     <file relUrl="bin/Common.Logging.pdb" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin/PMS.Model.dll" publishTime="04/10/2017 08:58:38" />
+    <file relUrl="bin\Debug/MMSFactoryServiceLib.dll.config" publishTime="03/29/2017 16:54:12" />
     <file relUrl="bin/System.Web.Mvc.xml" publishTime="12/15/2016 09:04:23" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.dll" publishTime="10/05/2015 09:37:20" />
-    <file relUrl="bin\Debug/PMS.IBLL.pdb" publishTime="04/10/2017 08:58:49" />
     <file relUrl="bin\Debug/System.Web.Mvc.dll" publishTime="12/15/2016 09:04:23" />
-    <file relUrl="bin\Debug/ServiceStack.Interfaces.dll" publishTime="12/15/2016 09:04:25" />
     <file relUrl="bin\Debug/JobManagement.pdb" publishTime="04/10/2017 08:58:49" />
-    <file relUrl="bin\Debug/ServiceStack.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.xml" publishTime="10/05/2015 09:37:20" />
     <file relUrl="bin\Debug/Common.pdb" publishTime="04/10/2017 08:58:50" />
     <file relUrl="bin/Newtonsoft.Json.dll" publishTime="12/15/2016 09:04:16" />
     <file relUrl="IMMSService.cs" publishTime="03/24/2017 11:09:33" />
+    <file relUrl="bin/Microsoft.Practices.Unity.xml" publishTime="10/05/2015 09:37:20" />
     <file relUrl="bin\Debug/log4net.config" publishTime="12/15/2016 09:04:18" />
     <file relUrl="bin\Debug/JobManagement.dll" publishTime="04/10/2017 08:58:49" />
-    <file relUrl="bin\Debug/Common.Logging.xml" publishTime="12/15/2016 09:04:22" />
-    <file relUrl="bin/Common.Logging.Core.xml" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.pdb" publishTime="05/05/2014 11:25:44" />
     <file relUrl="bin/Microsoft.Practices.ServiceLocation.pdb" publishTime="05/05/2014 11:25:44" />
-    <file relUrl="bin\Debug/Common.Logging.Core.pdb" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/FastDFS.Client.dll" publishTime="03/14/2017 14:50:59" />
     <file relUrl="bin\Debug/SMSFactory.pdb" publishTime="04/10/2017 09:05:31" />
     <file relUrl="bin\Debug/DelegateSMS.dll" publishTime="04/10/2017 08:58:48" />
+    <file relUrl="bin/DelegateSMS.pdb" publishTime="04/10/2017 08:58:48" />
     <file relUrl="bin\Debug/Memcached.Client.xml" publishTime="12/15/2016 09:04:23" />
-    <file relUrl="bin/JobManagement.dll" publishTime="04/10/2017 08:58:49" />
     <file relUrl="MMSService.cs" publishTime="03/29/2017 08:53:23" />
     <file relUrl="bin\Debug/FastDFS.Client.dll" publishTime="03/14/2017 14:50:59" />
     <file relUrl="bin\zh-Hans/EntityFramework.resources.dll" publishTime="03/02/2015 09:32:38" />
     <file relUrl="bin\Debug/Common.Logging.dll" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/Quartz.xml" publishTime="12/15/2016 09:04:24" />
-    <file relUrl="Web.config" publishTime="03/29/2017 16:54:12" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.xml" publishTime="10/05/2015 09:37:20" />
     <file relUrl="bin/DelegateSMS.dll" publishTime="04/10/2017 08:58:48" />
-    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.xml" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin\Debug/Common.Logging.Core.pdb" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/JobManagement.pdb" publishTime="04/10/2017 08:58:49" />
     <file relUrl="bin\Debug/QuartzJobFactory.pdb" publishTime="04/10/2017 08:59:23" />
-    <file relUrl="bin/log4net.dll" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="Web.config" publishTime="03/29/2017 16:54:12" />
     <file relUrl="bin/PMS.Model.pdb" publishTime="04/10/2017 08:58:38" />
     <file relUrl="bin\Debug/MMSFactoryServiceLib.pdb" publishTime="04/10/2017 09:05:48" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.xml" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin\Debug/ServiceStack.dll" publishTime="12/15/2016 09:04:25" />
     <file relUrl="bin/log4net.config" publishTime="12/15/2016 09:04:18" />
     <file relUrl="bin\Debug\zh-Hans/EntityFramework.resources.dll" publishTime="03/02/2015 09:32:38" />
-    <file relUrl="bin\Debug/Microsoft.Practices.ServiceLocation.pdb" publishTime="05/05/2014 11:25:44" />
-    <file relUrl="bin\Debug/Microsoft.Practices.Unity.Configuration.xml" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin/JobManagement.dll" publishTime="04/10/2017 08:58:49" />
+    <file relUrl="bin\Debug/PMS.IBLL.pdb" publishTime="04/10/2017 08:58:49" />
     <file relUrl="bin/Common.dll" publishTime="04/10/2017 08:58:50" />
     <file relUrl="bin/Memcached.Client.dll" publishTime="12/15/2016 09:04:23" />
-    <file relUrl="bin/Microsoft.Practices.Unity.xml" publishTime="10/05/2015 09:37:20" />
-    <file relUrl="bin/PMS.Model.dll" publishTime="04/10/2017 08:58:38" />
+    <file relUrl="bin\Debug/Microsoft.Practices.Unity.dll" publishTime="10/05/2015 09:37:20" />
+    <file relUrl="bin\Debug/Quartz.pdb" publishTime="12/15/2016 09:04:24" />
+    <file relUrl="bin\Debug/Common.Logging.Core.dll" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/Common.Logging.Core.pdb" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin\Debug/Newtonsoft.Json.dll" publishTime="12/15/2016 09:04:16" />
     <file relUrl="bin/Common.pdb" publishTime="04/10/2017 08:58:50" />
@@ -212,8 +332,8 @@
     <file relUrl="bin/Common.Logging.Core.dll" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/EntityFramework.dll" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/PMS.IBLL.dll" publishTime="04/10/2017 08:58:49" />
-    <file relUrl="bin\Debug/Quartz.pdb" publishTime="12/15/2016 09:04:24" />
-    <file relUrl="bin/log4net.xml" publishTime="12/15/2016 09:04:25" />
+    <file relUrl="bin/ISMS.pdb" publishTime="04/10/2017 08:58:52" />
+    <file relUrl="bin/log4net.dll" publishTime="12/15/2016 09:04:25" />
     <file relUrl="MMSFactoryServiceLib.Publish.xml" publishTime="04/10/2017 09:05:36" />
     <file relUrl="bin/ServiceStack.Interfaces.dll" publishTime="12/15/2016 09:04:25" />
     <file relUrl="bin/MMSFactoryServiceLib.dll" publishTime="04/10/2017 09:05:48" />
@@ -222,20 +342,20 @@
     <file relUrl="bin/Quartz.dll" publishTime="12/15/2016 09:04:24" />
     <file relUrl="bin\Debug\zh-Hans/System.Web.Mvc.resources.dll" publishTime="01/28/2015 04:02:22" />
     <file relUrl="bin/Quartz.pdb" publishTime="12/15/2016 09:04:24" />
-    <file relUrl="bin\Debug/DelegateSMS.pdb" publishTime="04/10/2017 08:58:48" />
+    <file relUrl="bin\Debug/Quartz.dll" publishTime="12/15/2016 09:04:24" />
     <file relUrl="bin\Debug/PMS.IModel.pdb" publishTime="04/10/2017 08:58:22" />
     <file relUrl="bin/Common.Logging.dll" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin\Debug/log4net.dll" publishTime="12/15/2016 09:04:25" />
-    <file relUrl="bin/Microsoft.Practices.ServiceLocation.xml" publishTime="05/05/2014 11:25:44" />
+    <file relUrl="bin\Debug/ServiceStack.Interfaces.dll" publishTime="12/15/2016 09:04:25" />
     <file relUrl="bin\Debug/System.Web.Mvc.xml" publishTime="12/15/2016 09:04:23" />
     <file relUrl="bin\Debug/PMS.IModel.dll" publishTime="04/10/2017 08:58:22" />
-    <file relUrl="bin\Debug/PMS.IBLL.dll" publishTime="04/10/2017 08:58:49" />
+    <file relUrl="bin\Debug/Common.Logging.xml" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin\Debug/ISMS.dll" publishTime="04/10/2017 08:58:52" />
-    <file relUrl="bin\Debug/EntityFramework.dll" publishTime="12/15/2016 09:04:22" />
+    <file relUrl="bin\Debug/DelegateSMS.pdb" publishTime="04/10/2017 08:58:48" />
     <file relUrl="bin/ISMS.dll" publishTime="04/10/2017 08:58:52" />
     <file relUrl="bin/Microsoft.Practices.ServiceLocation.dll" publishTime="05/05/2014 11:25:44" />
     <file relUrl="bin\Debug/ISMS.pdb" publishTime="04/10/2017 08:58:52" />
-    <file relUrl="App.config" publishTime="03/29/2017 16:54:12" />
+    <file relUrl="bin/Common.Logging.Core.xml" publishTime="12/15/2016 09:04:22" />
     <file relUrl="bin/QuartzJobFactory.dll" publishTime="04/10/2017 08:59:23" />
   </publishTarget>
 </publishData>

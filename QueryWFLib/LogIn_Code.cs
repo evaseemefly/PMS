@@ -22,7 +22,9 @@ namespace QueryWFLib
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
             string logInfo = context.GetValue(this.LogIn);
-            LogHelper.WriteWarn(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")+logInfo);
+           // LogHelper.WriteWarn(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")+logInfo);
+            
+           LogHelper.WriteLog(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + logInfo);
         }
     }
 }

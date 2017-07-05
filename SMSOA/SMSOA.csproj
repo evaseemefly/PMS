@@ -282,6 +282,7 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
+    <Compile Include="Areas\Demo\Controllers\ErrorFilterController.cs" />
     <Compile Include="Areas\Demo\Controllers\MMSController.cs" />
     <Compile Include="Areas\Demo\DemoAreaRegistration.cs" />
     <Compile Include="Areas\Demo\Models\Enum\MMSCommands_Enum.cs" />
@@ -318,6 +319,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Filters\LoginValidateAttribute.cs" />
+    <Compile Include="Filters\RangeExceptionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -517,6 +519,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\I18NDemo\Views\Internationalization\Index.cshtml" />
+    <Content Include="Areas\Demo\Views\ErrorFilter\Index.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />

@@ -11,7 +11,7 @@
 namespace XamlStaticHelperNamespace {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
     internal class _XamlStaticHelper {
         
         private static System.WeakReference schemaContextField;
@@ -67,6 +67,13 @@ namespace XamlStaticHelperNamespace {
             assemblyList.Add(Load("System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"));
             assemblyList.Add(Load("System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e08" +
                         "9"));
+            assemblyList.Add(Load("Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("ISMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("PMS.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("PMS.IBLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("PMS.IModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("PMS.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("SMSFactory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(System.Reflection.Assembly.GetExecutingAssembly());
             return assemblyList;
         }

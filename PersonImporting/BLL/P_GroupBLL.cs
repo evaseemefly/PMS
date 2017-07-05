@@ -44,6 +44,20 @@ namespace PersonImporting.BLL
             return enum_exist;
         }
 
+        public ExistEnum CheckGroupExist(string groupName)
+        {
+            //根据群组名称获取群组集合
+            var groupList = groupBLL.GetListBy(g => g.GroupName == groupName).ToList();
+            ExistEnum enum_exist = ExistEnum.isExist;
+            //判断集合是否为空
+            if (groupList.Count() == 0)
+            {
+                //不需要创建
+                enum_exist = ExistEnum.isNotExist;
+            }
+            return enum_exist;
+        }
+
 
         /// <summary>
         /// 通过名称得到群组对象
@@ -64,6 +78,13 @@ namespace PersonImporting.BLL
         public int GetGroupId(string name)
         {
             return groupBLL.GetListBy(p => p.GroupName.Equals(name)).FirstOrDefault().GID;
+        }
+
+        public List<P_Group> getGroupList()
+        {
+            //获取群组集合
+
+            return groupBLL.GetListBy(g => g.isDel == false).ToList();
         }
     }
 }

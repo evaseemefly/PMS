@@ -10,14 +10,14 @@ namespace Common.Redis
     {
         public HashRedisHelper() : base()
         {
-            redisClient = GetClient();
+            //redisClient = GetClient();
         }
         /// <summary>
         /// 判断某个数据是否已经被缓存
         /// </summary>
         public bool Exist(string hashId, string key)
         {
-            return redisClient.HashContainsEntry(hashId, key);
+            return redis_Client.HashContainsEntry(hashId, key);
         }
 
         /// <summary>
@@ -35,28 +35,28 @@ namespace Common.Redis
             
 
 
-            return redisClient.SetEntryInHash(hashId, key, value);
+            return redis_Client.SetEntryInHash(hashId, key, value);
         }
         /// <summary>
         /// 移除hash中的某值
         /// </summary>
         public bool Remove(string hashId, string key)
         {
-            return redisClient.RemoveEntryFromHash(hashId, key);
+            return redis_Client.RemoveEntryFromHash(hashId, key);
         }
         /// <summary>
         /// 移除整个hash
         /// </summary>
         public bool Remove(string key)
         {
-            return redisClient.Remove(key);
+            return redis_Client.Remove(key);
         }
         /// <summary>
         /// 从hash表获取数据
         /// </summary>
         public T Get<T>(string hashId, string key)
         {
-            string value = redisClient.GetValueFromHash(hashId, key);
+            string value = redis_Client.GetValueFromHash(hashId, key);
             return SerializerHelper.DeSerializerToObject<T>(value);
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Common.Redis
         public List<T> GetAll<T>(string hashId)
         {
             var result = new List<T>();
-            var list = redisClient.GetHashValues(hashId);
+            var list = redis_Client.GetHashValues(hashId);
             if (list != null && list.Count > 0)
             {
                 list.ForEach(x =>
@@ -81,7 +81,7 @@ namespace Common.Redis
         /// </summary>
         public void SetExpire(string key, DateTime datetime)
         {
-            redisClient.ExpireEntryAt(key, datetime);
+            redis_Client.ExpireEntryAt(key, datetime);
         }
     }
 }

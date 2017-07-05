@@ -31,14 +31,17 @@ namespace QueryWFLib
             // 获取 Text 输入参数的运行时值
             string text = context.GetValue(this.Text);
             var state = context.GetValue(this.Match_Enum);
+            Common.LogHelper.WriteLog(string.Format("——执行InsertReciveModel2List_Code事件代码——"));
             List<SMSModel_QueryReceive> list = context.GetValue(List_QueryReceive);
             SMSModel_QueryReceive item = context.GetValue(Item);
-           // int state = -1;
+            // int state = -1;
             //将拥有符合条件的msgid的item存入list
+            Common.LogHelper.WriteLog(string.Format("获取到的集合当前为:{0}个，准备插入的对象为:{1}",list.Count(),Common.SerializerHelper.SerializerToString(item)));
             InsertListModel(item, ref list, ref state);
-            
+            Common.LogHelper.WriteLog(string.Format("——加入集合后集合中共有{0}个对象——",list.Count()));
             context.SetValue(Match_Enum, state);
             context.SetValue(List_QueryReceive, list);
+            Common.LogHelper.WriteLog(string.Format("——InsertReciveModel2List_Code事件代码执行结束——"));
         }
 
         /// <summary>

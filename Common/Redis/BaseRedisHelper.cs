@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using ServiceStack.Redis;
 
 namespace Common.Redis
@@ -16,9 +15,9 @@ namespace Common.Redis
         /// <summary>
         /// Redis客户端
         /// </summary>
-        protected static RedisClient redis_client;
+        //protected static RedisClient redis_client { get; set; }
 
-        protected IRedisClient redisClient { get; set; }
+        public static IRedisClient redis_Client { get; set; }
 
         /// <summary>
         /// 自定义的Redis配置对象
@@ -96,13 +95,13 @@ namespace Common.Redis
             #endregion
             CreateManager();
             //3 通过缓存连接池获取Redis客户端对象，并赋给本类中定义的私有变量
-            if (redis_client == null)
+            if (redis_Client == null)
             {
                 lock(_locker)
                 {
-                    if (redis_client == null)
+                    if (redis_Client == null)
                     {
-                        redis_client = prc_Manager.GetClient() as RedisClient;
+                        redis_Client = prc_Manager.GetClient() as RedisClient;
                         
                     }
                 }                
@@ -140,15 +139,15 @@ namespace Common.Redis
             {
                 if (disposing)
                 {
-                    redis_client.Dispose();
-                    redis_client = null;
+                    redis_Client.Dispose();
+                    redis_Client = null;
                 }
             }
             this._disposed = true;
         }
         public void Dispose()
         {
-            if (redis_client != null)
+            if (redis_Client != null)
             {
                 Dispose(true);
                 GC.SuppressFinalize(this);
@@ -160,14 +159,14 @@ namespace Common.Redis
         /// </summary>
         public void Save()
         {
-            redis_client.Save();
+            redis_Client.Save();
         }
         /// <summary>
         /// 异步保存数据DB文件到硬盘
         /// </summary>
         public void SaveAsync()
         {
-            redis_client.SaveAsync();
+            redis_Client.SaveAsync();
         }
 
         ~BaseRedisHelper()

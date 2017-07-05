@@ -97,11 +97,12 @@
                 $("#WestAccordion").accordion('add', {
                     title: row.text,
                     //获取每一个当前对象中判断children是否为空
-                    content: "<ul id='tNodeId" + row.id + "' ></ul>"
-
+                    content: "<ul id='tNodeId" + row.id + "' ></ul>",
+                    selected:row.Checked
                 });
             }
 
+        //在手风琴项中添加数节点
             function TreeContent(row) {
                 //判断当前对象中children是否为空
                 if (row.children.length == 0) {
@@ -110,8 +111,22 @@
                 else {
                     $("#tNodeId" + row.id).tree({
                         data: row.children,
-                        onClick:function(node){
+                        onSelect: function (node) {
                             createTabs(node);
+                        },
+                        onLoadSuccess: function (node, data) {
+                            //var checked_node = $("#tNodeId" + row.id).tree('getChecked')[0];
+                            for (var i = 0; i < row.children.length; i++) {
+                                if (row.children[i].Checked) {
+                                    var node_target = $("#tNodeId" + row.id).tree('find',row.children[i].id);
+
+                                    $("#tNodeId" + row.id).tree('select', node_target.target);
+                                }
+                            }
+                            //if (checked_node != null) {
+                            //    $("#tNodeId" + row.id).tree('select', checked_node.target);
+                            //}
+
                         },
                         animate: true
                     })
@@ -125,6 +140,13 @@
                 },
                 onClick: function (node) {
                     createTabs(node);
+                },
+                onLoadSuccess: function (node, data) {
+                    var checked_node = $("#easyui_tree").tree('getChecked')[0];
+                    if (checked_node != null) {
+                        $("#easyui_tree").tree('select', checked_node.target);
+                    }
+
                 },
                 animate:true
             });
@@ -216,7 +238,7 @@
     </div>*@
     <div data-options="region:'south',border:false" style="height:50px;padding:10px;background-image:url(/Content/Images/background/blue2_background.png);background-size:100%;background-repeat:no-repeat">
         <span class="txt" style="position:relative;width:100%;height:100%;">
-         Copyright ? 辽宁省海洋预报与防灾减灾中心</span> 
+         Copyright ? 国家海洋环境预报中心</span> 
     </div>
     <div data-options="region:'center',title:'我的桌面'" style="overflow-x:hidden;overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;overflow-x:hidden;">
