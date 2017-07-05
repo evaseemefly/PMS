@@ -60,3 +60,5 @@ D:\VSWorkSpace\nmefc\PMS\SendJob\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 D:\VSWorkSpace\nmefc\PMS\SendJob\obj\Debug\JobInstances.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\SendJob\obj\Debug\JobInstances.dll
 D:\VSWorkSpace\nmefc\PMS\SendJob\obj\Debug\JobInstances.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SendJob\bin\Debug\Newtonsoft.Json.pdb
+D:\02编程\2016年\01协同开发\PMS\newPMS\PMS\SendJob\bin\Debug\PMS.DALFactory.pdb

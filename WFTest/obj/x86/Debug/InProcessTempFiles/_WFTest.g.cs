@@ -11,7 +11,7 @@
 namespace XamlStaticHelperNamespace {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "4.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamlBuildTask", "15.0.0.0")]
     internal class _XamlStaticHelper {
         
         private static System.WeakReference schemaContextField;
