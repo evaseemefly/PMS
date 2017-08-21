@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{189E4C6C-3DFF-4BD7-B3F6-4CCE381DAA9D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ManagerSys</RootNamespace>
+    <AssemblyName>ManagerSys</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\..\study\DB\DBModel\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\..\..\study\DB\DBModel\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\MsgContentBLL.cs" />
+    <Compile Include="DepartmentManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentManagment.Designer.cs">
+      <DependentUpon>DepartmentManagment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupManagment.Designer.cs">
+      <DependentUpon>GroupManagment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MissionManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MissionManagement.Designer.cs">
+      <DependentUpon>MissionManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticsTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticsTool.Designer.cs">
+      <DependentUpon>StatisticsTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\DepartmentModel.cs" />
+    <Compile Include="ViewModel\StatisticsResultModel.cs" />
+    <Compile Include="ViewModel\StatisticsModel.cs" />
+    <EmbeddedResource Include="DepartmentManagment.resx">
+      <DependentUpon>DepartmentManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupManagment.resx">
+      <DependentUpon>GroupManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MissionManagement.resx">
+      <DependentUpon>MissionManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="StatisticsTool.resx">
+      <DependentUpon>StatisticsTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\PMS.Model.P_DepartmentInfo.datasource" />
+    <None Include="Properties\DataSources\PMS.Model.P_Group.datasource" />
+    <None Include="Properties\DataSources\PMS.Model.P_PersonInfo.datasource" />
+    <None Include="Properties\DataSources\PMS.Model.S_SMSMission.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PersonImporting\PersonImporting.csproj">
+      <Project>{5f9d7ced-6588-4acd-9567-1c2ae816d505}</Project>
+      <Name>PersonImporting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS.BLL\PMS.BLL.csproj">
+      <Project>{e64c6b70-35bd-422c-9eef-a0a2e4f4ddfb}</Project>
+      <Name>PMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS.DALFactory\PMS.DALFactory.csproj">
+      <Project>{a0fe1f08-d413-4cd0-aafb-45efb2382504}</Project>
+      <Name>PMS.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS.DALSQLSer\PMS.DALSQLSer.csproj">
+      <Project>{73f24718-e616-4680-a82a-0b43ff064a85}</Project>
+      <Name>PMS.DALSQLSer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS.IBLL\PMS.IBLL.csproj">
+      <Project>{19c3c8db-438a-47dc-b56c-5dcc7d69e318}</Project>
+      <Name>PMS.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS.IDAL\PMS.IDAL.csproj">
+      <Project>{9581fc4a-361d-48c9-99f7-7826dafd992e}</Project>
+      <Name>PMS.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS.Model\PMS.Model.csproj">
+      <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
+      <Name>PMS.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
