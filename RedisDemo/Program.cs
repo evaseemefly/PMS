@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using System.Threading;
+using Common;
 
 namespace RedisDemo
 {
@@ -15,8 +16,9 @@ namespace RedisDemo
             //StringRWTest(11);
             //StringRWbyThread(2);
             Redis_Test redis = new Redis_Test();
-            redis.ListRWTest(500);
-            for (int i = 0; i < 500; i++)
+            Common.Redis.BaseRedisHelper helper = new Common.Redis.BaseRedisHelper();
+            redis.ListRWTest(5);
+            for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine(string.Format("取出{0},编号{1}",redis.GetRedis(i.ToString()),i)); 
             }

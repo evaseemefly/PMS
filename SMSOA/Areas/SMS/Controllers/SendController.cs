@@ -574,7 +574,7 @@ namespace SMSOA.Areas.SMS.Controllers
                     写入redis缓存中
                     （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
             */
-            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
+            //ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(list_id);
 
             StringRedisHelper redisStrhelper = new StringRedisHelper();
             redisStrhelper.Set(receive.msgid, "1", DateTime.Now.AddHours(72));

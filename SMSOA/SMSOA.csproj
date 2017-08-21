@@ -333,6 +333,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceTest.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Api\SMSSendApiController.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -674,6 +675,10 @@
     <ProjectReference Include="..\Fdfs.IBLL\Fdfs.IBLL.csproj">
       <Project>{0fc982c5-f9c3-48ac-b8f0-37c08a5fcfd4}</Project>
       <Name>Fdfs.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HttpHelper\HttpHelper.csproj">
+      <Project>{3b3d4793-0bb6-486f-bca7-df9d2efd2e6a}</Project>
+      <Name>HttpHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>

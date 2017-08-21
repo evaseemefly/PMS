@@ -107,3 +107,8 @@ D:\VSWorkSpace\nmefc\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe.manifes
 D:\VSWorkSpace\nmefc\PMS\ConsoleApplication1\obj\Debug\SMSbackground.application
 D:\VSWorkSpace\nmefc\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
 D:\VSWorkSpace\nmefc\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb
+E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.csproj.SMSbackground.exe.config
+E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe.manifest
+E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.exe
+E:\03协同开发\短信\PMS\PMS\ConsoleApplication1\obj\Debug\SMSbackground.pdb

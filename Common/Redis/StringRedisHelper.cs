@@ -12,7 +12,7 @@ namespace Common.Redis
         
         //protected IRedisClient redisClient { get; set; }
 
-        public StringRedisHelper():base()
+        public StringRedisHelper() : base()
         {
             //redisClient = GetClient();
         }

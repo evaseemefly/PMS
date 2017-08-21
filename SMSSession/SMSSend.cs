@@ -655,7 +655,7 @@ namespace SMSFactory
                     写入redis缓存中
                     （此处应放在SMSFactory.SendMsg中或写在JobInstance中的SendJob.Exceuted）
             */
-            ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
+            //ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent> redisListhelper = new ListReidsHelper<PMS.Model.QueryModel.Redis_SMSContent>(redis_list_id);
             //2017-1-22 加入判断，若msgid为""或电话集合为空，则不写入redis中
             if (!receive.msgid.Equals("") && list_phones != null)
             {

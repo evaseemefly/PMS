@@ -58,6 +58,8 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApiMessage\SendResponseModel.cs" />
+    <Compile Include="ApiMessage\SendResultModel.cs" />
     <Compile Include="CombineModel\BaseMessage_Model.cs" />
     <Compile Include="CombineModel\MMSSendAndMsg_Model.cs" />
     <Compile Include="CombineModel\SendAndMessage_Model.cs" />
