@@ -26,7 +26,7 @@ namespace SMSOA.Services.Api
             
             
             //1 判断传入的SendResultModel是否包含必须的内容—Q
-
+                
             /*
              * 1.2 根据传入的SendResultModel的账号及密码（md5）判断是否拥有权限
              * （先写在这里以后通过过滤器实现）—Q
