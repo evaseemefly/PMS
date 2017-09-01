@@ -16,7 +16,7 @@ namespace RedisDemo
             //StringRWTest(11);
             //StringRWbyThread(2);
             Redis_Test redis = new Redis_Test();
-            Common.Redis.BaseRedisHelper helper = new Common.Redis.BaseRedisHelper();
+            //Common.Redis.BaseRedisHelper helper = new Common.Redis.BaseRedisHelper();
             redis.ListRWTest(5);
             for (int i = 0; i < 5; i++)
             {

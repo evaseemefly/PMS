@@ -1,0 +1,8 @@
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.csprojResolveAssemblyReference.cache
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.DepartmentManagment.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.Form1.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.GroupManagment.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.MissionManagement.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.Properties.Resources.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.StatisticsTool.resources
+D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.csproj.GenerateResource.Cache

@@ -34,4 +34,3 @@ D:\VSWorkSpace\nmefc\PMS\RedisDemo\bin\Debug\zh-Hans\System.Web.Mvc.resources.dl
 D:\VSWorkSpace\nmefc\PMS\RedisDemo\obj\Debug\RedisDemo.csprojResolveAssemblyReference.cache
 D:\VSWorkSpace\nmefc\PMS\RedisDemo\obj\Debug\RedisDemo.exe
 D:\VSWorkSpace\nmefc\PMS\RedisDemo\obj\Debug\RedisDemo.pdb
-D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\RedisDemo\bin\Debug\RedisDemo.exe.config

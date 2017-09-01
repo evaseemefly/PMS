@@ -9,9 +9,9 @@ using PMS.Model;
 
 namespace PersonImporting.BLL
 {
-    class MissionBLL
+    public class MissionBLL
     {
-        protected PMS.IBLL.IS_SMSMissionBLL missionBLL;
+        public PMS.IBLL.IS_SMSMissionBLL missionBLL;
 
         public MissionBLL()
         {

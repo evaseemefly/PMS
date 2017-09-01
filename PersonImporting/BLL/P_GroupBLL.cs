@@ -10,7 +10,7 @@ namespace PersonImporting.BLL
 {
    public class P_GroupBLL:DBBaseBLL
     {
-        protected PMS.IBLL.IP_GroupBLL groupBLL;
+        public PMS.IBLL.IP_GroupBLL groupBLL;
 
         public P_GroupBLL()
         {
