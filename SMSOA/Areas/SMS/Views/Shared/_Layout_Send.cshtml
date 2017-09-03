@@ -37,6 +37,7 @@
         //全局变量：彩信为1，短信时为0
         var temp_isRedirect = 0;
         var smid_Redirect = -1;
+        var content_Redirect = "";
 
         var missionColumns = [[
         { field: 'SMID', title: 'ID', width: 100, checkbox: true },
@@ -530,6 +531,8 @@
 
         function autoSelectSMSMission() {
             $("#smsMission_combogrid").combogrid('grid').datagrid('selectRecord', smid_Redirect);
+            //同时给彩信内容赋值
+            $("#message").val(content_Redirect);
         }
         
         //----------------------------短彩信共用入口方法---------------------------------------
