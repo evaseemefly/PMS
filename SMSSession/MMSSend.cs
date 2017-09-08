@@ -27,7 +27,7 @@ namespace SMSFactory
         IS_SMSContentBLL smsContentBLL { get; set; }
         IS_SMSRecord_CurrentBLL smsRecord_CurrentBLL { get; set; }
 
-        public MMSSend()
+        public MMSSend():base()
         {
             smsContentBLL = UnityServiceLocator.Instance.GetService<IS_SMSContentBLL>();
             smsRecord_CurrentBLL = UnityServiceLocator.Instance.GetService<IS_SMSRecord_CurrentBLL>();

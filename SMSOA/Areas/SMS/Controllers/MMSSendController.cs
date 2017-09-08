@@ -150,7 +150,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
-            if (model.Content.Length >= 300) { return Content("out of range"); }
+            if (model.Content.Length + 9 >= 800) { return Content("out of range"); }
             if(model.MMSTitle.Length >= 15) { return Content("title out of range"); }
 
             //1.3 判断是否获取到获取图片

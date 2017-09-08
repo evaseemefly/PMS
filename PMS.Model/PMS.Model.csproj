@@ -94,6 +94,7 @@
     <Compile Include="Enum\MMSCommands_Enum.cs" />
     <Compile Include="Enum\MMS_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
+    <Compile Include="Enum\ResultCodeEnum_SendAPI.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
