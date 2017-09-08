@@ -23,6 +23,11 @@ namespace SMSOA.Services.Api
         PMS.IBLL.IS_SMSMissionBLL smsMissionBLL;
         PMS.IBLL.IP_GroupBLL groupBLL;      
 
+        public string Get(int id = 0)
+        {
+            return null;
+        }
+
         public SendResponseModel DoSend(SendResultModel sendModel)
         {
             //模拟一个post请求
@@ -30,12 +35,15 @@ namespace SMSOA.Services.Api
             SendResponseModel sendResponseModel = new SendResponseModel { ResponseDate = DateTime.Now };
             //1 判断传入的SendResultModel是否包含必须的内容—Q
             //1.1 短信内容为空或字数超过800不执行发送
-            if (sendModel.Content == null && sendModel.Content.Length + 9 >= 800) {
+            if (sendModel.Content == null && sendModel.Content.Length + 9 >= 800)
+            {
                 sendResponseModel.ResultCode = Convert.ToString(PMS.Model.Enum.ResultCodeEnum_SendAPI.contentError);
                 return sendResponseModel;
-                //1.2 传入的任务为空或任务不存在
+                
             }
-            else if (!smsMissionBLL.AddValidation(sendModel.SMSMissionNames)) {
+//1.2 传入的任务为空或任务不存在
+            else if (!smsMissionBLL.AddValidation(sendModel.SMSMissionNames))
+            {
                 sendResponseModel.ResultCode = Convert.ToString(PMS.Model.Enum.ResultCodeEnum_SendAPI.missionError);
                 return sendResponseModel;
             }

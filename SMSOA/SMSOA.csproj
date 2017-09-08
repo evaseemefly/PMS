@@ -268,6 +268,8 @@
     <Compile Include="Areas\Admin\Models\EasyUIDataGrid_Action.cs" />
     <Compile Include="Areas\Admin\Models\EasyUIDataGrid_Role.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel_UserAction.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\SMSSendApiController.cs" />
     <Compile Include="Areas\Contacts\ContactsAreaRegistration.cs" />
     <Compile Include="Areas\Contacts\Controllers\ContactPersonController.cs" />
     <Compile Include="Areas\Contacts\Controllers\DepartmentController.cs" />
@@ -521,6 +523,7 @@
     </Content>
     <Content Include="Areas\I18NDemo\Views\Internationalization\Index.cshtml" />
     <Content Include="Areas\Demo\Views\ErrorFilter\Index.cshtml" />
+    <Content Include="Areas\Api\Views\web.config" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />
@@ -623,6 +626,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
     <Folder Include="Areas\Job\Models\" />
     <Folder Include="Areas\Login\Models\" />
