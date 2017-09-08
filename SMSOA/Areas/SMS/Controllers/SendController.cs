@@ -596,7 +596,7 @@ namespace SMSOA.Areas.SMS.Controllers
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
             //1.3 超出300字，不执行发送操作，返回
-            if (model.Content.Length + 9 >= 300) { return Content("out of range"); }
+            if (model.Content.Length + 9 >= 800) { return Content("out of range"); }
             //SMSModel_Receive receive = new SMSModel_Receive();
             PMS.IModel.ISMSModel_Receive receive = new SMSModel_Receive();
             #region 11月14日已做修改，判断是定时还是实时发送在SMSFactory中的SMSSend中判断，此处暂时注释掉
