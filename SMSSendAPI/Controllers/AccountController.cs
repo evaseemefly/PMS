@@ -13,11 +13,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using SMSSendAPI.Models;
-using SMSSendAPI.Providers;
-using SMSSendAPI.Results;
+using SMSSendApi.Models;
+using SMSSendApi.Providers;
+using SMSSendApi.Results;
 
-namespace SMSSendAPI.Controllers
+namespace SMSSendApi.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]

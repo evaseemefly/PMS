@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息是通过以下项进行控制的
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SMSSendAPI")]
+[assembly: AssemblyTitle("SMSSendApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SMSSendAPI")]
+[assembly: AssemblyProduct("SMSSendApi")]
 [assembly: AssemblyCopyright("版权所有(C)  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID
-[assembly: Guid("e10ed44e-c263-4e74-9132-dcaf9c82c4fc")]
+[assembly: Guid("27b140af-fc45-475c-92d6-ed273a20169a")]
 
 // 程序集的版本信息由下列四个值组成:
 //

@@ -8,10 +8,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using SMSSendAPI.Providers;
-using SMSSendAPI.Models;
+using SMSSendApi.Providers;
+using SMSSendApi.Models;
 
-namespace SMSSendAPI
+namespace SMSSendApi
 {
     public partial class Startup
     {

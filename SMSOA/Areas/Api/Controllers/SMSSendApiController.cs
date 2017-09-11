@@ -15,6 +15,12 @@ namespace SMSOA.Areas.Api.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [HttpGet]
+        public string Index()
+        {
+            return "api测试成功";
+        }
+
         // GET api/<controller>/5
         public string Get(int id)
         {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SMSSendAPI.Controllers
+namespace SMSSendApi.Controllers
 {
     public class HomeController : Controller
     {

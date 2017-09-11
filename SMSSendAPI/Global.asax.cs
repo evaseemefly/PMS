@@ -6,10 +6,12 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Spring;
+using Spring.Web.Mvc;
 
-namespace SMSSendAPI
+namespace SMSSendApi
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication :SpringMvcApplication/*System.Web.HttpApplication*/
     {
         protected void Application_Start()
         {

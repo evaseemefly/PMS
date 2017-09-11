@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(SMSSendAPI.Startup))]
+[assembly: OwinStartup(typeof(SMSSendApi.Startup))]
 
-namespace SMSSendAPI
+namespace SMSSendApi
 {
     public partial class Startup
     {

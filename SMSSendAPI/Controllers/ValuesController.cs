@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace SMSSendAPI.Controllers
+namespace SMSSendApi.Controllers
 {
     [Authorize]
     public class ValuesController : ApiController

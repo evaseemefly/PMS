@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SMSSendAPI.Models
+namespace SMSSendApi.Models
 {
     // AccountController 操作返回的模型。
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace SMSSendAPI.Models
+namespace SMSSendApi.Models
 {
     // 用作 AccountController 操作的参数的模型。
 

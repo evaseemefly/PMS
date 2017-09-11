@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using SMSSendAPI.Areas.HelpPage.ModelDescriptions;
+using SMSSendApi.Areas.HelpPage.ModelDescriptions;
 
-namespace SMSSendAPI.Areas.HelpPage.Models
+namespace SMSSendApi.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

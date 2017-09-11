@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace SMSSendAPI.Areas.HelpPage.ModelDescriptions
+namespace SMSSendApi.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

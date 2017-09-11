@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using SMSSendAPI.Areas.HelpPage.ModelDescriptions;
-using SMSSendAPI.Areas.HelpPage.Models;
+using SMSSendApi.Areas.HelpPage.ModelDescriptions;
+using SMSSendApi.Areas.HelpPage.Models;
 
-namespace SMSSendAPI.Areas.HelpPage
+namespace SMSSendApi.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

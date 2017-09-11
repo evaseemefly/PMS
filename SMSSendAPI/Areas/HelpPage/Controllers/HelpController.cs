@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using SMSSendAPI.Areas.HelpPage.ModelDescriptions;
-using SMSSendAPI.Areas.HelpPage.Models;
+using SMSSendApi.Areas.HelpPage.ModelDescriptions;
+using SMSSendApi.Areas.HelpPage.Models;
 
-namespace SMSSendAPI.Areas.HelpPage.Controllers
+namespace SMSSendApi.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

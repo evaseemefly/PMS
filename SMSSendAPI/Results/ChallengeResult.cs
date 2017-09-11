@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace SMSSendAPI.Results
+namespace SMSSendApi.Results
 {
     public class ChallengeResult : IHttpActionResult
     {

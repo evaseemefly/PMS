@@ -1,6 +1,6 @@
 using System;
 
-namespace SMSSendAPI.Areas.HelpPage.ModelDescriptions
+namespace SMSSendApi.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterAnnotation
     {

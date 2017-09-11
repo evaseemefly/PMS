@@ -1,4 +1,4 @@
-namespace SMSSendAPI.Areas.HelpPage
+namespace SMSSendApi.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

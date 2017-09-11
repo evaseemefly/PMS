@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace SMSSendAPI.Areas.HelpPage
+namespace SMSSendApi.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

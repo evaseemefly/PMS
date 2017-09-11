@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace SMSSendAPI.Areas.HelpPage
+namespace SMSSendApi.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {
