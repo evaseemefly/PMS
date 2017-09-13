@@ -23,8 +23,6 @@ namespace SMSFactoryServiceLib
             String _serverURL = "http://wt.3tong.net/http/sms/Submit";//服务器地址
             string returnMsg;
 
-            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
-
             //1 判断参数是否足够
             if (!SendBeforeCheck(smsdata))
             {
@@ -42,6 +40,7 @@ namespace SMSFactoryServiceLib
             Common.LogHelper.WriteLog(_data);
             //2.1 http方式发送
             returnMsg = httpInvoke(_serverURL, _data);
+            Common.LogHelper.WriteLog(returnMsg);
             //解析服务器反馈信息
             if (returnMsg.Length < 1)
             {

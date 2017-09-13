@@ -54,14 +54,14 @@
                         </td>
                         <td>上传彩信图片：</td>
                         <td class="comment">
-                            <input id="filebox_image" class="easyui-filebox" name="file" data-options="required:true,prompt:'请选择一个文件...'" style="width:100%">
+                            <input id="filebox_image" class="easyui-filebox" name="file" data-options="required:true,prompt:'请选择一个文件...',accept:'image/png,image/jpeg'" style="width:100%">
                         </td>
                     </tr>
                     <tr>
                         <td>彩信内容:</td>
                         <td colspan="3" class="comment">
                             @*<input class="easyui-textbox" name="message" id="message" value="@ViewBag.Content" data-options="required:true,multiline:true,prompt:'输入彩信内容...'" style="height:200px;width:400px">*@
-                            <textarea rows="12" cols="120" height="200px;width:200px" id="message" style="width:380px;" maxlength="500" class="easyui-validatebox textarea " validtype="length[0,500]" invalidMessage="最大长度500位" oninput="MsgCount(this);"></textarea>
+                            <textarea rows="12" cols="120" height="200px;width:200px" id="message" style="width:380px;" maxlength="800" class="easyui-validatebox textarea " validtype="length[0,800]" invalidMessage="最大长度800位" oninput="MsgCount(this);"></textarea>
                         </td>
                     </tr>
                     <tr>

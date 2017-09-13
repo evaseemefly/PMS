@@ -19,6 +19,11 @@ namespace SMSOA.Areas.SMS
                 "SMS/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+            //context.MapRoute(
+            //    "SMS_apidefault",
+            //    "SMS/Api/{controller}/{action}/{id}",
+            //    new { action = "Index", id = UrlParameter.Optional }
+            //);
         }
     }
 }

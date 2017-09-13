@@ -5,7 +5,7 @@
       <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
         <WcfProjectProperties>
           <PublishCopyOption>AllFiles</PublishCopyOption>
-          <PublishTargetLocation>D:\02编程\2016年\06发布目录\预报中心\WCF\彩信\</PublishTargetLocation>
+          <PublishTargetLocation>E:\03协同开发\999发布版\WCF\预报中心\3.2\MMS\</PublishTargetLocation>
           <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
         </WcfProjectProperties>
       </FlavorProperties>

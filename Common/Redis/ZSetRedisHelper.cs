@@ -14,7 +14,7 @@ namespace Common.Redis
         /// </summary>
         public int Exist<T>( string key)
         {
-            return redis_client.Exists(key);
+            return 0;
         }
         /// <summary>
         /// 存储对象至ZSet中
@@ -22,7 +22,7 @@ namespace Common.Redis
         public bool Add<T>(string key, T t)
         {
             var value = SerializerHelper.SerializerToString(t);
-            return redis_client.AddItemToSortedSet(key, value);
+            return redis_Client.AddItemToSortedSet(key, value);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Common.Redis
         public bool Add<T>(string key,T t,double score)
         {
             var value = SerializerHelper.SerializerToString(t);
-            return redis_client.AddItemToSortedSet(key, value, score);
+            return redis_Client.AddItemToSortedSet(key, value, score);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Common.Redis
         /// <returns></returns>
         public bool Add(string key,string value)
         {
-            return redis_client.AddItemToSortedSet(key, value);
+            return redis_Client.AddItemToSortedSet(key, value);
         }
 
         /// <summary>
@@ -59,28 +59,28 @@ namespace Common.Redis
         /// <returns></returns>
         public bool Add(string key,string value,double score)
         {
-            return redis_client.AddItemToSortedSet(key, value, score);
+            return redis_Client.AddItemToSortedSet(key, value, score);
         }
         /// <summary>
         /// 移除ZSet中的某值
         /// </summary>
         public bool DeleteValue(string key,string value)
         {
-            return redis_client.RemoveItemFromSortedSet(key, value);
+            return redis_Client.RemoveItemFromSortedSet(key, value);
         }
         /// <summary>
         /// 移除某个key对应的对象
         /// </summary>
         public bool Delete(string key)
         {
-            return redis_client.Remove(key);
+            return redis_Client.Remove(key);
         }
         /// <summary>
         /// 从hash表获取数据
         /// </summary>
         public T Get<T>(string hashId, string key)
         {
-            string value = redis_client.GetValueFromHash(hashId, key);
+            string value = redis_Client.GetValueFromHash(hashId, key);
             return SerializerHelper.DeSerializerToObject<T>(value);
         }
 
@@ -95,7 +95,7 @@ namespace Common.Redis
         public List<T> GetAll<T>(string hashId)
         {
             var result = new List<T>();
-            var list = redis_client.GetHashValues(hashId);
+            var list = redis_Client.GetHashValues(hashId);
             if (list != null && list.Count > 0)
             {
                 list.ForEach(x =>
@@ -111,7 +111,7 @@ namespace Common.Redis
         /// </summary>
         public void SetExpire(string key, DateTime datetime)
         {
-            redis_client.ExpireEntryAt(key, datetime);
+            redis_Client.ExpireEntryAt(key, datetime);
         }
     }
 }

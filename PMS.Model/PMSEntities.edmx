@@ -243,6 +243,7 @@
           <Property Name="UserInfoID" Type="int" Nullable="false" />
           <Property Name="ActionInfoID" Type="int" Nullable="false" />
           <Property Name="isPass" Type="bit" Nullable="false" />
+          <Property Name="isDefault" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="R_UserInfo_DepartmentInfo">
           <Key>
@@ -1321,6 +1322,7 @@
           <Property Name="isPass" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ActionInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_ActionInfo" FromRole="R_UserInfo_ActionInfo" ToRole="ActionInfo" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_R_UserInfo_ActionInfo_UserInfo" FromRole="R_UserInfo_ActionInfo" ToRole="UserInfo" />
+          <Property Name="isDefault" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleInfo">
           <Key>
@@ -2325,6 +2327,7 @@
           <EntitySetMapping Name="R_UserInfo_ActionInfo">
             <EntityTypeMapping TypeName="PMS2016Model.R_UserInfo_ActionInfo">
               <MappingFragment StoreEntitySet="R_UserInfo_ActionInfo">
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserInfoID" ColumnName="UserInfoID" />
                 <ScalarProperty Name="ActionInfoID" ColumnName="ActionInfoID" />

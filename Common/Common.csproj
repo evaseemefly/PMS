@@ -79,14 +79,24 @@
       <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack">
-      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.dll</HintPath>
+    <Reference Include="ServiceStack.Common, Version=3.9.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.3.9.11\lib\net35\ServiceStack.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.Interfaces.dll</HintPath>
+    <Reference Include="ServiceStack.Interfaces, Version=3.9.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.3.9.11\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.69.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.3.9.69\lib\net35\ServiceStack.Redis.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.ServiceInterface">
       <HintPath>..\常用软件插件\Redis\ServiceStack\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.3.9.11\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -96,6 +106,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -114,6 +125,7 @@
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Config\FastDFSConfigHelper.cs" />
+    <Compile Include="Config\HttpConfig.cs" />
     <Compile Include="Config\QueryConfigHelper.cs" />
     <Compile Include="Config\RedisConfigHelper.cs" />
     <Compile Include="Config\SMSSignConfigHelper.cs" />
@@ -168,7 +180,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Http\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

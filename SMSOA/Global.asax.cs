@@ -9,6 +9,8 @@ using System.Threading;
 using PMS.Model;
 using Spring.Web.Mvc;
 using System.IO;
+using System.Web.Http;
+
 
 namespace SMSOA
 {
@@ -23,8 +25,10 @@ namespace SMSOA
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));
 
             AreaRegistration.RegisterAllAreas();
+            //注册全局过滤器
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configure(App_Start.WebApiConfig.Register);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BundleTable.EnableOptimizations = true;
 

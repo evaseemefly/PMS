@@ -90,6 +90,9 @@ namespace SMSFactory
             }
             _data = ObjTransform.Model2Xml_FormatQuery_SMS(sgin_sms);
             returnMsg = httpInvoke(_serverURL, _data);
+
+            //记录查询结果回执
+            Common.LogHelper.WriteLog("查询返回结果为" + returnMsg);
             //解析服务器反馈信息
             if (returnMsg.Length < 1)
             {

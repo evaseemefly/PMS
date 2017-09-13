@@ -93,4 +93,9 @@
   </object>
     <object type="SMSOA.Areas.I18NDemo.Controllers.InternationalizationController, SMSOA" singleton="false" >
   </object>
+  <object type="SMSOA.Services.Api.SMSSendApiController, SMSOA" singleton="false" >
+    <property name="userBLL" ref="userInfoService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="smsMissionBLL" ref="smsmissionService" />
+  </object>
 </objects>

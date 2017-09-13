@@ -12,9 +12,9 @@ namespace Common.Redis
         
         //protected IRedisClient redisClient { get; set; }
 
-        public StringRedisHelper():base()
+        public StringRedisHelper() : base()
         {
-            redisClient = GetClient();
+            //redisClient = GetClient();
         }
 
             #region 赋值
@@ -23,7 +23,8 @@ namespace Common.Redis
         /// </summary>
         public bool Set(string key, string value)
         {
-            return redisClient.Set<string>(key, value);
+            //return redisClient.Set<string>(key, value);
+            return redis_Client.Set<string>(key, value);
             // return redis_client.Set<string>(key, value);
         }
         /// <summary>
@@ -34,8 +35,8 @@ namespace Common.Redis
             bool isOk = false;
             try
             {
-                redisClient.Set<string>(key, value, dt);
-                //redis_client.Set<string>(key, value, dt);
+                //redisClient.Set<string>(key, value, dt);
+                redis_Client.Set<string>(key, value, dt);
                 isOk = true;
             }
             catch (Exception ex)
@@ -50,14 +51,16 @@ namespace Common.Redis
         /// </summary>
         public bool Set(string key, string value, TimeSpan sp)
         {
-            return redisClient.Set<string>(key, value, sp);
+            //return redisClient.Set<string>(key, value, sp);
+            return redis_Client.Set<string>(key, value, sp);
         }
         /// <summary>
         /// 设置多个key/value
         /// </summary>
         public void Set(Dictionary<string, string> dic)
         {
-            redisClient.SetAll(dic);
+            // redisClient.SetAll(dic);
+            redis_Client.SetAll(dic);
         }
 
         #endregion
@@ -67,7 +70,8 @@ namespace Common.Redis
         /// </summary>
         public long Append(string key, string value)
         {
-            return redisClient.AppendToValue(key, value);
+            //return redisClient.AppendToValue(key, value);
+            return redis_Client.AppendToValue(key, value);
         }
         #endregion
         #region 获取值
@@ -77,22 +81,24 @@ namespace Common.Redis
         public string Get(string key)
         {
             //
-            return redisClient.GetValue(key);
-            //return redis_client.GetValue(key);
+            //return redisClient.GetValue(key);
+            return redis_Client.GetValue(key);
         }
         /// <summary>
         /// 获取多个key的value值
         /// </summary>
         public List<string> Get(List<string> keys)
         {
-            return redisClient.GetValues(keys);
+            // return redisClient.GetValues(keys);
+            return redis_Client.GetValues(keys);
         }
         /// <summary>
         /// 获取多个key的value值
         /// </summary>
         public List<T> Get<T>(List<string> keys)
         {
-            return redisClient.GetValues<T>(keys);
+            //return redisClient.GetValues<T>(keys);
+            return redis_Client.GetValues<T>(keys);
         }
         #endregion
         #region 获取旧值赋上新值
@@ -101,7 +107,8 @@ namespace Common.Redis
         /// </summary>
         public string GetAndSetValue(string key, string value)
         {
-            return redisClient.GetAndSetEntry(key, value);
+            // return redisClient.GetAndSetEntry(key, value);
+          return  redis_Client.GetAndSetEntry(key, value);
         }
         #endregion
         #region 辅助方法
@@ -118,21 +125,24 @@ namespace Common.Redis
         /// </summary>
         public long Incr(string key)
         {
-            return redisClient.IncrementValue(key);
+            //return redisClient.IncrementValue(key);
+            return redis_Client.IncrementValue(key);
         }
         /// <summary>
         /// 自增count，返回自增后的值
         /// </summary>
         public double IncrBy(string key, int count)
         {
-            return redisClient.IncrementValueBy(key, count);
+            //return redisClient.IncrementValueBy(key, count);
+            return redis_Client.IncrementValueBy(key, count);
         }
         /// <summary>
         /// 自减1，返回自减后的值
         /// </summary>
         public long Decr(string key)
         {
-            return redisClient.DecrementValue(key);
+            //return redisClient.DecrementValue(key);
+            return redis_Client.DecrementValue(key);
         }
         /// <summary>
         /// 自减count ，返回自减后的值
@@ -142,7 +152,8 @@ namespace Common.Redis
         /// <returns></returns>
         public long DecrBy(string key, int count)
         {
-            return redisClient.DecrementValueBy(key, count);
+            //return redisClient.DecrementValueBy(key, count);
+            return redis_Client.DecrementValueBy(key, count);
         }
         #endregion
         

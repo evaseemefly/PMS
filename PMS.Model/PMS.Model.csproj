@@ -58,6 +58,8 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApiMessage\SendResponseModel.cs" />
+    <Compile Include="ApiMessage\SendResultModel.cs" />
     <Compile Include="CombineModel\BaseMessage_Model.cs" />
     <Compile Include="CombineModel\MMSSendAndMsg_Model.cs" />
     <Compile Include="CombineModel\SendAndMessage_Model.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Enum\MMSCommands_Enum.cs" />
     <Compile Include="Enum\MMS_Enum.cs" />
     <Compile Include="Enum\QueryState_Enum.cs" />
+    <Compile Include="Enum\ResultCodeEnum_SendAPI.cs" />
     <Compile Include="Enum\WriteInDb_Enum.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
     <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
@@ -100,6 +103,7 @@
     <Compile Include="EqualCompare\P_PersonEqualCompare.cs" />
     <Compile Include="EqualCompare\SMSModel_QueryReceive_Compare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
+    <Compile Include="ExceptionModel\PMSException.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
     <Compile Include="ExtensionModel\J_JobInfo.cs" />
     <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />

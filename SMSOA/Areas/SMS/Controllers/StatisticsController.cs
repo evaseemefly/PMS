@@ -126,7 +126,9 @@ namespace SMSOA.Areas.SMS.Controllers
                         SendDateTime = item.SendDateTime,
                         TotalOfReceiveNum = item.S_SMSRecord_Current.Count(),
                         //找到未收到的（收到的状态码初步约定为100）
-                        NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count()
+                        NotReceiveNum = item.S_SMSRecord_Current.Where(r => r.StatusCode != 0).Count(),
+                        //
+                         SMSCount=item.smsCount
                     });
             }
             //2.3 按照发送时间排序，需讨论

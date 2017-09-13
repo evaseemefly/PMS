@@ -150,14 +150,16 @@ namespace SMSOA.Areas.SMS.Controllers
             //if (model.PersonIds == null||model.PersonIds== "undefined") { return Content("empty contact list"); }
             //1.2 短信内容为空，不执行发送操作，返回
             if (model.Content == null) { return Content("empty content"); }
-            if (model.Content.Length >= 300) { return Content("out of range"); }
+            if (model.Content.Length + 9 >= 800) { return Content("out of range"); }
             if(model.MMSTitle.Length >= 15) { return Content("title out of range"); }
-            
+
             //1.3 判断是否获取到获取图片
 
-            
+
             HttpPostedFile file = files[0];
-            if (file.ContentLength < 1 || file.FileName.Length < 1) { return Content( "file error"); }
+
+
+            if (!CheckFile(file)) { return Content("file error"); }
             //2 图片处理
             //var file_stream = file.InputStream;
             //BinaryReader reader = new BinaryReader(file_stream);
@@ -525,6 +527,19 @@ namespace SMSOA.Areas.SMS.Controllers
         public override ViewModel_MyHttpContext GetHttpContext()
         {
             throw new NotImplementedException();
+        }
+        private bool CheckFile(HttpPostedFile file)
+        {
+            bool isPass = false;
+            if (file.ContentLength > 1 && file.FileName.Length > 1)
+            {
+                if (("image/jpeg".Equals(file.ContentType)) || ("image/png".Equals(file.ContentType)))
+                {
+                    isPass = true;
+                }
+            }
+            return isPass;
+
         }
     }
 }

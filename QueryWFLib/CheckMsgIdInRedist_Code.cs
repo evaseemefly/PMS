@@ -34,6 +34,8 @@ namespace QueryWFLib
             string text = context.GetValue(this.Text);
             var item = context.GetValue(this.Item_Model);
             ExistEnum enum_exist = ExistEnum.isNotExist;
+            //
+            Common.LogHelper.WriteLog(string.Format("——执行CheckMsgIdInRedis_Code事件代码——"));
             //在redis中判断 item.msgId  item.phoneNumber是否已经存在于redis中
             if (CheckMsgIdExist(item.msgId))
             {
@@ -43,7 +45,7 @@ namespace QueryWFLib
             }
 
             context.SetValue(enum_Exist, enum_exist);
-
+            Common.LogHelper.WriteLog(string.Format("——CheckMsgIdInRedis_Code事件代码执行结束——"));
         }
 
         /// <summary>
@@ -56,7 +58,11 @@ namespace QueryWFLib
             //判断redis中的string中是否存有指定的msgid
             StringRedisHelper redis_string = new StringRedisHelper();
 
+            //加入日志
             var temp = redis_string.Get(msgid);
+            Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1},{2}在redis缓存中", "3", msgid, temp==null?"n":"y"));
+            //
+            //Common.LogHelper.WriteLog(string.Format("步骤{0}：msgid为{1},{2}在redis缓存中", "3", msgid, temp == null ?"n" :"y"));
             //temp应为1
             if (temp != null)
             {
@@ -70,7 +76,7 @@ namespace QueryWFLib
         
 
         /// <summary>
-        /// 
+        /// 判断指定msgid对应的短信记录中是否包含指定电话
         /// </summary>
         /// <param name="msgid"></param>
         /// <param name="phone"></param>

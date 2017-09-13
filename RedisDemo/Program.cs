@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using System.Threading;
+using Common;
 
 namespace RedisDemo
 {
@@ -12,8 +13,17 @@ namespace RedisDemo
     {
         static void Main(string[] args)
         {
-              //StringRWTest(11);
-            StringRWbyThread(2);
+            //StringRWTest(11);
+            //StringRWbyThread(2);
+            Redis_Test redis = new Redis_Test();
+            //Common.Redis.BaseRedisHelper helper = new Common.Redis.BaseRedisHelper();
+            redis.ListRWTest(5);
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(string.Format("取出{0},编号{1}",redis.GetRedis(i.ToString()),i)); 
+            }
+           
+            //StringRWTest(10000);
             //查询首元素并取出
             //for (int i = 0; i < 5; i++)
             //{
@@ -23,7 +33,7 @@ namespace RedisDemo
             //}
 
             //Console.WriteLine("取出第一个对象"+list_helper.DequeueItemFromList(list_key));
-            
+
             Console.ReadLine();
         }
 
@@ -41,20 +51,23 @@ namespace RedisDemo
             Console.WriteLine(list_helper.Count(list_key));
         }
 
+        
+
         static void StringRWTest(int count)
         {
             //Common.Redis.StringRedisHelper redisHelper = new Common.Redis.StringRedisHelper();
-            Common.Redis.StringReidsHelper_test stringHelper = new Common.Redis.StringReidsHelper_test();
+            Common.Redis.StringRedisHelper stringHelper = new Common.Redis.StringRedisHelper();
             for (int i = 0; i < count; i++)
             {
                 //Random random = new Random();                
                 //redisHelper.Set(random.Next().ToString(), "1", DateTime.Now.AddSeconds(10));
-                stringHelper.Set(i.ToString(), "ok", DateTime.Now.AddSeconds(10));
+                stringHelper.Set(i.ToString(), "ok", DateTime.Now.AddSeconds(120));
                 Console.WriteLine(i + ":" + "ok");
             }
             
         }
 
+      
         static void StringRWbyThread(int count)
         {
             for (int i = 0; i < count; i++)

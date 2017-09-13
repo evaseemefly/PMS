@@ -105,6 +105,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebugger, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\routedebugger.2.1.5\lib\net40\RouteDebugger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Spring.Core, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Spring.Core.dll</HintPath>
@@ -268,6 +272,8 @@
     <Compile Include="Areas\Admin\Models\EasyUIDataGrid_Action.cs" />
     <Compile Include="Areas\Admin\Models\EasyUIDataGrid_Role.cs" />
     <Compile Include="Areas\Admin\Models\ViewModel_UserAction.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\SMSSendApiController.cs" />
     <Compile Include="Areas\Contacts\ContactsAreaRegistration.cs" />
     <Compile Include="Areas\Contacts\Controllers\ContactPersonController.cs" />
     <Compile Include="Areas\Contacts\Controllers\DepartmentController.cs" />
@@ -282,6 +288,7 @@
     <Compile Include="Areas\Contacts\Models\ViewModel_Person.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_PersonDepartmentGroup.cs" />
     <Compile Include="Areas\Contacts\Models\ViewModel_SMSMissionDepartmentGroup.cs" />
+    <Compile Include="Areas\Demo\Controllers\ErrorFilterController.cs" />
     <Compile Include="Areas\Demo\Controllers\MMSController.cs" />
     <Compile Include="Areas\Demo\DemoAreaRegistration.cs" />
     <Compile Include="Areas\Demo\Models\Enum\MMSCommands_Enum.cs" />
@@ -302,6 +309,25 @@
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\Recycled\Controllers\HomeController.cs" />
     <Compile Include="Areas\Recycled\RecycledAreaRegistration.cs" />
+    <Compile Include="Areas\RouteDebugger\Components\ActionSelectSimulator.cs" />
+    <Compile Include="Areas\RouteDebugger\Components\DictionaryExtensions.cs" />
+    <Compile Include="Areas\RouteDebugger\Components\HttpParameterBindingExtensions.cs" />
+    <Compile Include="Areas\RouteDebugger\Components\TypeHelper.cs" />
+    <Compile Include="Areas\RouteDebugger\Controllers\RouteDebuggerController.cs" />
+    <Compile Include="Areas\RouteDebugger\InspectActionInvoker.cs" />
+    <Compile Include="Areas\RouteDebugger\InspectActionSelector.cs" />
+    <Compile Include="Areas\RouteDebugger\InspectControllerSelector.cs" />
+    <Compile Include="Areas\RouteDebugger\InspectHandler.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\ActionSelectionInfo.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\ActionSelectionLog.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\ControllerSelectionInfo.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\HttpParameterDescriptionInfo.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\InspectData.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\RouteDataInfo.cs" />
+    <Compile Include="Areas\RouteDebugger\Models\RouteInfo.cs" />
+    <Compile Include="Areas\RouteDebugger\RequestHelper.cs" />
+    <Compile Include="Areas\RouteDebugger\RouteDebuggerAreaRegistration.cs" />
+    <Compile Include="Areas\RouteDebugger\RouteDebuggerConfig.cs" />
     <Compile Include="Areas\SMS\Controllers\MMSSendController.cs" />
     <Compile Include="Areas\SMS\Controllers\MsgTemplateController.cs" />
     <Compile Include="Areas\SMS\Controllers\SendController.cs" />
@@ -315,9 +341,12 @@
     <Compile Include="Areas\SMS\Models\ViewModel_Statistics_Chart.cs" />
     <Compile Include="Areas\SMS\SMSAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\MyAPIController.cs" />
+    <Compile Include="Controllers\Api\MyWebApi.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Filters\LoginValidateAttribute.cs" />
+    <Compile Include="Filters\RangeExceptionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,15 +360,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceTest.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\Api\SMSSendApiController.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\RouteDebugger\Content\rdstyle.css" />
+    <Content Include="Areas\RouteDebugger\Scripts\detect.js" />
     <Content Include="Config\controllers.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\service.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\3DSMAX.png" />
@@ -349,6 +383,8 @@
     <Content Include="Content\Images\bg3.png" />
     <Content Include="Content\Images\big.png" />
     <Content Include="Content\Images\blue_glow.jpg" />
+    <Content Include="Content\Images\glyphicons-halflings-white.png" />
+    <Content Include="Content\Images\glyphicons-halflings.png" />
     <Content Include="Content\Images\Program Files Folder.png" />
     <Content Include="Content\Images\Xp-G5 006.png" />
     <Content Include="favicon.ico" />
@@ -517,6 +553,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\I18NDemo\Views\Internationalization\Index.cshtml" />
+    <Content Include="Areas\Demo\Views\ErrorFilter\Index.cshtml" />
+    <Content Include="Areas\Api\Views\web.config" />
+    <Content Include="Areas\RouteDebugger\Views\Web.config" />
+    <Content Include="Areas\RouteDebugger\Views\RouteDebugger\Index.cshtml" />
     <None Include="Properties\PublishProfiles\newnmefcSMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\SMS\Views\Shared\ShowSetWindow.cshtml" />
@@ -546,6 +586,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.1.debug.js" />
+    <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyCSS\MyEditWin.css" />
     <Content Include="Scripts\MyCSS\MyIcon.css" />
@@ -619,6 +661,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Contacts\Views\Home\" />
     <Folder Include="Areas\Job\Models\" />
     <Folder Include="Areas\Login\Models\" />
@@ -671,6 +715,10 @@
     <ProjectReference Include="..\Fdfs.IBLL\Fdfs.IBLL.csproj">
       <Project>{0fc982c5-f9c3-48ac-b8f0-37c08a5fcfd4}</Project>
       <Name>Fdfs.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HttpHelper\HttpHelper.csproj">
+      <Project>{3b3d4793-0bb6-486f-bca7-df9d2efd2e6a}</Project>
+      <Name>HttpHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISMS\ISMS.csproj">
       <Project>{ea8b8c2f-3235-41dc-aba4-17cfdf0575c7}</Project>

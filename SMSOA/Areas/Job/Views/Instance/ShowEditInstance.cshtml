@@ -71,7 +71,10 @@
                 }
             })
         }*@
-
+        //取消操作
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
         //返回登录用户的id
         function my_GetUserId(){
             var userId=-1;

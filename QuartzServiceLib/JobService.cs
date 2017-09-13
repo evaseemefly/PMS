@@ -129,7 +129,7 @@ namespace QuartzServiceLib
             try
             {
                 //在作业工厂类 创建实例方法中 对代码进行修改，若出错则返回null
-                job = JobFactory.CreateJobInstance(jobInfo, data_temp);
+                job = JobFactory.CreateJobInstance(jobInfo, data_temp);                
             }
             catch (Exception ex)
             {
@@ -155,6 +155,7 @@ namespace QuartzServiceLib
                     InitScheduler();
                 }
                 sche.ScheduleJob(job, trigger);
+                LogHelper.WriteLog(string.Format("添加任务id：{0},name：{1}，添加成功，创建时间{2}，创建者{3}\n定时器cron：{4}，下次执行时间：{5}", jobInfo.JID, jobInfo.JobName, jobInfo.CreateTime.ToString(), jobInfo.CreateUser,jobInfo.CronStr??"cron为空",jobInfo.NextRunTime.ToString()));
                 //4 启动工作
                 //不启动该调度池
                 //sche.Start();

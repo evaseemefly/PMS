@@ -38,7 +38,7 @@ namespace PersonImporting.Utils
             return true;
         }
         /// <summary>
-        /// 数据约束:文件内容格式
+        /// 数据约束:文件内容格式(用于导入群组联系人）
         /// </summary>
         /// <returns></returns>
         public static bool ContactsValidation(string txtLine)
@@ -50,6 +50,35 @@ namespace PersonImporting.Utils
             //电话号码不为11位
             if(array[2].Length != 11) {
                 return false; }
+            return true;
+        }
+
+        /// <summary>
+        /// 数据约束:文件内容格式(用于导入任务）
+        /// </summary>
+        /// <param name="txtLine"></param>
+        /// <returns></returns>
+        public static bool ContactsValidationM(string txtLine)
+        {
+            var array = txtLine.Split(',');
+            //格式错误
+            if (array.Length != 4)
+            {
+                return false;
+            }
+            if (!(array[1].Equals("g") | array[1].Equals("d")))
+            {
+                return false;
+            }
+            //
+            if (!(array[2].Equals("sms")| array[2].Equals("mms")))
+            {
+                return false;
+            }
+            if (!(array[3].Equals("1") | array[3].Equals("0")))
+            {
+                return false;
+            }
             return true;
         }
     }
