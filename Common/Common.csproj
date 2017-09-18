@@ -125,6 +125,7 @@
     <Compile Include="Attributes\ViewAttribute.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Config\FastDFSConfigHelper.cs" />
+    <Compile Include="Config\HttpConfig.cs" />
     <Compile Include="Config\QueryConfigHelper.cs" />
     <Compile Include="Config\RedisConfigHelper.cs" />
     <Compile Include="Config\SMSSignConfigHelper.cs" />

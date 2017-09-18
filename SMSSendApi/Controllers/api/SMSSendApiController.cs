@@ -25,8 +25,14 @@ namespace SMSSendApi.Controllers.api
         PMS.IBLL.IS_SMSMissionBLL smsMissionBLL;
         PMS.IBLL.IP_GroupBLL groupBLL;
 
+        string cookie_sessionId = null;
+
         public SMSSendApiController()
         {
+            //读取http配置类
+           var config =new Common.Config.HttpConfig();
+            //读取cookie_session id值
+            this.cookie_sessionId = config.Cookie_SessionId;
 
         }
 
@@ -36,12 +42,33 @@ namespace SMSSendApi.Controllers.api
             return "测试api";
         }
 
+        protected void Insert2Cookie(string id)
+        {
+
+        }
+
+        /// <summary>
+        /// 将userid存入memcached中，并返回在memcached中的key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        protected string  Set2Memcached(string id)
+        {
+            //将userid存入memcached，并写入cookie，将cookie返回
+            var session_guid =  HttpHelper.SessionHelper.SetMemcached(id);
+            var temp = string.Format("memcached写入|{0}", session_guid);
+            Common.LogHelper.WriteLog(temp);
+            return session_guid;
+        }
+
         [HttpPost]
         public SendResponseModel DoSend(SendResultModel sendModel)
         {
             //return null;
             //模拟一个post请求
             SendResponseModel sendResponseModel = new SendResponseModel { ResponseDate = DateTime.Now };
+            
+            #region 各种判断
             //1 判断传入的SendResultModel是否包含必须的内容—Q
             //1.1 短信内容为空或字数超过800不执行发送
             if (sendModel.Content == null && sendModel.Content.Length + 9 >= 800)
@@ -77,6 +104,20 @@ namespace SMSSendApi.Controllers.api
                 sendResponseModel.ResultCode = Convert.ToString(PMS.Model.Enum.ResultCodeEnum_SendAPI.accountError);
                 return sendResponseModel;
             }
+            #endregion
+
+            //根据user获取id
+            var userid = userInfo.ID;
+
+            var session_id= this.Set2Memcached(userid.ToString());
+
+            CookieCollection cookies = new CookieCollection();
+            cookies.Add(
+                new Cookie()
+                {
+                    Name = cookie_sessionId,
+                    Value = session_id
+                });
 
             var temp_smsmission= smsMissionBLL.GetListBy(s => s.SMSMissionName == sendModel.SMSMissionNames).FirstOrDefault();
 
@@ -84,10 +125,6 @@ namespace SMSSendApi.Controllers.api
             //测试-2，只传入任务及内容
             var sendObj = new ViewModel_Message()
             {
-
-                //PersonIds = new string[] { "101", "102" }.ToString(),
-                //GroupIds = new int[] { 101, 102 },
-                //SMSMissionID = "102"
                 Content = sendModel.Content,
                 SMSMissionID = temp_smsmission.SMID.ToString()  
             };
@@ -96,12 +133,16 @@ namespace SMSSendApi.Controllers.api
             //2 请求短信发送action url
             HttpResponseParameter responseParameter = httpProvider.Excute(new HttpRequestParameter
             {
-                Url = "128.5.6.57/SMS/Send/DoSend/",
+                Url = "128.5.10.57/SMS/Send/DoSend/",
                 IsPost = true,
                 Encoding = Encoding.UTF8,
-                JsonData = Common.SerializerHelper.SerializerToString(sendObj)
+                JsonData = Common.SerializerHelper.SerializerToString(sendObj),
+                Cookie = new HttpCookieType()
+                {
+                    CookieCollection = cookies
+                }
             });
-
+            var response_content =string.Format("responseParameter|{0}",Common.SerializerHelper.SerializerToString(responseParameter));
             //3 将返执行发送后的结果转换为SendResponseModel，序列化后返回
             //未完成
             return new SendResponseModel() { };

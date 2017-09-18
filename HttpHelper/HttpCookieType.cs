@@ -12,6 +12,8 @@ namespace HttpHelper
     /// </summary>
     public class HttpCookieType
     {
+
+        //public System.Web.HttpCookie
         /// <summary>
         /// cookie集合
         /// </summary>
