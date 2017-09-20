@@ -72,11 +72,14 @@ namespace XamlStaticHelperNamespace {
                         "9"));
             assemblyList.Add(Load("EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5" +
                         "c561934e089"));
+            assemblyList.Add(Load("ISMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("PMS.BLLRedis, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.DALSQLSer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.IBLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.IModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(Load("PMS.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            assemblyList.Add(Load("SMSFactory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
             assemblyList.Add(System.Reflection.Assembly.GetExecutingAssembly());
             return assemblyList;
         }

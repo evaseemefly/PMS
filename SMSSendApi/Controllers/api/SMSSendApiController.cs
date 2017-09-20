@@ -57,7 +57,7 @@ namespace SMSSendApi.Controllers.api
             //将userid存入memcached，并写入cookie，将cookie返回
             var session_guid =  HttpHelper.SessionHelper.SetMemcached(id);
             var temp = string.Format("memcached写入|{0}", session_guid);
-            Common.LogHelper.WriteLog(temp);
+            Common.LogHelper.WriteError(temp);
             return session_guid;
         }
 
@@ -113,11 +113,13 @@ namespace SMSSendApi.Controllers.api
 
             CookieCollection cookies = new CookieCollection();
             cookies.Add(
-                new Cookie()
-                {
-                    Name = cookie_sessionId,
-                    Value = session_id
-                });
+                        new Cookie()
+                        {
+                            Name = cookie_sessionId,
+                            Value = session_id,
+                            Expires = DateTime.Now.AddHours(3),
+                            Domain = "nmefc"
+                        });
 
             var temp_smsmission= smsMissionBLL.GetListBy(s => s.SMSMissionName == sendModel.SMSMissionNames).FirstOrDefault();
 
@@ -143,6 +145,7 @@ namespace SMSSendApi.Controllers.api
                 }
             });
             var response_content =string.Format("responseParameter|{0}",Common.SerializerHelper.SerializerToString(responseParameter));
+            Common.LogHelper.WriteError(response_content); 
             //3 将返执行发送后的结果转换为SendResponseModel，序列化后返回
             //未完成
             return new SendResponseModel() { };

@@ -6,3 +6,11 @@ D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\Manag
 D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.Properties.Resources.resources
 D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.StatisticsTool.resources
 D:\WebProjects\nmefc\VSWorkSpace\nmefc\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.csproj.GenerateResource.Cache
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.csprojResolveAssemblyReference.cache
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.DepartmentManagment.resources
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.Form1.resources
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.GroupManagment.resources
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.MissionManagement.resources
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.Properties.Resources.resources
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.StatisticsTool.resources
+E:\03协同开发\短信\PMS\PMS\ManagerSys\ManagerSys\obj\Debug\ManagerSys.csproj.GenerateResource.Cache

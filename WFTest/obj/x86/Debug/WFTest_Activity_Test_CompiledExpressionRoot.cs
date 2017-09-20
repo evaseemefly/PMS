@@ -1,60 +1,60 @@
 namespace WFTest {
     
-    #line 20 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 20 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System;
     
     #line default
     #line hidden
     
-    #line 1 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Collections;
     
     #line default
     #line hidden
     
-    #line 21 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 21 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Collections.Generic;
     
     #line default
     #line hidden
     
-    #line 1 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities;
     
     #line default
     #line hidden
     
-    #line 1 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities.Expressions;
     
     #line default
     #line hidden
     
-    #line 1 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities.Statements;
     
     #line default
     #line hidden
     
-    #line 22 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 22 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Data;
     
     #line default
     #line hidden
     
-    #line 23 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 23 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Linq;
     
     #line default
     #line hidden
     
-    #line 24 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 24 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Text;
     
     #line default
     #line hidden
     
-    #line 1 "E:\03协同开发\短信\PMS\0630\PMS\WFTest\Activity_Test.xaml"
+    #line 1 "E:\03协同开发\短信\PMS\PMS\WFTest\Activity_Test.xaml"
     using System.Activities.XamlIntegration;
     
     #line default
@@ -346,7 +346,7 @@ namespace WFTest {
             
             internal System.Linq.Expressions.Expression @__Expr0GetTree() {
                 
-                #line 61 "E:\03协同开发\短信\PMS\0630\PMS\WFTEST\ACTIVITY_TEST.XAML"
+                #line 61 "E:\03协同开发\短信\PMS\PMS\WFTEST\ACTIVITY_TEST.XAML"
                 System.Linq.Expressions.Expression<System.Func<string>> expression = () => 
                   temp;
                 
@@ -358,7 +358,7 @@ namespace WFTest {
             [System.Diagnostics.DebuggerHiddenAttribute()]
             public string @__Expr0Get() {
                 
-                #line 61 "E:\03协同开发\短信\PMS\0630\PMS\WFTEST\ACTIVITY_TEST.XAML"
+                #line 61 "E:\03协同开发\短信\PMS\PMS\WFTEST\ACTIVITY_TEST.XAML"
                 return 
                   temp;
                 
