@@ -1,0 +1,31 @@
+﻿@{
+
+    string userMsg = null;
+    if (ViewBag.UserInfo != "")
+    {
+        userMsg = ViewBag.UserInfo ;
+    }
+    else
+    {
+        userMsg = @Resources.Language.Unlogin;
+    }
+}
+
+<script type="text/javascript">
+
+</script>
+
+<div>
+    <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#mm_user',iconCls:'icon-home-user'">@Resources.Language.CurrentUser: @userMsg </a>
+    <div id="mm_user" style="width:150px;">
+        <div data-options="iconCls:'icon-home-personalsetting'" class="myconfig">@Resources.Language.Settings</div>
+        <div data-options="iconCls:'icon-home-setpassword'" class="changepwd" onclick="ResetPassword()">@Resources.Language.ModifyPassword</div>
+        <div data-options="iconCls:'icon-home-setpassword'" class="changepwd">@Resources.Language.Recycle</div>
+        <div class="menu-sep"></div>
+        <div data-options="iconCls:'icon-home-logoutyellow'" class="loginOut"><a href="/Admin/Home/LoginOut" style="color:#ffffff">@Resources.Language.Logout</a></div>
+    </div> 
+</div>
+@*实现顶部的按钮对应的点击及其他相关方法*@
+@Html.Partial("_Partial_Home_Top_BtnAction")
+@*顶部按钮页面实现*@
+@Html.Partial("_Partial_ResetPwd")

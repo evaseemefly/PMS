@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="JobService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.JobDataModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.CombineModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.ViewModel" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.SMSModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.Message" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IJobService_AddScheduleJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddScheduleJob" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_AddScheduleJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddScheduleJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_AddListener_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddListener" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_AddListener_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddListenerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_ResumeAllJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResumeAllJob" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_ResumeAllJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResumeAllJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_ResumeTargetJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResumeTargetJob" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_ResumeTargetJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResumeTargetJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_RemovceJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovceJob" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_RemovceJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovceJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_PauseJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:PauseJob" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_PauseJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PauseJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_RemoveJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveJob" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_RemoveJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveJobResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IJobService">
+    <wsdl:operation name="AddScheduleJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/AddScheduleJob" message="tns:IJobService_AddScheduleJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/AddScheduleJobResponse" message="tns:IJobService_AddScheduleJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddListener">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/AddListener" message="tns:IJobService_AddListener_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/AddListenerResponse" message="tns:IJobService_AddListener_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumeAllJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/ResumeAllJob" message="tns:IJobService_ResumeAllJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/ResumeAllJobResponse" message="tns:IJobService_ResumeAllJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumeTargetJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/ResumeTargetJob" message="tns:IJobService_ResumeTargetJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/ResumeTargetJobResponse" message="tns:IJobService_ResumeTargetJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovceJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/RemovceJob" message="tns:IJobService_RemovceJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/RemovceJobResponse" message="tns:IJobService_RemovceJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PauseJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/PauseJob" message="tns:IJobService_PauseJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/PauseJobResponse" message="tns:IJobService_PauseJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobService/RemoveJob" message="tns:IJobService_RemoveJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobService/RemoveJobResponse" message="tns:IJobService_RemoveJob_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IJobService" type="tns:IJobService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddScheduleJob">
+      <soap:operation soapAction="http://tempuri.org/IJobService/AddScheduleJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddListener">
+      <soap:operation soapAction="http://tempuri.org/IJobService/AddListener" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeAllJob">
+      <soap:operation soapAction="http://tempuri.org/IJobService/ResumeAllJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeTargetJob">
+      <soap:operation soapAction="http://tempuri.org/IJobService/ResumeTargetJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovceJob">
+      <soap:operation soapAction="http://tempuri.org/IJobService/RemovceJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PauseJob">
+      <soap:operation soapAction="http://tempuri.org/IJobService/PauseJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveJob">
+      <soap:operation soapAction="http://tempuri.org/IJobService/RemoveJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JobService">
+    <wsdl:port name="BasicHttpBinding_IJobService" binding="tns:BasicHttpBinding_IJobService">
+      <soap:address location="http://localhost:8734/Design_Time_Addresses/QuartzServiceLib/JobService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

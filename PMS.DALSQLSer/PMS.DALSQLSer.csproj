@@ -52,7 +52,7 @@
     </Compile>
     <Compile Include="DBContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserInfoMySQL.cs" />
+    <Compile Include="UserInfoDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.IDAL\PMS.IDAL.csproj">
@@ -72,6 +72,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DAL.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PMS.DALSQLSer.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

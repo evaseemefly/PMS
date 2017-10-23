@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,17 +45,39 @@
     <Compile Include="ActionInfoBLL.cs" />
     <Compile Include="BaseBLL.cs" />
     <Compile Include="BaseDelBLL.cs" />
+    <Compile Include="BaseDelListBLL.cs" />
     <Compile Include="BLL.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExtEntityBLL\ExtEntity_Mission.cs" />
+    <Compile Include="FdfsStorageBLL.cs" />
+    <Compile Include="J_JobInfoBLL.cs" />
+    <Compile Include="J_JobTemplateBLL.cs" />
+    <Compile Include="N_NewsBaseBLL.cs" />
+    <Compile Include="N_NewsPartialBLL.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReference_QuartzService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSContentBLL.cs" />
+    <Compile Include="S_SMSMissionBLL.cs" />
     <Compile Include="PersonInfoBLL.cs" />
     <Compile Include="P_DepartmentInfoBLL.cs" />
     <Compile Include="P_GroupBLL.cs" />
     <Compile Include="RoleInfoBLL.cs" />
-    <Compile Include="UserInfoBLL.cs" />
+    <Compile Include="S_SMSMsgContentBLL.cs" />
+    <Compile Include="S_SMSRecord_CurrentBLL.cs" />
+    <Compile Include="UserInfo\UserInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfo\UserInfoBLL_Job.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.DALFactory\PMS.DALFactory.csproj">
@@ -72,9 +96,21 @@
       <Project>{9581fc4a-361d-48c9-99f7-7826dafd992e}</Project>
       <Name>PMS.IDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
+      <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
+      <Name>PMS.IModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuartzJobFactory\QuartzJobFactory.csproj">
+      <Project>{0f928469-5038-4471-a6d4-5a2bab75253e}</Project>
+      <Name>QuartzJobFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuartzProxy\QuartzProxy.csproj">
+      <Project>{af3d71fa-3112-4474-978e-96a55f47a1ce}</Project>
+      <Name>QuartzProxy</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +118,60 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BLL.cs</LastGenOutput>
     </Content>
+    <None Include="Service References\ServiceReference_QuartzService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference_QuartzService\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\PMS.BLL.ServiceReference1.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\PMS.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\service.wsdl" />
+    <None Include="Service References\ServiceReference1\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\WcfServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.JobDataModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\PMS.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\service.wsdl" />
+    <None Include="Service References\ServiceReference_QuartzService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference_QuartzService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference_QuartzService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

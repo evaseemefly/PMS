@@ -1,0 +1,2 @@
+D:\01编程\02协作开发\SMSOA\PMS\WFFactory\obj\Debug\WFFactory.csprojResolveAssemblyReference.cache
+D:\01编程\02协作开发\SMSOA\PMS\WFFactory\obj\Debug\WFFactory.csproj.WFFactory.exe.config

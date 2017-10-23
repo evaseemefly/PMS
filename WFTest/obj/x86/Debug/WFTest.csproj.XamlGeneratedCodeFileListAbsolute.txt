@@ -1,0 +1,7 @@
+obj\x86\Debug\_WFTest.g.cs
+obj\x86\Debug\Activity_Test.g.cs
+obj\x86\Debug\MainStatistics_Advanced.g.cs
+obj\x86\Debug\WFTest_Activity_Test_BeforeInitializeComponentHelper.cs
+obj\x86\Debug\WFTest_MainStatistics_Advanced_BeforeInitializeComponentHelper.cs
+E:\03协同开发\短信\PMS\PMS\WFTest\obj\x86\Debug\WFTest_Activity_Test_CompiledExpressionRoot.cs
+E:\03协同开发\短信\PMS\PMS\WFTest\obj\x86\Debug\WFTest_MainStatistics_Advanced_CompiledExpressionRoot.cs

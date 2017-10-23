@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
 using SMSOA.Filters;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : BaseController
     {
         IRoleInfoBLL roleInfoBLL { get; set; }
 
@@ -36,8 +37,8 @@ namespace SMSOA.Areas.Admin.Controllers
             //};
         }
 
-        [Common.Attributes.ViewAttribute]
-        [LoginValidate]
+        //[Common.Attributes.ViewAttribute]
+        //[LoginValidate]
         public ActionResult Index()
         {
             ViewBag.Action_GetOption = "/Admin/Action/GetOption";
@@ -142,7 +143,7 @@ namespace SMSOA.Areas.Admin.Controllers
                     item.Checked = true;
                     list.Add(item);
                 }
-
+                list = list.Select(a => a.ToMiddleModel()).ToList();
                 //4 
                 PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
                 {
@@ -158,16 +159,17 @@ namespace SMSOA.Areas.Admin.Controllers
 
         public ActionResult DoEditRoleInfo(RoleInfo model)
         {
-            model.SubTime = DateTime.Now;
+            if (roleInfoBLL.EditValidation(model.ID, model.RoleName)) { return Content("validation fails"); }
+                 model.ModifiedOnTime = DateTime.Now;
             
-            if (roleInfoBLL.Update(model))
-            {
-                return Content("ok");
-            }
-            else
-            {
-                return Content("error");
-            }
+                if (roleInfoBLL.Update(model))
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("error");
+                }
         }
 
 
@@ -175,19 +177,22 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult DoAddRoleInfo(RoleInfo model)
         {
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
-            model.DelFlag = false;
-            model.SubTime = DateTime.Now;
-            model.ModifiedOnTime = DateTime.Now;
+            //数据验证
+            if (roleInfoBLL.AddValidation(model.RoleName)) { return Content("validation fails"); }
+                model.DelFlag = false;
+                model.SubTime = DateTime.Now;
+                model.ModifiedOnTime = DateTime.Now;
            
-            try
-            {
-                roleInfoBLL.Create(model);
-                return Content("ok");
-            }
-            catch
-            {
-                return Content("error");
-            }
+                try
+                {
+                    roleInfoBLL.Create(model);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
+
         }
 
         /// <summary>
@@ -198,9 +203,9 @@ namespace SMSOA.Areas.Admin.Controllers
         {
             //1 为分布式图中的下拉框添加要请求的地址
             //ViewBag.data = GetOption();
-            SetDropDonwList();
-            //2 从数据库中获取现有的可选的父级权限
-            SetDefualtOptions();
+            //SetDropDonwList();
+            ////2 从数据库中获取现有的可选的父级权限
+            //SetDefualtOptions();
             //提供显示页面提交时跳转到的权限名称
             //新增即跳转至新增页面
             ViewBag.backAction = "DoAddRoleInfo";
@@ -224,14 +229,19 @@ namespace SMSOA.Areas.Admin.Controllers
             {
                 //1 找到指定id的action对象
                 var model = roleInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
-                                                                                         //为分布式图中的下拉框添加要请求的地址
-                                                                                         // ViewBag.data = GetOption();//先不用easyui的控件
-                                                                                         //2 获取下拉请求类型的列表
-                SetDropDonwList();
-                //3 获取可选的父级权限列表
-                SetDefualtOptions();
-                //4 将指定id的action对象传给视图数据字典中的实体
-                ViewData.Model = model;
+                                                                                       //为分布式图中的下拉框添加要请求的地址
+                                                                                       // ViewBag.data = GetOption();//先不用easyui的控件
+                                                                                       //2 获取下拉请求类型的列表
+                                                                                       //SetDropDonwList();
+                                                                                       ////3 获取可选的父级权限列表
+                                                                                       //SetDefualtOptions();
+                                                                                       //4 将指定id的action对象传给视图数据字典中的实体
+                                                                                       //ViewData.Model = model;
+                ViewBag.ID = model.ID;
+                ViewBag.RoleName = model.RoleName;
+                ViewBag.Remark = model.Remark;
+                ViewBag.Sort = model.Sort;
+                ViewBag.SubTime = model.SubTime;
                 //5 提供显示页面提交时跳转到的权限名称
                 //修改即跳转至修改方法
                 ViewBag.backAction = "DoEditRoleInfo";
@@ -247,19 +257,19 @@ namespace SMSOA.Areas.Admin.Controllers
         /// 获取权限集合
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetRoleInfo()
+        public ActionResult GetRoleInfo(ViewModel_RoleInfo_QueryInfo queryModel)
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
 
-            //查询所有的权限
+            //查询的角色
             //使用ref声明时需要在传入之前为其赋值
-            var list_role = roleInfoBLL.GetPageList(pageIndex, pageSize, ref rowCount, a => a.DelFlag == false, a => a.Sort, true).ToList();
+            var list_record = roleInfoBLL.GetRoleRecordListByQuery(pageIndex, pageSize, ref rowCount, queryModel, true, true);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_role,
+                rows = list_record,
                 footer = null
             };
 
@@ -339,6 +349,18 @@ namespace SMSOA.Areas.Admin.Controllers
             string state =
             roleInfoBLL.DeleteLogicRoleInfos(list) == true ? state = "ok" : state = "error";
             return Content(state);
+        }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Admin",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
         }
     }
 }

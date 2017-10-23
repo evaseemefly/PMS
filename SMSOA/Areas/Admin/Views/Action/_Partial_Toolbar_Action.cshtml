@@ -1,0 +1,13 @@
+﻿<div id="tb" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_action" data-options="iconCls:'icon-add',text: '@Resources.Language.New',plain:true" onclick="addRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_action" data-options="iconCls:'icon-remove',text: '@Resources.Language.Delete',plain:true" onclick="removeRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_action" data-options="iconCls:'icon-edit',text: '@Resources.Language.Edit',plain:true" onclick="editRow()"></a>
+    <br />
+    @Resources.Language.QueryRightName<input class="easyui-validatebox" type="text" id="queryByActionName" style="width:'30%'" data-options="">
+    @Resources.Language.QueryAreaName<input class="easyui-validatebox" type="text" id="queryByAreaName" style="width:'30%'" data-options="">
+    @Resources.Language.QueryControllerName<input class="easyui-validatebox" type="text" id="queryByControllerName" style="width:'50%'" data-options="">
+    @Resources.Language.QueryMethodName<input class="easyui-validatebox" type="text" id="queryByMethodName" style="width:'50%'" data-options="">
+    @Resources.Language.QueryRemarks<input class="easyui-validatebox" type="text" id="queryByRemark" style="width:'30%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">@Resources.Language.Go</a>
+</div>
+

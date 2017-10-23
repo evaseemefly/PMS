@@ -9,8 +9,16 @@ namespace PMS.IBLL
 {
    public interface IBaseBLL<T>
     {
-        #region 新增实体- void Create(T model);
-        void Create(T model);
+        #region 1-1 新增实体- void Create(T model);
+        bool Create(T model);
+        #endregion
+
+        #region 1-2 批量新增实体+public void Create(UserInfo model)
+        /// <summary>
+        /// 1- 新增实体
+        /// </summary>
+        /// <param name="model"></param>
+        bool CreateByList(List<T> list);
         #endregion
 
         #region 2- 根据用户id删除数据库中记录
@@ -42,11 +50,13 @@ namespace PMS.IBLL
 
         #region 4- 根据条件查询
         /// <summary>
-        /// 4- 根据条件查询
+        /// 4 根据条件查询
+        /// isNotTrack默认值为false查询对象加载至上下文对象中；只有为true时才进行AsNoTracking操作，查询对象不加载至DBContext中
         /// </summary>
         /// <param name="whereLambda"></param>
+        /// <param name="isNotTracking"></param>
         /// <returns></returns>
-        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda);
+        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTracking = false);
         #endregion
 
         #region 4- 根据条件查询，并排序
@@ -57,7 +67,7 @@ namespace PMS.IBLL
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda);
+        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda,bool isNotTracking=false);
         #endregion
 
         #region 5- 分页查询

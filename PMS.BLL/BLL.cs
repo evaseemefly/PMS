@@ -18,6 +18,84 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	FdfsContentBLL
+    public partial class FdfsContentBLL : BaseBLL<FdfsContent>, IFdfsContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为FdfsContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.FdfsContentDAL;
+        }
+    }
+	#endregion
+	   #region	FdfsStorageBLL
+    public partial class FdfsStorageBLL : BaseBLL<FdfsStorage>, IFdfsStorageBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为FdfsStorageDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.FdfsStorageDAL;
+        }
+    }
+	#endregion
+	   #region	FdfsTrackerBLL
+    public partial class FdfsTrackerBLL : BaseBLL<FdfsTracker>, IFdfsTrackerBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为FdfsTrackerDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.FdfsTrackerDAL;
+        }
+    }
+	#endregion
+	   #region	J_JobInfoBLL
+    public partial class J_JobInfoBLL : BaseBLL<J_JobInfo>, IJ_JobInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为J_JobInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.J_JobInfoDAL;
+        }
+    }
+	#endregion
+	   #region	J_JobTemplateBLL
+    public partial class J_JobTemplateBLL : BaseBLL<J_JobTemplate>, IJ_JobTemplateBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为J_JobTemplateDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.J_JobTemplateDAL;
+        }
+    }
+	#endregion
+	   #region	N_NewsBLL
+    public partial class N_NewsBLL : BaseBLL<N_News>, IN_NewsBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为N_NewsDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.N_NewsDAL;
+        }
+    }
+	#endregion
 	   #region	P_DepartmentInfoBLL
     public partial class P_DepartmentInfoBLL : BaseBLL<P_DepartmentInfo>, IP_DepartmentInfoBLL
     {	
@@ -54,6 +132,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.P_PersonInfoDAL;
+        }
+    }
+	#endregion
+	   #region	QRTZ_TRIGGERSBLL
+    public partial class QRTZ_TRIGGERSBLL : BaseBLL<QRTZ_TRIGGERS>, IQRTZ_TRIGGERSBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为QRTZ_TRIGGERSDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.QRTZ_TRIGGERSDAL;
         }
     }
 	#endregion
@@ -96,6 +187,71 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	R_UserInfo_DepartmentInfoBLL
+    public partial class R_UserInfo_DepartmentInfoBLL : BaseBLL<R_UserInfo_DepartmentInfo>, IR_UserInfo_DepartmentInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_DepartmentInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_DepartmentInfoDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_GroupBLL
+    public partial class R_UserInfo_GroupBLL : BaseBLL<R_UserInfo_Group>, IR_UserInfo_GroupBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_GroupDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_GroupDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_NewsBLL
+    public partial class R_UserInfo_NewsBLL : BaseBLL<R_UserInfo_News>, IR_UserInfo_NewsBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_NewsDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_NewsDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_PersonInfoBLL
+    public partial class R_UserInfo_PersonInfoBLL : BaseBLL<R_UserInfo_PersonInfo>, IR_UserInfo_PersonInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_PersonInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_PersonInfoDAL;
+        }
+    }
+	#endregion
+	   #region	R_UserInfo_SMSMissionBLL
+    public partial class R_UserInfo_SMSMissionBLL : BaseBLL<R_UserInfo_SMSMission>, IR_UserInfo_SMSMissionBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为R_UserInfo_SMSMissionDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.R_UserInfo_SMSMissionDAL;
+        }
+    }
+	#endregion
 	   #region	RoleInfoBLL
     public partial class RoleInfoBLL : BaseBLL<RoleInfo>, IRoleInfoBLL
     {	
@@ -106,6 +262,19 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.RoleInfoDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSContentBLL
+    public partial class S_SMSContentBLL : BaseBLL<S_SMSContent>, IS_SMSContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSContentDAL;
         }
     }
 	#endregion
@@ -122,6 +291,58 @@ namespace PMS.BLL
         }
     }
 	#endregion
+	   #region	S_SMSMsgContentBLL
+    public partial class S_SMSMsgContentBLL : BaseBLL<S_SMSMsgContent>, IS_SMSMsgContentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSMsgContentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSMsgContentDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSRecord_CurrentBLL
+    public partial class S_SMSRecord_CurrentBLL : BaseBLL<S_SMSRecord_Current>, IS_SMSRecord_CurrentBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSRecord_CurrentDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSRecord_CurrentDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSRecord_HistoryBLL
+    public partial class S_SMSRecord_HistoryBLL : BaseBLL<S_SMSRecord_History>, IS_SMSRecord_HistoryBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSRecord_HistoryDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSRecord_HistoryDAL;
+        }
+    }
+	#endregion
+	   #region	S_SMSTypeBLL
+    public partial class S_SMSTypeBLL : BaseBLL<S_SMSType>, IS_SMSTypeBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为S_SMSTypeDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.S_SMSTypeDAL;
+        }
+    }
+	#endregion
 	   #region	UserInfoBLL
     public partial class UserInfoBLL : BaseBLL<UserInfo>, IUserInfoBLL
     {	
@@ -132,6 +353,32 @@ namespace PMS.BLL
         public override void SetCurrentDAL()
         {
             base.CurrentDAL = base.CurrentDBSession.UserInfoDAL;
+        }
+    }
+	#endregion
+	   #region	WF_Query_InstanceBLL
+    public partial class WF_Query_InstanceBLL : BaseBLL<WF_Query_Instance>, IWF_Query_InstanceBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为WF_Query_InstanceDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.WF_Query_InstanceDAL;
+        }
+    }
+	#endregion
+	   #region	WF_Query_StepInfoBLL
+    public partial class WF_Query_StepInfoBLL : BaseBLL<WF_Query_StepInfo>, IWF_Query_StepInfoBLL
+    {	
+
+		/// <summary>
+        /// 为当前的DAL对象赋值，赋值为WF_Query_StepInfoDAL
+        /// </summary>
+        public override void SetCurrentDAL()
+        {
+            base.CurrentDAL = base.CurrentDBSession.WF_Query_StepInfoDAL;
         }
     }
 	#endregion

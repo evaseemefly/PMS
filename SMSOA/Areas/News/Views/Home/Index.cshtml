@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/News/Views/Shared/_Layout_Common.cshtml";
+}
+
+@section CSS{
+  <style type="text/css">
+
+</style>  
+    }
+
+@section Scripts{
+
+    <script type="text/javascript">
+        var myColumns = [[
+            { field: 'SNID', title: 'ID', width: '5%', hidden: true },
+                { field: 'Title', title: '题目', width: '55%' },
+                { field: 'SubDateTime', title: '发布时间', width: '30%',formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                } },
+                {
+                    field: 'Operate', title: '操作', width: '10%', formatter: myfunction
+                }]]
+
+        function myfunction(value) {
+            //return '<img src="../../Images/Icon/action/16/action-action.png" />';
+            return '<img src="../../Images/Icon/Common/24/new.png" />';
+        }
+        function myload_datagrid(id_div, type, url) {
+            $("#" + id_div).datagrid({
+                //width: 'auto',
+                //height: 'auto',
+                fit: true,
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: url + '?type=' + type,
+                autoRowHeight: true,
+                nowrap: false,//自动换行
+                loadMsg: '数据加载中请稍后……',
+                pagination: false,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns,
+                onClickRow: function (index, data) {
+                    ShowWindow(index, data);
+                }
+            });
+        }
+
+        function load_RecentAllNews() {
+            myload_datagrid("recentAllNews_datagrid", 1, "@ViewBag.RecentAllNews");
+        }
+
+        function load_RecentUnReadNews() {
+            myload_datagrid("recentUnReadNews_datagrid", 1, "@ViewBag.RecentUnReadNew");
+        }
+
+        function refresh() {
+            window.location.reload();//刷新当前页面.
+
+            //或者下方刷新方法
+            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+            // opener.location.reload()刷新父窗口对象（用于单开窗口
+            //top.location.reload()刷新最顶端对象（用于多开窗口）
+        }
+
+        @*function ShowWindow(rowIndex,rowData) {
+            //从指定页面中预读取数据
+            var snid = rowData.SNID;
+            $("#viewMsgFrame").attr("src", "@ViewBag.ShowMsg"+"?snid="+snid);
+            //$("#editWindow").panel({ title: "创建任务模板" });
+            //打开编辑窗体
+            $("#viewMsgWindow").window('open');
+        }*@
+
+        $(function () {
+            $("#viewMsgWindow").window('close');
+            $("#editWindow").window('close');
+            load_RecentAllNews();
+            load_RecentUnReadNews();
+        })
+    </script>
+    }
+
+@section Body{
+   <div id="body_layout" class="easyui-panel" style="height:98%;width:98%;border:0px" data-options="fit:true">
+    @*<span style="color:orangered;"></span>*@
+       
+    @Html.Partial("_Partial_News_SystemMessages")
+    @Html.Partial("_Partial_News_ImportantNotice")
+</div>
+    }
+
+@section showWindow{
+    @Html.Partial("_Partial_Common_ShowWindow")
+    }
+

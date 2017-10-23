@@ -11,16 +11,18 @@
     <title>SetRoleAction</title>
     <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
     <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @Scripts.Render("~/Scripts/myJquery")
+    @Scripts.Render("~/Scripts/easyUIJS")
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
-    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>*@
     <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
     <script type="text/javascript">
         $(function () {
-            
+
             //2 位datagrid加载数据
             $("#datagrid").datagrid({
                 width: 'auto',
@@ -30,11 +32,11 @@
                 singleSelect: true,
                 data:@ViewBag.data,
                 @*url: '@ViewBag.GetInfo',*@
-                loadMsg: '数据加载中请稍后……',
+                loadMsg: '@Resources.Language.Loading',
                 pagination: true,//启用分页，默认每页10行
                 rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
                 pageSize: 10,   //设置 页容量为 5
-                pageList: [5, 10, 20],//设置 页容量下拉框                
+                pageList: [5, 10, 20],//设置 页容量下拉框
             });
 
         })

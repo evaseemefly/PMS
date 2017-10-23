@@ -18,6 +18,16 @@ namespace PMS.Model
         {
             this.R_UserInfo_ActionInfo = new HashSet<R_UserInfo_ActionInfo>();
             this.RoleInfo = new HashSet<RoleInfo>();
+            this.R_UserInfo_Group = new HashSet<R_UserInfo_Group>();
+            this.R_UserInfo_SMSMission = new HashSet<R_UserInfo_SMSMission>();
+            this.S_SMSContent = new HashSet<S_SMSContent>();
+            this.R_UserInfo_DepartmentInfo = new HashSet<R_UserInfo_DepartmentInfo>();
+            this.R_UserInfo_PersonInfo = new HashSet<R_UserInfo_PersonInfo>();
+            this.S_SMSMsgContent = new HashSet<S_SMSMsgContent>();
+            this.R_UserInfo_News = new HashSet<R_UserInfo_News>();
+            this.N_News = new HashSet<N_News>();
+            this.J_JobInfo = new HashSet<J_JobInfo>();
+            this.J_JobTemplate = new HashSet<J_JobTemplate>();
         }
     
         public int ID { get; set; }
@@ -31,5 +41,15 @@ namespace PMS.Model
     
         public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
         public virtual ICollection<RoleInfo> RoleInfo { get; set; }
+        public virtual ICollection<R_UserInfo_Group> R_UserInfo_Group { get; set; }
+        public virtual ICollection<R_UserInfo_SMSMission> R_UserInfo_SMSMission { get; set; }
+        public virtual ICollection<S_SMSContent> S_SMSContent { get; set; }
+        public virtual ICollection<R_UserInfo_DepartmentInfo> R_UserInfo_DepartmentInfo { get; set; }
+        public virtual ICollection<R_UserInfo_PersonInfo> R_UserInfo_PersonInfo { get; set; }
+        public virtual ICollection<S_SMSMsgContent> S_SMSMsgContent { get; set; }
+        public virtual ICollection<R_UserInfo_News> R_UserInfo_News { get; set; }
+        public virtual ICollection<N_News> N_News { get; set; }
+        public virtual ICollection<J_JobInfo> J_JobInfo { get; set; }
+        public virtual ICollection<J_JobTemplate> J_JobTemplate { get; set; }
     }
 }

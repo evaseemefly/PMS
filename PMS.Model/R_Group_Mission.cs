@@ -18,6 +18,7 @@ namespace PMS.Model
         public int MissionID { get; set; }
         public int GroupID { get; set; }
         public bool isPass { get; set; }
+        public int isMMS { get; set; }
     
         public virtual P_Group P_Group { get; set; }
         public virtual S_SMSMission S_SMSMission { get; set; }

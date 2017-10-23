@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "ShowEditTemplate";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_MsgTemplate_Edit.cshtml";
+    int sort = (ViewBag.Sort == null ? 50 : ViewBag.Sort);
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        function DoSubmit() {
+            var myform = $("#ff");
+            var options = {
+                url: '@ViewBag.backAction_jqSub',
+                type: 'post',
+                success: function (data) {
+                    afterEdit(data);
+                }
+            };
+
+            myform.form('submit', options);
+        }
+
+        function CancelSend(){
+            window.parent.CancelSend();
+        }
+
+        function afterEdit(data) {
+
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //提交表单成功后关闭本页面
+            //无法关闭此窗口
+            //window.close();
+            if (data == "ok") {
+                window.parent.afterEdit("修改成功",0);
+            } else if (data == "validation fails") {
+                window.parent.afterEdit("创建失败，选定任务已经存在唯一模板",1)
+            }
+            else {
+                window.parent.afterEdit("修改失败",0);
+            }
+            //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
+        }
+        var missionColumns = [[
+                { field: 'SMID', title: 'ID', width: 100, checkbox: true },
+                { field: 'SMSMissionName', title: '任务名称', width: 150 }
+        ]]
+
+        function formatItem_combobox(row) {
+            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span></input>';
+            return s;
+        }
+
+        //加载短信任务combogrid
+        function loadCombogrid(userId) {
+            //获取隐藏域TID
+            var tid=$("#TID").val()
+            //加载全部短信任务种类
+            $("#smsMission_combogrid").combogrid({
+                url: '@ViewBag.GetAllMission_combogrid?userId=' + userId+"&tid="+tid,
+                method: 'get',
+                editable:false,
+                idField: 'SMID',
+                textField: 'SMSMissionName',
+                width:180,
+                panelWidth: 180,
+                panelHeight: 180,
+                multiple: false,@*设置为单选*@
+                formatter: formatItem_combobox,
+                columns: missionColumns,
+                onClickRow: function (rowIndex, rowData) {//点击任务后显示该任务所拥有的群组以及部门
+                },
+                onLoadSuccess: function () {
+                    var data = $("#smsMission_combogrid").combogrid("grid").datagrid("getData");
+                    var rowData = data.rows;
+                    $.each(rowData, function (rowIndex, rowData) {
+                        if (rowData.checked) {
+                            $("#smsMission_combogrid").combogrid("grid").datagrid("selectRow", rowIndex);
+                        }
+                    });
+                }
+            })
+        }
+
+        $(function () {
+            var userId =@ViewBag.LoginUserID;
+            loadCombogrid(userId);
+
+        })
+</script>
+    }
+@section Body{
+    <div style="height:30px;width:100%;background-color:#000000"></div>
+<input type="hidden" id="UID" name="UID" value="@ViewBag.LoginUserID" />
+<input type="hidden" id="TID" name="TID" value="@ViewBag.TID" />
+<table cellpadding="3" style="margin-left:40px;width:95%">
+    <tr>
+        <td>模板名称:</td>
+        <td class="comment">
+            <input class="easyui-validatebox" type="text" name="MsgName" value="@ViewBag.MsgName" data-options="required:true,validType:['String','length[1,50]']"></input><br />请填写模板名称
+        </td>
+    </tr>
+    <tr>
+        <td>所属任务:</td>
+        <td class="comment">
+            <select class="easyui-combogrid" name="SMID"style="width:60%" id="smsMission_combogrid" required="required"></select><br />请选择该模板所属的短信任务种类
+        </td>
+    </tr>
+    <tr>
+        <td>模板内容:</td>
+        <td class="comment">
+            <input class="easyui-textbox" name="MsgContent" style="height:90px;width:80%"value="@ViewBag.MsgContent" data-options="multiline:true,prompt:'输入模板内容...'"></input><br />请输入该任务所属的模板内容
+        </td>
+    </tr>
+    <tr>
+        <td>优先级:</td>
+    </tr>
+    <tr>
+        <td class="comment" colspan="2">
+            <input class="easyui-slider" name="Sort" style="width:80%" data-options="showTip:true,
+                               rule: [1,'|',25,'|',50,'|',75,'|',100],
+                               value:'@sort'
+                               "><br />
+            数字越小优先级越高
+        </td>
+    </tr>
+</table>
+<div style="text-align:center;padding:5px">
+    <div style="text-align:center;padding:5px">
+        @*<input type="submit" value="提交" />*@
+        <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()">提交</a>
+        <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()">取消</a>
+    </div>
+</div>
+    }
+

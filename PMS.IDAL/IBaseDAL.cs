@@ -9,13 +9,22 @@ namespace PMS.IDAL
 {
     public interface IBaseDAL<T>
     {
-        #region 1 根据实体为数据库中添加新的对象+bool Create(T model);
+        #region 1-1 根据实体为数据库中添加新的对象+bool Create(T model);
         /// <summary>
-        /// 1 根据实体为数据库中添加新的对象
+        /// 1-2 根据实体为数据库中添加新的对象
         /// </summary>
         /// <param name="model">T实体对象</param>
         /// <returns></returns>
         bool Create(T model);
+        #endregion
+
+        #region 1-2 根据实体集合为数据库中批量添加新的对象+public bool CreateByList(List<T> list)
+        /// <summary>
+        /// 1-2 根据实体为数据库中添加新的对象
+        /// </summary>
+        /// <param name="model">T实体对象</param>
+        /// <returns></returns>
+        bool CreateByList(List<T> list);
         #endregion
 
         #region 2 从数据库中删除某个实体 +bool Del(T model);
@@ -50,8 +59,9 @@ namespace PMS.IDAL
         /// 4 查询用户信息
         /// </summary>
         /// <param name="whereLambda">查询条件（lambda）</param>
+        /// <param name="isNotTrack">是否被EF Context 追踪（注意此处默认不应为false，否则之前的查询获取的对象全部不加载至数据上下文对象中——原默认值为false，现改为true——此处仍为fasle，默认值不为true）</param>
         /// <returns></returns>
-        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda);
+        IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda,bool isNotTrack = false);
         #endregion
 
         #region 4 根据条件 排序并查询+IQueryable<T> GetListBy<Tkey>
@@ -62,7 +72,7 @@ namespace PMS.IDAL
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda);
+        IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda, bool isNotTrack = false);
         #endregion
 
         #region 5 分页查询+IQueryable<T> GetPageList<TKey>
@@ -91,7 +101,22 @@ namespace PMS.IDAL
         /// <param name="isAsc">是否为升序，true为升序</param>
         /// <returns>查询结果序列</returns>
         IQueryable<T> GetPageList<TKey>(int pageIndex, int pageSize, ref int rowCount, Expression<Func<T, bool>> whereLambda, Expression<Func<T, TKey>> orderByLambda, bool isAsc);
-         #endregion
+        #endregion
 
+
+        #region 6 从数据库中批量删除实体 +bool DelByList(List<T> list);
+        /// <summary>
+        /// 6 从数据库中批量删除实体
+        /// </summary>
+        /// <param name="model">删除的实体对象</param>
+        /// <returns></returns>
+        bool DelByList(List<T> list);
+        #endregion
+
+        /// <summary>
+        /// 6 对EF上下文对象保存所有修改并提交至数据库
+        /// </summary>
+        /// <returns></returns>
+        bool SaveChange();
     }
 }

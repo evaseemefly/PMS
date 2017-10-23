@@ -1,0 +1,12 @@
+﻿@using PMS.Model.Enum;
+<script type="text/javascript">
+    var hashMap = {};
+    @foreach (int item in Enum.GetValues(typeof(JobState_Enum)))
+    {
+        //int key =Convert.ToInt32(item);
+        int key = Convert.ToInt32(item);
+        string name = Enum.GetName(typeof(JobState_Enum), key);
+            <text>hashMap['@key']='@name' </text>
+        } 
+</script>
+

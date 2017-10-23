@@ -42,6 +42,8 @@ namespace PMS.Model.EasyUIModel
         /// </summary>
         public object attributes { get; set; }
 
+        public string iconCls { get; set; }
+
         /// <summary>
         /// 一个节点数组声明了若干节点。
         /// </summary>

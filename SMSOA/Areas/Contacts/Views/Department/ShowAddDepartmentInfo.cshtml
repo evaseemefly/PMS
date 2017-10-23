@@ -1,37 +1,20 @@
 ﻿
 @{
-    Layout = null;
-    string backAction_jqSub = @ViewBag.backAction_jqSub;
-
+    ViewBag.Title = "ShowEditInfo_1";
+    Layout = "~/Views/Shared/_Contact_AddEdit_Layout.cshtml";
+    string backAction = ViewBag.backAction;
+    int sort = (ViewBag.Sort == null ? 50 : ViewBag.Sort);
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowAddRoleInfo</title>
-    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
-    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
-    @*注意需要添加此css才能使用easyui默认的颜色*@
-    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
-    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
-    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
-    <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
-    <script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>
+@section SectionJS{
+    <script src="~/Scripts/MyScripts/Common/Submit.js"></script>
     <script type="text/javascript">
-        function DoSubmit() {
+       function DoSubmit() {
             var myform = $("#ff");
             var options = {
                 url: '@ViewBag.backAction_jqSub',
                 type: 'post',
                 success: function (data) {
-                    afterEdit(data);
+                    afterEdit(data,"部门名称");
                 }
             };
 
@@ -59,6 +42,7 @@
                 textField: 'text',
                 data: data_areas,
                 panelHeight: 'auto',
+                editable: false,
                 onLoadSuccess: AfterLoadArea
             });
 
@@ -70,7 +54,7 @@
                 textField: 'text',
                 //valueField: "DID",
                 //textField: "DepartmentName",
-                required: true,
+               
                 editable: false,
                 onlyLeafCheck: true,
                 cascaseCheck:true,
@@ -81,8 +65,10 @@
 
                 });
         })
-
-        function afterEdit(data) {
+        function CancelSend() {
+            window.parent.CancelSend();
+        }
+        function afterEdit(data,name) {
 
             //$.messager.alert('提醒', '提交成功!');
             //——经测试提交表单成功后可以执行OnSucess的回调函数
@@ -90,52 +76,77 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEditContact("修改成功",0);
+            }
+            else if (data = "validation fails") {
+                window.parent.afterEditContact(name + "已经存在，请重新输入", 1);
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEditContact("修改失败", 0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
     </script>
-</head>
-<body>
-    @*<div class="easyui-panel" title="New Topic" style="width:400px">*@
-    <div style="padding:10px 60px 20px 60px">
-        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
-            <input type="hidden" name="DID" value="@ViewBag.DID"/>
-            <table cellpadding="4">
+}
+
+<body style="margin:0px;">
+    <div>
+        <form id="ff" class="easyui-form" method="post" style="margin:0px;">
+            <div style="height:30%;width:100%;background-color:#000000"></div>
+            <input type="hidden" name="DID" value="@ViewBag.DID" />
+            <input type="hidden" name="SubTime" value="@ViewBag.SubTime" />
+            <table style="margin-left:40px;width:90%" cellpadding="3">
                 <tr>
-                    <td style="color:#ffffff">所属上级机构:</td>
-                    <td>                    
-                        <select class="easyui-combotree" name="PDID"id="DepartmentName_combotree" data-options="required:true">                           
-                        </select>
+                    <td style="">所属上级机构:</td>
+                    <td class="comment">
+                        <select class="easyui-combotree" name="PDID" id="DepartmentName_combotree" @*data-options="required:true"*@></select><br />
+                        请选择该部门属于哪个上级机构
+                    </td>
+                    @*<td style="">优先级:</td>*@
+                </tr>
+                <tr>
+                    <td>部门名称:</td>
+                    <td class="comment">
+                        <input class="easyui-validatebox" type="text" name="DepartmentName" value="@ViewBag.Name" @*data-options="required:true"*@ data-options="required:true,validType:['String','length[1,50]']"></input><br />
+                        请输入该部门的名称（只能填写中文）
                     </td>
                 </tr>
                 <tr>
-                    <td style="color:#ffffff">部门名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="DepartmentName" value="@ViewBag.Name" data-options="required:true"></input></td>
-                </tr>
-                <tr>
-                    <td style="color:#ffffff">区域:</td>
-                    <td>
-                        <select class="easyui-combobox" name="Area" id="Area_combox" data-options="required:true">                           
-                        </select>
+                    <td>区域:</td>
+                    <td class="comment">
+                        <select class="easyui-combobox" name="Area" id="Area_combox" @*data-options="required:true"*@></select><br />
+                        选择该部门所在的区域
                     </td>
                 </tr>
                 <tr>
-                    <td style="color:#ffffff">备注:</td>
-                    <td>
-                        <input class="easyui-textbox" name="Remark" style="height:50px" value="@ViewBag.Remark" data-options="multiline:true"></input>
+                    <td>备注:</td>
+                    <td class="comment">
+                        <input class="easyui-textbox" type="text" name="Remark" data-options="multiline:true" style="height:50px;width:80%;" value="@ViewBag.Remark"><br />
+                        可选
+                    </td>
+                </tr>
+                <tr>
+                    <td>优先级:</td>
+                </tr>
+                <tr>
+                    <td class="comment" colspan="2">
+                        <input class="easyui-slider" name="Sort" style="width:80%" data-options="showTip:true,
+                               rule: [0,'|',25,'|',50,'|',75,'|',100],
+                               value:'@sort'
+                               "><br />
+                        数字越小优先级越高
                     </td>
                 </tr>
             </table>
             <div style="text-align:center;padding:5px">
-                <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" style="width:80px" type="submit" onclick="DoSubmit()">提交</a>
+                <div style="text-align:center;padding:5px">
+                    @*<input type="submit" value="提交" />*@
+                    <a class="easyui-linkbutton c6" type="submit" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-ok'" onclick="DoSubmit()" style="width:80px">提交</a>
+                    <a class="easyui-linkbutton c5" style="margin-bottom:5px;width:20%" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="CancelSend()" style="width:80px">取消</a>
+                </div>
             </div>
         </form>
     </div>
-    @*</div>*@
-
 </body>
-</html>
+
+

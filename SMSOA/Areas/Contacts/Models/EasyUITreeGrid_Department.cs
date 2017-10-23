@@ -7,6 +7,11 @@ namespace SMSOA.Areas.Contacts.Models
 {
     public class EasyUITreeGrid_Department
     {
+
+        public bool Checked { get; set; }
+
+        public bool selected { get; set; }
+
         public int DID { get; set; }
 
         public string DepartmentName { get; set; }
@@ -14,6 +19,15 @@ namespace SMSOA.Areas.Contacts.Models
         public int Area { get; set; }
 
         public string Remark { get; set; }
+
+        /// <summary>
+        /// 禁用
+        /// </summary>
+        public bool IsPass { get; set; }
+        /// <summary>
+        /// 选中
+        /// </summary>
+        public string Text { get; set; }
 
         public List<EasyUITreeGrid_Department> children { get; set; }
     }

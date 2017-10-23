@@ -3,9 +3,11 @@
   <object type="SMSOA.Controllers.HomeController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />    
   </object>
-  <object type="SMSOA.Login.LoginController, SMSOA.Login" singleton="false" >
+
+  <object type="SMSOA.Areas.Login.Controllers.LoginController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
-  </object>
+  </object> 
+  
   <object type="SMSOA.Areas.Admin.Controllers.HomeController, SMSOA" singleton="false" >
     <property name="userInfoBLL" ref="userInfoService" />
   </object>
@@ -23,12 +25,77 @@
     <property name="actionInfoBLL" ref="actionInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.ContactPersonController, SMSOA" singleton="false" >
-    <property name="personInfoBLL" ref="personInfoService" />  
+    <property name="personInfoBLL" ref="personInfoService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.GroupController, SMSOA" singleton="false" >
     <property name="groupBLL" ref="groupInfoService" />
   </object>
   <object type="SMSOA.Areas.Contacts.Controllers.DepartmentController, SMSOA" singleton="false" >
     <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Contacts.Controllers.SMSMissionController, SMSOA" singleton="false" >
+    <property name="smsmissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.SendController, SMSOA" singleton="false" >
+    <property name="smsMissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
+    <property name="smsSendBLL" ref="smsSendService" />
+    <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />
+    <property name="smsQuery" ref="smsQueryService" />
+    <property name="smsRecord_CurrentBLL" ref="smsRecord_CurrentService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.MMSSendController, SMSOA" singleton="false" >
+    <property name="smsMissionBLL" ref="smsmissionService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="departmentBLL" ref="departmentInfoService" />
+    <property name="personBLL" ref="personInfoService" />
+    <property name="mmsSendBLL" ref="mmsSendService" />
+    <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />
+    <property name="mmsQuery" ref="mmsQueryService" />
+    <property name="smsRecord_CurrentBLL" ref="smsRecord_CurrentService" />
+    <property name="uploadBLL" ref="uploadService" />
+    <property name="fdfsStorageBLL" ref="fdfsStorageService" />
+    <property name="fdfsTrackerBLL" ref="fdfsTrackerService" />
+    <property name="fdfsContentBLL" ref="fdfsContentService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.MsgTemplateController, SMSOA" singleton="false" >
+    <property name="smsMsgContentBLL" ref="smsMsgTemplateService" />
+    <property name="smsMissionBLL" ref="smsmissionService" />
+  </object>
+  <object type="SMSOA.Areas.SMS.Controllers.StatisticsController, SMSOA" singleton="false" >
+    <property name="userBLL" ref="userInfoService" />
+    <property name="smsContentBLL" ref="smsContentService" />    
+  </object>
+  <object type="SMSOA.Areas.News.Controllers.HomeController, SMSOA" singleton="false" >
+    <property name="newsBLL" ref="newsService" />
+    <property name="userBLL" ref="userInfoService" />
+  </object>
+  <object type="PMS.BLL.UserInfoBLL, PMS.BLL" singleton="false" >
+    <property name="contentBLL" ref="smsContentService" />
+  </object>
+  <object type="SMSOA.Areas.Job.Controllers.TemplateController, SMSOA" singleton="false" >
+    <property name="jobTemplateBLL" ref="jobTemplateService" />
+    <property name="userInfoBLL" ref="userInfoService" />
+  </object>
+  <object type="SMSOA.Areas.Job.Controllers.InstanceController, SMSOA" singleton="false" >
+    <property name="jobInfoBLL" ref="jobInfoService" />
+    <property name="jobTemplateBLL" ref="jobTemplateService" />
+    <property name="jobService" ref="jobService" />
+  </object>
+    <object type="SMSOA.Areas.I18NDemo.Controllers.InternationalizationController, SMSOA" singleton="false" >
+  </object>
+  <object type="SMSOA.Services.Api.SMSSendApiController, SMSOA" singleton="false" >
+    <property name="userBLL" ref="userInfoService" />
+    <property name="groupBLL" ref="groupInfoService" />
+    <property name="smsMissionBLL" ref="smsmissionService" />
   </object>
 </objects>

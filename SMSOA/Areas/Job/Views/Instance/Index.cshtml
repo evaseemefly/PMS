@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Job/Views/Shared/_Layout.cshtml";
+    //若为null此处会报错
+    int userId = ViewBag.LoginUserID;
+    
+}
+
+@section My_Scripts{
+<script type="text/javascript">
+    var userId=@userId;
+        var JobColumns = [[
+                 { field: 'JID', title: 'ID', width: 50, checkbox: true },
+                 { field: 'JobName', title: '作业名称', width: 100 },
+                 { field: 'JobGroup', title: '群组', width: 50 },
+                 { field: 'CreateTime', title: '创建时间', width: 120,formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                 }  },
+                 { field: 'EndRunTime', title: '结束时间', width: 120,formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                 }  },
+                 { field: 'NextRunTime', title: '下次执行', width: 120,formatter: function (value) {
+                    return Date.getStrOfDate(value);
+                 }  },
+                 { field: 'JobState', title: '作业状态', width: 50,formatter:function(value,row,index){
+                     var str;
+                     if(value==0){
+                         return '<span style="color:aqua;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==1){
+                         return '<span style="color:yellow;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==2){
+                         return '<span style="color:orange;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==4){
+                         return '<span style="color:red;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==5){
+                         return '<span style="color:orchid;">'+hashMap[value]+'</span>';
+                     }
+                     if(value==6){
+                         return '<span style="color:seagreen;">'+hashMap[value]+'</span>';
+                     }
+                 } },
+                 { field: 'Remark', title: '描述', width: 140 },
+        ]]
+
+
+    //加载显示菜单按钮
+        function load_MenuButton_Job(){
+            $('#add_job').menubutton({
+                iconCls:'icon-add',
+                menu:'#mm_add'
+            });
+        }
+
+        function doDel() {
+            var rows = $("#datagrid").datagrid('getSelections');
+            //var type = $("#area_combotree").combogrid('getValue');
+            //若选中的行不为一行
+            if (rows.length < 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请至少选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].Id + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.DoDel" + "?ids=" + strId + "&&type=" + type, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载treegrid
+                   $("#datagrid").datagrid('reload');
+                //清楚所选中的行
+                $("#datagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+        }
+    //取消操作
+    function CancelSend() {
+        $("#editWindow").window('close');
+    }
+
+    $(function () {
+
+        
+        $("#editWindow").window('close');
+        //获取菜单按钮列表
+        @*var url_loadMenuButton = "@ViewBag.ShowMenuButton_Add"+"?uid="+userId;*@
+        //在启动时加载，这样只加载一次即可
+        load_MenuButton_Job();
+       var url_loadJob = "@ViewBag.GetJobInfoByUser"+"?uid="+userId;
+       //分页加载
+       loadDataGrid_Job("datagrid", url_loadJob, JobColumns, "tb_contacts");
+            })
+
+
+</script>
+@*toolbar中定义的方法代码的分部视图*@
+@Html.Partial("_Partial_JobIns_tbFunc_JS")
+@Html.Partial("_Partial_Formatter_JobState")
+@*//loadDataGrid的代码分部视图*@
+@Html.Partial("_Partial_JobIns_LoadDataGrid_JS")
+@*@Html.Partial("_Partial_JobIns_LoadMenuButton_JS")*@
+}
+
+@section Body{    
+    <div>
+        <table class="easyui-datagrid" id="datagrid"></table>
+        <div id="tb_contacts" style="padding:2px 5px;">
+            <a href="#" istb="true" id="add_job" data-options="text: '新增',plain:true"></a>
+            <a href="#" class="easyui-linkbutton" id="del_job" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeJobRow()"></a>
+            @*<a href="#" class="easyui-linkbutton" id="edit_Job" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editJobRow()" ></a>*@
+            <a href="#" class="easyui-linkbutton" id="pause_Job" data-options="iconCls:'icon-undo',text: '暂停',plain:true" onclick="pauseJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="recovery_Job" data-options="iconCls:'icon-redo',text: '恢复',plain:true" onclick="recoveryJobRow()"></a>
+            <a href="#" class="easyui-linkbutton" id="end_Job" data-options="iconCls:'icon-no',text: '终止',plain:true" onclick="endJobRow()"></a>
+        </div>
+            @*@Html.Partial("_Partial_Toolbar_Action")*@
+</div>
+    @Html.Partial("_Partial_JobIns_ShowEditWin")
+    @Html.Partial("_Partial_JobIns_MenuButton")
+}
+

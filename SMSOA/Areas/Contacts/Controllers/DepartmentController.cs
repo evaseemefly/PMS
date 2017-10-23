@@ -5,13 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
 using PMS.IBLL;
+using SMSOA.Areas.Admin.Controllers;
+using PMS.Model.ViewModel;
+
 
 namespace SMSOA.Areas.Contacts.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : BaseController
     {
         IP_DepartmentInfoBLL departmentBLL { get; set; }
-
+        IP_PersonInfoBLL personBLL { get; set; }
         #region 1 共用属性
         /// <summary>
         /// 执行删除操作的url地址
@@ -20,6 +23,14 @@ namespace SMSOA.Areas.Contacts.Controllers
         {
             get
             { return "/Contacts/Department/DelSoftDepartmentInfos"; }
+        }
+
+        private string showAddPerson_url
+        {
+            get
+            {
+                return "/Contacts/ContactPerson/ShowAddPersonInfo";
+            }
         }
 
         /// <summary>
@@ -53,10 +64,12 @@ namespace SMSOA.Areas.Contacts.Controllers
             { return "/Contacts/Department/GetDepartmentInfo"; }
         }
 
+       
+
         private string getInfobyComboTree_rul
         {
             get
-            { return "/Contacts/Department/GetDepartmentInfobyComboTree"; }
+            { return "/Contacts/Department/GetDepartmentInfo4ComboTree"; }
         }
 
         /// <summary>
@@ -86,26 +99,104 @@ namespace SMSOA.Areas.Contacts.Controllers
         // GET: Contacts/Derpartment
         public ActionResult Index()
         {
-            ViewBag.Del_url = del_url;
-            ViewBag.ShowEdit = showEdit_url;
-            ViewBag.ShowAdd = showAdd_url;
+            //对部门的增删改操作url
+            ViewBag.ShowEditDepartment = showEdit_url;
+            ViewBag.ShowAddDepartment = showAdd_url;
+            ViewBag.DelDepartment_url = del_url;
+
             ViewBag.GetInfo = getInfo_url;
+            ViewBag.ShowAddPerson = showAddPerson_url;
+            ViewBag.GetPersonUrl = "/Contacts/ContactPerson/GetPersonByDepartment";
+            ViewBag.ShowEditPerson = "/Contacts/ContactPerson/ShowEditPersonInfo";
+            ViewBag.DelPerson_url = "/Contacts/Department/DoDelPersonInfobyDID";
+            ViewBag.GetPersonUrlbyCondition = "/Contacts/ContactPerson/GetPersonByCondition";
+            //6月15日添加
+            ViewBag.DelPersonByAll_url = "/Contacts/ContactPerson/DoDelPersonInfo_All";
+
+            //6月12日注释掉
+            //ViewBag.GetGroup_combobox = "/Contacts/Group/GetCombobox4GroupInfo";
+            //由以下方法替代
+            ViewBag.GetGroup_combobox = "/Contacts/Group/GetComboGrid4GroupInfo";
+            ViewBag.GetDepartment_combotree = "/Contacts/Department/GetDepartmentInfo4ComboTree";
+            ViewBag.GetDepartmentIdByPid = "/Contacts/Department/GetDepartmentIdInfoByPid";
+            ViewBag.PersonAssignProperty = "/Contacts/ContactPerson/GetPersonDepartmentGroup";
+            ViewBag.ShowDepartmentToolbar = base.CheckContactCommonToolBar()==true?1:0;
+            ViewBag.ShowPersonToolbar = base.CheckPersonToolBar() == true ? 1:0;
             return View();
         }
 
+        
+
         /// <summary>
-        /// 获取全部群组数据
+        /// 根据传入的联系人id获取该联系人所属的部门id
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public ActionResult GetDepartmentIdInfoByPid(int pid)
+        {
+            //1 根据用户id找到指定的联系人对象
+            var person = personBLL.GetListBy(p => p.PID == pid).FirstOrDefault();
+            //2 找到指定联系人所对应的部门对象
+            var department= person.P_DepartmentInfo.ToList().FirstOrDefault().ToMiddleModel();
+
+
+            //3 将部门id返回
+            return Content(department.DID.ToString());
+        }
+
+        /// <summary>
+        /// 获取全部部门数据
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDepartmentInfobyComboTree()
+        public ActionResult GetDepartmentInfo4ComboTree(ViewModel_Department_QueryInfo queryModel)
         {
             //使用ref声明时需要在传入之前为其赋值
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
+
+            if (queryModel != null)
+            {
+                if (queryModel.DepartmentName != null)
+                {
+                    list_department = list_department.Where(d => d.DepartmentName.Contains(queryModel.DepartmentName)).ToList();
+                }
+            }
+
             //将当前分页查询的转为treegrid集合
-            List<Models.EasyUIComboTree_Department> list_comboTree =Models.Department_ViewModel.ToEasyUIComboTree(list_department);
+            List<PMS.Model.EasyUIModel.EasyUIComboTree_Department> list_comboTree =PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUIComboTree(list_department);
             //将权限转换为对应的
             return Content(Common.SerializerHelper.SerializerToString(list_comboTree));
+        }
+        
+
+        /// <summary>
+        /// 在某一部门中点击添加联系人时，传入该部门的did
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public ActionResult GetCombobox4GroupInfoByDID(int did)
+        {
+            //1 根据指定的gid查询对应的group对象
+            var departmentTemp = departmentBLL.GetListBy(d => d.DID == did).FirstOrDefault();
+            //2 查询全部group 
+            var list_departmentAll = departmentBLL.GetListBy(g => g.isDel == false).ToList();
+            //3 将已经拥有的群组从全部群组集合中剔除
+            list_departmentAll = list_departmentAll.Where(d => d.DID != departmentTemp.DID).Select(d=>d.ToMiddleModel()).ToList();
+            //4.1 已经拥有的群组集合
+            List<P_DepartmentInfo> list_departmentOwned = new List<P_DepartmentInfo>();
+            list_departmentOwned.Add(departmentTemp);
+            //转成Combobox
+            var list_combobox_owneddepartment = P_DepartmentInfo.ToEasyUICombobox(ref list_departmentOwned, true);
+
+            //4.2将全部群组集合中的选中按钮设置为false
+            var list_combobox_alldepartment = P_DepartmentInfo.ToEasyUICombobox(ref list_departmentAll, false);
+
+            list_combobox_owneddepartment.AddRange(list_combobox_alldepartment);
+
+            string temp = Common.SerializerHelper.SerializerToString(list_combobox_owneddepartment);
+            //暂时先不用替换
+            //temp = temp.Replace("Checked", "selected");
+            return Content(temp);
         }
 
         /// <summary>
@@ -113,7 +204,7 @@ namespace SMSOA.Areas.Contacts.Controllers
         /// json格式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDepartmentInfo()
+        public ActionResult GetDepartmentInfo(ViewModel_Department_QueryInfo queryModel)
         {
             //注意此处不做分页
             //int pageSize = int.Parse(Request.Form["rows"]);
@@ -123,12 +214,21 @@ namespace SMSOA.Areas.Contacts.Controllers
             //查询所有的权限
             //使用ref声明时需要在传入之前为其赋值
             var list_department = departmentBLL.GetListBy(d => d.isDel == false, d => d.DID).ToList();
+
+            if (queryModel != null)
+            {
+                if (queryModel.DepartmentName != null)
+                {
+                    list_department = list_department.Where(d => d.DepartmentName.Contains(queryModel.DepartmentName)).ToList();
+                }
+            }
+
             //var list_department = departmentBLL.GetPageList(pageIndex, pageSize, ref rowCount, d => d.isDel == false,d=>d.DepartmentName, true).ToList();
 
-            
+
 
             //将当前分页查询的转为treegrid集合
-            List<Models.EasyUITreeGrid_Department> list_treegrid = Models.Department_ViewModel.ToEasyUITreeGrid(list_department);
+            List<PMS.Model.EasyUIModel.EasyUITreeGrid_Department> list_treegrid = PMS.Model.EasyUIModel.Department_ViewModel.ToEasyUITreeGrid(list_department); 
 
             //不做分页
             //PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
@@ -181,6 +281,8 @@ namespace SMSOA.Areas.Contacts.Controllers
 
         public ActionResult DoAddDepartmentInfo(P_DepartmentInfo departmentModel)
         {
+            //数据验证
+            if (departmentBLL.AddValidation(departmentModel.DepartmentName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             departmentModel.isDel = false;
             
@@ -195,8 +297,27 @@ namespace SMSOA.Areas.Contacts.Controllers
             }
         }
 
+        public ActionResult DoDelPersonInfobyDID()
+        {
+            //1 获取联系人id以及群组id
+            int did = int.Parse(Request.QueryString["did"]);
+            int pid = int.Parse(Request.QueryString["pid"]);
+
+            bool state = departmentBLL.DelPersonInfoByDID(did, pid);
+
+            //3 返回结果          
+            return Content(state == true ? "ok" : "error");
+        }
+
+        //public ActionResult DoDelPersonInfoByDID_All()
+        //{
+
+        //}
+
         public ActionResult DoEditDepartmentInfo(P_DepartmentInfo departmentModel)
         {
+            //数据验证
+            if (departmentBLL.EditValidation(departmentModel.DID, departmentModel.DepartmentName)) { return Content("validation fails"); }
             //创建一个新的Action方法，需要对未提交的属性进行初始化赋值
             departmentModel.isDel = false;
             //departmentModel.ModifiedOnTime = DateTime.Now;
@@ -228,9 +349,47 @@ namespace SMSOA.Areas.Contacts.Controllers
                 list.Add(int.Parse(Id));
             }
             //删除状态
+           
             string state = departmentBLL.DelSoftRoleInfos(list) == true ? state = "ok" : state = "error";
+            
             return Content(state);
         }
 
+        ///<summary>
+        ///得到选中任务所包含的群组
+        ///</summary>
+        ///<returns></returns>
+        public ActionResult GetGroupBySMSMission()
+        {
+            int pageSize = int.Parse(Request.Form["rows"]);
+            int pageIndex = int.Parse(Request.Form["page"]);
+            int smid = int.Parse(Request["smid"]);
+            int rowCount = 0;
+
+            var list_department = departmentBLL.GetPageList(pageIndex, pageSize, ref rowCount, p => p.isDel == false && p.R_Department_Mission.Where(g => g.MissionID == smid).Count() > 0, p => p.DepartmentName, true).ToList();
+            PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+            {
+                total = rowCount,
+                rows = list_department,
+                footer = null
+            };
+
+
+            //将权限转换为对应的
+            return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+        }
+
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Contacts",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
+        }
     }
 }

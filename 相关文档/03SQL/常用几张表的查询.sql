@@ -1,0 +1,1 @@
+SELECT * FROM dbo.P_PersonInfo WHERE PName='¡ıÀºÍœ'

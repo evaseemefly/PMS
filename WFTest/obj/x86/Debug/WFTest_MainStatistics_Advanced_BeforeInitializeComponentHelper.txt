@@ -1,0 +1,2 @@
+MainStatistics_Advanced.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

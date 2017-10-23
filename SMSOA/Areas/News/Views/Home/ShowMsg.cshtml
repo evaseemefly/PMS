@@ -1,0 +1,112 @@
+﻿
+@{
+
+    ViewBag.Title = "ShowMsg";
+    //将通过ViewData的方式传入的news对象转成ViewModel_News类型
+    PMS.Model.ViewModel.ViewModel_News model = ViewData["news"] as PMS.Model.ViewModel.ViewModel_News;
+    Layout = "~/Areas/News/Views/Shared/_Layout_ShowWindow.cshtml";
+}
+@section Scripts{
+    <script type="text/javascript">
+        function IsRead() {
+            var url="@ViewBag.IsReadUrl";
+            var uid='@ViewBag.UID';
+            var nid='@ViewBag.NID';
+            $.post(url + "?uid=" + uid+"&nid="+nid, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                    ////重新加载datagrid
+                    //$("#datagrid").datagrid('reload');
+                    ////清楚所选中的行
+                    //$("#datagrid").datagrid('clearSelections');
+                    //$.messager.alert("提示", "删除成功");
+                    window.parent.afterSubmit_Common("完成", 0);
+                }})
+            }
+    </script>
+    }
+@section CSS    {
+    <style>
+    .my_header {
+        font-family: 'Microsoft YaHei UI';
+        /*font-weight:bolder;*/
+    }
+
+    tr {
+        /*margin-top:50px;*/
+        /*line-height:50px;*/
+    }
+
+    .panel_head {
+        color: #ffffff;
+        height: 50px;
+        margin-top: 2px;
+        margin-left: 2px;
+        margin-right: 2px;
+        margin-bottom: 3px;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: #ffffff;
+        /*background-color:aqua;*/
+        font-family: 'Microsoft YaHei UI';
+    }
+
+        .panel_head p {
+            margin: auto;
+            text-align: center;
+            padding-top: 15px;
+        }
+
+    .tr_bottomline {
+        border-bottom-style: outset;
+        border-bottom-color: ActiveBorder;
+    }
+</style>  
+    }
+
+@section Body{
+    <input type="hidden" id="UID" name="UID" value="" />
+<div id="my_panel">
+    <div class="panel_head">
+        <p>@ViewBag.NewsTitle</p>
+    </div>
+    <div class="panel_content">
+        <table cellpadding="3" style="margin-left:40px;width:80%;border-collapse:collapse;border-spacing:100px;">
+            <tbody>
+                <tr class="tr_bottomline" style="line-height:10px;height: 50px;">
+                    <td>
+                        发布人:123
+                    </td>
+                </tr>
+                <tr>
+                    <td><h1>内容:</h1></td>
+                </tr>
+                <tr class="tr_bottomline" style="line-height:10px;margin-bottom:5px;">
+                    <td style="margin:20px;line-height: 2;">
+                        @Html.Raw(@ViewBag.NewsContent)
+                    </td>
+                </tr>
+                <tr>
+                    <td>阅读人数:</td>
+                </tr>
+                <tr style="height:50px;">
+                    <td class="comment" colspan="1">
+                        XX1，XX2
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="panel_footer">
+
+    </div>
+</div>
+
+    <div style="text-align:center;padding:5px">
+        <div style="text-align:center;padding:5px">
+            @*<input type="submit" value="提交" />*@
+            <a class="easyui-linkbutton c6" style="margin-bottom:5px;width:30%" data-options="iconCls:'icon-ok'" onclick="IsRead()">已阅</a>
+        </div>
+    </div>
+}

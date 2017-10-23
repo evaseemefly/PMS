@@ -11,6 +11,48 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region FdfsContentDAL   
+	//FdfsContent数据访问层
+	public class FdfsContentDAL:BaseDAL<FdfsContent>,IFdfsContentDAL
+    {
+    }
+	#endregion
+
+		#region FdfsStorageDAL   
+	//FdfsStorage数据访问层
+	public class FdfsStorageDAL:BaseDAL<FdfsStorage>,IFdfsStorageDAL
+    {
+    }
+	#endregion
+
+		#region FdfsTrackerDAL   
+	//FdfsTracker数据访问层
+	public class FdfsTrackerDAL:BaseDAL<FdfsTracker>,IFdfsTrackerDAL
+    {
+    }
+	#endregion
+
+		#region J_JobInfoDAL   
+	//J_JobInfo数据访问层
+	public class J_JobInfoDAL:BaseDAL<J_JobInfo>,IJ_JobInfoDAL
+    {
+    }
+	#endregion
+
+		#region J_JobTemplateDAL   
+	//J_JobTemplate数据访问层
+	public class J_JobTemplateDAL:BaseDAL<J_JobTemplate>,IJ_JobTemplateDAL
+    {
+    }
+	#endregion
+
+		#region N_NewsDAL   
+	//N_News数据访问层
+	public class N_NewsDAL:BaseDAL<N_News>,IN_NewsDAL
+    {
+    }
+	#endregion
+
 		#region P_DepartmentInfoDAL   
 	//P_DepartmentInfo数据访问层
 	public class P_DepartmentInfoDAL:BaseDAL<P_DepartmentInfo>,IP_DepartmentInfoDAL
@@ -28,6 +70,13 @@ namespace PMS.DALSQLSer
 		#region P_PersonInfoDAL   
 	//P_PersonInfo数据访问层
 	public class P_PersonInfoDAL:BaseDAL<P_PersonInfo>,IP_PersonInfoDAL
+    {
+    }
+	#endregion
+
+		#region QRTZ_TRIGGERSDAL   
+	//QRTZ_TRIGGERS数据访问层
+	public class QRTZ_TRIGGERSDAL:BaseDAL<QRTZ_TRIGGERS>,IQRTZ_TRIGGERSDAL
     {
     }
 	#endregion
@@ -53,9 +102,51 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region R_UserInfo_DepartmentInfoDAL   
+	//R_UserInfo_DepartmentInfo数据访问层
+	public class R_UserInfo_DepartmentInfoDAL:BaseDAL<R_UserInfo_DepartmentInfo>,IR_UserInfo_DepartmentInfoDAL
+    {
+    }
+	#endregion
+
+		#region R_UserInfo_GroupDAL   
+	//R_UserInfo_Group数据访问层
+	public class R_UserInfo_GroupDAL:BaseDAL<R_UserInfo_Group>,IR_UserInfo_GroupDAL
+    {
+    }
+	#endregion
+
+		#region R_UserInfo_NewsDAL   
+	//R_UserInfo_News数据访问层
+	public class R_UserInfo_NewsDAL:BaseDAL<R_UserInfo_News>,IR_UserInfo_NewsDAL
+    {
+    }
+	#endregion
+
+		#region R_UserInfo_PersonInfoDAL   
+	//R_UserInfo_PersonInfo数据访问层
+	public class R_UserInfo_PersonInfoDAL:BaseDAL<R_UserInfo_PersonInfo>,IR_UserInfo_PersonInfoDAL
+    {
+    }
+	#endregion
+
+		#region R_UserInfo_SMSMissionDAL   
+	//R_UserInfo_SMSMission数据访问层
+	public class R_UserInfo_SMSMissionDAL:BaseDAL<R_UserInfo_SMSMission>,IR_UserInfo_SMSMissionDAL
+    {
+    }
+	#endregion
+
 		#region RoleInfoDAL   
 	//RoleInfo数据访问层
 	public class RoleInfoDAL:BaseDAL<RoleInfo>,IRoleInfoDAL
+    {
+    }
+	#endregion
+
+		#region S_SMSContentDAL   
+	//S_SMSContent数据访问层
+	public class S_SMSContentDAL:BaseDAL<S_SMSContent>,IS_SMSContentDAL
     {
     }
 	#endregion
@@ -67,9 +158,51 @@ namespace PMS.DALSQLSer
     }
 	#endregion
 
+		#region S_SMSMsgContentDAL   
+	//S_SMSMsgContent数据访问层
+	public class S_SMSMsgContentDAL:BaseDAL<S_SMSMsgContent>,IS_SMSMsgContentDAL
+    {
+    }
+	#endregion
+
+		#region S_SMSRecord_CurrentDAL   
+	//S_SMSRecord_Current数据访问层
+	public class S_SMSRecord_CurrentDAL:BaseDAL<S_SMSRecord_Current>,IS_SMSRecord_CurrentDAL
+    {
+    }
+	#endregion
+
+		#region S_SMSRecord_HistoryDAL   
+	//S_SMSRecord_History数据访问层
+	public class S_SMSRecord_HistoryDAL:BaseDAL<S_SMSRecord_History>,IS_SMSRecord_HistoryDAL
+    {
+    }
+	#endregion
+
+		#region S_SMSTypeDAL   
+	//S_SMSType数据访问层
+	public class S_SMSTypeDAL:BaseDAL<S_SMSType>,IS_SMSTypeDAL
+    {
+    }
+	#endregion
+
 		#region UserInfoDAL   
 	//UserInfo数据访问层
 	public class UserInfoDAL:BaseDAL<UserInfo>,IUserInfoDAL
+    {
+    }
+	#endregion
+
+		#region WF_Query_InstanceDAL   
+	//WF_Query_Instance数据访问层
+	public class WF_Query_InstanceDAL:BaseDAL<WF_Query_Instance>,IWF_Query_InstanceDAL
+    {
+    }
+	#endregion
+
+		#region WF_Query_StepInfoDAL   
+	//WF_Query_StepInfo数据访问层
+	public class WF_Query_StepInfoDAL:BaseDAL<WF_Query_StepInfo>,IWF_Query_StepInfoDAL
     {
     }
 	#endregion

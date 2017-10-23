@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local:MainStatistics_Advanced xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:local="clr-namespace:WFTest;assembly=WFTest" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:pmq="clr-namespace:PMS.Model.QueryModel;assembly=PMS.Model" xmlns:pms="clr-namespace:PMS.Model.SMSModel;assembly=PMS.Model" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>PMS.Model.QueryModel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>EntityFramework</AssemblyReference>
+      <AssemblyReference>EntityFramework.SqlServer</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Common</AssemblyReference>
+      <AssemblyReference>ISMS</AssemblyReference>
+      <AssemblyReference>PMS.BLLRedis</AssemblyReference>
+      <AssemblyReference>PMS.BLL</AssemblyReference>
+      <AssemblyReference>PMS.DALSQLSer</AssemblyReference>
+      <AssemblyReference>PMS.IBLL</AssemblyReference>
+      <AssemblyReference>PMS.Model</AssemblyReference>
+      <AssemblyReference>SMSFactory</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WFTest</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local:MainStatistics_Advanced.Implementation>
+    <StateMachine DisplayName="短信统计">
+      <StateMachine.InitialState>
+        <State x:Name="__ReferenceID2" DisplayName="读取配置文件">
+          <State.Entry>
+            <Sequence>
+              <WriteLine Text="进入状态机1：-----读取配置文件-----" />
+              <Sequence>
+                <WriteLine Text="读取相关配置" />
+                <local:ReadAppConfig_Code Text="{x:Null}">
+                  <local:ReadAppConfig_Code.Id_hash>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String">_id_hash</mca:CSharpReference>
+                    </OutArgument>
+                  </local:ReadAppConfig_Code.Id_hash>
+                  <local:ReadAppConfig_Code.Id_list>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String">_id_list</mca:CSharpReference>
+                    </OutArgument>
+                  </local:ReadAppConfig_Code.Id_list>
+                  <local:ReadAppConfig_Code.Id_list_msgid>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String">_id_list_msgid</mca:CSharpReference>
+                    </OutArgument>
+                  </local:ReadAppConfig_Code.Id_list_msgid>
+                  <local:ReadAppConfig_Code.Seconds_Interval>
+                    <OutArgument x:TypeArguments="x:Double">
+                      <mca:CSharpReference x:TypeArguments="x:Double">_secs_interval</mca:CSharpReference>
+                    </OutArgument>
+                  </local:ReadAppConfig_Code.Seconds_Interval>
+                  <local:ReadAppConfig_Code.SleepTime>
+                    <OutArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpReference x:TypeArguments="x:Int32">_sleepTime</mca:CSharpReference>
+                    </OutArgument>
+                  </local:ReadAppConfig_Code.SleepTime>
+                </local:ReadAppConfig_Code>
+              </Sequence>
+            </Sequence>
+          </State.Entry>
+          <State.Transitions>
+            <Transition DisplayName="T1">
+              <Transition.To>
+                <State x:Name="__ReferenceID3" DisplayName="从Redis中取得存储的对象集合">
+                  <State.Entry>
+                    <Sequence>
+                      <WriteLine Text="进入状态机2：-----从Redis中取得存储的对象集合-----" />
+                      <Sequence>
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="variable1" />
+                        </Sequence.Variables>
+                        <WriteLine Text="从Redis中取出指定集合" />
+                        <local:GetListFromRedis_Code Text="{x:Null}">
+                          <local:GetListFromRedis_Code.Id_List>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String">_id_list</mca:CSharpValue>
+                            </InArgument>
+                          </local:GetListFromRedis_Code.Id_List>
+                          <local:GetListFromRedis_Code.List_redis>
+                            <OutArgument x:TypeArguments="scg:List(pmq:Redis_SMSContent)">
+                              <mca:CSharpReference x:TypeArguments="scg:List(pmq:Redis_SMSContent)">_list_redis</mca:CSharpReference>
+                            </OutArgument>
+                          </local:GetListFromRedis_Code.List_redis>
+                          <local:GetListFromRedis_Code.Secs_Interval>
+                            <InArgument x:TypeArguments="x:Double">
+                              <mca:CSharpValue x:TypeArguments="x:Double">_secs_interval</mca:CSharpValue>
+                            </InArgument>
+                          </local:GetListFromRedis_Code.Secs_Interval>
+                        </local:GetListFromRedis_Code>
+                        <WriteLine Text="取出集合成功" />
+                      </Sequence>
+                    </Sequence>
+                  </State.Entry>
+                  <State.Transitions>
+                    <Transition DisplayName="缓存集合非空">
+                      <Transition.Condition>
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">_list_redis.Count&gt;0</mca:CSharpValue>
+                      </Transition.Condition>
+                      <Transition.To>
+                        <State x:Name="__ReferenceID4" DisplayName="从Redis集合中判断第一个对象，并取出">
+                          <State.Entry>
+                            <Sequence>
+                              <WriteLine Text="进入状态机3：-----判断集合中第一个对象，并取出" />
+                              <Sequence>
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="pmq:Redis_SMSContent" Name="_first_obj" />
+                                </Sequence.Variables>
+                                <WriteLine Text="判断Redis集合中首元素是否满足时间要求" />
+                                <local:GetObjFromListByCheck_Code State="{x:Null}" Text="{x:Null}">
+                                  <local:GetObjFromListByCheck_Code.First_Obj>
+                                    <OutArgument x:TypeArguments="pmq:Redis_SMSContent">
+                                      <mca:CSharpReference x:TypeArguments="pmq:Redis_SMSContent">_query_obj</mca:CSharpReference>
+                                    </OutArgument>
+                                  </local:GetObjFromListByCheck_Code.First_Obj>
+                                  <local:GetObjFromListByCheck_Code.Key_RedisList>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String">_id_list</mca:CSharpValue>
+                                    </InArgument>
+                                  </local:GetObjFromListByCheck_Code.Key_RedisList>
+                                  <local:GetObjFromListByCheck_Code.List_redis>
+                                    <InArgument x:TypeArguments="scg:List(pmq:Redis_SMSContent)">
+                                      <mca:CSharpValue x:TypeArguments="scg:List(pmq:Redis_SMSContent)">_list_redis</mca:CSharpValue>
+                                    </InArgument>
+                                  </local:GetObjFromListByCheck_Code.List_redis>
+                                  <local:GetObjFromListByCheck_Code.MsgId>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <mca:CSharpReference x:TypeArguments="x:String">_first_msgid</mca:CSharpReference>
+                                    </OutArgument>
+                                  </local:GetObjFromListByCheck_Code.MsgId>
+                                  <local:GetObjFromListByCheck_Code.Secs_Interval>
+                                    <InArgument x:TypeArguments="x:Double">
+                                      <mca:CSharpValue x:TypeArguments="x:Double">_secs_interval</mca:CSharpValue>
+                                    </InArgument>
+                                  </local:GetObjFromListByCheck_Code.Secs_Interval>
+                                  <local:GetObjFromListByCheck_Code.WF_Result>
+                                    <OutArgument x:TypeArguments="x:Int32">
+                                      <mca:CSharpReference x:TypeArguments="x:Int32">_result</mca:CSharpReference>
+                                    </OutArgument>
+                                  </local:GetObjFromListByCheck_Code.WF_Result>
+                                </local:GetObjFromListByCheck_Code>
+                              </Sequence>
+                            </Sequence>
+                          </State.Entry>
+                          <State.Exit>
+                            <WriteLine Text="跳出状态机3！" />
+                          </State.Exit>
+                          <State.Transitions>
+                            <Transition DisplayName="满足条件">
+                              <Transition.Trigger>
+                                <WriteLine Text="判断取出的首元素是否满足条件" />
+                              </Transition.Trigger>
+                              <Transition.To>
+                                <State x:Name="__ReferenceID0" DisplayName="根据首元素进行查询发送状态操作">
+                                  <State.Entry>
+                                    <Sequence>
+                                      <WriteLine Text="进入状态机4：-----进行查询状态操作-----" />
+                                      <DoWhile>
+                                        <DoWhile.Condition>
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean">_state==0</mca:CSharpValue>
+                                        </DoWhile.Condition>
+                                        <Sequence>
+                                          <Sequence>
+                                            <Sequence DisplayName="查询操作">
+                                              <WriteLine Text="满足条件，开始查询" />
+                                              <local:QueryStatesByMsgid_Code Result="{x:Null}" Text="{x:Null}" DisplayName="查询返回联系人列表及状态">
+                                                <local:QueryStatesByMsgid_Code.List_QueryReceive>
+                                                  <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                                                    <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryReceive</mca:CSharpReference>
+                                                  </OutArgument>
+                                                </local:QueryStatesByMsgid_Code.List_QueryReceive>
+                                                <local:QueryStatesByMsgid_Code.MsgId>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpValue x:TypeArguments="x:String">_first_msgid</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:QueryStatesByMsgid_Code.MsgId>
+                                                <local:QueryStatesByMsgid_Code.Query_model>
+                                                  <InArgument x:TypeArguments="pmq:Redis_SMSContent">
+                                                    <mca:CSharpValue x:TypeArguments="pmq:Redis_SMSContent">_query_obj</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:QueryStatesByMsgid_Code.Query_model>
+                                                <local:QueryStatesByMsgid_Code.State>
+                                                  <OutArgument x:TypeArguments="x:Int32">
+                                                    <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
+                                                  </OutArgument>
+                                                </local:QueryStatesByMsgid_Code.State>
+                                              </local:QueryStatesByMsgid_Code>
+                                              <WriteLine Text="返回状态及查询集合" />
+                                              <local:QueryInterval_Code DisplayName="休眠n秒">
+                                                <local:QueryInterval_Code.Sleep_Interval>
+                                                  <InArgument x:TypeArguments="x:Int32">
+                                                    <mca:CSharpValue x:TypeArguments="x:Int32">_sleepTime</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:QueryInterval_Code.Sleep_Interval>
+                                              </local:QueryInterval_Code>
+                                            </Sequence>
+                                          </Sequence>
+                                          <WriteLine>
+                                            <InArgument x:TypeArguments="x:String">
+                                              <mca:CSharpValue x:TypeArguments="x:String">"此时状态码为"+_state</mca:CSharpValue>
+                                            </InArgument>
+                                          </WriteLine>
+                                        </Sequence>
+                                      </DoWhile>
+                                    </Sequence>
+                                  </State.Entry>
+                                  <State.Exit>
+                                    <WriteLine Text="跳出查询" />
+                                  </State.Exit>
+                                  <State.Transitions>
+                                    <Transition DisplayName="判断状态码">
+                                      <Transition.To>
+                                        <State x:Name="__ReferenceID5" DisplayName="检查是否需要重查">
+                                          <State.Entry>
+                                            <Sequence>
+                                              <WriteLine Text="进入状态机5：-----检查是否需要重查-----" />
+                                              <WriteLine Text="进行创建书签操作" />
+                                              <local:QueryState_BookMark x:TypeArguments="x:Int32" SetpId="{x:Null}" Text="{x:Null}" redis_hash_bll="{x:Null}" redis_list_bll="{x:Null}" wf_queryBLL="{x:Null}">
+                                                <local:QueryState_BookMark.BookMarkName>
+                                                  <InOutArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpReference x:TypeArguments="x:String">TempBookMarkName</mca:CSharpReference>
+                                                  </InOutArgument>
+                                                </local:QueryState_BookMark.BookMarkName>
+                                                <local:QueryState_BookMark.Id_hash>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpValue x:TypeArguments="x:String">_id_hash</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:QueryState_BookMark.Id_hash>
+                                                <local:QueryState_BookMark.Id_list_msgid>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpValue x:TypeArguments="x:String">_id_list_msgid</mca:CSharpValue>
+                                                  </InArgument>
+                                                </local:QueryState_BookMark.Id_list_msgid>
+                                                <local:QueryState_BookMark.MsgId>
+                                                  <InOutArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpReference x:TypeArguments="x:String">_first_msgid</mca:CSharpReference>
+                                                  </InOutArgument>
+                                                </local:QueryState_BookMark.MsgId>
+                                                <local:QueryState_BookMark.State>
+                                                  <InOutArgument x:TypeArguments="x:Int32">
+                                                    <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
+                                                  </InOutArgument>
+                                                </local:QueryState_BookMark.State>
+                                                <local:QueryState_BookMark.WF_Result>
+                                                  <OutArgument x:TypeArguments="x:Int32">
+                                                    <mca:CSharpReference x:TypeArguments="x:Int32">_result</mca:CSharpReference>
+                                                  </OutArgument>
+                                                </local:QueryState_BookMark.WF_Result>
+                                              </local:QueryState_BookMark>
+                                              <WriteLine>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">"书签中的state为"+_state</mca:CSharpValue>
+                                                </InArgument>
+                                              </WriteLine>
+                                              <WriteLine>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">"书签中的result为"+_result</mca:CSharpValue>
+                                                </InArgument>
+                                              </WriteLine>
+                                              <WriteLine>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String">"该书签恢复的MsgId为"+_first_msgid</mca:CSharpValue>
+                                                </InArgument>
+                                              </WriteLine>
+                                            </Sequence>
+                                          </State.Entry>
+                                          <State.Transitions>
+                                            <Transition DisplayName="仍需继续查询" To="{x:Reference __ReferenceID0}">
+                                              <Transition.Action>
+                                                <WriteLine Text="跳回重查" />
+                                              </Transition.Action>
+                                              <Transition.Condition>
+                                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==4</mca:CSharpValue>
+                                              </Transition.Condition>
+                                            </Transition>
+                                            <Transition DisplayName="流程结束">
+                                              <Transition.To>
+                                                <State x:Name="__ReferenceID1" DisplayName="FinalState" IsFinal="True">
+                                                  <State.Entry>
+                                                    <Sequence>
+                                                      <WriteLine Text="工作流End！！" />
+                                                      <local:End_Code Text="{x:Null}" />
+                                                    </Sequence>
+                                                  </State.Entry>
+                                                </State>
+                                              </Transition.To>
+                                              <Transition.Action>
+                                                <WriteLine>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <mca:CSharpValue x:TypeArguments="x:String">"resut为"+_result</mca:CSharpValue>
+                                                  </InArgument>
+                                                </WriteLine>
+                                              </Transition.Action>
+                                              <Transition.Condition>
+                                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==6</mca:CSharpValue>
+                                              </Transition.Condition>
+                                            </Transition>
+                                          </State.Transitions>
+                                        </State>
+                                      </Transition.To>
+                                      <Transition.Action>
+                                        <WriteLine Text="———将执行创建书签操作———" />
+                                      </Transition.Action>
+                                      <Transition.Condition>
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">(_state==1||_state==2)&amp;&amp;_result!=4</mca:CSharpValue>
+                                      </Transition.Condition>
+                                    </Transition>
+                                    <Transition DisplayName="流程挂起">
+                                      <Transition.To>
+                                        <State x:Name="__ReferenceID6" DisplayName="暂停工作流">
+                                          <State.Entry>
+                                            <Sequence>
+                                              <WriteLine Text="工作流挂起" />
+                                            </Sequence>
+                                          </State.Entry>
+                                          <State.Transitions>
+                                            <Transition DisplayName="流程结束" To="{x:Reference __ReferenceID1}">
+                                              <Transition.Condition>
+                                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==6</mca:CSharpValue>
+                                              </Transition.Condition>
+                                            </Transition>
+                                          </State.Transitions>
+                                        </State>
+                                      </Transition.To>
+                                      <Transition.Action>
+                                        <WriteLine>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String">"状态码为"+_result+"工作流被挂起"</mca:CSharpValue>
+                                          </InArgument>
+                                        </WriteLine>
+                                      </Transition.Action>
+                                      <Transition.Condition>
+                                        <mca:CSharpValue x:TypeArguments="x:Boolean">_result==4</mca:CSharpValue>
+                                      </Transition.Condition>
+                                    </Transition>
+                                  </State.Transitions>
+                                </State>
+                              </Transition.To>
+                              <Transition.Action>
+                                <WriteLine Text="首元素msgid不为空" />
+                              </Transition.Action>
+                              <Transition.Condition>
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">_query_obj.msgid != string.Empty&amp;&amp;_result==1</mca:CSharpValue>
+                              </Transition.Condition>
+                            </Transition>
+                            <Transition DisplayName="首元素不在规定时间内" To="{x:Reference __ReferenceID1}">
+                              <Transition.Condition>
+                                <mca:CSharpValue x:TypeArguments="x:Boolean">_result==3</mca:CSharpValue>
+                              </Transition.Condition>
+                            </Transition>
+                          </State.Transitions>
+                          <State.Variables>
+                            <Variable x:TypeArguments="scg:List(pmq:Redis_SMSContent)" Name="list_redis" />
+                          </State.Variables>
+                        </State>
+                      </Transition.To>
+                    </Transition>
+                    <Transition DisplayName="缓存中集合为0" To="{x:Reference __ReferenceID1}">
+                      <Transition.Action>
+                        <WriteLine Text="缓存中集合为空" />
+                      </Transition.Action>
+                      <Transition.Condition>
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">_list_redis.Count==0</mca:CSharpValue>
+                      </Transition.Condition>
+                    </Transition>
+                  </State.Transitions>
+                </State>
+              </Transition.To>
+            </Transition>
+          </State.Transitions>
+        </State>
+      </StateMachine.InitialState>
+      <x:Reference>__ReferenceID2</x:Reference>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID3</x:Reference>
+      <x:Reference>__ReferenceID4</x:Reference>
+      <State DisplayName="从该对象中提起msgid查询并写入">
+        <State.Entry>
+          <Sequence>
+            <local:GetObjFromListByCheck_Code MsgId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" DisplayName="从Redis集合中取出首元素">
+              <local:GetObjFromListByCheck_Code.First_Obj>
+                <OutArgument x:TypeArguments="pmq:Redis_SMSContent">
+                  <mca:CSharpReference x:TypeArguments="pmq:Redis_SMSContent">_query_obj</mca:CSharpReference>
+                </OutArgument>
+              </local:GetObjFromListByCheck_Code.First_Obj>
+              <local:GetObjFromListByCheck_Code.Key_RedisList>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">_id_list</mca:CSharpValue>
+                </InArgument>
+              </local:GetObjFromListByCheck_Code.Key_RedisList>
+              <local:GetObjFromListByCheck_Code.List_redis>
+                <InArgument x:TypeArguments="scg:List(pmq:Redis_SMSContent)">
+                  <mca:CSharpValue x:TypeArguments="scg:List(pmq:Redis_SMSContent)">_list_redis</mca:CSharpValue>
+                </InArgument>
+              </local:GetObjFromListByCheck_Code.List_redis>
+              <local:GetObjFromListByCheck_Code.Secs_Interval>
+                <InArgument x:TypeArguments="x:Double">
+                  <mca:CSharpValue x:TypeArguments="x:Double">_secs_interval</mca:CSharpValue>
+                </InArgument>
+              </local:GetObjFromListByCheck_Code.Secs_Interval>
+            </local:GetObjFromListByCheck_Code>
+            <WriteLine Text="从Redis集合中取出首元素" />
+            <WriteLine Text="判断首元素是否满足时间条件" />
+            <If>
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">_query_obj.msgid== string.Empty || _query_obj.PhoneNums== string.Empty</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Else>
+                <Sequence>
+                  <DoWhile>
+                    <DoWhile.Condition>
+                      <mca:CSharpValue x:TypeArguments="x:Boolean">_state==0</mca:CSharpValue>
+                    </DoWhile.Condition>
+                    <Sequence>
+                      <Sequence DisplayName="查询操作">
+                        <WriteLine Text="满足条件，开始查询" />
+                        <local:QueryStatesByMsgid_Code MsgId="{x:Null}" Result="{x:Null}" Text="{x:Null}" DisplayName="查询返回联系人列表及状态">
+                          <local:QueryStatesByMsgid_Code.List_QueryReceive>
+                            <OutArgument x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">
+                              <mca:CSharpReference x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)">_list_queryReceive</mca:CSharpReference>
+                            </OutArgument>
+                          </local:QueryStatesByMsgid_Code.List_QueryReceive>
+                          <local:QueryStatesByMsgid_Code.Query_model>
+                            <InArgument x:TypeArguments="pmq:Redis_SMSContent">
+                              <mca:CSharpValue x:TypeArguments="pmq:Redis_SMSContent">_query_obj</mca:CSharpValue>
+                            </InArgument>
+                          </local:QueryStatesByMsgid_Code.Query_model>
+                          <local:QueryStatesByMsgid_Code.State>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32">_state</mca:CSharpReference>
+                            </OutArgument>
+                          </local:QueryStatesByMsgid_Code.State>
+                        </local:QueryStatesByMsgid_Code>
+                        <WriteLine Text="返回状态及查询集合" />
+                        <local:QueryInterval_Code DisplayName="休眠n秒">
+                          <local:QueryInterval_Code.Sleep_Interval>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpValue x:TypeArguments="x:Int32">_sleepTime</mca:CSharpValue>
+                            </InArgument>
+                          </local:QueryInterval_Code.Sleep_Interval>
+                        </local:QueryInterval_Code>
+                      </Sequence>
+                    </Sequence>
+                  </DoWhile>
+                  <If>
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <mca:CSharpValue x:TypeArguments="x:Boolean">_state==1</mca:CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <local:QueryState_BookMark x:TypeArguments="x:Int32" Id_hash="{x:Null}" Id_list_msgid="{x:Null}" MsgId="{x:Null}" SetpId="{x:Null}" State="{x:Null}" Text="{x:Null}" WF_Result="{x:Null}" redis_hash_bll="{x:Null}" redis_list_bll="{x:Null}" wf_queryBLL="{x:Null}">
+                        <local:QueryState_BookMark.BookMarkName>
+                          <InOutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String">TempBookMarkName</mca:CSharpReference>
+                          </InOutArgument>
+                        </local:QueryState_BookMark.BookMarkName>
+                      </local:QueryState_BookMark>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </State.Entry>
+      </State>
+      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID5</x:Reference>
+      <x:Reference>__ReferenceID6</x:Reference>
+      <StateMachine.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="_sleepTime" />
+        <Variable x:TypeArguments="x:String" Name="_id_list" />
+        <Variable x:TypeArguments="x:Double" Name="_secs_interval" />
+        <Variable x:TypeArguments="scg:List(pmq:Redis_SMSContent)" Name="_list_redis" />
+        <Variable x:TypeArguments="pmq:Redis_SMSContent" Name="_query_obj" />
+        <Variable x:TypeArguments="scg:List(pms:SMSModel_QueryReceive)" Name="_list_queryReceive" />
+        <Variable x:TypeArguments="x:Int32" Name="_state" />
+        <Variable x:TypeArguments="x:String" Name="_first_msgid" />
+        <Variable x:TypeArguments="x:Int32" Name="_result" />
+        <Variable x:TypeArguments="x:String" Name="_id_list_msgid" />
+        <Variable x:TypeArguments="x:String" Name="_id_hash" />
+      </StateMachine.Variables>
+      <sads:DebugSymbol.Symbol>d1VEOlwwMue8lueoi1wyMDE25bm0XDAx5Y2P5ZCM5byA5Y+RXFBNU1xuZXdQTVNcUE1TXFdGVGVzdFxNYWluU3RhdGlzdGljc19BZHZhbmNlZC54YW1sdjwDigQSAgEBPgeXAw8DAaIFugIvwQI3AwGcBWUPkwMXAwG7BIkBF4cDHwMBnQO+AR/1AicDAecB+QEnzwIvAgEY2gIn5wIvAgECQAtgFgMBpQW8AjO/Aj4DAZ4FZxOBAR4DAeAEhgEXhgFsAwHPBI8DF48DagMBvwSMAxeMA2IDAb0EiwEbswEmAwHIA7YBG7YBZgMBxgO7AR+7AXEDAcQD+wIf+wKSAQMBswP4Ah/4Am4DAbEDgAMfgANoAwGfA8ABI/EBLgMBnwL0ASP0AWsDAZ0C1QIn1QKQAQMBjALSAifSAnoDAYoC8QIn8QJwAwH6AeoCJ+4CMwMB6QH7ASutAjYCAU61Ai+1AngCAT2yAi+yAncCATvLAi/LAngCASvEAi/IAjsCARrcAiveAjYCARXjAi/jAngCAQRBDUFoAwH6BUINXxgDAaYFvQI1vQKBAQMBoAW+AjW+AoQBAwGfBWgVaHoDAZoFaRWAASADAeEEjANWjANfAwG+BIwBHYwBewMBuQSNAR2yASgDAckDtgFatgFjAwHHA7sBXrsBbgMBxQP4Al74AmsDAbIDwQElwQGCAQMBmwPCASXwAS8DAaAC9AFi9AFoAwGeAtICZtICdwMBiwLsAivsAoABAwHqAfwBLfwBigEDAeUB/QEt/QF5AwHjAf4BLZ0CSQMBggGeAi2iAjkCAXGjAi2nAjkCAWCoAi2sAjkCAU+yAm6yAnQCATzGAjPGAoEBAgEb3QIt3QJ2AgEWQUxBZQMB+wVDD0NYAwH4BUQPXioDAacFvQJ0vQJ+AwGhBWhUaHcDAZsFbRdtZwMBmAVuF341AwHkBH8Xf2ADAeIEjAFcjAF4AwG6BJEBH5EBeAMBtwSSAR+xAUIDAcoDwQFkwQF/AwGcA8QBKcQBcQMBiwPGASfvATIDAaEC/AFs/AGHAQMB5gH9AWz9AXYDAeQBhgIzhgJ5AwHTAZoCM5oCfwMBwwGBAjOBAokBAwGzAYsCM4sCfwMBowGQAjOQAoUBAwGTAZUCM5UCfgMBgwGgAjGgAoIBAgFypQIxpQKEAQIBYaoCMaoCigECAVDdAmzdAnMCARdDTUNVAwH5BUcVR2MDAegFURVRaQMB2AVbFVtkAwHIBUwVTGMDAbgFVhVWaQMBqAVtVW1kAwGZBXYddoQBAwGHBXsde2kDAfYEcR1xYwMB5QR/VX9dAwHjBJEBXpEBdQMBuASfASWfAYQBAwGlBK4BJa4BcQMBkwSpASWpAXEDAYEEmgElmgFrAwHvA6QBJaQBdwMB3QOVASWVAYEBAwHLA8cBKekBNAMBswLqASnuATUDAaICyAEr6AE2AwG0AuwBLewBegMBowLJAS3JAXkDAYkDygEt3wFNAwHIAuABLeABeQMBxgLhAS3nAUgDAbUCyQFryQF2AwGKA9cBM9cBhwEDAfkC0gEz0gF9AwHpAs0BM80BpgEDAdkC3AEz3AF+AwHJAuABa+ABdgMBxwLkATPkAXoDAbYC</sads:DebugSymbol.Symbol>
+    </StateMachine>
+  </local:MainStatistics_Advanced.Implementation>
+</local:MainStatistics_Advanced>

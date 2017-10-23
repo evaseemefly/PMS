@@ -35,5 +35,24 @@ namespace PMS.Model
         public DbSet<R_Department_Mission> R_Department_Mission { get; set; }
         public DbSet<R_Group_Mission> R_Group_Mission { get; set; }
         public DbSet<S_SMSMission> S_SMSMission { get; set; }
+        public DbSet<R_UserInfo_Group> R_UserInfo_Group { get; set; }
+        public DbSet<R_UserInfo_SMSMission> R_UserInfo_SMSMission { get; set; }
+        public DbSet<S_SMSContent> S_SMSContent { get; set; }
+        public DbSet<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }
+        public DbSet<R_UserInfo_DepartmentInfo> R_UserInfo_DepartmentInfo { get; set; }
+        public DbSet<R_UserInfo_PersonInfo> R_UserInfo_PersonInfo { get; set; }
+        public DbSet<S_SMSRecord_History> S_SMSRecord_History { get; set; }
+        public DbSet<S_SMSMsgContent> S_SMSMsgContent { get; set; }
+        public DbSet<R_UserInfo_News> R_UserInfo_News { get; set; }
+        public DbSet<N_News> N_News { get; set; }
+        public DbSet<WF_Query_StepInfo> WF_Query_StepInfo { get; set; }
+        public DbSet<S_SMSType> S_SMSType { get; set; }
+        public DbSet<WF_Query_Instance> WF_Query_Instance { get; set; }
+        public DbSet<J_JobTemplate> J_JobTemplate { get; set; }
+        public DbSet<J_JobInfo> J_JobInfo { get; set; }
+        public DbSet<QRTZ_TRIGGERS> QRTZ_TRIGGERS { get; set; }
+        public DbSet<FdfsContent> FdfsContent { get; set; }
+        public DbSet<FdfsStorage> FdfsStorage { get; set; }
+        public DbSet<FdfsTracker> FdfsTracker { get; set; }
     }
 }

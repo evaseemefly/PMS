@@ -23,8 +23,7 @@ namespace PMS.DALSQLSer
             //1 获取当前线程中的EF上下文对象
             //注意：
             //.Name=DBContextFactory，即当前类的名字
-            //根据名称读取线程槽中的对象
-            
+            //根据名称读取线程槽中的对象            
             DbContext dbContext = CallContext.GetData(typeof(DBContextFactory).Name) as DbContext;
 
             //判断当前线程中 是否包含EF上下文对象，若不存在则创建
@@ -35,38 +34,9 @@ namespace PMS.DALSQLSer
                 //2.2 将已经获取到的EF上下文对象存储到当前线程槽中
                 CallContext.SetData(typeof(DBContextFactory).Name, dbContext);
             }
+            //dbContext.Configuration.AutoDetectChangesEnabled = false;
             //3 返回数据上下文对象
             return dbContext;
-        }
-
-        //public static void SetTestModel(TestModel.PersonInfo model)
-        //{
-        //    string modelName = "liusihan";
-        //    CallContext.SetData(modelName, model);
-        //}
-
-        //public static TestModel.PersonInfo GetTestModel()
-        //{
-
-        //    string modelName = "liusihan";
-            
-        //   TestModel.PersonInfo model= CallContext.GetData(modelName) as TestModel.PersonInfo;
-
-        //    if(model==null)
-        //    {
-        //        model = new TestModel.PersonInfo()
-        //        {
-        //            Id = 1,
-        //            Name = "李飞"
-        //        };
-        //        CallContext.SetData(modelName, model);
-        //    }
-        //    return model;
-        //}
-
-        //private static void Test()
-        //{
-
-        //}
+        }        
     }
 }

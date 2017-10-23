@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_Statistics.cshtml";
+
+}
+
+@section Scripts{
+    <style type="text/css">
+        /*#p2{
+            float:left;
+        }
+        #p4{
+            float: right;
+        }*/
+        /*.panel{float:left;margin-left: 5px;}*/
+     </style>
+    <script type="text/javascript">
+        //将时间转为指定格式
+        Date.getDateofDt= function (value) {
+            var date = new Date(value);
+            var str = (date.getMonth() + 1) + "月" + date.getDate() + "日";
+            return str;
+        }
+        //对时间数组批量转换，并返回转换后的数组
+        function eachFormatterDate(array) {
+            var date = array;
+            var length = date.length;
+            var array = new Array(length);
+            ////将数组中的每一个时间进行格式化
+            $.each(date, function (index, value) {
+                array[index] = Date.getStrOfDate(value);
+            })
+            return array;
+        }
+
+        @Html.Partial("_Partial_Common_pColumns")
+
+        function loadDataGrid_Statistic() {
+            $("#statisticlast10_datagrid").datagrid({
+                //width: 'auto',
+                //width: 650,
+                //height: 650,
+                fit:true,
+                fitColumns: true,//真正的自动展开/收缩列的大小，以适应网格的宽度，防止水平滚动。
+                striped: true,
+                singleSelect: true,
+                url: '@ViewBag.GetStatisticLast10',
+                //autoRowHeight: true,
+                nowrap: false,//自动换行
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns
+            });
+
+
+            $("#statisticCurrentDay_datagrid").datagrid({
+                //width: 'auto',
+                //height: 'auto',
+                fit:true,
+                fitColumns: true,
+                striped: true,
+                singleSelect: true,
+                url: '@ViewBag.GetStatisticCurrentDay',
+                autoRowHeight: true,
+                nowrap: false,//自动换行
+                loadMsg: '数据加载中请稍后……',
+                pagination: true,//启用分页，默认每页10行
+                rownumbers: true,//显示页码，默认 提供 10 - 50 的页容量选择下拉框
+                pageSize: 10,   //设置 页容量为 5
+                pageList: [5, 10, 20],//设置 页容量下拉框
+                columns: myColumns
+
+            });
+
+
+        }
+
+        function loadLast10_highcharts(data_sendDateTime, data_receive, data_notReceive) {
+            $('#last10_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '该用户近十条短信'
+                },
+                xAxis: {
+                    categories: data_sendDateTime
+                },
+                yAxis: {
+                    title: {
+                        text: '发送短信条数'
+                    }
+                },
+                //版权信息
+                credits: {
+                    //enabled: false // 禁用版权信息
+                    text: 'nmefc'
+                },
+                series: [{
+                    name: '共发送',
+                    data: data_receive
+                    //[10, 12, 15]
+                }, {
+                    name: '收到',
+                    data: data_notReceive
+                    //[2, 1, 7]
+                }]
+            });
+        }
+
+        function loadCurrentDay_highcharts(data_sendDateTime, data_receive, data_notReceive) {
+            $('#currentDay_container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '当日发送短信统计'
+                },
+                xAxis: {
+                    categories: data_sendDateTime
+                },
+                yAxis: {
+                    title: {
+                        text: '发送短信条数'
+                    }
+                },
+                //版权信息
+                credits: {
+                    //enabled: false // 禁用版权信息
+                    text: 'nmefc'
+                },
+                series: [{
+                    name: '共发送',
+                    data: data_receive
+                    //[10, 12, 15]
+                }, {
+                    name: '收到',
+                    data: data_notReceive
+                    //[2, 1, 7]
+                }]
+            });
+        }
+
+        function AjaxGetChart(url) {
+            var temp;
+            $.ajax({
+                url: url,
+                //data: JSON.stringify(model),
+                type: 'GET',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    //alert("提交成功");
+                    temp = data;
+                    //alert(data.Array_notReceive);
+                    //alert(data.Array_receive);
+                }
+            });
+            return temp;
+        }
+
+        function func_test(func) {
+            loadDataGrid_Statistic();
+
+            //找到西北的div
+            var my_div = window.document.getElementById("div_northwest");
+            var height1 = my_div.clientHeight;
+            var width1 = my_div.clientWidth;
+            var div_height = $("#div_northwest")[0].clientHeight;
+            var div_width = $("#div_northwest")[0].clientWidth;
+            $("#statisticlast10_datagrid").datagrid({
+                height: div_height-3,
+                width:div_width-3
+            });
+
+            var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
+            var array_last10 = eachFormatterDate(temp_last10.Arrat_DataTime);
+            loadLast10_highcharts(array_last10, temp_last10.Array_total, temp_last10.Array_revice);
+            //var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
+            func();
+        }
+
+
+
+        $(function () {
+            loadDataGrid_Statistic();
+
+            //找到西北的div
+            //var my_div = window.document.getElementById("div_northwest");
+            //var height1 = my_div.clientHeight
+            //var div_height = $("#div_northwest").clientHeight;
+            //var div_width = $("#div_northwest").clientWidth;
+
+            var temp_last10 = AjaxGetChart('@ViewBag.GetStatisticLast10_Chart');
+            var array_last10 = eachFormatterDate(temp_last10.Arrat_DataTime);
+            loadLast10_highcharts(array_last10, temp_last10.Array_total, temp_last10.Array_revice);
+
+            var temp_currentDay = AjaxGetChart('@ViewBag.GetStatisticCurrentDay_Chart');
+            //将其中的时间进行修改
+            var array_current= eachFormatterDate(temp_currentDay.Arrat_DataTime);
+            loadCurrentDay_highcharts(array_current, temp_currentDay.Array_total, temp_currentDay.Array_revice);
+        })
+    </script>
+
+    }
+
+@section Body{
+    <div id="body_layout" class="easyui-panel"  style="height:98%;width:98%;border:0px" data-options="fit:true">
+        @*<span style="color:orangered;"></span>*@
+        @Html.Partial("_Partial_Statistics_Last10")
+        @Html.Partial("_Partial_Statistics_CurrentDay")
+   </div>
+    }
+

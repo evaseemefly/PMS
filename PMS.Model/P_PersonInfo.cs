@@ -18,16 +18,22 @@ namespace PMS.Model
         {
             this.P_DepartmentInfo = new HashSet<P_DepartmentInfo>();
             this.P_Group = new HashSet<P_Group>();
+            this.S_SMSRecord_Current = new HashSet<S_SMSRecord_Current>();
+            this.R_UserInfo_PersonInfo = new HashSet<R_UserInfo_PersonInfo>();
+            this.S_SMSRecord_History = new HashSet<S_SMSRecord_History>();
         }
     
         public int PID { get; set; }
         public string PName { get; set; }
-        public int PhoneNum { get; set; }
+        public string PhoneNum { get; set; }
         public string Remark { get; set; }
         public bool isVIP { get; set; }
         public bool isDel { get; set; }
     
         public virtual ICollection<P_DepartmentInfo> P_DepartmentInfo { get; set; }
         public virtual ICollection<P_Group> P_Group { get; set; }
+        public virtual ICollection<S_SMSRecord_Current> S_SMSRecord_Current { get; set; }
+        public virtual ICollection<R_UserInfo_PersonInfo> R_UserInfo_PersonInfo { get; set; }
+        public virtual ICollection<S_SMSRecord_History> S_SMSRecord_History { get; set; }
     }
 }

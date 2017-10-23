@@ -1,0 +1,15 @@
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\DelegateSMS.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\DelegateSMS.pdb
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\PMS.Model.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\PMS.IModel.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\EntityFramework.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\System.Web.Mvc.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\PMS.Model.pdb
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\PMS.IModel.pdb
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\EntityFramework.xml
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\System.Web.Mvc.xml
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\obj\Debug\DelegateSMS.csprojResolveAssemblyReference.cache
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\obj\Debug\DelegateSMS.dll
+D:\VSWorkSpace\nmefc\PMS\DelegateSMS\obj\Debug\DelegateSMS.pdb

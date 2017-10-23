@@ -1,0 +1,11 @@
+﻿<div id="tb" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_role" data-options="iconCls:'icon-add',text: '@Resources.Language.New',plain:true" onclick="addRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="remove_role" data-options="iconCls:'icon-remove',text: '@Resources.Language.Delete',plain:true" onclick="removeRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_role" data-options="iconCls:'icon-edit',text: '@Resources.Language.Edit',plain:true" onclick="editRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="assignAction_role" data-options="iconCls:'icon-search',text: '@Resources.Language.RolesRightSettings',plain:true" onclick="provideAction()"></a>
+    <br />
+    @Resources.Language.QueryRoleName<input class="easyui-validatebox" type="text" id="queryByRoleName" style="width:'50%'" data-options="">
+    @Resources.Language.QueryRemarks<input class="easyui-validatebox" type="text" id="queryByRemark" style="width:'50%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">@Resources.Language.Go</a>
+</div>
+

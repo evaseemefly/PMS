@@ -1,0 +1,136 @@
+﻿@model PMS.Model.UserInfo
+
+@{
+    ViewBag.Title = "AddUserInfo";
+    //获取控制器传过来的修改页面提交到的url
+    string backAction = @ViewBag.backAction;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditUserWindow</title>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
+    <script type="text/javascript">
+
+        ////加入密码校验功能
+        //$.extend($.fn.validatebox.defaults.rules, {
+        //    /*必须和某个字段相等*/
+        //    equalTo: {
+        //        validator: function (value, param) {
+        //            return $(param[0]).val() == value;
+        //        },
+        //        message: '字段不匹配'
+        //    }
+
+        //});
+
+
+        function afterEdit(data) {
+
+            //$.messager.alert('提醒', '提交成功!');
+            //——经测试提交表单成功后可以执行OnSucess的回调函数
+            //提交表单成功后关闭本页面
+            //无法关闭此窗口
+            //window.close();
+            if (data == "ok") {
+                window.parent.afterEdit("@Resources.Language.ModifySuccess");
+            }
+            else {
+                window.parent.afterEdit("@Resources.Language.ModifyFailed");
+            }
+            //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
+        }
+    </script>
+</head>
+<body>
+
+    @using (Ajax.BeginForm(backAction, new { },
+                        new AjaxOptions()
+                        {
+                            OnSuccess = "afterEdit"
+                        }
+                        ))
+    {
+        <div>
+            @*@using (Html.BeginForm())
+                {*@
+
+            @Html.HiddenFor(model => model.ID)
+            @*@Html.HiddenFor(model => model.Url)*@
+            <table cellpadding="5">
+                <tr>
+                    <td>@Resources.Language.NewUserName:</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.UName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Resources.Language.Password:</td>
+                    <td>
+                        @Html.PasswordFor(model => model.UPwd)
+
+                        @*<input class="easyui-textbox" type="password" name="UPwd" data-options="required:true,value:'@Model.UPwd">*@ 
+                    </td>
+                </tr>
+             
+                <tr>
+                    <td>@Resources.Language.Order:</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Sort, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Sort" } })
+                        @*<input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input>*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Resources.Language.Remarks:</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Remark, new { htmlAttributes = new { @class = "easyui-textbox", @name = "Remark" } })
+                        @*<input class="easyui-textbox" type="text" name="Sort" data-options="value:'@Model.Sort'"></input>*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Resources.Language.CreateTime</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.SubTime, new
+                   {
+                       htmlAttributes = new { @class = "easyui-textbox", @name = "SubTime" },
+                       @Value = (Model == null) ? DateTime.Now.ToShortDateString() : Model.SubTime.ToShortDateString()
+                   })
+                        @*<input class="easyui-textbox" type="text" name="ActionMethodName" data-options="required:true,value:'@Model.ActionInfoName'"></input>*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Resources.Language.ModifiedTime</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ModifiedOnTime, new
+                   {
+                       htmlAttributes = new { @class = "easyui-textbox", @name = "ModifiedOnTime" },
+                       @Value = (Model == null) ? DateTime.Now.ToShortDateString() : Model.ModifiedOnTime.ToShortDateString()
+                   })
+                        @*<input class="easyui-textbox" type="text" name="ActionMethodName" data-options="required:true,value:'@Model.ActionInfoName'"></input>*@
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="@Resources.Language.Submit" />
+                @*<a href="javascript:void(0)" class="easyui-linkbutton" type="submit">提交</a>*@
+                @*<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>*@
+            </div>
+            @*})*@
+
+
+
+        </div>
+
+    }
+
+</body>
+</html>

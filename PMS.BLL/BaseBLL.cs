@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PMS.BLL
 {
-   public abstract class BaseBLL<T>
+   public abstract class BaseBLL<T>/*:BaseDelBLL<T>*/
     {
 
         /// <summary>
@@ -62,14 +62,30 @@ namespace PMS.BLL
         /// 1- 新增实体
         /// </summary>
         /// <param name="model"></param>
-        public void Create(T model)
+        public bool Create(T model)
         {
             //1.1 执行添加操作只是将要修改的对象标记为添加标记
             //UserInfoDAL.Create(model);
             CurrentDAL.Create(model);
             //1.2 执行保存操作
-            CurrentDBSession.SaveChanges();
+           return CurrentDBSession.SaveChanges();
             
+        }
+        #endregion
+
+        #region 1-2 批量新增实体+public void Create(UserInfo model)
+        /// <summary>
+        /// 1- 新增实体
+        /// </summary>
+        /// <param name="model"></param>
+        public bool CreateByList(List<T> list)
+        {
+            //1.1 执行添加操作只是将要修改的对象标记为添加标记
+            //UserInfoDAL.Create(model);
+            CurrentDAL.CreateByList(list);
+            //1.2 执行保存操作
+            return CurrentDBSession.SaveChanges();
+
         }
         #endregion
 
@@ -119,13 +135,15 @@ namespace PMS.BLL
 
         #region 4- 根据条件查询
         /// <summary>
-        /// 4- 根据条件查询
+        /// 4 根据条件查询
+	    /// isNotTrack默认值为false查询对象加载至上下文对象中；只有为true时才进行AsNoTracking操作，查询对象不加载至DBContext中
         /// </summary>
         /// <param name="whereLambda"></param>
+        /// <param name="isNotTracking"></param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda)
+        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda, bool isNotTracking = false)
         {
-            return CurrentDAL.GetListBy(whereLambda);
+            return CurrentDAL.GetListBy(whereLambda, isNotTracking);
         }
         #endregion
 
@@ -137,9 +155,9 @@ namespace PMS.BLL
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda)
+        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda, bool isNotTracking = false)
         {
-            return CurrentDAL.GetListBy<Tkey>(whereLambda, orderLambda);
+            return CurrentDAL.GetListBy<Tkey>(whereLambda, orderLambda, isNotTracking);
         }
         #endregion
 
@@ -177,6 +195,20 @@ namespace PMS.BLL
         }
         #endregion
 
+
+        #region 6- 批量删除
+        /// <summary>
+        /// 3- 批量修改
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public bool DelByList(List<T> list)
+        {
+            CurrentDAL.DelByList(list);
+            //return idal.SaveChange();
+            return CurrentDBSession.SaveChanges();
+        }
+        #endregion
 
 
     }

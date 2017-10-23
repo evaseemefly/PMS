@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PMS.Model.CombineModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PMS.Model.CombineModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.ViewModel" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/PMS.Model.SMSModel" />
+  <xs:complexType name="SendAndMessage_Model">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PMS.Model.ViewModel" minOccurs="0" name="Model_Message" nillable="true" type="q1:ViewModel_Message" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/PMS.Model.SMSModel" minOccurs="0" name="Model_Send" nillable="true" type="q2:SMSModel_Send" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SendAndMessage_Model" nillable="true" type="tns:SendAndMessage_Model" />
+</xs:schema>

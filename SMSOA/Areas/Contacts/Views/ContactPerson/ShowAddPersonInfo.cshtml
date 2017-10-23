@@ -24,6 +24,63 @@
     <script src="~/Scripts/MyScripts/Admin/IndexOperation.js"></script>
     <script src="~/Scripts/MyCSS/MyEasyUIValidate.js"></script>
     <script type="text/javascript">
+        //--------------1 加载页面中的下拉框中的数据-----------
+        //1.1 加载全部部门下拉框
+        function loadComboTree_Department(did) {
+            //2.2 加载上级部门下拉框
+            $("#DepartmentName_combotree").combotree({
+                //在ContactPerson控制器中的ShowAddPerson方法中添加
+                url: '@ViewBag.GetDepartment_combotree',
+                valueField: 'id',   //注意此处只能设置为id以及text，否则不识别
+                textField: 'text',
+                //valueField: "DID",
+                //textField: "DepartmentName",
+                required: true,
+                editable: false,
+                onlyLeafCheck: true,
+                cascaseCheck: true,
+                method: 'get',
+                width: 210
+                //onLoadSuccess: AfterLoadDepartment
+                @*setValue:'@ViewBag.PDID'*@
+            });
+        }
+
+
+
+        //1.2 根据pid加载对应的群组并添加至combobox中
+        function loadCombobox_Group(gid,pid) {
+            //var str =  (typeof(pid)!="undefined")? pid:"-1";
+            $("#GID").combobox({
+                //注意此处需要加判断，若没有传入gid（即没有选择所属群组group，则返回全部的-未选中的-部门下拉框）
+                url:gid==""?'@ViewBag.GetAllGroup_combobox': '@ViewBag.GetGroupByGID_combobox?gid='+gid,//在ContactPerson控制器中的ShowAddPerson方法中添加
+                method: 'get',
+                valueField: 'id',
+                textField: 'text',
+                panelWidth: 350,
+                panelHeight: 'auto',
+                multiple: true,@*设置为可以多选*@
+                formatter: formatItem_combobox,
+                //获取数据成功后启动事件
+                onLoadSuccess: function () {
+                    var opts = $(this).combobox('options');
+                    var target = this;
+                    var values = $(target).combobox('getValues');
+                    $.map(values, function (value) {
+                        var el = opts.finder.getEl(target, value);
+                        el.find('input.combobox-checkbox')._propAttr('checked', true);
+                    })
+                }
+            })
+        }
+
+        //向群组下拉框中添加checkbox
+        function formatItem_combobox(row) {
+            var s = '<input type="checkbox" class="combobox-checkbox">' + '<span style="font-weight:bold">' + row.text + '</span><br/>' +
+					'<span style="color:#7CFC00">' + row.remark + '</span>';
+            return s;
+        }
+
         function afterEdit(data) {
 
             //$.messager.alert('提醒', '提交成功!');
@@ -32,13 +89,34 @@
             //无法关闭此窗口
             //window.close();
             if (data == "ok") {
-                window.parent.afterEdit("修改成功");
+                window.parent.afterEdit("修改成功", 0);
+            }
+            else if (data == "validation fails") {
+                window.parent.afterEdit("该电话号码已存在，请重新输入", 1)
             }
             else {
-                window.parent.afterEdit("修改失败");
+                window.parent.afterEdit("修改失败", 0);
             }
             //此处也可以调用window.parent.xxx——当前页面的父级页面中的xxx方法
         }
+
+        function SetDepartmentCombotreeValue(data) {
+            //1 找到部门下拉框
+            $("#DepartmentName_combotree").combotree('setValue', data);
+        }
+
+        //页面加载时
+        $(function () {
+            //加载全部群组下拉框
+            var gid = "@ViewBag.GID";
+            var did = "@ViewBag.DID";
+            loadCombobox_Group(gid);
+            //加载全部部门下拉框
+            loadComboTree_Department(did);
+            //加载全部部门下拉框后根据选中的did
+            SetDepartmentCombotreeValue(did);
+           
+        })
     </script>
 </head>
 <body>
@@ -51,8 +129,7 @@
                             ))
         {
             <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
-                <table cellpadding="3">
-                    
+                <table cellpadding="4">
                     <tr>
                         <td>姓名:</td>
                         <td><input class="easyui-textbox" type="text" name="PName" data-options="required:true"></input></td>
@@ -62,8 +139,22 @@
                         <td><input class="easyui-textbox" type="text" name="PhoneNum" data-options="required:true"></input></td>
                     </tr>
                     <tr>
+                        <td>所属分组:</td>
+                        <td>
+                            <select class="easyui-combobox"name="GID" id="GID" panelHeight="auto" style="width:100px"
+                                    data-options="">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>所属部门:</td>
+                        <td>
+                            <select class="easyui-combotree" name="DID" id="DepartmentName_combotree" required="required"></select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>备注:</td>
-                        <td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px"></input></td>
+                        <td><input class="easyui-textbox" name="Remark" data-options="multiline:true" style="height:60px"></input></td>
                     </tr>
 
                 </table>
@@ -71,8 +162,6 @@
                     <div style="text-align:center;padding:5px">
                         <input type="submit" value="提交" />
                     </div>
-                    @*<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>*@
                 </div>
             </form>
             

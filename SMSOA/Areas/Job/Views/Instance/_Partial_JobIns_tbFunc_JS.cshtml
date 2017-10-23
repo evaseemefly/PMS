@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+    function callback(rows) {
+        var strId = "";
+        for (var i = 0; i < rows.length; i++) {
+            strId = strId + rows[i].JID + ",";
+        }
+        return strId;
+    }
+    function addJobRow(jobType) {
+        showEditWindow("@ViewBag.ShowCreateWin" + "?jopType=" + jobType);
+    }
+
+    function removeJobRow() {
+        //CheckSelectRows("datagrid", "准备删除并终止？", callback, "@ViewBag.DoEndJob");
+        CheckOnlySelectionAndDo("datagrid", "要终止并删除选中的作业？", "指定作业已删除", "JID", "@ViewBag.DoEndJob", "jid");
+    }
+    function editJobRow() {
+
+    }
+    function pauseJobRow() {
+        CheckOnlySelectionAndDo("datagrid", "要暂停选中的作业？", "指定作业已暂停", "JID", "@ViewBag.DoPause", "jid");
+
+    }
+    function recoveryJobRow() {
+        CheckOnlySelectionAndDo("datagrid", "要恢复选中的作业？", "指定作业已恢复", "JID", "@ViewBag.DoRecovery", "jid");
+    }
+    function endJobRow() {
+        CheckOnlySelectionAndDo("datagrid", "要终止并删除选中的作业？", "指定作业已删除", "JID", "@ViewBag.DoEndJob", "jid");
+    }
+</script>

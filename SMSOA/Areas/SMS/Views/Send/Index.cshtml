@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Areas/SMS/Views/Shared/_Layout_Send.cshtml";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+        //function OnChecks() {
+        //    var ids= $("#group_combogrid").combobox("getChecked");
+        //}
+
+        //异步提交
+        function AjaxSubmit(pids,phones, content,url,missionId,groupIds,departmentIds,isTiming,startRunTime,uid) {
+            //1 创建对象
+            var model = new Object();
+            model.PersonIds = pids;
+            model.PhoneNums=phones;
+            model.Content = content;
+            model.SMSMissionID = missionId;
+            model.GroupIds=groupIds;
+            model.DepartmentIds=departmentIds;
+            model.StartRunTime=startRunTime;
+            model.isTiming=isTiming;
+            model.UID=uid;
+            //2 使用ajax方式提交（此处先不用post）
+            $.ajax({
+                url: url,
+                data: JSON.stringify(model),
+                contentType: 'application/json;charset=utf-8',//注意此处必须注明为json格式，否则后台控制器无法通过Model的方式接收
+                async: true,
+                type: 'POST',
+                beforeSend: function () {
+                    messagerShowOnCenter("提交","已经提交");
+                },
+
+                success: function (data) {
+                    if ("ok_nextMMS" == data) {
+                        messagerShowOnCenter("提示", "提交成功");
+                        messagerConfirm("提示", "是否跳转至彩信发送页面", function () {
+                            redirectMMS(content, missionId);
+                        })
+                    }
+                    else if("ok" == data){
+                        messagerShowOnCenter("提示", "提交成功");
+                        
+                    }else if("empty contact list" == data){
+                        messagerShowOnCenter("错误","联系人名单为空，发送失败")
+                    }else if("out of range" == data){
+                        messagerShowOnCenter("提示", "短信字数超过800字，提交失败");
+
+                    }else if("empty content" == data){
+                        messagerShowOnCenter("提示", "短信内容为空，发送失败");
+
+                    }
+                    else {
+                        messagerShowOnCenter("错误", "发送失败");
+                    }
+                }
+            })
+        }
+        //提交成功后执行重定向到彩信发送页面
+        function redirectMMS(content, missionId) {
+            //1.获取主界面的jq对象
+            var main = top.jQuery;
+            //2.获取彩信发送的标题以及index页面的url
+            var title = "@ViewBag.MMS_Name";
+            var url = "@ViewBag.GetIframe_MMS" + "?content=" + content + "&smid=" + missionId;
+            //3.判断是否已经打开了彩信发送的标签页
+                            if (main('#tabs').tabs('exists', title)) {
+                                //3.1 如果已经打开了彩信发送,则更新页面
+                                main('#tabs').tabs('close', title);
+                            } 
+                                //3.1 如果已经打开了彩信发送,则更新页面
+                                main('#tabs').tabs('add', {
+                                        title: title,
+                                        selected: true,
+                                        closable: true,
+                                        fit: true,
+                                        content: createNewIframe_MMS(url)
+                                    });
+                            
+        }
+        function createNewIframe_MMS(url) {
+
+            var iframeStr = "<iframe frameborder='0' src='" + url + "' style='width:100%;height:99.5%;frameborder:0px solid #000;'></iframe>";
+            return iframeStr;
+        }
+
+        function CancelSend() {
+            alert("取消发送短信");
+        }
+
+        //----------------------------加载几个下拉框(放入模板页，短彩信共用)-----------------------------
+
+
+        function  addPerson_Temp() {
+            alert("添加");
+        }
+
+
+
+
+        //暂时不使用
+
+
+
+
+
+</script>
+    }
+
+@section Body{
+@Html.Partial("_Partial_Send_Body")
+@Html.Partial("_Partial_Send_EditWin")
+    }
+

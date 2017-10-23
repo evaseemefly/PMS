@@ -33,6 +33,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="FastDFS.Client">
+      <HintPath>..\SMSOA\Libs\FastDFS.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,15 +58,109 @@
     <Compile Include="ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApiMessage\SendResponseModel.cs" />
+    <Compile Include="ApiMessage\SendResultModel.cs" />
+    <Compile Include="CombineModel\BaseMessage_Model.cs" />
+    <Compile Include="CombineModel\MMSSendAndMsg_Model.cs" />
+    <Compile Include="CombineModel\SendAndMessage_Model.cs" />
+    <Compile Include="Dictionary\MethodTypeDictonary.cs" />
+    <Compile Include="Dictionary\MMSDictionary.cs" />
+    <Compile Include="Dictionary\Quartz_TriggerStateDictionary.cs" />
+    <Compile Include="Dictionary\RecycledTypeDictonary.cs" />
+    <Compile Include="Dictionary\SMSQueryDictionary.cs" />
+    <Compile Include="Dictionary\SMSQueryResultDictionary.cs" />
+    <Compile Include="Dictionary\SMSUserDictionary.cs" />
+    <Compile Include="Dictionary\SMSWFDictionary.cs" />
+    <Compile Include="EasyUIModel\Action_ViewModel.cs" />
+    <Compile Include="EasyUIModel\Department_ViewModel.cs" />
     <Compile Include="EasyUIModel\EasyUICombobox.cs" />
     <Compile Include="EasyUIModel\EasUITreeNode.cs" />
+    <Compile Include="EasyUIModel\EasyUIComboTree_Action.cs" />
+    <Compile Include="EasyUIModel\EasyUIComboTree_Department.cs" />
     <Compile Include="EasyUIModel\EasyUIDataGrid.cs" />
+    <Compile Include="EasyUIModel\EasyUIDataGrid_Group.cs" />
+    <Compile Include="EasyUIModel\EasyUIDataGrid_Mission.cs" />
+    <Compile Include="EasyUIModel\EasyUIMeunButton.cs" />
     <Compile Include="EasyUIModel\EasyUIOption.cs" />
+    <Compile Include="EasyUIModel\EasyUITreeGrid_Action.cs" />
+    <Compile Include="EasyUIModel\EasyUITreeGrid_Department.cs" />
+    <Compile Include="EasyUIModel\MessageType_ViewModel.cs" />
+    <Compile Include="Enum\ExistEnum.cs" />
+    <Compile Include="Enum\FileExt_Enum.cs" />
+    <Compile Include="Enum\JobState_Enum.cs" />
+    <Compile Include="Enum\JobType_Enum.cs" />
+    <Compile Include="Enum\JobUrl_Enum.cs" />
+    <Compile Include="Enum\MatchCondition_Enum.cs" />
+    <Compile Include="Enum\MMSCommands_Enum.cs" />
+    <Compile Include="Enum\MMS_Enum.cs" />
+    <Compile Include="Enum\QueryState_Enum.cs" />
+    <Compile Include="Enum\ResultCodeEnum_SendAPI.cs" />
+    <Compile Include="Enum\WriteInDb_Enum.cs" />
     <Compile Include="EqualCompare\ActionEqualCompare.cs" />
+    <Compile Include="EqualCompare\EasyUIComboboxEqualCompare.cs" />
+    <Compile Include="EqualCompare\P_DepartmentEqualCompare.cs" />
+    <Compile Include="EqualCompare\P_GroupEqualCompare.cs" />
+    <Compile Include="EqualCompare\P_PersonEqualCompare.cs" />
+    <Compile Include="EqualCompare\SMSModel_QueryReceive_Compare.cs" />
     <Compile Include="ExceptionModel\MyExceptionAttribute.cs" />
+    <Compile Include="ExceptionModel\PMSException.cs" />
     <Compile Include="ExtensionModel\ActionInfo.cs" />
+    <Compile Include="ExtensionModel\J_JobInfo.cs" />
+    <Compile Include="ExtensionModel\P_DepartmentInfo.cs" />
+    <Compile Include="ExtensionModel\P_Group.cs" />
+    <Compile Include="ExtensionModel\Quartz_JobGroup.cs" />
     <Compile Include="ExtensionModel\RoleInfo.cs" />
+    <Compile Include="ExtensionModel\UserInfo.cs" />
+    <Compile Include="FdfsContent.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdfsParam\BaseDownloadParameter.cs" />
+    <Compile Include="FdfsParam\BaseUploadParameter.cs" />
+    <Compile Include="FdfsParam\FileDownParameter.cs" />
+    <Compile Include="FdfsParam\FileUploadParameter.cs" />
+    <Compile Include="FdfsParam\ImageDownParameter.cs" />
+    <Compile Include="FdfsParam\ImageUploadParameter.cs" />
+    <Compile Include="FdfsStorage.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdfsTracker.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormatModel\MyAjaxModel.cs" />
+    <Compile Include="FormatModel\SMSDataFormatModel_Receive.cs" />
+    <Compile Include="JobDataModel\BaseJobDataModel.cs" />
+    <Compile Include="JobDataModel\QueryJobDataModel.cs" />
+    <Compile Include="JobDataModel\SendJobDataModel.cs" />
+    <Compile Include="J_JobInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="J_JobTemplate.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message\BaseResponse.cs" />
+    <Compile Include="Message\Fdfs\BaseDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\BaseUploadResult.cs" />
+    <Compile Include="Message\Fdfs\FileDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\FileUploadResult.cs" />
+    <Compile Include="Message\Fdfs\ImageDownloadResult.cs" />
+    <Compile Include="Message\Fdfs\ImageUploadResult.cs" />
+    <Compile Include="Message\IBaseResponse.cs" />
+    <Compile Include="MiddlewareModel\ActionInfo.cs" />
+    <Compile Include="MiddlewareModel\J_JobInfo.cs" />
+    <Compile Include="MiddlewareModel\J_JobTemplate.cs" />
+    <Compile Include="MiddlewareModel\N_News.cs" />
+    <Compile Include="MiddlewareModel\P_DepartmentInfo.cs" />
+    <Compile Include="MiddlewareModel\P_Group.cs" />
+    <Compile Include="MiddlewareModel\P_PersonInfo.cs" />
+    <Compile Include="MiddlewareModel\RoleInfo.cs" />
+    <Compile Include="MiddlewareModel\S_SMSContent.cs" />
+    <Compile Include="MiddlewareModel\S_SMSMission.cs" />
+    <Compile Include="MiddlewareModel\S_SMSMsgContent.cs" />
+    <Compile Include="MiddlewareModel\S_SMSRecord_Current.cs" />
+    <Compile Include="MiddlewareModel\UserInfo.cs" />
+    <Compile Include="N_News.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="PMSEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +186,27 @@
     <Compile Include="P_PersonInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="QRTZ_TRIGGERS.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QueryModel\Redis_HashWFObj.cs" />
+    <Compile Include="QueryModel\Redis_ListMsgIdObj.cs" />
+    <Compile Include="QueryModel\Redis_MinorQueryConfigModel.cs" />
+    <Compile Include="QueryModel\Redis_SMSContent.cs" />
+    <Compile Include="QueryModel\Redis_SMSSendState.cs" />
+    <Compile Include="RecycleModel\ActionInfo.cs" />
+    <Compile Include="RecycleModel\J_JobTemplate.cs" />
+    <Compile Include="RecycleModel\N_News.cs" />
+    <Compile Include="RecycleModel\P_DepartmentInfo.cs" />
+    <Compile Include="RecycleModel\P_Group.cs" />
+    <Compile Include="RecycleModel\P_PersonInfo.cs" />
+    <Compile Include="RecycleModel\RoleInfo.cs" />
+    <Compile Include="RecycleModel\S_SMSContent.cs" />
+    <Compile Include="RecycleModel\S_SMSMission.cs" />
+    <Compile Include="RecycleModel\S_SMSMsgContent.cs" />
+    <Compile Include="RecycleModel\UserInfo.cs" />
+    <Compile Include="FormatModel\SMSDataFormatModel_Send.cs" />
+    <Compile Include="Dictionary\SMSDictionary.cs" />
     <Compile Include="RoleInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
@@ -101,16 +219,93 @@
     <Compile Include="R_UserInfo_ActionInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="R_UserInfo_DepartmentInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_Group.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_News.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_PersonInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="R_UserInfo_SMSMission.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMSModel\BaseModel_Receive.cs" />
+    <Compile Include="SMSModel\MMSModel_Query.cs" />
+    <Compile Include="SMSModel\MMSModel_QueryReceive.cs" />
+    <Compile Include="SMSModel\MMSModel_Receive.cs" />
+    <Compile Include="SMSModel\MMSModel_Receive_Failphones.cs" />
+    <Compile Include="SMSModel\MMSModel_Send.cs" />
+    <Compile Include="SMSModel\SMSModel_Query.cs" />
+    <Compile Include="SMSModel\SMSModel_QueryReceive.cs" />
+    <Compile Include="SMSModel\SMSModel_Receive.cs" />
+    <Compile Include="SMSModel\SMSModel_Send.cs" />
+    <Compile Include="SMSModel\SMSModel_Blacklist.cs" />
+    <Compile Include="SMSModel\SMSModel_SendFails.cs" />
+    <Compile Include="SMSModel\SMSModel_MsgResult.cs" />
+    <Compile Include="S_SMSContent.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="S_SMSMission.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSMsgContent.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSRecord_Current.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSRecord_History.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_SMSType.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs">
       <DependentUpon>PMSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LoginUser.cs" />
+    <Compile Include="ViewModel\ViewModel_BaseJob.cs" />
+    <Compile Include="ViewModel\ViewModel_ActionInfo_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_BaseJob_Ext_Send.cs" />
+    <Compile Include="ViewModel\ViewModel_Department_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_Group_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_isPass_Department.cs" />
+    <Compile Include="ViewModel\ViewModel_isPass_Group.cs" />
+    <Compile Include="ViewModel\ViewModel_JobInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_JobTemplate.cs" />
+    <Compile Include="ViewModel\ViewModel_Message.cs" />
+    <Compile Include="ViewModel\ViewModel_Mission_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_MMSMessage.cs" />
+    <Compile Include="ViewModel\ViewModel_MyHttpContext.cs" />
+    <Compile Include="ViewModel\ViewModel_News.cs" />
+    <Compile Include="ViewModel\ViewModel_PersonDepartmentGroup.cs" />
+    <Compile Include="ViewModel\ViewModel_Person_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_RecordQueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_Recycle.cs" />
+    <Compile Include="ViewModel\ViewModel_RoleInfo_QueryInfo.cs" />
+    <Compile Include="ViewModel\ViewModel_SendJob.cs" />
+    <Compile Include="ViewModel\ViewModel_SMSMission.cs" />
+    <Compile Include="ViewModel\ViewModel_isPass_Base.cs" />
+    <Compile Include="ViewModel\ViewModel_UserInfo_QueryInfo.cs" />
+    <Compile Include="WFModel\BookMarkObj.cs" />
+    <Compile Include="WF_Query_Instance.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WF_Query_StepInfo.cs">
+      <DependentUpon>PMSEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SendJobDataModel.cd" />
     <None Include="packages.config" />
     <EntityDeploy Include="PMSEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -134,6 +329,16 @@
       <DependentUpon>PMSEntities.edmx</DependentUpon>
       <LastGenOutput>PMSEntities.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
+      <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
+      <Name>PMS.IModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MMSModel\" />
+    <Folder Include="ResultModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -42,19 +42,36 @@
   <ItemGroup>
     <Compile Include="IActionInfoBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
+    <Compile Include="IBaseDelBLL.cs" />
     <Compile Include="IBLL.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IBLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ICanBeDel.cs" />
+    <Compile Include="IDelListBLL.cs" />
+    <Compile Include="IJ_JobInfoBLL.cs" />
+    <Compile Include="IJ_JobTemplateBLL.cs" />
+    <Compile Include="IRedis_HashBLL.cs" />
+    <Compile Include="IRedis_ListBLL.cs" />
+    <Compile Include="IN_NewsBLL.cs" />
     <Compile Include="IP_DepartmentInfoBLL.cs" />
     <Compile Include="IP_GroupBLL.cs" />
     <Compile Include="IP_PersonInfoBLL.cs" />
     <Compile Include="IRoleInfoBLL.cs" />
-    <Compile Include="IUserInfoBLL.cs" />
+    <Compile Include="IS_SMSContentBLL.cs" />
+    <Compile Include="IS_SMSMissionBLL.cs" />
+    <Compile Include="IS_SMSMsgContentBLL.cs" />
+    <Compile Include="IS_SMSRecord_CurrentBLL.cs" />
+    <Compile Include="IUserInfo\IUserInfoBLL.cs" />
+    <Compile Include="IUserInfo\IUserInfoBLL_Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PMS.IModel\PMS.IModel.csproj">
+      <Project>{3ba6e7d9-3dfa-4576-a851-6e4c6ad1c686}</Project>
+      <Name>PMS.IModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{db0b872a-4375-4bcb-ad18-f0ebcb0bdae8}</Project>
       <Name>PMS.Model</Name>

@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "View";
+   
+    Layout = "~/Areas/Contacts/Views/Shared/_Layout_SMSMission_MMSInfo.cshtml";
+}
+@section toobar_scripts{
+    <script type="text/javascript">
+
+        //var title = "";
+        function addSMSMissionRow() {
+            //从指定页面中预读取数据
+            $("#addGroupFrame").attr("src", '@ViewBag.ShowAdd');
+            //打开编辑窗体
+            // title = "新增任务";
+            $("#editSMSMissionWindow").window({ title: "新增任务" });
+            $("#editSMSMissionWindow").window('open');
+
+        }
+
+        function isSelectedRow(rows) {         
+            //若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选择一行数据',
+                    showType: 'show'
+                });
+                return false;
+            }
+            return true;
+        }
+
+        function editSMSMissionRow() {
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            if (!isSelectedRow(rows)) { return; }
+            //**注意先加载iframe窗体的数据，在打开该窗口
+            $("#addGroupFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].SMID);//会出现重定向的错误
+            //title = "编辑任务";
+            //更改窗口的Title
+            $("#editSMSMissionWindow").window({ title: "编辑任务" });
+            $("#editSMSMissionWindow").window('open');
+            //若选中了一行数据则执行修改操作
+            //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
+
+        }
+        function Refresh() {
+            $("#SMSMissiondatagrid").datagrid('reload');
+        }
+        function removeSMSMissionRow() {
+            var rows = $("#SMSMissiondatagrid").datagrid('getSelections');
+            if (!isSelectedRow(rows)) { return; }
+            //post请求至软删除方法
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {
+                    var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                        strId = strId + rows[i].SMID + ",";
+            }
+                //去掉最后一个逗号
+                strId = strId.substr(0, strId.length - 1);
+                $.post("@ViewBag.Del_url?ids=" + strId, function (data) {
+                //请求成功后的回调函数
+                if (data == "ok") {
+                //重新加载datagrid
+                   Refresh();
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
+                //清楚所选中的行
+                $("#SMSMissiondatagrid").datagrid('clearSelections');
+                $.messager.alert("提示", "删除成功");
+            }
+            });
+            }
+            }));
+
+        }
+
+        function searchBy(obj) {
+            //获取到输入的查询群组的text框中的值
+            var match_missionName = $("#contactsName").val();
+
+            var queryData = {
+                MissionName: match_missionName
+            };
+
+            loadDataGridByCondition('@ViewBag.GetInfo', myColumns, queryData);
+        }
+		
+        function searchPersonByCondition() {            
+            var name = $("#personName").val();
+            var phone = $("#PhoneNum").val();
+            
+            var obj = {
+                PersonName: name,
+                PhoneNum: phone,                
+            }
+            var url = '@ViewBag.GetPerson';
+
+           loadPersonGrid(url, PersonColumns, obj);
+
+        }
+        //此处冗余 2017 1-7 需与上面代码精简
+        function searchPersonByCondition_MMS() {
+            var name = $("#personName_MMS").val();
+            var phone = $("#PhoneNum_MMS").val();
+
+            var obj = {
+                PersonName: name,
+                PhoneNum: phone,
+            }
+            var url = '@ViewBag.GetPerson';
+
+            loadPersonGrid_MMS(url, PersonColumns, obj)
+            
+        }
+
+        function loadDataGridByCondition(url, myColumns, queryModel) {
+            loadDataGrid(url, myColumns);
+            $("#SMSMissiondatagrid").datagrid({
+                queryParams: queryModel
+            });
+        }
+    </script>
+}
+@section loadDataGrid{
+    <script type="text/javascript">
+        function loadDataGrid(url, myColumns) {
+            //2 为短信任务datagrid加载数据
+            $("#SMSMissiondatagrid").datagrid({
+                width: '400px',
+                height: 'auto',
+                fitColumns: false,
+                striped: true,
+                showFooter: true,
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '加载中……',
+                columns: myColumns,
+                toolbar: '#tb_contacts'
+            });
+        }
+    </script>
+
+}
+@section westdiv{
+    <div id="p" data-options="region:'west'" title="任务列表" style="width:21%">
+        <table class="easyui-datagrid" id="SMSMissiondatagrid" style="height:100%;width:100%"></table>
+    </div>
+<div id="tb_contacts" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_mission" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addSMSMissionRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_mission" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeSMSMissionRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_mission" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editSMSMissionRow()"></a>
+    <br />
+    <input class="easyui-validatebox" type="text" id="contactsName" style="width:'50%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a>
+</div>
+}
+
+
+@section showWindow{
+    <div class="easyui-window" title='title' id="editSMSMissionWindow" style="width:410px;height:352px;overflow: hidden" data-options="shadow:true,modal:true">
+    <iframe id="addGroupFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+</div>
+
+    }
+
+
+    
+   
+
+
+

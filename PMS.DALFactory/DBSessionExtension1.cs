@@ -32,6 +32,168 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _FdfsContentDAL 属性 
+	private IDAL.IFdfsContentDAL _FdfsContentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取FdfsContentDAL的实例
+        /// </summary>
+        public IFdfsContentDAL FdfsContentDAL
+        {
+            get
+            {
+                if(_FdfsContentDAL==null)
+                {
+                    _FdfsContentDAL = AbstractFactory.CreateFdfsContentDAL();
+                }
+                return _FdfsContentDAL;
+            }
+
+            set
+            {
+                _FdfsContentDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _FdfsStorageDAL 属性 
+	private IDAL.IFdfsStorageDAL _FdfsStorageDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取FdfsStorageDAL的实例
+        /// </summary>
+        public IFdfsStorageDAL FdfsStorageDAL
+        {
+            get
+            {
+                if(_FdfsStorageDAL==null)
+                {
+                    _FdfsStorageDAL = AbstractFactory.CreateFdfsStorageDAL();
+                }
+                return _FdfsStorageDAL;
+            }
+
+            set
+            {
+                _FdfsStorageDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _FdfsTrackerDAL 属性 
+	private IDAL.IFdfsTrackerDAL _FdfsTrackerDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取FdfsTrackerDAL的实例
+        /// </summary>
+        public IFdfsTrackerDAL FdfsTrackerDAL
+        {
+            get
+            {
+                if(_FdfsTrackerDAL==null)
+                {
+                    _FdfsTrackerDAL = AbstractFactory.CreateFdfsTrackerDAL();
+                }
+                return _FdfsTrackerDAL;
+            }
+
+            set
+            {
+                _FdfsTrackerDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _J_JobInfoDAL 属性 
+	private IDAL.IJ_JobInfoDAL _J_JobInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取J_JobInfoDAL的实例
+        /// </summary>
+        public IJ_JobInfoDAL J_JobInfoDAL
+        {
+            get
+            {
+                if(_J_JobInfoDAL==null)
+                {
+                    _J_JobInfoDAL = AbstractFactory.CreateJ_JobInfoDAL();
+                }
+                return _J_JobInfoDAL;
+            }
+
+            set
+            {
+                _J_JobInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _J_JobTemplateDAL 属性 
+	private IDAL.IJ_JobTemplateDAL _J_JobTemplateDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取J_JobTemplateDAL的实例
+        /// </summary>
+        public IJ_JobTemplateDAL J_JobTemplateDAL
+        {
+            get
+            {
+                if(_J_JobTemplateDAL==null)
+                {
+                    _J_JobTemplateDAL = AbstractFactory.CreateJ_JobTemplateDAL();
+                }
+                return _J_JobTemplateDAL;
+            }
+
+            set
+            {
+                _J_JobTemplateDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _N_NewsDAL 属性 
+	private IDAL.IN_NewsDAL _N_NewsDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取N_NewsDAL的实例
+        /// </summary>
+        public IN_NewsDAL N_NewsDAL
+        {
+            get
+            {
+                if(_N_NewsDAL==null)
+                {
+                    _N_NewsDAL = AbstractFactory.CreateN_NewsDAL();
+                }
+                return _N_NewsDAL;
+            }
+
+            set
+            {
+                _N_NewsDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _P_DepartmentInfoDAL 属性 
 	private IDAL.IP_DepartmentInfoDAL _P_DepartmentInfoDAL;
 	#endregion
@@ -108,6 +270,33 @@ public partial class DBSession
             set
             {
                 _P_PersonInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _QRTZ_TRIGGERSDAL 属性 
+	private IDAL.IQRTZ_TRIGGERSDAL _QRTZ_TRIGGERSDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取QRTZ_TRIGGERSDAL的实例
+        /// </summary>
+        public IQRTZ_TRIGGERSDAL QRTZ_TRIGGERSDAL
+        {
+            get
+            {
+                if(_QRTZ_TRIGGERSDAL==null)
+                {
+                    _QRTZ_TRIGGERSDAL = AbstractFactory.CreateQRTZ_TRIGGERSDAL();
+                }
+                return _QRTZ_TRIGGERSDAL;
+            }
+
+            set
+            {
+                _QRTZ_TRIGGERSDAL = value;
             }
         }
 	#endregion
@@ -194,6 +383,141 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _R_UserInfo_DepartmentInfoDAL 属性 
+	private IDAL.IR_UserInfo_DepartmentInfoDAL _R_UserInfo_DepartmentInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_DepartmentInfoDAL的实例
+        /// </summary>
+        public IR_UserInfo_DepartmentInfoDAL R_UserInfo_DepartmentInfoDAL
+        {
+            get
+            {
+                if(_R_UserInfo_DepartmentInfoDAL==null)
+                {
+                    _R_UserInfo_DepartmentInfoDAL = AbstractFactory.CreateR_UserInfo_DepartmentInfoDAL();
+                }
+                return _R_UserInfo_DepartmentInfoDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_DepartmentInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _R_UserInfo_GroupDAL 属性 
+	private IDAL.IR_UserInfo_GroupDAL _R_UserInfo_GroupDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_GroupDAL的实例
+        /// </summary>
+        public IR_UserInfo_GroupDAL R_UserInfo_GroupDAL
+        {
+            get
+            {
+                if(_R_UserInfo_GroupDAL==null)
+                {
+                    _R_UserInfo_GroupDAL = AbstractFactory.CreateR_UserInfo_GroupDAL();
+                }
+                return _R_UserInfo_GroupDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_GroupDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _R_UserInfo_NewsDAL 属性 
+	private IDAL.IR_UserInfo_NewsDAL _R_UserInfo_NewsDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_NewsDAL的实例
+        /// </summary>
+        public IR_UserInfo_NewsDAL R_UserInfo_NewsDAL
+        {
+            get
+            {
+                if(_R_UserInfo_NewsDAL==null)
+                {
+                    _R_UserInfo_NewsDAL = AbstractFactory.CreateR_UserInfo_NewsDAL();
+                }
+                return _R_UserInfo_NewsDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_NewsDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _R_UserInfo_PersonInfoDAL 属性 
+	private IDAL.IR_UserInfo_PersonInfoDAL _R_UserInfo_PersonInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_PersonInfoDAL的实例
+        /// </summary>
+        public IR_UserInfo_PersonInfoDAL R_UserInfo_PersonInfoDAL
+        {
+            get
+            {
+                if(_R_UserInfo_PersonInfoDAL==null)
+                {
+                    _R_UserInfo_PersonInfoDAL = AbstractFactory.CreateR_UserInfo_PersonInfoDAL();
+                }
+                return _R_UserInfo_PersonInfoDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_PersonInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _R_UserInfo_SMSMissionDAL 属性 
+	private IDAL.IR_UserInfo_SMSMissionDAL _R_UserInfo_SMSMissionDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取R_UserInfo_SMSMissionDAL的实例
+        /// </summary>
+        public IR_UserInfo_SMSMissionDAL R_UserInfo_SMSMissionDAL
+        {
+            get
+            {
+                if(_R_UserInfo_SMSMissionDAL==null)
+                {
+                    _R_UserInfo_SMSMissionDAL = AbstractFactory.CreateR_UserInfo_SMSMissionDAL();
+                }
+                return _R_UserInfo_SMSMissionDAL;
+            }
+
+            set
+            {
+                _R_UserInfo_SMSMissionDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _RoleInfoDAL 属性 
 	private IDAL.IRoleInfoDAL _RoleInfoDAL;
 	#endregion
@@ -216,6 +540,33 @@ public partial class DBSession
             set
             {
                 _RoleInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _S_SMSContentDAL 属性 
+	private IDAL.IS_SMSContentDAL _S_SMSContentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSContentDAL的实例
+        /// </summary>
+        public IS_SMSContentDAL S_SMSContentDAL
+        {
+            get
+            {
+                if(_S_SMSContentDAL==null)
+                {
+                    _S_SMSContentDAL = AbstractFactory.CreateS_SMSContentDAL();
+                }
+                return _S_SMSContentDAL;
+            }
+
+            set
+            {
+                _S_SMSContentDAL = value;
             }
         }
 	#endregion
@@ -248,6 +599,114 @@ public partial class DBSession
 	#endregion
 	
 
+		#region _S_SMSMsgContentDAL 属性 
+	private IDAL.IS_SMSMsgContentDAL _S_SMSMsgContentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSMsgContentDAL的实例
+        /// </summary>
+        public IS_SMSMsgContentDAL S_SMSMsgContentDAL
+        {
+            get
+            {
+                if(_S_SMSMsgContentDAL==null)
+                {
+                    _S_SMSMsgContentDAL = AbstractFactory.CreateS_SMSMsgContentDAL();
+                }
+                return _S_SMSMsgContentDAL;
+            }
+
+            set
+            {
+                _S_SMSMsgContentDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _S_SMSRecord_CurrentDAL 属性 
+	private IDAL.IS_SMSRecord_CurrentDAL _S_SMSRecord_CurrentDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSRecord_CurrentDAL的实例
+        /// </summary>
+        public IS_SMSRecord_CurrentDAL S_SMSRecord_CurrentDAL
+        {
+            get
+            {
+                if(_S_SMSRecord_CurrentDAL==null)
+                {
+                    _S_SMSRecord_CurrentDAL = AbstractFactory.CreateS_SMSRecord_CurrentDAL();
+                }
+                return _S_SMSRecord_CurrentDAL;
+            }
+
+            set
+            {
+                _S_SMSRecord_CurrentDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _S_SMSRecord_HistoryDAL 属性 
+	private IDAL.IS_SMSRecord_HistoryDAL _S_SMSRecord_HistoryDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSRecord_HistoryDAL的实例
+        /// </summary>
+        public IS_SMSRecord_HistoryDAL S_SMSRecord_HistoryDAL
+        {
+            get
+            {
+                if(_S_SMSRecord_HistoryDAL==null)
+                {
+                    _S_SMSRecord_HistoryDAL = AbstractFactory.CreateS_SMSRecord_HistoryDAL();
+                }
+                return _S_SMSRecord_HistoryDAL;
+            }
+
+            set
+            {
+                _S_SMSRecord_HistoryDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _S_SMSTypeDAL 属性 
+	private IDAL.IS_SMSTypeDAL _S_SMSTypeDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取S_SMSTypeDAL的实例
+        /// </summary>
+        public IS_SMSTypeDAL S_SMSTypeDAL
+        {
+            get
+            {
+                if(_S_SMSTypeDAL==null)
+                {
+                    _S_SMSTypeDAL = AbstractFactory.CreateS_SMSTypeDAL();
+                }
+                return _S_SMSTypeDAL;
+            }
+
+            set
+            {
+                _S_SMSTypeDAL = value;
+            }
+        }
+	#endregion
+	
+
 		#region _UserInfoDAL 属性 
 	private IDAL.IUserInfoDAL _UserInfoDAL;
 	#endregion
@@ -270,6 +729,60 @@ public partial class DBSession
             set
             {
                 _UserInfoDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _WF_Query_InstanceDAL 属性 
+	private IDAL.IWF_Query_InstanceDAL _WF_Query_InstanceDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取WF_Query_InstanceDAL的实例
+        /// </summary>
+        public IWF_Query_InstanceDAL WF_Query_InstanceDAL
+        {
+            get
+            {
+                if(_WF_Query_InstanceDAL==null)
+                {
+                    _WF_Query_InstanceDAL = AbstractFactory.CreateWF_Query_InstanceDAL();
+                }
+                return _WF_Query_InstanceDAL;
+            }
+
+            set
+            {
+                _WF_Query_InstanceDAL = value;
+            }
+        }
+	#endregion
+	
+
+		#region _WF_Query_StepInfoDAL 属性 
+	private IDAL.IWF_Query_StepInfoDAL _WF_Query_StepInfoDAL;
+	#endregion
+
+	#region
+        /// <summary>
+        /// 获取WF_Query_StepInfoDAL的实例
+        /// </summary>
+        public IWF_Query_StepInfoDAL WF_Query_StepInfoDAL
+        {
+            get
+            {
+                if(_WF_Query_StepInfoDAL==null)
+                {
+                    _WF_Query_StepInfoDAL = AbstractFactory.CreateWF_Query_StepInfoDAL();
+                }
+                return _WF_Query_StepInfoDAL;
+            }
+
+            set
+            {
+                _WF_Query_StepInfoDAL = value;
             }
         }
 	#endregion

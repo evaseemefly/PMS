@@ -28,7 +28,7 @@ namespace PMS.DALSQLSer
          增删改查
          */
 
-        #region 1 根据实体为数据库中添加新的对象+public bool Create(T model)
+        #region 1-1 根据实体为数据库中添加新的对象+public bool Create(T model)
         /// <summary>
         /// 1 根据实体为数据库中添加新的对象
         /// </summary>
@@ -46,6 +46,28 @@ namespace PMS.DALSQLSer
         }
         #endregion
 
+        #region 1-2 根据实体集合为数据库中批量添加新的对象+public bool CreateByList(List<T> list)
+        /// <summary>
+        /// 1 根据实体为数据库中添加新的对象
+        /// </summary>
+        /// <param name="model">T实体对象</param>
+        /// <returns></returns>
+        public bool CreateByList(List<T> list)
+        {
+            foreach (var item in list)
+            {
+                this.Create(item);
+                //DbEntityEntry<T> entry = Db.Entry<T>(item);
+                //entry.State = System.Data.Entity.EntityState.Added;
+            }
+            return true;
+            //根据传入的T实体对象，向数据库中插入
+            //DbEntityEntry<T> entry = Db.Entry<T>(model);
+            ////2 设置该对象为修改过的状态
+            //entry.State = System.Data.EntityState.Added;
+        }
+        #endregion
+
         #region 2 从数据库中删除某个实体+public bool Del(T model)
         /// <summary>
         /// 2 从数据库中删除某个实体
@@ -56,10 +78,18 @@ namespace PMS.DALSQLSer
         {
             //1 将实体对象添加到上下文中
             Db.Set<T>().Attach(model);
-            //2 将该实体对象标记为删除
+            //2 将该实体对象标记为删除            
+            //Db.Entry<T>(model).State = System.Data.EntityState.Deleted;
             Db.Set<T>().Remove(model);
-            return true;
+            return Db.SaveChanges()>0;
+            //return true;
         }
+
+        //public bool PhysicsDel(T model)
+        //{
+            
+        //}
+
         #endregion
 
         #region 对于委托的示例
@@ -90,15 +120,10 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool Update(T model)
         {
-            //Dg_Test dg_test = new Dg_Test(Test);
-            ////dg_test("我是通过委托传递的参数");
-
-            //Delete(dg_test);
             //1 将T对象 加入 EF 容器中，并获取实体对象的管理状态
             DbEntityEntry<T> entry = Db.Entry<T>(model);
             //2 设置该对象为修改过的状态
             entry.State = System.Data.Entity.EntityState.Modified;  //EF5.0与EF 6.0有区别
-
             return true;
 
         }
@@ -125,15 +150,36 @@ namespace PMS.DALSQLSer
         #region 4 查询用户信息+ public IQueryable<T> GetListBy
         /// <summary>
         /// 4 查询用户信息
+	    /// isNotTrack默认值为false，只有为true时才进行AsNoTracking操作，查询对象不加载至DBContext中
         /// </summary>
         /// <param name="whereLambda">查询条件（lambda）</param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda)
+        public IQueryable<T> GetListBy(Expression<Func<T, bool>> whereLambda, bool isNotTrack = false)
         {
             //Db.Set<int>().Where()
-            return Db.Set<T>().Where(whereLambda);
+            var item = Db.Set<T>().Where(whereLambda);
+            //ToNoTracking(ref item, isNotTrack);
+            if (isNotTrack)
+            {
+                return item.AsNoTracking();
+            }
+            return item;
         }
         #endregion
+
+        /// <summary>
+        /// 是否将查询对象放入数据上下文中（默认为不放置在缓存中）；
+        /// true不放在数据上下文中，false放在数据上下文中。
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="isNotTrack">true不放在数据上下文中，false放在数据上下文中</param>
+        protected void ToNoTracking(ref IQueryable<T> query,bool isNotTrack = true)
+        {
+            if (isNotTrack)
+            {
+              query= query.AsNoTracking();
+            }
+        }
 
         #region 4 根据条件 排序并查询+IQueryable<T> GetListBy<Tkey>
         /// <summary>
@@ -143,9 +189,15 @@ namespace PMS.DALSQLSer
         /// <param name="whereLambda"></param>
         /// <param name="orderLambda"></param>
         /// <returns></returns>
-        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda)
+        public IQueryable<T> GetListBy<Tkey>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, Tkey>> orderLambda, bool isNotTrack = false)
         {
-            return Db.Set<T>().Where(whereLambda).OrderBy(orderLambda);
+            //11月25日 修改
+            //return Db.Set<T>().Where(whereLambda).OrderBy(orderLambda);
+            //新增
+            var query = Db.Set<T>().Where(whereLambda).OrderBy(orderLambda).AsQueryable();
+            //ToNoTracking(ref query, true);
+            ToNoTracking(ref query, isNotTrack);
+            return query;
         }
         #endregion
 
@@ -232,9 +284,42 @@ namespace PMS.DALSQLSer
         /// <returns></returns>
         public bool SaveChange()
         {
-            return Db.SaveChanges() > 0;
+            try
+            {
+                var i = Db.SaveChanges();
+                return i > 0;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+            
         }
         #endregion
 
+
+        #region 7 批量删除实体对象+public bool UpdateByList(List<T> list)
+        /// <summary>
+        ///  7 批量删除实体对象
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public bool DelByList(List<T> list)
+        {
+            //遍历传入的要修改的集合，将每个对象的状态均设置为修改状态
+            foreach (var item in list)
+            {
+                //if (!Db.Set<T>().Find(item))
+                //1 将实体对象添加到上下文中
+                Db.Set<T>().Attach(item);
+                //2 将该实体对象标记为删除
+                Db.Set<T>().Remove(item);
+            }
+
+            return Db.SaveChanges()>0;
+            //return true;
+        }
+        #endregion
     }
 }

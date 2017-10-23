@@ -1,0 +1,40 @@
+﻿<script type="text/javascript">
+    function Submit() {
+        //1 获取右侧联系人datagrid列表中选中的联系人id
+        var state = messagerConfirm("请确认", "是否要执行修改或创建操作?", function () {
+            
+            DoSubmit("ff", '@ViewBag.backAction', "作业");
+
+            @*var jobName = $("#jobName_valbox").textbox('getValue');
+            var jobGroup = $("#jobGroup_text").textbox('getValue');
+            var jobGroup = $("#jobGroup_text").datetimebox('getValue');
+            //1 获取选中的作业模板
+            var template_checked = $("#combo_jobTemplate").combobox('getValues');
+            //var department_checkeds = $("#DepartmentName_combotree").combotree("getChecked");
+            var department_checkeds = $("#DepartmentName_combotree").combobox('getValues');
+            //var checkeds = $("#persondatagrid").datagrid("getChecked");
+            var temp_checkeds = $("#person_temp_datagrid").datagrid("getChecked");
+            //1.1 获取选中的联系人id用,分隔，并提交
+            //var ids_person = split4id(checkeds, "PID");
+            //注意此处为[1,...2]这种数组，需要将其拼接为1,...2字符串
+            var ids_person = arr_UnSelectPersonIds.join(",");
+            var phones_temp = split4phone(temp_checkeds, "PhoneNum");
+            var url = '@ViewBag.DoSend';
+            //2 获取短信内容
+            var content = $("#message").textbox('getValue');
+            var grid_mission = $("#smsMission_combogrid").combogrid("grid");
+            var mission_checkeds = grid_mission.datagrid("getChecked");
+            var mission_id = mission_checkeds[0]["SMID"];
+            //alert("要发送的联系人为："+ids_person+"——短信内容为："+content);
+            //3 发送（进行校验）
+            AjaxSubmit(ids_person, phones_temp, content, url, mission_id, group_checkeds, department_checkeds);*@
+           
+            return;
+        });
+        //if(state==false){
+        //    return;
+        //}
+
+
+    }
+</script>

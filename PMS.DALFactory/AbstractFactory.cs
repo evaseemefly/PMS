@@ -38,15 +38,5 @@ namespace PMS.DALFactory
             return assembly.CreateInstance(fullClassName);
         }
 
-        ///// <summary>
-        ///// 创建UserInfo的实例
-        ///// </summary>
-        ///// <returns></returns>
-        //public static IUserInfoDAL CreateUserInfoDAL()
-        //{
-        //    //获取类的全名称：命名空间+类名
-        //    string fullClassName = NameSpace + ".UserInfoDAL";
-        //    return CreateInstance(fullClassName) as IUserInfoDAL;
-        //}
     }
 }

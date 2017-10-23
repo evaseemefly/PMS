@@ -6,25 +6,31 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.Model;
+using Common;
 using SMSOA.Filters;
+using SMSOA.Areas.Admin.Models;
+using PMS.Model.ViewModel;
 
 namespace SMSOA.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         IUserInfoBLL userInfoBLL { get; set; }
         IActionInfoBLL actionInfoBLL { get; set; }
         IRoleInfoBLL roleInfoBLL { get; set; }
 
 
-        [Common.Attributes.ViewAttribute]
-        [LoginValidate]
+        //[Common.Attributes.ViewAttribute]
+        //[LoginValidate]
         public ActionResult Index()
         {
             ViewBag.ShowAssignRoleInfo = "/Admin/User/ShowAssignRoleInfo";
             ViewBag.DoAssignRoleInfo = "/Admin/User/DoAssignRoleInfo";
             ViewBag.ShowAssignActionInfo = "/Admin/User/ShowAssignActionInfo";
             ViewBag.DoAssignActionInfo = "/Admin/User/DoAssignActionInfo";
+           // ViewBag.LoadSearchRecordData = "/Admin/User/LoadSearchRecordData";
+            ViewBag.ResetPwd = "ResetPwd";
+            ViewBag.GetUserInfo = "/Admin/User/GetUserInfo";
             return View();
         }
 
@@ -34,20 +40,32 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoAddUserInfo(UserInfo model)
         {
-            model.DelFlag = false;
-            model.SubTime = DateTime.Now;
-            model.ModifiedOnTime = DateTime.Now;
-            //model.Remark = "";
-            try
-            {
-                userInfoBLL.Create(model);
-                return Content("ok");
-            }
-            catch
-            {
-                return Content("error");
-            }
+            if (userInfoBLL.AddValidation(model.UName)) { return Content("validation fails"); }
+                model.DelFlag = false;
+                model.SubTime = DateTime.Now;
+                model.ModifiedOnTime = DateTime.Now;
+                //5月25日补充，对传入的密码进行md5加密
+                model.UPwd = Encryption.MD5Encryption(model.UPwd);
+                //model.Remark = "";
+                try
+                {
+                    userInfoBLL.Create(model);
+                    return Content("ok");
+                }
+                catch
+                {
+                    return Content("error");
+                }
+        }
 
+        public ActionResult ResetPwd()
+        {
+            int uid = int.Parse(Request.QueryString["uid"]);
+            //Request.Form
+            string pwd = Request.QueryString["pwd"];
+            var model = userInfoBLL.GetListBy(u => u.ID == uid).FirstOrDefault();
+                model.UPwd= Encryption.MD5Encryption(pwd);
+            return userInfoBLL.Update(model) == true ? Content("ok") : Content("error");
         }
         ///<summary>
         /// 显示添加用户
@@ -63,21 +81,21 @@ namespace SMSOA.Areas.Admin.Controllers
 
 
         ///<summary>
-        ///获取用户集合
+        ///根据条件获取用户列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetUserInfo()
+        public ActionResult GetUserInfo(ViewModel_UserInfo_QueryInfo queryModel)
         {
             int pageSize = int.Parse(Request.Form["rows"]);
             int pageIndex = int.Parse(Request.Form["page"]);
             int rowCount = 0;
 
-            //查询所有用户
-            var list_user = userInfoBLL.GetPageList(pageIndex, pageSize, a => a.DelFlag == false, a => a.Sort, true).ToList();
+            //查询用户
+            var list_record = userInfoBLL.GetUserRecordListByQuery(pageIndex, pageSize, ref rowCount, queryModel, true, true);
             PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
             {
                 total = rowCount,
-                rows = list_user,
+                rows = list_record,
                 footer = null
             };
 
@@ -91,16 +109,27 @@ namespace SMSOA.Areas.Admin.Controllers
         ///<return></return>
         public ActionResult DoEditUserInfo(UserInfo model)
         {
-            model.SubTime = DateTime.Now;
+            //数据验证
+            if (userInfoBLL.EditValidation(model.ID, model.UName)) { return Content("validation fails"); }
+            if(userInfoBLL.IsPwdChangedValidation(model.ID,model.UPwd)) { return Content("validation fails : PwdChanged"); }
+            
+            model.ModifiedOnTime = DateTime.Now;
+            
+            #region 测试用，删掉！！
+ //           var a = userInfoBLL.GetListBy(p => p.DelFlag == false && p.ID == model.ID).FirstOrDefault();
+//            userInfoBLL.TestUpdate(a);
+            #endregion
 
+            //var usertemp = userInfoBLL.GetListBy(u => u.ID == model.ID).FirstOrDefault();
+            //usertemp.UName = model.UName;
             if (userInfoBLL.Update(model))
-            {
-                return Content("ok");
-            }
-            else
-            {
-                return Content("error");
-            }
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("error");
+                }
         }
         ///<summary>
         ///显示编辑用户视图
@@ -111,12 +140,18 @@ namespace SMSOA.Areas.Admin.Controllers
         {
 
                 //1 找到指定id的action对象
-                var model = userInfoBLL.GetListBy(a => a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
+                var model = userInfoBLL.GetListBy(a=>a.DelFlag ==false &&a.ID == id).FirstOrDefault();   //注意记得加FirstOrDefault否则model就是一个集合 
 
                 //提供显示页面提交时跳转到的用户名称
                 ViewData.Model = model;
+            ViewBag.ID = model.ID;
+            ViewBag.SubTime= model.SubTime;
+            ViewBag.UName = model.UName;
+            ViewBag.UPWd = model.UPwd;
+            ViewBag.Remark = model.Remark;
+            ViewBag.Sort= model.Sort;
                 //修改即跳转至修改方法
-                @ViewBag.backAction = "DoEditUserInfo";
+                ViewBag.backAction = "DoEditUserInfo";
                 //ViewData["actionInfo"] = model;
                 //return PartialView("EditActionWindow");
                 return View("ShowEditInfo");
@@ -170,6 +205,7 @@ namespace SMSOA.Areas.Admin.Controllers
         public ActionResult ShowAssignActionInfo()
         {
             //1.从id中获取选中的用户数据
+            List<EasyUIDataGrid_Action> list_Datagrid_action = new List<EasyUIDataGrid_Action>();
             int userInfoID = int.Parse(Request.QueryString["id"]);
             var userInfo = userInfoBLL.GetListBy(a => a.ID == userInfoID).FirstOrDefault();
             if (userInfo != null)
@@ -179,6 +215,9 @@ namespace SMSOA.Areas.Admin.Controllers
                     from r in userInfo.RoleInfo //linq
                     from a in r.ActionInfo
                     select a).ToList();
+                //标识出此权限由角色赋予
+                foreach(var item in list_actionByID) { item.byRole = true; }
+
                 var list_R_User_Action = userInfo.R_UserInfo_ActionInfo;
                 //3 取出userInfo id为2的用户所对应的Action集合（路线一的方式）
                 //var temp = (
@@ -189,6 +228,7 @@ namespace SMSOA.Areas.Admin.Controllers
                 var list_action_isPass = (
                    from r in list_R_User_Action
                    where r.isPass == true
+
                    select r.ActionInfo
                     ).ToList();
                 //4 将路线一与路线二取出的ActionInfo集合合并
@@ -197,6 +237,8 @@ namespace SMSOA.Areas.Admin.Controllers
                 list_actionByID = list_actionByID.Distinct(new PMS.Model.EqualCompare.ActionEqualCompare()).ToList();
                 // IEqualityComparer<ActionInfo>
                 //list_action.Distinct()
+
+                //放入EasyUIDataGrid实体类
 
                 //6 取出isPass为false的集合
                 var list_action_isNotPass = (
@@ -207,37 +249,90 @@ namespace SMSOA.Areas.Admin.Controllers
 
                 //7 将现有集合中去掉isPass为false的ActionInfo
                 list_actionByID = list_actionByID.Where(a => !list_action_isNotPass.Contains(a)).ToList();
+                list_actionByID = list_actionByID.Where(a => a.DelFlag == false).ToList();
+                list_action_isNotPass = list_action_isNotPass.Where(a => a.DelFlag == false).ToList();
                 //8 按照Sort字段进行排序
                 list_actionByID.OrderBy(a => a.Sort);
-
-                //9 得到所有未被删除的权限集合
-                var list_allAction = actionInfoBLL.GetListBy(u => u.DelFlag == false);
-                //10 排序
-                list_allAction.OrderBy(a => a.Sort);
-
-                //11 调整顺序，使已拥有的集合在集合的前面
-                List<ActionInfo> list_showAction = new List<ActionInfo>();
+                list_action_isNotPass.OrderBy(a => a.Sort);
+                //9. 将所有该用户拥有的（禁用/未禁用）的权限都封装进EasyUI模板类，并加入集合
                 foreach (var item in list_actionByID)
                 {
-                    item.Checked = true;
+                    EasyUIDataGrid_Action datagrid_Action = new EasyUIDataGrid_Action()
+                    {
+                        AID = item.ID,
+                        ActionName = item.ActionInfoName,
+                        SubTime = item.SubTime,
+                        ModifiedTime = item.ModifiedOnTime,
+                        Remark = item.Remark,
+                        selected = true,
+                        Checked = true,
+                        IsPass = true,
+                        Text = "启用",
+                        byRole = item.byRole
+                        
+                    };
+                    
+                    list_Datagrid_action.Add(datagrid_Action);
+                }
+                //已禁用的
+                foreach(var item in list_action_isNotPass)
+                {
+                    EasyUIDataGrid_Action datagrid_Action = new EasyUIDataGrid_Action()
+                    {
+                        AID = item.ID,
+                        ActionName = item.ActionInfoName,
+                        SubTime = item.SubTime,
+                        ModifiedTime = item.ModifiedOnTime,
+                        Remark = item.Remark,
+                        selected = true,
+                        Checked = true,
+                        IsPass = false,
+                        Text = "禁用",
+                        byRole = item.byRole
+                    };
+
+                    list_Datagrid_action.Add(datagrid_Action);
+                }
+
+
+
+                //10 得到所有未被删除的权限集合
+                var list_allAction = actionInfoBLL.GetListBy(u => u.DelFlag == false);
+                //12 排序
+                list_allAction.OrderBy(a => a.Sort);
+
+                //14 得到所有的已拥有的权限（包括禁用与启用）
+                list_actionByID.AddRange(list_action_isNotPass);
+
+                foreach (var item in list_actionByID)
+                {
                     //12 得到改角色未拥有的权限集合
                     list_allAction = list_allAction.Where(a => a.ID != item.ID);
-                    list_showAction.Add(item);
                 }
-                //13 加到列表的末尾
-                list_showAction.AddRange(list_allAction);
 
+                //13 将所有该用户未拥有的的权限都封装进EasyUI模板类，并加入集合
+                foreach (var item in list_allAction)
+                {
+                    EasyUIDataGrid_Action datagrid_Action = new EasyUIDataGrid_Action()
+                    {
+                        AID = item.ID,
+                        ActionName = item.ActionInfoName,
+                        SubTime = item.SubTime,
+                        ModifiedTime = item.ModifiedOnTime,
+                        Remark = item.Remark,
+                        selected = false,
+                        Checked = false,
+                        IsPass = true,
+                        Text = "请选择",
+                        byRole = item.byRole
+                    };
 
-                var list_Combobox = (
-                         from r in list_showAction
-                         select new PMS.Model.EasyUIModel.EasyUICombobox()
-                         {
-                             id = r.ID,
-                             text = r.ActionInfoName,
-                             selected = r.Checked
-                         }).ToList();
+                    list_Datagrid_action.Add(datagrid_Action);
+                }
 
-                return Content(Common.SerializerHelper.SerializerToString(list_Combobox));
+                string temp = Common.SerializerHelper.SerializerToString(list_Datagrid_action);
+                temp = temp.Replace("Checked", "checked");
+                return Content(temp);
             }
             return null;
 
@@ -246,25 +341,32 @@ namespace SMSOA.Areas.Admin.Controllers
         ///用户权限分配
         ///</summary>
         ///<return></return>
-        public ActionResult DoAssignActionInfo(ActionInfo model)
+        public ActionResult DoAssignActionInfo(Models.ViewModel_UserAction model)
         {
+
             //1 从URL获取选中的用户ID,以及所添加的权限ID
-            int userID = int.Parse(Request.QueryString["UserID"]);
-            string a_actionIDs = Request.QueryString["ids"];
+            var userID = int.Parse(model.UserId);
+            var a_actionIDs = model.ActionID;
+            var isPassSubmit = model.A_isPasses;
 
-            //2 用逗号分隔每个权限ID
-            string[] acionIDs = a_actionIDs.Split(',');
+            //2 用逗号分隔每个权限ID和isPass
             List<int> list_actionIDs = new List<int>();
-            foreach(var item in acionIDs)
+            List<string> list_actionIsPass = new List<string>();
+            if(a_actionIDs != null)
             {
-                if (item != "")
+                string[] acionIDs = a_actionIDs.Split(',');
+                string[] isPassSubmits = isPassSubmit.Split(',');
+                foreach (var item in acionIDs)
                 {
-                    list_actionIDs.Add(int.Parse(item));
-
+                    if (item != "") { list_actionIDs.Add(int.Parse(item));}
+                }
+                foreach (var item in isPassSubmits)
+                {
+                    if (item != ""){list_actionIsPass.Add(item);}
                 }
             }
             //3 更改选中用户与其权限的关系表
-            userInfoBLL.SetUser4Action(userID, list_actionIDs);
+            userInfoBLL.SetUser4Action(userID, list_actionIDs, list_actionIsPass);
 
             return Content("ok");
         }
@@ -305,16 +407,23 @@ namespace SMSOA.Areas.Admin.Controllers
                 list_showRole.AddRange(list_allRole);
 
 
-                var list_Combobox = (
+                var list_DataGrid = (
                         from r in list_showRole
-                        select new PMS.Model.EasyUIModel.EasyUICombobox()
+                        select new EasyUIDataGrid_Role()
                         {
-                            id = r.ID,
-                            text = r.RoleName,
-                            selected = r.Checked
+                            RID = r.ID,
+                            RoleName = r.RoleName,
+                            SubTime = r.SubTime,
+                            ModifiedTime = r.ModifiedOnTime,
+                            Remark = r.Remark,
+                            Sort = r.Sort,
+                            selected = r.Checked,
+                            Checked = r.Checked
                     }).ToList();
 
-                return Content(Common.SerializerHelper.SerializerToString(list_Combobox));
+                string temp = Common.SerializerHelper.SerializerToString(list_DataGrid);
+                temp = temp.Replace("Checked", "checked");
+                return Content(temp);
             }
             return null;
         }
@@ -345,5 +454,38 @@ namespace SMSOA.Areas.Admin.Controllers
                 return Content("ok");
         }
 
+        public override ViewModel_MyHttpContext GetHttpContext()
+        {
+            var httpModel = new ViewModel_MyHttpContext()
+            {
+                Area = "Admin",
+                Controller = RouteData.Route.GetRouteData(this.HttpContext).Values["controller"].ToString(),
+                Action = RouteData.Route.GetRouteData(this.HttpContext).Values["action"].ToString(),
+                Url = Request.Url.ToString()
+            };
+            return httpModel;
+        }
+        /// <summary>
+        /// 信息查询: 按照用户名，备注
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        //public ActionResult LoadSearchRecordData(PMS.Model.ViewModel.ViewModel_UserInfo_QueryInfo model)
+        //{
+        //    int pageSize = int.Parse(Request.Form["rows"]);
+        //    int pageIndex = int.Parse(Request.Form["page"]);
+        //    int rowCount =0;
+        //    var list_record = userInfoBLL.GetUserRecordListByQuery(pageIndex, pageSize, ref rowCount, model, true, true);
+        //    //转换为json格式
+        //    PMS.Model.EasyUIModel.EasyUIDataGrid dgModel = new PMS.Model.EasyUIModel.EasyUIDataGrid()
+        //    {
+        //        total = rowCount,
+        //        rows = list_record,
+        //        footer = null
+        //    };
+        //    //4 序列化
+        //    return Content(Common.SerializerHelper.SerializerToString(dgModel));
+
+        //}
     }
 }

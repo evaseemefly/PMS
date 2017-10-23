@@ -1,41 +1,49 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "View";
+    int showDepToolbar = ViewBag.ShowDepartmentToolbar;
+    int showPerToolbar = ViewBag.ShowPersonToolbar;
+    Layout = "~/Areas/Contacts/Views/Shared/_Layout_GroupDepartment.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-
-    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
-    <link href="~/Scripts/EasyUI/themes/black/easyui.css" rel="stylesheet" />
-
-    <link href="~/Scripts/EasyUI/themes/color.css" rel="stylesheet" />
-
-    @*@Styles.Render("~/Scripts/EasyUI/themes/black")*@
-    @Scripts.Render("~/mvcAjax")
-    @*@Scripts.Render("~/Scripts/easyUIJS")*@
-    <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
-    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
-    <script src="~/Scripts/MyScripts/jquery.msgProcess.js"></script>
-    @*自己写的图标样式*@
-    <link href="~/Scripts/MyCSS/MyIcon.css" rel="stylesheet" />
-    
+@section Scripts{
     <script type="text/javascript">
+        var myColumns = [[
+      { field: 'DID', title: 'ID', width: 100,hidden: true },
+      { field: 'DepartmentName', title: '部门名称', width:"100%" }
+        ]]
 
-        function addRow() {
+
+        var toolbar = [{
+            id:'add_department',
+            iconCls: 'icon-add',
+            text: "新增",
+            handler: addDepartmentRow@*addRow("@ViewBag.ShowAdd")*@
+            },
+           {
+               id: 'del_department',
+               iconCls: 'icon-remove',
+               text: "删除",
+               handler: removeDepartmentRow@*removeRow("@ViewBag.Del_url")*@
+               },
+           {
+               id: 'edit_department',
+               iconCls: 'icon-edit',
+               text: "编辑",
+               handler: editDepartmentRow@*editRow("@ViewBag.ShowEdit")*@
+               }]
+
+
+        function addDepartmentRow() {
             //从指定页面中预读取数据
-            $("#setContactsFrame").attr("src", '@ViewBag.ShowAdd');
+            $("#addDepartmentFrame").attr("src", '@ViewBag.ShowAddDepartment');
             //打开编辑窗体
-            $("#editWindow").window('open');
+            $("#editContactWindow").panel({ title: "新建部门" });
+            $("#editContactWindow").window('open');
 
         }
 
-        function editRow() {
-            var rows = $("#contactstreegrid").treegrid('getSelections');
+        function editDepartmentRow() {
+            var rows = $("#contactsdatagrid").treegrid('getSelections');
             //若选中的行不为一行
             if (rows.length != 1) {
                 //提示
@@ -47,16 +55,17 @@
                 return;
             }
             //**注意先加载iframe窗体的数据，在打开该窗口
-            $("#setContactsFrame").attr("src", "@ViewBag.ShowEdit" + "?id=" + rows[0].DID);//会出现重定向的错误
-            $("#editWindow").window('open');
+            $("#addDepartmentFrame").attr("src", "@ViewBag.ShowEditDepartment" + "?id=" + rows[0].DID);//会出现重定向的错误
+            $("#editContactWindow").panel({title:"编辑部门"});
+            $("#editContactWindow").window('open');
             //若选中了一行数据则执行修改操作
             //获取选中列的某一行的值，由于选中的行是一个数组，需要取出第一个
 
         }
 
 
-        function removeRow() {
-            var rows = $("#contactstreegrid").treegrid('getSelections');
+        function removeDepartmentRow() {
+            var rows = $("#contactsdatagrid").treegrid('getSelections');
             //若选中的行不为一行
             if (rows.length < 1) {
                 //提示
@@ -76,13 +85,17 @@
             }
                 //去掉最后一个逗号
                 strId = strId.substr(0, strId.length - 1);
-                $.post("@ViewBag.Del_url?ids=" + strId, function (data) {
+                $.post("@ViewBag.DelDepartment_url?ids=" + strId, function (data) {
                 //请求成功后的回调函数
                 if (data == "ok") {
                 //重新加载treegrid
-                   $("#contactstreegrid").treegrid('reload');
+                   $("#contactsdatagrid").treegrid('reload');
                 //清楚所选中的行
-                $("#contactstreegrid").treegrid('clearSelections');
+                $("#contactsdatagrid").treegrid('clearSelections');
+                //7月7日
+                //需要清除联系人以及 下拉框中的值
+                ClearPersonGrid();
+                ComboboxDisable();
                 $.messager.alert("提示", "删除成功");
             }
             });
@@ -91,93 +104,195 @@
 
         }
 
-
+        //6月12日 采用母版页共用afterEditContact方法
         //编辑或创建某个权限后执行的操作
-        function afterEdit(msg) {
-            //editWindow
-            //1 关闭加载的iframe页面
-            $.messager.alert('提示', msg);
-
-            $("#editWindow").window('close');
+        function afterEditContact(msg, type) {
+            afterContact_Common(msg, type);
             //2 刷新当前页面
-            $("#contactstreegrid").treegrid('reload');
+            //$("#contactsdatagrid").treegrid('reload');
+           loadTreeGrid('@ViewBag.GetInfo', myColumns);
         }
 
+        //需要改为动态加载
         var areas = {
-            "1":"北京",
-            "2":"山东",
-            "3":"河北",
-            "5":"上海",
-            "10":"福建",
-            "13":"厦门",
-            "12":"崇武",
+            "1": "北京",
+            "2": "山东",
+            "3": "河北",
+            "5": "上海",
+            "10": "福建",
+            "13": "厦门",
+            "12": "崇武",
         }
 
-        var myColumns = [[
-              { field: 'DID', title: 'ID', width: 100 },
-              { field: 'PDID', title: '上级部门ID', width: 150 },
-              { field: 'DepartmentName', title: '部门名称', width: 250 },
-              {
-                  field: 'Area', title: '地区', width: 250,
-                  formatter: function (value) {
-                      //for (var i = 0; i < length; i++) {
+        //根据输入的条件进行搜索
+        function searchBy(){
+            //获取到输入的查询群组的text框中的值
+            var match_departmentName= $("#contactsName").val();
 
-                      //}
-                      return areas[value];
-                  }
-              },
-              { field: 'Remark', title: '备注', width: 120 }
-        ]]
+            var queryData={
+                DepartmentName:match_departmentName
+            };
 
-        var toolbar = [{
-            iconCls: 'icon-add',
-            text: "新增",
-            handler: addRow@*addRow("@ViewBag.ShowAdd")*@
-        }, '-',
-        {
-            iconCls: 'icon-remove',
-            text: "删除",
-            handler: removeRow@*removeRow("@ViewBag.Del_url")*@
-        }, '-',
-           {
-               iconCls: 'icon-edit',
-               text: "编辑",
-               handler: editRow@*editRow("@ViewBag.ShowEdit")*@
-           }]
+            loadTreeGridbyCondition('@ViewBag.GetInfo', myColumns,queryData);
+            //loadTreeGrid('@ViewBag.GetInfo', myColumns,queryData);
+        }
 
-        function loadTreeGrid(url, myColumns) {
+        function searchPersonByCondition(){
+
+            var name=$("#personName").val();
+            var phone=$("#personPhoneNum").val();
+            var obj={
+                PersonName:name,
+                PhoneNum:phone
+            }
+
+            loadPersonGridByGID('@ViewBag.GetPersonUrlbyCondition', PersonColumns, PersonToolbar,obj);
+        }
+
+
+        function loadTreeGrid(url, myColumns,queryModel) {
+            loadTreeGridbyCondition(url, myColumns,queryModel);
+            ////2 位treegrid加载数据
+            //$("#contactsdatagrid").treegrid({
+            //    queryParams:queryModel
+            //});
+        }
+
+        function loadTreeGridbyCondition(url, myColumns,queryModel) {
             //2 位treegrid加载数据
-            $("#contactstreegrid").treegrid({
+            $("#contactsdatagrid").treegrid({
                 idField: 'DID',
                 treeField: 'DepartmentName',
-                animate:true,
-                width: '400px',
-                height: 'auto',
+                animate: true,
+                //width: '400px',
+                height: '400px',
                 fitColumns: true,
-                striped: true,
+                striped: true,//是否显示斑马线
+                nowrap: false,//自动换行
                 singleSelect: true,
                 fit: true,
                 url: url,
                 loadMsg: '数据加载中请稍后……',
                 columns: myColumns,
-                toolbar: toolbar
+                toolbar: '#tb_contacts',
+                queryParams:queryModel
 
             });
         }
 
+        function loadTreeGrid(url, myColumns) {
+            //2 位treegrid加载数据
+            $("#contactsdatagrid").treegrid({
+                idField: 'DID',
+                treeField: 'DepartmentName',
+                animate: true,
+                //width: '400px',
+                height: '400px',
+                fitColumns: true,
+                striped: true,//是否显示斑马线
+                nowrap: false,//自动换行
+                singleSelect: true,
+                fit: true,
+                url: url,
+                loadMsg: '数据加载中请稍后……',
+                columns: myColumns,
+                toolbar: '#tb_contacts'
+
+            });
+        }
+
+        //获取群组或部门id
+        function loadPersonGridByGID(url, myPersonColumns, myPersonToolbar,queryModel) {
+            //1 获取选中的行
+            var rows = $("#contactsdatagrid").treegrid('getSelections');
+            //1.1 若选中的行不为一行
+            if (rows.length != 1) {
+                //提示
+                $.messager.show({
+                    title: '提示',
+                    msg: '请选中一行数据',
+                    showType: 'show'
+                });
+                return;
+            }
+            //1.2 获取选中行的ID
+            strId = rows[0].DID;
+            //this.gid = strId;
+            if(queryModel!=null){
+                queryModel.DID=strId;
+            }
+            //为隐藏域赋值
+            $("#did_Hidden").val(strId);
+            url = url + "?did=" + strId;
+            // var isloadCombo= ''=='1'?true:false;
+            var isloadCombo = false;
+            if(@showPerToolbar==1){
+                isloadCombo=true;
+            }
+            loadPersonGrid(url, myPersonColumns, myPersonToolbar,isloadCombo,queryModel);
+        }
 
         $(function () {
-
-            $("#editWindow").window('close');
+            //$("#editContactWindow").window('close');
+            //$("#editPersonWindow").window('close');
             loadTreeGrid('@ViewBag.GetInfo', myColumns);
 
+            $("#contactsdatagrid").treegrid({
+                onClickRow: function (index, field, value) {
+                    //将group以及department下拉框清除并将下拉框设置为可选
+                    ComboboxEnableAndClear();
+                    ComboboxDisable();
+                    loadPersonGridByGID("@ViewBag.GetPersonUrl", PersonColumns, PersonToolbar);
+                    checkShowToolbar("@showDepToolbar", "@showPerToolbar", "department");
+                }
+            });
+            //根据权限隐藏toolbar
+            checkShowToolbar("@showDepToolbar", "@showPerToolbar", "department");
+            @*var showdepartmentToolbar = "@showDepToolbar";
+            var showPerToolbar = "@showPerToolbar";*@
+            ////此方法可用
+            //if (showdepartmentToolbar == '0') {
+            //    $("#add_department").hide();
+            //    $("#del_department").hide();
+            //    $("#edit_department").hide();
+            //    //$('div.datagrid div.datagrid-toolbar a').hide();
+            //}
+            //if (showPerToolbar == '0') {
+            //    $("#tb").hide();
+            //    //$("#add_person").hide();
+            //    //$("#del_person").hide();
+            //    //$("#edit_person").hide();
+            //    //$("#save_person").hide();
+            //}
+
         })
+
     </script>
-</head>
-<body style="overflow:hidden;">
-    <table class="easyui-treegrid" id="contactstreegrid" style="height:100%;width:100%"></table>
-    <div class="easyui-window" @*title="New Topic"*@ id="editWindow" style="width:500px;height:350px;overflow: hidden" data-options="shadow:true,modal:true">
-        <iframe id="setContactsFrame" frameborder="0" width="100%" height="100%" @*scrolling="no"*@ @*不显示滚动条*@></iframe>
+    @Html.Partial("_Partial_ShowToolbar")
+}
+
+
+
+
+@section westdiv{
+    <div id="west_contacts_div" data-options="region:'west'" title="部门列表" style="width:21%">
+        <div id="mydiv_contacts" style="height:100%;width:100%;">
+            <input type="hidden" id="did_Hidden" />
+            <table class="easyui-treegrid" id="contactsdatagrid" style="height:100%;width:100%"></table>
+        </div>        
     </div>
-</body>
-</html>
+
+<div id="tb_contacts" style="padding:2px 5px;">
+    <a href="#" class="easyui-linkbutton" istb="true" id="add_department" data-options="iconCls:'icon-add',text: '新增',plain:true" onclick="addDepartmentRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="del_department" data-options="iconCls:'icon-remove',text: '删除',plain:true" onclick="removeDepartmentRow()"></a>
+    <a href="#" class="easyui-linkbutton" id="edit_department" data-options="iconCls:'icon-edit',text: '编辑',plain:true" onclick="editDepartmentRow()"></a>
+    <br />
+    <input class="easyui-validatebox" type="text" id="contactsName" style="width:'50%'" data-options="">
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="searchBy()">查询</a>
+</div>
+}
+@section showWindow{
+    <div class="easyui-window" title="编辑部门" id="editContactWindow" style="width:460px;height:405px;overflow: hidden" data-options="shadow:true,modal:true">
+        <iframe id="addDepartmentFrame" frameborder="0" width="100%" height="100%" scrolling="no" @*不显示滚动条*@></iframe>
+    </div>
+}

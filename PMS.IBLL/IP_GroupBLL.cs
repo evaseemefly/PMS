@@ -14,8 +14,30 @@ namespace PMS.IBLL
         /// </summary>
         /// <param name="list_ids"></param>
         /// <returns></returns>
-        List<P_Group> GetListByIds(List<int> list_ids);
+        List<P_Group> GetListByIds(List<int> list_ids, bool isNotTrack = false);
 
+        /// <summary>
+        /// 查询指定联系人id的所属群组集合
+        /// </summary>
+        /// <param name="pid">联系人id</param>
+        /// <returns></returns>
+        List<P_Group> GetListByPerson(int pid);
+
+
+        /// <summary>
+        /// 剔除传入的群组id中的群组，返回剩余群组集合
+        /// </summary>
+        /// <param name="list_ids_group">需要剔除群组的id集合</param>
+        /// <param name="isMiddle">是否需要转成中间变量</param>
+        /// <returns></returns>
+        List<P_Group> GetRestGroupListByIds(List<int> list_ids_group, bool isMiddle);
+        /// <summary>
+        /// 根据群组GID删除指定PID的联系人
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        bool DelPersonInfoByGID(int gid, int pid);
 
         /// <summary>
         /// 修改指定的GroupId 的对象集合的删除标记为删除
@@ -23,5 +45,13 @@ namespace PMS.IBLL
         /// <param name="list_ids"></param>
         /// <returns></returns>
         bool DelSoftRoleInfos(List<int> list_ids);
+        /// <summary>
+        /// 数据验证
+        /// </summary>
+        /// <param name="list_ids"></param>
+        /// <returns></returns>
+        bool AddValidation(String name);
+
+        bool EditValidation(int id, String name);
     }
 }

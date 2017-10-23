@@ -18,6 +18,10 @@ namespace PMS.Model
         {
             this.R_Department_Mission = new HashSet<R_Department_Mission>();
             this.R_Group_Mission = new HashSet<R_Group_Mission>();
+            this.R_UserInfo_SMSMission = new HashSet<R_UserInfo_SMSMission>();
+            this.S_SMSRecord_History = new HashSet<S_SMSRecord_History>();
+            this.S_SMSMsgContent = new HashSet<S_SMSMsgContent>();
+            this.S_SMSContent = new HashSet<S_SMSContent>();
         }
     
         public int SMID { get; set; }
@@ -27,8 +31,13 @@ namespace PMS.Model
         public string Remark { get; set; }
         public bool isDel { get; set; }
         public bool isMMS { get; set; }
+        public int Sort { get; set; }
     
         public virtual ICollection<R_Department_Mission> R_Department_Mission { get; set; }
         public virtual ICollection<R_Group_Mission> R_Group_Mission { get; set; }
+        public virtual ICollection<R_UserInfo_SMSMission> R_UserInfo_SMSMission { get; set; }
+        public virtual ICollection<S_SMSRecord_History> S_SMSRecord_History { get; set; }
+        public virtual ICollection<S_SMSMsgContent> S_SMSMsgContent { get; set; }
+        public virtual ICollection<S_SMSContent> S_SMSContent { get; set; }
     }
 }
